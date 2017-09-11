@@ -1,0 +1,150 @@
+body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    padding-top: 3%;
+}
+
+.rotateit {
+    font-size: 2.7em;
+    font-family: "Arial Black", Gadget, sans-serif;
+    transform: rotate(-90deg);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.logo_text {
+    font-size: 2em;
+    font-weight: 700;
+    font-family: "Verdana", sans-serif;
+    margin: 1% 0 1% 1%;
+}
+
+.logo_button {
+    flex-flow: column nowrap;
+}
+
+.logo_img {
+    width: 25%;
+    height: auto;
+    margin-left: -7%;
+}
+
+.sound_img {
+    width: 100px;
+    margin: 0 160px;
+}
+
+.score_img {
+    width: 50px;
+    margin: 0 125px;
+}
+
+.info_img {
+    width: 50px;
+    margin: 0 55px;
+}
+
+.button {
+    background-color: whitesmoke;
+    font-size: 1.5em;
+    font-weight: 700;
+    font-family: "Verdana", sans-serif;
+    color: black;
+    padding: 7px 17px;
+    border: 3px solid #041712;
+    border-radius: 10%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 7em;
+    margin: 15px 0 5px 30px;
+    cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.button:hover {
+    background-color: rgba(4, 23, 18, 0.04);
+    border: 3px solid rgba(169, 169, 169, 0.19);
+}
+
+.button_img {
+    width: 150px;
+    height: 150px;
+    background: url('../img/sound.png');
+    background-repeat: no-repeat;
+}
+
+.input_form {
+    flex-flow: column nowrap;
+    margin-left: 2%;
+}
+
+.input {
+    display: block;
+    width: 350px;
+    padding: 9px 0 12px 12px;
+    font-size: 1em;
+    margin: 5px 0 16px ;
+    font-family: "Helvetica";
+    border-radius: 7px;
+    background: #e9ecf0;
+    color: #5E6D82;
+    box-sizing: border-box;
+}
+
+.input:focus {
+    outline: none;
+    background-color: #F3F3F3;
+}
+
+.data-error {
+    border: solid 3px darkred;
+}
+
+input:invalid {
+    border: solid 3px darkred;
+}
+
+a {
+    display: inline-block;
+}
+
+
+.table_form {
+    /*width: 20%;*/
+}
+
+table {
+    border-collapse: collapse;
+    font-family: "Verdana", sans-serif;
+    /*width: 100%;*/
+}
+
+th, td {
+    text-align: center;
+    padding: 10px;
+}
+
+.score_table > tr:nth-child(even){background-color: #f2f2f2}
+
+#login-button {
+    margin: 15px 0 -15px 98px;
+}
+
+#signup-button {
+    margin: 15px 0 -15px 98px;
+}
+
+.error-mess {
+    color: darkred;
+    font-family: "Verdana", sans-serif;
+}
