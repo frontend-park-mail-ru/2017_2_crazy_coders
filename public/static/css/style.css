@@ -106,14 +106,6 @@ body {
     background-color: #F3F3F3;
 }
 
-.data-error {
-    border: solid 3px darkred;
-}
-
-input:invalid {
-    border: solid 3px darkred;
-}
-
 a {
     display: inline-block;
 }
@@ -144,7 +136,7 @@ th, td {
     margin: 15px 0 -15px 98px;
 }
 
-.error-mess {
+.error-msg {
     color: darkred;
     font-family: "Verdana", sans-serif;
 }

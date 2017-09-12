@@ -1,72 +1,4 @@
-//проверка формы при отправке
-// на незаполненые поля - отдельно для входа и регистрации
-
-function validFormOnEmptyCells(id_form, section) {
-    document.getElementById(id_form).addEventListener('click', () => {
-        const dataForm = section.getElementsByClassName("input");
-        let flag = true;
-
-        Object.keys(dataForm).forEach(data => {
-            if (dataForm[data].value === '') {
-                dataForm[data].classList.add("data-error");
-                valid = false;
-            } else {
-                dataForm[data].classList.remove("data-error");
-            }
-        });
-    });
-}
-
-function showError(mess, form) {
-    let errorElement = document.createElement('div');
-    errorElement.textContent = mess;
-    errorElement.classList.add('error-mess');
-    console.log(errorElement);
-    form.insertBefore(errorElement,form.children[0]);
-}
-
-function isCorrectPassword(pass, form) {
-    let mess = 'password length >= 6 symbol';
-    if (pass.length < 6) {
-        showError(mess, form);
-        return false;
-    }
-    return true; // добавить валидацию
-}
-
-function isSamePasswords(pass, passRepeat, form) {
-    let mess = 'password !== repeat password';
-    if (pass !== passRepeat) {
-        showError(mess, form);
-        return false;
-    }
-    return true; // добавить валидацию
-}
-
-function isCorrectLogin(login, form) {
-    let mess = 'login length >= 4 symbol';
-    if (login.length < 4) {
-        showError(mess, form);
-        return false;
-    }
-    return true; // добавить валидацию
-}
-
-function isCorrectEmail(email, form) {
-    let r = email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
-    let mess = 'invalid email';
-    if (!r) {
-        showError(mess, form);
-        return false;
-    }
-    return true; // добавить валидацию
-}
-
-validFormOnEmptyCells('login-button', document.getElementById('login'));
-validFormOnEmptyCells('signup-button', document.getElementById('registry'));
-
-let registryForm = document.getElementById('registry-form');
-let loginForm = document.getElementById('login-form');
+"use strict";
 
 function register(login, email, password, callback) {
     const user = {login, email, password};
@@ -89,7 +21,7 @@ function register(login, email, password, callback) {
     xhr.send(body);
 }
 
-function loginn(login, password, callback) {
+function login(login, password, callback) {
     const user = {login, password};
     const body = JSON.stringify(user);
 
@@ -110,26 +42,23 @@ function loginn(login, password, callback) {
     xhr.send(body);
 }
 
+let registryForm = document.getElementById('registry-form');
+let loginForm = document.getElementById('login-form');
 
 registryForm.addEventListener('submit', function (event) {
     event.preventDefault();
-    let login = registryForm.elements['login'].value;
-    let email = registryForm.elements['email'].value;
-    let password = registryForm.elements['password'].value;
-    let repeatPassword = registryForm.elements['repeat-password'].value;
 
-    console.log(email);
-    console.log(password);
-    console.log(repeatPassword);
-    console.log(login);
+    let userLogin = registryForm.elements['login'].value;
+    let userEmail = registryForm.elements['email'].value;
+    let userPassword = registryForm.elements['password'].value;
+    let userRepeatPassword = registryForm.elements['repeat-password'].value;
 
-    if (isCorrectPassword(password, registryForm) && isSamePasswords(password, repeatPassword, registryForm) &&
-        isCorrectLogin(login, registryForm) && isCorrectEmail(email, registryForm)) {
-        register(login, email, password, function (err, resp) {
+    if (validRegisterForm(userLogin, userEmail, userPassword, userRepeatPassword, registryForm)) {
+        register(userLogin, userEmail, userPassword, function (err, resp) {
             if (err) {
                 return alert(`AUTH Error: ${err.status}`);
             }
-            if (resp.response === 200) { // в случае успеха входим
+            if (resp.response === 200) {
                 registryPage.hidden = true;
                 helloPage.hidden = true;
                 isRegisteredUser();
@@ -141,24 +70,23 @@ registryForm.addEventListener('submit', function (event) {
 
 loginForm.addEventListener('submit', function (event) {
     event.preventDefault();
-    let login = loginForm.elements['login'].value;
-    let password = loginForm.elements['password'].value;
+    let userLogin = loginForm.elements['login'].value;
+    let userPassword = loginForm.elements['password'].value;
 
-    isCorrectLogin(login, loginForm);
-    isCorrectPassword(password, loginForm);
+    if (validLoginForm(userLogin,userPassword, loginForm)) {
+        login(userLogin, userPassword, function (err, resp) {
+            if (err) {
+                return alert(`AUTH Error: ${err.status}`);
+            }
 
-    loginn(login, password, function (err, resp) {
-        if (err) {
-            return alert(`AUTH Error: ${err.status}`);
-        }
-
-        if (resp.success === 'yes') { // в случае успеха - входим
-            loginPage.hidden = true;
-            helloPage.hidden = true;
-            isRegisteredUser();
-        }
-        loginForm.reset();
-    });
+            if (resp.success === 'yes') {
+                loginPage.hidden = true;
+                helloPage.hidden = true;
+                isRegisteredUser();
+            }
+            loginForm.reset();
+        });
+    }
 });
 
 // навигация по странице
@@ -188,46 +116,59 @@ function isUnregisteredUser() { // если пользователь зарег�
     buttomsPanel.hidden = false;// всегда можно посмотреть счет, о нас, выключить звук
     helloPage.hidden = false;
     mainPage.hidden = true;
-    allSectionArray.forEach(section => {
 
+    allSectionArray.forEach(section => { // удаляем события, если они есть
+        section.removeEventListener( "click", {} , false);
+    });
+
+    allSectionArray.forEach(section => {
         section.addEventListener('click', (event) => {
             const elemId = event.target.getAttribute('id');
-            console.log(elemId);
+            switch (elemId) {
+                case 'button-log':
+                    helloPage.hidden = true;
+                    loginPage.hidden = false;
+                    break;
 
-            if (elemId === 'button-log') {
-                helloPage.hidden = true;
-                loginPage.hidden = false;
-            }
-            if (elemId === 'button-register') {
-                helloPage.hidden = true;
-                registryPage.hidden = false;
-            }
-            if (elemId === 'back-login' || elemId === 'back-signup') {
-                loginPage.hidden = true;
-                registryPage.hidden = true;
-                helloPage.hidden = false;
-            }
-            if (elemId === 'login-button') {
-                let buttonLogIn = document.getElementById('login-button');
-            }
-            if (elemId === 'score-logo') {
-                loginPage.hidden = true;
-                registryPage.hidden = true;
-                helloPage.hidden = true;
-                scorePage.hidden = false;
-            }
-            if (elemId === 'about-logo') {
-                loginPage.hidden = true;
-                registryPage.hidden = true;
-                helloPage.hidden = true;
-                aboutPage.hidden = false;
-            }
-            if (elemId === 'back-score' || elemId === 'back-about') {
-                section.hidden = true;
-                helloPage.hidden = false;
-                mainPage.hidden = true;
-            }
+                case 'button-register':
+                    helloPage.hidden = true;
+                    registryPage.hidden = false;
+                    break;
 
+                case  'back-login':
+                    loginPage.hidden = true;
+                    registryPage.hidden = true;
+                    helloPage.hidden = false;
+                    break;
+
+                case 'back-signup':
+                    loginPage.hidden = true;
+                    registryPage.hidden = true;
+                    helloPage.hidden = false;
+                    break;
+
+                case 'score-logo':
+                    hideAll(allSectionArray);
+                    scorePage.hidden = false;
+                    break;
+
+                case 'about-logo':
+                    hideAll(allSectionArray);
+                    aboutPage.hidden = false;
+                    break;
+
+                case 'back-about':
+                    section.hidden = true;
+                    helloPage.hidden = false;
+                    mainPage.hidden = true;
+                    break;
+
+                case 'back-score':
+                    section.hidden = true;
+                    helloPage.hidden = false;
+                    mainPage.hidden = true;
+                    break;
+            }
         }, false);
     });
 }
@@ -236,28 +177,39 @@ function isRegisteredUser() { // если пользователь незаре�
     buttomsPanel.hidden = false;
     helloPage.hidden = true;
     mainPage.hidden = false;
-    allSectionArray.forEach(section => {
 
+    allSectionArray.forEach(section => { // удаляем события, если они есть
+        section.removeEventListener( "click", {} , false);
+    });
+
+    allSectionArray.forEach(section => {
         section.addEventListener('click', (event) => {
             const elemId = event.target.getAttribute('id');
-            console.log(elemId);
-            if (elemId === 'logout') {
-                console.log('logouttttt');
-            }
-
-            if (elemId === 'score-logo') {
-                hideAll(allSectionArray);
-                scorePage.hidden = false;
-            }
-            if (elemId === 'about-logo') {
-                hideAll(allSectionArray);
-                aboutPage.hidden = false;
-            }
-
-            if (elemId === 'back-score' || elemId === 'back-about') {
-                section.hidden = true;
-                mainPage.hidden = false;
-                helloPage.hidden = true;
+            switch (elemId) {
+                case 'logout':
+                    console.log('i am logout');
+                    break;
+                case 'start-game':
+                    console.log('i am start');
+                    break;
+                case 'score-logo':
+                    hideAll(allSectionArray);
+                    scorePage.hidden = false;
+                    break;
+                case 'about-logo':
+                    hideAll(allSectionArray);
+                    aboutPage.hidden = false;
+                    break;
+                case 'back-score':
+                    section.hidden = true;
+                    mainPage.hidden = false;
+                    helloPage.hidden = true;
+                    break;
+                case 'back-about':
+                    section.hidden = true;
+                    mainPage.hidden = false;
+                    helloPage.hidden = true;
+                    break;
             }
         })
     });

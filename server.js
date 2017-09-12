@@ -3,8 +3,8 @@
 const express = require('express');
 const body = require('body-parser');
 const cookie = require('cookie-parser');
-const morgan = require('morgan');
-const uuid = require('uuid/v4');
+// const morgan = require('morgan');
+// const uuid = require('uuid/v4');
 
 const app = express();
 
