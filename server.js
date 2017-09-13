@@ -3,22 +3,23 @@
 const express = require('express');
 const body = require('body-parser');
 const cookie = require('cookie-parser');
-// const morgan = require('morgan');
-// const uuid = require('uuid/v4');
+const uuid = require('uuid/v4');
 
 const app = express();
 
-// app.use(morgan('dev'));
+
 app.use(express.static('public'));
 app.use(body.json());
 app.use(cookie());
 
 const users = {};
+let ids = {};
+const day = 1000 * 60 * 60 * 24;
 
-app.post('/register', function (req, res) {
+app.post('/register', function(req, res) {
     const login = req.body.login;
     const email = req.body.email;
-    const  password = req.body.password;
+    const password = req.body.password;
     if (!login || !email || !password) {
         return res.status(400).end();
     }
@@ -29,10 +30,17 @@ app.post('/register', function (req, res) {
             password,
         }
     }
-    res.json({'response': 200});
+
+    const new_id = uuid();
+    ids[new_id] = login;
+
+    res.cookie('cookie', new_id, {
+        expires: new Date(Date.now() + day)
+    });
+    res.json({ 'response': 200 });
 });
 
-app.post('/login', function (req, res) {
+app.post('/login', function(req, res) {
     const login = req.body.login;
     const password = req.body.password;
     if (!login || !password) {
@@ -46,13 +54,37 @@ app.post('/login', function (req, res) {
         }
     });
 
+    const new_id = uuid();
+    ids[new_id] = login;
+
+    res.cookie('cookie', new_id, {
+        expires: new Date(Date.now() + day)
+    });
+
     if (findUserInDb) {
-        res.json({'response': 200, 'success': 'yes'});
+        res.json({ 'response': 200, 'success': 'yes' });
     } else {
-        res.json({'response': 200, 'success': 'no'});
+        res.json({ 'response': 200, 'success': 'no' });
     }
 });
 
+app.post('/isauth', (req, res) => {
+    const id = req.cookies['cookie'];
+    res.set('Content-Type', 'application/json; charset=utf8');
+
+    if (ids[id]) {
+        res.json({ 'response': 200, 'success': 'yes' });
+    } else {
+        res.json({ 'response': 200, 'success': 'no' });
+    }
+});
+
+app.post('/exit', (req, res) => {
+    res.cookie('cookie', null, {
+        expires: new Date(Date.now())
+    });
+    res.status(200).end();
+});
 
 app.get('*', (req, res) => {
     res.send('404');
@@ -64,4 +96,3 @@ const port = process.env.PORT || 8001;
 app.listen(port, () => {
     console.log(`App start on port ${port}`);
 });
-

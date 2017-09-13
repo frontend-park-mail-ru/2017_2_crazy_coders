@@ -3,7 +3,7 @@
 function hideError(form) {
     let removeErrorCollection = form.getElementsByClassName('error-msg');
     const removeErrorArray = Array.from(removeErrorCollection);
-    removeErrorArray.forEach( elem => {
+    removeErrorArray.forEach(elem => {
         elem.remove();
     });
 }
@@ -34,7 +34,7 @@ function validLoginForm(login, password, form) {
 
     if (!isCorrectLogin(login)) {
         flag = false;
-        form.insertBefore(createErrorElement('invalid login (<4 symbol)'), loginField);
+        form.insertBefore(createErrorElement('invalid login (<=4 symbol)'), loginField);
     }
 
     if (!isCorrectPassword(password)) {
@@ -44,4 +44,3 @@ function validLoginForm(login, password, form) {
 
     return flag;
 }
-

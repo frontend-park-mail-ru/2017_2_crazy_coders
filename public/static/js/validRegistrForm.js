@@ -3,7 +3,7 @@
 function hideError(form) {
     let removeErrorCollection = form.getElementsByClassName('error-msg');
     const removeErrorArray = Array.from(removeErrorCollection);
-    removeErrorArray.forEach( elem => {
+    removeErrorArray.forEach(elem => {
         elem.remove();
     });
 }
@@ -22,7 +22,6 @@ function isCorrectEmail(email) {
 
 function isSamePasswords(pswd, pswdRepeat, form) {
     return pswd === pswdRepeat;
-
 }
 
 function createErrorElement(msg) {
@@ -45,10 +44,10 @@ function validRegisterForm(login, email, password, repeatPassword, form) {
 
     if (!isCorrectLogin(login)) {
         flag = false;
-        form.insertBefore(createErrorElement('invalid login (<4 symbol)'), loginField);
+        form.insertBefore(createErrorElement('invalid login (<=4 symbol)'), loginField);
     }
 
-    if(!isCorrectEmail(email)) {
+    if (!isCorrectEmail(email)) {
         flag = false;
         form.insertBefore(createErrorElement('invalid email'), emailField);
     }
@@ -65,4 +64,3 @@ function validRegisterForm(login, email, password, repeatPassword, form) {
 
     return flag;
 }
-
