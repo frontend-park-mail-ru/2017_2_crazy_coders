@@ -52,4 +52,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// const users = {};
+
 module.exports = app;
