@@ -9,14 +9,14 @@ const index = require('./routes/index'),
     signin = require('./routes/signin'),
     signup = require('./routes/signup'),
     score = require('./routes/score'),
-    users = require('./routes/users'),
     about = require('./routes/about');
 
 
 const app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.engine('ejs', require('ejs-locals'));
+app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
@@ -29,7 +29,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/signin', signin);
-app.use('/users', users);
 app.use('/signup', signup);
 app.use('/score', score);
 app.use("/about", about);
@@ -52,6 +51,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// const users = {};
+const users = {};
+const ids = {};
 
 module.exports = app;
