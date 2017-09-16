@@ -4,6 +4,9 @@
 
     const ValidLoginFrom = window.ValidLoginForm;
     const ValidRegisterForm = window.ValidRegisterForm;
+    const UserService = window.UserService;
+    const userService = new UserService();
+
 
     function isAuthUser(callback) {
         let xhr = new XMLHttpRequest();
@@ -27,26 +30,26 @@
         xhr.send();
     }
 
-    function register(login, email, password, callback) {
-        const user = {login, email, password};
-        const body = JSON.stringify(user);
-
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', '/register', true);
-        xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-        xhr.withCredentials = true;
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState !== 4) {
-                return;
-            }
-            if (+xhr.status !== 200) {
-                return callback(xhr);
-            }
-            const response = JSON.parse(xhr.responseText);
-            callback(null, response);
-        };
-        xhr.send(body);
-    }
+    // function register(login, email, password, callback) {
+    //     const user = {login, email, password};
+    //     const body = JSON.stringify(user);
+    //
+    //     const xhr = new XMLHttpRequest();
+    //     xhr.open('POST', '/register', true);
+    //     xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+    //     xhr.withCredentials = true;
+    //     xhr.onreadystatechange = () => {
+    //         if (xhr.readyState !== 4) {
+    //             return;
+    //         }
+    //         if (+xhr.status !== 200) {
+    //             return callback(xhr);
+    //         }
+    //         const response = JSON.parse(xhr.responseText);
+    //         callback(null, response);
+    //     };
+    //     xhr.send(body);
+    // }
 
     function login(login, password, callback) {
         const user = {login, password};
@@ -216,7 +219,7 @@
             const isValid = new ValidRegisterForm(userLogin, userEmail, userPassword, userRepeatPassword, registryForm);
 
             if (isValid.validRegisterForm()) {
-                register(userLogin, userEmail, userPassword, (err, resp) => {
+                userService.auth(userLogin, userEmail, userPassword, (err, resp) => {
                     if (err) {
                         return alert(`AUTH Error: ${err.status}`);
                     }

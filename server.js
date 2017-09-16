@@ -15,14 +15,46 @@ app.use(cookie());
 const users = {};
 let ids = {};
 const day = 1000 * 60 * 60 * 24;
+//
+// const password = req.body.password;
+// const email = req.body.email;
+// const age = req.body.age;
+// if (
+//     !password || !email || !age ||
+//     !password.match(/^\S{4,}$/) ||
+//     !email.match(/@/) ||
+//     !(typeof age === 'number' && age > 10 && age < 100)
+// ) {
+//     return res.status(400).json({error: 'Не валидные данные пользователя'});
+// }
+// if (users[email]) {
+//     return res.status(400).json({error: 'Пользователь уже существует'});
+// }
+//
+// const id = uuid();
+// const user = {password, email, age, id, score: 0};
+// ids[id] = email;
+// users[email] = user;
+//
+// res.cookie('podvorot', id, {expires: new Date(Date.now() + 1000 * 60 * 10)});
+// res.status(201).json({id});
 
 app.post('/register', function(req, res) {
     const login = req.body.login;
     const email = req.body.email;
     const password = req.body.password;
-    if (!login || !email || !password) {
-        return res.status(400).end();
+
+    if (
+        !login || !email || !password ||
+        !password.match(/^\S{4,}$/) ||
+        !email.match(/@/)
+    ) {
+        return res.status(400).json({error: 'Invalid data'});
     }
+    if (users[login]) {
+        return res.status(400).json({error: 'User is exists'});
+    }
+
     if (!users[login]) {
         users[login] = {
             login,
