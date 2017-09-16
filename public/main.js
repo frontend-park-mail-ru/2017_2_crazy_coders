@@ -7,22 +7,6 @@
     const UserService = window.UserService;
     const userService = new UserService();
 
-
-    function isAuthUser(callback) {
-        let xhr = new XMLHttpRequest();
-        xhr.open('POST', '/isauth', true);
-        xhr.withCredentials = true;
-
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState !== 4) return;
-            if (+xhr.status !== 200) return;
-            const response = JSON.parse(xhr.responseText);
-            callback(null, response);
-        };
-
-        xhr.send();
-    }
-
     function exit() {
         let xhr = new XMLHttpRequest();
         xhr.open('POST', '/exit', true);
@@ -30,7 +14,7 @@
         xhr.send();
     }
 
-//элементы страницы, для навигации
+    //элементы страницы, для навигации
     const allSectionCollection = document.getElementsByTagName('section');
     const allSectionArray = Array.from(allSectionCollection);
 
@@ -121,7 +105,7 @@
                 switch (elemId) {
                     case 'logout':
                         console.log('i am logout');
-                        exit();
+                        userService.exit();
                         isUnregisteredUser();
                         break;
                     case 'start-game':
@@ -151,15 +135,20 @@
     }
 
     window.onload = () => {
-        isAuthUser((error, resp) => {
-            if (resp.success === 'yes') {
-                helloPage.hidden = true;
-                isRegisteredUser();
-                console.log('lasudv');
-            } else {
+
+        userService.isAuthUser((err, userLogin) => {
+            if (err) {
+                return alert(`Some error ${err.statusCode}: ${err.message}`);
+            }
+            if (!userLogin) {
                 mainPage.hidden = true;
                 isUnregisteredUser();
-                console.log('aasdalksdn');
+                console.log('Hello ', userLogin, 'is null');
+            } else {
+                console.log('hello my dear ', userLogin);
+                helloPage.hidden = true;
+                isRegisteredUser();
+                console.log('hello', userLogin);
             }
         });
 

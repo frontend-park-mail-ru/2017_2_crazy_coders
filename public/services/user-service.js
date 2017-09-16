@@ -6,7 +6,7 @@
     class UserService {
         constructor() {
             this.user = null;
-            // this.users = [];
+            this.users = [];
         }
 
 
@@ -22,20 +22,31 @@
             return !!this.user;
         }
 
-        // getData(callback, force = false) {
-        //     if (this.isLoggedIn() && !force) {
-        //         return callback(null, this.user);
-        //     }
-        //
-        //     Http.Get('/me', function (err, userdata) {
-        //         if (err) {
-        //             return callback(err, userdata);
-        //         }
-        //
-        //         this.user = userdata;
-        //         callback(null, userdata);
-        //     }.bind(this));
-        // }
+         // [force=false] - игнорировать ли кэш?
+        isAuthUser(callback, force = false) {
+            if (this.isLoggedIn() && !force) {
+                return callback(null, this.user);
+            }
+
+            Http.Get('/isauth', function (err, userdata) {
+                if (err) {
+                    return callback(err, userdata);
+                }
+                if (!userdata.user) {
+                    return callback(null, null);
+                }
+                this.user = userdata.user;
+                callback(null, userdata.user);
+            }.bind(this));
+        }
+
+        getUserLogin() {
+            return this.user;
+        }
+
+        exit() {
+            Http.Get('/exit', () => {});
+        }
 
         // loadUsersList(callback) {
         //     Http.Get('/users', function (err, users) {

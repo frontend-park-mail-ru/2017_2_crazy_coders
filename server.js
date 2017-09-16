@@ -15,31 +15,9 @@ app.use(cookie());
 const users = {};
 let ids = {};
 const day = 1000 * 60 * 60 * 24;
-//
-// const password = req.body.password;
-// const email = req.body.email;
-// const age = req.body.age;
-// if (
-//     !password || !email || !age ||
-//     !password.match(/^\S{4,}$/) ||
-//     !email.match(/@/) ||
-//     !(typeof age === 'number' && age > 10 && age < 100)
-// ) {
-//     return res.status(400).json({error: 'Не валидные данные пользователя'});
-// }
-// if (users[email]) {
-//     return res.status(400).json({error: 'Пользователь уже существует'});
-// }
-//
-// const id = uuid();
-// const user = {password, email, age, id, score: 0};
-// ids[id] = email;
-// users[email] = user;
-//
-// res.cookie('podvorot', id, {expires: new Date(Date.now() + 1000 * 60 * 10)});
-// res.status(201).json({id});
 
-app.post('/register', function(req, res) {
+
+app.post('/register', function (req, res) {
     const login = req.body.login;
     const email = req.body.email;
     const password = req.body.password;
@@ -69,10 +47,10 @@ app.post('/register', function(req, res) {
     res.cookie('cookie', new_id, {
         expires: new Date(Date.now() + day)
     });
-    res.json({ 'response': 200 });
+    res.json({'response': 200});
 });
 
-app.post('/login', function(req, res) {
+app.post('/login', function (req, res) {
     const login = req.body.login;
     const password = req.body.password;
     if (
@@ -97,28 +75,31 @@ app.post('/login', function(req, res) {
     });
 
     if (findUserInDb) {
-        res.json({ 'response': 200, 'success': 'yes' });
+        res.json({'response': 200, 'success': 'yes'});
     } else {
-        res.json({ 'response': 200, 'success': 'no' });
+        res.json({'response': 200, 'success': 'no'});
     }
 });
 
-app.post('/isauth', (req, res) => {
+app.get('/isauth', (req, res) => {
     const id = req.cookies['cookie'];
+    const login = ids[id];
+
     res.set('Content-Type', 'application/json; charset=utf8');
 
-    if (ids[id]) {
-        res.json({ 'response': 200, 'success': 'yes' });
+    if (!login || !ids[id]) {
+        res.json({'user': null});
     } else {
-        res.json({ 'response': 200, 'success': 'no' });
+        res.json({'user': login});
     }
+
 });
 
-app.post('/exit', (req, res) => {
+app.get('/exit', (req, res) => {
     res.cookie('cookie', null, {
         expires: new Date(Date.now())
     });
-    res.status(200).end();
+    res.json({'status': 'ok'});
 });
 
 app.get('*', (req, res) => {
