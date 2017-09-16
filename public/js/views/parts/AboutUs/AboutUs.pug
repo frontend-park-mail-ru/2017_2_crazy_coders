@@ -1,0 +1,9 @@
+mixin member_view(member)
+    tr
+        td
+            a(href=member.link)= member.name
+        td= member.role
+
+h3= headText
+each member in members
+    +member_view(member)

@@ -37,7 +37,7 @@ const AboutUs = function () {
     table.innerHTML = pugAboutUs({
         members: MEMBERS,
         headText: HEADER_TEXT
-    })
+    });
 /*    parentElem.appendChild(table);
 
     MEMBERS.forEach(function(member) {

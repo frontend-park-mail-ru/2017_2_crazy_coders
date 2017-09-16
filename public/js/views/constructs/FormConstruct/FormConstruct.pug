@@ -1,0 +1,20 @@
+mixin formConstruct(form)
+    form.formconstruct-form
+        h1(align="middle").formconstruct-title= form.title
+        div.formconstruct-fields
+            each field in form.fields
+                div.formconstruct-group(align="middle")
+                    if field.name !== undefined
+                        label.input-form-label(for=field.id)= field.name
+                    input.formconstruct-input-text(
+                    id=field.id
+                    placeholder=field.placeholder
+                    type=field.type,
+                    required=field.required
+                    )
+        div.formconstruct-buttons(align="middle")
+            each button in form.buttons
+                button.formconstruct-button(
+                type=button.type
+                id=button.id
+                )= button.text
