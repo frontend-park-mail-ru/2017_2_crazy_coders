@@ -30,48 +30,6 @@
         xhr.send();
     }
 
-    // function register(login, email, password, callback) {
-    //     const user = {login, email, password};
-    //     const body = JSON.stringify(user);
-    //
-    //     const xhr = new XMLHttpRequest();
-    //     xhr.open('POST', '/register', true);
-    //     xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-    //     xhr.withCredentials = true;
-    //     xhr.onreadystatechange = () => {
-    //         if (xhr.readyState !== 4) {
-    //             return;
-    //         }
-    //         if (+xhr.status !== 200) {
-    //             return callback(xhr);
-    //         }
-    //         const response = JSON.parse(xhr.responseText);
-    //         callback(null, response);
-    //     };
-    //     xhr.send(body);
-    // }
-
-    function login(login, password, callback) {
-        const user = {login, password};
-        const body = JSON.stringify(user);
-
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', '/login', true);
-        xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-        xhr.withCredentials = true;
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState !== 4) {
-                return;
-            }
-            if (+xhr.status !== 200) {
-                return callback(xhr);
-            }
-            const response = JSON.parse(xhr.responseText);
-            callback(null, response);
-        };
-        xhr.send(body);
-    }
-
 //элементы страницы, для навигации
     const allSectionCollection = document.getElementsByTagName('section');
     const allSectionArray = Array.from(allSectionCollection);
@@ -242,7 +200,7 @@
             const isValid = new ValidLoginForm(userLogin, userPassword, loginForm);
 
             if (isValid.validLoginForm()) {
-                login(userLogin, userPassword, (err, resp) => {
+                userService.login(userLogin, userPassword, (err, resp) => {
                     if (err) {
                         return alert(`AUTH Error: ${err.status}`);
                     }
