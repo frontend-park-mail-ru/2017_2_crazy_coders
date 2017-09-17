@@ -2,9 +2,16 @@
     'use strict';
 
     const Form = window.Form;
+    const Block = window.Block;
 
     class SignIn {
         constructor() {
+            this.section = Block.Create('section', [], {id: 'login'});
+            const divTitle = Block.Create('div', ['logo', 'logo_text'], {}, 'LOG IN');
+            const divForm = Block.Create('div', ['logo', 'input_form']);
+            const divButton = Block.Create('div', ['logo', 'logo_button']);
+            const button =  Block.Create('button', ['button', 'a-button'], {id: 'back-login'}, 'BACK');
+
             this.form = new Form([
                 {
                     classes: ['input'],
@@ -34,10 +41,14 @@
             ]);
 
             this.form.validatorLoginForm();
+
+            this.section.append(divTitle);
+            this.section.append(divForm.append(this.form));
+            this.section.append(divButton.append(button));
         }
 
-        getSingInForm() {
-            return this.form;
+        getSignInForm() {
+            return this.section;
         }
     }
 

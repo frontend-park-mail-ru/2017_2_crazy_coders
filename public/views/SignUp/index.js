@@ -5,6 +5,12 @@
 
     class SignUp {
         constructor() {
+            this.section = Block.Create('section', [], {id: 'registry'});
+            const divTitle = Block.Create('div', ['logo', 'logo_text'], {}, 'REGISTER');
+            const divForm = Block.Create('div', ['logo', 'input_form']);
+            const divButton = Block.Create('div', ['logo', 'logo_button']);
+            const button =  Block.Create('button', ['button'], {id: 'back-signup'}, 'BACK');
+
             this.form = new Form([
                 {
                     classes: ['input'],
@@ -49,10 +55,14 @@
             ]);
 
             this.form.validatorRegisterForm();
+
+            this.section.append(divTitle);
+            this.section.append(divForm.append(this.form));
+            this.section.append(divButton.append(button));
         }
 
-        getSingUpForm() {
-            return this.form;
+        getSignUpForm() {
+            return this.section;
         }
     }
 

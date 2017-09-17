@@ -83,32 +83,3 @@
     window.Form = Form;
 
 })();
-
-// static validSingInForm(singInForm) {
-//     singInForm.addEventListener('submit', (event) => {
-//         event.preventDefault();
-//         let userLogin = singInForm.elements['login'].value;
-//         let userPassword = singInForm.elements['password'].value;
-//
-//
-//         const isValid = new ValidLoginForm(userLogin, userPassword, singInForm);
-//
-//         if (isValid.validLoginForm()) {
-//             userService.login(userLogin, userPassword, (err, resp) => {
-//                 if (err) {
-//                     return alert(`AUTH Error: ${err.status}`);
-//                 }
-//
-//                 if (resp.success === 'yes') {
-//
-//                     console.log('login is ok!');
-//
-//                     // loginPage.hidden = true;
-//                     // helloPage.hidden = true;
-//                     // isRegisteredUser();
-//                 }
-//                 singInForm.reset();
-//             });
-//         }
-//     });
-// }

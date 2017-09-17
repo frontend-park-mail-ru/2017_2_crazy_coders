@@ -210,18 +210,96 @@
 
     'use strict';
 
+    const UserService = window.UserService;
+    const userService = new UserService();
     const Block = window.Block;
+
     const SignIn = window.SignIn;
     const SignUp = window.SignUp;
     const HelloPage = window.HelloPage;
+    const MainPage = window.MainPage;
+    const Header = window.Header;
 
-    const app = new Block(document.getElementById('application'));
     const signIn = new SignIn();
     const signUp = new SignUp();
     const helloPage = new HelloPage();
+    const mainPage = new MainPage();
 
-    app.append(signIn.getSingInForm());
-    app.append(signUp.getSingUpForm());
-    app.append(helloPage.getHelloPage());
+    const app = new Block(document.getElementById('application'));
+
+    const header = new Header();
+    const menu = Block.Create('section', ['menu-section'], {});
+    const footer = Block.Create('section', ['footer-section'], {});
+
+    app.append(header.getHeader())
+       .append(menu)
+       .append(footer);
+
+
+    function isUnregisteredUser() {
+        menu.append(helloPage.getHelloPage());
+
+        app.on('click', function (event) {
+            event.preventDefault();
+            const elemId = event.target.getAttribute('id');
+                switch (elemId) {
+                    case 'button-log':
+                        menu.clear();
+                        menu.append(signIn.getSignInForm());
+                        break;
+
+                    case 'button-register':
+                        menu.clear();
+                        menu.append(signUp.getSignUpForm());
+                        break;
+
+                    case 'back-login':
+                        menu.clear();
+                        menu.append(helloPage.getHelloPage());
+                        break;
+
+                    case 'back-signup':
+                        menu.clear();
+                        menu.append(helloPage.getHelloPage());
+                        break;
+
+                    case 'score-logo':
+                        // hideAll(allSectionArray);
+                        // scorePage.hidden = false;
+                        break;
+
+                    case 'about-logo':
+                        // hideAll(allSectionArray);
+                        // aboutPage.hidden = false;
+                        break;
+
+                    case 'back-about':
+                        // section.hidden = true;
+                        // helloPage.hidden = false;
+                        // mainPage.hidden = true;
+                        break;
+
+                    case 'back-score':
+                        // section.hidden = true;
+                        // helloPage.hidden = false;
+                        // mainPage.hidden = true;
+                        break;
+                }
+
+        });
+    }
+
+    userService.isAuthUser(function (err, userLogin) {
+        if (err) {
+            return;
+        }
+        if (!userLogin) {
+            console.log('Hello ', userLogin, 'is null');
+            isUnregisteredUser();
+        } else {
+            console.log('hello my dear ', userLogin);
+        }
+    }, true);
+
 
 })();

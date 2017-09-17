@@ -4,16 +4,14 @@
 
     class HelloPage {
         constructor() {
-                this.menu =  Block.Create('div', ['logo', 'logo_button']);
-                const log = Block.Create('button', ['button'], {id: 'button-log'});
-                const reg = Block.Create('button', ['button'], {id: 'button-register'});
-                log.setText('LOG IN');
-                reg.setText('REGISTER');
-                console.log(this.menu, log, reg);
+            this.menu =  Block.Create('div', ['logo', 'logo_button']);
 
-                this.menu.append(log);
-                this.menu.append(reg);
-            }
+            const loginButton = Block.Create('button', ['button'], {id: 'button-log'}, 'LOG IN');
+            const registerButton = Block.Create('button', ['button'], {id: 'button-register'}, 'REGISTER');
+
+            this.menu.append(loginButton);
+            this.menu.append(registerButton);
+        }
 
         getHelloPage() {
             return this.menu;
