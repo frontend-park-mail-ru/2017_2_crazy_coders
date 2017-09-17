@@ -2,6 +2,7 @@
 
 import PageConstruct from '../../constructs/PageConstruct/PageConstruct';
 import FormConsruct from '../../constructs/FormConstruct/FormConstruct';
+import Block from '../../constructs/BlockConstruct/BlockConstruct';
 import pugSignIn from './SignIn.pug';
 
 const TITLE = "Sign in";
@@ -31,24 +32,24 @@ const SIGN_UP_BUTTON = {
 };
 
 const SignIn = function () {
-    let div = document.createElement('div');
-    div.innerHTML = pugSignIn({
-        form: {
-            title: TITLE,
-            fields: [
-                LOGIN_FIELD,
-                PASSWORD_FIELD,
-            ],
-            buttons: [
-                SIGN_IN_BUTTON,
-                SIGN_UP_BUTTON,
-            ],
-        }
-    });
+    let block = Block.Create('div', {}, ['logo', 'input_form']);
 
-    return PageConstruct({
-        el: div
-    });
+    block.setHTML(pugSignIn({
+                    form: {
+                        title: TITLE,
+                        fields: [
+                            LOGIN_FIELD,
+                            PASSWORD_FIELD,
+                        ],
+                        buttons: [
+                            SIGN_IN_BUTTON,
+                            SIGN_UP_BUTTON,
+                        ],
+                    }
+                })
+                );
+
+    return block;
 };
 
 export default SignIn;

@@ -1,6 +1,7 @@
 'use strict';
 
 import pugMenuGame from './MenuGame.pug';
+import Block from '../../constructs/BlockConstruct/BlockConstruct';
 import MenuConstruct from '../../constructs/MenuConstruct/MenuConstruct';
 
 const ITEMS = [
@@ -27,11 +28,14 @@ const ITEMS = [
 ];
 
 const MenuGame = function MenuStart() {
-    let div = document.createElement('div');
-    div.innerHTML = pugMenuGame({
-        items: ITEMS
-    });
-    return div;
+    let block = Block.Create('div', {}, ['logo', 'logo_button']);
+
+    block.setHTML(pugMenuGame({
+                    items: ITEMS
+                    })
+                );
+
+    return block;
 };
 
 export default MenuGame;

@@ -1,7 +1,8 @@
 'use strict';
 
-import '../../../css/style.css';
+// import '../../../css/style.css';
 import PageConstruct from '../../constructs/PageConstruct/PageConstruct';
+import Block from '../../constructs/BlockConstruct/BlockConstruct';
 import pugAboutUs from './AboutUs.pug';
 
 const HEADER_TEXT = 'DEVELOPERS';
@@ -30,17 +31,19 @@ const MEMBERS = [
 ];
 
 const AboutUs = function () {
-    const parentElem = document.body;
 
-    let table = document.createElement('table');
+    let block = Block.Create('div', {}, ['logo', 'table_form']);
+    let table = Block.Create('table', {}, ['score_table']);
 
-    table.innerHTML = pugAboutUs({
-        members: MEMBERS,
-        headText: HEADER_TEXT
-    });
-/*    parentElem.appendChild(table);
+    table.setHTML(pugAboutUs({
+                    members: MEMBERS,
+                    headText: HEADER_TEXT
+                    })
+                );
 
-    MEMBERS.forEach(function(member) {
+    block.append(table);
+
+/*    MEMBERS.forEach(function(member) {
         let tr = document.createElement('TR');
         let name = document.createElement('TH');
         let link = document.createElement('A');
@@ -55,9 +58,11 @@ const AboutUs = function () {
         tr.appendChild(role);
     });*/
 
-    return PageConstruct({
+    /*return PageConstruct({
         el: table
-    })
+    })*/
+
+    return block;
 
 };
 

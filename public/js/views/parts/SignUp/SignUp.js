@@ -1,6 +1,7 @@
 'use strict';
 
 import PageConstruct from '../../constructs/PageConstruct/PageConstruct';
+import Block from '../../constructs/BlockConstruct/BlockConstruct';
 import FormConsruct from '../../constructs/FormConstruct/FormConstruct';
 import pugSignUp from './SignUp.pug';
 
@@ -43,26 +44,26 @@ const SIGN_IN_BUTTON = {
 };
 
 const SignUp = function () {
-    let div = document.createElement('div');
-    div.innerHTML = pugSignUp({
-        form: {
-            title: TITLE,
-            fields: [
-                EMAIL_FIELD,
-                LOGIN_FIELD,
-                PASSRORD_FIELD,
-                PASSRORD_REPEAT_FIELD,
-            ],
-            buttons: [
-                SIGN_UP_BUTTON,
-                SIGN_IN_BUTTON,
-            ],
-        }
-    });
+    let block = Block.Create('div', {}, ['logo', 'input_form']);
 
-    return PageConstruct({
-        el: div
-    });
+    block.setHTML(pugSignUp({
+                    form: {
+                        title: TITLE,
+                        fields: [
+                            EMAIL_FIELD,
+                            LOGIN_FIELD,
+                            PASSRORD_FIELD,
+                            PASSRORD_REPEAT_FIELD,
+                        ],
+                        buttons: [
+                            SIGN_UP_BUTTON,
+                            SIGN_IN_BUTTON,
+                        ],
+                    }
+                })
+                );
+
+    return block;
 };
 
 export default SignUp;

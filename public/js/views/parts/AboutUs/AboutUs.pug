@@ -1,9 +1,9 @@
 mixin member_view(member)
-    tr
+    tr.score_table
         td
             a(href=member.link)= member.name
         td= member.role
 
-h3= headText
+h3(align="middle")= headText
 each member in members
     +member_view(member)
