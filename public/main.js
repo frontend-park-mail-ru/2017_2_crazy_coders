@@ -225,7 +225,10 @@
     const helloPage = new HelloPage();
     const mainPage = new MainPage();
 
+
     const app = new Block(document.getElementById('application'));
+
+    // app.append(signIn.getSignInForm()); // вот здесь работает, если всё, что ниже закомментировать
 
     const header = new Header();
     const menu = Block.Create('section', ['menu-section'], {});
@@ -235,10 +238,12 @@
        .append(menu)
        .append(footer);
 
+    // menu.append(signUp.getSignUpForm()); // вот здесь работает, если всё, что ниже закомментировать
+    // menu.append(signIn.getSignInForm()); // вот здесь работает, если всё, что ниже закомментировать
 
     function isUnregisteredUser() {
         menu.append(helloPage.getHelloPage());
-
+        console.log(signUp.getSignUpForm());
         app.on('click', function (event) {
             event.preventDefault();
             const elemId = event.target.getAttribute('id');
@@ -301,5 +306,32 @@
         }
     }, true);
 
-
 })();
+
+
+// this.el.addEventListener('submit', function (event) {
+//     event.preventDefault();
+//     let userLogin = this.el.elements['login'].value;
+//     let userPassword = this.el.elements['password'].value;
+//
+//
+//     const isValid = new ValidLoginForm(userLogin, userPassword, this.el);
+//
+//     if (isValid.validLoginForm()) {
+//         userService.login(userLogin, userPassword, (err, resp) => {
+//             if (err) {
+//                 return alert(`AUTH Error: ${err.status}`);
+//             }
+//
+//             if (resp.success === 'yes') {
+//
+//                 console.log('login is ok!');
+//
+//                 // loginPage.hidden = true;
+//                 // helloPage.hidden = true;
+//                 // isRegisteredUser();
+//             }
+//             this.el.reset();
+//         });
+//     }
+// }.bind(this));

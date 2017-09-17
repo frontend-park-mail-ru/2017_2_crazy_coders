@@ -30,10 +30,11 @@
         constructor(login, password, form) {
             this.login = login;
             this.password = password;
-            this.currentForm = form;
+            this.currentForm = form.el;
         }
 
         validLoginForm() {
+            console.log('form:' ,this.currentForm);
 
             hideError(this.currentForm);
 

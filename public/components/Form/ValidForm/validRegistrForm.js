@@ -40,11 +40,12 @@
             this.email = email;
             this.password = password;
             this.repeatPassword = repeatPassword;
-            this.currentForm = form;
+            this.currentForm = form.el;
         }
 
         validRegisterForm() {
 
+            // console.log(this.currentForm);
             hideError(this.currentForm);
 
             let flag = true;

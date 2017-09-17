@@ -4,15 +4,19 @@
     const Form = window.Form;
     const Block = window.Block;
 
+    const UserService = window.UserService;
+    const userService = new UserService();
+
     class SignIn {
         constructor() {
-            this.section = Block.Create('section', [], {id: 'login'});
+
+            const section = Block.Create('section', [], {id: 'login'});
             const divTitle = Block.Create('div', ['logo', 'logo_text'], {}, 'LOG IN');
             const divForm = Block.Create('div', ['logo', 'input_form']);
             const divButton = Block.Create('div', ['logo', 'logo_button']);
             const button =  Block.Create('button', ['button', 'a-button'], {id: 'back-login'}, 'BACK');
 
-            this.form = new Form([
+            const form = new Form([
                 {
                     classes: ['input'],
                     attrs: {
@@ -31,7 +35,7 @@
                     },
                 },
                 {
-                    classes: ['button', 'submitData'],
+                    classes: ['button'],
                     attrs: {
                         type: 'submit',
                         id: 'login-button',
@@ -39,16 +43,42 @@
                     },
                 },
             ]);
+            console.log('5');
 
-            this.form.validatorLoginForm();
+            form.onSubmit(function (data) {
 
-            this.section.append(divTitle);
-            this.section.append(divForm.append(this.form));
-            this.section.append(divButton.append(button));
+                console.log('55');
+                console.log(data.login);
+
+                let userLogin = data.login;
+                let userPassword = data.password;
+
+                const isValid = new ValidLoginForm(userLogin, userPassword, form);
+
+                if (isValid.validLoginForm()) {
+                    userService.login(userLogin, userPassword, (err, resp) => {
+                        if (err) {
+                            return alert(`AUTH Error: ${err.status}`);
+                        }
+
+                        if (resp.success === 'yes') {
+
+                            console.log('login is ok!');
+                        }
+                        this.form.reset();
+                    });
+                }
+            }.bind(this));
+
+            section.append(divTitle);
+            section.append(divForm.append(form));
+            section.append(divButton.append(button));
+
+            this.loginPage = section;
         }
 
         getSignInForm() {
-            return this.section;
+            return  this.loginPage;
         }
     }
 

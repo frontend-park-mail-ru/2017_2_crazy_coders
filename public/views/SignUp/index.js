@@ -2,6 +2,10 @@
     'use strict';
 
     const Form = window.Form;
+    const Block = window.Block;
+
+    const UserService = window.UserService;
+    const userService = new UserService();
 
     class SignUp {
         constructor() {
@@ -40,7 +44,7 @@
                     classes: ['input'],
                     attrs: {
                         type: 'password',
-                        name: 'repeat-password',
+                        name: 'repeatPassword',
                         placeholder: 'Repeat Password',
                     },
                 },
@@ -54,7 +58,34 @@
                 },
             ]);
 
-            this.form.validatorRegisterForm();
+            // this.form.validatorRegisterForm();
+
+            this.form.onSubmit(function (data) {
+
+                console.log('55');
+                console.log(data.login);
+
+                let userLogin = data.login;
+                let userEmail = data.email;
+                let userPassword = data.password;
+                let userRepeatPassword = data.repeatPassword;
+
+                const isValid = new ValidRegisterForm(userLogin, userEmail, userPassword, userRepeatPassword, this.form);
+
+                if (isValid.validRegisterForm()) {
+                    userService.login(userLogin, userPassword, (err, resp) => {
+                        if (err) {
+                            return alert(`AUTH Error: ${err.status}`);
+                        }
+
+                        if (resp.success === 'yes') {
+
+                            console.log('login is ok!');
+                        }
+                        this.form.reset();
+                    });
+                }
+            }.bind(this));
 
             this.section.append(divTitle);
             this.section.append(divForm.append(this.form));
