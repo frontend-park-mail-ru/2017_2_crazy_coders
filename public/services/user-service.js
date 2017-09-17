@@ -28,7 +28,7 @@
                 return callback(null, this.user);
             }
 
-            Http.Get('/isauth', function (err, userdata) {
+            Http.Get('/isauth', function(err, userdata) {
                 if (err) {
                     return callback(err, userdata);
                 }
@@ -47,27 +47,6 @@
         exit() {
             Http.Get('/exit', () => {});
         }
-
-        // loadUsersList(callback) {
-        //     Http.Get('/users', function (err, users) {
-        //         if (err) {
-        //             return callback(err, users);
-        //         }
-        //
-        //         this.users = users;
-        //
-        //         if (this.isLoggedIn()) {
-        //             this.users = this.users.map(user => {
-        //                 if (user.email === this.user.email) {
-        //                     user.me = true;
-        //                 }
-        //                 return user;
-        //             });
-        //         }
-        //
-        //         callback(null, this.users);
-        //     }.bind(this));
-        // }
 
     }
 

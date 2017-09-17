@@ -1,0 +1,22 @@
+.input_form {
+    flex-flow: column nowrap;
+    margin-left: 2%;
+}
+
+.input {
+    display: block;
+    width: 350px;
+    padding: 9px 0 12px 12px;
+    font-size: 1em;
+    margin: 5px 0 16px ;
+    font-family: "Helvetica";
+    border-radius: 7px;
+    background: #e9ecf0;
+    color: #5E6D82;
+    box-sizing: border-box;
+}
+
+.input:focus {
+    outline: none;
+    background-color: #F3F3F3;
+}

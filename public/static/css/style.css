@@ -129,11 +129,11 @@ th, td {
 .score_table > tr:nth-child(even){background-color: #f2f2f2}
 
 #login-button {
-    margin: 15px 0 -15px 98px;
+    margin: 15px 0 -15px 106px;
 }
 
 #signup-button {
-    margin: 15px 0 -15px 98px;
+    margin: 15px 0 -15px 106px;
 }
 
 .error-msg {
