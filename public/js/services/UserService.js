@@ -56,10 +56,12 @@ class UserService {
             if (err) {
                 return callback(err, userdata);
             }
-
-            this.user = userdata;
-            console.log("userdata = " + userdata);
-            callback(null, userdata);
+            if (!userdata.user) {
+                return callback(null, null);
+            }
+            this.user = userdata.user;
+            console.log("userdata = " + userdata.user);
+            callback(null, userdata.user);
         }.bind(this));
     }
 
