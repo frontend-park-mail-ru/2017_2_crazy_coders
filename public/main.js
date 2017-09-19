@@ -6,6 +6,7 @@ import SignIn from './js/views/parts/SignIn/SignIn';
 import SignUp from './js/views/parts/SignUp/SignUp';
 import Block from './js/views/constructs/BlockConstruct/BlockConstruct';
 import UserService from './js/services/UserService'
+import ValidSigninform from './js/components/ValidSigninForm'
 
 const userService = new UserService();
 
@@ -38,19 +39,22 @@ function openSignin() {
     if (!sections.signin.ready) {
         console.log("in signin...");
         sections.signin.onSubmit(function (formdata) {
-            userService.signin(formdata.login, formdata.password, function (err, resp) {
-                if (err) {
-                    alert(`Some error ${err.status}: ${err.responseText}`);
-                    return;
-                }
-                sections.signin.reset();
-                userService.getData(function (err, resp) {
+            let form = document.getElementById("signin_login").parentNode;
+            if(ValidSigninform.validLoginForm(formdata.login,  formdata.password, form)) {
+                userService.signin(formdata.login, formdata.password, function (err, resp) {
                     if (err) {
+                        alert(`Some error ${err.status}: ${err.responseText}`);
                         return;
                     }
-                    openMenu();
-                }, true);
-            });
+                    sections.signin.reset();
+                    userService.getData(function (err, resp) {
+                        if (err) {
+                            return;
+                        }
+                        openMenu();
+                    }, true);
+                });
+            }
         });
 
         sections.signin.ready = true;

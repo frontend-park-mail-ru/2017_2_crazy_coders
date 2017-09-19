@@ -42,6 +42,7 @@ const SignIn = function () {
                 class: 'input',
                 placeholder: 'Enter email',
                 required: 'required',
+                id: 'signin_login',
             },
         },
         {
@@ -51,6 +52,7 @@ const SignIn = function () {
                 class: 'input',
                 placeholder: 'Enter password',
                 required: 'required',
+                id: 'signin_password',
             },
         },
         {
@@ -58,6 +60,7 @@ const SignIn = function () {
                 type: 'submit',
                 class: 'button button_start',
                 value: 'Sign In',
+                id: 'signin_button'
             },
         },
     ];
