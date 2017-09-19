@@ -19,8 +19,8 @@ class UserService {
      * @param {number} age
      * @param {Function} callback
      */
-    signup(email, password, age, callback) {
-        Http.Post('/signup', {email, password, age}, callback);
+    signup(login, email, password, callback) {
+        Http.Post('/signup', {login, email, password}, callback);
     }
 
     /**
@@ -29,15 +29,16 @@ class UserService {
      * @param {string} password
      * @param {Function} callback
      */
-    signin(email, password, callback) {
-        Http.Post('/login', {email, password}, callback);
+    signin(login, password, callback) {
+        Http.Post('/signin', {login, password}, callback);
     }
 
     /**
-     * Проверяет, авторизован ли пользователь
+     * Проверяет, авторизован ли пол ьзователь
      * @return {boolean}
      */
     isLoggedIn() {
+        console.log("is login, user = " + this.user);
         return !!this.user;
     }
 
@@ -57,9 +58,17 @@ class UserService {
             }
 
             this.user = userdata;
+            console.log("userdata = " + userdata);
             callback(null, userdata);
         }.bind(this));
     }
+
+    signout() {
+        Http.Get('/exit', function(req, res) {
+            console.log("exit status:" + res.status);
+        });
+    }
+
 
     /**
      * Загружает список всех пользователей

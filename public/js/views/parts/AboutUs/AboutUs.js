@@ -33,7 +33,7 @@ const MEMBERS = [
 const AboutUs = function () {
 
     let block = Block.Create('div', {}, ['logo', 'table_form']);
-    let table = Block.Create('table', {}, ['score_table']);
+    let table = Block.Create('table', {}, ['about_table']);
 
     table.setHTML(pugAboutUs({
                     members: MEMBERS,

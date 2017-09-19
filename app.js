@@ -1,57 +1,115 @@
+'use strict';
+
 const express = require('express');
-const path = require('path');
-const favicon = require('serve-favicon');
-const logger = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-
-const index = require('./routes/index'),
-    signin = require('./routes/signin'),
-    signup = require('./routes/signup'),
-    score = require('./routes/score'),
-    about = require('./routes/about');
-
+const body = require('body-parser');
+const cookie = require('cookie-parser');
+const uuid = require('uuid/v4');
 
 const app = express();
 
-// view engine setup
-app.engine('ejs', require('ejs-locals'));
-app.set('views', path.join(__dirname, '/views'));
-app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', index);
-app.use('/signin', signin);
-app.use('/signup', signup);
-app.use('/score', score);
-app.use("/about", about);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+app.use(express.static('public'));
+app.use(body.json());
+app.use(cookie());
 
 const users = {};
-const ids = {};
+let ids = {};
+const day = 1000 * 60 * 60 * 24;
 
-module.exports = app;
+
+app.post('/signup', function (req, res) {
+    const login = req.body.login;
+    const email = req.body.email;
+    const password = req.body.password;
+
+    if (
+        !login || !email || !password ||
+        !password.match(/^\S{4,}$/) ||
+        !email.match(/@/)
+    ) {
+        return res.status(400).json({error: 'Invalid data'});
+    }
+    if (users[login]) {
+        return res.status(400).json({error: 'User is exists'});
+    }
+
+    if (!users[login]) {
+        users[login] = {
+            login,
+            email,
+            password,
+        }
+    }
+
+    const new_id = uuid();
+    ids[new_id] = login;
+
+    res.cookie('cookie', new_id, {
+        expires: new Date(Date.now() + day)
+    });
+    res.json({'response': 200});
+});
+
+app.post('/signin', function (req, res) {
+    const login = req.body.login;
+    const password = req.body.password;
+    if (
+        !login || !password ||
+        !password.match(/^\S{4,}$/)
+    ) {
+        return res.status(400).end();
+    }
+
+    let findUserInDb = false;
+    Object.keys(users).forEach(elem => {
+        if (login === elem) {
+            findUserInDb = true;
+            console.log("finded user in DB");
+        }
+    });
+
+    const new_id = uuid();
+    ids[new_id] = login;
+
+    res.cookie('cookie', new_id, {
+        expires: new Date(Date.now() + day)
+    });
+
+    if (findUserInDb) {
+        res.json({'response': 200, 'success': 'yes'});
+    } else {
+        res.json({'response': 200, 'success': 'no'});
+    }
+});
+
+app.get('/me', (req, res) => {
+    const id = req.cookies['cookie'];
+    const login = ids[id];
+
+    res.set('Content-Type', 'application/json; charset=utf8');
+
+    if (!login || !ids[id]) {
+        res.json({'user': null});
+    } else {
+        res.json({'user': login});
+    }
+
+});
+
+app.get('/exit', (req, res) => {
+    res.cookie('cookie', null, {
+        expires: new Date(Date.now())
+    });
+    res.json({'status': 'ok'});
+});
+
+app.get('*', (req, res) => {
+    res.send('404');
+});
+
+
+const port = process.env.PORT || 8001;
+
+app.listen(port, () => {
+    console.log(`App start on port ${port}`);
+});

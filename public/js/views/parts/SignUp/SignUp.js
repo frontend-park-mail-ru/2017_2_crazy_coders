@@ -3,6 +3,7 @@
 import PageConstruct from '../../constructs/PageConstruct/PageConstruct';
 import Block from '../../constructs/BlockConstruct/BlockConstruct';
 import FormConsruct from '../../constructs/FormConstruct/FormConstruct';
+import Form from '../../constructs/FormConstruct/FormConstruct';
 import pugSignUp from './SignUp.pug';
 
 const TITLE = "Sign Up";
@@ -44,9 +45,50 @@ const SIGN_IN_BUTTON = {
 };
 
 const SignUp = function () {
-    let block = Block.Create('div', {}, ['logo', 'input_form']);
 
-    block.setHTML(pugSignUp({
+    let signupFields = [
+        {
+            attrs: {
+                type: 'login',
+                name: 'login',
+                class: 'input',
+                placeholder: 'Enter login',
+                required: 'required',
+            },
+        },
+        {
+            attrs: {
+                type: 'email',
+                name: 'email',
+                class: 'input',
+                placeholder: 'Enter email',
+                required: 'required',
+            },
+        },
+        {
+            attrs: {
+                type: 'password',
+                name: 'password',
+                class: 'input',
+                placeholder: 'Enter password',
+                required: 'required',
+                pattern: '^\\S{4,}$',
+            },
+        },
+        {
+            attrs: {
+                type: 'submit',
+                class: 'button button_start',
+                value: 'Sign Up',
+            },
+        },
+    ];
+
+    let block = new Form(signupFields);
+    block.getElement().classList.add('logo');
+    block.getElement().classList.add('input_form');
+
+/*    block.setHTML(pugSignUp({
                     form: {
                         title: TITLE,
                         fields: [
@@ -61,7 +103,7 @@ const SignUp = function () {
                         ],
                     }
                 })
-                );
+                );*/
 
     return block;
 };

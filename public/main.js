@@ -14,7 +14,7 @@ const title = Block.Create('a', {}, ['application-header'], 'Frontend-sample app
 
 
 const sections = {
-    menu: MenuGame(),
+    menu: Block.Create('div', {}, ['logo', 'logo_button']),
     signin: SignIn(),
     signup: SignUp(),
     about: AboutUs(),
@@ -35,16 +35,15 @@ app
     .append(sections.about);
 
 function openSignin() {
-/*    if (!sections.login.ready) {
-        sections.login.loginform = new Form(loginFields);
-        sections.login.loginform.onSubmit(function (formdata) {
-            userService.login(formdata.email, formdata.password, function (err, resp) {
+    if (!sections.signin.ready) {
+        console.log("in signin...");
+        sections.signin.onSubmit(function (formdata) {
+            userService.signin(formdata.login, formdata.password, function (err, resp) {
                 if (err) {
                     alert(`Some error ${err.status}: ${err.responseText}`);
                     return;
                 }
-
-                sections.login.loginform.reset();
+                sections.signin.reset();
                 userService.getData(function (err, resp) {
                     if (err) {
                         return;
@@ -53,46 +52,54 @@ function openSignin() {
                 }, true);
             });
         });
-        sections.login
-            .append(Block.Create('h2', {}, [], 'Войдите'))
-            .append(sections.login.loginform);
-        sections.login.ready = true;
+
+        sections.signin.ready = true;
     }
+
     sections.hide();
     if (userService.isLoggedIn()) {
         return openMenu();
     }
-    sections.login.show();*/
+    sections.signin.show();
+}
+
+function openAbout() {
+    sections.hide();
+
+/*    if(userService.isLoggedIn()) {
+        return openMenu();
+    }*/
+
+    sections.about.show();
 }
 
 function openSignup() {
-/*    if (!sections.signup.ready) {
-        sections.signup.signupform = new Form(signupFields);
-        sections.signup.signupform.onSubmit(function (formdata) {
-            userService.signup(formdata.email, formdata.password, +formdata.age, function (err, resp) {
+    if (!sections.signup.ready) {
+        sections.signup.onSubmit(function (formdata) {
+            userService.signup(formdata.login, formdata.email, formdata.password, function (err, resp) {
                 if (err) {
                     alert(`Some error ${err.status}: ${err.responseText}`);
                     return;
                 }
 
-                sections.signup.signupform.reset();
+                sections.signup.reset();
                 openMenu();
             });
         });
-        sections.signup
-            .append(Block.Create('h2', {}, [], 'Зарегистрируйтесь'))
-            .append(sections.signup.signupform);
+
         sections.signup.ready = true;
     }
     sections.hide();
-    if (userService.isLoggedIn()) {
+
+/*    if (userService.isLoggedIn()) {
         return openMenu();
-    }
-    sections.signup.show();*/
+    }*/
+
+    sections.signup.show();
 }
 
-function openScores() {
-    if (!sections.scores.ready) {
+function openScore () {
+/*    if (!sections.scores.ready) {
         sections.scores.scoreboard = new Scoreboard();
         sections.scores
             .append(Block.Create('h2', {}, [], 'Список лидеров'))
@@ -108,11 +115,11 @@ function openScores() {
 
         sections.scores.scoreboard.update(users);
         sections.scores.show();
-    }, true);
+    }, true);*/
 }
 
-function openAbout() {
-    if (!sections.profile.ready) {
+function openProfile() {
+/*    if (!sections.profile.ready) {
         sections.profile.profile = new Profile();
         sections.profile
             .append(Block.Create('h2', {}, [], 'Мой профиль'))
@@ -132,7 +139,11 @@ function openAbout() {
         }, true);
         return;
     }
-    return openMenu();
+    return openMenu();*/
+}
+
+function openExit() {
+    userService.signout();
 }
 
 function openMenu() {
@@ -140,9 +151,10 @@ function openMenu() {
     if (!sections.menu.ready) {
 
         sections.menu.items = {
-            signin: Block.Create('div', {'data-section': 'login'}, ['logo', 'input_form'], 'Открыть форму входа'),
-            signup: Block.Create('div', {'data-section': 'signup'}, ['logo', 'input_form'], 'Открыть форму регистрации'),
-            about: Block.Create('div', {'data-section': 'profile'}, ['logo', 'table_form'], 'Посмотреть страницу о нас'),
+            signin: Block.Create('button', {'data-section': 'signin'}, ['button', 'button_login'], 'SIGN IN'),
+            signup: Block.Create('button', {'data-section': 'signup'}, ['button', 'button_register'], 'SIGN UP'),
+            about: Block.Create('button', {'data-section': 'about'}, ['button', 'button_start'], 'ABOUT'),
+            exit: Block.Create('button', {'data-section': 'exit'}, ['button', 'button_start'], 'EXIT'),
         };
 
         sections.menu.on('click', function (event) {
@@ -156,19 +168,20 @@ function openMenu() {
                 case 'signup':
                     openSignup();
                     break;
-                case 'scores':
-                    openScores();
+                case 'exit':
+                    openExit();
                     break;
                 case 'about':
                     openAbout();
                     break;
             }
         });
+
         sections.menu
-            .append(Block.Create('h2', {}, [], 'Меню'))
             .append(sections.menu.items.signin)
             .append(sections.menu.items.signup)
-            .append(sections.menu.items.about);
+            .append(sections.menu.items.about)
+            .append(sections.menu.items.exit);
 
         sections.menu.ready = true;
     }
@@ -177,17 +190,19 @@ function openMenu() {
 
     if (userService.isLoggedIn()) {
 
-        sections.menu.items.login.hide();
-        sections.menu.items.signup.hide();
-        sections.menu.items.scores.show();
-        sections.menu.items.profile.show();
+        console.log("registration ok");
+        sections.menu.items.signin.show();
+        sections.menu.items.signup.show();
+        sections.menu.items.about.show();
+        sections.menu.items.exit.show();
 
     } else {
 
-        sections.menu.items.login.show();
+        console.log("registration fail");
+        sections.menu.items.signin.show();
         sections.menu.items.signup.show();
-        sections.menu.items.scores.show();
-        sections.menu.items.profile.hide();
+        sections.menu.items.about.hide();
+        sections.menu.items.exit.hide();
 
     }
 
@@ -203,6 +218,15 @@ userService.getData(function (err, resp) {
     }
     openMenu();
 }, true);
+
+
+
+
+
+
+
+
+
 
 /*
 function createPage() {

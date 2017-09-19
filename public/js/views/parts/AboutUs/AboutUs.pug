@@ -4,6 +4,6 @@ mixin member_view(member)
             a(href=member.link)= member.name
         td= member.role
 
-h3(align="middle")= headText
-each member in members
-    +member_view(member)
+h2(align="middle" style="margin-left: 30%")= headText
+    each member in members
+        +member_view(member)

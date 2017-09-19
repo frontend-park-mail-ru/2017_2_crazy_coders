@@ -3,9 +3,10 @@
 import PageConstruct from '../../constructs/PageConstruct/PageConstruct';
 import FormConsruct from '../../constructs/FormConstruct/FormConstruct';
 import Block from '../../constructs/BlockConstruct/BlockConstruct';
+import Form from '../../constructs/FormConstruct/FormConstruct';
 import pugSignIn from './SignIn.pug';
 
-const TITLE = "Sign in";
+const TITLE = "SIGNIN";
 
 const LOGIN_FIELD = {
     id: "SignIn_loginInput",
@@ -23,18 +24,49 @@ const PASSWORD_FIELD = {
 const SIGN_IN_BUTTON = {
     id: "SignIn_signInBtn",
     type: "submit",
-    text: "Войти",
+    text: "SIGNIN",
 };
 const SIGN_UP_BUTTON = {
     id: "SignIn_signUpBtn",
     type: "reset",
-    text: "Регистрация",
+    text: "SIGNUP",
 };
 
 const SignIn = function () {
-    let block = Block.Create('div', {}, ['logo', 'input_form']);
 
-    block.setHTML(pugSignIn({
+    let signinFields = [
+        {
+            attrs: {
+                type: 'login',
+                name: 'login',
+                class: 'input',
+                placeholder: 'Enter email',
+                required: 'required',
+            },
+        },
+        {
+            attrs: {
+                type: 'password',
+                name: 'password',
+                class: 'input',
+                placeholder: 'Enter password',
+                required: 'required',
+            },
+        },
+        {
+            attrs: {
+                type: 'submit',
+                class: 'button button_start',
+                value: 'Sign In',
+            },
+        },
+    ];
+
+    let block = new Form(signinFields);
+    block.getElement().classList.add('logo');
+    block.getElement().classList.add('input_form');
+
+/*    block.setHTML(pugSignIn({
                     form: {
                         title: TITLE,
                         fields: [
@@ -47,7 +79,7 @@ const SignIn = function () {
                         ],
                     }
                 })
-                );
+                );*/
 
     return block;
 };
