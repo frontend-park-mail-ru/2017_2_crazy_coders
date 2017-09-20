@@ -7,6 +7,7 @@ import SignUp from './js/views/parts/SignUp/SignUp';
 import Block from './js/views/constructs/BlockConstruct/BlockConstruct';
 import UserService from './js/services/UserService'
 import ValidSigninform from './js/components/ValidSigninForm'
+import ValidSignunform from './js/components/ValidSignupForm'
 
 const userService = new UserService();
 
@@ -80,15 +81,18 @@ function openAbout() {
 function openSignup() {
     if (!sections.signup.ready) {
         sections.signup.onSubmit(function (formdata) {
-            userService.signup(formdata.login, formdata.email, formdata.password, function (err, resp) {
-                if (err) {
-                    alert(`Some error ${err.status}: ${err.responseText}`);
-                    return;
-                }
+            let form = document.getElementById("signup_login").parentNode;
+            if(ValidSignunform.validSignupForm(formdata.login, formdata.email, formdata.password, formdata.repeatPassword, form)) {
+                userService.signup(formdata.login, formdata.email, formdata.password, function (err, resp) {
+                    if (err) {
+                        alert(`Some error ${err.status}: ${err.responseText}`);
+                        return;
+                    }
 
-                sections.signup.reset();
-                openMenu();
-            });
+                    sections.signup.reset();
+                    openMenu();
+                });
+            }
         });
 
         sections.signup.ready = true;

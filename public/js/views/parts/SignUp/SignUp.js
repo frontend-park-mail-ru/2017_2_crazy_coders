@@ -54,6 +54,7 @@ const SignUp = function () {
                 class: 'input',
                 placeholder: 'Enter login',
                 required: 'required',
+                id: 'signup_login',
             },
         },
         {
@@ -63,6 +64,7 @@ const SignUp = function () {
                 class: 'input',
                 placeholder: 'Enter email',
                 required: 'required',
+                id: 'signup_email',
             },
         },
         {
@@ -73,7 +75,21 @@ const SignUp = function () {
                 placeholder: 'Enter password',
                 required: 'required',
                 pattern: '^\\S{4,}$',
+                id: 'signup_password',
             },
+
+        },
+        {
+            attrs: {
+                type: 'password',
+                name: 'repeatPassword',
+                class: 'input',
+                placeholder: 'Enter password repeatedly',
+                required: 'required',
+                pattern: '^\\S{4,}$',
+                id: 'signup_password_repeat',
+            },
+
         },
         {
             attrs: {
