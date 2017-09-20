@@ -1,9 +1,9 @@
 'use strict';
-// require('../css/style.css');
 import AboutUs from './js/views/parts/AboutUs/AboutUs';
 import MenuGame from './js/views/parts/MenuGame/MenuGame';
 import SignIn from './js/views/parts/SignIn/SignIn';
 import SignUp from './js/views/parts/SignUp/SignUp';
+import ScoreList from './js/views/parts/ScoreList/ScoreList';
 import Block from './js/views/constructs/BlockConstruct/BlockConstruct';
 import UserService from './js/services/UserService'
 import ValidSigninform from './js/components/ValidSigninForm'
@@ -20,6 +20,7 @@ const sections = {
     signin: SignIn(),
     signup: SignUp(),
     about: AboutUs(),
+    score: ScoreList(),
     hide() {
         this.menu.hide();
         this.signin.hide();

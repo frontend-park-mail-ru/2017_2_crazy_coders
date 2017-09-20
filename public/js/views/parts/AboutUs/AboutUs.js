@@ -30,40 +30,24 @@ const MEMBERS = [
 
 ];
 
-const AboutUs = function () {
+class AboutUs {
 
-    let block = Block.Create('div', {}, ['logo', 'table_form']);
-    let table = Block.Create('table', {}, ['about_table']);
+    constructor() {
+        this.block = Block.Create('div', {}, ['logo', 'table_form']);
+        this.init();
+    }
 
-    table.setHTML(pugAboutUs({
-                    members: MEMBERS,
-                    headText: HEADER_TEXT
-                    })
-                );
+    init() {
+        let table = Block.Create('table', {}, ['about_table']);
 
-    block.append(table);
+        table.setHTML(pugAboutUs({
+                members: MEMBERS,
+                headText: HEADER_TEXT
+            })
+        );
 
-/*    MEMBERS.forEach(function(member) {
-        let tr = document.createElement('TR');
-        let name = document.createElement('TH');
-        let link = document.createElement('A');
-        let role = document.createElement('TH');
-
-        link.appendChild(name);
-        link.setAttribute('href', member.link);
-        name.textContent =  member.name;
-        role.textContent = member.role;
-        table.appendChild(tr);
-        tr.appendChild(link);
-        tr.appendChild(role);
-    });*/
-
-    /*return PageConstruct({
-        el: table
-    })*/
-
-    return block;
-
-};
+        this.block.append(table);
+    }
+}
 
 export default AboutUs;
