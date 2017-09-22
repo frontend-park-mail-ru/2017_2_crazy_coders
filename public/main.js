@@ -19,8 +19,8 @@ const sections = {
     menu: Block.Create('div', {}, ['logo', 'logo_button']),
     signin: SignIn(),
     signup: SignUp(),
-    about: AboutUs(),
-    score: ScoreList(),
+    about: (new AboutUs()).get(),
+    /*score: ScoreList(),*/
     hide() {
         this.menu.hide();
         this.signin.hide();
@@ -39,23 +39,45 @@ app
 
 function openSignin() {
     if (!sections.signin.ready) {
-        console.log("in signin...");
+        let backClick = false;
+
+        // const backButton  = sections.signin.getElement().getElementById("signin_back_button");
+        sections.signin.on('click', function (event) {
+            event.preventDefault();
+            const target = event.currentTarget;
+            console.log("target = " + target);
+            const section = target.getAttribute('data-section');
+            console.log("section = " + section);
+            switch (section) {
+                case 'signin':
+                    backClick = false;
+                    break;
+                case 'back':
+                    backClick = true;
+                    break;
+            }
+        });
+
         sections.signin.onSubmit(function (formdata) {
-            let form = document.getElementById("signin_login").parentNode;
-            if(ValidSigninform.validLoginForm(formdata.login,  formdata.password, form)) {
-                userService.signin(formdata.login, formdata.password, function (err, resp) {
-                    if (err) {
-                        alert(`Some error ${err.status}: ${err.responseText}`);
-                        return;
-                    }
-                    sections.signin.reset();
-                    userService.getData(function (err, resp) {
+            if(backClick) {
+                openMenu();
+            } else {
+                let form = document.getElementById("signin_login").parentNode;
+                if (ValidSigninform.validLoginForm(formdata.login, formdata.password, form)) {
+                    userService.signin(formdata.login, formdata.password, function (err, resp) {
                         if (err) {
+                            alert(`Some error ${err.status}: ${err.responseText}`);
                             return;
                         }
-                        openMenu();
-                    }, true);
-                });
+                        sections.signin.reset();
+                        userService.getData(function (err, resp) {
+                            if (err) {
+                                return;
+                            }
+                            openMenu();
+                        }, true);
+                    });
+                }
             }
         });
 
@@ -153,6 +175,8 @@ function openProfile() {
 
 function openExit() {
     userService.signout();
+    console.log("press exit...");
+    openMenu();
 }
 
 function openMenu() {
@@ -169,7 +193,9 @@ function openMenu() {
         sections.menu.on('click', function (event) {
             event.preventDefault();
             const target = event.target;
+            console.log("target = " + target);
             const section = target.getAttribute('data-section');
+            console.log("section = " + section);
             switch (section) {
                 case 'signin':
                     openSignin();

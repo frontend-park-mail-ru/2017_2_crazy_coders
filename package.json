@@ -8,19 +8,19 @@
   "dependencies": {
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
-    "css-loader": "^0.28.7",
     "debug": "~2.6.3",
     "ejs": "~2.5.6",
     "ejs-locals": "^1.0.2",
     "express": "^4.15.4",
     "morgan": "~1.8.1",
     "pug": "^2.0.0-rc.4",
-    "pug-loader": "^2.3.0",
-    "serve-favicon": "~2.4.2",
-    "style-loader": "^0.18.2",
-    "webpack": "^3.6.0"
+    "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
-    "uuid": "^3.1.0"
+    "css-loader": "^0.28.7",
+    "pug-loader": "^2.3.0",
+    "style-loader": "^0.18.2",
+    "uuid": "^3.1.0",
+    "webpack": "^3.6.0"
   }
 }

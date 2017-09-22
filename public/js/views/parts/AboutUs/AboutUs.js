@@ -38,7 +38,7 @@ class AboutUs {
     }
 
     init() {
-        let table = Block.Create('table', {}, ['about_table']);
+        const table = Block.Create('table', {}, ['about_table']);
 
         table.setHTML(pugAboutUs({
                 members: MEMBERS,
@@ -48,6 +48,12 @@ class AboutUs {
 
         this.block.append(table);
     }
+
+    get() {
+        return this.block;
+    }
+
+
 }
 
 export default AboutUs;

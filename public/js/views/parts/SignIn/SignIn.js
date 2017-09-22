@@ -60,7 +60,15 @@ const SignIn = function () {
                 type: 'submit',
                 class: 'button button_start',
                 value: 'Sign In',
-                id: 'signin_button'
+                'data-section': 'signin'
+            },
+        },
+        {
+            attrs: {
+                type: 'submit',
+                class: 'button button_start',
+                value: 'Back',
+                'data-section': 'back'
             },
         },
     ];
