@@ -9,6 +9,7 @@ import CreateUnRegMenu from './views/UnRegMenu/UnRegMenu';
 import UserService from './services/UserService';
 import createRegMenu from './views/RegMenu/RegMenu';
 
+
 let body = document.getElementsByTagName('body')[0];
 const app = new Block('div', {id: 'application'});
 body.appendChild(app.getElement());
