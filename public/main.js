@@ -249,7 +249,8 @@ signIn.onSubmitSignInForm(function (formdata, isValid) {
                 alert(`Some error ${err.status}: ${err.responseText}`);
                 return;
             }
-            if (resp.success === 'yes') {
+            if (resp.id !== 0) {
+                console.log("in signinSubmit");
                 signIn.reset();
                 isRegisteredUser(resp.user);
             } else {
@@ -268,7 +269,8 @@ signUp.onSubmitSignUpForm(function (formdata, isValid) {
                 return alert(`AUTH Error: ${err.status}`);
             }
 
-            if (resp.response === 200) {
+            if (resp.id !== 0) {
+                console.log("in signupSubmit");
                 isRegisteredUser();
                 signUp.reset();
             }
