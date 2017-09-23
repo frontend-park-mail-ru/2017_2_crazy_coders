@@ -23,6 +23,7 @@ export default class Http {
         xhr.open('POST', address, true);
         xhr.withCredentials = true;
         xhr.setRequestHeader('Content-Type', 'application/json; charset=utf8');
+        xhr.setRequestHeader('Accept', 'application/json');
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState !== 4) return;

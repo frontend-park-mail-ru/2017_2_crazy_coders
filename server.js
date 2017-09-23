@@ -4,6 +4,7 @@ const express = require('express');
 const body = require('body-parser');
 const cookie = require('cookie-parser');
 const uuid = require('uuid/v4');
+const Http = require('./public/modules/Http');
 
 const app = express();
 
@@ -29,7 +30,19 @@ app.post('/register', function (req, res) {
     ) {
         return res.status(400).json({error: 'Invalid data'});
     }
-    if (users[login]) {
+
+    const user = {
+        'username': login,
+        'email': email,
+        'password': password
+    };
+
+    Http.Post('http://82.202.246.5:8080/signUp', user, (req, res) => {
+       console.log('request = ' + req);
+       console.log('response = ' + res);
+    });
+
+    /*if (users[login]) {
         return res.status(400).json({error: 'User is exists'});
     }
 
@@ -47,7 +60,7 @@ app.post('/register', function (req, res) {
     res.cookie('cookie', new_id, {
         expires: new Date(Date.now() + day)
     });
-    res.json({'response': 200});
+    res.json({'response': 200});*/
 });
 
 app.post('/login', function (req, res) {
