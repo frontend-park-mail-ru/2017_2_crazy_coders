@@ -96,10 +96,10 @@ body {
 }
 
 .input {
-  width: 100%;
+  width: 150%;
   padding: 2% 0 2% 2%;
   font-size: 1em;
-  margin: 3% 0;
+  margin: 5% 0 5% 15%;
   font-family: "Helvetica";
   border-radius: 5px;
   background: #e9ecf0;
@@ -136,3 +136,7 @@ th, td {
 }
 
 .score_table > tr:nth-child(even){background-color: #f2f2f2}
+
+*[hidden] {
+  display: none;
+}
