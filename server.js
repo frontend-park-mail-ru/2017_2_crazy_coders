@@ -55,17 +55,17 @@ app.post('/register', function (req, res) {
 });
 
 app.post('/login', function (req, res) {
-    const login = req.body.login;
+    const email = req.body.email;
     const password = req.body.password;
     if (
-        !login || !password ||
+        !email || !password ||
         !password.match(/^\S{4,}$/)
     ) {
         return res.status(400).end();
     }
 
     const user = {
-        'email': login,
+        'email': email,
         'password': password
     };
 

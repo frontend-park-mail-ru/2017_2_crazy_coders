@@ -9,7 +9,7 @@ let data = {
         {
             attrs: {
                 type: 'text',
-                name: 'login',
+                name: 'email',
                 placeholder: 'Enter login',
             },
         },

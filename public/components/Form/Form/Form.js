@@ -33,7 +33,7 @@ export default class Form extends Block {
                 // console.log(name + " : " + formdata[name]);
             }
 
-            const isValid = new ValidLoginForm(formdata.login, formdata.password, signInForm);
+            const isValid = new ValidLoginForm(formdata.email, formdata.password, signInForm);
 
             callback(formdata, isValid.validForm());
         }.bind(this));

@@ -12,8 +12,8 @@ export default class UserService {
         Http.Post('/register', {login, email, password}, callback);
     }
 
-    login(login, password, callback) {
-        Http.Post('/login', {login, password}, callback);
+    login(email, password, callback) {
+        Http.Post('/login', {email, password}, callback);
     }
 
     isLoggedIn() {

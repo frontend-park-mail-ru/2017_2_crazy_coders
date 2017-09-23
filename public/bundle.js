@@ -443,7 +443,7 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
                 // console.log(name + " : " + formdata[name]);
             }
 
-            const isValid = new __WEBPACK_IMPORTED_MODULE_2__ValidForm_ValidLoginForm__["a" /* default */](formdata.login, formdata.password, signInForm);
+            const isValid = new __WEBPACK_IMPORTED_MODULE_2__ValidForm_ValidLoginForm__["a" /* default */](formdata.email, formdata.password, signInForm);
 
             callback(formdata, isValid.validForm());
         }.bind(this));
@@ -452,7 +452,7 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
     onSubmitSignUpForm(callback) {
         let signUpForm = document.getElementById('registry-form');
 
-        signUpForm.addEventListener('submit', function (e) {
+        signUpForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
             const formdata = {};
@@ -466,7 +466,7 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
             const isValid = new __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidRegisterForm__["a" /* default */](formdata.login,formdata.email, formdata.password,formdata.repeatPassword, signUpForm);
 
             callback(formdata, isValid.validForm());
-        }.bind(this), false);
+        }, false);
     }
 
     reset() {
@@ -510,7 +510,7 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /*
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Table_pug__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Table_pug__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Table_pug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__template_Table_pug__);
 
 
@@ -541,10 +541,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_Header_Header__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_UnRegMenu_UnRegMenu__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_UserService__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_RegMenu_RegMenu__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_AboutUs_AboutUs__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__views_Scoreboard_Scoreboard__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__views_Footer_Footer__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_RegMenu_RegMenu__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_AboutUs_AboutUs__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__views_Scoreboard_Scoreboard__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__views_Footer_Footer__ = __webpack_require__(24);
 
 
 
@@ -652,6 +652,7 @@ function isUnregisteredUser() {
             }
         });
     });
+
 
     footerImgEventDelete = footerImg.on('click', function (event) {
         event.preventDefault();
@@ -790,12 +791,13 @@ userService.isAuthUser(function (err, userLogin) {
 
 signIn.onSubmitSignInForm(function (formdata, isValid) {
     if (isValid) {
-        userService.login(formdata.login, formdata.password, function (err, resp) {
+        userService.login(formdata.email, formdata.password, function (err, resp) {
             if (err) {
                 alert(`Some error ${err.status}: ${err.responseText}`);
                 return;
             }
-            if (resp.success === 'yes') {
+            if (resp.id !== 0) {
+                console.log("in signinSubmit");
                 signIn.reset();
                 isRegisteredUser(resp.user);
             } else {
@@ -814,7 +816,8 @@ signUp.onSubmitSignUpForm(function (formdata, isValid) {
                 return alert(`AUTH Error: ${err.status}`);
             }
 
-            if (resp.response === 200) {
+            if (resp.id !== 0) {
+                console.log("in signupSubmit");
                 isRegisteredUser();
                 signUp.reset();
             }
@@ -842,7 +845,7 @@ let data = {
         {
             attrs: {
                 type: 'text',
-                name: 'login',
+                name: 'email',
                 placeholder: 'Enter login',
             },
         },
@@ -928,8 +931,8 @@ function hideError(form) {
     });
 }
 
-function isCorrectLogin(login) {
-    return login.match(/^[a-z0-9_-]{3,16}$/);
+function isCorrectLogin(email) {
+    return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
 }
 
 function isCorrectPassword(pswd) {
@@ -945,8 +948,8 @@ function createErrorElement(msg) {
 }
 
 class ValidLoginForm {
-    constructor(login, password, form) {
-        this.login = login;
+    constructor(email, password, form) {
+        this.email = email;
         this.password = password;
         this.currentForm = form;
     }
@@ -960,9 +963,9 @@ class ValidLoginForm {
         const loginField = this.currentForm.children[0],
             passwordField = this.currentForm.children[1];
 
-        if (!isCorrectLogin(this.login)) {
+        if (!isCorrectLogin(this.email)) {
             flag = false;
-            this.currentForm.insertBefore(createErrorElement('invalid login'), loginField);
+            this.currentForm.insertBefore(createErrorElement('invalid email'), loginField);
         }
 
         if (!isCorrectPassword(this.password)) {
@@ -1259,11 +1262,13 @@ module.exports = template;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_Http__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_User__ = __webpack_require__(19);
+
 
 
 class UserService {
     constructor() {
-        this.user = null;
+        this.user = new __WEBPACK_IMPORTED_MODULE_1__model_User__["a" /* default */]({});
         this.users = [];
     }
 
@@ -1272,12 +1277,12 @@ class UserService {
         __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].Post('/register', {login, email, password}, callback);
     }
 
-    login(login, password, callback) {
-        __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].Post('/login', {login, password}, callback);
+    login(email, password, callback) {
+        __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].Post('/login', {email, password}, callback);
     }
 
     isLoggedIn() {
-        return !!this.user;
+        return !!this.user.id;
     }
 
      // [force=false] - игнорировать ли кэш?
@@ -1293,8 +1298,8 @@ class UserService {
             if (!userdata.user) {
                 return callback(null, null);
             }
-            this.user = userdata.user;
-            callback(null, userdata.user);
+            this.user.set(userdata);
+            callback(null, userdata);
         }.bind(this));
     }
 
@@ -1322,8 +1327,6 @@ class Http {
         const xhr = new XMLHttpRequest();
         xhr.open('GET', address, true);
         xhr.withCredentials = true;
-        xhr.setRequestHeader('Content-Type', 'application/json; charset=utf8');
-        xhr.setRequestHeader('Accept', 'application/json');
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState !== 4) return;
@@ -1352,6 +1355,7 @@ class Http {
             }
 
             const response = JSON.parse(xhr.responseText);
+            console.log("response = " + response.username);
             callback(null, response);
         };
 
@@ -1366,6 +1370,31 @@ class Http {
 
 /***/ }),
 /* 19 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+class User {
+    constructor(opt) {
+        this.email = opt.email || '';
+        this.login = opt.login || '';
+        this.id = opt.id || 0;
+        this.score = opt.score || 0;
+    }
+
+    set(userData) {
+        this.email = userData.email;
+        this.login = userData.login;
+        this.id = userData.id;
+        this.score = userData.score || 0;
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (User);
+
+/***/ }),
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1396,7 +1425,7 @@ function createRegMenu() { //(user)
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1440,7 +1469,7 @@ function createAboutUs() {
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(1);
@@ -1469,7 +1498,7 @@ pug_html = pug_html + "\n  \u003C\u002Ftable\u003E\n\u003C\u002Fdiv\u003E\n\u003
 module.exports = template;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1516,12 +1545,12 @@ function Scoreboard() {
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = CreateFooter;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Footer_Footer__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Footer_Footer__ = __webpack_require__(25);
 
 
 let data = {
@@ -1551,12 +1580,12 @@ function CreateFooter() {
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Footer_pug__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Footer_pug__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Footer_pug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__template_Footer_pug__);
 
 
@@ -1576,7 +1605,7 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /*
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(1);

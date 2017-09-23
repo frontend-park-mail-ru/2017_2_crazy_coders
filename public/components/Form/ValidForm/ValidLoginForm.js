@@ -8,8 +8,8 @@ function hideError(form) {
     });
 }
 
-function isCorrectLogin(login) {
-    return login.match(/^[a-z0-9_-]{3,16}$/);
+function isCorrectLogin(email) {
+    return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
 }
 
 function isCorrectPassword(pswd) {
@@ -25,8 +25,8 @@ function createErrorElement(msg) {
 }
 
 export default class ValidLoginForm {
-    constructor(login, password, form) {
-        this.login = login;
+    constructor(email, password, form) {
+        this.email = email;
         this.password = password;
         this.currentForm = form;
     }
@@ -40,9 +40,9 @@ export default class ValidLoginForm {
         const loginField = this.currentForm.children[0],
             passwordField = this.currentForm.children[1];
 
-        if (!isCorrectLogin(this.login)) {
+        if (!isCorrectLogin(this.email)) {
             flag = false;
-            this.currentForm.insertBefore(createErrorElement('invalid login'), loginField);
+            this.currentForm.insertBefore(createErrorElement('invalid email'), loginField);
         }
 
         if (!isCorrectPassword(this.password)) {

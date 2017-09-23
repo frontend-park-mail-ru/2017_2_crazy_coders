@@ -244,7 +244,7 @@ userService.isAuthUser(function (err, userLogin) {
 
 signIn.onSubmitSignInForm(function (formdata, isValid) {
     if (isValid) {
-        userService.login(formdata.login, formdata.password, function (err, resp) {
+        userService.login(formdata.email, formdata.password, function (err, resp) {
             if (err) {
                 alert(`Some error ${err.status}: ${err.responseText}`);
                 return;
