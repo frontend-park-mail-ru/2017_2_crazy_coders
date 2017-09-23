@@ -533,7 +533,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 let body = document.getElementsByTagName('body')[0];
 const app = new __WEBPACK_IMPORTED_MODULE_0__components_Block_BlockComponents__["a" /* default */]('div', {id: 'application'});
 body.appendChild(app.getElement());
-
+let footerPanel = new __WEBPACK_IMPORTED_MODULE_0__components_Block_BlockComponents__["a" /* default */]('div', {id: 'multimedia-buttons-panel'});
 
 const userService = new __WEBPACK_IMPORTED_MODULE_5__services_UserService__["a" /* default */]();
 const header = Object(__WEBPACK_IMPORTED_MODULE_3__views_Header_Header__["a" /* default */])();
@@ -545,7 +545,8 @@ const signUp = Object(__WEBPACK_IMPORTED_MODULE_2__views_SignUp_SignUp__["a" /* 
 app.append(header.getHeader())
     .append(inputMenu.getMenu())
     .append(signIn.getForm())
-    .append(signUp.getForm());
+    .append(signUp.getForm())
+    .append(footerPanel.getElement());
 
 inputMenu.hide();
 signIn.hide();

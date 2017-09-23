@@ -12,7 +12,7 @@ import createRegMenu from './views/RegMenu/RegMenu';
 let body = document.getElementsByTagName('body')[0];
 const app = new Block('div', {id: 'application'});
 body.appendChild(app.getElement());
-
+let footerPanel = new Block('div', {id: 'multimedia-buttons-panel'});
 
 const userService = new UserService();
 const header = CreateHeader();
@@ -24,7 +24,8 @@ const signUp = SignUp();
 app.append(header.getHeader())
     .append(inputMenu.getMenu())
     .append(signIn.getForm())
-    .append(signUp.getForm());
+    .append(signUp.getForm())
+    .append(footerPanel.getElement());
 
 inputMenu.hide();
 signIn.hide();
