@@ -452,7 +452,7 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
     onSubmitSignUpForm(callback) {
         let signUpForm = document.getElementById('registry-form');
 
-        signUpForm.addEventListener('submit', (e) => {
+        signUpForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
             const formdata = {};
@@ -466,7 +466,7 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
             const isValid = new __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidRegisterForm__["a" /* default */](formdata.login,formdata.email, formdata.password,formdata.repeatPassword, signUpForm);
 
             callback(formdata, isValid.validForm());
-        }, false);
+        }.bind(this), false);
     }
 
     reset() {
@@ -510,7 +510,7 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /*
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Table_pug__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Table_pug__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Table_pug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__template_Table_pug__);
 
 
@@ -541,9 +541,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_Header_Header__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_UnRegMenu_UnRegMenu__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_UserService__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_RegMenu_RegMenu__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_AboutUs_AboutUs__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__views_Scoreboard_Scoreboard__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_RegMenu_RegMenu__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_AboutUs_AboutUs__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__views_Scoreboard_Scoreboard__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__views_Footer_Footer__ = __webpack_require__(23);
+
+
 
 
 
@@ -560,7 +563,7 @@ let body = document.getElementsByTagName('body')[0];
 const app = new __WEBPACK_IMPORTED_MODULE_0__components_Block_BlockComponents__["a" /* default */]('div', {id: 'application'});
 body.appendChild(app.getElement());
 
-let footerPanel = new __WEBPACK_IMPORTED_MODULE_0__components_Block_BlockComponents__["a" /* default */]('div', {id: 'multimedia-buttons-panel'});
+let footerDiv = new __WEBPACK_IMPORTED_MODULE_0__components_Block_BlockComponents__["a" /* default */]('div', {id: 'multimedia-buttons-panel'});
 
 const userService = new __WEBPACK_IMPORTED_MODULE_5__services_UserService__["a" /* default */]();
 const header = Object(__WEBPACK_IMPORTED_MODULE_3__views_Header_Header__["a" /* default */])();
@@ -569,39 +572,59 @@ const signIn = Object(__WEBPACK_IMPORTED_MODULE_1__views_SignIn_SignIn__["a" /* 
 const signUp = Object(__WEBPACK_IMPORTED_MODULE_2__views_SignUp_SignUp__["a" /* default */])();
 const aboutUs = Object(__WEBPACK_IMPORTED_MODULE_7__views_AboutUs_AboutUs__["a" /* default */])();
 const score = Object(__WEBPACK_IMPORTED_MODULE_8__views_Scoreboard_Scoreboard__["a" /* default */])();
+const footerImg = Object(__WEBPACK_IMPORTED_MODULE_9__views_Footer_Footer__["a" /* default */])();
+const mainPage = Object(__WEBPACK_IMPORTED_MODULE_6__views_RegMenu_RegMenu__["a" /* default */])();
 
-
+footerDiv.append(score.getTable())
+    .append(aboutUs.getTable());
 
 app.append(header.getHeader())
     .append(inputMenu.getMenu())
+    .append(mainPage.getMenu())
     .append(signIn.getForm())
     .append(signUp.getForm())
-    .append(footerPanel.getElement())
-    .append(aboutUs.getTable())
-    .append(score.getTable());
+    .append(footerImg.getFooter())
+    .append(footerDiv.getElement());
 
 
 inputMenu.hide();
 signIn.hide();
 signUp.hide();
+mainPage.hide();
 score.hide();
 aboutUs.hide();
 
+let inputMenuEventDelete = function () {
+};
+let footerImgEventDelete = function () {
+};
+let footerDivEventDelete = function () {
+};
+let mainPageEventDelete = function () {
+};
+
 function isUnregisteredUser() {
+
+    inputMenuEventDelete();
+    footerImgEventDelete();
+    footerDivEventDelete();
+    mainPageEventDelete();
 
     inputMenu.show();
 
-    inputMenu.on('click', function (event) {
+    inputMenuEventDelete = inputMenu.on('click', function (event) {
         event.preventDefault();
         const elemId = event.target.getAttribute('id');
 
         switch (elemId) {
             case 'button-log':
+                footerImg.hide();
                 inputMenu.hide();
                 signIn.show();
                 break;
 
             case 'button-register':
+                footerImg.hide();
                 inputMenu.hide();
                 signUp.show();
                 break;
@@ -618,29 +641,78 @@ function isUnregisteredUser() {
                 case 'back-sign-in':
                     signIn.hide();
                     inputMenu.show();
+                    footerImg.show();
                     break;
 
                 case 'back-sign-up':
                     signUp.hide();
                     inputMenu.show();
+                    footerImg.show();
                     break;
             }
         });
     });
 
+    footerImgEventDelete = footerImg.on('click', function (event) {
+        event.preventDefault();
+        const elemId = event.target.getAttribute('id');
+
+        switch (elemId) {
+            case 'sound-logo':
+                console.log('music');
+                break;
+
+            case 'score-logo':
+                footerImg.hide();
+                inputMenu.hide();
+                mainPage.hide();
+                score.show();
+                break;
+
+            case 'about-logo':
+                footerImg.hide();
+                inputMenu.hide();
+                mainPage.hide();
+                aboutUs.show();
+                break;
+        }
+    });
+
+
+    footerDivEventDelete = footerDiv.on('click', function (event) {
+        event.preventDefault();
+        const elemId = event.target.getAttribute('id');
+
+        switch (elemId) {
+            case 'back-score':
+                footerImg.show();
+                inputMenu.show();
+                score.hide();
+                break;
+
+            case 'back-about':
+                footerImg.show();
+                inputMenu.show();
+                aboutUs.hide();
+                break
+        }
+    });
 }
 
+function isRegisteredUser() {
 
-function isRegisteredUser(user) {
+    inputMenuEventDelete();
+    footerImgEventDelete();
+    footerDivEventDelete();
+    mainPageEventDelete();
 
     inputMenu.hide();
     signIn.hide();
     signUp.hide();
+    mainPage.show();
+    footerImg.show();
 
-    const mainPage = Object(__WEBPACK_IMPORTED_MODULE_6__views_RegMenu_RegMenu__["a" /* default */])(user);
-    app.append(mainPage.getMenu());
-
-    mainPage.on('click', function (event) {
+    mainPageEventDelete = mainPage.on('click', function (event) {
         event.preventDefault();
         const elemId = event.target.getAttribute('id');
 
@@ -656,36 +728,82 @@ function isRegisteredUser(user) {
                 break;
         }
     });
+
+    footerImgEventDelete = footerImg.on('click', function (event) {
+        event.preventDefault();
+        const elemId = event.target.getAttribute('id');
+
+        switch (elemId) {
+            case 'sound-logo':
+                console.log('music');
+                break;
+
+            case 'score-logo':
+                footerImg.hide();
+                inputMenu.hide();
+                mainPage.hide();
+                score.show();
+                break;
+
+            case 'about-logo':
+                footerImg.hide();
+                inputMenu.hide();
+                mainPage.hide();
+                aboutUs.show();
+                break;
+        }
+    });
+
+    footerDivEventDelete = footerDiv.on('click', function (event) {
+        event.preventDefault();
+        const elemId = event.target.getAttribute('id');
+
+        switch (elemId) {
+            case 'back-score':
+                footerImg.show();
+                mainPage.show();
+                score.hide();
+                break;
+
+            case 'back-about':
+                footerImg.show();
+                mainPage.show();
+                aboutUs.hide();
+                break
+        }
+    });
 }
 
 
-userService.isAuthUser(function (err, user) {
+userService.isAuthUser(function (err, userLogin) {
     if (err) {
         return;
     }
-    if (!user) {
-        console.log('Hello ', user, 'is null');
+    if (!userLogin) {
+        console.log('Hello ', userLogin, 'is null');
         isUnregisteredUser();
     } else {
-        isRegisteredUser(user);
+        isRegisteredUser(userLogin);
     }
 }, true);
 
 
 signIn.onSubmitSignInForm(function (formdata, isValid) {
-    userService.login(formdata.login, formdata.password, function (err, resp) {
-        if (err) {
-            alert(`Some error ${err.status}: ${err.responseText}`);
-            return;
-        }
-        if (resp.id !== 0) {
-            signIn.reset();
-            isRegisteredUser(resp.user);
-        } else {
-            console.log('no user');
-        }
+    if (isValid) {
+        userService.login(formdata.login, formdata.password, function (err, resp) {
+            if (err) {
+                alert(`Some error ${err.status}: ${err.responseText}`);
+                return;
+            }
+            if (resp.success === 'yes') {
+                signIn.reset();
+                isRegisteredUser(resp.user);
+            } else {
+                console.log('no user');
+            }
 
-    });
+        });
+    }
 });
 
 
@@ -696,15 +814,10 @@ signUp.onSubmitSignUpForm(function (formdata, isValid) {
                 return alert(`AUTH Error: ${err.status}`);
             }
 
-            if (resp.id !== 0) {
-                userService.isAuthUser(function (err, user) {
-                    if (err) {
-                        return;
-                    }
-                    isRegisteredUser(user);
-                }, true);
+            if (resp.response === 200) {
+                isRegisteredUser();
+                signUp.reset();
             }
-            signUp.reset();
         });
     }
 });
@@ -1146,13 +1259,11 @@ module.exports = template;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_Http__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_User__ = __webpack_require__(19);
-
 
 
 class UserService {
     constructor() {
-        this.user = new __WEBPACK_IMPORTED_MODULE_1__model_User__["a" /* default */]({});
+        this.user = null;
         this.users = [];
     }
 
@@ -1166,7 +1277,7 @@ class UserService {
     }
 
     isLoggedIn() {
-        return !!this.user.id;
+        return !!this.user;
     }
 
      // [force=false] - игнорировать ли кэш?
@@ -1182,8 +1293,8 @@ class UserService {
             if (!userdata.user) {
                 return callback(null, null);
             }
-            this.user.set(userdata);
-            callback(null, userdata);
+            this.user = userdata.user;
+            callback(null, userdata.user);
         }.bind(this));
     }
 
@@ -1211,6 +1322,8 @@ class Http {
         const xhr = new XMLHttpRequest();
         xhr.open('GET', address, true);
         xhr.withCredentials = true;
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=utf8');
+        xhr.setRequestHeader('Accept', 'application/json');
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState !== 4) return;
@@ -1239,7 +1352,6 @@ class Http {
             }
 
             const response = JSON.parse(xhr.responseText);
-            console.log("response = " + response.username);
             callback(null, response);
         };
 
@@ -1257,39 +1369,14 @@ class Http {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-class User {
-    constructor(opt) {
-        this.email = opt.email || '';
-        this.login = opt.login || '';
-        this.id = opt.id || 0;
-        this.score = opt.score || 0;
-    }
-
-    set(userData) {
-        this.email = userData.email;
-        this.login = userData.login;
-        this.id = userData.id;
-        this.score = userData.score || 0;
-    }
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (User);
-
-/***/ }),
-/* 20 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = createRegMenu;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Menu_Menu__ = __webpack_require__(3);
 
 
-function createRegMenu(user) {
-    console.log(user);
+function createRegMenu() { //(user)
+    // console.log(user);
     let data = {
-        user: user, // не выводится в шаблоне (
+        user: 'name', // не выводится в шаблоне (
         buttons: [
             {
                 text: 'START',
@@ -1309,7 +1396,7 @@ function createRegMenu(user) {
 
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1319,6 +1406,7 @@ function createRegMenu(user) {
 
 
 let data = {
+    idButton: 'back-about',
     classTable: 'about_table',
     title: 'DEVELOPERS',
     users: [
@@ -1352,7 +1440,7 @@ function createAboutUs() {
 
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(1);
@@ -1377,11 +1465,11 @@ pug_html = pug_html + "\n    \u003Ctr\u003E\n      \u003Ctd\u003E" + (pug.escape
   }
 }).call(this);
 
-pug_html = pug_html + "\n  \u003C\u002Ftable\u003E\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for_with?locals_for_with.data:typeof data!=="undefined"?data:undefined));;return pug_html;};
+pug_html = pug_html + "\n  \u003C\u002Ftable\u003E\n\u003C\u002Fdiv\u003E\n\u003Cdiv class=\"logo logo_button\"\u003E\n  \u003Cbutto" + (" class=\"button\""+pug.attr("id", data.idButton, true, true)) + "\u003E" + (pug.escape(null == (pug_interp = 'BACK') ? "" : pug_interp)) + "\u003C\u002Fbutto\u003E\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for_with?locals_for_with.data:typeof data!=="undefined"?data:undefined));;return pug_html;};
 module.exports = template;
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1390,6 +1478,7 @@ module.exports = template;
 
 
 let data = {
+    idButton: 'back-score',
     classTable: 'score_table',
     title: 'SCOREBOARD',
     users: [
@@ -1425,6 +1514,95 @@ function Scoreboard() {
     return new __WEBPACK_IMPORTED_MODULE_0__components_Table_Table__["a" /* default */]('section', {id: 'about-page'}, [], {data});
 }
 
+
+/***/ }),
+/* 23 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = CreateFooter;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Footer_Footer__ = __webpack_require__(24);
+
+
+let data = {
+    imgListData: [
+        {
+            class: "sound_img",
+            src: "./static/img/sound.png",
+            id: "sound-logo",
+        },
+        {
+            class: "score_img",
+            src: "./static/img/score.png",
+            id: "score-logo",
+        },
+        {
+            class: "info_img",
+            src: "./static/img/info.png",
+            id: "about-logo",
+        },
+    ]
+};
+
+
+function CreateFooter() {
+    return new __WEBPACK_IMPORTED_MODULE_0__components_Footer_Footer__["a" /* default */]('section', {id: 'buttons-panel'}, [], {data});
+}
+
+
+/***/ }),
+/* 24 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Footer_pug__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Footer_pug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__template_Footer_pug__);
+
+
+
+class Header extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* default */] {
+    constructor(tagName = 'div', attrs = {}, classes = [], data) {
+        super(tagName, attrs, classes, data);
+    }
+
+    getFooter() {
+        this.setHTML(__WEBPACK_IMPORTED_MODULE_1__template_Footer_pug___default()(this.getData()));
+        return this.getElement();
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Header;
+
+
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var pug = __webpack_require__(1);
+
+function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (data) {var pug_indent = [];
+pug_html = pug_html + "\n\u003Cdiv class=\"logo\"\u003E";
+// iterate data.imgListData
+;(function(){
+  var $$obj = data.imgListData;
+  if ('number' == typeof $$obj.length) {
+      for (var pug_index0 = 0, $$l = $$obj.length; pug_index0 < $$l; pug_index0++) {
+        var imgData = $$obj[pug_index0];
+pug_html = pug_html + "\u003Ca class=\"logo_img\" href=\"#\"\u003E\u003Cimg" + (pug.attr("class", pug.classes([imgData.class], [true]), false, true)+pug.attr("src", imgData.src, true, true)+pug.attr("id", imgData.id, true, true)) + "\u003E\u003C\u002Fa\u003E";
+      }
+  } else {
+    var $$l = 0;
+    for (var pug_index0 in $$obj) {
+      $$l++;
+      var imgData = $$obj[pug_index0];
+pug_html = pug_html + "\u003Ca class=\"logo_img\" href=\"#\"\u003E\u003Cimg" + (pug.attr("class", pug.classes([imgData.class], [true]), false, true)+pug.attr("src", imgData.src, true, true)+pug.attr("id", imgData.id, true, true)) + "\u003E\u003C\u002Fa\u003E";
+    }
+  }
+}).call(this);
+
+pug_html = pug_html + "\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for_with?locals_for_with.data:typeof data!=="undefined"?data:undefined));;return pug_html;};
+module.exports = template;
 
 /***/ })
 /******/ ]);

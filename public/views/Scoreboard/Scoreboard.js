@@ -1,6 +1,7 @@
 import Table from '../../components/Table/Table'
 
 let data = {
+    idButton: 'back-score',
     classTable: 'score_table',
     title: 'SCOREBOARD',
     users: [

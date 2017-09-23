@@ -2,6 +2,7 @@ import Table from '../../components/Table/Table'
 
 
 let data = {
+    idButton: 'back-about',
     classTable: 'about_table',
     title: 'DEVELOPERS',
     users: [
