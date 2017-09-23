@@ -106,6 +106,7 @@ function isUnregisteredUser() {
         });
     });
 
+
     footerImgEventDelete = footerImg.on('click', function (event) {
         event.preventDefault();
         const elemId = event.target.getAttribute('id');
