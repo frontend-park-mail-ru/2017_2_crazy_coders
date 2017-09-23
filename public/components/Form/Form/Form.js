@@ -23,7 +23,6 @@ export default class Form extends Block {
         let signInForm = document.getElementById('login-form');
 
         signInForm.addEventListener('submit', function (e) {
-            console.log(signInForm);
             e.preventDefault();
 
             const formdata = {};
@@ -31,7 +30,7 @@ export default class Form extends Block {
 
             for (let name in elements) {
                 formdata[name] = elements[name].value;
-                console.log(name + " : " + formdata[name]);
+                // console.log(name + " : " + formdata[name]);
             }
 
             const isValid = new ValidLoginForm(formdata.login, formdata.password, signInForm);
@@ -51,7 +50,7 @@ export default class Form extends Block {
 
             for (let name in elements) {
                 formdata[name] = elements[name].value;
-                console.log(name + " : " + formdata[name]);
+                // console.log(name + " : " + formdata[name]);
             }
 
             const isValid = new ValidRegisterForm(formdata.login,formdata.email, formdata.password,formdata.repeatPassword, signUpForm);

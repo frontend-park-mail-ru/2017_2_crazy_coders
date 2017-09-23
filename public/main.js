@@ -1,18 +1,20 @@
 'use strict';
 
-
 import Block from './components/Block/BlockComponents';
 import SignIn from './views/SignIn/SignIn';
 import SignUp from './views/SignUp/SignUp';
 import CreateHeader from './views/Header/Header';
 import CreateUnRegMenu from './views/UnRegMenu/UnRegMenu';
 import UserService from './services/UserService';
-import createRegMenu from './views/RegMenu/RegMenu';
+import CreateRegMenu from './views/RegMenu/RegMenu';
+import CreateAboutUs from './views/AboutUs/AboutUs';
+import Scoreboard from './views/Scoreboard/Scoreboard';
 
 
 let body = document.getElementsByTagName('body')[0];
 const app = new Block('div', {id: 'application'});
 body.appendChild(app.getElement());
+
 let footerPanel = new Block('div', {id: 'multimedia-buttons-panel'});
 
 const userService = new UserService();
@@ -20,18 +22,25 @@ const header = CreateHeader();
 const inputMenu = CreateUnRegMenu();
 const signIn = SignIn();
 const signUp = SignUp();
+const aboutUs = CreateAboutUs();
+const score = Scoreboard();
+
 
 
 app.append(header.getHeader())
     .append(inputMenu.getMenu())
     .append(signIn.getForm())
     .append(signUp.getForm())
-    .append(footerPanel.getElement());
+    .append(footerPanel.getElement())
+    .append(aboutUs.getTable())
+    .append(score.getTable());
+
 
 inputMenu.hide();
 signIn.hide();
 signUp.hide();
-
+score.hide();
+aboutUs.hide();
 
 function isUnregisteredUser() {
 
@@ -83,7 +92,7 @@ function isRegisteredUser(userLogin) {
     signIn.hide();
     signUp.hide();
 
-    const mainPage = createRegMenu(userLogin);
+    const mainPage = CreateRegMenu(userLogin);
     app.append(mainPage.getMenu());
 
     mainPage.on('click', function (event) {
@@ -124,15 +133,12 @@ signIn.onSubmitSignInForm(function (formdata, isValid) {
             alert(`Some error ${err.status}: ${err.responseText}`);
             return;
         }
-
-        signIn.reset();
-
-        userService.isAuthUser(function (err,  userLogin) {
-            if (err) {
-                return;
-            }
-            isRegisteredUser(userLogin);
-        }, true);
+        if (resp.success === 'yes') {
+            signIn.reset();
+            isRegisteredUser(resp.user);
+        } else {
+            console.log('no user');
+        }
 
     });
 });
