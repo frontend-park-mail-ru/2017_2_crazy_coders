@@ -556,6 +556,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
 let body = document.getElementsByTagName('body')[0];
 const app = new __WEBPACK_IMPORTED_MODULE_0__components_Block_BlockComponents__["a" /* default */]('div', {id: 'application'});
 body.appendChild(app.getElement());
@@ -1209,6 +1210,8 @@ class Http {
         const xhr = new XMLHttpRequest();
         xhr.open('GET', address, true);
         xhr.withCredentials = true;
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=utf8');
+        xhr.setRequestHeader('Accept', 'application/json');
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState !== 4) return;
