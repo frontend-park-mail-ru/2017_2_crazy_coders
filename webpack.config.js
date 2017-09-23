@@ -1,24 +1,57 @@
-'use strict';
-
-const webpack = require('webpack');
 const path = require('path');
 
+let ExtractTextPlugin = require('extract-text-webpack-plugin');
+let HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
-    entry: './public/main.js',
-    output: {
-        path: __dirname,
-        filename: './public/bundle.js'
+    context: __dirname,
+    devtool: "source-map",
+
+    entry: {
+        main: './public/main.js',
     },
+
+    output: {
+        filename: './bundle.js',
+        path: __dirname + '/public'
+    },
+
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.css$/,
-                loaders: ['style-loader', 'css-loader']
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader']
+                })
+            },
+            {
+                test: /\.(png|svg|jpg|gif|jpeg)$/,
+                use: [
+                    'file-loader'
+                ]
+            },
+            {
+                test: /\.html$/,
+
+                use: [
+                    "html-loader"
+                ]
             },
             {
                 test: /\.pug$/,
-                loaders: ['pug-loader']
+                loader: 'pug-loader',
+                options: {
+                    pretty: true
+                }
             }
         ]
-    }
+    },
+
+    plugins: [
+        new HtmlWebpackPlugin({
+            inject: false,
+            template: './public/index.html'
+        }),
+    ],
 };
