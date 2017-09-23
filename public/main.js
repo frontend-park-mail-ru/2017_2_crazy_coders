@@ -10,7 +10,6 @@ import CreateRegMenu from './views/RegMenu/RegMenu';
 import CreateAboutUs from './views/AboutUs/AboutUs';
 import Scoreboard from './views/Scoreboard/Scoreboard';
 
-
 let body = document.getElementsByTagName('body')[0];
 const app = new Block('div', {id: 'application'});
 body.appendChild(app.getElement());
@@ -86,13 +85,13 @@ function isUnregisteredUser() {
 }
 
 
-function isRegisteredUser(userLogin) {
+function isRegisteredUser(user) {
 
     inputMenu.hide();
     signIn.hide();
     signUp.hide();
 
-    const mainPage = CreateRegMenu(userLogin);
+    const mainPage = CreateRegMenu(user);
     app.append(mainPage.getMenu());
 
     mainPage.on('click', function (event) {
@@ -114,15 +113,15 @@ function isRegisteredUser(userLogin) {
 }
 
 
-userService.isAuthUser(function (err, userLogin) {
+userService.isAuthUser(function (err, user) {
     if (err) {
         return;
     }
-    if (!userLogin) {
-        console.log('Hello ', userLogin, 'is null');
+    if (!user) {
+        console.log('Hello ', user, 'is null');
         isUnregisteredUser();
     } else {
-        isRegisteredUser(userLogin);
+        isRegisteredUser(user);
     }
 }, true);
 
@@ -133,7 +132,7 @@ signIn.onSubmitSignInForm(function (formdata, isValid) {
             alert(`Some error ${err.status}: ${err.responseText}`);
             return;
         }
-        if (resp.success === 'yes') {
+        if (resp.id !== 0) {
             signIn.reset();
             isRegisteredUser(resp.user);
         } else {
@@ -151,12 +150,12 @@ signUp.onSubmitSignUpForm(function (formdata, isValid) {
                 return alert(`AUTH Error: ${err.status}`);
             }
 
-            if (resp.response === 200) {
-                userService.isAuthUser(function (err, userLogin) {
+            if (resp.id !== 0) {
+                userService.isAuthUser(function (err, user) {
                     if (err) {
                         return;
                     }
-                    isRegisteredUser(userLogin);
+                    isRegisteredUser(user);
                 }, true);
             }
             signUp.reset();

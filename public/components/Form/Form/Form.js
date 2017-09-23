@@ -42,7 +42,7 @@ export default class Form extends Block {
     onSubmitSignUpForm(callback) {
         let signUpForm = document.getElementById('registry-form');
 
-        signUpForm.addEventListener('submit', function (e) {
+        signUpForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
             const formdata = {};
@@ -56,7 +56,7 @@ export default class Form extends Block {
             const isValid = new ValidRegisterForm(formdata.login,formdata.email, formdata.password,formdata.repeatPassword, signUpForm);
 
             callback(formdata, isValid.validForm());
-        }.bind(this), false);
+        }, false);
     }
 
     reset() {

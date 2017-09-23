@@ -4,8 +4,6 @@ export default class Http {
         const xhr = new XMLHttpRequest();
         xhr.open('GET', address, true);
         xhr.withCredentials = true;
-        xhr.setRequestHeader('Content-Type', 'application/json; charset=utf8');
-        xhr.setRequestHeader('Accept', 'application/json');
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState !== 4) return;
@@ -34,6 +32,7 @@ export default class Http {
             }
 
             const response = JSON.parse(xhr.responseText);
+            console.log("response = " + response.username);
             callback(null, response);
         };
 

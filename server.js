@@ -31,42 +31,27 @@ app.post('/register', function (req, res) {
     ) {
         return res.status(400).json({error: 'Invalid data'});
     }
-
     const user = {
         'username': login,
         'email': email,
         'password': password
     };
 
-    Http.Post('http://82.202.246.5:8080/signUp', user, (req, res) => {
+    Http.Post('http://82.202.246.5:8080/signUp', user, (request, response) => {
         if(res) {
-            res.json({'response': 200});
+            console.log('request = ' + req);
+            console.log('response = ' + response.email + response.id + response.username);
+            res.json({'username': response.username,
+                      'email': response.email,
+                      'id': response.id});
         } else {
-
+            console.log('request = ' + req);
+            console.log('response = ' + response.email + response.id + response.username);
+            return res.status(400).json({error: 'User is exists'});
         }
-        console.log('request = ' + req);
-        console.log('response = ' + res.email + res.id + res.username);
+
     });
 
-    /*if (users[login]) {
-        return res.status(400).json({error: 'User is exists'});
-    }
-
-    if (!users[login]) {
-        users[login] = {
-            login,
-            email,
-            password,
-        }
-    }
-
-    const new_id = uuid();
-    ids[new_id] = login;
-
-    res.cookie('cookie', new_id, {
-        expires: new Date(Date.now() + day)
-    });
-    res.json({'response': 200});*/
 });
 
 app.post('/login', function (req, res) {
@@ -79,38 +64,44 @@ app.post('/login', function (req, res) {
         return res.status(400).end();
     }
 
-    let findUserInDb = false;
-    Object.keys(users).forEach(elem => {
-        if (login === elem) {
-            findUserInDb = true;
+    const user = {
+        'email': login,
+        'password': password
+    };
+
+    Http.Post('http://82.202.246.5:8080/signIn', user, (request, response) => {
+        if (res) {
+            console.log('request = ' + req);
+            console.log('response = ' + response.username + response.id + response.email);
+            res.json({
+                'username': response.username,
+                'email': response.email,
+                'id': response.id
+            });
+        } else {
+            console.log('request = ' + req);
+            console.log('response = ' + response.email + response.id + response.username);
+            return res.status(400).json({error: 'User is not exists'});
         }
     });
 
-    const new_id = uuid();
-    ids[new_id] = login;
-
-    res.cookie('cookie', new_id, {
-        expires: new Date(Date.now() + day)
-    });
-
-    if (findUserInDb) {
-        res.json({'response': 200, 'success': 'yes', user: login});
-    } else {
-        res.json({'response': 200, 'success': 'no'});
-    }
 });
 
 app.get('/isauth', (req, res) => {
-    const id = req.cookies['cookie'];
-    const login = ids[id];
 
-    res.set('Content-Type', 'application/json; charset=utf8');
+    Http.Get('http://82.202.246.5:8080/profile', (request, response) => {
+        if(response) {
+            res.set('Content-Type', 'application/json; charset=utf8');
+            res.json({'login': response.username,
+                      'email': response.email,
+                      'id': response.id,});
+        } else {
+            res.json({'login': '',
+                      'email': '',
+                      'id': 0,});
+        }
+    });
 
-    if (!login || !ids[id]) {
-        res.json({'user': null});
-    } else {
-        res.json({'user': login});
-    }
 
 });
 

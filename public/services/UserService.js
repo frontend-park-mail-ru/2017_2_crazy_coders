@@ -1,8 +1,9 @@
 import Http from '../modules/Http';
+import User from '../model/User';
 
 export default class UserService {
     constructor() {
-        this.user = null;
+        this.user = new User({});
         this.users = [];
     }
 
@@ -16,7 +17,7 @@ export default class UserService {
     }
 
     isLoggedIn() {
-        return !!this.user;
+        return !!this.user.id;
     }
 
      // [force=false] - игнорировать ли кэш?
@@ -32,8 +33,8 @@ export default class UserService {
             if (!userdata.user) {
                 return callback(null, null);
             }
-            this.user = userdata.user;
-            callback(null, userdata.user);
+            this.user.set(userdata);
+            callback(null, userdata);
         }.bind(this));
     }
 

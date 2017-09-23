@@ -452,7 +452,7 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
     onSubmitSignUpForm(callback) {
         let signUpForm = document.getElementById('registry-form');
 
-        signUpForm.addEventListener('submit', function (e) {
+        signUpForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
             const formdata = {};
@@ -466,7 +466,7 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
             const isValid = new __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidRegisterForm__["a" /* default */](formdata.login,formdata.email, formdata.password,formdata.repeatPassword, signUpForm);
 
             callback(formdata, isValid.validForm());
-        }.bind(this), false);
+        }, false);
     }
 
     reset() {
@@ -510,7 +510,7 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /*
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Table_pug__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Table_pug__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Table_pug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__template_Table_pug__);
 
 
@@ -541,10 +541,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_Header_Header__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_UnRegMenu_UnRegMenu__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_UserService__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_RegMenu_RegMenu__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_AboutUs_AboutUs__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__views_Scoreboard_Scoreboard__ = __webpack_require__(22);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_RegMenu_RegMenu__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_AboutUs_AboutUs__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__views_Scoreboard_Scoreboard__ = __webpack_require__(23);
 
 
 
@@ -632,13 +631,13 @@ function isUnregisteredUser() {
 }
 
 
-function isRegisteredUser(userLogin) {
+function isRegisteredUser(user) {
 
     inputMenu.hide();
     signIn.hide();
     signUp.hide();
 
-    const mainPage = Object(__WEBPACK_IMPORTED_MODULE_6__views_RegMenu_RegMenu__["a" /* default */])(userLogin);
+    const mainPage = Object(__WEBPACK_IMPORTED_MODULE_6__views_RegMenu_RegMenu__["a" /* default */])(user);
     app.append(mainPage.getMenu());
 
     mainPage.on('click', function (event) {
@@ -660,15 +659,15 @@ function isRegisteredUser(userLogin) {
 }
 
 
-userService.isAuthUser(function (err, userLogin) {
+userService.isAuthUser(function (err, user) {
     if (err) {
         return;
     }
-    if (!userLogin) {
-        console.log('Hello ', userLogin, 'is null');
+    if (!user) {
+        console.log('Hello ', user, 'is null');
         isUnregisteredUser();
     } else {
-        isRegisteredUser(userLogin);
+        isRegisteredUser(user);
     }
 }, true);
 
@@ -679,7 +678,7 @@ signIn.onSubmitSignInForm(function (formdata, isValid) {
             alert(`Some error ${err.status}: ${err.responseText}`);
             return;
         }
-        if (resp.success === 'yes') {
+        if (resp.id !== 0) {
             signIn.reset();
             isRegisteredUser(resp.user);
         } else {
@@ -697,12 +696,12 @@ signUp.onSubmitSignUpForm(function (formdata, isValid) {
                 return alert(`AUTH Error: ${err.status}`);
             }
 
-            if (resp.response === 200) {
-                userService.isAuthUser(function (err, userLogin) {
+            if (resp.id !== 0) {
+                userService.isAuthUser(function (err, user) {
                     if (err) {
                         return;
                     }
-                    isRegisteredUser(userLogin);
+                    isRegisteredUser(user);
                 }, true);
             }
             signUp.reset();
@@ -1147,11 +1146,13 @@ module.exports = template;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_Http__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_User__ = __webpack_require__(19);
+
 
 
 class UserService {
     constructor() {
-        this.user = null;
+        this.user = new __WEBPACK_IMPORTED_MODULE_1__model_User__["a" /* default */]({});
         this.users = [];
     }
 
@@ -1165,7 +1166,7 @@ class UserService {
     }
 
     isLoggedIn() {
-        return !!this.user;
+        return !!this.user.id;
     }
 
      // [force=false] - игнорировать ли кэш?
@@ -1181,8 +1182,8 @@ class UserService {
             if (!userdata.user) {
                 return callback(null, null);
             }
-            this.user = userdata.user;
-            callback(null, userdata.user);
+            this.user.set(userdata);
+            callback(null, userdata);
         }.bind(this));
     }
 
@@ -1210,8 +1211,6 @@ class Http {
         const xhr = new XMLHttpRequest();
         xhr.open('GET', address, true);
         xhr.withCredentials = true;
-        xhr.setRequestHeader('Content-Type', 'application/json; charset=utf8');
-        xhr.setRequestHeader('Accept', 'application/json');
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState !== 4) return;
@@ -1240,6 +1239,7 @@ class Http {
             }
 
             const response = JSON.parse(xhr.responseText);
+            console.log("response = " + response.username);
             callback(null, response);
         };
 
@@ -1254,6 +1254,31 @@ class Http {
 
 /***/ }),
 /* 19 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+class User {
+    constructor(opt) {
+        this.email = opt.email || '';
+        this.login = opt.login || '';
+        this.id = opt.id || 0;
+        this.score = opt.score || 0;
+    }
+
+    set(userData) {
+        this.email = userData.email;
+        this.login = userData.login;
+        this.id = userData.id;
+        this.score = userData.score || 0;
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (User);
+
+/***/ }),
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1284,7 +1309,7 @@ function createRegMenu(user) {
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1327,7 +1352,7 @@ function createAboutUs() {
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(1);
@@ -1356,7 +1381,7 @@ pug_html = pug_html + "\n  \u003C\u002Ftable\u003E\n\u003C\u002Fdiv\u003E";}.cal
 module.exports = template;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
