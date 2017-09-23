@@ -38,17 +38,18 @@ app.post('/register', function (req, res) {
         'password': password
     };
 
-    Http.Post('http://82.202.246.5:8080/signUp', user, (req, res) => {
-        if(res) {
-            res.json({'response': 200});
-        } else {
+    // закомментировал, для проверки локально, ничего не удалял
+    // Http.Post('http://82.202.246.5:8080/signUp', user, (req, res) => {
+    //     if(res) {
+    //         res.json({'response': 200});
+    //     } else {
+    //
+    //     }
+    //     console.log('request = ' + req);
+    //     console.log('response = ' + res.email + res.id + res.username);
+    // });
 
-        }
-        console.log('request = ' + req);
-        console.log('response = ' + res.email + res.id + res.username);
-    });
-
-    /*if (users[login]) {
+    if (users[login]) {
         return res.status(400).json({error: 'User is exists'});
     }
 
@@ -66,7 +67,7 @@ app.post('/register', function (req, res) {
     res.cookie('cookie', new_id, {
         expires: new Date(Date.now() + day)
     });
-    res.json({'response': 200});*/
+    res.json({'response': 200});
 });
 
 app.post('/login', function (req, res) {
