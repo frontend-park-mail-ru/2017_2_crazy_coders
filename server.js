@@ -1,10 +1,11 @@
 'use strict';
 
+const Http = require('./FrontHttp');
 const express = require('express');
 const body = require('body-parser');
 const cookie = require('cookie-parser');
 const uuid = require('uuid/v4');
-const Http = require('./public/modules/Http');
+
 
 const app = express();
 
@@ -38,8 +39,13 @@ app.post('/register', function (req, res) {
     };
 
     Http.Post('http://82.202.246.5:8080/signUp', user, (req, res) => {
-       console.log('request = ' + req);
-       console.log('response = ' + res);
+        if(res) {
+            res.json({'response': 200});
+        } else {
+
+        }
+        console.log('request = ' + req);
+        console.log('response = ' + res.email + res.id + res.username);
     });
 
     /*if (users[login]) {

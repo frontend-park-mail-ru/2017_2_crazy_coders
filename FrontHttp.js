@@ -1,11 +1,13 @@
-export default class Http {
+'use strict';
+
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
+class Http {
 
     static Get(address, callback) {
         const xhr = new XMLHttpRequest();
         xhr.open('GET', address, true);
         xhr.withCredentials = true;
-        xhr.setRequestHeader('Content-Type', 'application/json; charset=utf8');
-        xhr.setRequestHeader('Accept', 'application/json');
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState !== 4) return;
@@ -41,4 +43,4 @@ export default class Http {
     }
 }
 
-
+module.exports = Http;
