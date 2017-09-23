@@ -75,7 +75,7 @@ app.post('/login', function (req, res) {
     });
 
     if (findUserInDb) {
-        res.json({'response': 200, 'success': 'yes'});
+        res.json({'response': 200, 'success': 'yes', user: login});
     } else {
         res.json({'response': 200, 'success': 'no'});
     }
