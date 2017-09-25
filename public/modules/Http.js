@@ -38,6 +38,42 @@ export default class Http {
 
         xhr.send(JSON.stringify(body));
     }
+
+    static FetchGet(address) {
+        return fetch(address, {
+            method: 'GET',
+            mode: 'cors',
+            credentials: 'include'
+        })
+            .then(function (response) {
+                if (response.status >= 400) {
+                    throw response;
+                }
+
+                return response.json();
+            });
+    }
+
+    static FetchPost (address, body) {
+        return fetch(address, {
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'include',
+            body: JSON.stringify(body),
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+            }
+        })
+            .then(function(response) {
+                if (response.status >= 400) {
+                    throw response;
+                }
+
+                return  response.json();
+            });
+
+    }
+
 }
 
 
