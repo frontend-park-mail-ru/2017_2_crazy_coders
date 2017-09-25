@@ -809,22 +809,37 @@ signIn.onSubmitSignInForm(function (formdata, isValid) {
 });
 
 
-signUp.onSubmitSignUpForm(function (formdata, isValid) {
-    if (isValid) {
-        userService.auth(formdata.login, formdata.email, formdata.password, (err, resp) => {
-            if (err) {
-                return alert(`AUTH Error: ${err.status}`);
-            }
+// signUp.onSubmitSignUpForm(function (formdata, isValid) { // так было
+//     if (isValid) {
+//         userService.auth(formdata.login, formdata.email, formdata.password, (err, resp) => {
+//             if (err) {
+//                 return alert(`AUTH Error: ${err.status}`);
+//             }
+//
+//             if (resp.id !== 0) {
+//                 console.log("in signupSubmit");
+//                 isRegisteredUser();
+//                 signUp.reset();
+//             }
+//         });
+//     }
+// });
 
-            if (resp.id !== 0) {
+
+function onSubmitSignUp(formdata, isValid) {
+    if (isValid) {
+        return userService.authTest(formdata.login, formdata.email, formdata.password)
+            .then(function () {
                 console.log("in signupSubmit");
                 isRegisteredUser();
                 signUp.reset();
-            }
-        });
-    }
-});
+            })
 
+            .catch((err) => alert(`Some error ${err.status}: ${err.responseText}`));
+    }
+}
+
+signUp.onSubmitSignUpForm(onSubmitSignUp); // стало так
 
 
 /***/ }),
@@ -1277,6 +1292,10 @@ class UserService {
         __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].Post('/register', {login, email, password}, callback);
     }
 
+    authTest(login, email,password) {
+        return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('http://82.202.246.5:8080/signUp', {login, email, password});
+    }
+
     login(email, password, callback) {
         __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].Post('/login', {email, password}, callback);
     }
@@ -1361,6 +1380,42 @@ class Http {
 
         xhr.send(JSON.stringify(body));
     }
+
+    static FetchGet(address) {
+        return fetch(address, {
+            method: 'GET',
+            mode: 'cors',
+            credentials: 'include'
+        })
+            .then(function (response) {
+                if (response.status >= 400) {
+                    throw response;
+                }
+
+                return response.json();
+            });
+    }
+
+    static FetchPost (address, body) {
+        return fetch(address, {
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'include',
+            body: JSON.stringify(body),
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+            }
+        })
+            .then(function(response) {
+                if (response.status >= 400) {
+                    throw response;
+                }
+
+                return  response.json();
+            });
+
+    }
+
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Http;
 

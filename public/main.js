@@ -262,19 +262,34 @@ signIn.onSubmitSignInForm(function (formdata, isValid) {
 });
 
 
-signUp.onSubmitSignUpForm(function (formdata, isValid) {
-    if (isValid) {
-        userService.auth(formdata.login, formdata.email, formdata.password, (err, resp) => {
-            if (err) {
-                return alert(`AUTH Error: ${err.status}`);
-            }
+// signUp.onSubmitSignUpForm(function (formdata, isValid) { // так было
+//     if (isValid) {
+//         userService.auth(formdata.login, formdata.email, formdata.password, (err, resp) => {
+//             if (err) {
+//                 return alert(`AUTH Error: ${err.status}`);
+//             }
+//
+//             if (resp.id !== 0) {
+//                 console.log("in signupSubmit");
+//                 isRegisteredUser();
+//                 signUp.reset();
+//             }
+//         });
+//     }
+// });
 
-            if (resp.id !== 0) {
+
+function onSubmitSignUp(formdata, isValid) {
+    if (isValid) {
+        return userService.authTest(formdata.login, formdata.email, formdata.password)
+            .then(function () {
                 console.log("in signupSubmit");
                 isRegisteredUser();
                 signUp.reset();
-            }
-        });
-    }
-});
+            })
 
+            .catch((err) => alert(`Some error ${err.status}: ${err.responseText}`));
+    }
+}
+
+signUp.onSubmitSignUpForm(onSubmitSignUp); // стало так
