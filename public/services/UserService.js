@@ -12,7 +12,9 @@ export default class UserService {
         Http.Post('/register', {login, email, password}, callback);
     }
 
-
+    authTest(login, email,password) {
+        return Http.FetchPost('http://82.202.246.5:8080/signUp', {login, email, password});
+    }
 
     login(email, password, callback) {
         Http.Post('/login', {email, password}, callback);
