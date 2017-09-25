@@ -846,7 +846,7 @@ let data = {
             attrs: {
                 type: 'text',
                 name: 'email',
-                placeholder: 'Enter login',
+                placeholder: 'Enter email',
             },
         },
         {
@@ -931,7 +931,7 @@ function hideError(form) {
     });
 }
 
-function isCorrectLogin(email) {
+function isCorrectEmail(email) {
     return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
 }
 
@@ -963,7 +963,7 @@ class ValidLoginForm {
         const loginField = this.currentForm.children[0],
             passwordField = this.currentForm.children[1];
 
-        if (!isCorrectLogin(this.email)) {
+        if (!isCorrectEmail(this.email)) {
             flag = false;
             this.currentForm.insertBefore(createErrorElement('invalid email'), loginField);
         }

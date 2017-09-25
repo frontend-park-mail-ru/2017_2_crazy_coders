@@ -10,7 +10,7 @@ let data = {
             attrs: {
                 type: 'text',
                 name: 'email',
-                placeholder: 'Enter login',
+                placeholder: 'Enter email',
             },
         },
         {
