@@ -19,33 +19,33 @@ body.appendChild(app.getElement());
 let footerDiv = new Block('div', {id: 'multimedia-buttons-panel'});
 
 const userService = new UserService();
-const header = CreateHeader();
-const inputMenu = CreateUnRegMenu();
-const signIn = SignIn();
-const signUp = SignUp();
-const aboutUs = CreateAboutUs();
-const score = Scoreboard();
-const footerImg = CreateFooter();
-const mainPage = CreateRegMenu();
+const headerView = CreateHeader();
+const inputMenuView = CreateUnRegMenu();
+const signInView = SignIn();
+const signUpView = SignUp();
+const aboutUsView = CreateAboutUs();
+const scoreView = Scoreboard();
+const footerImgView = CreateFooter();
+const mainPageView = CreateRegMenu();
 
-footerDiv.append(score.getTable())
-    .append(aboutUs.getTable());
+footerDiv.append(scoreView.getTable())
+    .append(aboutUsView.getTable());
 
-app.append(header.getHeader())
-    .append(inputMenu.getMenu())
-    .append(mainPage.getMenu())
-    .append(signIn.getForm())
-    .append(signUp.getForm())
-    .append(footerImg.getFooter())
+app.append(headerView.getHeader())
+    .append(inputMenuView.getMenu())
+    .append(mainPageView.getMenu())
+    .append(signInView.getForm())
+    .append(signUpView.getForm())
+    .append(footerImgView.getFooter())
     .append(footerDiv.getElement());
 
 
-inputMenu.hide();
-signIn.hide();
-signUp.hide();
-mainPage.hide();
-score.hide();
-aboutUs.hide();
+inputMenuView.hide();
+signInView.hide();
+signUpView.hide();
+mainPageView.hide();
+scoreView.hide();
+aboutUsView.hide();
 
 let inputMenuEventDelete = function () {
 };
@@ -63,28 +63,28 @@ function isUnregisteredUser() {
     footerDivEventDelete();
     mainPageEventDelete();
 
-    inputMenu.show();
+    inputMenuView.show();
 
-    inputMenuEventDelete = inputMenu.on('click', function (event) {
+    inputMenuEventDelete = inputMenuView.on('click', function (event) {
         event.preventDefault();
         const elemId = event.target.getAttribute('id');
 
         switch (elemId) {
             case 'button-log':
-                footerImg.hide();
-                inputMenu.hide();
-                signIn.show();
+                footerImgView.hide();
+                inputMenuView.hide();
+                signInView.show();
                 break;
 
             case 'button-register':
-                footerImg.hide();
-                inputMenu.hide();
-                signUp.show();
+                footerImgView.hide();
+                inputMenuView.hide();
+                signUpView.show();
                 break;
         }
     });
 
-    let backButtonCollection = signIn.getBackButton();
+    let backButtonCollection = signInView.getBackButton();
     const backButtonArray = Array.from(backButtonCollection);
 
     backButtonArray.forEach(button => {
@@ -92,22 +92,22 @@ function isUnregisteredUser() {
             const elemId = event.target.getAttribute('id');
             switch (elemId) {
                 case 'back-sign-in':
-                    signIn.hide();
-                    inputMenu.show();
-                    footerImg.show();
+                    signInView.hide();
+                    inputMenuView.show();
+                    footerImgView.show();
                     break;
 
                 case 'back-sign-up':
-                    signUp.hide();
-                    inputMenu.show();
-                    footerImg.show();
+                    signUpView.hide();
+                    inputMenuView.show();
+                    footerImgView.show();
                     break;
             }
         });
     });
 
 
-    footerImgEventDelete = footerImg.on('click', function (event) {
+    footerImgEventDelete = footerImgView.on('click', function (event) {
         event.preventDefault();
         const elemId = event.target.getAttribute('id');
 
@@ -117,17 +117,17 @@ function isUnregisteredUser() {
                 break;
 
             case 'score-logo':
-                footerImg.hide();
-                inputMenu.hide();
-                mainPage.hide();
-                score.show();
+                footerImgView.hide();
+                inputMenuView.hide();
+                mainPageView.hide();
+                scoreView.show();
                 break;
 
             case 'about-logo':
-                footerImg.hide();
-                inputMenu.hide();
-                mainPage.hide();
-                aboutUs.show();
+                footerImgView.hide();
+                inputMenuView.hide();
+                mainPageView.hide();
+                aboutUsView.show();
                 break;
         }
     });
@@ -139,15 +139,15 @@ function isUnregisteredUser() {
 
         switch (elemId) {
             case 'back-score':
-                footerImg.show();
-                inputMenu.show();
-                score.hide();
+                footerImgView.show();
+                inputMenuView.show();
+                scoreView.hide();
                 break;
 
             case 'back-about':
-                footerImg.show();
-                inputMenu.show();
-                aboutUs.hide();
+                footerImgView.show();
+                inputMenuView.show();
+                aboutUsView.hide();
                 break
         }
     });
@@ -160,13 +160,13 @@ function isRegisteredUser() {
     footerDivEventDelete();
     mainPageEventDelete();
 
-    inputMenu.hide();
-    signIn.hide();
-    signUp.hide();
-    mainPage.show();
-    footerImg.show();
+    inputMenuView.hide();
+    signInView.hide();
+    signUpView.hide();
+    mainPageView.show();
+    footerImgView.show();
 
-    mainPageEventDelete = mainPage.on('click', function (event) {
+    mainPageEventDelete = mainPageView.on('click', function (event) {
         event.preventDefault();
         const elemId = event.target.getAttribute('id');
 
@@ -176,14 +176,14 @@ function isRegisteredUser() {
                 break;
 
             case 'logout':
-                mainPage.hide();
+                mainPageView.hide();
                 userService.logout();
                 isUnregisteredUser();
                 break;
         }
     });
 
-    footerImgEventDelete = footerImg.on('click', function (event) {
+    footerImgEventDelete = footerImgView.on('click', function (event) {
         event.preventDefault();
         const elemId = event.target.getAttribute('id');
 
@@ -193,17 +193,17 @@ function isRegisteredUser() {
                 break;
 
             case 'score-logo':
-                footerImg.hide();
-                inputMenu.hide();
-                mainPage.hide();
-                score.show();
+                footerImgView.hide();
+                inputMenuView.hide();
+                mainPageView.hide();
+                scoreView.show();
                 break;
 
             case 'about-logo':
-                footerImg.hide();
-                inputMenu.hide();
-                mainPage.hide();
-                aboutUs.show();
+                footerImgView.hide();
+                inputMenuView.hide();
+                mainPageView.hide();
+                aboutUsView.show();
                 break;
         }
     });
@@ -214,15 +214,15 @@ function isRegisteredUser() {
 
         switch (elemId) {
             case 'back-score':
-                footerImg.show();
-                mainPage.show();
-                score.hide();
+                footerImgView.show();
+                mainPageView.show();
+                scoreView.hide();
                 break;
 
             case 'back-about':
-                footerImg.show();
-                mainPage.show();
-                aboutUs.hide();
+                footerImgView.show();
+                mainPageView.show();
+                aboutUsView.hide();
                 break
         }
     });
@@ -241,13 +241,13 @@ userService
 
 
 
-signIn.onSubmitSignInForm(function (formdata, isValid) {
+signInView.onSubmitSignInForm(function (formdata, isValid) {
     if (isValid) {
         userService
             .signIn(formdata.email, formdata.password)
             .then(function () {
                 console.log("[onSubmitSignInForm] Success sign in");
-                signIn.reset();
+                signInView.reset();
                 isRegisteredUser();
             })
             .catch((err) => {
@@ -258,12 +258,12 @@ signIn.onSubmitSignInForm(function (formdata, isValid) {
 });
 
 
-signUp.onSubmitSignUpForm(function (formdata, isValid) {
+signUpView.onSubmitSignUpForm(function (formdata, isValid) {
     if (isValid) {
         return userService.signUp(formdata.username, formdata.email, formdata.password)
             .then(function () {
                 console.log("[onSubmitSignUpForm] Success sign up");
-                signUp.reset();
+                signUpView.reset();
                 isRegisteredUser();
             })
 
