@@ -30,7 +30,6 @@ export default class Form extends Block {
 
             for (let name in elements) {
                 formdata[name] = elements[name].value;
-                console.log("[onSubmitSignInForm]" + name + " : " + formdata[name]);
             }
 
             const isValid = new ValidLoginForm(formdata.email, formdata.password, signInForm);
@@ -50,10 +49,9 @@ export default class Form extends Block {
 
             for (let name in elements) {
                 formdata[name] = elements[name].value;
-                console.log("[onSubmitSignUpForm]" + name + " : " + formdata[name]);
             }
 
-            const isValid = new ValidRegisterForm(formdata.username, formdata.email,
+            const isValid = new ValidRegisterForm(formdata.login, formdata.email,
                 formdata.password, formdata.repeatPassword, signUpForm);
 
             callback(formdata, isValid.validForm());

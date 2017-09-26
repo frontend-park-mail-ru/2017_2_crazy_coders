@@ -11,8 +11,7 @@ function hideError(form) {
 }
 
 function isCorrectLogin(login) {
-    return true;
-    // return login.match(/^[a-z0-9_-]{3,16}$/);    // not working
+    return login.match(/^[a-z0-9_-]{3,16}$/);
 }
 
 function isCorrectPassword(pswd) {
@@ -20,7 +19,7 @@ function isCorrectPassword(pswd) {
 }
 
 function isCorrectEmail(email) {
-    return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
+    return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i); // all work =)
 }
 
 function isSamePasswords(pswd, pswdRepeat, form) {
@@ -40,10 +39,7 @@ export default class ValidRegisterForm {
         this.login = login;
         this.email = email;
         this.password = password;
-        console.log(this.password);
         this.repeatPassword = repeatPassword;
-
-        console.log(repeatPassword);
         this.currentForm = form;
     }
 

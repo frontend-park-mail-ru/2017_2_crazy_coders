@@ -440,7 +440,6 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
 
             for (let name in elements) {
                 formdata[name] = elements[name].value;
-                console.log("[onSubmitSignInForm]" + name + " : " + formdata[name]);
             }
 
             const isValid = new __WEBPACK_IMPORTED_MODULE_2__ValidForm_ValidLoginForm__["a" /* default */](formdata.email, formdata.password, signInForm);
@@ -460,10 +459,9 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
 
             for (let name in elements) {
                 formdata[name] = elements[name].value;
-                console.log("[onSubmitSignUpForm]" + name + " : " + formdata[name]);
             }
 
-            const isValid = new __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidRegisterForm__["a" /* default */](formdata.username, formdata.email,
+            const isValid = new __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidRegisterForm__["a" /* default */](formdata.login, formdata.email,
                 formdata.password, formdata.repeatPassword, signUpForm);
 
             callback(formdata, isValid.validForm());
@@ -1012,8 +1010,7 @@ function hideError(form) {
 }
 
 function isCorrectLogin(login) {
-    return true;
-    // return login.match(/^[a-z0-9_-]{3,16}$/);    // not working
+    return login.match(/^[a-z0-9_-]{3,16}$/);
 }
 
 function isCorrectPassword(pswd) {
@@ -1021,7 +1018,7 @@ function isCorrectPassword(pswd) {
 }
 
 function isCorrectEmail(email) {
-    return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
+    return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i); // all work =)
 }
 
 function isSamePasswords(pswd, pswdRepeat, form) {
@@ -1041,10 +1038,7 @@ class ValidRegisterForm {
         this.login = login;
         this.email = email;
         this.password = password;
-        console.log(this.password);
         this.repeatPassword = repeatPassword;
-
-        console.log(repeatPassword);
         this.currentForm = form;
     }
 
