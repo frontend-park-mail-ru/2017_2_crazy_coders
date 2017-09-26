@@ -230,7 +230,7 @@ function isRegisteredUser() {
 
 
 userService
-    .isAuth()
+    .getProfile()
     .then(() => {
         isRegisteredUser();
     })

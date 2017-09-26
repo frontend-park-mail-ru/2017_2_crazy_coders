@@ -31,7 +31,7 @@ export default class UserService {
     }
 
      // [force=false] - игнорировать ли кэш?
-/*    isAuth(callback, force = true) {
+/*    getProfile(callback, force = true) {
         if (this.isLoggedIn() && !force) {
             return callback(null, this.user);
         }
@@ -48,7 +48,7 @@ export default class UserService {
         }.bind(this));
     }*/
 
-    isAuth(force = true) {
+    getProfile(force = true) {
         /*if (this.isLoggedIn() && !force) {
             return Promise.resolve(this.user);
         }*/
