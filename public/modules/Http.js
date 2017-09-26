@@ -1,5 +1,9 @@
 export default class Http {
 
+    constructor() {
+        const baseUrl = '82.202.246.5:8080';
+    }
+
     static Get(address, callback) {
         const xhr = new XMLHttpRequest();
         xhr.open('GET', address, true);
@@ -40,10 +44,16 @@ export default class Http {
     }
 
     static FetchGet(address) {
-        return fetch(address, {
+        const url = (Http.BaseUrl || baseUrl) + address;
+
+        return fetch(url, {
             method: 'GET',
             mode: 'cors',
-            credentials: 'include'
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'Accept': 'application/json'
+            }
         })
             .then(function (response) {
                 if (response.status >= 400) {
@@ -55,13 +65,16 @@ export default class Http {
     }
 
     static FetchPost (address, body) {
-        return fetch(address, {
+        const url = (Http.BaseUrl || baseUrl) + address;
+
+        return fetch(url, {
             method: 'POST',
             mode: 'cors',
             credentials: 'include',
             body: JSON.stringify(body),
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
+                'Accept': 'application/json'
             }
         })
             .then(function(response) {
