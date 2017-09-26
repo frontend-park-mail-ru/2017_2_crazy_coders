@@ -26,13 +26,13 @@ export default class UserService {
             });
     }
 
-    isLoggedIn() {
+    isAuthorized() {
         return !!this.user.id;
     }
 
      // [force=false] - игнорировать ли кэш?
 /*    getProfile(callback, force = true) {
-        if (this.isLoggedIn() && !force) {
+        if (this.isAuthorized() && !force) {
             return callback(null, this.user);
         }
 
@@ -49,9 +49,9 @@ export default class UserService {
     }*/
 
     getProfile(force = true) {
-        /*if (this.isLoggedIn() && !force) {
+        if (this.isAuthorized() && !force) {
             return Promise.resolve(this.user);
-        }*/
+        }
 
         return Http.FetchGet('/profile')
             .then((response) => {

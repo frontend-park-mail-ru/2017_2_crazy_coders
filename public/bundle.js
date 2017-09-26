@@ -1307,7 +1307,7 @@ class UserService {
 
      // [force=false] - игнорировать ли кэш?
 /*    getProfile(callback, force = true) {
-        if (this.isLoggedIn() && !force) {
+        if (this.isAuthorized() && !force) {
             return callback(null, this.user);
         }
 
@@ -1324,7 +1324,7 @@ class UserService {
     }*/
 
     getProfile(force = true) {
-        /*if (this.isLoggedIn() && !force) {
+        /*if (this.isAuthorized() && !force) {
             return Promise.resolve(this.user);
         }*/
 
