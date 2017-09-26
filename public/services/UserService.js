@@ -29,7 +29,7 @@ export default class UserService {
     }
 
      // [force=false] - игнорировать ли кэш?
-    isAuthUser(callback, force = true) {
+/*    isAuthUser(callback, force = true) {
         if (this.isLoggedIn() && !force) {
             return callback(null, this.user);
         }
@@ -44,6 +44,19 @@ export default class UserService {
             this.user.set(userdata);
             callback(null, userdata);
         }.bind(this));
+    }*/
+
+    isAuthUser(force = true) {
+        if (this.isLoggedIn() && !force) {
+            return Promise.resolve(this.user);
+        }
+
+        return Http.FetchGet('/isauth')
+            .then((response) => {
+                this.user.set(response);
+                return response;
+                })
+            .catch((err) => {throw err;})   // Можно ли так пробрасывать ошибку?
     }
 
     getUserLogin() {
