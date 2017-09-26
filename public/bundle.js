@@ -1283,17 +1283,10 @@ class UserService {
     }
 
 
-    auth(login, email, password, callback) {
-        __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].Post('/register', {login, email, password}, callback);
-    }
 
     authTest(login, email,password) {
         return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/signUp', {login, email, password});
     }
-
-/*    login(email, password, callback) {
-        Http.Post('/login', {email, password}, callback);
-    }*/
 
     login(email, password) {
         return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/signIn', {email, password})
@@ -1414,6 +1407,8 @@ class Http {
     static FetchGet(address) {
         const url = 'http://82.202.246.5:8080' + address;
 
+        console.log("[FetchGet] try get from url");
+
         return fetch(url, {
             method: 'GET',
             mode: 'cors',
@@ -1424,6 +1419,7 @@ class Http {
             }
         })
             .then(function (response) {
+                console.log("[FetchGet] now get from url");
                 return response;
             });
     }

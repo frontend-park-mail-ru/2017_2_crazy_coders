@@ -8,17 +8,10 @@ export default class UserService {
     }
 
 
-    auth(login, email, password, callback) {
-        Http.Post('/register', {login, email, password}, callback);
-    }
 
     authTest(login, email,password) {
         return Http.FetchPost('/signUp', {login, email, password});
     }
-
-/*    login(email, password, callback) {
-        Http.Post('/login', {email, password}, callback);
-    }*/
 
     login(email, password) {
         return Http.FetchPost('/signIn', {email, password})

@@ -46,6 +46,8 @@ export default class Http {
     static FetchGet(address) {
         const url = 'http://82.202.246.5:8080' + address;
 
+        console.log("[FetchGet] try get from url");
+
         return fetch(url, {
             method: 'GET',
             mode: 'cors',
@@ -56,6 +58,7 @@ export default class Http {
             }
         })
             .then(function (response) {
+                console.log("[FetchGet] now get from url");
                 return response;
             });
     }
