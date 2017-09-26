@@ -1,5 +1,3 @@
-
-
 "use strict";
 
 function hideError(form) {
@@ -10,8 +8,8 @@ function hideError(form) {
     });
 }
 
-function isCorrectLogin(login) {
-    return login.match(/^[a-z0-9_-]{3,16}$/);
+function isCorrectUsername(username) {
+    return username.match(/^[a-z0-9_-]{3,16}$/);
 }
 
 function isCorrectPassword(pswd) {
@@ -19,7 +17,7 @@ function isCorrectPassword(pswd) {
 }
 
 function isCorrectEmail(email) {
-    return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i); // all work =)
+    return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
 }
 
 function isSamePasswords(pswd, pswdRepeat, form) {
@@ -34,9 +32,9 @@ function createErrorElement(msg) {
     return errorElement;
 }
 
-export default class ValidRegisterForm {
+export default class ValidSignUpForm {
     constructor(login, email, password, repeatPassword, form) {
-        this.login = login;
+        this.username = login;
         this.email = email;
         this.password = password;
         this.repeatPassword = repeatPassword;
@@ -45,18 +43,17 @@ export default class ValidRegisterForm {
 
     validForm() {
 
-        // console.log(this.currentForm);
         hideError(this.currentForm);
 
         let flag = true;
-        const loginField = this.currentForm.children[0],
+        const usernameField = this.currentForm.children[0],
             emailField = this.currentForm.children[1],
             passwordField = this.currentForm.children[2],
             repeatPasswordField = this.currentForm.children[3];
 
-        if (!isCorrectLogin(this.login)) {
+        if (!isCorrectUsername(this.username)) {
             flag = false;
-            this.currentForm.insertBefore(createErrorElement('invalid login'), loginField);
+            this.currentForm.insertBefore(createErrorElement('invalid username'), usernameField);
         }
 
         if (!isCorrectEmail(this.email)) {
@@ -76,6 +73,5 @@ export default class ValidRegisterForm {
 
         return flag;
     }
-
 }
 

@@ -406,8 +406,8 @@ function pug_rethrow(err, filename, lineno, str){
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Form_pug__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Form_pug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__template_Form_pug__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ValidForm_ValidLoginForm__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidRegisterForm__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ValidForm_ValidSignInForm__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidSignUpForm__ = __webpack_require__(10);
 
 
 
@@ -442,7 +442,7 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
                 formdata[name] = elements[name].value;
             }
 
-            const isValid = new __WEBPACK_IMPORTED_MODULE_2__ValidForm_ValidLoginForm__["a" /* default */](formdata.email, formdata.password, signInForm);
+            const isValid = new __WEBPACK_IMPORTED_MODULE_2__ValidForm_ValidSignInForm__["a" /* default */](formdata.email, formdata.password, signInForm);
 
             callback(formdata, isValid.validForm());
         }.bind(this));
@@ -461,7 +461,7 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
                 formdata[name] = elements[name].value;
             }
 
-            const isValid = new __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidRegisterForm__["a" /* default */](formdata.login, formdata.email,
+            const isValid = new __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidSignUpForm__["a" /* default */](formdata.username, formdata.email,
                 formdata.password, formdata.repeatPassword, signUpForm);
 
             callback(formdata, isValid.validForm());
@@ -781,7 +781,7 @@ userService
         isRegisteredUser();
     })
     .catch((err) => {
-        alert(`[isAuthUser] Some error ${err.status}: ${err.responseText}`);
+        console.error("[userService.getProfile] err: " + err);
         isUnregisteredUser();
     });
 
@@ -792,48 +792,33 @@ signIn.onSubmitSignInForm(function (formdata, isValid) {
         userService
             .signIn(formdata.email, formdata.password)
             .then(function () {
+                console.log("[onSubmitSignInForm] Success sign in");
                 signIn.reset();
                 isRegisteredUser();
             })
             .catch((err) => {
-                alert(`[onSubmitSignInForm] Some error ${err.status}: ${err.responseText}`);
-                isUnregisteredUser();
+                console.error("[onSubmitSignInForm] err: " + err);
+                // isUnregisteredUser();    // must be message
             });
     }
 });
 
 
-// signUp.onSubmitSignUpForm(function (formdata, isValid) { // так было
-//     if (isValid) {
-//         userService.auth(formdata.login, formdata.email, formdata.password, (err, resp) => {
-//             if (err) {
-//                 return alert(`AUTH Error: ${err.status}`);
-//             }
-//
-//             if (resp.id !== 0) {
-//                 console.log("in signupSubmit");
-//                 isRegisteredUser();
-//                 signUp.reset();
-//             }
-//         });
-//     }
-// });
-
-
-function onSubmitSignUp(formdata, isValid) {
+signUp.onSubmitSignUpForm(function (formdata, isValid) {
     if (isValid) {
         return userService.signUp(formdata.username, formdata.email, formdata.password)
             .then(function () {
-                console.log("in signupSubmit");
-                isRegisteredUser();
+                console.log("[onSubmitSignUpForm] Success sign up");
                 signUp.reset();
+                isRegisteredUser();
             })
 
-            .catch((err) => alert(`Some error ${err.status}: ${err.responseText}`));
+            .catch((err) => {
+                console.error("[onSubmitSignUpForm] err: " + err);
+                // isUnregisteredUser();    // must be message
+            });
     }
-}
-
-signUp.onSubmitSignUpForm(onSubmitSignUp); // стало так
+});
 
 
 /***/ }),
@@ -848,7 +833,7 @@ signUp.onSubmitSignUpForm(onSubmitSignUp); // стало так
 
 
 let data = {
-    title: 'LOG IN',
+    title: 'SIGN IN',
     idForm: 'login-form',
     fields: [
         {
@@ -956,7 +941,7 @@ function createErrorElement(msg) {
     return errorElement;
 }
 
-class ValidLoginForm {
+class ValidSignInForm {
     constructor(email, password, form) {
         this.email = email;
         this.password = password;
@@ -985,7 +970,7 @@ class ValidLoginForm {
         return flag;
     }
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = ValidLoginForm;
+/* harmony export (immutable) */ __webpack_exports__["a"] = ValidSignInForm;
 
 
 
@@ -999,8 +984,6 @@ class ValidLoginForm {
 "use strict";
 
 
-
-
 function hideError(form) {
     let removeErrorCollection = form.getElementsByClassName('error-msg');
     const removeErrorArray = Array.from(removeErrorCollection);
@@ -1009,8 +992,8 @@ function hideError(form) {
     });
 }
 
-function isCorrectLogin(login) {
-    return login.match(/^[a-z0-9_-]{3,16}$/);
+function isCorrectUsername(username) {
+    return username.match(/^[a-z0-9_-]{3,16}$/);
 }
 
 function isCorrectPassword(pswd) {
@@ -1018,7 +1001,7 @@ function isCorrectPassword(pswd) {
 }
 
 function isCorrectEmail(email) {
-    return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i); // all work =)
+    return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
 }
 
 function isSamePasswords(pswd, pswdRepeat, form) {
@@ -1033,9 +1016,9 @@ function createErrorElement(msg) {
     return errorElement;
 }
 
-class ValidRegisterForm {
+class ValidSignUpForm {
     constructor(login, email, password, repeatPassword, form) {
-        this.login = login;
+        this.username = login;
         this.email = email;
         this.password = password;
         this.repeatPassword = repeatPassword;
@@ -1044,18 +1027,17 @@ class ValidRegisterForm {
 
     validForm() {
 
-        // console.log(this.currentForm);
         hideError(this.currentForm);
 
         let flag = true;
-        const loginField = this.currentForm.children[0],
+        const usernameField = this.currentForm.children[0],
             emailField = this.currentForm.children[1],
             passwordField = this.currentForm.children[2],
             repeatPasswordField = this.currentForm.children[3];
 
-        if (!isCorrectLogin(this.login)) {
+        if (!isCorrectUsername(this.username)) {
             flag = false;
-            this.currentForm.insertBefore(createErrorElement('invalid login'), loginField);
+            this.currentForm.insertBefore(createErrorElement('invalid username'), usernameField);
         }
 
         if (!isCorrectEmail(this.email)) {
@@ -1075,9 +1057,8 @@ class ValidRegisterForm {
 
         return flag;
     }
-
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = ValidRegisterForm;
+/* harmony export (immutable) */ __webpack_exports__["a"] = ValidSignUpForm;
 
 
 
@@ -1094,14 +1075,14 @@ class ValidRegisterForm {
 
 
 let data = {
-    title: 'LOG OUT',
+    title: 'SIGN UP',
     idForm: 'registry-form',
     fields: [
         {
             attrs: {
                 type: 'text',
-                name: 'login',
-                placeholder: 'Enter login',
+                name: 'username',
+                placeholder: 'Enter username',
             },
         },
         {
@@ -1216,12 +1197,12 @@ let data = {
     user: null,
     buttons: [
         {
-            text: 'LOG IN',
+            text: 'SIGN IN',
             id: 'button-log',
             class: 'button',
         },
         {
-            text: 'REGISTER',
+            text: 'SIGN UP',
             id: 'button-register',
             class: 'button',
         }
@@ -1280,12 +1261,12 @@ class UserService {
     }
 
 
-    signUp(login, email, password) {
+    signUp(username, email, password) {
 
-        const requestBody = {login, email, password};
+        const requestBody = {username, email, password};
         return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/signUp', requestBody)
             .then((response) => {
-                if (response.status === 200) {
+                if (response.status === 201) {
                     this.user.set(response);
                     return response;
                 } else {
@@ -1337,7 +1318,6 @@ class UserService {
     logout() {
         __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchGet('/logout');
     }
-
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = UserService;
 
@@ -1351,7 +1331,7 @@ class UserService {
 class Http {
 
     constructor() {
-        const baseUrl = 'http://82.202.246.5:8080';
+        this.baseUrl = 'http://82.202.246.5:8080';
     }
 
     static Get(address, callback) {
@@ -1396,7 +1376,7 @@ class Http {
     static FetchGet(address) {
         const url = 'http://82.202.246.5:8080' + address;
 
-        console.log("[FetchGet] try get from url");
+        console.log("[FetchGet] try get from " + url);
 
         return fetch(url, {
             method: 'GET',
@@ -1408,13 +1388,15 @@ class Http {
             }
         })
             .then(function (response) {
-                console.log("[FetchGet] now get from url");
+                console.log("[FetchGet] now get from " + url);
                 return response;
             });
     }
 
     static FetchPost (address, body) {
         const url = 'http://82.202.246.5:8080' + address;
+
+        console.log("[FetchPost] try post to " + url);
 
         return fetch(url, {
             method: 'POST',
@@ -1431,7 +1413,6 @@ class Http {
             });
 
     }
-
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Http;
 

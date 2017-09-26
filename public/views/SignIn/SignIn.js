@@ -3,7 +3,7 @@
 import Form from '../../components/Form/Form/Form';
 
 let data = {
-    title: 'LOG IN',
+    title: 'SIGN IN',
     idForm: 'login-form',
     fields: [
         {

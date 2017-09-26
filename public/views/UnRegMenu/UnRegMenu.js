@@ -4,12 +4,12 @@ let data = {
     user: null,
     buttons: [
         {
-            text: 'LOG IN',
+            text: 'SIGN IN',
             id: 'button-log',
             class: 'button',
         },
         {
-            text: 'REGISTER',
+            text: 'SIGN UP',
             id: 'button-register',
             class: 'button',
         }

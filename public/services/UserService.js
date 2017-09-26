@@ -9,12 +9,12 @@ export default class UserService {
     }
 
 
-    signUp(login, email, password) {
+    signUp(username, email, password) {
 
-        const requestBody = {login, email, password};
+        const requestBody = {username, email, password};
         return Http.FetchPost('/signUp', requestBody)
             .then((response) => {
-                if (response.status === 200) {
+                if (response.status === 201) {
                     this.user.set(response);
                     return response;
                 } else {
@@ -66,5 +66,4 @@ export default class UserService {
     logout() {
         Http.FetchGet('/logout');
     }
-
 }

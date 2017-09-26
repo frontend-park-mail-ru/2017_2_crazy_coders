@@ -235,7 +235,7 @@ userService
         isRegisteredUser();
     })
     .catch((err) => {
-        alert(`[isAuthUser] Some error ${err.status}: ${err.responseText}`);
+        console.error("[userService.getProfile] err: " + err);
         isUnregisteredUser();
     });
 
@@ -246,45 +246,30 @@ signIn.onSubmitSignInForm(function (formdata, isValid) {
         userService
             .signIn(formdata.email, formdata.password)
             .then(function () {
+                console.log("[onSubmitSignInForm] Success sign in");
                 signIn.reset();
                 isRegisteredUser();
             })
             .catch((err) => {
-                alert(`[onSubmitSignInForm] Some error ${err.status}: ${err.responseText}`);
-                isUnregisteredUser();
+                console.error("[onSubmitSignInForm] err: " + err);
+                // isUnregisteredUser();    // must be message
             });
     }
 });
 
 
-// signUp.onSubmitSignUpForm(function (formdata, isValid) { // так было
-//     if (isValid) {
-//         userService.auth(formdata.login, formdata.email, formdata.password, (err, resp) => {
-//             if (err) {
-//                 return alert(`AUTH Error: ${err.status}`);
-//             }
-//
-//             if (resp.id !== 0) {
-//                 console.log("in signupSubmit");
-//                 isRegisteredUser();
-//                 signUp.reset();
-//             }
-//         });
-//     }
-// });
-
-
-function onSubmitSignUp(formdata, isValid) {
+signUp.onSubmitSignUpForm(function (formdata, isValid) {
     if (isValid) {
         return userService.signUp(formdata.username, formdata.email, formdata.password)
             .then(function () {
-                console.log("in signupSubmit");
-                isRegisteredUser();
+                console.log("[onSubmitSignUpForm] Success sign up");
                 signUp.reset();
+                isRegisteredUser();
             })
 
-            .catch((err) => alert(`Some error ${err.status}: ${err.responseText}`));
+            .catch((err) => {
+                console.error("[onSubmitSignUpForm] err: " + err);
+                // isUnregisteredUser();    // must be message
+            });
     }
-}
-
-signUp.onSubmitSignUpForm(onSubmitSignUp); // стало так
+});

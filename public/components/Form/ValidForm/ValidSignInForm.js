@@ -24,7 +24,7 @@ function createErrorElement(msg) {
     return errorElement;
 }
 
-export default class ValidLoginForm {
+export default class ValidSignInForm {
     constructor(email, password, form) {
         this.email = email;
         this.password = password;

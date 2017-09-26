@@ -2,8 +2,8 @@
 
 import Block from '../../Block/BlockComponents';
 import FormTemp from '../../template/Form.pug';
-import ValidLoginForm from '../ValidForm/ValidLoginForm';
-import ValidRegisterForm from '../ValidForm/ValidRegisterForm';
+import ValidSignInForm from '../ValidForm/ValidSignInForm';
+import ValidSignUpForm from '../ValidForm/ValidSignUpForm';
 
 export default class Form extends Block {
     constructor(tagName = 'div', attrs = {}, classes = [], data) {
@@ -32,7 +32,7 @@ export default class Form extends Block {
                 formdata[name] = elements[name].value;
             }
 
-            const isValid = new ValidLoginForm(formdata.email, formdata.password, signInForm);
+            const isValid = new ValidSignInForm(formdata.email, formdata.password, signInForm);
 
             callback(formdata, isValid.validForm());
         }.bind(this));
@@ -51,7 +51,7 @@ export default class Form extends Block {
                 formdata[name] = elements[name].value;
             }
 
-            const isValid = new ValidRegisterForm(formdata.login, formdata.email,
+            const isValid = new ValidSignUpForm(formdata.username, formdata.email,
                 formdata.password, formdata.repeatPassword, signUpForm);
 
             callback(formdata, isValid.validForm());

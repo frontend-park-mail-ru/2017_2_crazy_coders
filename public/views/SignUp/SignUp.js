@@ -3,14 +3,14 @@
 import Form from '../../components/Form/Form/Form';
 
 let data = {
-    title: 'LOG OUT',
+    title: 'SIGN UP',
     idForm: 'registry-form',
     fields: [
         {
             attrs: {
                 type: 'text',
-                name: 'login',
-                placeholder: 'Enter login',
+                name: 'username',
+                placeholder: 'Enter username',
             },
         },
         {
