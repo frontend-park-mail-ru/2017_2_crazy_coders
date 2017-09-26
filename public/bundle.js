@@ -1301,7 +1301,7 @@ class UserService {
             });
     }
 
-    isLoggedIn() {
+    isAuthorized() {
         return !!this.user.id;
     }
 
@@ -1324,9 +1324,9 @@ class UserService {
     }*/
 
     getProfile(force = true) {
-        /*if (this.isAuthorized() && !force) {
+        if (this.isAuthorized() && !force) {
             return Promise.resolve(this.user);
-        }*/
+        }
 
         return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchGet('/profile')
             .then((response) => {
