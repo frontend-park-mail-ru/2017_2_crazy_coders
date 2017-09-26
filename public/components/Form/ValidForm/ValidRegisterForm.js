@@ -11,7 +11,8 @@ function hideError(form) {
 }
 
 function isCorrectLogin(login) {
-    return login.match(/^[a-z0-9_-]{3,16}$/);
+    return true;
+    // return login.match(/^[a-z0-9_-]{3,16}$/);    // not working
 }
 
 function isCorrectPassword(pswd) {

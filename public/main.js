@@ -276,7 +276,7 @@ signIn.onSubmitSignInForm(function (formdata, isValid) {
 
 function onSubmitSignUp(formdata, isValid) {
     if (isValid) {
-        return userService.signUp(formdata.signIn, formdata.email, formdata.password)
+        return userService.signUp(formdata.username, formdata.email, formdata.password)
             .then(function () {
                 console.log("in signupSubmit");
                 isRegisteredUser();

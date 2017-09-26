@@ -3,15 +3,15 @@
 class User {
     constructor(opt) {
         this.email = opt.email || '';
-        this.login = opt.signIn || '';
+        this.username = opt.username || '';
         this.id = opt.id || 0;
         this.score = opt.score || 0;
     }
 
     set(userData) {
-        this.email = userData.email;
-        this.login = userData.signIn;
         this.id = userData.id;
+        this.username = userData.username;
+        this.email = userData.email;
         this.score = userData.score || 0;
     }
 }

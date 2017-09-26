@@ -440,7 +440,7 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
 
             for (let name in elements) {
                 formdata[name] = elements[name].value;
-                // console.log(name + " : " + formdata[name]);
+                console.log("[onSubmitSignInForm]" + name + " : " + formdata[name]);
             }
 
             const isValid = new __WEBPACK_IMPORTED_MODULE_2__ValidForm_ValidLoginForm__["a" /* default */](formdata.email, formdata.password, signInForm);
@@ -460,10 +460,11 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
 
             for (let name in elements) {
                 formdata[name] = elements[name].value;
-                // console.log(name + " : " + formdata[name]);
+                console.log("[onSubmitSignUpForm]" + name + " : " + formdata[name]);
             }
 
-            const isValid = new __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidRegisterForm__["a" /* default */](formdata.signIn,formdata.email, formdata.password,formdata.repeatPassword, signUpForm);
+            const isValid = new __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidRegisterForm__["a" /* default */](formdata.username, formdata.email,
+                formdata.password, formdata.repeatPassword, signUpForm);
 
             callback(formdata, isValid.validForm());
         }, false);
@@ -823,7 +824,7 @@ signIn.onSubmitSignInForm(function (formdata, isValid) {
 
 function onSubmitSignUp(formdata, isValid) {
     if (isValid) {
-        return userService.signUp(formdata.signIn, formdata.email, formdata.password)
+        return userService.signUp(formdata.username, formdata.email, formdata.password)
             .then(function () {
                 console.log("in signupSubmit");
                 isRegisteredUser();
@@ -1011,7 +1012,8 @@ function hideError(form) {
 }
 
 function isCorrectLogin(login) {
-    return login.match(/^[a-z0-9_-]{3,16}$/);
+    return true;
+    // return login.match(/^[a-z0-9_-]{3,16}$/);    // not working
 }
 
 function isCorrectPassword(pswd) {
@@ -1277,21 +1279,32 @@ module.exports = template;
 
 
 class UserService {
+
     constructor() {
         this.user = new __WEBPACK_IMPORTED_MODULE_1__model_User__["a" /* default */]({});
         this.users = [];
     }
 
 
-
     signUp(login, email, password) {
-        return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/signUp', {login, email, password});
+
+        const requestBody = {login, email, password};
+        return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/signUp', requestBody)
+            .then((response) => {
+                if (response.status === 200) {
+                    this.user.set(response);
+                    return response;
+                } else {
+                    console.log(response.json());
+                    throw response;
+                }
+            });
     }
 
     signIn(email, password) {
         return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/signIn', {email, password})
             .then((response) => {
-                if(response.status === 200) {
+                if (response.status === 200) {
                     this.user.set(response);
                     return response;
                 } else {
@@ -1305,24 +1318,6 @@ class UserService {
         return !!this.user.id;
     }
 
-     // [force=false] - игнорировать ли кэш?
-/*    getProfile(callback, force = true) {
-        if (this.isAuthorized() && !force) {
-            return callback(null, this.user);
-        }
-
-        Http.Get('/isauth', function(err, userdata) {
-            if (err) {
-                return callback(err, userdata);
-            }
-            if (!userdata.user) {
-                return callback(null, null);
-            }
-            this.user.set(userdata);
-            callback(null, userdata);
-        }.bind(this));
-    }*/
-
     getProfile(force = true) {
         if (this.isAuthorized() && !force) {
             return Promise.resolve(this.user);
@@ -1330,7 +1325,7 @@ class UserService {
 
         return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchGet('/profile')
             .then((response) => {
-                if(response.status === 200) {
+                if (response.status === 200) {
                     this.user.set(response);
                     console.log('if: ' + response.json());
                     return response;
@@ -1338,7 +1333,7 @@ class UserService {
                     console.log('else: ' + response.json());
                     throw response;
                 }
-                })
+            })
     }
 
     getUserLogin() {
@@ -1460,15 +1455,15 @@ class Http {
 class User {
     constructor(opt) {
         this.email = opt.email || '';
-        this.login = opt.signIn || '';
+        this.username = opt.username || '';
         this.id = opt.id || 0;
         this.score = opt.score || 0;
     }
 
     set(userData) {
-        this.email = userData.email;
-        this.login = userData.signIn;
         this.id = userData.id;
+        this.username = userData.username;
+        this.email = userData.email;
         this.score = userData.score || 0;
     }
 }
