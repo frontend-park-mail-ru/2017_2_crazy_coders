@@ -89,7 +89,7 @@ app.post('/login', function (req, res) {
 
 app.get('/isauth', (req, res) => {
 
-    Http.Get('http://82.202.246.5:8080/profile', (request, response) => {
+    Http.Get('http://82.202.246.5:8080/isAuth', (request, response) => {
         if(response) {
             res.set('Content-Type', 'application/json; charset=utf8');
             res.json({'login': response.username,

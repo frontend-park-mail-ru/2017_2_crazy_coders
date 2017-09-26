@@ -13,7 +13,7 @@ export default class UserService {
     }
 
     authTest(login, email,password) {
-        return Http.FetchPost('http://82.202.246.5:8080/signUp', {login, email, password});
+        return Http.FetchPost('/signUp', {login, email, password});
     }
 
 /*    login(email, password, callback) {
@@ -21,7 +21,16 @@ export default class UserService {
     }*/
 
     login(email, password) {
-        return Http.FetchPost('/login', {email, password});
+        return Http.FetchPost('/signIn', {email, password})
+            .then((response) => {
+                if(response.status === 200) {
+                    this.user.set(response);
+                    return response;
+                } else {
+                    console.log(response.json());
+                    throw response;
+                }
+            });
     }
 
     isLoggedIn() {
@@ -29,7 +38,7 @@ export default class UserService {
     }
 
      // [force=false] - игнорировать ли кэш?
-/*    isAuthUser(callback, force = true) {
+/*    isAuth(callback, force = true) {
         if (this.isLoggedIn() && !force) {
             return callback(null, this.user);
         }
@@ -46,17 +55,22 @@ export default class UserService {
         }.bind(this));
     }*/
 
-    isAuthUser(force = true) {
-        if (this.isLoggedIn() && !force) {
+    isAuth(force = true) {
+        /*if (this.isLoggedIn() && !force) {
             return Promise.resolve(this.user);
-        }
+        }*/
 
-        return Http.FetchGet('/isauth')
+        return Http.FetchGet('/profile')
             .then((response) => {
-                this.user.set(response);
-                return response;
+                if(response.status === 200) {
+                    this.user.set(response);
+                    console.log('if: ' + response.json());
+                    return response;
+                } else {
+                    console.log('else: ' + response.json());
+                    throw response;
+                }
                 })
-            .catch((err) => {throw err;})   // Можно ли так пробрасывать ошибку?
     }
 
     getUserLogin() {
@@ -64,7 +78,7 @@ export default class UserService {
     }
 
     exit() {
-        Http.Get('/exit', () => {});
+        Http.FetchGet('/logout');
     }
 
 }

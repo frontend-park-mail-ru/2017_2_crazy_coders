@@ -1,7 +1,7 @@
 export default class Http {
 
     constructor() {
-        const baseUrl = '82.202.246.5:8080';
+        const baseUrl = 'http://82.202.246.5:8080';
     }
 
     static Get(address, callback) {
@@ -44,7 +44,7 @@ export default class Http {
     }
 
     static FetchGet(address) {
-        const url = (Http.BaseUrl || baseUrl) + address;
+        const url = 'http://82.202.246.5:8080' + address;
 
         return fetch(url, {
             method: 'GET',
@@ -56,16 +56,12 @@ export default class Http {
             }
         })
             .then(function (response) {
-                if (response.status >= 400) {
-                    throw response;
-                }
-
-                return response.json();
+                return response;
             });
     }
 
     static FetchPost (address, body) {
-        const url = (Http.BaseUrl || baseUrl) + address;
+        const url = 'http://82.202.246.5:8080' + address;
 
         return fetch(url, {
             method: 'POST',
@@ -78,11 +74,7 @@ export default class Http {
             }
         })
             .then(function(response) {
-                if (response.status >= 400) {
-                    throw response;
-                }
-
-                return  response.json();
+                return  response;
             });
 
     }

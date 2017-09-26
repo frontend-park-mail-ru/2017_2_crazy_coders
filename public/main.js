@@ -230,14 +230,13 @@ function isRegisteredUser() {
 
 
 userService
-    .isAuthUser()
-    .then((response) => {
-        if (response.id) {
-            console.log('Hello ', response.username);
-            isRegisteredUser();
-        } else {
-            isUnregisteredUser();
-        }
+    .isAuth()
+    .then(() => {
+        isRegisteredUser();
+    })
+    .catch((err) => {
+        alert(`[isAuthUser] Some error ${err.status}: ${err.responseText}`);
+        isUnregisteredUser();
     });
 
 
@@ -247,13 +246,13 @@ signIn.onSubmitSignInForm(function (formdata, isValid) {
         userService
             .login(formdata.email, formdata.password)
             .then(function () {
-                return userService.isAuthUser();
-            })
-            .then(function () {
                 signIn.reset();
                 isRegisteredUser();
             })
-            .catch((err) => alert(`Some error ${err.status}: ${err.responseText}`));
+            .catch((err) => {
+                alert(`[onSubmitSignInForm] Some error ${err.status}: ${err.responseText}`);
+                isUnregisteredUser();
+            });
     }
 });
 

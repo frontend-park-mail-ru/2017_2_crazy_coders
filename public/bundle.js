@@ -776,35 +776,30 @@ function isRegisteredUser() {
 }
 
 
-userService.isAuthUser(function (err, userLogin) {
-    if (err) {
-        return;
-    }
-    if (!userLogin) {
-        console.log('Hello ', userLogin, 'is null');
+userService
+    .isAuth()
+    .then(() => {
+        isRegisteredUser();
+    })
+    .catch((err) => {
+        alert(`[isAuthUser] Some error ${err.status}: ${err.responseText}`);
         isUnregisteredUser();
-    } else {
-        isRegisteredUser(userLogin);
-    }
-}, true);
+    });
+
 
 
 signIn.onSubmitSignInForm(function (formdata, isValid) {
     if (isValid) {
-        userService.login(formdata.email, formdata.password, function (err, resp) {
-            if (err) {
-                alert(`Some error ${err.status}: ${err.responseText}`);
-                return;
-            }
-            if (resp.id !== 0) {
-                console.log("in signinSubmit");
+        userService
+            .login(formdata.email, formdata.password)
+            .then(function () {
                 signIn.reset();
-                isRegisteredUser(resp.user);
-            } else {
-                console.log('no user');
-            }
-
-        });
+                isRegisteredUser();
+            })
+            .catch((err) => {
+                alert(`[onSubmitSignInForm] Some error ${err.status}: ${err.responseText}`);
+                isUnregisteredUser();
+            });
     }
 });
 
@@ -1293,11 +1288,24 @@ class UserService {
     }
 
     authTest(login, email,password) {
-        return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('http://82.202.246.5:8080/signUp', {login, email, password});
+        return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/signUp', {login, email, password});
     }
 
-    login(email, password, callback) {
-        __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].Post('/login', {email, password}, callback);
+/*    login(email, password, callback) {
+        Http.Post('/login', {email, password}, callback);
+    }*/
+
+    login(email, password) {
+        return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/signIn', {email, password})
+            .then((response) => {
+                if(response.status === 200) {
+                    this.user.set(response);
+                    return response;
+                } else {
+                    console.log(response.json());
+                    throw response;
+                }
+            });
     }
 
     isLoggedIn() {
@@ -1305,12 +1313,12 @@ class UserService {
     }
 
      // [force=false] - игнорировать ли кэш?
-    isAuthUser(callback, force = true) {
+/*    isAuth(callback, force = true) {
         if (this.isLoggedIn() && !force) {
             return callback(null, this.user);
         }
 
-        __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].Get('/isauth', function(err, userdata) {
+        Http.Get('/isauth', function(err, userdata) {
             if (err) {
                 return callback(err, userdata);
             }
@@ -1320,6 +1328,24 @@ class UserService {
             this.user.set(userdata);
             callback(null, userdata);
         }.bind(this));
+    }*/
+
+    isAuth(force = true) {
+        /*if (this.isLoggedIn() && !force) {
+            return Promise.resolve(this.user);
+        }*/
+
+        return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchGet('/profile')
+            .then((response) => {
+                if(response.status === 200) {
+                    this.user.set(response);
+                    console.log('if: ' + response.json());
+                    return response;
+                } else {
+                    console.log('else: ' + response.json());
+                    throw response;
+                }
+                })
     }
 
     getUserLogin() {
@@ -1327,7 +1353,7 @@ class UserService {
     }
 
     exit() {
-        __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].Get('/exit', () => {});
+        __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchGet('/logout');
     }
 
 }
@@ -1341,6 +1367,10 @@ class UserService {
 
 "use strict";
 class Http {
+
+    constructor() {
+        const baseUrl = 'http://82.202.246.5:8080';
+    }
 
     static Get(address, callback) {
         const xhr = new XMLHttpRequest();
@@ -1382,36 +1412,37 @@ class Http {
     }
 
     static FetchGet(address) {
-        return fetch(address, {
+        const url = 'http://82.202.246.5:8080' + address;
+
+        return fetch(url, {
             method: 'GET',
             mode: 'cors',
-            credentials: 'include'
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'Accept': 'application/json'
+            }
         })
             .then(function (response) {
-                if (response.status >= 400) {
-                    throw response;
-                }
-
-                return response.json();
+                return response;
             });
     }
 
     static FetchPost (address, body) {
-        return fetch(address, {
+        const url = 'http://82.202.246.5:8080' + address;
+
+        return fetch(url, {
             method: 'POST',
             mode: 'cors',
             credentials: 'include',
             body: JSON.stringify(body),
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
+                'Accept': 'application/json'
             }
         })
             .then(function(response) {
-                if (response.status >= 400) {
-                    throw response;
-                }
-
-                return  response.json();
+                return  response;
             });
 
     }
