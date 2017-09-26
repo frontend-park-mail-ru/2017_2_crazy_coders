@@ -20,7 +20,7 @@ const day = 1000 * 60 * 60 * 24;
 
 
 app.post('/register', function (req, res) {
-    const login = req.body.login;
+    const login = req.body.signIn;
     const email = req.body.email;
     const password = req.body.password;
 

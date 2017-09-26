@@ -177,7 +177,7 @@ function isRegisteredUser() {
 
             case 'logout':
                 mainPage.hide();
-                userService.exit();
+                userService.logout();
                 isUnregisteredUser();
                 break;
         }
@@ -244,7 +244,7 @@ userService
 signIn.onSubmitSignInForm(function (formdata, isValid) {
     if (isValid) {
         userService
-            .login(formdata.email, formdata.password)
+            .signIn(formdata.email, formdata.password)
             .then(function () {
                 signIn.reset();
                 isRegisteredUser();
@@ -276,7 +276,7 @@ signIn.onSubmitSignInForm(function (formdata, isValid) {
 
 function onSubmitSignUp(formdata, isValid) {
     if (isValid) {
-        return userService.authTest(formdata.login, formdata.email, formdata.password)
+        return userService.signUp(formdata.signIn, formdata.email, formdata.password)
             .then(function () {
                 console.log("in signupSubmit");
                 isRegisteredUser();

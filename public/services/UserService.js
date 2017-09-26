@@ -9,11 +9,11 @@ export default class UserService {
 
 
 
-    authTest(login, email,password) {
+    signUp(login, email, password) {
         return Http.FetchPost('/signUp', {login, email, password});
     }
 
-    login(email, password) {
+    signIn(email, password) {
         return Http.FetchPost('/signIn', {email, password})
             .then((response) => {
                 if(response.status === 200) {
@@ -70,7 +70,7 @@ export default class UserService {
         return this.user;
     }
 
-    exit() {
+    logout() {
         Http.FetchGet('/logout');
     }
 

@@ -463,7 +463,7 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
                 // console.log(name + " : " + formdata[name]);
             }
 
-            const isValid = new __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidRegisterForm__["a" /* default */](formdata.login,formdata.email, formdata.password,formdata.repeatPassword, signUpForm);
+            const isValid = new __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidRegisterForm__["a" /* default */](formdata.signIn,formdata.email, formdata.password,formdata.repeatPassword, signUpForm);
 
             callback(formdata, isValid.validForm());
         }, false);
@@ -724,7 +724,7 @@ function isRegisteredUser() {
 
             case 'logout':
                 mainPage.hide();
-                userService.exit();
+                userService.logout();
                 isUnregisteredUser();
                 break;
         }
@@ -791,7 +791,7 @@ userService
 signIn.onSubmitSignInForm(function (formdata, isValid) {
     if (isValid) {
         userService
-            .login(formdata.email, formdata.password)
+            .signIn(formdata.email, formdata.password)
             .then(function () {
                 signIn.reset();
                 isRegisteredUser();
@@ -823,7 +823,7 @@ signIn.onSubmitSignInForm(function (formdata, isValid) {
 
 function onSubmitSignUp(formdata, isValid) {
     if (isValid) {
-        return userService.authTest(formdata.login, formdata.email, formdata.password)
+        return userService.signUp(formdata.signIn, formdata.email, formdata.password)
             .then(function () {
                 console.log("in signupSubmit");
                 isRegisteredUser();
@@ -1284,11 +1284,11 @@ class UserService {
 
 
 
-    authTest(login, email,password) {
+    signUp(login, email, password) {
         return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/signUp', {login, email, password});
     }
 
-    login(email, password) {
+    signIn(email, password) {
         return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/signIn', {email, password})
             .then((response) => {
                 if(response.status === 200) {
@@ -1345,7 +1345,7 @@ class UserService {
         return this.user;
     }
 
-    exit() {
+    logout() {
         __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchGet('/logout');
     }
 
@@ -1460,14 +1460,14 @@ class Http {
 class User {
     constructor(opt) {
         this.email = opt.email || '';
-        this.login = opt.login || '';
+        this.login = opt.signIn || '';
         this.id = opt.id || 0;
         this.score = opt.score || 0;
     }
 
     set(userData) {
         this.email = userData.email;
-        this.login = userData.login;
+        this.login = userData.signIn;
         this.id = userData.id;
         this.score = userData.score || 0;
     }
