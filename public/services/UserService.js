@@ -21,7 +21,7 @@ export default class UserService {
     }*/
 
     login(email, password) {
-        return Http.FetchPost('/login', {email, password}, callback);
+        return Http.FetchPost('/login', {email, password});
     }
 
     isLoggedIn() {

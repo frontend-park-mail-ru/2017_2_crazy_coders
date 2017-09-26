@@ -229,17 +229,17 @@ function isRegisteredUser() {
 }
 
 
-userService.isAuthUser(function (err, userLogin) {
-    if (err) {
-        return;
-    }
-    if (!userLogin) {
-        console.log('Hello ', userLogin, 'is null');
-        isUnregisteredUser();
-    } else {
-        isRegisteredUser(userLogin);
-    }
-}, true);
+userService
+    .isAuthUser()
+    .then((response) => {
+        if (response.id) {
+            console.log('Hello ', response.username);
+            isRegisteredUser();
+        } else {
+            isUnregisteredUser();
+        }
+    });
+
 
 
 signIn.onSubmitSignInForm(function (formdata, isValid) {
