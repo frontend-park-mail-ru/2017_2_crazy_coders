@@ -10,6 +10,7 @@ import CreateRegMenu from './views/RegMenu/RegMenu';
 import CreateAboutUs from './views/AboutUs/AboutUs';
 import Scoreboard from './views/Scoreboard/Scoreboard';
 import CreateFooter from './views/Footer/Footer';
+import Form from './components/Form/Form/Form'
 
 
 let body = document.getElementsByTagName('body')[0];
@@ -251,8 +252,8 @@ signInView.onSubmitSignInForm(function (formdata, isValid) {
                 isRegisteredUser();
             })
             .catch((err) => {
-                console.error("[onSubmitSignInForm] err: " + err);
-                // isUnregisteredUser();    // must be message
+                console.log("[onSubmitSignInForm] err: " + err);
+                Form.showFormMessage('server error', signInView);
             });
     }
 });
@@ -268,8 +269,8 @@ signUpView.onSubmitSignUpForm(function (formdata, isValid) {
             })
 
             .catch((err) => {
-                console.error("[onSubmitSignUpForm] err: " + err);
-                // isUnregisteredUser();    // must be message
+                console.log("[onSubmitSignUpForm] err: " + err);
+                Form.showFormMessage('server error', signUpView);
             });
     }
 });

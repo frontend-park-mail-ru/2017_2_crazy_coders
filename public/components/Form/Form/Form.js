@@ -5,6 +5,7 @@ import FormTemp from '../../template/Form.pug';
 import ValidSignInForm from '../ValidForm/ValidSignInForm';
 import ValidSignUpForm from '../ValidForm/ValidSignUpForm';
 
+
 export default class Form extends Block {
     constructor(tagName = 'div', attrs = {}, classes = [], data) {
         super(tagName, attrs, classes, data);
@@ -58,8 +59,14 @@ export default class Form extends Block {
         }, false);
     }
 
+
+    static showFormMessage(msg, form) {
+        let currentForm = form.getElement().getElementsByTagName('form')[0];
+        currentForm.insertBefore(ValidSignUpForm.createErrorElement(msg), currentForm.children[0]);
+    }
+
     reset() {
-        Array.from(document.getElementsByTagName('form')).forEach( form => {
+        Array.from(document.getElementsByTagName('form')).forEach(form => {
             form.reset();
         });
     }

@@ -24,13 +24,6 @@ function isSamePasswords(pswd, pswdRepeat, form) {
     return pswd === pswdRepeat;
 }
 
-function createErrorElement(msg) {
-    let errorElement = document.createElement('p');
-    errorElement.textContent = msg;
-    errorElement.classList.add('error-msg');
-
-    return errorElement;
-}
 
 export default class ValidSignUpForm {
     constructor(login, email, password, repeatPassword, form) {
@@ -39,6 +32,15 @@ export default class ValidSignUpForm {
         this.password = password;
         this.repeatPassword = repeatPassword;
         this.currentForm = form;
+    }
+
+
+    static createErrorElement(msg) {
+        let errorElement = document.createElement('p');
+        errorElement.textContent = msg;
+        errorElement.classList.add('error-msg');
+
+        return errorElement;
     }
 
     validForm() {
@@ -53,22 +55,23 @@ export default class ValidSignUpForm {
 
         if (!isCorrectUsername(this.username)) {
             flag = false;
-            this.currentForm.insertBefore(createErrorElement('invalid username'), usernameField);
+            this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid username'), usernameField);
         }
 
         if (!isCorrectEmail(this.email)) {
             flag = false;
-            this.currentForm.insertBefore(createErrorElement('invalid email'), emailField);
+            this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid email'), emailField);
         }
 
         if (!isCorrectPassword(this.password)) {
             flag = false;
-            this.currentForm.insertBefore(createErrorElement('invalid password'), passwordField);
+            this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid password'), passwordField);
         }
 
         if (!isSamePasswords(this.password, this.repeatPassword)) {
             flag = false;
-            this.currentForm.insertBefore(createErrorElement('the values of entered passwords do not match'), repeatPasswordField);
+            this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('the values of entered passwords do not match'),
+                repeatPasswordField);
         }
 
         return flag;

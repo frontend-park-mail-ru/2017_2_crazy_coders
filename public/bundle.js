@@ -415,6 +415,7 @@ function pug_rethrow(err, filename, lineno, str){
 
 
 
+
 class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* default */] {
     constructor(tagName = 'div', attrs = {}, classes = [], data) {
         super(tagName, attrs, classes, data);
@@ -468,8 +469,14 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
         }, false);
     }
 
+
+    static showFormMessage(msg, form) {
+        let currentForm = form.getElement().getElementsByTagName('form')[0];
+        currentForm.insertBefore(__WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidSignUpForm__["a" /* default */].createErrorElement(msg), currentForm.children[0]);
+    }
+
     reset() {
-        Array.from(document.getElementsByTagName('form')).forEach( form => {
+        Array.from(document.getElementsByTagName('form')).forEach(form => {
             form.reset();
         });
     }
@@ -544,6 +551,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_AboutUs_AboutUs__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__views_Scoreboard_Scoreboard__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__views_Footer_Footer__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_Form_Form_Form__ = __webpack_require__(2);
+
 
 
 
@@ -797,8 +806,8 @@ signInView.onSubmitSignInForm(function (formdata, isValid) {
                 isRegisteredUser();
             })
             .catch((err) => {
-                console.error("[onSubmitSignInForm] err: " + err);
-                // isUnregisteredUser();    // must be message
+                console.log("[onSubmitSignInForm] err: " + err);
+                __WEBPACK_IMPORTED_MODULE_10__components_Form_Form_Form__["a" /* default */].showFormMessage('server error', signInView);
             });
     }
 });
@@ -814,8 +823,8 @@ signUpView.onSubmitSignUpForm(function (formdata, isValid) {
             })
 
             .catch((err) => {
-                console.error("[onSubmitSignUpForm] err: " + err);
-                // isUnregisteredUser();    // must be message
+                console.log("[onSubmitSignUpForm] err: " + err);
+                __WEBPACK_IMPORTED_MODULE_10__components_Form_Form_Form__["a" /* default */].showFormMessage('server error', signUpView);
             });
     }
 });
@@ -933,19 +942,20 @@ function isCorrectPassword(pswd) {
     return pswd.match(/^[a-z0-9_-]{6,18}$/);
 }
 
-function createErrorElement(msg) {
-    let errorElement = document.createElement('p');
-    errorElement.textContent = msg;
-    errorElement.classList.add('error-msg');
-
-    return errorElement;
-}
 
 class ValidSignInForm {
     constructor(email, password, form) {
         this.email = email;
         this.password = password;
         this.currentForm = form;
+    }
+
+    static createErrorElement(msg) {
+        let errorElement = document.createElement('p');
+        errorElement.textContent = msg;
+        errorElement.classList.add('error-msg');
+
+        return errorElement;
     }
 
     validForm() {
@@ -959,12 +969,12 @@ class ValidSignInForm {
 
         if (!isCorrectEmail(this.email)) {
             flag = false;
-            this.currentForm.insertBefore(createErrorElement('invalid email'), loginField);
+            this.currentForm.insertBefore(ValidSignInForm.createErrorElement('invalid email'), loginField);
         }
 
         if (!isCorrectPassword(this.password)) {
             flag = false;
-            this.currentForm.insertBefore(createErrorElement('invalid password'), passwordField);
+            this.currentForm.insertBefore(ValidSignInForm.createErrorElement('invalid password'), passwordField);
         }
 
         return flag;
@@ -1008,13 +1018,6 @@ function isSamePasswords(pswd, pswdRepeat, form) {
     return pswd === pswdRepeat;
 }
 
-function createErrorElement(msg) {
-    let errorElement = document.createElement('p');
-    errorElement.textContent = msg;
-    errorElement.classList.add('error-msg');
-
-    return errorElement;
-}
 
 class ValidSignUpForm {
     constructor(login, email, password, repeatPassword, form) {
@@ -1023,6 +1026,15 @@ class ValidSignUpForm {
         this.password = password;
         this.repeatPassword = repeatPassword;
         this.currentForm = form;
+    }
+
+
+    static createErrorElement(msg) {
+        let errorElement = document.createElement('p');
+        errorElement.textContent = msg;
+        errorElement.classList.add('error-msg');
+
+        return errorElement;
     }
 
     validForm() {
@@ -1037,22 +1049,23 @@ class ValidSignUpForm {
 
         if (!isCorrectUsername(this.username)) {
             flag = false;
-            this.currentForm.insertBefore(createErrorElement('invalid username'), usernameField);
+            this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid username'), usernameField);
         }
 
         if (!isCorrectEmail(this.email)) {
             flag = false;
-            this.currentForm.insertBefore(createErrorElement('invalid email'), emailField);
+            this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid email'), emailField);
         }
 
         if (!isCorrectPassword(this.password)) {
             flag = false;
-            this.currentForm.insertBefore(createErrorElement('invalid password'), passwordField);
+            this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid password'), passwordField);
         }
 
         if (!isSamePasswords(this.password, this.repeatPassword)) {
             flag = false;
-            this.currentForm.insertBefore(createErrorElement('the values of entered passwords do not match'), repeatPasswordField);
+            this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('the values of entered passwords do not match'),
+                repeatPasswordField);
         }
 
         return flag;

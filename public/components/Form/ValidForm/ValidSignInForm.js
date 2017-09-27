@@ -16,19 +16,20 @@ function isCorrectPassword(pswd) {
     return pswd.match(/^[a-z0-9_-]{6,18}$/);
 }
 
-function createErrorElement(msg) {
-    let errorElement = document.createElement('p');
-    errorElement.textContent = msg;
-    errorElement.classList.add('error-msg');
-
-    return errorElement;
-}
 
 export default class ValidSignInForm {
     constructor(email, password, form) {
         this.email = email;
         this.password = password;
         this.currentForm = form;
+    }
+
+    static createErrorElement(msg) {
+        let errorElement = document.createElement('p');
+        errorElement.textContent = msg;
+        errorElement.classList.add('error-msg');
+
+        return errorElement;
     }
 
     validForm() {
@@ -42,12 +43,12 @@ export default class ValidSignInForm {
 
         if (!isCorrectEmail(this.email)) {
             flag = false;
-            this.currentForm.insertBefore(createErrorElement('invalid email'), loginField);
+            this.currentForm.insertBefore(ValidSignInForm.createErrorElement('invalid email'), loginField);
         }
 
         if (!isCorrectPassword(this.password)) {
             flag = false;
-            this.currentForm.insertBefore(createErrorElement('invalid password'), passwordField);
+            this.currentForm.insertBefore(ValidSignInForm.createErrorElement('invalid password'), passwordField);
         }
 
         return flag;
