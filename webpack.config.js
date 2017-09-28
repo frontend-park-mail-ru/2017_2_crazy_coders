@@ -18,6 +18,12 @@ module.exports = {
 
     module: {
         rules: [
+/*            {
+                enforce: "pre",
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: ['eslint-loader']
+            },*/
             {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({

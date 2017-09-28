@@ -256,7 +256,6 @@ signInView.onSubmitSignInForm().then(formdata => {
             });
     });
 
-
 signUpView.onSubmitSignUpForm().then(formdata => {
         return userService.signUp(formdata.username, formdata.email, formdata.password)
             .then(function () {
