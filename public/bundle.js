@@ -524,25 +524,23 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
     onSubmitSignUpForm(callback) {
         let signUpForm = document.getElementById('registry-form');
 
-        return new Promise((resolve) => {
-            signUpForm.addEventListener('submit', (e) => {
-                e.preventDefault();
+        signUpForm.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-                const formdata = {};
-                const elements = signUpForm.elements;
+            const formdata = {};
+            const elements = signUpForm.elements;
 
-                for (let name in elements) {
-                    formdata[name] = elements[name].value;
-                }
+            for (let name in elements) {
+                formdata[name] = elements[name].value;
+            }
 
-                const isValid = new __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidSignUpForm__["a" /* default */](formdata.username, formdata.email,
-                    formdata.password, formdata.repeatPassword, signUpForm);
+            const isValid = new __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidSignUpForm__["a" /* default */](formdata.username, formdata.email,
+                formdata.password, formdata.repeatPassword, signUpForm);
 
-                if(isValid.validForm()) {
-                    resolve(formdata);
-                }
-            }, false);
-        });
+            if(isValid.validForm()) {
+                callback(formdata);
+            }
+        }, false);
     }
 
     /**
@@ -554,7 +552,7 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
     static showFormMessage(msg, form) {
         let currentForm = form.getElement().getElementsByTagName('form')[0];
         currentForm.insertBefore(__WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidSignUpForm__["a" /* default */].createErrorElement(msg), currentForm.children[0]);
-        }
+    }
 
     /**
      * Очищаем поля форм
@@ -737,17 +735,17 @@ function isUnregisteredUser() {
         const elemId = event.target.getAttribute('id');
 
         switch (elemId) {
-            case 'button-log':
-                footerImgView.hide();
-                inputMenuView.hide();
-                signInView.show();
-                break;
+        case 'button-log':
+            footerImgView.hide();
+            inputMenuView.hide();
+            signInView.show();
+            break;
 
-            case 'button-register':
-                footerImgView.hide();
-                inputMenuView.hide();
-                signUpView.show();
-                break;
+        case 'button-register':
+            footerImgView.hide();
+            inputMenuView.hide();
+            signUpView.show();
+            break;
         }
     });
 
@@ -758,17 +756,17 @@ function isUnregisteredUser() {
         button.addEventListener('click', (event) => {
             const elemId = event.target.getAttribute('id');
             switch (elemId) {
-                case 'back-sign-in':
-                    signInView.hide();
-                    inputMenuView.show();
-                    footerImgView.show();
-                    break;
+            case 'back-sign-in':
+                signInView.hide();
+                inputMenuView.show();
+                footerImgView.show();
+                break;
 
-                case 'back-sign-up':
-                    signUpView.hide();
-                    inputMenuView.show();
-                    footerImgView.show();
-                    break;
+            case 'back-sign-up':
+                signUpView.hide();
+                inputMenuView.show();
+                footerImgView.show();
+                break;
             }
         });
     });
@@ -779,23 +777,23 @@ function isUnregisteredUser() {
         const elemId = event.target.getAttribute('id');
 
         switch (elemId) {
-            case 'sound-logo':
-                console.log('music');
-                break;
+        case 'sound-logo':
+            console.log('music');
+            break;
 
-            case 'score-logo':
-                footerImgView.hide();
-                inputMenuView.hide();
-                mainPageView.hide();
-                scoreView.show();
-                break;
+        case 'score-logo':
+            footerImgView.hide();
+            inputMenuView.hide();
+            mainPageView.hide();
+            scoreView.show();
+            break;
 
-            case 'about-logo':
-                footerImgView.hide();
-                inputMenuView.hide();
-                mainPageView.hide();
-                aboutUsView.show();
-                break;
+        case 'about-logo':
+            footerImgView.hide();
+            inputMenuView.hide();
+            mainPageView.hide();
+            aboutUsView.show();
+            break;
         }
     });
 
@@ -805,17 +803,17 @@ function isUnregisteredUser() {
         const elemId = event.target.getAttribute('id');
 
         switch (elemId) {
-            case 'back-score':
-                footerImgView.show();
-                inputMenuView.show();
-                scoreView.hide();
-                break;
+        case 'back-score':
+            footerImgView.show();
+            inputMenuView.show();
+            scoreView.hide();
+            break;
 
-            case 'back-about':
-                footerImgView.show();
-                inputMenuView.show();
-                aboutUsView.hide();
-                break
+        case 'back-about':
+            footerImgView.show();
+            inputMenuView.show();
+            aboutUsView.hide();
+            break;
         }
     });
 }
@@ -838,15 +836,15 @@ function isRegisteredUser() {
         const elemId = event.target.getAttribute('id');
 
         switch (elemId) {
-            case 'start-game':
-                console.log('i am start');
-                break;
+        case 'start-game':
+            console.log('i am start');
+            break;
 
-            case 'logout':
-                mainPageView.hide();
-                __WEBPACK_IMPORTED_MODULE_5__services_UserService__["a" /* default */].logout();
-                isUnregisteredUser();
-                break;
+        case 'logout':
+            mainPageView.hide();
+            __WEBPACK_IMPORTED_MODULE_5__services_UserService__["a" /* default */].logout();
+            isUnregisteredUser();
+            break;
         }
     });
 
@@ -855,23 +853,23 @@ function isRegisteredUser() {
         const elemId = event.target.getAttribute('id');
 
         switch (elemId) {
-            case 'sound-logo':
-                console.log('music');
-                break;
+        case 'sound-logo':
+            console.log('music');
+            break;
 
-            case 'score-logo':
-                footerImgView.hide();
-                inputMenuView.hide();
-                mainPageView.hide();
-                scoreView.show();
-                break;
+        case 'score-logo':
+            footerImgView.hide();
+            inputMenuView.hide();
+            mainPageView.hide();
+            scoreView.show();
+            break;
 
-            case 'about-logo':
-                footerImgView.hide();
-                inputMenuView.hide();
-                mainPageView.hide();
-                aboutUsView.show();
-                break;
+        case 'about-logo':
+            footerImgView.hide();
+            inputMenuView.hide();
+            mainPageView.hide();
+            aboutUsView.show();
+            break;
         }
     });
 
@@ -880,17 +878,17 @@ function isRegisteredUser() {
         const elemId = event.target.getAttribute('id');
 
         switch (elemId) {
-            case 'back-score':
-                footerImgView.show();
-                mainPageView.show();
-                scoreView.hide();
-                break;
+        case 'back-score':
+            footerImgView.show();
+            mainPageView.show();
+            scoreView.hide();
+            break;
 
-            case 'back-about':
-                footerImgView.show();
-                mainPageView.show();
-                aboutUsView.hide();
-                break
+        case 'back-about':
+            footerImgView.show();
+            mainPageView.show();
+            aboutUsView.hide();
+            break;
         }
     });
 }
@@ -909,32 +907,32 @@ userService
 
 
 signInView.onSubmitSignInForm(formdata => {
-        userService
-            .signIn(formdata.email, formdata.password)
-            .then(function () {
-                console.log("[onSubmitSignInForm] Success sign in");
-                __WEBPACK_IMPORTED_MODULE_10__components_Form_Form_Form__["a" /* default */].reset();
-                isRegisteredUser();
-            })
-            .catch((err) => {
-                console.log("[onSubmitSignInForm] err: " + err);
-                __WEBPACK_IMPORTED_MODULE_10__components_Form_Form_Form__["a" /* default */].showFormMessage('server error', signInView);
-            });
-    });
+    userService
+        .signIn(formdata.email, formdata.password)
+        .then(function () {
+            console.log("[onSubmitSignInForm] Success sign in");
+            __WEBPACK_IMPORTED_MODULE_10__components_Form_Form_Form__["a" /* default */].reset();
+            isRegisteredUser();
+        })
+        .catch((err) => {
+            console.log("[onSubmitSignInForm] err: " + err);
+            __WEBPACK_IMPORTED_MODULE_10__components_Form_Form_Form__["a" /* default */].showFormMessage('server error', signInView);
+        });
+});
 
-signUpView.onSubmitSignUpForm().then(formdata => {
-        return userService.signUp(formdata.username, formdata.email, formdata.password)
-            .then(function () {
-                console.log("[onSubmitSignUpForm] Success sign up");
-                __WEBPACK_IMPORTED_MODULE_10__components_Form_Form_Form__["a" /* default */].reset();
-                isRegisteredUser();
-            })
+signUpView.onSubmitSignUpForm(formdata => {
+    return userService.signUp(formdata.username, formdata.email, formdata.password)
+        .then(function () {
+            console.log("[onSubmitSignUpForm] Success sign up");
+            __WEBPACK_IMPORTED_MODULE_10__components_Form_Form_Form__["a" /* default */].reset();
+            isRegisteredUser();
+        })
 
-            .catch((err) => {
-                console.log("[onSubmitSignUpForm] err: " + err);
-                __WEBPACK_IMPORTED_MODULE_10__components_Form_Form_Form__["a" /* default */].showFormMessage('server error', signUpView);
-            });
-    });
+        .catch((err) => {
+            console.log("[onSubmitSignUpForm] err: " + err);
+            __WEBPACK_IMPORTED_MODULE_10__components_Form_Form_Form__["a" /* default */].showFormMessage('server error', signUpView);
+        });
+});
 
 
 /***/ }),
@@ -1053,7 +1051,7 @@ function hideError(form) {
  * @param {string} email
  */
 function isCorrectEmail(email) {
-    return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
+    return email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
 }
 
 /**
@@ -1167,7 +1165,7 @@ function isCorrectPassword(pswd) {
  * @param {string} email
  */
 function isCorrectEmail(email) {
-    return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
+    return email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
 }
 
 /**

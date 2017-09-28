@@ -37,7 +37,8 @@
     "build": "webpack && babel src -d lib",
     "start": "webpack && npm run compile-pug && node server.js",
     "compile-pug": "pug -c --extension 'pug.js' --name-after-file ./public",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "eslint": "./node_modules/.bin/eslint ./public",
+    "eslint-fix": "./node_modules/.bin/eslint --fix ./public"
   },
   "keywords": [],
   "author": "",

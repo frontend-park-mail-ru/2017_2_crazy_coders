@@ -17,7 +17,7 @@ function hideError(form) {
  * @param {string} email
  */
 function isCorrectEmail(email) {
-    return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
+    return email.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/);
 }
 
 /**
