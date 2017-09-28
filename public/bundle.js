@@ -70,8 +70,18 @@
 "use strict";
 
 
+/**
+ * Базовый класс блока
+ * @module Block
+ */
 class Block {
-
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @constructor
+     */
     constructor(tagName = 'div', attrs = {}, classes = [], data = {}) {
         this.el = document.createElement(tagName);
 
@@ -86,45 +96,81 @@ class Block {
         this.setData(data);
     }
 
-
+    /**
+     * Установить новые данные блока
+     * @param {string} data
+     */
     setData(data) {
         this.data = data;
     }
 
+    /**
+     * Получить данные блока
+     */
     getData() {
         return this.data;
     }
 
+    /**
+     * Установить HTML содержимое блока
+     * @param {HTMLElement} html
+     */
     setHTML(html) {
         this.el.innerHTML = html;
     }
 
+    /**
+     * Устанавливает новый текст для элемента
+     * @param {string} text - устанавливаем текст
+     */
     setText(text) {
         this.el.textContent = text;
     }
 
-
+    /**
+     * Очищаем содержимое элемента
+     */
     clear() {
         this.el.innerHTML = '';
     }
 
+    /**
+     * Скрывает элемент
+     */
     hide() {
         this.el.setAttribute('hidden', 'hidden');
     }
 
+    /**
+     * Отображает элемент
+     */
     show() {
         this.el.removeAttribute('hidden');
     }
 
+    /**
+     * Возвращает элемент
+     * @returns {HTMLElement}
+     */
     getElement() {
         return this.el;
     }
 
+    /**
+     * Вставляет в себя элемент
+     * @param {HTMLElement} block
+     */
     append(block) {
         this.getElement().appendChild(block);
         return this;
     }
 
+    /**
+     * Позволяет подписаться на событие
+     * @param {string} event
+     * @param {EventListener} callback
+     * @return {function(this:Block)} - функция отписки от события
+     */
     on(event, callback) {
         this.el.addEventListener(event, callback);
         return function () {
@@ -415,7 +461,6 @@ function pug_rethrow(err, filename, lineno, str){
 
 
 
-
 class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* default */] {
     constructor(tagName = 'div', attrs = {}, classes = [], data) {
         super(tagName, attrs, classes, data);
@@ -430,50 +475,57 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
         return document.getElementsByClassName('back-button');
     }
 
-    onSubmitSignInForm(callback) {
+    onSubmitSignInForm() {
         let signInForm = document.getElementById('login-form');
 
-        signInForm.addEventListener('submit', function (e) {
-            e.preventDefault();
+        return new Promise((resolve) => {
+            signInForm.addEventListener('submit', (e) => {
+                e.preventDefault();
 
-            const formdata = {};
-            const elements = signInForm.elements;
+                const formdata = {};
+                const elements = signInForm.elements;
 
-            for (let name in elements) {
-                formdata[name] = elements[name].value;
-            }
+                for (let name in elements) {
+                    formdata[name] = elements[name].value;
+                }
 
-            const isValid = new __WEBPACK_IMPORTED_MODULE_2__ValidForm_ValidSignInForm__["a" /* default */](formdata.email, formdata.password, signInForm);
+                const isValid = new __WEBPACK_IMPORTED_MODULE_2__ValidForm_ValidSignInForm__["a" /* default */](formdata.email, formdata.password, signInForm);
 
-            callback(formdata, isValid.validForm());
-        }.bind(this));
+                if(isValid.validForm()) {
+                    resolve(formdata);
+                }
+            });
+        });
     }
 
     onSubmitSignUpForm(callback) {
         let signUpForm = document.getElementById('registry-form');
 
-        signUpForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+        return new Promise((resolve) => {
+            signUpForm.addEventListener('submit', (e) => {
+                e.preventDefault();
 
-            const formdata = {};
-            const elements = signUpForm.elements;
+                const formdata = {};
+                const elements = signUpForm.elements;
 
-            for (let name in elements) {
-                formdata[name] = elements[name].value;
-            }
+                for (let name in elements) {
+                    formdata[name] = elements[name].value;
+                }
 
-            const isValid = new __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidSignUpForm__["a" /* default */](formdata.username, formdata.email,
-                formdata.password, formdata.repeatPassword, signUpForm);
+                const isValid = new __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidSignUpForm__["a" /* default */](formdata.username, formdata.email,
+                    formdata.password, formdata.repeatPassword, signUpForm);
 
-            callback(formdata, isValid.validForm());
-        }, false);
+                if(isValid.validForm()) {
+                    resolve(formdata);
+                }
+            }, false);
+        });
     }
-
 
     static showFormMessage(msg, form) {
         let currentForm = form.getElement().getElementsByTagName('form')[0];
         currentForm.insertBefore(__WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidSignUpForm__["a" /* default */].createErrorElement(msg), currentForm.children[0]);
-    }
+        }
 
     reset() {
         Array.from(document.getElementsByTagName('form')).forEach(form => {
@@ -796,8 +848,7 @@ userService
 
 
 
-signInView.onSubmitSignInForm(function (formdata, isValid) {
-    if (isValid) {
+signInView.onSubmitSignInForm().then(formdata => {
         userService
             .signIn(formdata.email, formdata.password)
             .then(function () {
@@ -809,12 +860,10 @@ signInView.onSubmitSignInForm(function (formdata, isValid) {
                 console.log("[onSubmitSignInForm] err: " + err);
                 __WEBPACK_IMPORTED_MODULE_10__components_Form_Form_Form__["a" /* default */].showFormMessage('server error', signInView);
             });
-    }
-});
+    });
 
 
-signUpView.onSubmitSignUpForm(function (formdata, isValid) {
-    if (isValid) {
+signUpView.onSubmitSignUpForm().then(formdata => {
         return userService.signUp(formdata.username, formdata.email, formdata.password)
             .then(function () {
                 console.log("[onSubmitSignUpForm] Success sign up");
@@ -826,8 +875,7 @@ signUpView.onSubmitSignUpForm(function (formdata, isValid) {
                 console.log("[onSubmitSignUpForm] err: " + err);
                 __WEBPACK_IMPORTED_MODULE_10__components_Form_Form_Form__["a" /* default */].showFormMessage('server error', signUpView);
             });
-    }
-});
+    });
 
 
 /***/ }),
@@ -1318,7 +1366,7 @@ class UserService {
                     console.log('if: ' + response.json());
                     return response;
                 } else {
-                    console.log('else: ' + response.json());
+                    //console.log('else: ' + response.json());
                     throw response;
                 }
             })

@@ -242,8 +242,7 @@ userService
 
 
 
-signInView.onSubmitSignInForm(function (formdata, isValid) {
-    if (isValid) {
+signInView.onSubmitSignInForm().then(formdata => {
         userService
             .signIn(formdata.email, formdata.password)
             .then(function () {
@@ -255,12 +254,10 @@ signInView.onSubmitSignInForm(function (formdata, isValid) {
                 console.log("[onSubmitSignInForm] err: " + err);
                 Form.showFormMessage('server error', signInView);
             });
-    }
-});
+    });
 
 
-signUpView.onSubmitSignUpForm(function (formdata, isValid) {
-    if (isValid) {
+signUpView.onSubmitSignUpForm().then(formdata => {
         return userService.signUp(formdata.username, formdata.email, formdata.password)
             .then(function () {
                 console.log("[onSubmitSignUpForm] Success sign up");
@@ -272,5 +269,4 @@ signUpView.onSubmitSignUpForm(function (formdata, isValid) {
                 console.log("[onSubmitSignUpForm] err: " + err);
                 Form.showFormMessage('server error', signUpView);
             });
-    }
-});
+    });

@@ -53,7 +53,7 @@ export default class UserService {
                     console.log('if: ' + response.json());
                     return response;
                 } else {
-                    console.log('else: ' + response.json());
+                    //console.log('else: ' + response.json());
                     throw response;
                 }
             })
