@@ -40,26 +40,24 @@ export default class Form extends Block {
      * Позволяет подписаться на событие формы входа
      * @return {Promise}
      */
-    onSubmitSignInForm() {
+    onSubmitSignInForm(callback) {
         let signInForm = document.getElementById('login-form');
 
-        return new Promise((resolve) => {
-            signInForm.addEventListener('submit', (e) => {
-                e.preventDefault();
+        signInForm.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-                const formdata = {};
-                const elements = signInForm.elements;
+            const formdata = {};
+            const elements = signInForm.elements;
 
-                for (let name in elements) {
-                    formdata[name] = elements[name].value;
-                }
+            for (let name in elements) {
+                formdata[name] = elements[name].value;
+            }
 
-                const isValid = new ValidSignInForm(formdata.email, formdata.password, signInForm);
+            const isValid = new ValidSignInForm(formdata.email, formdata.password, signInForm);
 
-                if(isValid.validForm()) {
-                    resolve(formdata);
-                }
-            });
+            if(isValid.validForm()) {
+                callback(formdata);
+            }
         });
     }
 
@@ -70,25 +68,23 @@ export default class Form extends Block {
     onSubmitSignUpForm(callback) {
         let signUpForm = document.getElementById('registry-form');
 
-        return new Promise((resolve) => {
-            signUpForm.addEventListener('submit', (e) => {
-                e.preventDefault();
+        signUpForm.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-                const formdata = {};
-                const elements = signUpForm.elements;
+            const formdata = {};
+            const elements = signUpForm.elements;
 
-                for (let name in elements) {
-                    formdata[name] = elements[name].value;
-                }
+            for (let name in elements) {
+                formdata[name] = elements[name].value;
+            }
 
-                const isValid = new ValidSignUpForm(formdata.username, formdata.email,
-                    formdata.password, formdata.repeatPassword, signUpForm);
+            const isValid = new ValidSignUpForm(formdata.username, formdata.email,
+                formdata.password, formdata.repeatPassword, signUpForm);
 
-                if(isValid.validForm()) {
-                    resolve(formdata);
-                }
-            }, false);
-        });
+            if(isValid.validForm()) {
+                callback(formdata);
+            }
+        }, false);
     }
 
     /**

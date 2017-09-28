@@ -242,7 +242,7 @@ userService
 
 
 
-signInView.onSubmitSignInForm().then(formdata => {
+signInView.onSubmitSignInForm(formdata => {
         userService
             .signIn(formdata.email, formdata.password)
             .then(function () {
@@ -256,7 +256,7 @@ signInView.onSubmitSignInForm().then(formdata => {
             });
     });
 
-signUpView.onSubmitSignUpForm().then(formdata => {
+signUpView.onSubmitSignUpForm(formdata => {
         return userService.signUp(formdata.username, formdata.email, formdata.password)
             .then(function () {
                 console.log("[onSubmitSignUpForm] Success sign up");

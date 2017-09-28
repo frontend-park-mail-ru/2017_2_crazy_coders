@@ -496,26 +496,24 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
      * Позволяет подписаться на событие формы входа
      * @return {Promise}
      */
-    onSubmitSignInForm() {
+    onSubmitSignInForm(callback) {
         let signInForm = document.getElementById('login-form');
 
-        return new Promise((resolve) => {
-            signInForm.addEventListener('submit', (e) => {
-                e.preventDefault();
+        signInForm.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-                const formdata = {};
-                const elements = signInForm.elements;
+            const formdata = {};
+            const elements = signInForm.elements;
 
-                for (let name in elements) {
-                    formdata[name] = elements[name].value;
-                }
+            for (let name in elements) {
+                formdata[name] = elements[name].value;
+            }
 
-                const isValid = new __WEBPACK_IMPORTED_MODULE_2__ValidForm_ValidSignInForm__["a" /* default */](formdata.email, formdata.password, signInForm);
+            const isValid = new __WEBPACK_IMPORTED_MODULE_2__ValidForm_ValidSignInForm__["a" /* default */](formdata.email, formdata.password, signInForm);
 
-                if(isValid.validForm()) {
-                    resolve(formdata);
-                }
-            });
+            if(isValid.validForm()) {
+                callback(formdata);
+            }
         });
     }
 
@@ -910,7 +908,7 @@ userService
 
 
 
-signInView.onSubmitSignInForm().then(formdata => {
+signInView.onSubmitSignInForm(formdata => {
         userService
             .signIn(formdata.email, formdata.password)
             .then(function () {
@@ -987,6 +985,9 @@ let data = {
     ]
 };
 
+/**
+ * Получаем страницу входа
+ */
 function SignIn() {
     return new __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_Form__["a" /* default */]('section', {id: 'login'}, [], {data});
 }
@@ -1317,6 +1318,9 @@ let data = {
     ]
 };
 
+/**
+ * Получаем страницу регистрации
+ */
 function SignUp() {
     return new __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_Form__["a" /* default */]('section', {id: 'registry'}, [], {data});
 }
@@ -1336,6 +1340,9 @@ let data = {
     nameGame: 'TANKS',
 };
 
+/**
+ * Получаем страницу header
+ */
 function createHeader() {
     return new __WEBPACK_IMPORTED_MODULE_0__components_Header_Header__["a" /* default */]('section', {id: 'header'}, [], {data});
 }
@@ -1415,6 +1422,9 @@ let data = {
     ]
 };
 
+/**
+ * Получаем страницу незарегистрированного пользователя
+ */
 function createUnRegMenu() {
     return new __WEBPACK_IMPORTED_MODULE_0__components_Menu_Menu__["a" /* default */]('section', {id: 'input-page'}, [], {data});
 }
@@ -1733,6 +1743,9 @@ class User {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Menu_Menu__ = __webpack_require__(3);
 
 
+/**
+ * Получаем страницу зарегестрированного пользователя
+ */
 function createRegMenu() { //(user)
     // console.log(user);
     let data = {
@@ -1793,7 +1806,9 @@ let data = {
     ]
 };
 
-
+/**
+ * Получаем страницу о нас
+ */
 function createAboutUs() {
     return new __WEBPACK_IMPORTED_MODULE_0__components_Table_Table__["a" /* default */]('section', {id: 'about-page'}, [], {data});
 }
@@ -1869,7 +1884,9 @@ let data = {
     ]
 };
 
-
+/**
+ * Получаем страницу счета
+ */
 function Scoreboard() {
     return new __WEBPACK_IMPORTED_MODULE_0__components_Table_Table__["a" /* default */]('section', {id: 'about-page'}, [], {data});
 }
@@ -1904,7 +1921,9 @@ let data = {
     ]
 };
 
-
+/**
+ * Получаем страницу footer-а
+ */
 function CreateFooter() {
     return new __WEBPACK_IMPORTED_MODULE_0__components_Footer_Footer__["a" /* default */]('section', {id: 'buttons-panel'}, [], {data});
 }
