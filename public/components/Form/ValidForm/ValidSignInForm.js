@@ -1,5 +1,9 @@
 "use strict";
 
+/**
+ * Скрываем ошибки формы
+ * @param {HTMLElement} form
+ */
 function hideError(form) {
     let removeErrorCollection = form.getElementsByClassName('error-msg');
     const removeErrorArray = Array.from(removeErrorCollection);
@@ -8,22 +12,44 @@ function hideError(form) {
     });
 }
 
+/**
+ * Проверяем корректность email
+ * @param {string} email
+ */
 function isCorrectEmail(email) {
     return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
 }
 
+/**
+ * Проверяем корректность парооля
+ * @param {string} pswd
+ */
 function isCorrectPassword(pswd) {
     return pswd.match(/^[a-z0-9_-]{6,18}$/);
 }
 
-
+/**
+ * Класс валидации формы входа
+ * @module ValidSignInForm
+ */
 export default class ValidSignInForm {
+    /**
+     * @param {string} email
+     * @param {string} password
+     * @param {HTMLElement} form
+     * @constructor
+     */
     constructor(email, password, form) {
         this.email = email;
         this.password = password;
         this.currentForm = form;
     }
 
+    /**
+     * Создаём html элемент ошибки
+     * @param {string} msg - сообщение ошибки
+     * @returns {HTMLElement}
+     */
     static createErrorElement(msg) {
         let errorElement = document.createElement('p');
         errorElement.textContent = msg;
@@ -32,6 +58,10 @@ export default class ValidSignInForm {
         return errorElement;
     }
 
+    /**
+     * Валидируем форму
+     * @returns {boolean}
+     */
     validForm() {
         console.log('form: ' ,this.currentForm);
 

@@ -1,5 +1,9 @@
 "use strict";
 
+/**
+ * Скрываем ошибки формы
+ * @param {HTMLElement} form
+ */
 function hideError(form) {
     let removeErrorCollection = form.getElementsByClassName('error-msg');
     const removeErrorArray = Array.from(removeErrorCollection);
@@ -8,24 +12,52 @@ function hideError(form) {
     });
 }
 
+/**
+ * Проверяем корректность имени пользователя
+ * @param {string} username
+ */
 function isCorrectUsername(username) {
     return username.match(/^[a-z0-9_-]{3,16}$/);
 }
 
+/**
+ * Проверяем корректность парооля
+ * @param {string} pswd
+ */
 function isCorrectPassword(pswd) {
     return pswd.match(/^[a-z0-9_-]{6,18}$/);
 }
 
+/**
+ * Проверяем корректность email
+ * @param {string} email
+ */
 function isCorrectEmail(email) {
     return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
 }
 
-function isSamePasswords(pswd, pswdRepeat, form) {
+/**
+ * Проверяем пароль на совпадение
+ * @param {string} pswd
+ * @param {string} pswdRepeat
+ */
+function isSamePasswords(pswd, pswdRepeat) {
     return pswd === pswdRepeat;
 }
 
-
+/**
+ * Класс валидации формы регистрации
+ * @module ValidSignUpForm
+ */
 export default class ValidSignUpForm {
+    /**
+     * @param {string} login
+     * @param {string} email
+     * @param {string} password
+     * @param {string} repeatPassword
+     * @param {HTMLElement} form
+     * @constructor
+     */
     constructor(login, email, password, repeatPassword, form) {
         this.username = login;
         this.email = email;
@@ -34,7 +66,11 @@ export default class ValidSignUpForm {
         this.currentForm = form;
     }
 
-
+    /**
+     * Создаём html элемент ошибки
+     * @param {string} msg - сообщение ошибки
+     * @returns {HTMLElement}
+     */
     static createErrorElement(msg) {
         let errorElement = document.createElement('p');
         errorElement.textContent = msg;
@@ -43,6 +79,10 @@ export default class ValidSignUpForm {
         return errorElement;
     }
 
+    /**
+     * Валидируем форму
+     * @returns {boolean}
+     */
     validForm() {
 
         hideError(this.currentForm);
