@@ -1,0 +1,233 @@
+
+swagger: '2.0'
+info:
+  description: Rest api
+  version: 1.0.0
+  title: CaezarTeam
+  contact: {}
+consumes:
+  - application/json
+produces:
+  - application/json
+swagger: "2.0"
+info:
+  description: "This is a sample front-end server.  You can find out more about our game at [2017_2_crazy_coders](https://github.com/frontend-park-mail-ru/2017_2_crazy_coders) or on [heroku-tanks-game](https://arcane-lake-83667.herokuapp.com/)."
+  version: "1.0.0"
+  title: "Swagger TanksGame"
+host: "petstore.swagger.io"
+basePath: "/v2"
+paths:
+  /api/auth/signUp:
+    post:
+      summary: SignUp New User
+      consumes: []
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            required:
+              - email
+              - username
+              - password
+            properties:
+              email:
+                type: string
+                description: users email
+                enum:
+                  - qwerty@qwerty.ru
+              username:
+                type: string
+                description: users username
+                enum:
+                  - qwerty
+              password:
+                type: string
+                description: users password
+                enum:
+                  - qwerty
+      responses:
+        '200':
+          description: STATUS OK
+          schema:
+            type: object
+            required:
+              - id
+              - email
+              - username
+            properties:
+              id:
+                type: number
+                description: users id
+                enum:
+                  - 123
+              email:
+                type: string
+                description: users email
+                enum:
+                  - qwerty@qwerty.ru
+              username:
+                type: string
+                description: users username
+                enum:
+                  - qwerty
+        '400':
+          description: email/login exists
+          schema:
+            type: object
+            required:
+              - Cause
+            properties:
+              Cause:
+                type: string
+                description: Description of Cause
+                enum:
+                  - This email exists
+                  - This username exists
+                  - Incorrect format.
+
+  /api/auth/signIn:
+    post:
+      summary: SignIn User
+      consumes: []
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            required:
+              - email
+              - password
+            properties:
+              email:
+                type: string
+                description: user`s email
+                enum:
+                  - qwerty@qwerty.ru
+              password:
+                type: string
+                description: user`s password
+                enum:
+                  - qwerty
+      responses:
+        '200':
+          description: STATUS OK
+          schema:
+            type: object
+            required:
+              - id
+              - email
+              - username
+            properties:
+              id:
+                type: number
+                description: users id
+                enum:
+                  - 123
+              email:
+                type: string
+                description: users email
+                enum:
+                  - qwerty@qwerty.ru
+              username:
+                type: string
+                description: users username
+                enum:
+                  - qwerty
+        '400':
+          description: not registered
+          schema:
+            type: object
+            required:
+              - Cause
+            properties:
+              Cause:
+                type: string
+                description: Description of Cause
+                enum:
+                  - User didn`t registred
+
+        '403':
+          description: wrong password
+          schema:
+            type: object
+            required:
+              - Cause
+            properties:
+              Cause:
+                type: string
+                description: Description of Cause
+                enum:
+                  - Wrong password
+
+  /api/auth/profile:
+    get:
+      summary: Check user session
+      description: Authentication user by JSESSIONID
+      consumes: []
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: STATUS OK
+          schema:
+            type: object
+            required:
+              - id
+              - email
+              - username
+            properties:
+              id:
+                type: number
+                description: users id
+                enum:
+                  - 123
+              email:
+                type: string
+                description: users email
+                enum:
+                  - qwerty@qwerty.ru
+              username:
+                type: string
+                description: users username
+                enum:
+                  - qwerty
+        '401':
+          description: not authorized
+          schema:
+            type: object
+            required:
+              - Cause
+            properties:
+              Cause:
+                type: string
+                description: Description of Cause
+                enum:
+                  - User haven't authorized.
+
+  /api/auth/logout:
+    get:
+      summary: Logout session
+      parameters: []
+      responses:
+        '200':
+          description: SUCCESS
+        '401':
+          description: not authorized
+          schema:
+            type: object
+            required:
+              - Cause
+            properties:
+              Cause:
+                type: string
+                description: Description of Cause
+                enum:
+                  - You haven't authorized.
