@@ -53,6 +53,9 @@ let data = {
     ]
 };
 
+/**
+ * Получаем страницу регистрации
+ */
 export default function SignUp() {
     return new Form('section', {id: 'registry'}, [], {data});
 }

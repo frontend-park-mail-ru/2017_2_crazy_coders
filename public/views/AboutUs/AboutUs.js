@@ -29,7 +29,9 @@ let data = {
     ]
 };
 
-
+/**
+ * Получаем страницу о нас
+ */
 export default function createAboutUs() {
     return new Table('section', {id: 'about-page'}, [], {data});
 }

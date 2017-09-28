@@ -39,6 +39,9 @@ let data = {
     ]
 };
 
+/**
+ * Получаем страницу входа
+ */
 export default function SignIn() {
     return new Form('section', {id: 'login'}, [], {data});
 }

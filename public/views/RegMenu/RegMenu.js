@@ -1,5 +1,8 @@
 import Menu from '../../components/Menu/Menu';
 
+/**
+ * Получаем страницу зарегестрированного пользователя
+ */
 export default function createRegMenu() { //(user)
     // console.log(user);
     let data = {

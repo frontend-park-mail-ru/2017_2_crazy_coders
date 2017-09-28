@@ -32,7 +32,9 @@ let data = {
     ]
 };
 
-
+/**
+ * Получаем страницу счета
+ */
 export default function Scoreboard() {
     return new Table('section', {id: 'about-page'}, [], {data});
 }
