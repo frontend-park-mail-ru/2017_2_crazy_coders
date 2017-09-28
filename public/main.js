@@ -178,7 +178,7 @@ function isRegisteredUser() {
 
             case 'logout':
                 mainPageView.hide();
-                userService.logout();
+                UserService.logout();
                 isUnregisteredUser();
                 break;
         }

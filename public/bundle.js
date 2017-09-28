@@ -846,7 +846,7 @@ function isRegisteredUser() {
 
             case 'logout':
                 mainPageView.hide();
-                userService.logout();
+                __WEBPACK_IMPORTED_MODULE_5__services_UserService__["a" /* default */].logout();
                 isUnregisteredUser();
                 break;
         }
@@ -1459,6 +1459,10 @@ module.exports = template;
 
 
 
+/**
+ * Сервис для работы с юзерами
+ * @module UserService
+ */
 class UserService {
 
     constructor() {
@@ -1466,7 +1470,13 @@ class UserService {
         this.users = [];
     }
 
-
+    /**
+     * Регистрирует нового пользователя
+     * @param {string} username
+     * @param {string} email
+     * @param {string} password
+     * @return {Promise}
+     */
     signUp(username, email, password) {
 
         const requestBody = {username, email, password};
@@ -1482,6 +1492,12 @@ class UserService {
             });
     }
 
+    /**
+     * Авторизация пользователя
+     * @param {string} email
+     * @param {string} password
+     * @return {Promise}
+     */
     signIn(email, password) {
         return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/signIn', {email, password})
             .then((response) => {
@@ -1495,10 +1511,19 @@ class UserService {
             });
     }
 
+    /**
+     * Проверяет, авторизован ли пользователь
+     * @return {boolean}
+     */
     isAuthorized() {
         return !!this.user.id;
     }
 
+    /**
+     * Загружает данные о текущем пользователе
+     * @param {boolean} [force=true] - игнорировать ли кэш?
+     * @return {Promise}
+     */
     getProfile(force = true) {
         if (this.isAuthorized() && !force) {
             return Promise.resolve(this.user);
@@ -1517,11 +1542,17 @@ class UserService {
             })
     }
 
+    /**
+     * Получить данного пользователя
+     */
     getUserLogin() {
         return this.user;
     }
 
-    logout() {
+    /**
+     * Выход
+     */
+    static logout() {
         __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchGet('/logout');
     }
 }
@@ -1534,12 +1565,24 @@ class UserService {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class Http {
 
+/**
+ * Модуль, предоставляющий методы для выполнения HTTP-запросов
+ * @module Http
+ */
+class Http {
+    /**
+     * @constructor
+     */
     constructor() {
         this.baseUrl = 'http://82.202.246.5:8080';
     }
 
+    /**
+     * Выполняет GET-запрос по указанному адресу
+     * @param {string} address - адрес запроса
+     * @param {Function} callback - функция-коллбек
+     */
     static Get(address, callback) {
         const xhr = new XMLHttpRequest();
         xhr.open('GET', address, true);
@@ -1558,6 +1601,12 @@ class Http {
         xhr.send();
     }
 
+    /**
+     * Выполняет POST-запрос по указанному адресу
+     * @param {string} address - адрес запроса
+     * @param {*} body - тело запроса (объект)
+     * @param {Function} callback - функция-коллбек
+     */
     static Post(address, body, callback) {
         const xhr = new XMLHttpRequest();
         xhr.open('POST', address, true);
@@ -1579,6 +1628,11 @@ class Http {
         xhr.send(JSON.stringify(body));
     }
 
+    /**
+     * Выполняет GET-запрос по указанному адресу с использованием fetch
+     * @param {string} address - адрес запроса
+     * @return {Promise}
+     */
     static FetchGet(address) {
         const url = 'http://82.202.246.5:8080' + address;
 
@@ -1599,6 +1653,12 @@ class Http {
             });
     }
 
+    /**
+     * Выполняет POST-запрос по указанному адресу с использованием fetch
+     * @param {string} address - адрес запроса
+     * @param {*} body - тело запроса (объект)
+     * @return {Promise}
+     */
     static FetchPost (address, body) {
         const url = 'http://82.202.246.5:8080' + address;
 
