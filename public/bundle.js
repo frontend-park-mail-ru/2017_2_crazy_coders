@@ -582,17 +582,31 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
 
 
 
-class Header extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* default */] {
+/**
+ * Класс Menu-а
+ * @module Menu
+ */
+class Menu extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* default */] {
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @constructor
+     */
     constructor(tagName = 'div', attrs = {}, classes = [], data) {
         super(tagName, attrs, classes, data);
     }
 
+    /**
+     * Получить Menu
+     */
     getMenu() {
         this.setHTML(__WEBPACK_IMPORTED_MODULE_1__template_Menu_pug___default()(this.getData()));
         return this.getElement();
     }
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = Header;
+/* harmony export (immutable) */ __webpack_exports__["a"] = Menu;
 
 
 
@@ -607,17 +621,31 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /*
 
 
 
-class Header extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* default */] {
+/**
+ * Класс Table
+ * @module Table
+ */
+class Table extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* default */] {
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @constructor
+     */
     constructor(tagName = 'div', attrs = {}, classes = [], data) {
         super(tagName, attrs, classes, data);
     }
 
+    /**
+     * Получить Table
+     */
     getTable() {
         this.setHTML(__WEBPACK_IMPORTED_MODULE_1__template_Table_pug___default()(this.getData()));
         return this.getElement();
     }
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = Header;
+/* harmony export (immutable) */ __webpack_exports__["a"] = Table;
 
 
 
@@ -1007,6 +1035,10 @@ module.exports = template;
 "use strict";
 
 
+/**
+ * Скрываем ошибки формы
+ * @param {HTMLElement} form
+ */
 function hideError(form) {
     let removeErrorCollection = form.getElementsByClassName('error-msg');
     const removeErrorArray = Array.from(removeErrorCollection);
@@ -1015,22 +1047,44 @@ function hideError(form) {
     });
 }
 
+/**
+ * Проверяем корректность email
+ * @param {string} email
+ */
 function isCorrectEmail(email) {
     return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
 }
 
+/**
+ * Проверяем корректность парооля
+ * @param {string} pswd
+ */
 function isCorrectPassword(pswd) {
     return pswd.match(/^[a-z0-9_-]{6,18}$/);
 }
 
-
+/**
+ * Класс валидации формы входа
+ * @module ValidSignInForm
+ */
 class ValidSignInForm {
+    /**
+     * @param {string} email
+     * @param {string} password
+     * @param {HTMLElement} form
+     * @constructor
+     */
     constructor(email, password, form) {
         this.email = email;
         this.password = password;
         this.currentForm = form;
     }
 
+    /**
+     * Создаём html элемент ошибки
+     * @param {string} msg - сообщение ошибки
+     * @returns {HTMLElement}
+     */
     static createErrorElement(msg) {
         let errorElement = document.createElement('p');
         errorElement.textContent = msg;
@@ -1039,6 +1093,10 @@ class ValidSignInForm {
         return errorElement;
     }
 
+    /**
+     * Валидируем форму
+     * @returns {boolean}
+     */
     validForm() {
         console.log('form: ' ,this.currentForm);
 
@@ -1075,6 +1133,10 @@ class ValidSignInForm {
 "use strict";
 
 
+/**
+ * Скрываем ошибки формы
+ * @param {HTMLElement} form
+ */
 function hideError(form) {
     let removeErrorCollection = form.getElementsByClassName('error-msg');
     const removeErrorArray = Array.from(removeErrorCollection);
@@ -1083,24 +1145,52 @@ function hideError(form) {
     });
 }
 
+/**
+ * Проверяем корректность имени пользователя
+ * @param {string} username
+ */
 function isCorrectUsername(username) {
     return username.match(/^[a-z0-9_-]{3,16}$/);
 }
 
+/**
+ * Проверяем корректность парооля
+ * @param {string} pswd
+ */
 function isCorrectPassword(pswd) {
     return pswd.match(/^[a-z0-9_-]{6,18}$/);
 }
 
+/**
+ * Проверяем корректность email
+ * @param {string} email
+ */
 function isCorrectEmail(email) {
     return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
 }
 
-function isSamePasswords(pswd, pswdRepeat, form) {
+/**
+ * Проверяем пароль на совпадение
+ * @param {string} pswd
+ * @param {string} pswdRepeat
+ */
+function isSamePasswords(pswd, pswdRepeat) {
     return pswd === pswdRepeat;
 }
 
-
+/**
+ * Класс валидации формы регистрации
+ * @module ValidSignUpForm
+ */
 class ValidSignUpForm {
+    /**
+     * @param {string} login
+     * @param {string} email
+     * @param {string} password
+     * @param {string} repeatPassword
+     * @param {HTMLElement} form
+     * @constructor
+     */
     constructor(login, email, password, repeatPassword, form) {
         this.username = login;
         this.email = email;
@@ -1109,7 +1199,11 @@ class ValidSignUpForm {
         this.currentForm = form;
     }
 
-
+    /**
+     * Создаём html элемент ошибки
+     * @param {string} msg - сообщение ошибки
+     * @returns {HTMLElement}
+     */
     static createErrorElement(msg) {
         let errorElement = document.createElement('p');
         errorElement.textContent = msg;
@@ -1118,6 +1212,10 @@ class ValidSignUpForm {
         return errorElement;
     }
 
+    /**
+     * Валидируем форму
+     * @returns {boolean}
+     */
     validForm() {
 
         hideError(this.currentForm);
@@ -1254,11 +1352,25 @@ function createHeader() {
 
 
 
+/**
+ * Класс Header-а
+ * @module Header
+ */
 class Header extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* default */] {
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @constructor
+     */
     constructor(tagName = 'div', attrs = {}, classes = [], data) {
         super(tagName, attrs, classes, data);
     }
 
+    /**
+     * Получить Header
+     */
     getHeader() {
         this.setHTML(__WEBPACK_IMPORTED_MODULE_1__template_Header_pug___default()(this.getData()));
         return this.getElement();
@@ -1521,7 +1633,15 @@ class Http {
 "use strict";
 
 
+/**
+ * Класс пользователя
+ * @module User
+ */
 class User {
+    /**
+     * @param {object} opt - данные пользователя
+     * @constructor
+     */
     constructor(opt) {
         this.email = opt.email || '';
         this.username = opt.username || '';
@@ -1529,6 +1649,10 @@ class User {
         this.score = opt.score || 0;
     }
 
+    /**
+     * Установить новые данные пользователя
+     * @param {object} userData
+     */
     set(userData) {
         this.id = userData.id;
         this.username = userData.username;
@@ -1536,8 +1660,9 @@ class User {
         this.score = userData.score || 0;
     }
 }
+/* harmony export (immutable) */ __webpack_exports__["a"] = User;
 
-/* harmony default export */ __webpack_exports__["a"] = (User);
+
 
 /***/ }),
 /* 20 */

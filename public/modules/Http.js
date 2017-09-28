@@ -1,9 +1,21 @@
-export default class Http {
 
+/**
+ * Модуль, предоставляющий методы для выполнения HTTP-запросов
+ * @module Http
+ */
+export default class Http {
+    /**
+     * @constructor
+     */
     constructor() {
         this.baseUrl = 'http://82.202.246.5:8080';
     }
 
+    /**
+     * Выполняет GET-запрос по указанному адресу
+     * @param {string} address - адрес запроса
+     * @param {Function} callback - функция-коллбек
+     */
     static Get(address, callback) {
         const xhr = new XMLHttpRequest();
         xhr.open('GET', address, true);
@@ -22,6 +34,12 @@ export default class Http {
         xhr.send();
     }
 
+    /**
+     * Выполняет POST-запрос по указанному адресу
+     * @param {string} address - адрес запроса
+     * @param {*} body - тело запроса (объект)
+     * @param {Function} callback - функция-коллбек
+     */
     static Post(address, body, callback) {
         const xhr = new XMLHttpRequest();
         xhr.open('POST', address, true);
@@ -43,6 +61,11 @@ export default class Http {
         xhr.send(JSON.stringify(body));
     }
 
+    /**
+     * Выполняет GET-запрос по указанному адресу с использованием fetch
+     * @param {string} address - адрес запроса
+     * @return {Promise}
+     */
     static FetchGet(address) {
         const url = 'http://82.202.246.5:8080' + address;
 
@@ -63,6 +86,12 @@ export default class Http {
             });
     }
 
+    /**
+     * Выполняет POST-запрос по указанному адресу с использованием fetch
+     * @param {string} address - адрес запроса
+     * @param {*} body - тело запроса (объект)
+     * @return {Promise}
+     */
     static FetchPost (address, body) {
         const url = 'http://82.202.246.5:8080' + address;
 
