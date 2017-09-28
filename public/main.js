@@ -85,7 +85,7 @@ function isUnregisteredUser() {
         }
     });
 
-    let backButtonCollection = signInView.getBackButton();
+    let backButtonCollection = Form.getBackButton();
     const backButtonArray = Array.from(backButtonCollection);
 
     backButtonArray.forEach(button => {
@@ -247,7 +247,7 @@ signInView.onSubmitSignInForm().then(formdata => {
             .signIn(formdata.email, formdata.password)
             .then(function () {
                 console.log("[onSubmitSignInForm] Success sign in");
-                signInView.reset();
+                Form.reset();
                 isRegisteredUser();
             })
             .catch((err) => {
@@ -260,7 +260,7 @@ signUpView.onSubmitSignUpForm().then(formdata => {
         return userService.signUp(formdata.username, formdata.email, formdata.password)
             .then(function () {
                 console.log("[onSubmitSignUpForm] Success sign up");
-                signUpView.reset();
+                Form.reset();
                 isRegisteredUser();
             })
 

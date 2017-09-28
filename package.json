@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "body-parser": "^1.18.1",
+    "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
     "eslint-loader": "^1.9.0",
-    "express": "^4.15.4",
+    "express": "^4.15.5",
     "path": "^0.12.7",
     "pug": "^2.0.0-rc.4",
     "pug-cli": "^1.0.0-alpha6",

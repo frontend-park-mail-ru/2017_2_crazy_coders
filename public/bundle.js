@@ -461,20 +461,41 @@ function pug_rethrow(err, filename, lineno, str){
 
 
 
+/**
+ * Класс формы
+ * @module Form
+ */
 class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* default */] {
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @constructor
+     */
     constructor(tagName = 'div', attrs = {}, classes = [], data) {
         super(tagName, attrs, classes, data);
     }
 
+    /**
+     * Получить форму
+     */
     getForm() {
         this.setHTML(__WEBPACK_IMPORTED_MODULE_1__template_Form_pug___default()(this.getData()));
         return this.getElement();
     }
 
-    getBackButton() {
+    /**
+     * Получить кнопку назад из страницы с формы
+     */
+    static getBackButton() {
         return document.getElementsByClassName('back-button');
     }
 
+    /**
+     * Позволяет подписаться на событие формы входа
+     * @return {Promise}
+     */
     onSubmitSignInForm() {
         let signInForm = document.getElementById('login-form');
 
@@ -498,6 +519,10 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
         });
     }
 
+    /**
+     * Позволяет подписаться на событие формы регистрации
+     * @return {Promise}
+     */
     onSubmitSignUpForm(callback) {
         let signUpForm = document.getElementById('registry-form');
 
@@ -522,12 +547,21 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
         });
     }
 
+    /**
+     * Показываем ошибки к форме
+     * @param {string}  msg - сообщение
+     * @param {HTMLElement} form
+     * @return {Promise}
+     */
     static showFormMessage(msg, form) {
         let currentForm = form.getElement().getElementsByTagName('form')[0];
         currentForm.insertBefore(__WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidSignUpForm__["a" /* default */].createErrorElement(msg), currentForm.children[0]);
         }
 
-    reset() {
+    /**
+     * Очищаем поля форм
+     */
+    static reset() {
         Array.from(document.getElementsByTagName('form')).forEach(form => {
             form.reset();
         });
@@ -691,7 +725,7 @@ function isUnregisteredUser() {
         }
     });
 
-    let backButtonCollection = signInView.getBackButton();
+    let backButtonCollection = __WEBPACK_IMPORTED_MODULE_10__components_Form_Form_Form__["a" /* default */].getBackButton();
     const backButtonArray = Array.from(backButtonCollection);
 
     backButtonArray.forEach(button => {
@@ -853,7 +887,7 @@ signInView.onSubmitSignInForm().then(formdata => {
             .signIn(formdata.email, formdata.password)
             .then(function () {
                 console.log("[onSubmitSignInForm] Success sign in");
-                signInView.reset();
+                __WEBPACK_IMPORTED_MODULE_10__components_Form_Form_Form__["a" /* default */].reset();
                 isRegisteredUser();
             })
             .catch((err) => {
@@ -866,7 +900,7 @@ signUpView.onSubmitSignUpForm().then(formdata => {
         return userService.signUp(formdata.username, formdata.email, formdata.password)
             .then(function () {
                 console.log("[onSubmitSignUpForm] Success sign up");
-                signUpView.reset();
+                __WEBPACK_IMPORTED_MODULE_10__components_Form_Form_Form__["a" /* default */].reset();
                 isRegisteredUser();
             })
 
@@ -1702,17 +1736,31 @@ function CreateFooter() {
 
 
 
-class Header extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* default */] {
+/**
+ * Класс footer-а
+ * @module Footer
+ */
+class Footer extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* default */] {
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @constructor
+     */
     constructor(tagName = 'div', attrs = {}, classes = [], data) {
         super(tagName, attrs, classes, data);
     }
 
+    /**
+     * Получить footer
+     */
     getFooter() {
         this.setHTML(__WEBPACK_IMPORTED_MODULE_1__template_Footer_pug___default()(this.getData()));
         return this.getElement();
     }
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = Header;
+/* harmony export (immutable) */ __webpack_exports__["a"] = Footer;
 
 
 
