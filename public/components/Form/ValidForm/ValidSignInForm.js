@@ -68,8 +68,7 @@ export default class ValidSignInForm {
         hideError(this.currentForm);
 
         let flag = true;
-        const loginField = this.currentForm.children[0],
-            passwordField = this.currentForm.children[1];
+        const [loginField, passwordField] = this.currentForm.children;
 
         const minLenPassword = 6,
             maxLenPassword = 18;

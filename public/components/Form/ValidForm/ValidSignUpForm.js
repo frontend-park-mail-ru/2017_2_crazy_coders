@@ -81,10 +81,7 @@ export default class ValidSignUpForm {
         hideError(this.currentForm);
 
         let flag = true;
-        const usernameField = this.currentForm.children[0],
-            emailField = this.currentForm.children[1],
-            passwordField = this.currentForm.children[2],
-            repeatPasswordField = this.currentForm.children[3];
+        const [usernameField, emailField, passwordField, repeatPasswordField] = this.currentForm.children;
 
         const minLenUsername = 4,
             maxLenUsername = 15,
