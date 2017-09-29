@@ -94,6 +94,9 @@ export default class UserService {
      * Выход
      */
     static logout() {
-        Http.FetchGet('/logout');
+        Http.FetchGet('/logout').then(response => {
+            console.log("[logout] response:" + response.json());
+        })
+
     }
 }

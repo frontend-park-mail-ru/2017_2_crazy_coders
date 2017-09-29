@@ -26,10 +26,11 @@ module.exports = {
             },*/
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
+                loader: 'style-loader!css-loader',
+             /*   use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: ['css-loader']
-                })
+                })*/
             },
             {
                 test: /\.(png|svg|jpg|gif|jpeg)$/,

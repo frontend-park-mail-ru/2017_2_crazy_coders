@@ -238,11 +238,12 @@ function isRegisteredUser() {
 
 userService
     .getProfile()
-    .then(() => {
+    .then((response) => {
+        console.log("[userService.getProfile] response: " + response);
         isRegisteredUser();
     })
     .catch((err) => {
-        console.error("[userService.getProfile] err: " + err);
+        console.log("[userService.getProfile] err: " + err);
         isUnregisteredUser();
     });
 
