@@ -1004,7 +1004,6 @@ function isRegisteredUser() {
 
     let backButtonCollection = __WEBPACK_IMPORTED_MODULE_10__components_Form_Form_Form__["a" /* default */].getBackButton();
     const backButtonArray = Array.from(backButtonCollection);
-    console.log(backButtonArray);
     backButtonArray.forEach(button => {
         button.removeEventListener('click', (event) => {}, false);
     });

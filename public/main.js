@@ -163,7 +163,6 @@ function isRegisteredUser() {
 
     let backButtonCollection = Form.getBackButton();
     const backButtonArray = Array.from(backButtonCollection);
-    console.log(backButtonArray);
     backButtonArray.forEach(button => {
         button.removeEventListener('click', (event) => {}, false);
     });
