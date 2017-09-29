@@ -26,10 +26,17 @@ let data = {
             position: 'BACKEND',
 
         },
+        {
+            name: 'ALEXANDER TSVETKOV',
+            position: 'MENTOR',
+
+        },
     ]
 };
 
-
+/**
+ * Получаем страницу о нас
+ */
 export default function createAboutUs() {
     return new Table('section', {id: 'about-page'}, [], {data});
 }

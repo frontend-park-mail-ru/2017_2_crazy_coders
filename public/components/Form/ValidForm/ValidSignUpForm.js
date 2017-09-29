@@ -1,5 +1,9 @@
 "use strict";
 
+/**
+ * Скрываем ошибки формы
+ * @param {HTMLElement} form
+ */
 function hideError(form) {
     let removeErrorCollection = form.getElementsByClassName('error-msg');
     const removeErrorArray = Array.from(removeErrorCollection);
@@ -8,24 +12,46 @@ function hideError(form) {
     });
 }
 
-function isCorrectUsername(username) {
-    return username.match(/^[a-z0-9_-]{3,16}$/);
+/**
+ * Проверяем корректность поля формы
+ * @param {string} text
+ * @param {int} minLenField
+ * @param {int} maxLenField
+ */
+function isCorrectTextField(text, minLenField, maxLenField) {
+    return text.match(new RegExp('^[a-z0-9_-]{' + minLenField + ','+ maxLenField +'}$'));
 }
 
-function isCorrectPassword(pswd) {
-    return pswd.match(/^[a-z0-9_-]{6,18}$/);
-}
-
+/**
+ * Проверяем корректность email
+ * @param {string} email
+ */
 function isCorrectEmail(email) {
-    return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
+    return email.match(new RegExp('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$'));
 }
 
-function isSamePasswords(pswd, pswdRepeat, form) {
+/**
+ * Проверяем пароль на совпадение
+ * @param {string} pswd
+ * @param {string} pswdRepeat
+ */
+function isSamePasswords(pswd, pswdRepeat) {
     return pswd === pswdRepeat;
 }
 
-
+/**
+ * Класс валидации формы регистрации
+ * @module ValidSignUpForm
+ */
 export default class ValidSignUpForm {
+    /**
+     * @param {string} login
+     * @param {string} email
+     * @param {string} password
+     * @param {string} repeatPassword
+     * @param {HTMLElement} form
+     * @constructor
+     */
     constructor(login, email, password, repeatPassword, form) {
         this.username = login;
         this.email = email;
@@ -34,7 +60,11 @@ export default class ValidSignUpForm {
         this.currentForm = form;
     }
 
-
+    /**
+     * Создаём html элемент ошибки
+     * @param {string} msg - сообщение ошибки
+     * @returns {HTMLElement}
+     */
     static createErrorElement(msg) {
         let errorElement = document.createElement('p');
         errorElement.textContent = msg;
@@ -43,17 +73,22 @@ export default class ValidSignUpForm {
         return errorElement;
     }
 
+    /**
+     * Валидируем форму
+     * @returns {boolean}
+     */
     validForm() {
-
         hideError(this.currentForm);
 
         let flag = true;
-        const usernameField = this.currentForm.children[0],
-            emailField = this.currentForm.children[1],
-            passwordField = this.currentForm.children[2],
-            repeatPasswordField = this.currentForm.children[3];
+        const [usernameField, emailField, passwordField, repeatPasswordField] = this.currentForm.children;
 
-        if (!isCorrectUsername(this.username)) {
+        const minLenUsername = 4,
+            maxLenUsername = 15,
+            minLenPassword = 6,
+            maxLenPassword = 18;
+
+        if (!isCorrectTextField(this.username, minLenUsername, maxLenUsername)) {
             flag = false;
             this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid username'), usernameField);
         }
@@ -63,7 +98,7 @@ export default class ValidSignUpForm {
             this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid email'), emailField);
         }
 
-        if (!isCorrectPassword(this.password)) {
+        if (!isCorrectTextField(this.password, minLenPassword, maxLenPassword)) {
             flag = false;
             this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid password'), passwordField);
         }

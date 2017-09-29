@@ -71,38 +71,38 @@ function isUnregisteredUser() {
         const elemId = event.target.getAttribute('id');
 
         switch (elemId) {
-            case 'button-log':
-                footerImgView.hide();
-                inputMenuView.hide();
-                signInView.show();
-                break;
+        case 'button-log':
+            footerImgView.hide();
+            inputMenuView.hide();
+            signInView.show();
+            break;
 
-            case 'button-register':
-                footerImgView.hide();
-                inputMenuView.hide();
-                signUpView.show();
-                break;
+        case 'button-register':
+            footerImgView.hide();
+            inputMenuView.hide();
+            signUpView.show();
+            break;
         }
     });
 
-    let backButtonCollection = signInView.getBackButton();
+    let backButtonCollection = Form.getBackButton();
     const backButtonArray = Array.from(backButtonCollection);
 
     backButtonArray.forEach(button => {
         button.addEventListener('click', (event) => {
             const elemId = event.target.getAttribute('id');
             switch (elemId) {
-                case 'back-sign-in':
-                    signInView.hide();
-                    inputMenuView.show();
-                    footerImgView.show();
-                    break;
+            case 'back-sign-in':
+                signInView.hide();
+                inputMenuView.show();
+                footerImgView.show();
+                break;
 
-                case 'back-sign-up':
-                    signUpView.hide();
-                    inputMenuView.show();
-                    footerImgView.show();
-                    break;
+            case 'back-sign-up':
+                signUpView.hide();
+                inputMenuView.show();
+                footerImgView.show();
+                break;
             }
         });
     });
@@ -113,23 +113,23 @@ function isUnregisteredUser() {
         const elemId = event.target.getAttribute('id');
 
         switch (elemId) {
-            case 'sound-logo':
-                console.log('music');
-                break;
+        case 'sound-logo':
+            console.log('music');
+            break;
 
-            case 'score-logo':
-                footerImgView.hide();
-                inputMenuView.hide();
-                mainPageView.hide();
-                scoreView.show();
-                break;
+        case 'score-logo':
+            footerImgView.hide();
+            inputMenuView.hide();
+            mainPageView.hide();
+            scoreView.show();
+            break;
 
-            case 'about-logo':
-                footerImgView.hide();
-                inputMenuView.hide();
-                mainPageView.hide();
-                aboutUsView.show();
-                break;
+        case 'about-logo':
+            footerImgView.hide();
+            inputMenuView.hide();
+            mainPageView.hide();
+            aboutUsView.show();
+            break;
         }
     });
 
@@ -139,17 +139,17 @@ function isUnregisteredUser() {
         const elemId = event.target.getAttribute('id');
 
         switch (elemId) {
-            case 'back-score':
-                footerImgView.show();
-                inputMenuView.show();
-                scoreView.hide();
-                break;
+        case 'back-score':
+            footerImgView.show();
+            inputMenuView.show();
+            scoreView.hide();
+            break;
 
-            case 'back-about':
-                footerImgView.show();
-                inputMenuView.show();
-                aboutUsView.hide();
-                break
+        case 'back-about':
+            footerImgView.show();
+            inputMenuView.show();
+            aboutUsView.hide();
+            break;
         }
     });
 }
@@ -160,6 +160,12 @@ function isRegisteredUser() {
     footerImgEventDelete();
     footerDivEventDelete();
     mainPageEventDelete();
+
+    let backButtonCollection = Form.getBackButton();
+    const backButtonArray = Array.from(backButtonCollection);
+    backButtonArray.forEach(button => {
+        button.removeEventListener('click', (event) => {}, false);
+    });
 
     inputMenuView.hide();
     signInView.hide();
@@ -172,15 +178,15 @@ function isRegisteredUser() {
         const elemId = event.target.getAttribute('id');
 
         switch (elemId) {
-            case 'start-game':
-                console.log('i am start');
-                break;
+        case 'start-game':
+            console.log('i am start');
+            break;
 
-            case 'logout':
-                mainPageView.hide();
-                userService.logout();
-                isUnregisteredUser();
-                break;
+        case 'logout':
+            mainPageView.hide();
+            UserService.logout();
+            isUnregisteredUser();
+            break;
         }
     });
 
@@ -189,23 +195,23 @@ function isRegisteredUser() {
         const elemId = event.target.getAttribute('id');
 
         switch (elemId) {
-            case 'sound-logo':
-                console.log('music');
-                break;
+        case 'sound-logo':
+            console.log('music');
+            break;
 
-            case 'score-logo':
-                footerImgView.hide();
-                inputMenuView.hide();
-                mainPageView.hide();
-                scoreView.show();
-                break;
+        case 'score-logo':
+            footerImgView.hide();
+            inputMenuView.hide();
+            mainPageView.hide();
+            scoreView.show();
+            break;
 
-            case 'about-logo':
-                footerImgView.hide();
-                inputMenuView.hide();
-                mainPageView.hide();
-                aboutUsView.show();
-                break;
+        case 'about-logo':
+            footerImgView.hide();
+            inputMenuView.hide();
+            mainPageView.hide();
+            aboutUsView.show();
+            break;
         }
     });
 
@@ -214,17 +220,17 @@ function isRegisteredUser() {
         const elemId = event.target.getAttribute('id');
 
         switch (elemId) {
-            case 'back-score':
-                footerImgView.show();
-                mainPageView.show();
-                scoreView.hide();
-                break;
+        case 'back-score':
+            footerImgView.show();
+            mainPageView.show();
+            scoreView.hide();
+            break;
 
-            case 'back-about':
-                footerImgView.show();
-                mainPageView.show();
-                aboutUsView.hide();
-                break
+        case 'back-about':
+            footerImgView.show();
+            mainPageView.show();
+            aboutUsView.hide();
+            break;
         }
     });
 }
@@ -232,40 +238,41 @@ function isRegisteredUser() {
 
 userService
     .getProfile()
-    .then(() => {
+    .then((response) => {
+        console.log("[userService.getProfile] response: " + response);
         isRegisteredUser();
     })
     .catch((err) => {
-        console.error("[userService.getProfile] err: " + err);
+        console.log("[userService.getProfile] err: " + err);
         isUnregisteredUser();
     });
 
 
 
-signInView.onSubmitSignInForm().then(formdata => {
-        userService
-            .signIn(formdata.email, formdata.password)
-            .then(function () {
-                console.log("[onSubmitSignInForm] Success sign in");
-                signInView.reset();
-                isRegisteredUser();
-            })
-            .catch((err) => {
-                console.log("[onSubmitSignInForm] err: " + err);
-                Form.showFormMessage('server error', signInView);
-            });
-    });
+signInView.onSubmitSignInForm(formdata => {
+    userService
+        .signIn(formdata.email, formdata.password)
+        .then(function () {
+            console.log("[onSubmitSignInForm] Success sign in");
+            Form.reset();
+            isRegisteredUser();
+        })
+        .catch((err) => {
+            console.log("[onSubmitSignInForm] err: " + err);
+            Form.showFormMessage('server error', signInView);
+        });
+});
 
-signUpView.onSubmitSignUpForm().then(formdata => {
-        return userService.signUp(formdata.username, formdata.email, formdata.password)
-            .then(function () {
-                console.log("[onSubmitSignUpForm] Success sign up");
-                signUpView.reset();
-                isRegisteredUser();
-            })
+signUpView.onSubmitSignUpForm(formdata => {
+    return userService.signUp(formdata.username, formdata.email, formdata.password)
+        .then(function () {
+            console.log("[onSubmitSignUpForm] Success sign up");
+            Form.reset();
+            isRegisteredUser();
+        })
 
-            .catch((err) => {
-                console.log("[onSubmitSignUpForm] err: " + err);
-                Form.showFormMessage('server error', signUpView);
-            });
-    });
+        .catch((err) => {
+            console.log("[onSubmitSignUpForm] err: " + err);
+            Form.showFormMessage('server error', signUpView);
+        });
+});

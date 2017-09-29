@@ -1,6 +1,10 @@
 import Http from '../modules/Http';
 import User from '../model/User';
 
+/**
+ * Сервис для работы с юзерами
+ * @module UserService
+ */
 export default class UserService {
 
     constructor() {
@@ -8,7 +12,13 @@ export default class UserService {
         this.users = [];
     }
 
-
+    /**
+     * Регистрирует нового пользователя
+     * @param {string} username
+     * @param {string} email
+     * @param {string} password
+     * @return {Promise}
+     */
     signUp(username, email, password) {
 
         const requestBody = {username, email, password};
@@ -24,6 +34,12 @@ export default class UserService {
             });
     }
 
+    /**
+     * Авторизация пользователя
+     * @param {string} email
+     * @param {string} password
+     * @return {Promise}
+     */
     signIn(email, password) {
         return Http.FetchPost('/signIn', {email, password})
             .then((response) => {
@@ -37,15 +53,23 @@ export default class UserService {
             });
     }
 
+    /**
+     * Проверяет, авторизован ли пользователь
+     * @return {boolean}
+     */
     isAuthorized() {
-        return !!this.user.id;
+        return !!this.user.getId();
     }
 
+    /**
+     * Загружает данные о текущем пользователе
+     * @param {boolean} [force=true] - игнорировать ли кэш?
+     * @return {Promise}
+     */
     getProfile(force = true) {
         if (this.isAuthorized() && !force) {
-            return Promise.resolve(this.user);
+            return Promise.resolve(this.user.get());
         }
-
         return Http.FetchGet('/profile')
             .then((response) => {
                 if (response.status === 200) {
@@ -59,11 +83,20 @@ export default class UserService {
             })
     }
 
+    /**
+     * Получить данного пользователя
+     */
     getUserLogin() {
-        return this.user;
+        return this.user.get();
     }
 
-    logout() {
-        Http.FetchGet('/logout');
+    /**
+     * Выход
+     */
+    static logout() {
+        Http.FetchGet('/logout').then(response => {
+            console.log("[logout] response:" + response.json());
+        })
+
     }
 }

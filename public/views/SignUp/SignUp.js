@@ -1,6 +1,7 @@
 'use strict';
 
-import Form from '../../components/Form/Form/Form';
+import SignUpForm from '../../components/Form/Form/SignUpForm';
+import ValidSignUpForm from '../../components/Form/ValidForm/ValidSignUpForm';
 
 let data = {
     title: 'SIGN UP',
@@ -53,7 +54,10 @@ let data = {
     ]
 };
 
+/**
+ * Получаем страницу регистрации
+ */
 export default function SignUp() {
-    return new Form('section', {id: 'registry'}, [], {data});
+    return new SignUpForm('section', {id: 'registry'}, [], {data}, ValidSignUpForm);
 }
 
