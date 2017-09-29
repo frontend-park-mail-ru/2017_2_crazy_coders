@@ -17,7 +17,7 @@ function hideError(form) {
  * @param {string} email
  */
 function isCorrectEmail(email) {
-    return email.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/);
+    return email.match(new RegExp('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$'));
 }
 
 /**
@@ -25,7 +25,7 @@ function isCorrectEmail(email) {
  * @param {string} pswd
  */
 function isCorrectPassword(pswd) {
-    return pswd.match(/^[a-z0-9_-]{6,18}$/);
+    return pswd.match(new RegExp('^[a-z0-9_-]{6,18}$'));
 }
 
 /**

@@ -13,19 +13,12 @@ function hideError(form) {
 }
 
 /**
- * Проверяем корректность имени пользователя
- * @param {string} username
+ * Проверяем корректность поля формы
+ * @param {string} text
+ * @param {int} minLenField
  */
-function isCorrectUsername(username) {
-    return username.match(/^[a-z0-9_-]{3,16}$/);
-}
-
-/**
- * Проверяем корректность парооля
- * @param {string} pswd
- */
-function isCorrectPassword(pswd) {
-    return pswd.match(/^[a-z0-9_-]{6,18}$/);
+function isCorrectTextField(text, minLenField) {
+    return text.match(new RegExp('^[a-z0-9_-]{' + minLenField + ',18}$'));
 }
 
 /**
@@ -33,7 +26,7 @@ function isCorrectPassword(pswd) {
  * @param {string} email
  */
 function isCorrectEmail(email) {
-    return email.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/);
+    return email.match(new RegExp('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$'));
 }
 
 /**
@@ -93,7 +86,7 @@ export default class ValidSignUpForm {
             passwordField = this.currentForm.children[2],
             repeatPasswordField = this.currentForm.children[3];
 
-        if (!isCorrectUsername(this.username)) {
+        if (!isCorrectTextField(this.username, 4)) {
             flag = false;
             this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid username'), usernameField);
         }
@@ -103,7 +96,7 @@ export default class ValidSignUpForm {
             this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid email'), emailField);
         }
 
-        if (!isCorrectPassword(this.password)) {
+        if (!isCorrectTextField(this.password, 6)) {
             flag = false;
             this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid password'), passwordField);
         }
