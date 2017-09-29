@@ -16,9 +16,10 @@ function hideError(form) {
  * Проверяем корректность поля формы
  * @param {string} text
  * @param {int} minLenField
+ * @param {int} maxLenField
  */
-function isCorrectTextField(text, minLenField) {
-    return text.match(new RegExp('^[a-z0-9_-]{' + minLenField + ',18}$'));
+function isCorrectTextField(text, minLenField, maxLenField) {
+    return text.match(new RegExp('^[a-z0-9_-]{' + minLenField + ','+ maxLenField +'}$'));
 }
 
 /**
@@ -77,7 +78,6 @@ export default class ValidSignUpForm {
      * @returns {boolean}
      */
     validForm() {
-
         hideError(this.currentForm);
 
         let flag = true;
@@ -86,7 +86,12 @@ export default class ValidSignUpForm {
             passwordField = this.currentForm.children[2],
             repeatPasswordField = this.currentForm.children[3];
 
-        if (!isCorrectTextField(this.username, 4)) {
+        const minLenUsername = 4,
+            maxLenUsername = 15,
+            minLenPassword = 6,
+            maxLenPassword = 18;
+
+        if (!isCorrectTextField(this.username, minLenUsername, maxLenUsername)) {
             flag = false;
             this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid username'), usernameField);
         }
@@ -96,7 +101,7 @@ export default class ValidSignUpForm {
             this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid email'), emailField);
         }
 
-        if (!isCorrectTextField(this.password, 6)) {
+        if (!isCorrectTextField(this.password, minLenPassword, maxLenPassword)) {
             flag = false;
             this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid password'), passwordField);
         }

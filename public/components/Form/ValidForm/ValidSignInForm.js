@@ -21,11 +21,13 @@ function isCorrectEmail(email) {
 }
 
 /**
- * Проверяем корректность парооля
- * @param {string} pswd
+ * Проверяем корректность поля формы
+ * @param {string} text
+ * @param {int} minLenField
+ * @param {int} maxLenField
  */
-function isCorrectPassword(pswd) {
-    return pswd.match(new RegExp('^[a-z0-9_-]{6,18}$'));
+function isCorrectTextField(text, minLenField, maxLenField) {
+    return text.match(new RegExp('^[a-z0-9_-]{' + minLenField + ','+ maxLenField +'}$'));
 }
 
 /**
@@ -63,20 +65,21 @@ export default class ValidSignInForm {
      * @returns {boolean}
      */
     validForm() {
-        console.log('form: ' ,this.currentForm);
-
         hideError(this.currentForm);
 
         let flag = true;
         const loginField = this.currentForm.children[0],
             passwordField = this.currentForm.children[1];
 
+        const minLenPassword = 6,
+            maxLenPassword = 18;
+
         if (!isCorrectEmail(this.email)) {
             flag = false;
             this.currentForm.insertBefore(ValidSignInForm.createErrorElement('invalid email'), loginField);
         }
 
-        if (!isCorrectPassword(this.password)) {
+        if (!isCorrectTextField(this.password, minLenPassword, maxLenPassword)) {
             flag = false;
             this.currentForm.insertBefore(ValidSignInForm.createErrorElement('invalid password'), passwordField);
         }
