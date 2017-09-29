@@ -58,7 +58,7 @@ export default class UserService {
      * @return {boolean}
      */
     isAuthorized() {
-        return !!this.user.id;
+        return !!this.user.getId();
     }
 
     /**
@@ -68,9 +68,8 @@ export default class UserService {
      */
     getProfile(force = true) {
         if (this.isAuthorized() && !force) {
-            return Promise.resolve(this.user);
+            return Promise.resolve(this.user.get());
         }
-
         return Http.FetchGet('/profile')
             .then((response) => {
                 if (response.status === 200) {
@@ -88,7 +87,7 @@ export default class UserService {
      * Получить данного пользователя
      */
     getUserLogin() {
-        return this.user;
+        return this.user.get();
     }
 
     /**

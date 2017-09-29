@@ -1579,7 +1579,7 @@ class UserService {
      * @return {boolean}
      */
     isAuthorized() {
-        return !!this.user.id;
+        return !!this.user.getId();
     }
 
     /**
@@ -1589,9 +1589,8 @@ class UserService {
      */
     getProfile(force = true) {
         if (this.isAuthorized() && !force) {
-            return Promise.resolve(this.user);
+            return Promise.resolve(this.user.get());
         }
-
         return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchGet('/profile')
             .then((response) => {
                 if (response.status === 200) {
@@ -1609,7 +1608,7 @@ class UserService {
      * Получить данного пользователя
      */
     getUserLogin() {
-        return this.user;
+        return this.user.get();
     }
 
     /**
@@ -1781,6 +1780,46 @@ class User {
         this.username = userData.username;
         this.email = userData.email;
         this.score = userData.score || 0;
+    }
+
+    /**
+     * Возвращаем пользователя
+     */
+    get() {
+        return {
+            'email': this.email,
+            'username': this.username,
+            'id': this.id,
+            'score': this.score
+        }
+    }
+
+    /**
+     * Возвращаем id пользователя
+     */
+    getId() {
+        return this.id;
+    }
+
+    /**
+     * Возвращаем имя пользователя
+     */
+    getUsername() {
+        return this.username;
+    }
+
+    /**
+     * Возвращаем email пользователя
+     */
+    getEmail() {
+        return this.email;
+    }
+
+    /**
+     * Возвращаем счет пользователя
+     */
+    getScore() {
+        return this.score;
     }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = User;
