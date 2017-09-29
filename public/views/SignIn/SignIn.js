@@ -1,6 +1,7 @@
 'use strict';
 
-import Form from '../../components/Form/Form/Form';
+import SignInForm from '../../components/Form/Form/SignInForm';
+import ValidSignInForm from '../../components/Form/ValidForm/ValidSignInForm';
 
 let data = {
     title: 'SIGN IN',
@@ -43,6 +44,6 @@ let data = {
  * Получаем страницу входа
  */
 export default function SignIn() {
-    return new Form('section', {id: 'login'}, [], {data});
+    return new SignInForm('section', {id: 'login'}, [], {data}, ValidSignInForm);
 }
 

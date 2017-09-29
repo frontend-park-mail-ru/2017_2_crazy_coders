@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -418,7 +418,7 @@ function pug_rethrow(err, filename, lineno, str){
     throw err;
   }
   try {
-    str = str || __webpack_require__(8).readFileSync(filename, 'utf8')
+    str = str || __webpack_require__(11).readFileSync(filename, 'utf8')
   } catch (ex) {
     pug_rethrow(err, null, lineno)
   }
@@ -450,10 +450,10 @@ function pug_rethrow(err, filename, lineno, str){
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Form_pug__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Form_pug__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Form_pug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__template_Form_pug__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ValidForm_ValidSignInForm__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidSignUpForm__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ValidForm_ValidSignInForm__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidSignUpForm__ = __webpack_require__(4);
 
 
 
@@ -492,56 +492,56 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
         return document.getElementsByClassName('back-button');
     }
 
-    /**
-     * Позволяет подписаться на событие формы входа
-     * @return {Promise}
-     */
-    onSubmitSignInForm(callback) {
-        let signInForm = document.getElementById('login-form');
+    // /**
+    //  * Позволяет подписаться на событие формы входа
+    //  * @return {Promise}
+    //  */
+    // onSubmitSignInForm(callback) {
+    //     let signInForm = document.getElementById('login-form');
+    //
+    //     signInForm.addEventListener('submit', (e) => {
+    //         e.preventDefault();
+    //
+    //         const formdata = {};
+    //         const elements = signInForm.elements;
+    //
+    //         for (let name in elements) {
+    //             formdata[name] = elements[name].value;
+    //         }
+    //
+    //         const isValid = new ValidSignInForm(formdata.email, formdata.password, signInForm);
+    //
+    //         if(isValid.validForm()) {
+    //             callback(formdata);
+    //         }
+    //     });
+    // }
 
-        signInForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const formdata = {};
-            const elements = signInForm.elements;
-
-            for (let name in elements) {
-                formdata[name] = elements[name].value;
-            }
-
-            const isValid = new __WEBPACK_IMPORTED_MODULE_2__ValidForm_ValidSignInForm__["a" /* default */](formdata.email, formdata.password, signInForm);
-
-            if(isValid.validForm()) {
-                callback(formdata);
-            }
-        });
-    }
-
-    /**
-     * Позволяет подписаться на событие формы регистрации
-     * @return {Promise}
-     */
-    onSubmitSignUpForm(callback) {
-        let signUpForm = document.getElementById('registry-form');
-
-        signUpForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const formdata = {};
-            const elements = signUpForm.elements;
-
-            for (let name in elements) {
-                formdata[name] = elements[name].value;
-            }
-
-            const isValid = new __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidSignUpForm__["a" /* default */](formdata.username, formdata.email,
-                formdata.password, formdata.repeatPassword, signUpForm);
-
-            if(isValid.validForm()) {
-                callback(formdata);
-            }
-        }, false);
-    }
+    // /**
+    //  * Позволяет подписаться на событие формы регистрации
+    //  * @return {Promise}
+    //  */
+    // onSubmitSignUpForm(callback) {
+    //     let signUpForm = document.getElementById('registry-form');
+    //
+    //     signUpForm.addEventListener('submit', (e) => {
+    //         e.preventDefault();
+    //
+    //         const formdata = {};
+    //         const elements = signUpForm.elements;
+    //
+    //         for (let name in elements) {
+    //             formdata[name] = elements[name].value;
+    //         }
+    //
+    //         const isValid = new ValidSignUpForm(formdata.username, formdata.email,
+    //             formdata.password, formdata.repeatPassword, signUpForm);
+    //
+    //         if(isValid.validForm()) {
+    //             callback(formdata);
+    //         }
+    //     }, false);
+    // }
 
     /**
      * Показываем ошибки к форме
@@ -572,8 +572,235 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+
+
+/**
+ * Скрываем ошибки формы
+ * @param {HTMLElement} form
+ */
+function hideError(form) {
+    let removeErrorCollection = form.getElementsByClassName('error-msg');
+    const removeErrorArray = Array.from(removeErrorCollection);
+    removeErrorArray.forEach(elem => {
+        elem.remove();
+    });
+}
+
+/**
+ * Проверяем корректность email
+ * @param {string} email
+ */
+function isCorrectEmail(email) {
+    return email.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/);
+}
+
+/**
+ * Проверяем корректность парооля
+ * @param {string} pswd
+ */
+function isCorrectPassword(pswd) {
+    return pswd.match(/^[a-z0-9_-]{6,18}$/);
+}
+
+/**
+ * Класс валидации формы входа
+ * @module ValidSignInForm
+ */
+class ValidSignInForm {
+    /**
+     * @param {string} email
+     * @param {string} password
+     * @param {HTMLElement} form
+     * @constructor
+     */
+    constructor(email, password, form) {
+        this.email = email;
+        this.password = password;
+        this.currentForm = form;
+    }
+
+    /**
+     * Создаём html элемент ошибки
+     * @param {string} msg - сообщение ошибки
+     * @returns {HTMLElement}
+     */
+    static createErrorElement(msg) {
+        let errorElement = document.createElement('p');
+        errorElement.textContent = msg;
+        errorElement.classList.add('error-msg');
+
+        return errorElement;
+    }
+
+    /**
+     * Валидируем форму
+     * @returns {boolean}
+     */
+    validForm() {
+        console.log('form: ' ,this.currentForm);
+
+        hideError(this.currentForm);
+
+        let flag = true;
+        const loginField = this.currentForm.children[0],
+            passwordField = this.currentForm.children[1];
+
+        if (!isCorrectEmail(this.email)) {
+            flag = false;
+            this.currentForm.insertBefore(ValidSignInForm.createErrorElement('invalid email'), loginField);
+        }
+
+        if (!isCorrectPassword(this.password)) {
+            flag = false;
+            this.currentForm.insertBefore(ValidSignInForm.createErrorElement('invalid password'), passwordField);
+        }
+
+        return flag;
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = ValidSignInForm;
+
+
+
+
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Скрываем ошибки формы
+ * @param {HTMLElement} form
+ */
+function hideError(form) {
+    let removeErrorCollection = form.getElementsByClassName('error-msg');
+    const removeErrorArray = Array.from(removeErrorCollection);
+    removeErrorArray.forEach(elem => {
+        elem.remove();
+    });
+}
+
+/**
+ * Проверяем корректность имени пользователя
+ * @param {string} username
+ */
+function isCorrectUsername(username) {
+    return username.match(/^[a-z0-9_-]{3,16}$/);
+}
+
+/**
+ * Проверяем корректность парооля
+ * @param {string} pswd
+ */
+function isCorrectPassword(pswd) {
+    return pswd.match(/^[a-z0-9_-]{6,18}$/);
+}
+
+/**
+ * Проверяем корректность email
+ * @param {string} email
+ */
+function isCorrectEmail(email) {
+    return email.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/);
+}
+
+/**
+ * Проверяем пароль на совпадение
+ * @param {string} pswd
+ * @param {string} pswdRepeat
+ */
+function isSamePasswords(pswd, pswdRepeat) {
+    return pswd === pswdRepeat;
+}
+
+/**
+ * Класс валидации формы регистрации
+ * @module ValidSignUpForm
+ */
+class ValidSignUpForm {
+    /**
+     * @param {string} login
+     * @param {string} email
+     * @param {string} password
+     * @param {string} repeatPassword
+     * @param {HTMLElement} form
+     * @constructor
+     */
+    constructor(login, email, password, repeatPassword, form) {
+        this.username = login;
+        this.email = email;
+        this.password = password;
+        this.repeatPassword = repeatPassword;
+        this.currentForm = form;
+    }
+
+    /**
+     * Создаём html элемент ошибки
+     * @param {string} msg - сообщение ошибки
+     * @returns {HTMLElement}
+     */
+    static createErrorElement(msg) {
+        let errorElement = document.createElement('p');
+        errorElement.textContent = msg;
+        errorElement.classList.add('error-msg');
+
+        return errorElement;
+    }
+
+    /**
+     * Валидируем форму
+     * @returns {boolean}
+     */
+    validForm() {
+
+        hideError(this.currentForm);
+
+        let flag = true;
+        const usernameField = this.currentForm.children[0],
+            emailField = this.currentForm.children[1],
+            passwordField = this.currentForm.children[2],
+            repeatPasswordField = this.currentForm.children[3];
+
+        if (!isCorrectUsername(this.username)) {
+            flag = false;
+            this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid username'), usernameField);
+        }
+
+        if (!isCorrectEmail(this.email)) {
+            flag = false;
+            this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid email'), emailField);
+        }
+
+        if (!isCorrectPassword(this.password)) {
+            flag = false;
+            this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid password'), passwordField);
+        }
+
+        if (!isSamePasswords(this.password, this.repeatPassword)) {
+            flag = false;
+            this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('the values of entered passwords do not match'),
+                repeatPasswordField);
+        }
+
+        return flag;
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = ValidSignUpForm;
+
+
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Menu_pug__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Menu_pug__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Menu_pug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__template_Menu_pug__);
 
 
@@ -607,12 +834,12 @@ class Menu extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
 
 
 /***/ }),
-/* 4 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Table_pug__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Table_pug__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Table_pug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__template_Table_pug__);
 
 
@@ -646,21 +873,21 @@ class Table extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* 
 
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Block_BlockComponents__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_SignIn_SignIn__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_SignUp_SignUp__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_Header_Header__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_UnRegMenu_UnRegMenu__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_UserService__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_RegMenu_RegMenu__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_AboutUs_AboutUs__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__views_Scoreboard_Scoreboard__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__views_Footer_Footer__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_SignIn_SignIn__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_SignUp_SignUp__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_Header_Header__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_UnRegMenu_UnRegMenu__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_UserService__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_RegMenu_RegMenu__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_AboutUs_AboutUs__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__views_Scoreboard_Scoreboard__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__views_Footer_Footer__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_Form_Form_Form__ = __webpack_require__(2);
 
 
@@ -936,12 +1163,14 @@ signUpView.onSubmitSignUpForm(formdata => {
 
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = SignIn;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_Form__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_SignInForm__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Form_ValidForm_ValidSignInForm__ = __webpack_require__(3);
+
 
 
 
@@ -987,13 +1216,63 @@ let data = {
  * Получаем страницу входа
  */
 function SignIn() {
-    return new __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_Form__["a" /* default */]('section', {id: 'login'}, [], {data});
+    return new __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_SignInForm__["a" /* default */]('section', {id: 'login'}, [], {data}, __WEBPACK_IMPORTED_MODULE_1__components_Form_ValidForm_ValidSignInForm__["a" /* default */]);
 }
 
 
 
 /***/ }),
-/* 7 */
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Form__ = __webpack_require__(2);
+
+
+class SignInForm extends __WEBPACK_IMPORTED_MODULE_0__Form__["a" /* default */] {
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @param {class} ValidSignInForm - кдасс валидации данных
+     * @constructor
+     */
+    constructor(tagName = 'div', attrs = {}, classes = [], data, ValidSignInForm) {
+        super(tagName, attrs, classes, data);
+        this.validator = ValidSignInForm;
+    }
+
+    /**
+     * Позволяет подписаться на событие формы входа
+     * @return {object}
+     */
+    onSubmitSignInForm(callback) {
+        let signInForm = document.getElementById('login-form');
+
+        signInForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const formdata = {};
+            const elements = signInForm.elements;
+
+            for (let name in elements) {
+                formdata[name] = elements[name].value;
+            }
+
+            const isValid = new this.validator(formdata.email, formdata.password, signInForm);
+
+            if(isValid.validForm()) {
+                callback(formdata);
+            }
+        });
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = SignInForm;
+
+
+/***/ }),
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(1);
@@ -1022,245 +1301,20 @@ pug_html = pug_html + "\n    \u003Cinput" + (pug.attr("class", pug.classes(["inp
 module.exports = template;
 
 /***/ }),
-/* 8 */
+/* 11 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Скрываем ошибки формы
- * @param {HTMLElement} form
- */
-function hideError(form) {
-    let removeErrorCollection = form.getElementsByClassName('error-msg');
-    const removeErrorArray = Array.from(removeErrorCollection);
-    removeErrorArray.forEach(elem => {
-        elem.remove();
-    });
-}
-
-/**
- * Проверяем корректность email
- * @param {string} email
- */
-function isCorrectEmail(email) {
-    return email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
-}
-
-/**
- * Проверяем корректность парооля
- * @param {string} pswd
- */
-function isCorrectPassword(pswd) {
-    return pswd.match(/^[a-z0-9_-]{6,18}$/);
-}
-
-/**
- * Класс валидации формы входа
- * @module ValidSignInForm
- */
-class ValidSignInForm {
-    /**
-     * @param {string} email
-     * @param {string} password
-     * @param {HTMLElement} form
-     * @constructor
-     */
-    constructor(email, password, form) {
-        this.email = email;
-        this.password = password;
-        this.currentForm = form;
-    }
-
-    /**
-     * Создаём html элемент ошибки
-     * @param {string} msg - сообщение ошибки
-     * @returns {HTMLElement}
-     */
-    static createErrorElement(msg) {
-        let errorElement = document.createElement('p');
-        errorElement.textContent = msg;
-        errorElement.classList.add('error-msg');
-
-        return errorElement;
-    }
-
-    /**
-     * Валидируем форму
-     * @returns {boolean}
-     */
-    validForm() {
-        console.log('form: ' ,this.currentForm);
-
-        hideError(this.currentForm);
-
-        let flag = true;
-        const loginField = this.currentForm.children[0],
-            passwordField = this.currentForm.children[1];
-
-        if (!isCorrectEmail(this.email)) {
-            flag = false;
-            this.currentForm.insertBefore(ValidSignInForm.createErrorElement('invalid email'), loginField);
-        }
-
-        if (!isCorrectPassword(this.password)) {
-            flag = false;
-            this.currentForm.insertBefore(ValidSignInForm.createErrorElement('invalid password'), passwordField);
-        }
-
-        return flag;
-    }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = ValidSignInForm;
-
-
-
-
-
-
-/***/ }),
-/* 10 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Скрываем ошибки формы
- * @param {HTMLElement} form
- */
-function hideError(form) {
-    let removeErrorCollection = form.getElementsByClassName('error-msg');
-    const removeErrorArray = Array.from(removeErrorCollection);
-    removeErrorArray.forEach(elem => {
-        elem.remove();
-    });
-}
-
-/**
- * Проверяем корректность имени пользователя
- * @param {string} username
- */
-function isCorrectUsername(username) {
-    return username.match(/^[a-z0-9_-]{3,16}$/);
-}
-
-/**
- * Проверяем корректность парооля
- * @param {string} pswd
- */
-function isCorrectPassword(pswd) {
-    return pswd.match(/^[a-z0-9_-]{6,18}$/);
-}
-
-/**
- * Проверяем корректность email
- * @param {string} email
- */
-function isCorrectEmail(email) {
-    return email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
-}
-
-/**
- * Проверяем пароль на совпадение
- * @param {string} pswd
- * @param {string} pswdRepeat
- */
-function isSamePasswords(pswd, pswdRepeat) {
-    return pswd === pswdRepeat;
-}
-
-/**
- * Класс валидации формы регистрации
- * @module ValidSignUpForm
- */
-class ValidSignUpForm {
-    /**
-     * @param {string} login
-     * @param {string} email
-     * @param {string} password
-     * @param {string} repeatPassword
-     * @param {HTMLElement} form
-     * @constructor
-     */
-    constructor(login, email, password, repeatPassword, form) {
-        this.username = login;
-        this.email = email;
-        this.password = password;
-        this.repeatPassword = repeatPassword;
-        this.currentForm = form;
-    }
-
-    /**
-     * Создаём html элемент ошибки
-     * @param {string} msg - сообщение ошибки
-     * @returns {HTMLElement}
-     */
-    static createErrorElement(msg) {
-        let errorElement = document.createElement('p');
-        errorElement.textContent = msg;
-        errorElement.classList.add('error-msg');
-
-        return errorElement;
-    }
-
-    /**
-     * Валидируем форму
-     * @returns {boolean}
-     */
-    validForm() {
-
-        hideError(this.currentForm);
-
-        let flag = true;
-        const usernameField = this.currentForm.children[0],
-            emailField = this.currentForm.children[1],
-            passwordField = this.currentForm.children[2],
-            repeatPasswordField = this.currentForm.children[3];
-
-        if (!isCorrectUsername(this.username)) {
-            flag = false;
-            this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid username'), usernameField);
-        }
-
-        if (!isCorrectEmail(this.email)) {
-            flag = false;
-            this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid email'), emailField);
-        }
-
-        if (!isCorrectPassword(this.password)) {
-            flag = false;
-            this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid password'), passwordField);
-        }
-
-        if (!isSamePasswords(this.password, this.repeatPassword)) {
-            flag = false;
-            this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('the values of entered passwords do not match'),
-                repeatPasswordField);
-        }
-
-        return flag;
-    }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = ValidSignUpForm;
-
-
-
-
-/***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = SignUp;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_Form__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_SignUpForm__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Form_ValidForm_ValidSignUpForm__ = __webpack_require__(4);
+
 
 
 
@@ -1320,18 +1374,69 @@ let data = {
  * Получаем страницу регистрации
  */
 function SignUp() {
-    return new __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_Form__["a" /* default */]('section', {id: 'registry'}, [], {data});
+    return new __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_SignUpForm__["a" /* default */]('section', {id: 'registry'}, [], {data}, __WEBPACK_IMPORTED_MODULE_1__components_Form_ValidForm_ValidSignUpForm__["a" /* default */]);
 }
 
 
 
 /***/ }),
-/* 12 */
+/* 13 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Form__ = __webpack_require__(2);
+
+
+class SignUpForm extends __WEBPACK_IMPORTED_MODULE_0__Form__["a" /* default */] {
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @param {class} ValidSignInForm - кдасс валидации данных
+     * @constructor
+     */
+    constructor(tagName = 'div', attrs = {}, classes = [], data, ValidSignInForm) {
+        super(tagName, attrs, classes, data);
+        this.validator = ValidSignInForm;
+    }
+
+    /**
+     * Позволяет подписаться на событие формы регистрации
+     * @return {Promise}
+     */
+    onSubmitSignUpForm(callback) {
+        let signUpForm = document.getElementById('registry-form');
+
+        signUpForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const formdata = {};
+            const elements = signUpForm.elements;
+
+            for (let name in elements) {
+                formdata[name] = elements[name].value;
+            }
+
+            const isValid = new this.validator(formdata.username, formdata.email,
+                formdata.password, formdata.repeatPassword, signUpForm);
+
+            if(isValid.validForm()) {
+                callback(formdata);
+            }
+        }, false);
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = SignUpForm;
+
+
+/***/ }),
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = createHeader;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Header_Header__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Header_Header__ = __webpack_require__(15);
 
 
 let data = {
@@ -1347,12 +1452,12 @@ function createHeader() {
 
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Header_pug__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Header_pug__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Header_pug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__template_Header_pug__);
 
 
@@ -1386,7 +1491,7 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /*
 
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(1);
@@ -1396,12 +1501,12 @@ pug_html = pug_html + "\n\u003Cdiv class=\"logo\"\u003E\n  \u003Cp class=\"rotat
 module.exports = template;
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = createUnRegMenu;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Menu_Menu__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Menu_Menu__ = __webpack_require__(5);
 
 
 let data = {
@@ -1429,7 +1534,7 @@ function createUnRegMenu() {
 
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(1);
@@ -1458,12 +1563,12 @@ pug_html = pug_html + "\n\u003C\u002Fdiv\u003E\n\u003Cdiv class=\"auth-user-logi
 module.exports = template;
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_Http__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_User__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_Http__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_User__ = __webpack_require__(21);
 
 
 
@@ -1569,7 +1674,7 @@ class UserService {
 
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1695,7 +1800,7 @@ class Http {
 
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1733,12 +1838,12 @@ class User {
 
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = createRegMenu;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Menu_Menu__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Menu_Menu__ = __webpack_require__(5);
 
 
 /**
@@ -1767,12 +1872,12 @@ function createRegMenu() { //(user)
 
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = createAboutUs;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Table_Table__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Table_Table__ = __webpack_require__(6);
 
 
 
@@ -1813,7 +1918,7 @@ function createAboutUs() {
 
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(1);
@@ -1842,12 +1947,12 @@ pug_html = pug_html + "\n  \u003C\u002Ftable\u003E\n\u003C\u002Fdiv\u003E\n\u003
 module.exports = template;
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = Scoreboard;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Table_Table__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Table_Table__ = __webpack_require__(6);
 
 
 let data = {
@@ -1891,12 +1996,12 @@ function Scoreboard() {
 
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = CreateFooter;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Footer_Footer__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Footer_Footer__ = __webpack_require__(27);
 
 
 let data = {
@@ -1928,12 +2033,12 @@ function CreateFooter() {
 
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Footer_pug__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Footer_pug__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_Footer_pug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__template_Footer_pug__);
 
 
@@ -1967,7 +2072,7 @@ class Footer extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /*
 
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(1);
