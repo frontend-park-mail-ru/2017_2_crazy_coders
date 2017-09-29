@@ -26,6 +26,11 @@ let data = {
             position: 'BACKEND',
 
         },
+        {
+            name: 'ALEXANDER TSVETKOV',
+            position: 'MENTOR',
+
+        },
     ]
 };
 
