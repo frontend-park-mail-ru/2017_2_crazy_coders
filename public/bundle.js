@@ -492,57 +492,6 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
         return document.getElementsByClassName('back-button');
     }
 
-    // /**
-    //  * Позволяет подписаться на событие формы входа
-    //  * @return {Promise}
-    //  */
-    // onSubmitSignInForm(callback) {
-    //     let signInForm = document.getElementById('login-form');
-    //
-    //     signInForm.addEventListener('submit', (e) => {
-    //         e.preventDefault();
-    //
-    //         const formdata = {};
-    //         const elements = signInForm.elements;
-    //
-    //         for (let name in elements) {
-    //             formdata[name] = elements[name].value;
-    //         }
-    //
-    //         const isValid = new ValidSignInForm(formdata.email, formdata.password, signInForm);
-    //
-    //         if(isValid.validForm()) {
-    //             callback(formdata);
-    //         }
-    //     });
-    // }
-
-    // /**
-    //  * Позволяет подписаться на событие формы регистрации
-    //  * @return {Promise}
-    //  */
-    // onSubmitSignUpForm(callback) {
-    //     let signUpForm = document.getElementById('registry-form');
-    //
-    //     signUpForm.addEventListener('submit', (e) => {
-    //         e.preventDefault();
-    //
-    //         const formdata = {};
-    //         const elements = signUpForm.elements;
-    //
-    //         for (let name in elements) {
-    //             formdata[name] = elements[name].value;
-    //         }
-    //
-    //         const isValid = new ValidSignUpForm(formdata.username, formdata.email,
-    //             formdata.password, formdata.repeatPassword, signUpForm);
-    //
-    //         if(isValid.validForm()) {
-    //             callback(formdata);
-    //         }
-    //     }, false);
-    // }
-
     /**
      * Показываем ошибки к форме
      * @param {string}  msg - сообщение
