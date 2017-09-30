@@ -6,7 +6,7 @@ import Menu from '../../components/Menu/Menu';
 export default function createRegMenu() { //(user)
     // console.log(user);
     let data = {
-        user: 'name', // не выводится в шаблоне (
+        user: 'name', // не выводится в шаблоне
         buttons: [
             {
                 text: 'START',
