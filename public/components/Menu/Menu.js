@@ -1,5 +1,5 @@
 import Block from '../Block/BlockComponents';
-import MenuTemp from '../template/Menu.pug';
+import MenuTemp from './Menu.pug';
 
 /**
  * Класс Menu-а

@@ -1,5 +1,5 @@
 import Block from '../Block/BlockComponents';
-import FooterTemp from '../template/Footer.pug';
+import FooterTemp from './Footer.pug';
 
 /**
  * Класс footer-а

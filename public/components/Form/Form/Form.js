@@ -1,7 +1,7 @@
 'use strict';
 
 import Block from '../../Block/BlockComponents';
-import FormTemp from '../../template/Form.pug';
+import FormTemp from './Form.pug';
 import ValidSignInForm from '../ValidForm/ValidSignInForm';
 import ValidSignUpForm from '../ValidForm/ValidSignUpForm';
 

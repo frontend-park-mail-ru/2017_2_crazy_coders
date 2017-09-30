@@ -1,5 +1,5 @@
 import Block from '../Block/BlockComponents';
-import HeaderTemp from '../template/Header.pug';
+import HeaderTemp from './Header.pug';
 
 /**
  * Класс Header-а
