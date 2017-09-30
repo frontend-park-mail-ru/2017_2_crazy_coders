@@ -1,0 +1,33 @@
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.logo_text {
+    font-size: 2em;
+    font-weight: 700;
+    font-family: "Verdana", sans-serif;
+    margin: 1% 0 1% 1%;
+}
+
+.logo_button {
+    flex-flow: column nowrap;
+}
+
+a {
+    display: inline-block;
+}
+
+table {
+    border-collapse: collapse;
+    font-family: "Verdana", sans-serif;
+}
+
+th, td {
+    text-align: center;
+    padding: 10px;
+}
+
+.score_table > tr:nth-child(even){background-color: #f2f2f2}

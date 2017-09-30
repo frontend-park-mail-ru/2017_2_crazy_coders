@@ -4,6 +4,7 @@ import Block from '../../Block/BlockComponents';
 import FormTemp from './Form.pug';
 import ValidSignInForm from '../ValidForm/ValidSignInForm';
 import ValidSignUpForm from '../ValidForm/ValidSignUpForm';
+import './Form.css';
 
 /**
  * Класс формы

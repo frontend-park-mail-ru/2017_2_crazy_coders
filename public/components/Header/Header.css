@@ -1,0 +1,18 @@
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.logo_img {
+    width: 230px;
+    height: auto;
+    margin-left: -60px;
+}
+
+.rotateit {
+    font-size: 2.7em;
+    font-family: "Arial Black", Gadget, sans-serif;
+    transform: rotate(-90deg);
+}

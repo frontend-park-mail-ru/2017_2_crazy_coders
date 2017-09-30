@@ -1,0 +1,48 @@
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.input {
+    display: block;
+    width: 350px;
+    padding: 9px 0 12px 12px;
+    font-size: 1em;
+    margin: 5px 0 16px ;
+    font-family: "Helvetica";
+    border-radius: 7px;
+    background: #e9ecf0;
+    color: #5E6D82;
+    box-sizing: border-box;
+}
+
+.input_form {
+    flex-flow: column nowrap;
+    margin-left: 2%;
+}
+
+.back-button {
+    margin: 25px 0 0 15px;
+    width: 130px;
+}
+
+#login-button {
+    margin: 15px 0 -15px 98px;
+}
+
+#signup-button {
+    margin: 15px 0 -15px 98px;
+}
+
+.error-msg {
+    color: #D8000C;
+    font-family: "Verdana", sans-serif;
+    text-align: center;
+    display: block;
+    border: 1px solid;
+    margin: -10px 0 2px 0;
+    padding:10px 10px 10px 10px;
+    background-color: #FFBABA;
+}

@@ -1,0 +1,46 @@
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.logo_button {
+    flex-flow: column nowrap;
+}
+
+.button {
+    background-color: whitesmoke;
+    font-size: 1.5em;
+    font-weight: 700;
+    font-family: "Verdana", sans-serif;
+    color: black;
+    padding: 7px 17px;
+    border: 3px solid #041712;
+    border-radius: 10%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 7em;
+    margin: 15px 0 5px 30px;
+    cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.button:hover {
+    background-color: rgba(4, 23, 18, 0.04);
+    border: 3px solid rgba(169, 169, 169, 0.19);
+}
+
+.back-button {
+    margin: 25px 0 0 15px;
+    width: 130px;
+}
+
+#login-button {
+    margin: 15px 0 -15px 98px;
+}
+
+#signup-button {
+    margin: 15px 0 -15px 98px;
+}

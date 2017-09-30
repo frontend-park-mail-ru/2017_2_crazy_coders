@@ -1,5 +1,6 @@
 import Block from '../Block/BlockComponents';
 import HeaderTemp from './Header.pug';
+import './Header.css';
 
 /**
  * Класс Header-а
