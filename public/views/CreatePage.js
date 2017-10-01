@@ -13,9 +13,9 @@ class CreatePage {
         this.body = document.getElementsByTagName('body')[0];
         this.parts = new Map();
 
+        this.addParts(this.body, "Header", Header());
         this.addParts(this.body, "SignIn", SignIn());
         this.addParts(this.body, "SignUp", SignUp());
-        this.addParts(this.body, "Header", Header());
         this.addParts(this.body, "UnRegMenu", UnRegMenu());
         this.addParts(this.body, "RegMenu", RegMenu());
         this.addParts(this.body, "AboutUs", AboutUs());
