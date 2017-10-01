@@ -65,8 +65,10 @@ class MenuStartController extends Controller {
 
     show() {
         this.page_parts.get("Header").show();
+        debugger;
 
         if (!this.userService.isAuthorized()) {
+            console.log("username: " + this.userService.username);
             this.page_parts.get("UnRegMenu").show();
         }
         else {

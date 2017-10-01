@@ -20,7 +20,7 @@ class SignInController extends Controller {
         this.page_parts.get('SignIn').onSubmitSignInForm(formdata => {
             this.userService
                 .signIn(formdata.email, formdata.password)
-                .then(function () {
+                .then((data) => { this.userService.user.set(data);
                     console.log("[onSubmitSignInForm] Success sign in");
                     Form.reset();
                     this.router.go('/');
