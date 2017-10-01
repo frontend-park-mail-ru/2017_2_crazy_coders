@@ -1,7 +1,5 @@
 'use strict';
 
-import Controller from '../controllers/Controller';
-
 class Route {
 
     constructor(pathname, view, options = {}) {
