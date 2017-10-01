@@ -44,7 +44,7 @@ class MenuStartController extends Controller {
 
         document.getElementById('menu-button-music').addEventListener('click', event => {
             event.preventDefault();
-            this.router.go('/music');
+            this.router.go('/');
         });
 
         document.getElementById('menu-button-score').addEventListener('click', event => {
