@@ -21,7 +21,7 @@ export default class Footer extends Block {
     /**
      * Получить footer
      */
-    getFooter() {
+    getClassElement() {
         this.setHTML(FooterTemp(this.getData()));
         return this.getElement();
     }

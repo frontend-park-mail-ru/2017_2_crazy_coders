@@ -21,7 +21,7 @@ export default class Table extends Block {
     /**
      * Получить Table
      */
-    getTable() {
+    getClassElement() {
         this.setHTML(TableTemp(this.getData()));
         return this.getElement();
     }

@@ -1,5 +1,7 @@
 'use strict';
 
+import Controller from '../controllers/Controller';
+
 class Route {
 
     constructor(pathname, view, options = {}) {
@@ -18,6 +20,7 @@ class Route {
             this._view = view;
         }
 
+        this._view.show();
     }
 
     leave() {

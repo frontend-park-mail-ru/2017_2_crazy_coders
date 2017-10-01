@@ -5,17 +5,17 @@ let data = {
         {
             class: "sound_img",
             src: "./static/img/sound.png",
-            id: "sound-logo",
+            id: "menu-button-music",
         },
         {
             class: "score_img",
             src: "./static/img/score.png",
-            id: "score-logo",
+            id: "menu-button-score",
         },
         {
             class: "info_img",
             src: "./static/img/info.png",
-            id: "about-logo",
+            id: "menu-button-about",
         },
     ]
 };
@@ -24,5 +24,5 @@ let data = {
  * Получаем страницу footer-а
  */
 export default function CreateFooter() {
-    return new Footer('section', {id: 'buttons-panel'}, [], {data});
+    return new Footer('section', {id: 'section-footer'}, [], {data});
 }

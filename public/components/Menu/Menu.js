@@ -21,7 +21,7 @@ export default class Menu extends Block {
     /**
      * Получить Menu
      */
-    getMenu() {
+    getClassElement() {
         this.setHTML(MenuTemp(this.getData()));
         return this.getElement();
     }

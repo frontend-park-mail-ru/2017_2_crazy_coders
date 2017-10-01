@@ -27,14 +27,14 @@ let data = {
                 type: 'submit',
                 class: 'button',
                 value: 'SIGN IN',
-                id: 'login-button',
+                id: 'signIn-button-signIn',
             },
         },
         {
             attrs: {
                 class: 'button a-button back-button',
                 value: 'BACK',
-                id: 'back-sign-in',
+                id: 'signIn-button-back',
             },
         },
     ]
@@ -44,6 +44,6 @@ let data = {
  * Получаем страницу входа
  */
 export default function SignIn() {
-    return new SignInForm('section', {id: 'login'}, [], {data}, ValidSignInForm);
+    return new SignInForm('section', {id: 'section-signIn'}, [], {data}, ValidSignInForm);
 }
 

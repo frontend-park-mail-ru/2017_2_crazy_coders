@@ -10,16 +10,16 @@ export default function createRegMenu() { //(user)
         buttons: [
             {
                 text: 'START',
-                id: 'start-game',
+                id: 'menu-button-playGame',
                 class: 'button a-button',
             },
             {
                 text: 'LOG OUT',
-                id: 'logout',
+                id: 'menu-button-logout',
                 class: 'button a-button',
             }
         ]
     };
 
-    return new Menu('section', {id: 'main-page'}, [], {data});
+    return new Menu('section', {id: 'section-regMenu'}, [], {data});
 }

@@ -25,7 +25,7 @@ export default class Form extends Block {
     /**
      * Получить форму
      */
-    getForm() {
+    getClassElement() {
         this.setHTML(FormTemp(this.getData()));
         return this.getElement();
     }

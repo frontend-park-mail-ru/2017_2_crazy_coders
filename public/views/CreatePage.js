@@ -26,8 +26,8 @@ class CreatePage {
 
     addParts(parent, name, elem) {
         this.parts.set(name, elem);
-        elem.hidden = true;
-        parent.appendChild(elem);
+        elem.hide();
+        parent.appendChild(elem.getClassElement());
     }
 
     getParts() {
