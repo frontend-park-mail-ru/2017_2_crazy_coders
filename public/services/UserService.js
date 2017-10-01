@@ -24,8 +24,9 @@ export default class UserService {
         const requestBody = {username, email, password};
         return Http.FetchPost('/signUp', requestBody)
             .then((response) => {
+                debugger;
                 if (response.status === 201) {
-                    this.user.set(response);
+                    this.user.set(response.json());
                     return response;
                 } else {
                     console.log(response.json());

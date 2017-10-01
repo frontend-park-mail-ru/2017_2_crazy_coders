@@ -42,12 +42,12 @@ class SignInController extends Controller {
     }
 
     show() {
-        //this.page_parts.get("Header").show();
+        this.page_parts.get("Header").show();
         this.page_parts.get("SignIn").show();
     }
 
     hide() {
-        //this.page_parts.get("Header").hide();
+        this.page_parts.get("Header").hide();
         this.page_parts.get("SignIn").hide();
     }
 }

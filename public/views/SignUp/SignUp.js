@@ -41,14 +41,14 @@ let data = {
                 type: 'submit',
                 class: 'button submitData',
                 value: 'SIGN UP',
-                id: 'signup-button',
+                id: 'signUp-button-signUp',
             },
         },
         {
             attrs: {
                 class: 'button back-button',
                 value: 'BACK',
-                id: 'back-sign-up',
+                id: 'signUp-button-back',
             },
         },
     ]
