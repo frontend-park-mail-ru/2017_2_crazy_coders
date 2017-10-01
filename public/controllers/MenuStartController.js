@@ -34,8 +34,11 @@ class MenuStartController extends Controller {
         document.getElementById('menu-button-logout').addEventListener('click', event => {
             event.preventDefault();
             this.userService.logout()
-                .then(() => {
-                    this.router.go('/');
+                .then((response) => {
+                    console.log(response);
+                    this.userService.user.id = 0;
+                    this.show();
+                    // this.router.go('/');
                 })
                 .catch(e => {
                     alert(e);
@@ -65,7 +68,6 @@ class MenuStartController extends Controller {
 
     show() {
         this.page_parts.get("Header").show();
-        debugger;
 
         if (!this.userService.isAuthorized()) {
             console.log("username: " + this.userService.username);
