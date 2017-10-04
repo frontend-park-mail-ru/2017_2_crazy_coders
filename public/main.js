@@ -15,6 +15,8 @@ import PlayMusicController from './controllers/PlayMusicController';
 let userService = new UserService();
 let page = new CreatePage();
 
+debugger;
+
 (new Router())
     .addRoute('/', MenuStartController, {userService: userService, page: page})
     .addRoute('/play', PlayGameController, {userService: userService, page: page})
@@ -24,7 +26,7 @@ let page = new CreatePage();
     .addRoute('/score', ScoreListController, {userService: userService, page: page})
     .addRoute('/about', AboutUsController, {userService: userService, page: page})
     .addRoute('/music', PlayMusicController, {userService: userService, page: page})
-    .start();
+    .startRoute();
 
 
 /*

@@ -8,6 +8,10 @@ import User from '../model/User';
 export default class UserService {
 
     constructor() {
+        debugger;
+        if(this.user) {
+            return this;
+        }
         this.user = new User({});
         this.users = [];
     }
@@ -59,6 +63,7 @@ export default class UserService {
      * @return {boolean}
      */
     isAuthorized() {
+        console.log("[UserService] in isAuthorized, this.user.getId = " + this.user.getId());
         return !!this.user.getId();
     }
 

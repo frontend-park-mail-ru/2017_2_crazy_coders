@@ -23,16 +23,16 @@ class Router {
         const route = new Route(pathname, view, options);
         route.setRouter(this);
         this.routes.push(route);
-        console.log("[addRoute] in Router");
+        // console.log("[addRoute] in Router");
         return this;
     }
 
 
-    start(state = {}) {
+    startRoute(state = {}) {
         window.onpopstate = function(event) {
             const state = event.state;
             const pathname = window.location.pathname;
-            console.log("[start] in Router");
+            console.log("[Router] in start");
             this.onroute(pathname, state);
         }.bind(this);
 
@@ -42,18 +42,18 @@ class Router {
 
 
     onroute(pathname, state = {}) {
-        console.log("[onroute] in Router");
+        //console.log("[onroute] in Router");
         let path = pathname;
         if (path != "/") {
             if (path[path.length - 1] === '/') {
-                console.log("[onroute] in Router: it's not / page");
+                //console.log("[onroute] in Router: it's not / page");
                 path = path.slice(0, path.length - 1);
             }
         }
 
         const route = this.routes.find(route => {
             let res = route.pathname.test(path);
-            console.log("[onroute] in Router: res = " + res);
+            //console.log("[onroute] in Router: res = " + res);
             return res;
         });
         if (!route) {

@@ -14,7 +14,7 @@ class Route {
         if (!this._view) {
             const view = new this.View(this.options);
             view.init(this.options);
-            view.setRouter(this.__router);
+            view.setRouterController(this.__router);
             this._view = view;
         }
 

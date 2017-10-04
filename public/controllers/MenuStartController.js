@@ -68,6 +68,7 @@ class MenuStartController extends Controller {
 
     show() {
         this.page_parts.get("Header").show();
+        console.log("[MenuStartController] in show");
 
         if (!this.userService.isAuthorized()) {
             console.log("username: " + this.userService.username);
@@ -76,8 +77,8 @@ class MenuStartController extends Controller {
         else {
             this.page_parts.get("RegMenu").show();
 
-            document.getElementById('userheader_login').innerHTML = this.userService.user.username;
-            document.getElementById('userheader_score').innerHTML = this.userService.user.score;
+            /*document.getElementById('userheader_login').innerHTML = this.userService.user.username;
+            document.getElementById('userheader_score').innerHTML = this.userService.user.score;*/
         }
         this.page_parts.get("Footer").show();
     }

@@ -106,7 +106,7 @@ class Controller {
      * Устанавливает текущей view роутер
      * @param {Router} router - инстанс роутера
      */
-    setRouter(router) {
+    setRouterController(router) {
         this.router = router;
     }
 }
