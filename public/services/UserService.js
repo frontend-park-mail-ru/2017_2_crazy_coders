@@ -8,7 +8,7 @@ import User from '../model/User';
 export default class UserService {
 
     constructor() {
-        debugger;
+        // debugger;
         if(this.user) {
             return this;
         }

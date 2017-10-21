@@ -54,6 +54,14 @@
     margin: 15px 0 -15px 98px;
 }
 
+#signIn-button-signIn {
+    margin-left: 100px;
+}
+
+#signUp-button-signUp {
+    margin-left: 100px;
+}
+
 .error-msg {
     color: #D8000C;
     font-family: "Verdana", sans-serif;
