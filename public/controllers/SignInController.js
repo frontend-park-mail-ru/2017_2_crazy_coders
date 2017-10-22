@@ -2,6 +2,7 @@
 
 import Controller from "./Controller";
 import Form from '../components/Form/Form/Form'
+import Theme from '../static/css/style';
 
 class SignInController extends Controller {
 
@@ -12,10 +13,16 @@ class SignInController extends Controller {
 
         super(opt);
         SignInController.__instance = this;
+		this.theme = new Theme();
         this.addListener();
     }
 
     addListener() {
+
+		document.getElementById('menu-theme-switch').addEventListener('click', event => {
+			event.preventDefault();
+			this.theme.changeTheme();
+		});
 
         this.page_parts.get('SignIn').onSubmitSignInForm(formdata => {
             this.userService
