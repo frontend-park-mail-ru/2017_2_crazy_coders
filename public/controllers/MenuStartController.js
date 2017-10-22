@@ -1,6 +1,7 @@
 'use strict';
 
 import Controller from "./Controller";
+import Theme from '../static/css/style';
 
 class MenuStartController extends Controller {
 
@@ -11,10 +12,16 @@ class MenuStartController extends Controller {
 
         super(opt);
         MenuStartController.__instance = this;
+		this.theme = new Theme();
         this.addListener();
     }
 
     addListener() {
+
+		document.getElementById('menu-theme-switch').addEventListener('click', event => {
+			event.preventDefault();
+			this.theme.changeTheme();
+		});
 
         document.getElementById('menu-button-signIn').addEventListener('click', event => {
             event.preventDefault();

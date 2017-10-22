@@ -56,10 +56,12 @@
 
 #signIn-button-signIn {
     margin-left: 100px;
+    margin-bottom: -10px;
 }
 
 #signUp-button-signUp {
     margin-left: 100px;
+    margin-bottom: -10px;
 }
 
 .error-msg {
