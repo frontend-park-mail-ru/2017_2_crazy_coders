@@ -42,9 +42,10 @@ class Router {
 
 
     onroute(pathname, state = {}) {
-        //console.log("[onroute] in Router");
+        console.log("[onroute] in Router");
         let path = pathname;
-        if (path != "/") {
+        console.log(`path = ${path}`);
+        if (path !== '/') {
             if (path[path.length - 1] === '/') {
                 //console.log("[onroute] in Router: it's not / page");
                 path = path.slice(0, path.length - 1);

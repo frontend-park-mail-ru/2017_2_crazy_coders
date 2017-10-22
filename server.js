@@ -6,12 +6,22 @@ const cookie = require('cookie-parser');
 const uuid = require('uuid/v4');
 
 const app = express();
-app.use(express.static('public'));
 
-app.get('*', (req, res) => {
-    res.send('404');
+const routes = [
+    '/',
+    '/signin',
+    '/signup',
+    '/menu',
+    '/play',
+    '/about',
+    '/rules',
+    '/scorelist',
+];
+
+routes.forEach(path => {
+    app.use(path, express.static('public'));
 });
-
+app.use(express.static('public'));
 
 const port = process.env.PORT || 8001;
 
