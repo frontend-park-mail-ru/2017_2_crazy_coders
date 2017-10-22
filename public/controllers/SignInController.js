@@ -23,7 +23,7 @@ class SignInController extends Controller {
                 .then((data) => { this.userService.user.set(data);
                     console.log("[onSubmitSignInForm] Success sign in");
                     Form.reset();
-                    this.router.go('/');
+                    this._router.go('/');
                 })
                 .catch((err) => {
                     console.log("[onSubmitSignInForm] err: " + err);
@@ -33,7 +33,7 @@ class SignInController extends Controller {
 
         document.getElementById('signIn-button-back').addEventListener('click', event => {
             event.preventDefault();
-            this.router.go('/');
+            this._router.go('/');
         });
     }
 

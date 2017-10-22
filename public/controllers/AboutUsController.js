@@ -18,7 +18,7 @@ class AboutUsController extends Controller {
 
         document.getElementById('aboutUs-button-back').addEventListener('click', event => {
             event.preventDefault();
-            this.router.go('/');
+            this._router.go('/');
         });
 
 

@@ -18,7 +18,7 @@ class PlayMusicController extends Controller {
 
         document.getElementById('menu-button-music').addEventListener('click', event => {
             event.preventDefault();
-            this.router.go('/');
+            this._router.go('/');
         });
 
 

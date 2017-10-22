@@ -19,7 +19,7 @@ export default class SignUpForm extends Form {
      * @return {Promise}
      */
     onSubmitSignUpForm(callback) {
-        let signUpForm = document.getElementById('registry-form');
+        let signUpForm = document.getElementById('signup-form');
 
         signUpForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -29,6 +29,7 @@ export default class SignUpForm extends Form {
 
             for (let name in elements) {
                 formdata[name] = elements[name].value;
+                console.log(elements[name].value);
             }
 
             const isValid = new this.validator(formdata.username, formdata.email,
@@ -37,6 +38,6 @@ export default class SignUpForm extends Form {
             if(isValid.validForm()) {
                 callback(formdata);
             }
-        }, false);
+        });
     }
 }

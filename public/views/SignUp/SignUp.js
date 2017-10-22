@@ -5,7 +5,7 @@ import ValidSignUpForm from '../../components/Form/ValidForm/ValidSignUpForm';
 
 let data = {
     title: 'SIGN UP',
-    idForm: 'registry-form',
+    idForm: 'signup-form',
     fields: [
         {
             attrs: {

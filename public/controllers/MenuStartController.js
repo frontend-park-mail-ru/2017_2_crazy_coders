@@ -18,17 +18,17 @@ class MenuStartController extends Controller {
 
         document.getElementById('menu-button-signIn').addEventListener('click', event => {
             event.preventDefault();
-            this.router.go('/signin');
+            this._router.go('/signin');
         });
 
         document.getElementById('menu-button-signUp').addEventListener('click', event => {
             event.preventDefault();
-            this.router.go('/signup');
+            this._router.go('/signup');
         });
 
         document.getElementById('menu-button-playGame').addEventListener('click', event => {
             event.preventDefault();
-            this.router.go('/play');
+            this._router.go('/play');
         });
 
         document.getElementById('menu-button-logout').addEventListener('click', event => {
@@ -38,7 +38,7 @@ class MenuStartController extends Controller {
                     console.log(response);
                     this.userService.user.id = 0;
                     this.show();
-                    // this.router.go('/');
+                    this._router.go('/');
                 })
                 .catch(e => {
                     alert(e);
@@ -47,17 +47,17 @@ class MenuStartController extends Controller {
 
         document.getElementById('menu-button-music').addEventListener('click', event => {
             event.preventDefault();
-            this.router.go('/');
+            this._router.go('/');
         });
 
         document.getElementById('menu-button-score').addEventListener('click', event => {
             event.preventDefault();
-            this.router.go('/score');
+            this._router.go('/score');
         });
 
         document.getElementById('menu-button-about').addEventListener('click', event => {
             event.preventDefault();
-            this.router.go('/about');
+            this._router.go('/about');
         });
     }
 

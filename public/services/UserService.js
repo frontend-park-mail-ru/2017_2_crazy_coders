@@ -25,13 +25,13 @@ export default class UserService {
      */
     signUp(username, email, password) {
 
-        console.log('[signIn] email: \' + email +email: ' + email + ' pass:' + password);
+        console.log(`[signUp] email:  ${email}  pass: ${password}`);
         const requestBody = {username, email, password};
         return Http.FetchPost('/signUp', requestBody)
             .then((response) => {
                 if (response.status === 201) {
-                    this.user.set(response.json());
-                    return response;
+                    //this.user.set(response.json());
+                    return response.json();
                 } else {
                     console.log(response.json());
                     throw response;
@@ -46,7 +46,7 @@ export default class UserService {
      * @return {Promise}
      */
     signIn(email, password) {
-        console.log('[signIn] email: ' + email + ' pass:' + password);
+        console.log(`[signIn] email:  ${email}  pass: ${password}`);
         return Http.FetchPost('/signIn', {email, password})
             .then((response) => {
                 if (response.status === 200) {

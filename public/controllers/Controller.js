@@ -107,7 +107,7 @@ class Controller {
      * @param {Router} router - инстанс роутера
      */
     setRouterController(router) {
-        this.router = router;
+        this._router = router;
     }
 }
 

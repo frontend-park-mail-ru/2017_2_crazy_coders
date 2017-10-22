@@ -18,11 +18,12 @@ class SignUpController extends Controller {
     addListener() {
 
         this.page_parts.get('SignUp').onSubmitSignUpForm(formdata => {
-            return this.userService.signUp(formdata.username, formdata.email, formdata.password)
-                .then(function () {
+            this.userService
+                .signUp(formdata.username, formdata.email, formdata.password)
+                .then((data) => { this.userService.user.set(data);
                     console.log("[onSubmitSignUpForm] Success sign up");
                     Form.reset();
-                    this.router.go('/');
+                    this._router.go('/');
                 })
 
                 .catch((err) => {
@@ -33,7 +34,7 @@ class SignUpController extends Controller {
 
         document.getElementById('signUp-button-back').addEventListener('click', event => {
             event.preventDefault();
-            this.router.go('/');
+            this._router.go('/');
         });
     }
 

@@ -18,7 +18,7 @@ class ScoreListController extends Controller {
 
         document.getElementById('score-button-back').addEventListener('click', event => {
             event.preventDefault();
-            this.router.go('/');
+            this._router.go('/');
         });
 
 
