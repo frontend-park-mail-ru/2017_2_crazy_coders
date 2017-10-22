@@ -10,7 +10,7 @@
   "extends": "eslint:recommended",
   "rules": {
     "no-console": 0,
-    "indent": ["error", 4],
+//    "indent": ["error", 4],
     "eqeqeq": 0,     // require the use of === and !==
     "no-shadow": 0,  // disallow declaration of variables already declared in the outer scope
     "no-unused-vars": 0, // disallow declaration of variables that are not used in the code
