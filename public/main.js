@@ -15,7 +15,7 @@ import PlayMusicController from './controllers/PlayMusicController';
 let userService = new UserService();
 let page = new CreatePage();
 
-debugger;
+// debugger;
 
 (new Router())
     .addRoute('/', MenuStartController, {userService: userService, page: page})
