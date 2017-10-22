@@ -38,6 +38,7 @@ class MenuStartController extends Controller {
                     console.log(response);
                     this.userService.user.id = 0;
                     this.show();
+                    this.page_parts.get("RegMenu").hide();
                     this._router.go('/');
                 })
                 .catch(e => {
@@ -76,9 +77,6 @@ class MenuStartController extends Controller {
         }
         else {
             this.page_parts.get("RegMenu").show();
-
-            /*document.getElementById('userheader_login').innerHTML = this.userService.user.username;
-            document.getElementById('userheader_score').innerHTML = this.userService.user.score;*/
         }
         this.page_parts.get("Footer").show();
     }
