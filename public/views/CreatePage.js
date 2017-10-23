@@ -13,18 +13,19 @@ class CreatePage {
         this.body = document.getElementsByTagName('body')[0];
         this.parts = new Map();
 
-        this.addParts(this.body, "Header", Header());
-        this.addParts(this.body, "SignIn", SignIn());
-        this.addParts(this.body, "SignUp", SignUp());
-        this.addParts(this.body, "UnRegMenu", UnRegMenu());
-        this.addParts(this.body, "RegMenu", RegMenu());
-        this.addParts(this.body, "AboutUs", AboutUs());
-        this.addParts(this.body, "Scoreboard", Scoreboard());
-        this.addParts(this.body, "Footer", Footer());
+        this.addParts("Header", Header());
+        this.addParts("SignIn", SignIn());
+        this.addParts("SignUp", SignUp());
+        this.addParts("UnRegMenu", UnRegMenu());
+        this.addParts("RegMenu", RegMenu());
+        this.addParts("AboutUs", AboutUs());
+        this.addParts("Scoreboard", Scoreboard());
+        this.addParts("Footer", Footer());
     }
 
 
-    addParts(parent, name, elem) {
+    addParts(name, elem, parent=this.body) {
+        this.parts.delete(name);
         this.parts.set(name, elem);
         elem.hide();
         parent.appendChild(elem.getClassElement());
