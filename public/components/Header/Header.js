@@ -22,6 +22,9 @@ export default class Header extends Block {
      * Получить Header
      */
     getClassElement() {
+
+        console.log(this.getData());
+
         this.setHTML(HeaderTemp(this.getData()));
         return this.getElement();
     }

@@ -68,8 +68,8 @@ export default class Http {
      */
     static FetchGet(address) {
         // const url = this.baseUrl + address;
-        const url = 'https://tanks-backend.xyz' + address;
-        //const url = 'http://82.202.246.5:8080' + address;
+        // const url = 'https://tanks-backend.xyz' + address;
+        const url = 'http://82.202.246.5:8080' + address;
 
         console.log("[FetchGet] try get from " + url);
 
@@ -95,7 +95,8 @@ export default class Http {
      * @return {Promise}
      */
     static FetchPost (address, body) {
-        const url = 'https://tanks-backend.xyz' + address;
+        // const url = 'https://tanks-backend.xyz' + address;
+		const url = 'http://82.202.246.5:8080' + address;
         // const url = this.baseUrl + address;
 
         console.log("[FetchPost] try post to " + url);

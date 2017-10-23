@@ -18,7 +18,6 @@ class SignInController extends Controller {
     }
 
     addListener() {
-
 		document.getElementById('menu-theme-switch').addEventListener('click', event => {
 			event.preventDefault();
 			this.theme.changeTheme();
@@ -27,8 +26,19 @@ class SignInController extends Controller {
         this.page_parts.get('SignIn').onSubmitSignInForm(formdata => {
             this.userService
                 .signIn(formdata.email, formdata.password)
-                .then((data) => { this.userService.user.set(data);
+                .then((data) => {
+                    this.userService.user.set(data);
                     console.log("[onSubmitSignInForm] Success sign in");
+
+                    let dataa = {
+						nameGame: 'TANKSsss',
+					};
+
+                    console.log('data' + this.userService.user.get().score);
+					console.log(this.page_parts.get("Header").setData(dataa));
+					// this.page_parts.get("Header").getClassElement();
+
+
                     Form.reset();
                     this._router.go('/');
                 })
@@ -48,7 +58,7 @@ class SignInController extends Controller {
         this.show();
     }
 
-    show() {
+    show() {  // здесь нужно передавать параметры во вьюху
         this.page_parts.get("Header").show();
         this.page_parts.get("SignIn").show();
     }
