@@ -46,7 +46,7 @@ export default class UserService {
      * @return {Promise}
      */
     signIn(email, password) {
-        console.log(`[signIn] email:  ${email}  pass: ${password}`);
+        // console.log(`[signIn] email:  ${email}  pass: ${password}`);
         return Http.FetchPost('/signIn', {email, password})
             .then((response) => {
                 if (response.status === 200) {

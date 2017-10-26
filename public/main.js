@@ -11,6 +11,7 @@ import LogOutController from './controllers/LogOutController';
 import ScoreListController from './controllers/ScoreListController';
 import AboutUsController from './controllers/AboutUsController';
 import PlayMusicController from './controllers/PlayMusicController';
+import Game from './game/classes/Game/Game';
 
 let userService = new UserService();
 let page = new CreatePage();

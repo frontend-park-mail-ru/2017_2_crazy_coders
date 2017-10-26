@@ -8,10 +8,10 @@ class GameOverMenu extends Phaser.State {
     }
 
     preload(){
-        this.load.image('background', 'statics/images/white_background.jpg');
-        this.load.spritesheet("game_over", "statics/images/gameover_logo.png");
-        this.load.spritesheet("try_again", "statics/images/try_again_button.png");
-        this.load.spritesheet("exit", "statics/images/exit_button.png");
+        this.load.image('background', 'static/staticsGame/images/white_background.jpg');
+        this.load.spritesheet('game_over', 'static/staticsGame/images/gameover_logo.png');
+        this.load.spritesheet('try_again', 'static/staticsGame/images/try_again_button.png');
+        this.load.spritesheet('exit', 'static/staticsGame/images/exit_button.png');
     }
 
     create(){

@@ -3,10 +3,9 @@ import Menu from '../../components/Menu/Menu';
 /**
  * Получаем страницу зарегестрированного пользователя
  */
-export default function createRegMenu() { //(user)
-    // console.log(user);
+export default function createRegMenu() {
     let data = {
-        user: 'name', // не выводится в шаблоне
+        user: 'name',
         buttons: [
             {
                 text: 'START',

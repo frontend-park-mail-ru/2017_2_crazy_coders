@@ -5,6 +5,4 @@ class Timer extends Phaser.State {
         super();
         this.timer = this.game.time.create(false);
     }
-
-
 }

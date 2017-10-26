@@ -1,7 +1,7 @@
 'use strict';
 
 import Controller from "./Controller";
-import Theme from '../static/css/style';
+import Game from '../game/classes/Game/Game';
 
 class PlayGameController extends Controller {
 
@@ -12,16 +12,13 @@ class PlayGameController extends Controller {
 
 		super(opt);
 		PlayGameController.__instance = this;
-		this.theme = new Theme();
-		this.addListener();
+
 	}
 
-	addListener() {
-		document.getElementById('menu-theme-switch').addEventListener('click', event => {
-			event.preventDefault();
-			this.theme.changeTheme();
-		});
+	show() {
+		let game = new Game();
 	}
+
 }
 
 export default PlayGameController;

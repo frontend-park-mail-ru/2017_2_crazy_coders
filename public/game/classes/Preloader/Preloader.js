@@ -1,5 +1,5 @@
 import Phaser from '../../phaser.min'
-import MainMenu from "../MainMenu/MainMenu";
+import MainMenu from '../MainMenu/MainMenu';
 
 class Preloader extends Phaser.State {
 
@@ -16,9 +16,9 @@ class Preloader extends Phaser.State {
         this.load.setPreloadSprite(this.preloadBar);
 
         //  Load our actual games assets
-        this.load.image('titlepage', 'statics/images/titlepage.jpg');
-        this.load.image('logo', 'statics/images/logo.png');
-        this.load.audio('music', 'statics/music/boom.mp3', true);
+        this.load.image('titlepage', 'static/staticsGame/images/titlepage.jpg');
+        this.load.image('logo', 'static/staticsGame/images/logo.png');
+        this.load.audio('music', 'static/staticsGame/music/boom.mp3', true);
     }
 
     create() {

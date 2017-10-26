@@ -5,8 +5,8 @@ class Boot extends Phaser.State {
 
     preload() {
 
-        this.load.image('background', 'statics/images/titlepage.jpg');
-        this.load.image('preloadBar', 'statics/images/loader.png');
+        this.load.image('background', 'static/staticsGame/images/titlepage.jpg');
+        this.load.image('preloadBar', 'static/staticsGame/images/loader.png');
 
     }
 

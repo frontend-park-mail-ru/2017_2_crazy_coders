@@ -8,10 +8,10 @@ class PauseMenu extends Phaser.State {
     }
 
     preload(){
-        this.load.image('background', 'statics/images/white_background.jpg');
-        this.load.spritesheet("pause_logo", "statics/images/pause_logo.png");
-        this.load.spritesheet("continue", "statics/images/continue_button.png");
-        this.load.spritesheet("exit", "statics/images/exit_button.png");
+        this.load.image('background', 'static/staticsGame/images/white_background.jpg');
+        this.load.spritesheet('pause_logo', 'static/staticsGame/images/pause_logo.png');
+        this.load.spritesheet('continue', 'static/staticsGame/images/continue_button.png');
+        this.load.spritesheet('exit', 'static/staticsGame/images/exit_button.png');
     }
 
     create(){

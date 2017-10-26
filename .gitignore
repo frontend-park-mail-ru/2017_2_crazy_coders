@@ -66,3 +66,4 @@ bundle.js.map
 /public/components/template/Menu.pug.js
 /public/components/template/Table.pug.js
 
+/public/game/phaser.min.js

@@ -29,16 +29,7 @@ class SignInController extends Controller {
                 .then((data) => {
                     this.userService.user.set(data);
                     console.log("[onSubmitSignInForm] Success sign in");
-
-                    let dataa = {
-						nameGame: 'TANKSsss',
-					};
-
-                    console.log('data' + this.userService.user.get().score);
-					console.log(this.page_parts.get("Header").setData(dataa));
-					// this.page_parts.get("Header").getClassElement();
-
-
+                    console.log('signIn: ' + this.userService.user.getUsername());
                     Form.reset();
                     this._router.go('/');
                 })

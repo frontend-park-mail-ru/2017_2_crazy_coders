@@ -10,16 +10,16 @@ class World extends Phaser.State {
 	}
 
 	preload() {
-		this.load.atlas('tank', 'statics/images/tanks.png', 'statics/images/tanks.json');
-		this.load.atlas('enemy', 'statics/images/enemy-tanks.png', 'statics/images/tanks.json');
-		this.load.image('logo', 'statics/images/logo.png');
-		this.load.image('bullet', 'statics/images/bullet.png');
-		this.load.image('earth', 'statics/images/ground.jpg');
-		this.load.spritesheet('kaboom', 'statics/images/explosion.png', 64, 64, 23);
-		this.load.bitmapFont('desyrel', 'statics/images/desyrel.png', 'statics/images/desyrel.xml');
+		this.load.atlas('tank', 'static/staticsGame/images/tanks.png', 'static/staticsGame/images/tanks.json');
+		this.load.atlas('enemy', 'static/staticsGame/images/enemy-tanks.png', 'static/staticsGame/images/tanks.json');
+		this.load.image('logo', 'static/staticsGame/images/logo.png');
+		this.load.image('bullet', 'static/staticsGame/images/bullet.png');
+		this.load.image('earth', 'static/staticsGame/images/ground.jpg');
+		this.load.spritesheet('kaboom', 'static/staticsGame/images/explosion.png', 64, 64, 23);
+		this.load.bitmapFont('desyrel', 'static/staticsGame/images/desyrel.png', 'static/staticsGame/images/desyrel.xml');
 
-		this.load.image('pause', 'statics/images/pause_button.png');
-		this.load.image('box_tree', 'statics/images/box_tree.png');
+		this.load.image('pause', 'static/staticsGame/images/pause_button.png');
+		this.load.image('box_tree', 'static/staticsGame/images/box_tree.png');
 	}
 
 
