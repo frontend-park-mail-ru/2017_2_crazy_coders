@@ -19,7 +19,7 @@ export default class SignInForm extends Form {
      * @return {object}
      */
     onSubmitSignInForm(callback) {
-        let signInForm = document.getElementById('login-form');
+        let signInForm = document.getElementsByClassName('block-form__login-form')[0];
 
         signInForm.addEventListener('submit', (e) => {
             e.preventDefault();

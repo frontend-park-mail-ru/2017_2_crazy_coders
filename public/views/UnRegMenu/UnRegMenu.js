@@ -6,12 +6,12 @@ let data = {
         {
             text: 'SIGN IN',
             id: 'menu-button-signIn',
-            class: 'button',
+            class: 'menu__button',
         },
         {
             text: 'SIGN UP',
             id: 'menu-button-signUp',
-            class: 'button',
+            class: 'menu__button',
         }
     ]
 };

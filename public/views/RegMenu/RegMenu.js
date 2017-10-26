@@ -10,12 +10,12 @@ export default function createRegMenu() {
             {
                 text: 'START',
                 id: 'menu-button-playGame',
-                class: 'button a-button',
+                class: 'menu__button',
             },
             {
                 text: 'LOG OUT',
                 id: 'menu-button-logout',
-                class: 'button a-button',
+                class: 'menu__button',
             }
         ]
     };

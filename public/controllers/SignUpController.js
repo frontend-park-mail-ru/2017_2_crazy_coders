@@ -19,7 +19,7 @@ class SignUpController extends Controller {
 
     addListener() {
 
-		document.getElementById('menu-theme-switch').addEventListener('click', event => {
+		document.getElementsByClassName('button-theme-switch')[0].addEventListener('click', event => {
 			event.preventDefault();
 			this.theme.changeTheme();
 		});

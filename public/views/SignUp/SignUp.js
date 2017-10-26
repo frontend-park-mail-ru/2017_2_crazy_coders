@@ -5,7 +5,7 @@ import ValidSignUpForm from '../../components/Form/ValidForm/ValidSignUpForm';
 
 let data = {
     title: 'SIGN UP',
-    idForm: 'signup-form',
+	classForm: 'block-form__signup-form',
     fields: [
         {
             attrs: {
@@ -39,14 +39,14 @@ let data = {
         {
             attrs: {
                 type: 'submit',
-                class: 'button submitData',
+                class: 'block-form__submit-data',
                 value: 'SIGN UP',
                 id: 'signUp-button-signUp',
             },
         },
         {
             attrs: {
-                class: 'button back-button',
+                class: 'block-form__back-button',
                 value: 'BACK',
                 id: 'signUp-button-back',
             },
