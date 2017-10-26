@@ -1,9 +1,10 @@
 import Menu from '../../components/Menu/Menu';
+import UserService from '../../services/UserService'
 
 /**
  * Получаем страницу зарегестрированного пользователя
  */
-export default function createRegMenu() { //(user)
+export default function createRegMenu(userService) { //(user)
     // console.log(user);
     let data = {
         user: 'name', // не выводится в шаблоне
