@@ -1,13 +1,7 @@
 import Phaser from '../../phaser.min';
 import EnemyTank from '../Tank/EnemyTank';
+import Constants from '../Constants/Constant';
 
-const Constants = {
-	logo_scale: 0.5,
-	max_velocity: 400,
-	health: 100,
-	anchor: 0.5,
-	button_scale: 0.2
-};
 
 class World extends Phaser.State {
 
