@@ -19,7 +19,6 @@ class PlayGameController extends Controller {
 		if (this.userService.isAuthorized()) {
 			let game = new Game();
 		}
-		// let game = new Game();
 	}
 
 }
