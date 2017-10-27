@@ -23,7 +23,7 @@ routes.forEach(path => {
 });
 app.use(express.static('public'));
 
-const port = process.env.PORT || 8001;
+const port = process.env.PORT || 8081;
 
 app.listen(port, () => {
     console.log(`App start on port ${port}`);
