@@ -1,19 +1,19 @@
-div.block-form
+div.form
     h1(align='middle')= data.title
     form(class=data.classForm)
         each field in data.fields
-            input.block-form__input(
+            input.form__input(
                 type=field.attrs.type
                 placeholder=field.attrs.placeholder
                 name=field.attrs.name
             )
-        input.block-form__input(
+        input.form__input(
             class=data.buttons[0].attrs.class
             type=data.buttons[0].attrs.type
             value=data.buttons[0].attrs.value
             id=data.buttons[0].attrs.id
         )
-    input.block-form__button(
+    input.form__button(
         class=data.buttons[1].attrs.class
         type=data.buttons[1].attrs.type
         value=data.buttons[1].attrs.value

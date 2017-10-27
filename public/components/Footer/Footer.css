@@ -5,23 +5,23 @@
     margin-bottom: 15px;
 }
 
-.footer__logo-img {
+.footer__logo {
     width: 230px;
     height: auto;
     margin-left: -60px;
 }
 
-.footer__sound-img {
+.footer__sound {
     width: 100px;
     margin: 0 160px;
 }
 
-.footer__score-img {
+.footer__score {
     width: 50px;
     margin: 0 125px;
 }
 
-.footer__info-img {
+.footer__info {
     width: 50px;
     margin: 0 55px;
 }

@@ -42,14 +42,7 @@ class Controller {
         this._el.style.display = 'none';
     }
 
-    /**
-     * Рендерит view
-     * Необходимо переопределять
-     * @param {Object} [options={}] - Объект с параметрами
-     */
-    render() {
 
-    }
 
     /**
      * Вставляет текущую view в переданный элемент

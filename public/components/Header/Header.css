@@ -5,19 +5,19 @@
     margin-bottom: 15px;
 }
 
-.header__logo-img {
+.header__logo {
     width: 230px;
     height: auto;
     margin-left: -60px;
 }
 
-.header__rotate-text {
+.header__text {
     font-size: 2.7em;
     font-family: "Arial Black", Gadget, sans-serif;
     transform: rotate(-90deg);
 }
 
-.button-theme-switch {
+.theme {
     background-color: whitesmoke;
     font-weight: 700;
     font-family: "Verdana", sans-serif;
@@ -35,6 +35,6 @@
     font-size: 1.1em
 }
 
-.button-theme-switch:hover {
+.theme:hover {
     background-color: #e9ecf0;
 }
