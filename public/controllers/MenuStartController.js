@@ -69,7 +69,6 @@ class MenuStartController extends Controller {
         });
     }
 
-
     resume() {
         this.show();
     }
