@@ -5,7 +5,7 @@
  * @param {HTMLElement} form
  */
 function hideError(form) {
-    let removeErrorCollection = form.getElementsByClassName('error-msg');
+    let removeErrorCollection = form.getElementsByClassName('block-form__error-msg');
     const removeErrorArray = Array.from(removeErrorCollection);
     removeErrorArray.forEach(elem => {
         elem.remove();

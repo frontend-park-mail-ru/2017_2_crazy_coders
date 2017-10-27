@@ -1145,7 +1145,7 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
  * @param {HTMLElement} form
  */
 function hideError(form) {
-    let removeErrorCollection = form.getElementsByClassName('error-msg');
+    let removeErrorCollection = form.getElementsByClassName('block-form__error-msg');
     const removeErrorArray = Array.from(removeErrorCollection);
     removeErrorArray.forEach(elem => {
         elem.remove();
