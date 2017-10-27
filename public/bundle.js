@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ 	return __webpack_require__(__webpack_require__.s = 15);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1066,8 +1066,8 @@ const bodyStylesWhite = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Form_pug__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Form_pug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Form_pug__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ValidForm_ValidSignInForm__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidSignUpForm__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ValidForm_ValidSignInForm__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidSignUpForm__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Form_css__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Form_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__Form_css__);
 
@@ -1135,6 +1135,123 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
 
 /***/ }),
 /* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_Http__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_User__ = __webpack_require__(17);
+
+
+
+/**
+ * Сервис для работы с юзерами
+ * @module UserService
+ */
+class UserService {
+
+    constructor() {
+        // debugger;
+        if(this.user) {
+            return this;
+        }
+        this.user = new __WEBPACK_IMPORTED_MODULE_1__model_User__["a" /* default */]({});
+        this.users = [];
+    }
+
+    /**
+     * Регистрирует нового пользователя
+     * @param {string} username
+     * @param {string} email
+     * @param {string} password
+     * @return {Promise}
+     */
+    signUp(username, email, password) {
+
+        console.log(`[signUp] email:  ${email}  pass: ${password}`);
+        const requestBody = {username, email, password};
+        return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/signUp', requestBody)
+            .then((response) => {
+                if (response.status === 201) {
+                    //this.user.set(response.json());
+                    return response.json();
+                } else {
+                    console.log(response.json());
+                    throw response;
+                }
+            });
+    }
+
+    /**
+     * Авторизация пользователя
+     * @param {string} email
+     * @param {string} password
+     * @return {Promise}
+     */
+    signIn(email, password) {
+        // console.log(`[signIn] email:  ${email}  pass: ${password}`);
+        return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/signIn', {email, password})
+            .then((response) => {
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    console.log(response.json());
+                    throw response;
+                }
+            });
+    }
+
+    /**
+     * Проверяет, авторизован ли пользователь
+     * @return {boolean}
+     */
+    isAuthorized() {
+        console.log("[UserService] in isAuthorized, this.user.getId = " + this.user.getId());
+        return !!this.user.getId();
+    }
+
+    /**
+     * Загружает данные о текущем пользователе
+     * @param {boolean} [force=true] - игнорировать ли кэш?
+     * @return {Promise}
+     */
+    getProfile(force = true) {
+        if (this.isAuthorized() && !force) {
+            return Promise.resolve(this.user.get());
+        }
+        return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchGet('/profile')
+            .then((response) => {
+                if (response.status === 200) {
+                    this.user.set(response);
+                    console.log('if: ' + response.json());
+                    return response;
+                } else {
+                    //console.log('else: ' + response.json());
+                    throw response;
+                }
+            })
+    }
+
+    /**
+     * Получить данного пользователя
+     */
+    getUserLogin() {
+        return this.user.get();
+    }
+
+    /**
+     * Выход
+     */
+    logout() {
+        return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchGet('/logout');
+
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = UserService;
+
+
+
+/***/ }),
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1234,7 +1351,7 @@ class ValidSignInForm {
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1358,7 +1475,7 @@ class ValidSignUpForm {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1400,7 +1517,7 @@ class Menu extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1442,13 +1559,13 @@ class Table extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* 
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__phaser_min__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__phaser_min___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__phaser_min__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__MainMenu_MainMenu__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__MainMenu_MainMenu__ = __webpack_require__(14);
 
 
 
@@ -1461,12 +1578,6 @@ class Preloader extends __WEBPACK_IMPORTED_MODULE_0__phaser_min___default.a.Stat
     }
 
     preload() {
-
-        //  Set-up our preloader sprite
-        this.preloadBar = this.add.sprite(200, 250, 'preloadBar');
-        this.load.setPreloadSprite(this.preloadBar);
-
-        //  Load our actual games assets
         this.load.image('titlepage', 'static/staticsGame/images/titlepage.jpg');
         this.load.image('logo', 'static/staticsGame/images/logo.png');
         this.load.audio('music', 'static/staticsGame/music/boom.mp3', true);
@@ -1494,7 +1605,7 @@ class Preloader extends __WEBPACK_IMPORTED_MODULE_0__phaser_min___default.a.Stat
 /* harmony default export */ __webpack_exports__["a"] = (Preloader);
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1545,12 +1656,12 @@ class MainMenu extends __WEBPACK_IMPORTED_MODULE_0__phaser_min___default.a.State
 /* harmony default export */ __webpack_exports__["a"] = (MainMenu);
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_UserService__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_UserService__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_CreatePage_js__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_Router__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__controllers_MenuStartController__ = __webpack_require__(50);
@@ -1585,123 +1696,6 @@ let page = new __WEBPACK_IMPORTED_MODULE_1__views_CreatePage_js__["a" /* default
     .addRoute('/score', __WEBPACK_IMPORTED_MODULE_7__controllers_ScoreListController__["a" /* default */], {userService: userService, page: page})
     .addRoute('/about', __WEBPACK_IMPORTED_MODULE_8__controllers_AboutUsController__["a" /* default */], {userService: userService, page: page})
     .startRoute();
-
-
-/***/ }),
-/* 15 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_Http__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_User__ = __webpack_require__(17);
-
-
-
-/**
- * Сервис для работы с юзерами
- * @module UserService
- */
-class UserService {
-
-    constructor() {
-        // debugger;
-        if(this.user) {
-            return this;
-        }
-        this.user = new __WEBPACK_IMPORTED_MODULE_1__model_User__["a" /* default */]({});
-        this.users = [];
-    }
-
-    /**
-     * Регистрирует нового пользователя
-     * @param {string} username
-     * @param {string} email
-     * @param {string} password
-     * @return {Promise}
-     */
-    signUp(username, email, password) {
-
-        console.log(`[signUp] email:  ${email}  pass: ${password}`);
-        const requestBody = {username, email, password};
-        return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/signUp', requestBody)
-            .then((response) => {
-                if (response.status === 201) {
-                    //this.user.set(response.json());
-                    return response.json();
-                } else {
-                    console.log(response.json());
-                    throw response;
-                }
-            });
-    }
-
-    /**
-     * Авторизация пользователя
-     * @param {string} email
-     * @param {string} password
-     * @return {Promise}
-     */
-    signIn(email, password) {
-        // console.log(`[signIn] email:  ${email}  pass: ${password}`);
-        return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/signIn', {email, password})
-            .then((response) => {
-                if (response.status === 200) {
-                    return response.json();
-                } else {
-                    console.log(response.json());
-                    throw response;
-                }
-            });
-    }
-
-    /**
-     * Проверяет, авторизован ли пользователь
-     * @return {boolean}
-     */
-    isAuthorized() {
-        console.log("[UserService] in isAuthorized, this.user.getId = " + this.user.getId());
-        return !!this.user.getId();
-    }
-
-    /**
-     * Загружает данные о текущем пользователе
-     * @param {boolean} [force=true] - игнорировать ли кэш?
-     * @return {Promise}
-     */
-    getProfile(force = true) {
-        if (this.isAuthorized() && !force) {
-            return Promise.resolve(this.user.get());
-        }
-        return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchGet('/profile')
-            .then((response) => {
-                if (response.status === 200) {
-                    this.user.set(response);
-                    console.log('if: ' + response.json());
-                    return response;
-                } else {
-                    //console.log('else: ' + response.json());
-                    throw response;
-                }
-            })
-    }
-
-    /**
-     * Получить данного пользователя
-     */
-    getUserLogin() {
-        return this.user.get();
-    }
-
-    /**
-     * Выход
-     */
-    logout() {
-        return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchGet('/logout');
-
-    }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = UserService;
-
 
 
 /***/ }),
@@ -1779,7 +1773,6 @@ class Http {
      */
     static FetchGet(address) {
         // const url = this.baseUrl + address;
-        // const url = 'https://tanks-backend.xyz' + address;
         const url = 'http://82.202.246.5:8080' + address;
 
         console.log("[FetchGet] try get from " + url);
@@ -1806,9 +1799,8 @@ class Http {
      * @return {Promise}
      */
     static FetchPost (address, body) {
-        // const url = 'https://tanks-backend.xyz' + address;
-		const url = 'http://82.202.246.5:8080' + address;
-        // const url = this.baseUrl + address;
+
+        const url = 'http://82.202.246.5:8080' + address;
 
         console.log("[FetchPost] try post to " + url);
 
@@ -1973,7 +1965,7 @@ class CreatePage {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = SignIn;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_SignInForm__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Form_ValidForm_ValidSignInForm__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Form_ValidForm_ValidSignInForm__ = __webpack_require__(9);
 
 
 
@@ -2258,7 +2250,7 @@ module.exports = function (css) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = SignUp;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_SignUpForm__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Form_ValidForm_ValidSignUpForm__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Form_ValidForm_ValidSignUpForm__ = __webpack_require__(10);
 
 
 
@@ -2503,7 +2495,7 @@ exports.push([module.i, ".header {\n    display: flex;\n    align-items: center;
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = createUnRegMenu;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Menu_Menu__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Menu_Menu__ = __webpack_require__(11);
 
 
 let data = {
@@ -2610,7 +2602,9 @@ exports.push([module.i, ".menu {\n    display: flex;\n    align-items: center;\n
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = createRegMenu;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Menu_Menu__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Menu_Menu__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_UserService__ = __webpack_require__(8);
+
 
 
 /**
@@ -2643,7 +2637,7 @@ function createRegMenu() {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = createAboutUs;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Table_Table__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Table_Table__ = __webpack_require__(12);
 
 
 
@@ -2768,7 +2762,7 @@ exports.push([module.i, ".table__title {\n    display: flex;\n    align-items: c
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = Scoreboard;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Table_Table__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Table_Table__ = __webpack_require__(12);
 
 
 let data = {
@@ -3159,7 +3153,6 @@ class MenuStartController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" 
         });
     }
 
-
     resume() {
         this.show();
     }
@@ -3173,6 +3166,7 @@ class MenuStartController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" 
             this.page_parts.get("UnRegMenu").show();
         }
         else {
+            console.log(`[MenuStartController] show: ${this.page_parts.get("RegMenu").getData()}`);
             this.page_parts.get("RegMenu").show();
         }
         this.page_parts.get("Footer").show();
@@ -3231,8 +3225,8 @@ class PlayGameController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__phaser_min__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__phaser_min___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__phaser_min__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Boot_Boot__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Preloader_Preloader__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MainMenu_MainMenu__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Preloader_Preloader__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MainMenu_MainMenu__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__World_World__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__PauseMenu_PauseMenu__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__GameOverMenu_GameOverMenu__ = __webpack_require__(58);
@@ -3461,37 +3455,19 @@ process.umask = function() { return 0; };
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__phaser_min__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__phaser_min___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__phaser_min__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Preloader_Preloader__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Preloader_Preloader__ = __webpack_require__(13);
 
 
 
 class Boot extends __WEBPACK_IMPORTED_MODULE_0__phaser_min___default.a.State {
 
     preload() {
-
         this.load.image('background', 'static/staticsGame/images/titlepage.jpg');
         this.load.image('preloadBar', 'static/staticsGame/images/loader.png');
-
     }
 
     create() {
-
-        //  Unless you specifically need to support multitouch I would recommend setting this to 1
-        this.input.maxPointers = 1;
-
-        //  Phaser will automatically pause if the browser tab the game is in loses focus. You can disable that here:
-        this.stage.disableVisibilityChange = true;
-
-        if (this.game.device.desktop) {
-            //  If you have any desktop specific settings, they can go in here
-            this.stage.scale.pageAlignHorizontally = true;
-        }
-        else {
-            //  Same goes for mobile settings.
-        }
-
          this.game.state.start('Preloader', true, false);
-
     }
 
 }
@@ -3764,23 +3740,19 @@ class World extends __WEBPACK_IMPORTED_MODULE_0__phaser_min___default.a.State {
 
 class EnemyTank {
 
-	constructor(index, game, player, bullets) { // создать класс танка, от него унаследовать EnemyTank.
-		// координаты танка бота
-		//			let x = game.world.randomX;
-		//			let y = game.world.randomY;
+	constructor(index, game, player, bullets) {
 
 		let x = Math.random() * game.world.width;
 		let y = Math.random() * game.world.height;
 
 		this.game = game;
 		this.health = 3;
-		this.player = player; // для стрельбы по нам
+		this.player = player;
 		this.bullets = bullets;
 		this.fireRate = 1000; // скорострельность
 		this.nextFire = 0;  //следующий выстрел
-		this.alive = true;  // жив
+		this.alive = true;
 
-		// тень, танк, башня
 		this.shadow = game.add.sprite(x, y, 'enemy', 'shadow');
 		this.tank = game.add.sprite(x, y, 'enemy', 'tank1');
 		this.turret = game.add.sprite(x, y, 'enemy', 'turret');
@@ -3792,9 +3764,7 @@ class EnemyTank {
 
 		this.tank.name = index.toString();
 		game.physics.enable(this.tank, __WEBPACK_IMPORTED_MODULE_0__phaser_min___default.a.Physics.ARCADE);
-		// неподвижное тело не получает ударов
 		this.tank.body.immovable = true;
-		// боты не должны заезжать за границы
 		this.tank.body.collideWorldBounds = true;
 		this.tank.body.bounce.setTo(1, 1);
 
@@ -3818,17 +3788,14 @@ class EnemyTank {
 	}
 
 	update() {
-		//привязываем тень
 		this.shadow.x = this.tank.x;
 		this.shadow.y = this.tank.y;
 		this.shadow.rotation = this.tank.rotation;
 
-		//привязываем башню
 		this.turret.x = this.tank.x;
 		this.turret.y = this.tank.y;
 		this.turret.rotation = this.game.physics.arcade.angleBetween(this.tank, this.player);
 
-		//стреляет
 		if (this.game.physics.arcade.distanceBetween(this.tank, this.player) < 300) {
 			if (this.game.time.now > this.nextFire && this.bullets.countDead() > 0) {
 				this.nextFire = this.game.time.now + this.fireRate;

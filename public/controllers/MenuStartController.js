@@ -82,26 +82,8 @@ class MenuStartController extends Controller {
             this.page_parts.get("UnRegMenu").show();
         }
         else {
-            debugger;
             console.log(`[MenuStartController] show: ${this.page_parts.get("RegMenu").getData()}`);
-            let data = {
-                user: this.userService.username,
-                buttons: [
-                    {
-                        text: 'START',
-                        id: 'menu-button-playGame',
-                        class: 'button a-button',
-                    },
-                    {
-                        text: 'LOG OUT',
-                        id: 'menu-button-logout',
-                        class: 'button a-button',
-                    }
-                ]
-            };
-            let reg_menu = this.page_parts.get("RegMenu");
-            reg_menu.setData(data);
-            reg_menu.show();
+            this.page_parts.get("RegMenu").show();
         }
         this.page_parts.get("Footer").show();
     }
