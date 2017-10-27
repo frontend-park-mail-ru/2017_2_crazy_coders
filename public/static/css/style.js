@@ -15,6 +15,7 @@ export default class Theme {
 	}
 
 
+
 	createStylesheet(styles){
 		return styles.reduce((stylesheet, current) => {
 			const properties = Object.entries(current.styles)

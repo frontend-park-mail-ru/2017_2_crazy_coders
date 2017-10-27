@@ -1,12 +1,12 @@
-div.logo.logo_text=data.title
-//div.logo.table_form
-div.logo
-    table(class=data.classTable)
-        each user in data.users
-            tr
-                td=user.name
-                td=user.position
+div.table
+    div.table__title=data.title
+    div.table__content
+        table.table__table-elem(class=data.classTable)
+            each user in data.users
+                tr.table__tr-elem
+                    td.table__td-elem=user.name
+                    td.table__td-elem=user.position
 
-div.logo.logo_button
-    butto.button(id=data.idButton)='BACK'
+    div.table__back
+        butto.table__button(id=data.idButton)='BACK'
 

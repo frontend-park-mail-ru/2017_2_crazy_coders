@@ -1,6 +1,7 @@
 'use strict';
 
 import Controller from "./Controller";
+import Theme from '../static/css/style';
 
 class ScoreListController extends Controller {
 
@@ -11,10 +12,15 @@ class ScoreListController extends Controller {
 
         super(opt);
         ScoreListController.__instance = this;
+		this.theme = new Theme();
         this.addListener();
     }
 
     addListener() {
+		document.getElementsByClassName('button-theme-switch')[0].addEventListener('click', event => {
+			event.preventDefault();
+			this.theme.changeTheme();
+		});
 
         document.getElementById('score-button-back').addEventListener('click', event => {
             event.preventDefault();

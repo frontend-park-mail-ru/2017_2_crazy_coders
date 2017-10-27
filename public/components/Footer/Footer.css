@@ -1,27 +1,27 @@
-.logo {
+.footer {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 15px;
 }
 
-.logo_img {
+.footer__logo-img {
     width: 230px;
     height: auto;
     margin-left: -60px;
 }
 
-.sound_img {
+.footer__sound-img {
     width: 100px;
     margin: 0 160px;
 }
 
-.score_img {
+.footer__score-img {
     width: 50px;
     margin: 0 125px;
 }
 
-.info_img {
+.footer__info-img {
     width: 50px;
     margin: 0 55px;
 }

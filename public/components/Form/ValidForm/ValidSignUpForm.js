@@ -68,7 +68,7 @@ export default class ValidSignUpForm {
     static createErrorElement(msg) {
         let errorElement = document.createElement('p');
         errorElement.textContent = msg;
-        errorElement.classList.add('error-msg');
+        errorElement.classList.add('block-form__error-msg');
 
         return errorElement;
     }

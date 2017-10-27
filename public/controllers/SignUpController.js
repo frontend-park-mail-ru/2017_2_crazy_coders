@@ -1,7 +1,8 @@
 'use strict';
 
-import Controller from "./Controller";
-import Form from '../components/Form/Form/Form'
+import Controller from './Controller';
+import Form from '../components/Form/Form/Form';
+import Theme from '../static/css/style';
 
 class SignUpController extends Controller {
 
@@ -12,10 +13,16 @@ class SignUpController extends Controller {
 
         super(opt);
         SignUpController.__instance = this;
+		this.theme = new Theme();
         this.addListener();
     }
 
     addListener() {
+
+		document.getElementsByClassName('button-theme-switch')[0].addEventListener('click', event => {
+			event.preventDefault();
+			this.theme.changeTheme();
+		});
 
         this.page_parts.get('SignUp').onSubmitSignUpForm(formdata => {
             this.userService

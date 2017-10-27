@@ -4,8 +4,8 @@ class Controller {
 
     constructor(opt) {
         this.userService = opt.userService;
-        this.page = opt.page;
-        this.page_parts = opt.page.getParts();
+        this.page = opt.page;                   // объект CreatePage
+        this.page_parts = opt.page.getParts();  // map() вьюх
     }
 
     /**
@@ -15,15 +15,6 @@ class Controller {
      */
     init(options = {}) {
         this.setAttrs(options.attrs);
-    }
-
-    /**
-     * Вызывается при приостановке работы view (при скрытии view или переходе на другую view)
-     * Необходимо переопределять своей логикой
-     * @param {Object} [options={}] - Объект с параметрами
-     */
-    pause() {
-        this.hide();
     }
 
     /**

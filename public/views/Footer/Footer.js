@@ -3,17 +3,17 @@ import Footer from '../../components/Footer/Footer'
 let data = {
     imgListData: [
         {
-            class: "sound_img",
+            class: "footer__sound-img",
             src: "./static/img/sound.png",
             id: "menu-button-music",
         },
         {
-            class: "score_img",
+            class: "footer__score-img",
             src: "./static/img/score.png",
             id: "menu-button-score",
         },
         {
-            class: "info_img",
+            class: "footer__info-img",
             src: "./static/img/info.png",
             id: "menu-button-about",
         },

@@ -3,14 +3,14 @@
 import Route from './Route';
 
 
-class Router {
+export default class Router {
 
     constructor() {
-        if (Router.__instance) {
+        if (Router.__instance) {  // если роутер существует - вернуть его самого
             return Router.__instance;
         }
 
-        this.routes = [];
+        this.routes = []; // сохраняет роутеры
         this.activeRoute = null;
 
         this.history = window.history;
@@ -23,42 +23,29 @@ class Router {
         const route = new Route(pathname, view, options);
         route.setRouter(this);
         this.routes.push(route);
-        // console.log("[addRoute] in Router");
+
         return this;
     }
 
 
-    startRoute(state = {}) {
+    startRoute() { // для записи с истории
         window.onpopstate = function(event) {
-            const state = event.state;
             const pathname = window.location.pathname;
-            console.log("[Router] in start");
-            this.onroute(pathname, state);
+            this.onroute(pathname);
         }.bind(this);
 
         const pathname = window.location.pathname;
-        this.onroute(pathname, state);
+        this.onroute(pathname);
     }
 
 
-    onroute(pathname, state = {}) {
-        console.log("[onroute] in Router");
-        let path = pathname;
-        console.log(`path = ${path}`);
-        if (path !== '/') {
-            if (path[path.length - 1] === '/') {
-                //console.log("[onroute] in Router: it's not / page");
-                path = path.slice(0, path.length - 1);
-            }
-        }
+    onroute(pathname) {
+        pathname = pathname.toString();
+		let path = (pathname !== '/') ? ( pathname[pathname.length - 1] === '/' ? pathname.slice(0, pathname.length - 1) : pathname) : pathname;
+        const route = this.routes.find( route => route.pathname.test(path) );
 
-        const route = this.routes.find(route => {
-            let res = route.pathname.test(path);
-            //console.log("[onroute] in Router: res = " + res);
-            return res;
-        });
         if (!route) {
-            console.log("[onroute] in Router: can't find rout ");
+            console.log("[onroute] in Router: can't find route");
             return;
         }
 
@@ -67,17 +54,16 @@ class Router {
         }
 
         this.activeRoute = route;
-        this.activeRoute.navigate(pathname, state);
+        this.activeRoute.navigate();
     }
 
-    go(pathname, state = {}) {
+    go(pathname) {
         if (window.location.pathname === pathname) {
             return;
         }
-        this.history.pushState(state, '', pathname);
-        this.onroute(pathname, state);
+        this.history.pushState({}, '', pathname);
+
+        this.onroute(pathname);
     }
 
 }
-
-export default Router;

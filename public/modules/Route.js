@@ -2,27 +2,27 @@
 
 class Route {
 
-    constructor(pathname, view, options = {}) {
+    constructor(pathname, controller, options = {}) {
 
         this.pathname = new RegExp("\\"+pathname+"((\\?[a-z0-9\\-?\\[\\]=&;#]+)|$)");
-        this.View = view;
+        this.Controller = controller;
         this.options = options;
     }
 
 
     navigate() {
-        if (!this._view) {
-            const view = new this.View(this.options);
-            view.init(this.options);
-            view.setRouterController(this.__router);
-            this._view = view;
+        if (!this._controller) {
+            const controller = new this.Controller(this.options); // пр: создаём новый ScoreListController
+            controller.init(this.options);
+            controller.setRouterController(this.__router);
+            this._controller = controller;
         }
 
-        this._view.show();
+        this._controller.show();
     }
 
     leave() {
-        this._view && this._view.pause();
+        this._controller.hide();
     }
     
     setRouter(router) {
