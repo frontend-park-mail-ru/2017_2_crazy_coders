@@ -5,7 +5,7 @@ import ValidSignInForm from '../../components/Form/ValidForm/ValidSignInForm';
 
 let data = {
     title: 'SIGN IN',
-    classForm: 'block-form__login-form',
+    classForm: 'form__login',
     fields: [
         {
             attrs: {
@@ -25,14 +25,14 @@ let data = {
         {
             attrs: {
                 type: 'submit',
-                class: 'block-form__submit-data',
+                class: 'form__submit',
                 value: 'SIGN IN',
                 id: 'signIn-button-signIn',
             },
         },
         {
             attrs: {
-                class: 'block-form__back-button',
+                class: 'form__back',
                 value: 'BACK',
                 id: 'signIn-button-back',
             },

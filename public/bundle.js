@@ -1145,7 +1145,7 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
  * @param {HTMLElement} form
  */
 function hideError(form) {
-    let removeErrorCollection = form.getElementsByClassName('block-form__error-msg');
+    let removeErrorCollection = form.getElementsByClassName('form__error');
     const removeErrorArray = Array.from(removeErrorCollection);
     removeErrorArray.forEach(elem => {
         elem.remove();
@@ -1245,7 +1245,7 @@ class ValidSignInForm {
  * @param {HTMLElement} form
  */
 function hideError(form) {
-    let removeErrorCollection = form.getElementsByClassName('error-msg');
+    let removeErrorCollection = form.getElementsByClassName('form__error');
     const removeErrorArray = Array.from(removeErrorCollection);
     removeErrorArray.forEach(elem => {
         elem.remove();
@@ -1308,7 +1308,7 @@ class ValidSignUpForm {
     static createErrorElement(msg) {
         let errorElement = document.createElement('p');
         errorElement.textContent = msg;
-        errorElement.classList.add('block-form__error-msg');
+        errorElement.classList.add('form__error');
 
         return errorElement;
     }
@@ -1981,7 +1981,7 @@ class CreatePage {
 
 let data = {
     title: 'SIGN IN',
-    classForm: 'block-form__login-form',
+    classForm: 'form__login',
     fields: [
         {
             attrs: {
@@ -2001,14 +2001,14 @@ let data = {
         {
             attrs: {
                 type: 'submit',
-                class: 'block-form__submit-data',
+                class: 'form__submit',
                 value: 'SIGN IN',
                 id: 'signIn-button-signIn',
             },
         },
         {
             attrs: {
-                class: 'block-form__back-button',
+                class: 'form__back',
                 value: 'BACK',
                 id: 'signIn-button-back',
             },
@@ -2052,7 +2052,7 @@ class SignInForm extends __WEBPACK_IMPORTED_MODULE_0__Form__["a" /* default */] 
      * @return {object}
      */
     onSubmitSignInForm(callback) {
-        let signInForm = document.getElementsByClassName('block-form__login-form')[0];
+        let signInForm = document.getElementsByClassName('form__login')[0];
 
         signInForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -2083,26 +2083,26 @@ class SignInForm extends __WEBPACK_IMPORTED_MODULE_0__Form__["a" /* default */] 
 var pug = __webpack_require__(3);
 
 function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (data) {var pug_indent = [];
-pug_html = pug_html + "\n\u003Cdiv class=\"block-form\"\u003E\n  \u003Ch1 align=\"middle\"\u003E" + (pug.escape(null == (pug_interp = data.title) ? "" : pug_interp)) + "\u003C\u002Fh1\u003E\n  \u003Cform" + (pug.attr("class", pug.classes([data.classForm], [true]), false, true)) + "\u003E";
+pug_html = pug_html + "\n\u003Cdiv class=\"form\"\u003E\n  \u003Ch1 align=\"middle\"\u003E" + (pug.escape(null == (pug_interp = data.title) ? "" : pug_interp)) + "\u003C\u002Fh1\u003E\n  \u003Cform" + (pug.attr("class", pug.classes([data.classForm], [true]), false, true)) + "\u003E";
 // iterate data.fields
 ;(function(){
   var $$obj = data.fields;
   if ('number' == typeof $$obj.length) {
       for (var pug_index0 = 0, $$l = $$obj.length; pug_index0 < $$l; pug_index0++) {
         var field = $$obj[pug_index0];
-pug_html = pug_html + "\n    \u003Cinput" + (" class=\"block-form__input\""+pug.attr("type", field.attrs.type, true, true)+pug.attr("placeholder", field.attrs.placeholder, true, true)+pug.attr("name", field.attrs.name, true, true)) + "\u003E";
+pug_html = pug_html + "\n    \u003Cinput" + (" class=\"form__input\""+pug.attr("type", field.attrs.type, true, true)+pug.attr("placeholder", field.attrs.placeholder, true, true)+pug.attr("name", field.attrs.name, true, true)) + "\u003E";
       }
   } else {
     var $$l = 0;
     for (var pug_index0 in $$obj) {
       $$l++;
       var field = $$obj[pug_index0];
-pug_html = pug_html + "\n    \u003Cinput" + (" class=\"block-form__input\""+pug.attr("type", field.attrs.type, true, true)+pug.attr("placeholder", field.attrs.placeholder, true, true)+pug.attr("name", field.attrs.name, true, true)) + "\u003E";
+pug_html = pug_html + "\n    \u003Cinput" + (" class=\"form__input\""+pug.attr("type", field.attrs.type, true, true)+pug.attr("placeholder", field.attrs.placeholder, true, true)+pug.attr("name", field.attrs.name, true, true)) + "\u003E";
     }
   }
 }).call(this);
 
-pug_html = pug_html + "\n    \u003Cinput" + (pug.attr("class", pug.classes(["block-form__input",data.buttons[0].attrs.class], [false,true]), false, true)+pug.attr("type", data.buttons[0].attrs.type, true, true)+pug.attr("value", data.buttons[0].attrs.value, true, true)+pug.attr("id", data.buttons[0].attrs.id, true, true)) + "\u003E\n  \u003C\u002Fform\u003E\n  \u003Cinput" + (pug.attr("class", pug.classes(["block-form__button",data.buttons[1].attrs.class], [false,true]), false, true)+pug.attr("type", data.buttons[1].attrs.type, true, true)+pug.attr("value", data.buttons[1].attrs.value, true, true)+pug.attr("id", data.buttons[1].attrs.id, true, true)) + "\u003E\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for_with?locals_for_with.data:typeof data!=="undefined"?data:undefined));;return pug_html;};
+pug_html = pug_html + "\n    \u003Cinput" + (pug.attr("class", pug.classes(["form__input",data.buttons[0].attrs.class], [false,true]), false, true)+pug.attr("type", data.buttons[0].attrs.type, true, true)+pug.attr("value", data.buttons[0].attrs.value, true, true)+pug.attr("id", data.buttons[0].attrs.id, true, true)) + "\u003E\n  \u003C\u002Fform\u003E\n  \u003Cinput" + (pug.attr("class", pug.classes(["form__button",data.buttons[1].attrs.class], [false,true]), false, true)+pug.attr("type", data.buttons[1].attrs.type, true, true)+pug.attr("value", data.buttons[1].attrs.value, true, true)+pug.attr("id", data.buttons[1].attrs.id, true, true)) + "\u003E\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for_with?locals_for_with.data:typeof data!=="undefined"?data:undefined));;return pug_html;};
 module.exports = template;
 
 /***/ }),
@@ -2151,7 +2151,7 @@ exports = module.exports = __webpack_require__(4)(undefined);
 
 
 // module
-exports.push([module.i, ".block-form {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n    flex-flow: column nowrap;\n    margin-left: 2%;\n}\n\n.block-form__input {\n    display: block;\n    width: 350px;\n    padding: 9px 0 12px 12px;\n    font-size: 1em;\n    margin: 5px 0 16px ;\n    font-family: \"Helvetica\";\n    border-radius: 7px;\n    background: #e9ecf0;\n    color: #5E6D82;\n    box-sizing: border-box;\n}\n\n\n.block-form__button {\n    background-color: whitesmoke;\n    font-size: 1.5em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    padding: 7px 17px;\n    border: 3px solid #041712;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 25px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n}\n\n.block-form__submit-data {\n    background-color: whitesmoke;\n    font-size: 1.5em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    padding: 7px 17px;\n    border: 3px solid #041712;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 15px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n    margin-left: 100px;\n    margin-bottom: -10px;\n}\n\n.block-form__submit-data:hover {\n    background-color: rgba(4, 23, 18, 0.04);\n    border: 3px solid rgba(169, 169, 169, 0.19);\n}\n\n.block-form__error-msg {\n    color: #D8000C;\n    font-family: \"Verdana\", sans-serif;\n    text-align: center;\n    display: block;\n    border: 1px solid;\n    margin: -10px 0 2px 0;\n    padding:10px 10px 10px 10px;\n    background-color: #FFBABA;\n}\n\n.block-form__back-button {\n    margin: 25px 0 0 15px;\n    width: 130px;\n}\n\n.block-form__back-button:hover {\n    background-color: rgba(4, 23, 18, 0.04);\n    border: 3px solid rgba(169, 169, 169, 0.19);\n}", ""]);
+exports.push([module.i, ".form {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n    flex-flow: column nowrap;\n    margin-left: 2%;\n}\n\n.form__input {\n    display: block;\n    width: 350px;\n    padding: 9px 0 12px 12px;\n    font-size: 1em;\n    margin: 5px 0 16px ;\n    font-family: \"Helvetica\";\n    border-radius: 7px;\n    background: #e9ecf0;\n    color: #5E6D82;\n    box-sizing: border-box;\n}\n\n\n.form__button {\n    background-color: whitesmoke;\n    font-size: 1.5em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    padding: 7px 17px;\n    border: 3px solid #041712;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 25px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n}\n\n.form__submit {\n    background-color: whitesmoke;\n    font-size: 1.5em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    padding: 7px 17px;\n    border: 3px solid #041712;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 15px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n    margin-left: 100px;\n    margin-bottom: -10px;\n}\n\n.form__submit:hover {\n    background-color: rgba(4, 23, 18, 0.04);\n    border: 3px solid rgba(169, 169, 169, 0.19);\n}\n\n.form__error {\n    color: #D8000C;\n    font-family: \"Verdana\", sans-serif;\n    text-align: center;\n    display: block;\n    border: 1px solid;\n    margin: -10px 0 2px 0;\n    padding:10px 10px 10px 10px;\n    background-color: #FFBABA;\n}\n\n.form__back {\n    margin: 25px 0 0 15px;\n    width: 130px;\n}\n\n.form__back:hover {\n    background-color: rgba(4, 23, 18, 0.04);\n    border: 3px solid rgba(169, 169, 169, 0.19);\n}", ""]);
 
 // exports
 
@@ -2266,7 +2266,7 @@ module.exports = function (css) {
 
 let data = {
     title: 'SIGN UP',
-	classForm: 'block-form__signup-form',
+	classForm: 'form__signup',
     fields: [
         {
             attrs: {
@@ -2300,14 +2300,14 @@ let data = {
         {
             attrs: {
                 type: 'submit',
-                class: 'block-form__submit-data',
+                class: 'form__submit',
                 value: 'SIGN UP',
                 id: 'signUp-button-signUp',
             },
         },
         {
             attrs: {
-                class: 'block-form__back-button',
+                class: 'form__back',
                 value: 'BACK',
                 id: 'signUp-button-back',
             },
@@ -2351,7 +2351,7 @@ class SignUpForm extends __WEBPACK_IMPORTED_MODULE_0__Form__["a" /* default */] 
      * @return {Promise}
      */
     onSubmitSignUpForm(callback) {
-        let signUpForm = document.getElementsByClassName('block-form__signup-form')[0];
+        let signUpForm = document.getElementsByClassName('form__signup')[0];
 
         signUpForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -2449,7 +2449,7 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /*
 var pug = __webpack_require__(3);
 
 function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (data) {var pug_indent = [];
-pug_html = pug_html + "\n\u003Cdiv class=\"button-theme-switch\"\u003Echange theme\u003C\u002Fdiv\u003E\n\u003Cdiv class=\"header\"\u003E\n  \u003Cp class=\"header__rotate-text\"\u003E" + (pug.escape(null == (pug_interp = data.nameGame) ? "" : pug_interp)) + "\u003C\u002Fp\u003E\u003Cimg class=\"header__logo-img\" src=\"static\u002Fimg\u002Flogo.png\"\u003E\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for_with?locals_for_with.data:typeof data!=="undefined"?data:undefined));;return pug_html;};
+pug_html = pug_html + "\n\u003Cdiv class=\"theme\"\u003Echange theme\u003C\u002Fdiv\u003E\n\u003Cdiv class=\"header\"\u003E\n  \u003Cp class=\"header__text\"\u003E" + (pug.escape(null == (pug_interp = data.nameGame) ? "" : pug_interp)) + "\u003C\u002Fp\u003E\u003Cimg class=\"header__logo\" src=\"static\u002Fimg\u002Flogo.png\"\u003E\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for_with?locals_for_with.data:typeof data!=="undefined"?data:undefined));;return pug_html;};
 module.exports = template;
 
 /***/ }),
@@ -2492,7 +2492,7 @@ exports = module.exports = __webpack_require__(4)(undefined);
 
 
 // module
-exports.push([module.i, ".header {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n}\n\n.header__logo-img {\n    width: 230px;\n    height: auto;\n    margin-left: -60px;\n}\n\n.header__rotate-text {\n    font-size: 2.7em;\n    font-family: \"Arial Black\", Gadget, sans-serif;\n    transform: rotate(-90deg);\n}\n\n.button-theme-switch {\n    background-color: whitesmoke;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 15px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n    padding: 1px 7px;\n    border: none;\n    font-size: 1.1em\n}\n\n.button-theme-switch:hover {\n    background-color: #e9ecf0;\n}", ""]);
+exports.push([module.i, ".header {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n}\n\n.header__logo {\n    width: 230px;\n    height: auto;\n    margin-left: -60px;\n}\n\n.header__text {\n    font-size: 2.7em;\n    font-family: \"Arial Black\", Gadget, sans-serif;\n    transform: rotate(-90deg);\n}\n\n.theme {\n    background-color: whitesmoke;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 15px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n    padding: 1px 7px;\n    border: none;\n    font-size: 1.1em\n}\n\n.theme:hover {\n    background-color: #e9ecf0;\n}", ""]);
 
 // exports
 
@@ -2695,21 +2695,21 @@ function createAboutUs() {
 var pug = __webpack_require__(3);
 
 function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (data) {var pug_indent = [];
-pug_html = pug_html + "\n\u003Cdiv class=\"table\"\u003E\n  \u003Cdiv class=\"table__title\"\u003E" + (pug.escape(null == (pug_interp = data.title) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E\n  \u003Cdiv class=\"table__content\"\u003E\n    \u003Ctable" + (pug.attr("class", pug.classes(["table__table-elem",data.classTable], [false,true]), false, true)) + "\u003E";
+pug_html = pug_html + "\n\u003Cdiv class=\"table\"\u003E\n  \u003Cdiv class=\"table__title\"\u003E" + (pug.escape(null == (pug_interp = data.title) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E\n  \u003Cdiv class=\"table__content\"\u003E\n    \u003Ctable" + (pug.attr("class", pug.classes(["table__tag",data.classTable], [false,true]), false, true)) + "\u003E";
 // iterate data.users
 ;(function(){
   var $$obj = data.users;
   if ('number' == typeof $$obj.length) {
       for (var pug_index0 = 0, $$l = $$obj.length; pug_index0 < $$l; pug_index0++) {
         var user = $$obj[pug_index0];
-pug_html = pug_html + "\n      \u003Ctr class=\"table__tr-elem\"\u003E\n        \u003Ctd class=\"table__td-elem\"\u003E" + (pug.escape(null == (pug_interp = user.name) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td-elem\"\u003E" + (pug.escape(null == (pug_interp = user.position) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n      \u003C\u002Ftr\u003E";
+pug_html = pug_html + "\n      \u003Ctr class=\"table__tr\"\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.name) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.position) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n      \u003C\u002Ftr\u003E";
       }
   } else {
     var $$l = 0;
     for (var pug_index0 in $$obj) {
       $$l++;
       var user = $$obj[pug_index0];
-pug_html = pug_html + "\n      \u003Ctr class=\"table__tr-elem\"\u003E\n        \u003Ctd class=\"table__td-elem\"\u003E" + (pug.escape(null == (pug_interp = user.name) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td-elem\"\u003E" + (pug.escape(null == (pug_interp = user.position) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n      \u003C\u002Ftr\u003E";
+pug_html = pug_html + "\n      \u003Ctr class=\"table__tr\"\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.name) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.position) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n      \u003C\u002Ftr\u003E";
     }
   }
 }).call(this);
@@ -2757,7 +2757,7 @@ exports = module.exports = __webpack_require__(4)(undefined);
 
 
 // module
-exports.push([module.i, ".table__title {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 2em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    margin: 1% 0 1% 1%;\n}\n\n.table__content {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n}\n\n.table__back {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n    flex-flow: column nowrap;\n\n}\n\n.table__button {\n    background-color: whitesmoke;\n    font-size: 1.5em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    padding: 7px 17px;\n    border: 3px solid #041712;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 15px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n}\n\n.table__button:hover {\n    background-color: rgba(4, 23, 18, 0.04);\n    border: 3px solid rgba(169, 169, 169, 0.19);\n}\n\n\n.table__table-elem {\n    border-collapse: collapse;\n    font-family: \"Verdana\", sans-serif;\n}\n\n.table__td-elem, .table__th-elem {\n    text-align: center;\n    padding: 10px;\n}\n\n", ""]);
+exports.push([module.i, ".table__title {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 2em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    margin: 1% 0 1% 1%;\n}\n\n.table__content {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n}\n\n.table__back {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n    flex-flow: column nowrap;\n\n}\n\n.table__button {\n    background-color: whitesmoke;\n    font-size: 1.5em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    padding: 7px 17px;\n    border: 3px solid #041712;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 15px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n}\n\n.table__button:hover {\n    background-color: rgba(4, 23, 18, 0.04);\n    border: 3px solid rgba(169, 169, 169, 0.19);\n}\n\n\n.table__tag {\n    border-collapse: collapse;\n    font-family: \"Verdana\", sans-serif;\n}\n\n.table__td, .table__th {\n    text-align: center;\n    padding: 10px;\n}\n\n", ""]);
 
 // exports
 
@@ -2823,17 +2823,17 @@ function Scoreboard() {
 let data = {
     imgListData: [
         {
-            class: "footer__sound-img",
+            class: "footer__sound",
             src: "./static/img/sound.png",
             id: "menu-button-music",
         },
         {
-            class: "footer__score-img",
+            class: "footer__score",
             src: "./static/img/score.png",
             id: "menu-button-score",
         },
         {
-            class: "footer__info-img",
+            class: "footer__info",
             src: "./static/img/info.png",
             id: "menu-button-about",
         },
@@ -2904,14 +2904,14 @@ pug_html = pug_html + "\n\u003Cdiv class=\"footer\"\u003E";
   if ('number' == typeof $$obj.length) {
       for (var pug_index0 = 0, $$l = $$obj.length; pug_index0 < $$l; pug_index0++) {
         var imgData = $$obj[pug_index0];
-pug_html = pug_html + "\u003Ca class=\"footer__logo-img\" href=\"#\"\u003E\u003Cimg" + (pug.attr("class", pug.classes([imgData.class], [true]), false, true)+pug.attr("src", imgData.src, true, true)+pug.attr("id", imgData.id, true, true)) + "\u003E\u003C\u002Fa\u003E";
+pug_html = pug_html + "\u003Ca class=\"footer__logo\" href=\"#\"\u003E\u003Cimg" + (pug.attr("class", pug.classes([imgData.class], [true]), false, true)+pug.attr("src", imgData.src, true, true)+pug.attr("id", imgData.id, true, true)) + "\u003E\u003C\u002Fa\u003E";
       }
   } else {
     var $$l = 0;
     for (var pug_index0 in $$obj) {
       $$l++;
       var imgData = $$obj[pug_index0];
-pug_html = pug_html + "\u003Ca class=\"footer__logo-img\" href=\"#\"\u003E\u003Cimg" + (pug.attr("class", pug.classes([imgData.class], [true]), false, true)+pug.attr("src", imgData.src, true, true)+pug.attr("id", imgData.id, true, true)) + "\u003E\u003C\u002Fa\u003E";
+pug_html = pug_html + "\u003Ca class=\"footer__logo\" href=\"#\"\u003E\u003Cimg" + (pug.attr("class", pug.classes([imgData.class], [true]), false, true)+pug.attr("src", imgData.src, true, true)+pug.attr("id", imgData.id, true, true)) + "\u003E\u003C\u002Fa\u003E";
     }
   }
 }).call(this);
@@ -2959,7 +2959,7 @@ exports = module.exports = __webpack_require__(4)(undefined);
 
 
 // module
-exports.push([module.i, ".footer {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n}\n\n.footer__logo-img {\n    width: 230px;\n    height: auto;\n    margin-left: -60px;\n}\n\n.footer__sound-img {\n    width: 100px;\n    margin: 0 160px;\n}\n\n.footer__score-img {\n    width: 50px;\n    margin: 0 125px;\n}\n\n.footer__info-img {\n    width: 50px;\n    margin: 0 55px;\n}", ""]);
+exports.push([module.i, ".footer {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n}\n\n.footer__logo {\n    width: 230px;\n    height: auto;\n    margin-left: -60px;\n}\n\n.footer__sound {\n    width: 100px;\n    margin: 0 160px;\n}\n\n.footer__score {\n    width: 50px;\n    margin: 0 125px;\n}\n\n.footer__info {\n    width: 50px;\n    margin: 0 55px;\n}", ""]);
 
 // exports
 
@@ -3108,7 +3108,7 @@ class MenuStartController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" 
 
     addListener() {
 
-		document.getElementsByClassName('button-theme-switch')[0].addEventListener('click', event => {
+		document.getElementsByClassName('theme')[0].addEventListener('click', event => {
 			event.preventDefault();
 			this.theme.changeTheme();
 		});
@@ -4000,7 +4000,7 @@ class SignInController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /* 
     }
 
     addListener() {
-		document.getElementsByClassName('button-theme-switch')[0].addEventListener('click', event => {
+		document.getElementsByClassName('theme')[0].addEventListener('click', event => {
 			event.preventDefault();
 			this.theme.changeTheme();
 		});
@@ -4073,7 +4073,7 @@ class SignUpController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /* 
 
     addListener() {
 
-		document.getElementsByClassName('button-theme-switch')[0].addEventListener('click', event => {
+		document.getElementsByClassName('theme')[0].addEventListener('click', event => {
 			event.preventDefault();
 			this.theme.changeTheme();
 		});
@@ -4142,7 +4142,7 @@ class ScoreListController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" 
     }
 
     addListener() {
-		document.getElementsByClassName('button-theme-switch')[0].addEventListener('click', event => {
+		document.getElementsByClassName('theme')[0].addEventListener('click', event => {
 			event.preventDefault();
 			this.theme.changeTheme();
 		});
@@ -4199,7 +4199,7 @@ class AboutUsController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /*
     }
 
     addListener() {
-		document.getElementsByClassName('button-theme-switch')[0].addEventListener('click', event => {
+		document.getElementsByClassName('theme')[0].addEventListener('click', event => {
 			event.preventDefault();
 			this.theme.changeTheme();
 		});

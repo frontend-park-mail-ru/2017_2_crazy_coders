@@ -19,7 +19,7 @@ export default class SignUpForm extends Form {
      * @return {Promise}
      */
     onSubmitSignUpForm(callback) {
-        let signUpForm = document.getElementsByClassName('block-form__signup-form')[0];
+        let signUpForm = document.getElementsByClassName('form__signup')[0];
 
         signUpForm.addEventListener('submit', (e) => {
             e.preventDefault();

@@ -48,12 +48,12 @@
 }
 
 
-.table__table-elem {
+.table__tag {
     border-collapse: collapse;
     font-family: "Verdana", sans-serif;
 }
 
-.table__td-elem, .table__th-elem {
+.table__td, .table__th {
     text-align: center;
     padding: 10px;
 }

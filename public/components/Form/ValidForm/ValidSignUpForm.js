@@ -5,7 +5,7 @@
  * @param {HTMLElement} form
  */
 function hideError(form) {
-    let removeErrorCollection = form.getElementsByClassName('block-form__error-msg');
+    let removeErrorCollection = form.getElementsByClassName('form__error');
     const removeErrorArray = Array.from(removeErrorCollection);
     removeErrorArray.forEach(elem => {
         elem.remove();
@@ -68,7 +68,7 @@ export default class ValidSignUpForm {
     static createErrorElement(msg) {
         let errorElement = document.createElement('p');
         errorElement.textContent = msg;
-        errorElement.classList.add('block-form__error-msg');
+        errorElement.classList.add('form__error');
 
         return errorElement;
     }

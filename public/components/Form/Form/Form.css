@@ -1,4 +1,4 @@
-.block-form {
+.form {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -7,7 +7,7 @@
     margin-left: 2%;
 }
 
-.block-form__input {
+.form__input {
     display: block;
     width: 350px;
     padding: 9px 0 12px 12px;
@@ -21,7 +21,7 @@
 }
 
 
-.block-form__button {
+.form__button {
     background-color: whitesmoke;
     font-size: 1.5em;
     font-weight: 700;
@@ -39,7 +39,7 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-.block-form__submit-data {
+.form__submit {
     background-color: whitesmoke;
     font-size: 1.5em;
     font-weight: 700;
@@ -59,12 +59,12 @@
     margin-bottom: -10px;
 }
 
-.block-form__submit-data:hover {
+.form__submit:hover {
     background-color: rgba(4, 23, 18, 0.04);
     border: 3px solid rgba(169, 169, 169, 0.19);
 }
 
-.block-form__error-msg {
+.form__error {
     color: #D8000C;
     font-family: "Verdana", sans-serif;
     text-align: center;
@@ -75,12 +75,12 @@
     background-color: #FFBABA;
 }
 
-.block-form__back-button {
+.form__back {
     margin: 25px 0 0 15px;
     width: 130px;
 }
 
-.block-form__back-button:hover {
+.form__back:hover {
     background-color: rgba(4, 23, 18, 0.04);
     border: 3px solid rgba(169, 169, 169, 0.19);
 }
