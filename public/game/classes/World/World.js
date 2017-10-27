@@ -188,7 +188,7 @@ class World extends Phaser.State {
 			this.fire();
 		}
 
-		if (this.gameTime - this.total < 0 || this.health <= 0 || this.enemiesTotal - this.enemiesAlive === this.enemiesTotal) {
+		if (this.gameTime - this.total < 0 || this.health <= 0 || this.enemiesAlive === 0) {
 			this.score = (this.gameTime - this.total) * 50 + (this.enemiesTotal - this.enemiesAlive) * 50;
 
 			if (this.health <= 0) {

@@ -6,7 +6,7 @@ import Game from '../game/classes/Game/Game';
 class PlayGameController extends Controller {
 
 	constructor(opt = {}) {
-		if(PlayGameController.__instance) {
+		if (PlayGameController.__instance) {
 			return PlayGameController.__instance;
 		}
 
@@ -16,7 +16,10 @@ class PlayGameController extends Controller {
 	}
 
 	show() {
-		let game = new Game();
+		if (this.userService.isAuthorized()) {
+			let game = new Game();
+		}
+		// let game = new Game();
 	}
 
 }
