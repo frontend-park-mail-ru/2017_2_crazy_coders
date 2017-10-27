@@ -103,7 +103,7 @@ class World extends Phaser.State {
 		this.pauseButton.clicked = false;
 
 
-		this.gameTime = 20;
+		this.gameTime = 10;
 		if (!this.timer) {
 			this.timePause = 0;
 			this.isPaused = false;
@@ -157,6 +157,11 @@ class World extends Phaser.State {
 	}
 
 	update() {
+		if (this.gameTime - this.total < 0) {
+			this.total = 0;
+			this.game.state.start('GameOverMenu', true, false);
+		}
+
 		//убираем перекрытие объектов
 		this.physics.arcade.overlap(this.enemyBullets, this.tank, this.bulletHitPlayer, null, this);
 		// враги живые
@@ -172,6 +177,7 @@ class World extends Phaser.State {
 				this.enemies[i].update();
 			}
 		}
+
 
 		// величина угла поворота
 		if (this.cursors.left.isDown) {
@@ -213,15 +219,8 @@ class World extends Phaser.State {
 			this.fire();
 		}
 
-		if (this.gameTime - this.total < 0 || this.enemiesAlive === 0 || this.health <= 0) {
-
-			this.score = (this.gameTime - this.total) * 50 + (this.enemiesTotal - this.enemiesAlive) * 50;
-
-			if(this.health <= 0) {
-				this.score = 0;
-			}
-			this.game.state.start('GameOverMenu', true, false);
-		}
+		let text = new Text(this, 5, 5, 'hello');
+		// this.debug.text('Hp: ' + this.health + '     Count opponents:' + this.enemiesAlive, 42, 42);
 	}
 
 	bulletHitEnemy(tank, bullet) {
@@ -258,6 +257,7 @@ class World extends Phaser.State {
 		this.total++;
 		this.game.debug.text(this.formatTime(Math.round(this.gameTime - this.total)), this.world.centerX, 14, "#ff0" );
 		this.game.debug.text('Hp: ' + this.health + '     Count opponents:' + this.enemiesAlive, 84, 42,"#ff0");
+		// console.log(`total: ${this.total}`);
 	}
 
 	formatTime(s) {
