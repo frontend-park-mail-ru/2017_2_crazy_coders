@@ -110,12 +110,9 @@ class World extends Phaser.State {
 			this.total = 0;
 			this.timer = this.game.time.create(false);
 			this.timer.loop(1000, this.updateCounter, this);
-			//this.timerEvent = this.timer.add(Phaser.Timer.MINUTE * 1 + Phaser.Timer.SECOND * 30, this.endTimer, this);
 			this.timer.start();
 		}
 		else {
-			//this.timer.resume();
-			// this.timer.running = true;
 			this.total = this.timePause;
 			this.timer = this.game.time.create(false);
 			this.timer.loop(1000, this.updateCounter, this);
@@ -131,28 +128,6 @@ class World extends Phaser.State {
 		this.camera.focusOnXY(0, 0);
 
 		this.cursors = this.input.keyboard.createCursorKeys();
-
-		// this.boxs = this.add.group();
-		// this.boxs.enableBody = true;
-		//
-		// for (let i = 0; i < 5; i++) {
-		//
-		//     let x_coordinates = Math.random() * this.world.width;
-		//     let y_coordinates = Math.random() * this.world.height;
-		//
-		//     console.log(x_coordinates + ' ' + y_coordinates);
-		//
-		//     let box_tree = this.boxs.create(x_coordinates, y_coordinates, "box_tree");
-		//
-		//     this.physics.arcade.enable(box_tree);
-		//     box_tree.scale.setTo(0.1, 0.1);
-		//     box_tree.body.immovable = true;
-		//     box_tree.body.collideWorldBounds = true;
-		//     box_tree.body.bounce.set(0.1);
-		//     box_tree.body.setCircle(box_tree.height/2, 10, 10);
-		//
-		// }
-
 	}
 
 	update() {
@@ -220,7 +195,8 @@ class World extends Phaser.State {
 				this.score = 0;
 			}
 			console.log(`score: ${this.score}`);
-			this.total = 0;
+            this.total = 0;
+            this.timePause = 0;
 
 			this.game.state.start('GameOverMenu', true, false);
 		}
@@ -246,10 +222,6 @@ class World extends Phaser.State {
 			bullet.rotation = this.physics.arcade.moveToPointer(bullet, 1000, this.input.activePointer, 500);
 		}
 	}
-
-	// bulletHitBox(tank, bullet) {
-	// 	bullet.kill();
-	// }
 
 	bulletHitPlayer(tank, bullet) {
 		bullet.kill();

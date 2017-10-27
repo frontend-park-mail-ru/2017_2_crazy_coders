@@ -28,7 +28,7 @@ class PauseMenu extends Phaser.State {
         this.continueButton.clicked = false;
         this.continueButton.alpha = 0;
 
-        this.exitButton = this.game.add.button(this.world.centerX, this.world.centerY + 100, "exit", this.continueGame, this);
+        this.exitButton = this.game.add.button(this.world.centerX, this.world.centerY + 100, "exit", this.exitGame, this);
         this.exitButton.anchor.setTo(0.5);
         this.exitButton.scale.setTo(0.5);
         this.exitButton.frame = 1;
@@ -42,10 +42,13 @@ class PauseMenu extends Phaser.State {
     }
 
     continueGame() {
-
         this.add.tween(this.background).to({ alpha: 0 }, 100, Phaser.Easing.Linear.None, true);
         this.game.state.start('World', true, false);
+    }
 
+    exitGame() {
+        this.add.tween(this.background).to({ alpha: 0 }, 100, Phaser.Easing.Linear.None, true);
+        window.open("/", "_self");
     }
 }
 
