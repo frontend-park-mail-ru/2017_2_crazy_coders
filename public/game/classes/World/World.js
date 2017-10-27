@@ -215,16 +215,11 @@ class World extends Phaser.State {
 
 		if (this.gameTime - this.total < 0 || this.enemiesAlive === 0 || this.health <= 0) {
 
-
 			this.score = (this.gameTime - this.total) * 50 + (this.enemiesTotal - this.enemiesAlive) * 50;
 
 			if(this.health <= 0) {
 				this.score = 0;
 			}
-
-
-			console.log(`total: ${this.score}`);
-
 			this.game.state.start('GameOverMenu', true, false);
 		}
 	}
