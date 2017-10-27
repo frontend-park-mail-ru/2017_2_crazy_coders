@@ -27,12 +27,6 @@ class World extends Phaser.State {
 		this.music = this.add.audio('music', 1, false);
 		this.music.play();
 
-
-		// this.tank = this.player.tank;
-
-		// this.world.setBounds(-1000, -1000, 2000, 2000);
-		// this.stage.disableVisibilityChange = true;
-
 		this.land = this.add.tileSprite(0, 0, this.world.width, this.world.height, 'earth');
 		this.land.fixedToCamera = true;
 
