@@ -58,12 +58,12 @@ typings/
 # dotenv environment variables file
 .env
 
-#bundle.js
-#bundle.js.map
-#/public/components/template/Footer.pug.js
-#/public/components/template/Form.pug.js
-#/public/components/template/Header.pug.js
-#/public/components/template/Menu.pug.js
-#/public/components/template/Table.pug.js
-#
-#/public/game/phaser.min.js
+bundle.js
+bundle.js.map
+/public/components/template/Footer.pug.js
+/public/components/template/Form.pug.js
+/public/components/template/Header.pug.js
+/public/components/template/Menu.pug.js
+/public/components/template/Table.pug.js
+
+/public/game/phaser.min.js
