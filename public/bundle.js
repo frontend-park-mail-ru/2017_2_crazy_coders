@@ -1195,7 +1195,7 @@ class ValidSignInForm {
     static createErrorElement(msg) {
         let errorElement = document.createElement('p');
         errorElement.textContent = msg;
-        errorElement.classList.add('block-form__error-msg');
+        errorElement.classList.add('form__error');
 
         return errorElement;
     }
