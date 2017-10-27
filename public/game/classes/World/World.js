@@ -16,7 +16,6 @@ class World extends Phaser.State {
 		this.load.image('bullet', 'static/staticsGame/images/bullet.png');
 		this.load.image('earth', 'static/staticsGame/images/ground.jpg');
 		this.load.spritesheet('kaboom', 'static/staticsGame/images/explosion.png', 64, 64, 23);
-		this.load.bitmapFont('desyrel', 'static/staticsGame/images/desyrel.png', 'static/staticsGame/images/desyrel.xml');
 
 		this.load.image('pause', 'static/staticsGame/images/pause_button.png');
 		this.load.image('box_tree', 'static/staticsGame/images/box_tree.png');
