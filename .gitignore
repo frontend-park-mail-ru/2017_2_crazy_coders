@@ -67,3 +67,18 @@ bundle.js.map
 /public/components/template/Table.pug.js
 
 /public/game/phaser.min.js
+/public/components/Header/Header.'pug.js'
+/public/components/Header/Header.pug.js
+/public/components/Menu/Menu.'pug.js'
+/public/components/Menu/Menu.pug.js
+/public/components/Footer/Footer.pug.js
+/public/components/Footer/Footer.'pug.js'
+/public/components/Form/Form/Form.'pug.js'
+/public/components/Form/Form/Form.pug.js
+/public/components/Table/Table.'pug.js'
+/public/components/Table/Table.pug.js
+/public/components/template/Footer.'pug.js'
+/public/components/template/Form.'pug.js'
+/public/components/template/Header.'pug.js'
+/public/components/template/Menu.'pug.js'
+/public/components/template/Table.'pug.js'
