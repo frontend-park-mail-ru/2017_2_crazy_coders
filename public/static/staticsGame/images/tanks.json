@@ -1,0 +1,26 @@
+{"frames": [
+  {
+    "filename": "shadow",
+    "frame": {"x":0,"y":0,"w":80,"h":80},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {"x":0,"y":0,"w":80,"h":80},
+    "sourceSize": {"w":80,"h":80}
+  },
+  {
+    "filename": "tank1",
+    "frame": {"x":190,"y":52,"w":54,"h":52},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":3,"y":5,"w":54,"h":52},
+    "sourceSize": {"w":64,"h":64}
+  },
+  {
+    "filename": "turret",
+    "frame": {"x":0,"y":80,"w":48,"h":28},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":1,"y":2,"w":48,"h":28},
+    "sourceSize": {"w":50,"h":32}
+  }]
+}

@@ -5,13 +5,13 @@ let data = {
     buttons: [
         {
             text: 'SIGN IN',
-            id: 'button-log',
-            class: 'button',
+            id: 'menu-button-signIn',
+            class: 'menu__button',
         },
         {
             text: 'SIGN UP',
-            id: 'button-register',
-            class: 'button',
+            id: 'menu-button-signUp',
+            class: 'menu__button',
         }
     ]
 };
@@ -20,5 +20,5 @@ let data = {
  * Получаем страницу незарегистрированного пользователя
  */
 export default function createUnRegMenu() {
-    return new Menu('section', {id: 'input-page'}, [], {data});
+    return new Menu('section', {id: 'section-unRegMenu'}, [], {data});
 }

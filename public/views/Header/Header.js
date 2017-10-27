@@ -8,5 +8,5 @@ let data = {
  * Получаем страницу header
  */
 export default function createHeader() {
-    return new Header('section', {id: 'header'}, [], {data});
+    return new Header('section', {id: 'section-header'}, [], {data});
 }

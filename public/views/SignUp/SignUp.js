@@ -5,7 +5,7 @@ import ValidSignUpForm from '../../components/Form/ValidForm/ValidSignUpForm';
 
 let data = {
     title: 'SIGN UP',
-    idForm: 'registry-form',
+	classForm: 'form__signup',
     fields: [
         {
             attrs: {
@@ -39,16 +39,16 @@ let data = {
         {
             attrs: {
                 type: 'submit',
-                class: 'button submitData',
+                class: 'form__submit',
                 value: 'SIGN UP',
-                id: 'signup-button',
+                id: 'signUp-button-signUp',
             },
         },
         {
             attrs: {
-                class: 'button back-button',
+                class: 'form__back',
                 value: 'BACK',
-                id: 'back-sign-up',
+                id: 'signUp-button-back',
             },
         },
     ]
@@ -58,6 +58,6 @@ let data = {
  * Получаем страницу регистрации
  */
 export default function SignUp() {
-    return new SignUpForm('section', {id: 'registry'}, [], {data}, ValidSignUpForm);
+    return new SignUpForm('section', {id: 'section-signUp'}, [], {data}, ValidSignUpForm);
 }
 

@@ -31,6 +31,9 @@ export default class Block {
      * @param {string} data
      */
     setData(data) {
+
+        console.log("setting data: "+ data);
+
         this.data = data;
     }
 

@@ -1,25 +1,25 @@
 import Menu from '../../components/Menu/Menu';
+import UserService from '../../services/UserService'
 
 /**
  * Получаем страницу зарегестрированного пользователя
  */
-export default function createRegMenu() { //(user)
-    // console.log(user);
+export default function createRegMenu() {
     let data = {
-        user: 'name', // не выводится в шаблоне (
+        user: 'name',
         buttons: [
             {
                 text: 'START',
-                id: 'start-game',
-                class: 'button a-button',
+                id: 'menu-button-playGame',
+                class: 'menu__button',
             },
             {
                 text: 'LOG OUT',
-                id: 'logout',
-                class: 'button a-button',
+                id: 'menu-button-logout',
+                class: 'menu__button',
             }
         ]
     };
 
-    return new Menu('section', {id: 'main-page'}, [], {data});
+    return new Menu('section', {id: 'section-regMenu'}, [], {data});
 }

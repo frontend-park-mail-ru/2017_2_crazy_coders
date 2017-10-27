@@ -8,6 +8,10 @@ import User from '../model/User';
 export default class UserService {
 
     constructor() {
+        // debugger;
+        if(this.user) {
+            return this;
+        }
         this.user = new User({});
         this.users = [];
     }
@@ -21,12 +25,13 @@ export default class UserService {
      */
     signUp(username, email, password) {
 
+        console.log(`[signUp] email:  ${email}  pass: ${password}`);
         const requestBody = {username, email, password};
         return Http.FetchPost('/signUp', requestBody)
             .then((response) => {
                 if (response.status === 201) {
-                    this.user.set(response);
-                    return response;
+                    //this.user.set(response.json());
+                    return response.json();
                 } else {
                     console.log(response.json());
                     throw response;
@@ -41,11 +46,11 @@ export default class UserService {
      * @return {Promise}
      */
     signIn(email, password) {
+        // console.log(`[signIn] email:  ${email}  pass: ${password}`);
         return Http.FetchPost('/signIn', {email, password})
             .then((response) => {
                 if (response.status === 200) {
-                    this.user.set(response);
-                    return response;
+                    return response.json();
                 } else {
                     console.log(response.json());
                     throw response;
@@ -58,6 +63,7 @@ export default class UserService {
      * @return {boolean}
      */
     isAuthorized() {
+        console.log("[UserService] in isAuthorized, this.user.getId = " + this.user.getId());
         return !!this.user.getId();
     }
 
@@ -93,10 +99,8 @@ export default class UserService {
     /**
      * Выход
      */
-    static logout() {
-        Http.FetchGet('/logout').then(response => {
-            console.log("[logout] response:" + response.json());
-        })
+    logout() {
+        return Http.FetchGet('/logout');
 
     }
 }

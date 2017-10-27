@@ -3,19 +3,19 @@ import Footer from '../../components/Footer/Footer'
 let data = {
     imgListData: [
         {
-            class: "sound_img",
+            class: "footer__sound",
             src: "./static/img/sound.png",
-            id: "sound-logo",
+            id: "menu-button-music",
         },
         {
-            class: "score_img",
+            class: "footer__score",
             src: "./static/img/score.png",
-            id: "score-logo",
+            id: "menu-button-score",
         },
         {
-            class: "info_img",
+            class: "footer__info",
             src: "./static/img/info.png",
-            id: "about-logo",
+            id: "menu-button-about",
         },
     ]
 };
@@ -24,5 +24,5 @@ let data = {
  * Получаем страницу footer-а
  */
 export default function CreateFooter() {
-    return new Footer('section', {id: 'buttons-panel'}, [], {data});
+    return new Footer('section', {id: 'section-footer'}, [], {data});
 }

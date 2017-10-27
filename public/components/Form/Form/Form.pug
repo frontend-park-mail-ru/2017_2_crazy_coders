@@ -1,19 +1,19 @@
-div.logo.input_form
+div.form
     h1(align='middle')= data.title
-    form(id=data.idForm)
+    form(class=data.classForm)
         each field in data.fields
-            input.input(
+            input.form__input(
                 type=field.attrs.type
                 placeholder=field.attrs.placeholder
                 name=field.attrs.name
             )
-        input.input(
+        input.form__input(
             class=data.buttons[0].attrs.class
             type=data.buttons[0].attrs.type
             value=data.buttons[0].attrs.value
             id=data.buttons[0].attrs.id
         )
-    input.button(
+    input.form__button(
         class=data.buttons[1].attrs.class
         type=data.buttons[1].attrs.type
         value=data.buttons[1].attrs.value

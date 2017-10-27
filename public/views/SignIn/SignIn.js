@@ -5,7 +5,7 @@ import ValidSignInForm from '../../components/Form/ValidForm/ValidSignInForm';
 
 let data = {
     title: 'SIGN IN',
-    idForm: 'login-form',
+    classForm: 'form__login',
     fields: [
         {
             attrs: {
@@ -25,16 +25,16 @@ let data = {
         {
             attrs: {
                 type: 'submit',
-                class: 'button',
+                class: 'form__submit',
                 value: 'SIGN IN',
-                id: 'login-button',
+                id: 'signIn-button-signIn',
             },
         },
         {
             attrs: {
-                class: 'button a-button back-button',
+                class: 'form__back',
                 value: 'BACK',
-                id: 'back-sign-in',
+                id: 'signIn-button-back',
             },
         },
     ]
@@ -44,6 +44,6 @@ let data = {
  * Получаем страницу входа
  */
 export default function SignIn() {
-    return new SignInForm('section', {id: 'login'}, [], {data}, ValidSignInForm);
+    return new SignInForm('section', {id: 'section-signIn'}, [], {data}, ValidSignInForm);
 }
 

@@ -1,9 +1,10 @@
 'use strict';
 
 import Block from '../../Block/BlockComponents';
-import FormTemp from '../../template/Form.pug';
+import FormTemp from './Form.pug';
 import ValidSignInForm from '../ValidForm/ValidSignInForm';
 import ValidSignUpForm from '../ValidForm/ValidSignUpForm';
+import './Form.css';
 
 /**
  * Класс формы
@@ -24,7 +25,7 @@ export default class Form extends Block {
     /**
      * Получить форму
      */
-    getForm() {
+    getClassElement() {
         this.setHTML(FormTemp(this.getData()));
         return this.getElement();
     }

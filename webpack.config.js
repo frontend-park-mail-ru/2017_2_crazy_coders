@@ -1,6 +1,5 @@
 const path = require('path');
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -18,19 +17,9 @@ module.exports = {
 
     module: {
         rules: [
-/*            {
-                enforce: "pre",
-                test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,
-                use: ['eslint-loader']
-            },*/
             {
                 test: /\.css$/,
-                loader: 'style-loader!css-loader',
-             /*   use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader']
-                })*/
+                loaders: ['style-loader', 'css-loader']
             },
             {
                 test: /\.(png|svg|jpg|gif|jpeg)$/,
@@ -40,7 +29,6 @@ module.exports = {
             },
             {
                 test: /\.html$/,
-
                 use: [
                     "html-loader"
                 ]

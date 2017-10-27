@@ -1,5 +1,6 @@
 import Block from '../Block/BlockComponents';
-import HeaderTemp from '../template/Header.pug';
+import HeaderTemp from './Header.pug';
+import './Header.css';
 
 /**
  * Класс Header-а
@@ -20,7 +21,10 @@ export default class Header extends Block {
     /**
      * Получить Header
      */
-    getHeader() {
+    getClassElement() {
+
+        console.log(this.getData());
+
         this.setHTML(HeaderTemp(this.getData()));
         return this.getElement();
     }

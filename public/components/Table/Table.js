@@ -1,5 +1,6 @@
 import Block from '../Block/BlockComponents';
-import TableTemp from '../template/Table.pug';
+import TableTemp from './Table.pug';
+import './Table.css';
 
 /**
  * Класс Table
@@ -20,7 +21,7 @@ export default class Table extends Block {
     /**
      * Получить Table
      */
-    getTable() {
+    getClassElement() {
         this.setHTML(TableTemp(this.getData()));
         return this.getElement();
     }
