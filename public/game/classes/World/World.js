@@ -225,7 +225,8 @@ class World extends Phaser.State {
 	updateCounter() {
 		this.total++;
 		this.game.debug.text(this.formatTime(Math.round(this.gameTime - this.total)), this.world.centerX, 14, "#ff0" );
-		console.log(`total: ${this.total}`);
+		this.game.debug.text('Hp: ' + this.health + '     Count opponents:' + this.enemiesAlive, 84, 42,"#ff0");
+		// console.log(`total: ${this.total}`);
 	}
 
 	formatTime(s) {
