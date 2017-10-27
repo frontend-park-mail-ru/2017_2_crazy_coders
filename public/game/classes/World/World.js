@@ -1,6 +1,14 @@
 import Phaser from '../../phaser.min';
 import EnemyTank from '../Tank/EnemyTank';
 
+const Constants = {
+	logo_scale: 0.5,
+	max_velocity: 400,
+	health: 100,
+	anchor: 0.5,
+	button_scale: 0.2
+};
+
 class World extends Phaser.State {
 
 	constructor() {
@@ -34,14 +42,14 @@ class World extends Phaser.State {
 		this.health = 100;
 
 		this.tank = this.add.sprite(50, 400, 'tank', 'tank1');
-		this.tank.anchor.setTo(0.5, 0.5);
+		this.tank.anchor.setTo(Constants.anchor, Constants.anchor);
 
 		this.physics.enable(this.tank, Phaser.Physics.MATTER);
-		this.tank.body.maxVelocity.setTo(400, 400);
+		this.tank.body.maxVelocity.setTo(Constants.max_velocity, Constants.max_velocity);
 		this.tank.body.collideWorldBounds = true;
 
 		this.turret = this.add.sprite(0, 0, 'tank', 'turret');
-		this.turret.anchor.setTo(0.3, 0.5);
+		this.turret.anchor.setTo(Constants.anchor, Constants.anchor);
 
 
 		//  пули врагов
@@ -68,7 +76,7 @@ class World extends Phaser.State {
 
 		//  тень под танками
 		this.shadow = this.add.sprite(0, 0, 'tank', 'shadow');
-		this.shadow.anchor.setTo(0.5, 0.5);
+		this.shadow.anchor.setTo(Constants.anchor, Constants.anchor);
 
 		//  наша группа снарядов
 		this.bullets = this.add.group();
@@ -85,13 +93,13 @@ class World extends Phaser.State {
 
 		for (let i = 0; i < 10; i++) {
 			let explosionAnimation = this.explosions.create(0, 0, 'kaboom', [0], false);
-			explosionAnimation.anchor.setTo(0.5, 0.5);
+			explosionAnimation.anchor.setTo(Constants.anchor, Constants.anchor);
 			explosionAnimation.animations.add('kaboom');
 		}
 
 
 		this.pauseButton = this.game.add.button(10, 10, "pause", this.startPause, this);
-		this.pauseButton.scale.setTo(0.2, 0.2);
+		this.pauseButton.scale.setTo(Constants.button_scale, Constants.button_scale);
 		this.pauseButton.frame = 1;
 		this.pauseButton.clicked = false;
 
