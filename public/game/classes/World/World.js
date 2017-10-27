@@ -27,12 +27,6 @@ class World extends Phaser.State {
 		this.music = this.add.audio('music', 1, false);
 		this.music.play();
 
-
-		// this.tank = this.player.tank;
-
-		// this.world.setBounds(-1000, -1000, 2000, 2000);
-		// this.stage.disableVisibilityChange = true;
-
 		this.land = this.add.tileSprite(0, 0, this.world.width, this.world.height, 'earth');
 		this.land.fixedToCamera = true;
 
@@ -132,33 +126,12 @@ class World extends Phaser.State {
 		this.camera.focusOnXY(0, 0);
 
 		this.cursors = this.input.keyboard.createCursorKeys();
-
-		// this.boxs = this.add.group();
-		// this.boxs.enableBody = true;
-		//
-		// for (let i = 0; i < 5; i++) {
-		//
-		//     let x_coordinates = Math.random() * this.world.width;
-		//     let y_coordinates = Math.random() * this.world.height;
-		//
-		//     console.log(x_coordinates + ' ' + y_coordinates);
-		//
-		//     let box_tree = this.boxs.create(x_coordinates, y_coordinates, "box_tree");
-		//
-		//     this.physics.arcade.enable(box_tree);
-		//     box_tree.scale.setTo(0.1, 0.1);
-		//     box_tree.body.immovable = true;
-		//     box_tree.body.collideWorldBounds = true;
-		//     box_tree.body.bounce.set(0.1);
-		//     box_tree.body.setCircle(box_tree.height/2, 10, 10);
-		//
-		// }
-
 	}
 
 	update() {
 		if (this.gameTime - this.total < 0) {
-			this.total = 0;
+            this.total = 0;
+            this.timePause = 0;
 			this.game.state.start('GameOverMenu', true, false);
 		}
 
@@ -243,10 +216,6 @@ class World extends Phaser.State {
 			bullet.rotation = this.physics.arcade.moveToPointer(bullet, 1000, this.input.activePointer, 500);
 		}
 	}
-
-	// bulletHitBox(tank, bullet) {
-	// 	bullet.kill();
-	// }
 
 	bulletHitPlayer(tank, bullet) {
 		bullet.kill();
