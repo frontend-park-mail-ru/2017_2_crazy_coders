@@ -11,11 +11,9 @@ class Preloader extends Phaser.State {
 
     preload() {
 
-        //  Set-up our preloader sprite
         this.preloadBar = this.add.sprite(200, 250, 'preloadBar');
         this.load.setPreloadSprite(this.preloadBar);
 
-        //  Load our actual games assets
         this.load.image('titlepage', 'static/staticsGame/images/titlepage.jpg');
         this.load.image('logo', 'static/staticsGame/images/logo.png');
         this.load.audio('music', 'static/staticsGame/music/boom.mp3', true);
