@@ -30,13 +30,13 @@ let data = {
                 id: 'signIn-button-signIn',
             },
         },
-        {
-            attrs: {
-                class: 'form__back',
-                value: 'BACK',
-                id: 'signIn-button-back',
-            },
-        },
+        // {
+        //     attrs: {
+        //         class: 'form__back',
+        //         value: 'BACK',
+        //         id: 'signIn-button-back',
+        //     },
+        // },
     ]
 };
 

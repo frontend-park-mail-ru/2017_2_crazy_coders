@@ -44,13 +44,13 @@ let data = {
                 id: 'signUp-button-signUp',
             },
         },
-        {
-            attrs: {
-                class: 'form__back',
-                value: 'BACK',
-                id: 'signUp-button-back',
-            },
-        },
+        // {
+        //     attrs: {
+        //         class: 'form__back',
+        //         value: 'BACK',
+        //         id: 'signUp-button-back',
+        //     },
+        // },
     ]
 };
 

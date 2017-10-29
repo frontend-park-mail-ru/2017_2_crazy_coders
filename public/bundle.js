@@ -359,7 +359,7 @@ const bodyStylesWhite = {
 const htmlNoneScroll = {
 	selector: 'html',
 	styles: {
-		'overflow': 'hidden',
+		'overflow-y': 'hidden',
 	}
 };
 
@@ -1979,13 +1979,13 @@ let data = {
                 id: 'signIn-button-signIn',
             },
         },
-        {
-            attrs: {
-                class: 'form__back',
-                value: 'BACK',
-                id: 'signIn-button-back',
-            },
-        },
+        // {
+        //     attrs: {
+        //         class: 'form__back',
+        //         value: 'BACK',
+        //         id: 'signIn-button-back',
+        //     },
+        // },
     ]
 };
 
@@ -2075,7 +2075,7 @@ pug_html = pug_html + "\n    \u003Cinput" + (" class=\"form__input\""+pug.attr("
   }
 }).call(this);
 
-pug_html = pug_html + "\n    \u003Cinput" + (pug.attr("class", pug.classes(["form__input",data.buttons[0].attrs.class], [false,true]), false, true)+pug.attr("type", data.buttons[0].attrs.type, true, true)+pug.attr("value", data.buttons[0].attrs.value, true, true)+pug.attr("id", data.buttons[0].attrs.id, true, true)) + "\u003E\n  \u003C\u002Fform\u003E\n  \u003Cinput" + (pug.attr("class", pug.classes(["form__button",data.buttons[1].attrs.class], [false,true]), false, true)+pug.attr("type", data.buttons[1].attrs.type, true, true)+pug.attr("value", data.buttons[1].attrs.value, true, true)+pug.attr("id", data.buttons[1].attrs.id, true, true)) + "\u003E\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for_with?locals_for_with.data:typeof data!=="undefined"?data:undefined));;return pug_html;};
+pug_html = pug_html + "\n    \u003Cinput" + (pug.attr("class", pug.classes(["form__input",data.buttons[0].attrs.class], [false,true]), false, true)+pug.attr("type", data.buttons[0].attrs.type, true, true)+pug.attr("value", data.buttons[0].attrs.value, true, true)+pug.attr("id", data.buttons[0].attrs.id, true, true)) + "\u003E\n  \u003C\u002Fform\u003E\n  \u003C!--input.form__button(--\u003E\n  \u003C!--    class=data.buttons[1].attrs.class--\u003E\n  \u003C!--    type=data.buttons[1].attrs.type--\u003E\n  \u003C!--    value=data.buttons[1].attrs.value--\u003E\n  \u003C!--    id=data.buttons[1].attrs.id--\u003E\n  \u003C!--)--\u003E\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for_with?locals_for_with.data:typeof data!=="undefined"?data:undefined));;return pug_html;};
 module.exports = template;
 
 /***/ }),
@@ -2278,13 +2278,13 @@ let data = {
                 id: 'signUp-button-signUp',
             },
         },
-        {
-            attrs: {
-                class: 'form__back',
-                value: 'BACK',
-                id: 'signUp-button-back',
-            },
-        },
+        // {
+        //     attrs: {
+        //         class: 'form__back',
+        //         value: 'BACK',
+        //         id: 'signUp-button-back',
+        //     },
+        // },
     ]
 };
 
@@ -2465,7 +2465,7 @@ exports = module.exports = __webpack_require__(5)(undefined);
 
 
 // module
-exports.push([module.i, ".header {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n}\n\n.header__logo {\n    width: 230px;\n    height: auto;\n    margin-left: -60px;\n}\n\n.header__text {\n    font-size: 2.7em;\n    font-family: \"Arial Black\", Gadget, sans-serif;\n    transform: rotate(-90deg);\n}\n\n.theme {\n    background-color: whitesmoke;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    width: 7em;\n    margin: 15px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n    padding: 1px 7px;\n    border: none;\n    font-size: 1.1em;\n    position: fixed;\n    left: 10px;\n    top: 5px;\n}\n\n.theme:hover {\n    background-color: #e9ecf0;\n}", ""]);
+exports.push([module.i, ".header {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n}\n\n.header__logo {\n    width: 230px;\n    height: auto;\n    margin-left: -60px;\n}\n\n.header__text {\n    font-size: 2.7em;\n    font-family: \"Arial Black\", Gadget, sans-serif;\n    transform: rotate(-90deg);\n}\n\n.theme {\n    background-color: whitesmoke;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 15px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n    padding: 1px 7px;\n    border: none;\n    font-size: 1.1em;\n}\n\n.theme:hover {\n    background-color: #e9ecf0;\n}", ""]);
 
 // exports
 
@@ -3990,10 +3990,10 @@ class SignInController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /* 
                 });
         });
 
-        document.getElementById('signIn-button-back').addEventListener('click', event => {
-            event.preventDefault();
-            this._router.go('/');
-        });
+        // document.getElementById('signIn-button-back').addEventListener('click', event => {
+        //     event.preventDefault();
+        //     this._router.go('/');
+        // });
     }
 
     resume() {
@@ -4062,10 +4062,10 @@ class SignUpController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /* 
                 });
         });
 
-        document.getElementById('signUp-button-back').addEventListener('click', event => {
-            event.preventDefault();
-            this._router.go('/');
-        });
+        // document.getElementById('signUp-button-back').addEventListener('click', event => {
+        //     event.preventDefault();
+        //     this._router.go('/');
+        // });
     }
 
     resume() {

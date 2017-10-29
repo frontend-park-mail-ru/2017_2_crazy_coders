@@ -39,10 +39,10 @@ class SignUpController extends Controller {
                 });
         });
 
-        document.getElementById('signUp-button-back').addEventListener('click', event => {
-            event.preventDefault();
-            this._router.go('/');
-        });
+        // document.getElementById('signUp-button-back').addEventListener('click', event => {
+        //     event.preventDefault();
+        //     this._router.go('/');
+        // });
     }
 
     resume() {

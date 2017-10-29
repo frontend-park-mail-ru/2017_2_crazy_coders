@@ -39,10 +39,10 @@ class SignInController extends Controller {
                 });
         });
 
-        document.getElementById('signIn-button-back').addEventListener('click', event => {
-            event.preventDefault();
-            this._router.go('/');
-        });
+        // document.getElementById('signIn-button-back').addEventListener('click', event => {
+        //     event.preventDefault();
+        //     this._router.go('/');
+        // });
     }
 
     resume() {

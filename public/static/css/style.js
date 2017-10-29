@@ -48,7 +48,7 @@ const bodyStylesWhite = {
 const htmlNoneScroll = {
 	selector: 'html',
 	styles: {
-		'overflow': 'hidden',
+		'overflow-y': 'hidden',
 	}
 };
 
