@@ -77,14 +77,18 @@ class MenuStartController extends Controller {
         this.page_parts.get("Header").show();
         console.log("[MenuStartController] in show");
 
-        if (!this.userService.isAuthorized()) {
-            console.log("username: " + this.userService.username);
-            this.page_parts.get("UnRegMenu").show();
-        }
-        else {
-            console.log(`[MenuStartController] show: ${this.page_parts.get("RegMenu").getData()}`);
-            this.page_parts.get("RegMenu").show();
-        }
+        this.userService
+            .getProfile()
+            .then((resp) => {
+				console.log("[userService.getProfile] response: " + resp);
+				this.userService.user.set(resp);
+				this.page_parts.get("RegMenu").show();
+            })
+            .catch((err) => {
+				console.log("[userService.getProfile] err: " + err);
+				this.page_parts.get("UnRegMenu").show();
+            });
+
         this.page_parts.get("Footer").show();
     }
 

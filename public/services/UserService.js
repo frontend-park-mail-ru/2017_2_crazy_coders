@@ -46,7 +46,6 @@ export default class UserService {
      * @return {Promise}
      */
     signIn(email, password) {
-        // console.log(`[signIn] email:  ${email}  pass: ${password}`);
         return Http.FetchPost('/signIn', {email, password})
             .then((response) => {
                 if (response.status === 200) {
@@ -79,11 +78,8 @@ export default class UserService {
         return Http.FetchGet('/profile')
             .then((response) => {
                 if (response.status === 200) {
-                    this.user.set(response);
-                    console.log('if: ' + response.json());
-                    return response;
+                    return response.json();
                 } else {
-                    //console.log('else: ' + response.json());
                     throw response;
                 }
             })
@@ -101,6 +97,5 @@ export default class UserService {
      */
     logout() {
         return Http.FetchGet('/logout');
-
     }
 }

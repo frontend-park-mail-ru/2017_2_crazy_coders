@@ -49,7 +49,7 @@ class SignInController extends Controller {
         this.show();
     }
 
-    show() {  // здесь нужно передавать параметры во вьюху
+    show() {
         this.page_parts.get("Header").show();
         this.page_parts.get("SignIn").show();
     }
