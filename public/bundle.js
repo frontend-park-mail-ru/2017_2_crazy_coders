@@ -1220,13 +1220,8 @@ class UserService {
         return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchGet('/profile')
             .then((response) => {
                 if (response.status === 200) {
-
-                    // console.log(response.json());
-
-                    // this.user.set(response.json());
                     return response.json();
                 } else {
-                    //console.log('else: ' + response.json());
                     throw response;
                 }
             })
@@ -3142,15 +3137,6 @@ class MenuStartController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" 
 				console.log("[userService.getProfile] err: " + err);
 				this.page_parts.get("UnRegMenu").show();
             });
-
-        // if (!this.userService.isAuthorized()) {
-        //     console.log("username: " + this.userService.username);
-        //     this.page_parts.get("UnRegMenu").show();
-        // }
-        // else {
-        //     console.log(`[MenuStartController] show: ${this.page_parts.get("RegMenu").getData()}`);
-        //     this.page_parts.get("RegMenu").show();
-        // }
 
         this.page_parts.get("Footer").show();
     }

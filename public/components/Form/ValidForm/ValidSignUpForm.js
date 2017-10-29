@@ -19,7 +19,7 @@ function hideError(form) {
  * @param {int} maxLenField
  */
 function isCorrectTextField(text, minLenField, maxLenField) {
-    return text.match(new RegExp('^[a-z0-9_-]{' + minLenField + ','+ maxLenField +'}$'));
+    return text.match(new RegExp('^[a-zA-Z0-9_-]{' + minLenField + ','+ maxLenField +'}$'));
 }
 
 /**
