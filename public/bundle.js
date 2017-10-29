@@ -3193,9 +3193,21 @@ class PlayGameController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /
 	}
 
 	show() {
-		if (this.userService.isAuthorized()) {
-			let game = new __WEBPACK_IMPORTED_MODULE_1__game_classes_Game_Game__["a" /* default */]();
-		}
+		this.userService
+			.getProfile()
+			.then((resp) => {
+				console.log("[userService.getProfile] response: " + resp);
+				this.userService.user.set(resp);
+				let game = new __WEBPACK_IMPORTED_MODULE_1__game_classes_Game_Game__["a" /* default */]();
+			})
+			.catch((err) => {
+				console.log("[userService.getProfile] err: " + err);
+				this._router.go('/');
+			});
+	}
+
+	hide() {
+
 	}
 
 }
