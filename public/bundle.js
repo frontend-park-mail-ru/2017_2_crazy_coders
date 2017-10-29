@@ -304,6 +304,74 @@ class Controller {
 
 /***/ }),
 /* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class Theme {
+	constructor() {
+		this.defaultThema = false;
+	}
+
+	changeTheme() {
+		let stylesDeault = this.createStylesheet([bodyStylesWhite, htmlNoneScroll, deleteMargin]);
+		let stylesYellow = this.createStylesheet([bodyStylesYellow, htmlNoneScroll, deleteMargin]);
+
+		let stylesheet = !this.defaultThema ? stylesDeault : stylesYellow;
+
+		this.appendStylesheet(stylesheet);
+
+		this.defaultThema = !this.defaultThema;
+	}
+
+
+
+	createStylesheet(styles){
+		return styles.reduce((stylesheet, current) => {
+			const properties = Object.entries(current.styles)
+				.map(prop => prop[0] + ':' + prop[1] + ';');
+			stylesheet += `${current.selector} {${properties}}\n`;
+			return stylesheet;
+		},'');
+	}
+
+	appendStylesheet(stylesheet){
+		let styleTag = document.getElementById('theme-styles');
+		styleTag.innerHTML = stylesheet;
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Theme;
+
+
+const bodyStylesYellow = {
+	selector: 'body',
+	styles: {
+		'background-color': '#FFFF00',
+	}
+};
+
+const bodyStylesWhite = {
+	selector: 'body',
+	styles: {
+		'background-color': '#FFF',
+	}
+};
+
+const htmlNoneScroll = {
+	selector: 'html',
+	styles: {
+		'overflow': 'hidden',
+	}
+};
+
+const deleteMargin = {
+	selector: 'body',
+	styles: {
+		'margin': '0',
+	}
+};
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -564,7 +632,7 @@ function pug_rethrow(err, filename, lineno, str){
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 /*
@@ -646,7 +714,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -1005,60 +1073,6 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-class Theme {
-	constructor() {
-		this.defaultThema = true;
-	}
-
-	changeTheme() {
-		let stylesDeault = this.createStylesheet([bodyStylesWhite]);
-		let stylesYellow = this.createStylesheet([bodyStylesYellow]);
-
-		let stylesheet = !this.defaultThema ? stylesDeault : stylesYellow;
-
-		this.appendStylesheet(stylesheet);
-
-		this.defaultThema = !this.defaultThema;
-	}
-
-
-
-	createStylesheet(styles){
-		return styles.reduce((stylesheet, current) => {
-			const properties = Object.entries(current.styles)
-				.map(prop => prop[0] + ':' + prop[1] + ';');
-			stylesheet += `${current.selector} {${properties}}\n`;
-			return stylesheet;
-		},'');
-	}
-
-	appendStylesheet(stylesheet){
-		let styleTag = document.getElementById('theme-styles');
-		styleTag.innerHTML = stylesheet;
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Theme;
-
-
-const bodyStylesYellow = {
-	selector: 'body',
-	styles: {
-		'background-color': '#FFFF00',
-	}
-};
-
-const bodyStylesWhite = {
-	selector: 'body',
-	styles: {
-		'background-color': '#FFF',
-	}
-};
-
-/***/ }),
 /* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1279,7 +1293,7 @@ function isCorrectEmail(email) {
  * @param {int} maxLenField
  */
 function isCorrectTextField(text, minLenField, maxLenField) {
-    return text.match(new RegExp('^[a-z0-9_-]{' + minLenField + ','+ maxLenField +'}$'));
+    return text.match(new RegExp('^[a-zA-Z0-9_-]{' + minLenField + ','+ maxLenField +'}$'));
 }
 
 /**
@@ -1371,7 +1385,7 @@ function hideError(form) {
  * @param {int} maxLenField
  */
 function isCorrectTextField(text, minLenField, maxLenField) {
-    return text.match(new RegExp('^[a-z0-9_-]{' + minLenField + ','+ maxLenField +'}$'));
+    return text.match(new RegExp('^[a-zA-Z0-9_-]{' + minLenField + ','+ maxLenField +'}$'));
 }
 
 /**
@@ -1683,6 +1697,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__controllers_SignUpController__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__controllers_ScoreListController__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__controllers_AboutUsController__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__static_css_style__ = __webpack_require__(3);
 
 
 
@@ -1696,10 +1711,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-
+let theme = new __WEBPACK_IMPORTED_MODULE_9__static_css_style__["a" /* default */]();
 let userService = new __WEBPACK_IMPORTED_MODULE_0__services_UserService__["a" /* default */]();
 let page = new __WEBPACK_IMPORTED_MODULE_1__views_CreatePage_js__["a" /* default */]();
 
+theme.changeTheme();
 
 (new __WEBPACK_IMPORTED_MODULE_2__modules_Router__["a" /* default */]())
     .addRoute('/', __WEBPACK_IMPORTED_MODULE_3__controllers_MenuStartController__["a" /* default */], {userService: userService, page: page})
@@ -2037,7 +2053,7 @@ class SignInForm extends __WEBPACK_IMPORTED_MODULE_0__Form__["a" /* default */] 
 /* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pug = __webpack_require__(3);
+var pug = __webpack_require__(4);
 
 function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (data) {var pug_indent = [];
 pug_html = pug_html + "\n\u003Cdiv class=\"form\"\u003E\n  \u003Ch1 align=\"middle\"\u003E" + (pug.escape(null == (pug_interp = data.title) ? "" : pug_interp)) + "\u003C\u002Fh1\u003E\n  \u003Cform" + (pug.attr("class", pug.classes([data.classForm], [true]), false, true)) + "\u003E";
@@ -2083,7 +2099,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(5)(content, options);
+var update = __webpack_require__(6)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -2103,12 +2119,12 @@ if(false) {
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(undefined);
+exports = module.exports = __webpack_require__(5)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, ".form {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n    flex-flow: column nowrap;\n    margin-left: 2%;\n}\n\n.form__input {\n    display: block;\n    width: 350px;\n    padding: 9px 0 12px 12px;\n    font-size: 1em;\n    margin: 5px 0 16px ;\n    font-family: \"Helvetica\";\n    border-radius: 7px;\n    background: #e9ecf0;\n    color: #5E6D82;\n    box-sizing: border-box;\n}\n\n\n.form__button {\n    background-color: whitesmoke;\n    font-size: 1.5em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    padding: 7px 17px;\n    border: 3px solid #041712;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 25px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n}\n\n.form__submit {\n    background-color: whitesmoke;\n    font-size: 1.5em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    padding: 7px 17px;\n    border: 3px solid #041712;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 15px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n    margin-left: 100px;\n    margin-bottom: -10px;\n}\n\n.form__submit:hover {\n    background-color: rgba(4, 23, 18, 0.04);\n    border: 3px solid rgba(169, 169, 169, 0.19);\n}\n\n.form__error {\n    color: #D8000C;\n    font-family: \"Verdana\", sans-serif;\n    text-align: center;\n    display: block;\n    border: 1px solid;\n    margin: -10px 0 2px 0;\n    padding:10px 10px 10px 10px;\n    background-color: #FFBABA;\n}\n\n.form__back {\n    margin: 25px 0 0 15px;\n    width: 130px;\n}\n\n.form__back:hover {\n    background-color: rgba(4, 23, 18, 0.04);\n    border: 3px solid rgba(169, 169, 169, 0.19);\n}", ""]);
+exports.push([module.i, ".form {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n    flex-flow: column nowrap;\n    margin-left: 2%;\n    margin-top: -20px;\n}\n\n.form__input {\n    display: block;\n    width: 350px;\n    padding: 9px 0 12px 12px;\n    font-size: 1em;\n    margin: 5px 0 16px ;\n    font-family: \"Helvetica\";\n    border-radius: 7px;\n    background: #e9ecf0;\n    color: #5E6D82;\n    box-sizing: border-box;\n}\n\n\n.form__button {\n    background-color: whitesmoke;\n    font-size: 1.5em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    padding: 7px 17px;\n    border: 3px solid #041712;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 25px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n}\n\n.form__submit {\n    background-color: whitesmoke;\n    font-size: 1.5em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    padding: 7px 17px;\n    border: 3px solid #041712;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 15px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n    margin-left: 100px;\n    margin-bottom: -10px;\n}\n\n.form__submit:hover {\n    background-color: rgba(4, 23, 18, 0.04);\n    border: 3px solid rgba(169, 169, 169, 0.19);\n}\n\n.form__error {\n    color: #D8000C;\n    font-family: \"Verdana\", sans-serif;\n    text-align: center;\n    display: block;\n    border: 1px solid;\n    margin: -10px 0 2px 0;\n    padding:10px 10px 10px 10px;\n    background-color: #FFBABA;\n}\n\n.form__back {\n    margin: 25px 0 0 15px;\n    width: 130px;\n}\n\n.form__back:hover {\n    background-color: rgba(4, 23, 18, 0.04);\n    border: 3px solid rgba(169, 169, 169, 0.19);\n}", ""]);
 
 // exports
 
@@ -2403,7 +2419,7 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /*
 /* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pug = __webpack_require__(3);
+var pug = __webpack_require__(4);
 
 function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (data) {var pug_indent = [];
 pug_html = pug_html + "\n\u003Cdiv class=\"theme\"\u003Echange theme\u003C\u002Fdiv\u003E\n\u003Cdiv class=\"header\"\u003E\n  \u003Cp class=\"header__text\"\u003E" + (pug.escape(null == (pug_interp = data.nameGame) ? "" : pug_interp)) + "\u003C\u002Fp\u003E\u003Cimg class=\"header__logo\" src=\"static\u002Fimg\u002Flogo.png\"\u003E\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for_with?locals_for_with.data:typeof data!=="undefined"?data:undefined));;return pug_html;};
@@ -2424,7 +2440,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(5)(content, options);
+var update = __webpack_require__(6)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -2444,12 +2460,12 @@ if(false) {
 /* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(undefined);
+exports = module.exports = __webpack_require__(5)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, ".header {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n}\n\n.header__logo {\n    width: 230px;\n    height: auto;\n    margin-left: -60px;\n}\n\n.header__text {\n    font-size: 2.7em;\n    font-family: \"Arial Black\", Gadget, sans-serif;\n    transform: rotate(-90deg);\n}\n\n.theme {\n    background-color: whitesmoke;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 15px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n    padding: 1px 7px;\n    border: none;\n    font-size: 1.1em\n}\n\n.theme:hover {\n    background-color: #e9ecf0;\n}", ""]);
+exports.push([module.i, ".header {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n}\n\n.header__logo {\n    width: 230px;\n    height: auto;\n    margin-left: -60px;\n}\n\n.header__text {\n    font-size: 2.7em;\n    font-family: \"Arial Black\", Gadget, sans-serif;\n    transform: rotate(-90deg);\n}\n\n.theme {\n    background-color: whitesmoke;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    width: 7em;\n    margin: 15px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n    padding: 1px 7px;\n    border: none;\n    font-size: 1.1em;\n    position: fixed;\n    left: 10px;\n    top: 5px;\n}\n\n.theme:hover {\n    background-color: #e9ecf0;\n}", ""]);
 
 // exports
 
@@ -2491,7 +2507,7 @@ function createUnRegMenu() {
 /* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pug = __webpack_require__(3);
+var pug = __webpack_require__(4);
 
 function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (data) {var pug_indent = [];
 pug_html = pug_html + "\n\u003Cdiv class=\"menu\"\u003E";
@@ -2531,7 +2547,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(5)(content, options);
+var update = __webpack_require__(6)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -2551,7 +2567,7 @@ if(false) {
 /* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(undefined);
+exports = module.exports = __webpack_require__(5)(undefined);
 // imports
 
 
@@ -2651,7 +2667,7 @@ function createAboutUs() {
 /* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pug = __webpack_require__(3);
+var pug = __webpack_require__(4);
 
 function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (data) {var pug_indent = [];
 pug_html = pug_html + "\n\u003Cdiv class=\"table\"\u003E\n  \u003Cdiv class=\"table__title\"\u003E" + (pug.escape(null == (pug_interp = data.title) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E\n  \u003Cdiv class=\"table__content\"\u003E\n    \u003Ctable" + (pug.attr("class", pug.classes(["table__tag",data.classTable], [false,true]), false, true)) + "\u003E";
@@ -2691,7 +2707,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(5)(content, options);
+var update = __webpack_require__(6)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -2711,7 +2727,7 @@ if(false) {
 /* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(undefined);
+exports = module.exports = __webpack_require__(5)(undefined);
 // imports
 
 
@@ -2853,7 +2869,7 @@ class Footer extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /*
 /* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pug = __webpack_require__(3);
+var pug = __webpack_require__(4);
 
 function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (data) {var pug_indent = [];
 pug_html = pug_html + "\n\u003Cdiv class=\"footer\"\u003E";
@@ -2893,7 +2909,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(5)(content, options);
+var update = __webpack_require__(6)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -2913,7 +2929,7 @@ if(false) {
 /* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(undefined);
+exports = module.exports = __webpack_require__(5)(undefined);
 // imports
 
 
@@ -3046,7 +3062,7 @@ class Route {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Controller__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__static_css_style__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__static_css_style__ = __webpack_require__(3);
 
 
 
@@ -3920,7 +3936,7 @@ class GameOverMenu extends __WEBPACK_IMPORTED_MODULE_0__phaser_min___default.a.S
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Controller__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Form_Form_Form__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__static_css_style__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__static_css_style__ = __webpack_require__(3);
 
 
 
@@ -3992,7 +4008,7 @@ class SignInController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /* 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Controller__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Form_Form_Form__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__static_css_style__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__static_css_style__ = __webpack_require__(3);
 
 
 
@@ -4063,7 +4079,7 @@ class SignUpController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /* 
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Controller__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__static_css_style__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__static_css_style__ = __webpack_require__(3);
 
 
 
@@ -4120,7 +4136,7 @@ class ScoreListController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" 
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Controller__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__static_css_style__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__static_css_style__ = __webpack_require__(3);
 
 
 

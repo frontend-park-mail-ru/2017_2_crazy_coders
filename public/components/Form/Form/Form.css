@@ -5,6 +5,7 @@
     margin-bottom: 15px;
     flex-flow: column nowrap;
     margin-left: 2%;
+    margin-top: -20px;
 }
 
 .form__input {

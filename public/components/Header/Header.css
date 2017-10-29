@@ -25,14 +25,16 @@
     border-radius: 10%;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     width: 7em;
     margin: 15px 0 5px 15px;
     cursor: pointer;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     padding: 1px 7px;
     border: none;
-    font-size: 1.1em
+    font-size: 1.1em;
+    position: fixed;
+    left: 10px;
+    top: 5px;
 }
 
 .theme:hover {

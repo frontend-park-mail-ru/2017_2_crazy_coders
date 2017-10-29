@@ -9,12 +9,13 @@ import SignInController from './controllers/SignInController';
 import SignUpController from './controllers/SignUpController';
 import ScoreListController from './controllers/ScoreListController';
 import AboutUsController from './controllers/AboutUsController';
+import Theme from './static/css/style';
 
-
-
+let theme = new Theme();
 let userService = new UserService();
 let page = new CreatePage();
 
+theme.changeTheme();
 
 (new Router())
     .addRoute('/', MenuStartController, {userService: userService, page: page})
