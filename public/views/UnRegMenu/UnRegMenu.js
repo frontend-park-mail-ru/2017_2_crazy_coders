@@ -1,7 +1,7 @@
 import Menu from '../../components/Menu/Menu';
 
 let data = {
-    user: null,
+    user: undefined,
     buttons: [
         {
             text: 'SIGN IN',

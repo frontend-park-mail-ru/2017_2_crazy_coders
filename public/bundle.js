@@ -2484,7 +2484,7 @@ exports.push([module.i, ".header {\n    display: flex;\n    align-items: center;
 
 
 let data = {
-    user: null,
+    user: undefined,
     buttons: [
         {
             text: 'SIGN IN',
@@ -2515,6 +2515,9 @@ var pug = __webpack_require__(4);
 
 function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (data) {var pug_indent = [];
 pug_html = pug_html + "\n\u003Cdiv class=\"menu\"\u003E";
+if (data.user) {
+pug_html = pug_html + "\n  \u003Cdiv class=\"menu__player\"\u003E" + (pug.escape(null == (pug_interp = 'Hi, '+data.user) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E";
+}
 // iterate data.buttons
 ;(function(){
   var $$obj = data.buttons;
@@ -2576,7 +2579,7 @@ exports = module.exports = __webpack_require__(5)(undefined);
 
 
 // module
-exports.push([module.i, ".menu {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n    flex-flow: column nowrap;\n}\n\n.menu__button {\n    background-color: whitesmoke;\n    font-size: 1.5em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    padding: 7px 17px;\n    border: 3px solid #041712;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 15px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n}\n\n.menu__button:hover {\n    background-color: rgba(4, 23, 18, 0.04);\n    border: 3px solid rgba(169, 169, 169, 0.19);\n}\n", ""]);
+exports.push([module.i, ".menu {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n    flex-flow: column nowrap;\n}\n\n.menu__button {\n    background-color: whitesmoke;\n    font-size: 1.5em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    padding: 7px 17px;\n    border: 3px solid #041712;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 15px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n}\n\n.menu__button:hover {\n    background-color: rgba(4, 23, 18, 0.04);\n    border: 3px solid rgba(169, 169, 169, 0.19);\n}\n\n.menu__player {\n    text-transform: uppercase;\n}", ""]);
 
 // exports
 
@@ -2693,7 +2696,7 @@ pug_html = pug_html + "\n      \u003Ctr class=\"table__tr\"\u003E\n        \u003
   }
 }).call(this);
 
-pug_html = pug_html + "\n    \u003C\u002Ftable\u003E\n  \u003C\u002Fdiv\u003E\n  \u003Cdiv class=\"table__back\"\u003E\n    \u003Cbutto" + (" class=\"table__button\""+pug.attr("id", data.idButton, true, true)) + "\u003E" + (pug.escape(null == (pug_interp = 'BACK') ? "" : pug_interp)) + "\u003C\u002Fbutto\u003E\n  \u003C\u002Fdiv\u003E\n  \u003Cdiv\u003E" + (pug.escape(null == (pug_interp = data.num) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for_with?locals_for_with.data:typeof data!=="undefined"?data:undefined));;return pug_html;};
+pug_html = pug_html + "\n    \u003C\u002Ftable\u003E\n  \u003C\u002Fdiv\u003E\n  \u003Cdiv class=\"table__back\"\u003E\n    \u003Cbutto" + (" class=\"table__button\""+pug.attr("id", data.idButton, true, true)) + "\u003E" + (pug.escape(null == (pug_interp = 'BACK') ? "" : pug_interp)) + "\u003C\u002Fbutto\u003E\n  \u003C\u002Fdiv\u003E\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for_with?locals_for_with.data:typeof data!=="undefined"?data:undefined));;return pug_html;};
 module.exports = template;
 
 /***/ }),
@@ -3074,101 +3077,112 @@ class Route {
 
 
 
+
 class MenuStartController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /* default */] {
 
-    constructor(opt = {}) {
-        if(MenuStartController.__instance) {
-            return MenuStartController.__instance;
-        }
+	constructor(opt = {}) {
+		if (MenuStartController.__instance) {
+			return MenuStartController.__instance;
+		}
 
-        super(opt);
-        MenuStartController.__instance = this;
+		super(opt);
+		MenuStartController.__instance = this;
 		this.theme = new __WEBPACK_IMPORTED_MODULE_1__static_css_style__["a" /* default */]();
-        this.addListener();
-    }
+		this.flag = true;
+		this.addListener();
+	}
 
-    addListener() {
+	addListener() {
 
-		document.getElementsByClassName('theme')[0].addEventListener('click', event => {
+		document.getElementById('menu-button-playGame').addEventListener('click', event => {
 			event.preventDefault();
-			this.theme.changeTheme();
+			this._router.go('/play');
 		});
 
-        document.getElementById('menu-button-signIn').addEventListener('click', event => {
-            event.preventDefault();
-            this._router.go('/signin');
-        });
+		document.getElementById('menu-button-logout').addEventListener('click', event => {
+			event.preventDefault();
+			this.userService.logout()
+				.then((response) => {
+					console.log(response);
+					this.userService.user.id = 0;
+					this.show();
+					this.page_parts.get("RegMenu").hide();
+					this._router.go('/');
+				})
+				.catch(e => {
+					alert(e);
+				});
+		});
 
-        document.getElementById('menu-button-signUp').addEventListener('click', event => {
-            event.preventDefault();
-            this._router.go('/signup');
-        });
+		if (this.flag) {
+			document.getElementsByClassName('theme')[0].addEventListener('click', event => {
+				event.preventDefault();
+				this.theme.changeTheme();
+			});
 
-        document.getElementById('menu-button-playGame').addEventListener('click', event => {
-            event.preventDefault();
-            this._router.go('/play');
-        });
+			document.getElementById('menu-button-music').addEventListener('click', event => {
+				event.preventDefault();
+				this._router.go('/');
+			});
 
-        document.getElementById('menu-button-logout').addEventListener('click', event => {
-            event.preventDefault();
-            this.userService.logout()
-                .then((response) => {
-                    console.log(response);
-                    this.userService.user.id = 0;
-                    this.show();
-                    this.page_parts.get("RegMenu").hide();
-                    this._router.go('/');
-                })
-                .catch(e => {
-                    alert(e);
-                });
-        });
+			document.getElementById('menu-button-score').addEventListener('click', event => {
+				event.preventDefault();
+				this._router.go('/score');
+			});
 
-        document.getElementById('menu-button-music').addEventListener('click', event => {
-            event.preventDefault();
-            this._router.go('/');
-        });
+			document.getElementById('menu-button-about').addEventListener('click', event => {
+				event.preventDefault();
+				this._router.go('/about');
+			});
 
-        document.getElementById('menu-button-score').addEventListener('click', event => {
-            event.preventDefault();
-            this._router.go('/score');
-        });
+			document.getElementById('menu-button-signIn').addEventListener('click', event => {
+				event.preventDefault();
+				this._router.go('/signin');
+			});
 
-        document.getElementById('menu-button-about').addEventListener('click', event => {
-            event.preventDefault();
-            this._router.go('/about');
-        });
-    }
+			document.getElementById('menu-button-signUp').addEventListener('click', event => {
+				event.preventDefault();
+				this._router.go('/signup');
+			});
 
-    resume() {
-        this.show();
-    }
+			this.flag = false;
+		}
 
-    show() {
-        this.page_parts.get("Header").show();
-        console.log("[MenuStartController] in show");
+	}
 
-        this.userService
-            .getProfile()
-            .then((resp) => {
+	resume() {
+		this.show();
+	}
+
+	show() {
+		this.page_parts.get("Header").show();
+		console.log("[MenuStartController] in show");
+
+		this.userService
+			.getProfile()
+			.then((resp) => {
 				console.log("[userService.getProfile] response: " + resp);
 				this.userService.user.set(resp);
-				this.page_parts.get("RegMenu").show();
-            })
-            .catch((err) => {
+
+				this.page_parts.get("RegMenu").data.user = this.userService.user.getUsername();
+				this.page_parts.get("RegMenu").getClassElement().hidden=false;
+				this.addListener();
+				// this.page_parts.get("RegMenu").show();
+			})
+			.catch((err) => {
 				console.log("[userService.getProfile] err: " + err);
 				this.page_parts.get("UnRegMenu").show();
-            });
+			});
 
-        this.page_parts.get("Footer").show();
-    }
+		this.page_parts.get("Footer").show();
+	}
 
-    hide() {
-        this.page_parts.get("Header").hide();
-        this.page_parts.get("UnRegMenu").hide();
-        this.page_parts.get("RegMenu").hide();
-        this.page_parts.get("Footer").hide();
-    }
+	hide() {
+		this.page_parts.get("Header").hide();
+		this.page_parts.get("UnRegMenu").hide();
+		this.page_parts.get("RegMenu").hide();
+		this.page_parts.get("Footer").hide();
+	}
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (MenuStartController);

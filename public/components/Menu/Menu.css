@@ -28,3 +28,7 @@
     background-color: rgba(4, 23, 18, 0.04);
     border: 3px solid rgba(169, 169, 169, 0.19);
 }
+
+.menu__player {
+    text-transform: uppercase;
+}
