@@ -1,5 +1,5 @@
 import Table from '../../components/Table/Table'
-
+let number = 45;
 let data = {
     idButton: 'score-button-back',
     classTable: 'score_table',
@@ -29,12 +29,13 @@ let data = {
             name: 'Cleveland',
             position: '250'
         }
-    ]
+    ],
+    num: number,
 };
 
 /**
  * Получаем страницу счета
  */
 export default function Scoreboard() {
-    return new Table('section', {id: 'section-scoreList'}, [], {data});
+    return new Table('section', {id: 'section-scoreList'}, [], data);
 }

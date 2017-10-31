@@ -22,7 +22,9 @@ export default class Table extends Block {
      * Получить Table
      */
     getClassElement() {
-        this.setHTML(TableTemp(this.getData()));
+        let data = this.getData();
+
+        this.setHTML(TableTemp({data}));
         return this.getElement();
     }
 }

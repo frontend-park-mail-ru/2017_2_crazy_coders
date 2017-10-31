@@ -1112,7 +1112,8 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
      * Получить форму
      */
     getClassElement() {
-        this.setHTML(__WEBPACK_IMPORTED_MODULE_1__Form_pug___default()(this.getData()));
+		let data = this.getData();
+        this.setHTML(__WEBPACK_IMPORTED_MODULE_1__Form_pug___default()({data}));
         return this.getElement();
     }
 
@@ -1517,7 +1518,8 @@ class Menu extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
      * Получить Menu
      */
     getClassElement() {
-        this.setHTML(__WEBPACK_IMPORTED_MODULE_1__Menu_pug___default()(this.getData()));
+		let data = this.getData();
+        this.setHTML(__WEBPACK_IMPORTED_MODULE_1__Menu_pug___default()({data}));
         return this.getElement();
     }
 }
@@ -1559,7 +1561,9 @@ class Table extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* 
      * Получить Table
      */
     getClassElement() {
-        this.setHTML(__WEBPACK_IMPORTED_MODULE_1__Table_pug___default()(this.getData()));
+        let data = this.getData();
+
+        this.setHTML(__WEBPACK_IMPORTED_MODULE_1__Table_pug___default()({data}));
         return this.getElement();
     }
 }
@@ -1993,7 +1997,7 @@ let data = {
  * Получаем страницу входа
  */
 function SignIn() {
-    return new __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_SignInForm__["a" /* default */]('section', {id: 'section-signIn'}, [], {data}, __WEBPACK_IMPORTED_MODULE_1__components_Form_ValidForm_ValidSignInForm__["a" /* default */]);
+    return new __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_SignInForm__["a" /* default */]('section', {id: 'section-signIn'}, [], data, __WEBPACK_IMPORTED_MODULE_1__components_Form_ValidForm_ValidSignInForm__["a" /* default */]);
 }
 
 
@@ -2292,7 +2296,7 @@ let data = {
  * Получаем страницу регистрации
  */
 function SignUp() {
-    return new __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_SignUpForm__["a" /* default */]('section', {id: 'section-signUp'}, [], {data}, __WEBPACK_IMPORTED_MODULE_1__components_Form_ValidForm_ValidSignUpForm__["a" /* default */]);
+    return new __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_SignUpForm__["a" /* default */]('section', {id: 'section-signUp'}, [], data, __WEBPACK_IMPORTED_MODULE_1__components_Form_ValidForm_ValidSignUpForm__["a" /* default */]);
 }
 
 
@@ -2366,7 +2370,7 @@ let data = {
  * Получаем страницу header
  */
 function createHeader() {
-    return new __WEBPACK_IMPORTED_MODULE_0__components_Header_Header__["a" /* default */]('section', {id: 'section-header'}, [], {data});
+    return new __WEBPACK_IMPORTED_MODULE_0__components_Header_Header__["a" /* default */]('section', {id: 'section-header'}, [], data);
 }
 
 
@@ -2405,9 +2409,9 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /*
      */
     getClassElement() {
 
-        console.log(this.getData());
+        let data = this.getData();
 
-        this.setHTML(__WEBPACK_IMPORTED_MODULE_1__Header_pug___default()(this.getData()));
+        this.setHTML(__WEBPACK_IMPORTED_MODULE_1__Header_pug___default()({data}));
         return this.getElement();
     }
 }
@@ -2499,7 +2503,7 @@ let data = {
  * Получаем страницу незарегистрированного пользователя
  */
 function createUnRegMenu() {
-    return new __WEBPACK_IMPORTED_MODULE_0__components_Menu_Menu__["a" /* default */]('section', {id: 'section-unRegMenu'}, [], {data});
+    return new __WEBPACK_IMPORTED_MODULE_0__components_Menu_Menu__["a" /* default */]('section', {id: 'section-unRegMenu'}, [], data);
 }
 
 
@@ -2608,7 +2612,7 @@ function createRegMenu() {
         ]
     };
 
-    return new __WEBPACK_IMPORTED_MODULE_0__components_Menu_Menu__["a" /* default */]('section', {id: 'section-regMenu'}, [], {data});
+    return new __WEBPACK_IMPORTED_MODULE_0__components_Menu_Menu__["a" /* default */]('section', {id: 'section-regMenu'}, [], data);
 }
 
 
@@ -2659,7 +2663,7 @@ let data = {
  * Получаем страницу о нас
  */
 function createAboutUs() {
-    return new __WEBPACK_IMPORTED_MODULE_0__components_Table_Table__["a" /* default */]('section', {id: 'section-aboutUs'}, [], {data});
+    return new __WEBPACK_IMPORTED_MODULE_0__components_Table_Table__["a" /* default */]('section', {id: 'section-aboutUs'}, [], data);
 }
 
 
@@ -2689,7 +2693,7 @@ pug_html = pug_html + "\n      \u003Ctr class=\"table__tr\"\u003E\n        \u003
   }
 }).call(this);
 
-pug_html = pug_html + "\n    \u003C\u002Ftable\u003E\n  \u003C\u002Fdiv\u003E\n  \u003Cdiv class=\"table__back\"\u003E\n    \u003Cbutto" + (" class=\"table__button\""+pug.attr("id", data.idButton, true, true)) + "\u003E" + (pug.escape(null == (pug_interp = 'BACK') ? "" : pug_interp)) + "\u003C\u002Fbutto\u003E\n  \u003C\u002Fdiv\u003E\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for_with?locals_for_with.data:typeof data!=="undefined"?data:undefined));;return pug_html;};
+pug_html = pug_html + "\n    \u003C\u002Ftable\u003E\n  \u003C\u002Fdiv\u003E\n  \u003Cdiv class=\"table__back\"\u003E\n    \u003Cbutto" + (" class=\"table__button\""+pug.attr("id", data.idButton, true, true)) + "\u003E" + (pug.escape(null == (pug_interp = 'BACK') ? "" : pug_interp)) + "\u003C\u002Fbutto\u003E\n  \u003C\u002Fdiv\u003E\n  \u003Cdiv\u003E" + (pug.escape(null == (pug_interp = data.num) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for_with?locals_for_with.data:typeof data!=="undefined"?data:undefined));;return pug_html;};
 module.exports = template;
 
 /***/ }),
@@ -2745,7 +2749,7 @@ exports.push([module.i, ".table__title {\n    display: flex;\n    align-items: c
 /* harmony export (immutable) */ __webpack_exports__["a"] = Scoreboard;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Table_Table__ = __webpack_require__(12);
 
-
+let number = 45;
 let data = {
     idButton: 'score-button-back',
     classTable: 'score_table',
@@ -2775,14 +2779,15 @@ let data = {
             name: 'Cleveland',
             position: '250'
         }
-    ]
+    ],
+    num: number,
 };
 
 /**
  * Получаем страницу счета
  */
 function Scoreboard() {
-    return new __WEBPACK_IMPORTED_MODULE_0__components_Table_Table__["a" /* default */]('section', {id: 'section-scoreList'}, [], {data});
+    return new __WEBPACK_IMPORTED_MODULE_0__components_Table_Table__["a" /* default */]('section', {id: 'section-scoreList'}, [], data);
 }
 
 
@@ -2819,7 +2824,7 @@ let data = {
  * Получаем страницу footer-а
  */
 function CreateFooter() {
-    return new __WEBPACK_IMPORTED_MODULE_0__components_Footer_Footer__["a" /* default */]('section', {id: 'section-footer'}, [], {data});
+    return new __WEBPACK_IMPORTED_MODULE_0__components_Footer_Footer__["a" /* default */]('section', {id: 'section-footer'}, [], data);
 }
 
 
@@ -2857,7 +2862,8 @@ class Footer extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /*
      * Получить footer
      */
     getClassElement() {
-        this.setHTML(__WEBPACK_IMPORTED_MODULE_1__Footer_pug___default()(this.getData()));
+		let data = this.getData();
+        this.setHTML(__WEBPACK_IMPORTED_MODULE_1__Footer_pug___default()({data}));
         return this.getElement();
     }
 }

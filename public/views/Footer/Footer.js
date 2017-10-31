@@ -24,5 +24,5 @@ let data = {
  * Получаем страницу footer-а
  */
 export default function CreateFooter() {
-    return new Footer('section', {id: 'section-footer'}, [], {data});
+    return new Footer('section', {id: 'section-footer'}, [], data);
 }

@@ -58,6 +58,6 @@ let data = {
  * Получаем страницу регистрации
  */
 export default function SignUp() {
-    return new SignUpForm('section', {id: 'section-signUp'}, [], {data}, ValidSignUpForm);
+    return new SignUpForm('section', {id: 'section-signUp'}, [], data, ValidSignUpForm);
 }
 

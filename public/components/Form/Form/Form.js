@@ -26,7 +26,8 @@ export default class Form extends Block {
      * Получить форму
      */
     getClassElement() {
-        this.setHTML(FormTemp(this.getData()));
+		let data = this.getData();
+        this.setHTML(FormTemp({data}));
         return this.getElement();
     }
 
