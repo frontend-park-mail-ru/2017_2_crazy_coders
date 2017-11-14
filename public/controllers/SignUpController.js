@@ -37,16 +37,10 @@ class SignUpController extends Controller {
 
                 .catch((err) => {
                     console.log("[onSubmitSignUpForm] err: " + err);
-                    // Form.showFormMessage('server error', this.page_parts.get('SignUp'));
 					let notify = new Notify();
                     notify.notify('server error');
 				});
         });
-
-        // document.getElementById('signUp-button-back').addEventListener('click', event => {
-        //     event.preventDefault();
-        //     this._router.go('/');
-        // });
     }
 
     resume() {

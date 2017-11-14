@@ -1318,17 +1318,6 @@ class UserService {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Notify_Notify__ = __webpack_require__(8);
 
 
-/**
- * Скрываем ошибки формы
- * @param {HTMLElement} form
- */
-// function hideError(form) {
-//     let removeErrorCollection = form.getElementsByClassName('form__error');
-//     const removeErrorArray = Array.from(removeErrorCollection);
-//     removeErrorArray.forEach(elem => {
-//         elem.remove();
-//     });
-// }
 
 /**
  * Проверяем корректность email
@@ -1356,7 +1345,6 @@ class ValidSignInForm {
     /**
      * @param {string} email
      * @param {string} password
-     * @param {HTMLElement} form
      * @constructor
      */
     constructor(email, password) {
@@ -1368,27 +1356,11 @@ class ValidSignInForm {
 	}
 
     /**
-     * Создаём html элемент ошибки
-     * @param {string} msg - сообщение ошибки
-     * @returns {HTMLElement}
-     */
-    // static createErrorElement(msg) {
-    //     let errorElement = document.createElement('p');
-    //     errorElement.textContent = msg;
-    //     errorElement.classList.add('form__error');
-	//
-    //     return errorElement;
-    // }
-
-    /**
      * Валидируем форму
      * @returns {boolean}
      */
     validForm() {
-        // hideError(this.currentForm);
-
         let flag = true;
-        // const [loginField, passwordField] = this.currentForm.children;
 
         const minLenPassword = 6,
             maxLenPassword = 18;
@@ -1422,17 +1394,6 @@ class ValidSignInForm {
 
 
 
-/**
- * Скрываем ошибки формы
- * @param {HTMLElement} form
- */
-// function hideError(form) {
-//     let removeErrorCollection = form.getElementsByClassName('form__error');
-//     const removeErrorArray = Array.from(removeErrorCollection);
-//     removeErrorArray.forEach(elem => {
-//         elem.remove();
-//     });
-// }
 
 /**
  * Проверяем корректность поля формы
@@ -1471,7 +1432,6 @@ class ValidSignUpForm {
 	 * @param {string} email
 	 * @param {string} password
 	 * @param {string} repeatPassword
-	 * @param {HTMLElement} form
 	 * @constructor
 	 */
 	constructor(login, email, password, repeatPassword) {
@@ -1489,10 +1449,7 @@ class ValidSignUpForm {
 	 * @returns {boolean}
 	 */
 	validForm() {
-		// hideError(this.currentForm);
-
 		let flag = true;
-		// const [usernameField, emailField, passwordField, repeatPasswordField] = this.currentForm.children;
 
 		const minLenUsername = 4,
 			maxLenUsername = 15,
@@ -2381,7 +2338,6 @@ class SignUpForm extends __WEBPACK_IMPORTED_MODULE_0__Form__["a" /* default */] 
 
             for (let name in elements) {
                 formdata[name] = elements[name].value;
-                console.log(elements[name].value);
             }
 
             const isValid = new this.validator(formdata.username, formdata.email,
@@ -4051,7 +4007,6 @@ class SignInController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /* 
 				})
 				.catch((err) => {
 					console.log("[onSubmitSignInForm] err: " + err);
-					// Form.showFormMessage('server error', this.page_parts.get('SignIn'));
 					let notify = new __WEBPACK_IMPORTED_MODULE_3__components_Form_ValidForm_Notify_Notify__["a" /* default */]();
 					notify.notify('server error');
 				});
@@ -4123,16 +4078,10 @@ class SignUpController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /* 
 
                 .catch((err) => {
                     console.log("[onSubmitSignUpForm] err: " + err);
-                    // Form.showFormMessage('server error', this.page_parts.get('SignUp'));
 					let notify = new __WEBPACK_IMPORTED_MODULE_3__components_Form_ValidForm_Notify_Notify__["a" /* default */]();
                     notify.notify('server error');
 				});
         });
-
-        // document.getElementById('signUp-button-back').addEventListener('click', event => {
-        //     event.preventDefault();
-        //     this._router.go('/');
-        // });
     }
 
     resume() {

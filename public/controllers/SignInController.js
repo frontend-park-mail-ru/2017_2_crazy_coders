@@ -36,7 +36,6 @@ class SignInController extends Controller {
 				})
 				.catch((err) => {
 					console.log("[onSubmitSignInForm] err: " + err);
-					// Form.showFormMessage('server error', this.page_parts.get('SignIn'));
 					let notify = new Notify();
 					notify.notify('server error');
 				});

@@ -1,16 +1,5 @@
 "use strict";
 import Notify from './Notify/Notify';
-/**
- * Скрываем ошибки формы
- * @param {HTMLElement} form
- */
-// function hideError(form) {
-//     let removeErrorCollection = form.getElementsByClassName('form__error');
-//     const removeErrorArray = Array.from(removeErrorCollection);
-//     removeErrorArray.forEach(elem => {
-//         elem.remove();
-//     });
-// }
 
 /**
  * Проверяем корректность email
@@ -38,7 +27,6 @@ export default class ValidSignInForm {
     /**
      * @param {string} email
      * @param {string} password
-     * @param {HTMLElement} form
      * @constructor
      */
     constructor(email, password) {
@@ -50,27 +38,11 @@ export default class ValidSignInForm {
 	}
 
     /**
-     * Создаём html элемент ошибки
-     * @param {string} msg - сообщение ошибки
-     * @returns {HTMLElement}
-     */
-    // static createErrorElement(msg) {
-    //     let errorElement = document.createElement('p');
-    //     errorElement.textContent = msg;
-    //     errorElement.classList.add('form__error');
-	//
-    //     return errorElement;
-    // }
-
-    /**
      * Валидируем форму
      * @returns {boolean}
      */
     validForm() {
-        // hideError(this.currentForm);
-
         let flag = true;
-        // const [loginField, passwordField] = this.currentForm.children;
 
         const minLenPassword = 6,
             maxLenPassword = 18;
