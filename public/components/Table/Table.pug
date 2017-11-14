@@ -1,5 +1,9 @@
 div.table
     div.table__title=data.title
+
+    if (data.userScore)
+        div.table__player='Your score: ' + data.userScore
+
     div.table__content
         table.table__tag(class=data.classTable)
             each user in data.users

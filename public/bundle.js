@@ -1843,7 +1843,7 @@ class User {
         this.email = opt.email || '';
         this.username = opt.username || '';
         this.id = opt.id || 0;
-        this.score = opt.score || 0;
+        this.score = opt.score || 0.1;
     }
 
     /**
@@ -2686,7 +2686,11 @@ function createAboutUs() {
 var pug = __webpack_require__(4);
 
 function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (data) {var pug_indent = [];
-pug_html = pug_html + "\n\u003Cdiv class=\"table\"\u003E\n  \u003Cdiv class=\"table__title\"\u003E" + (pug.escape(null == (pug_interp = data.title) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E\n  \u003Cdiv class=\"table__content\"\u003E\n    \u003Ctable" + (pug.attr("class", pug.classes(["table__tag",data.classTable], [false,true]), false, true)) + "\u003E";
+pug_html = pug_html + "\n\u003Cdiv class=\"table\"\u003E\n  \u003Cdiv class=\"table__title\"\u003E" + (pug.escape(null == (pug_interp = data.title) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E";
+if ((data.userScore)) {
+pug_html = pug_html + "\n  \u003Cdiv class=\"table__player\"\u003E" + (pug.escape(null == (pug_interp = 'Your score: ' + data.userScore) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E";
+}
+pug_html = pug_html + "\n  \u003Cdiv class=\"table__content\"\u003E\n    \u003Ctable" + (pug.attr("class", pug.classes(["table__tag",data.classTable], [false,true]), false, true)) + "\u003E";
 // iterate data.users
 ;(function(){
   var $$obj = data.users;
@@ -2748,7 +2752,7 @@ exports = module.exports = __webpack_require__(5)(undefined);
 
 
 // module
-exports.push([module.i, ".table__title {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 2em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    margin: 1% 0 1% 1%;\n}\n\n.table__content {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n}\n\n.table__back {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n    flex-flow: column nowrap;\n\n}\n\n.table__button {\n    background-color: whitesmoke;\n    font-size: 1.5em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    padding: 7px 17px;\n    border: 3px solid #041712;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 15px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n}\n\n.table__button:hover {\n    background-color: rgba(4, 23, 18, 0.04);\n    border: 3px solid rgba(169, 169, 169, 0.19);\n}\n\n\n.table__tag {\n    border-collapse: collapse;\n    font-family: \"Verdana\", sans-serif;\n}\n\n.table__td, .table__th {\n    text-align: center;\n    padding: 10px;\n}\n\n", ""]);
+exports.push([module.i, ".table__title {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 2em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    margin: 1% 0 1% 1%;\n}\n\n.table__content {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n}\n\n.table__back {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n    flex-flow: column nowrap;\n\n}\n\n.table__button {\n    background-color: whitesmoke;\n    font-size: 1.5em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    padding: 7px 17px;\n    border: 3px solid #041712;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 15px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n}\n\n.table__button:hover {\n    background-color: rgba(4, 23, 18, 0.04);\n    border: 3px solid rgba(169, 169, 169, 0.19);\n}\n\n\n.table__tag {\n    border-collapse: collapse;\n    font-family: \"Verdana\", sans-serif;\n}\n\n.table__td, .table__th {\n    text-align: center;\n    padding: 10px;\n}\n\n.table__player {\n    align-items: center;\n}\n\n", ""]);
 
 // exports
 
@@ -2791,6 +2795,7 @@ let data = {
             position: '250'
         }
     ],
+    userScore: 'score',
 };
 
 /**
@@ -3170,7 +3175,8 @@ class MenuStartController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" 
 			.then((resp) => {
 				console.log("[userService.getProfile] response: " + resp);
 				this.userService.user.set(resp);
-
+				console.log("alkscjbasbcasbucaosubc:");
+				console.log(this.page_parts.get("RegMenu").data.user);
 				this.page_parts.get("RegMenu").data.user = this.userService.user.getUsername();
 				this.page_parts.get("RegMenu").getClassElement().hidden=false;
 				this.addListener();
@@ -4161,7 +4167,13 @@ class ScoreListController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" 
 			.catch((err) => {
 				console.log('bad answer');
 			});
-		this.page_parts.get("Scoreboard").show();
+
+		console.log(this.userService.user.getScore());
+
+		this.page_parts.get("Scoreboard").data.userScore = this.userService.user.getScore();
+		this.page_parts.get("Scoreboard").getClassElement().hidden=false;
+		this.addListener();
+
 	}
 
 	hide() {

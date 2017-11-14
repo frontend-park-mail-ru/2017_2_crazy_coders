@@ -43,7 +43,13 @@ class ScoreListController extends Controller {
 			.catch((err) => {
 				console.log('bad answer');
 			});
-		this.page_parts.get("Scoreboard").show();
+
+		console.log(this.userService.user.getScore());
+
+		this.page_parts.get("Scoreboard").data.userScore = this.userService.user.getScore();
+		this.page_parts.get("Scoreboard").getClassElement().hidden=false;
+		this.addListener();
+
 	}
 
 	hide() {
