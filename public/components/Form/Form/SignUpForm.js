@@ -33,7 +33,7 @@ export default class SignUpForm extends Form {
             }
 
             const isValid = new this.validator(formdata.username, formdata.email,
-                formdata.password, formdata.repeatPassword, signUpForm);
+                formdata.password, formdata.repeatPassword);
 
             if(isValid.validForm()) {
                 callback(formdata);

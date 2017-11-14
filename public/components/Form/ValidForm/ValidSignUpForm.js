@@ -1,16 +1,17 @@
 "use strict";
 
+import Notify from './Notify/Notify';
 /**
  * Скрываем ошибки формы
  * @param {HTMLElement} form
  */
-function hideError(form) {
-    let removeErrorCollection = form.getElementsByClassName('form__error');
-    const removeErrorArray = Array.from(removeErrorCollection);
-    removeErrorArray.forEach(elem => {
-        elem.remove();
-    });
-}
+// function hideError(form) {
+//     let removeErrorCollection = form.getElementsByClassName('form__error');
+//     const removeErrorArray = Array.from(removeErrorCollection);
+//     removeErrorArray.forEach(elem => {
+//         elem.remove();
+//     });
+// }
 
 /**
  * Проверяем корректность поля формы
@@ -19,7 +20,7 @@ function hideError(form) {
  * @param {int} maxLenField
  */
 function isCorrectTextField(text, minLenField, maxLenField) {
-    return text.match(new RegExp('^[a-zA-Z0-9_-]{' + minLenField + ','+ maxLenField +'}$'));
+	return text.match(new RegExp('^[a-zA-Z0-9_-]{' + minLenField + ',' + maxLenField + '}$'));
 }
 
 /**
@@ -27,7 +28,7 @@ function isCorrectTextField(text, minLenField, maxLenField) {
  * @param {string} email
  */
 function isCorrectEmail(email) {
-    return email.match(new RegExp('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$'));
+	return email.match(new RegExp('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$'));
 }
 
 /**
@@ -36,7 +37,7 @@ function isCorrectEmail(email) {
  * @param {string} pswdRepeat
  */
 function isSamePasswords(pswd, pswdRepeat) {
-    return pswd === pswdRepeat;
+	return pswd === pswdRepeat && pswd !== '' && pswdRepeat !== '';
 }
 
 /**
@@ -44,72 +45,60 @@ function isSamePasswords(pswd, pswdRepeat) {
  * @module ValidSignUpForm
  */
 export default class ValidSignUpForm {
-    /**
-     * @param {string} login
-     * @param {string} email
-     * @param {string} password
-     * @param {string} repeatPassword
-     * @param {HTMLElement} form
-     * @constructor
-     */
-    constructor(login, email, password, repeatPassword, form) {
-        this.username = login;
-        this.email = email;
-        this.password = password;
-        this.repeatPassword = repeatPassword;
-        this.currentForm = form;
-    }
+	/**
+	 * @param {string} login
+	 * @param {string} email
+	 * @param {string} password
+	 * @param {string} repeatPassword
+	 * @param {HTMLElement} form
+	 * @constructor
+	 */
+	constructor(login, email, password, repeatPassword) {
+		this.username = login;
+		this.email = email;
+		this.password = password;
+		this.repeatPassword = repeatPassword;
+		// this.currentForm = form;
 
-    /**
-     * Создаём html элемент ошибки
-     * @param {string} msg - сообщение ошибки
-     * @returns {HTMLElement}
-     */
-    static createErrorElement(msg) {
-        let errorElement = document.createElement('p');
-        errorElement.textContent = msg;
-        errorElement.classList.add('form__error');
+		this.notify = new Notify();
+	}
 
-        return errorElement;
-    }
+	/**
+	 * Валидируем форму
+	 * @returns {boolean}
+	 */
+	validForm() {
+		// hideError(this.currentForm);
 
-    /**
-     * Валидируем форму
-     * @returns {boolean}
-     */
-    validForm() {
-        hideError(this.currentForm);
+		let flag = true;
+		// const [usernameField, emailField, passwordField, repeatPasswordField] = this.currentForm.children;
 
-        let flag = true;
-        const [usernameField, emailField, passwordField, repeatPasswordField] = this.currentForm.children;
+		const minLenUsername = 4,
+			maxLenUsername = 15,
+			minLenPassword = 6,
+			maxLenPassword = 18;
 
-        const minLenUsername = 4,
-            maxLenUsername = 15,
-            minLenPassword = 6,
-            maxLenPassword = 18;
+		if (!isCorrectTextField(this.username, minLenUsername, maxLenUsername)) {
+			flag = false;
+			this.notify.notify('invalid username');
+		}
 
-        if (!isCorrectTextField(this.username, minLenUsername, maxLenUsername)) {
-            flag = false;
-            this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid username'), usernameField);
-        }
+		if (!isCorrectEmail(this.email)) {
+			flag = false;
+			this.notify.notify('invalid email');
+		}
 
-        if (!isCorrectEmail(this.email)) {
-            flag = false;
-            this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid email'), emailField);
-        }
+		if (!isCorrectTextField(this.password, minLenPassword, maxLenPassword)) {
+			flag = false;
+			this.notify.notify('invalid password');
+		}
 
-        if (!isCorrectTextField(this.password, minLenPassword, maxLenPassword)) {
-            flag = false;
-            this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('invalid password'), passwordField);
-        }
+		if (!isSamePasswords(this.password, this.repeatPassword)) {
+			flag = false;
+			this.notify.notify('error repeat password');
+		}
 
-        if (!isSamePasswords(this.password, this.repeatPassword)) {
-            flag = false;
-            this.currentForm.insertBefore(ValidSignUpForm.createErrorElement('the values of entered passwords do not match'),
-                repeatPasswordField);
-        }
-
-        return flag;
-    }
+		return flag;
+	}
 }
 

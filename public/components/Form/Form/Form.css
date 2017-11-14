@@ -85,3 +85,64 @@
     background-color: rgba(4, 23, 18, 0.04);
     border: 3px solid rgba(169, 169, 169, 0.19);
 }
+
+
+.notify-container {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    z-index: 999999;
+}
+
+.notify {
+    margin: 10px 0 17px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    width: 300px;
+    height: 50px;
+    background: red;
+    visibility: visible;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes hide {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.notify_delete {
+    display: none;
+}
+
+.notify__close {
+    display: inline-block;
+    margin-right: 11px;
+    font-weight: bold;
+    float: right;
+    font-size: 36px;
+    line-height: 50px;
+    color: white;
+    cursor: pointer;
+}
+
+.notify__text {
+    display: inline-block;
+    margin-left: 20px;
+    line-height: 50px;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    cursor: default;
+}
