@@ -1,5 +1,4 @@
 import Table from '../../components/Table/Table'
-let number = 45;
 let data = {
     idButton: 'score-button-back',
     classTable: 'score_table',
@@ -30,7 +29,6 @@ let data = {
             position: '250'
         }
     ],
-    num: number,
 };
 
 /**

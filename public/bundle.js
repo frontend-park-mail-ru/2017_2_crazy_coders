@@ -1214,97 +1214,109 @@ class Notify {
  */
 class UserService {
 
-    constructor() {
-        // debugger;
-        if(this.user) {
-            return this;
-        }
-        this.user = new __WEBPACK_IMPORTED_MODULE_1__model_User__["a" /* default */]({});
-        this.users = [];
-    }
+	constructor() {
+		// debugger;
+		if (this.user) {
+			return this;
+		}
+		this.user = new __WEBPACK_IMPORTED_MODULE_1__model_User__["a" /* default */]({});
+		this.users = [];
+	}
 
-    /**
-     * Регистрирует нового пользователя
-     * @param {string} username
-     * @param {string} email
-     * @param {string} password
-     * @return {Promise}
-     */
-    signUp(username, email, password) {
+	/**
+	 * Регистрирует нового пользователя
+	 * @param {string} username
+	 * @param {string} email
+	 * @param {string} password
+	 * @return {Promise}
+	 */
+	signUp(username, email, password) {
 
-        console.log(`[signUp] email:  ${email}  pass: ${password}`);
-        const requestBody = {username, email, password};
-        return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/signUp', requestBody)
-            .then((response) => {
-                if (response.status === 201) {
-                    //this.user.set(response.json());
-                    return response.json();
-                } else {
-                    console.log(response.json());
-                    throw response;
-                }
-            });
-    }
+		console.log(`[signUp] email:  ${email}  pass: ${password}`);
+		const requestBody = {username, email, password};
+		return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/signUp', requestBody)
+			.then((response) => {
+				if (response.status === 201) {
+					//this.user.set(response.json());
+					return response.json();
+				} else {
+					console.log(response.json());
+					throw response;
+				}
+			});
+	}
 
-    /**
-     * Авторизация пользователя
-     * @param {string} email
-     * @param {string} password
-     * @return {Promise}
-     */
-    signIn(email, password) {
-        return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/signIn', {email, password})
-            .then((response) => {
-                if (response.status === 200) {
-                    return response.json();
-                } else {
-                    console.log(response.json());
-                    throw response;
-                }
-            });
-    }
+	/**
+	 * Авторизация пользователя
+	 * @param {string} email
+	 * @param {string} password
+	 * @return {Promise}
+	 */
+	signIn(email, password) {
+		return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/signIn', {email, password})
+			.then((response) => {
+				if (response.status === 200) {
+					return response.json();
+				} else {
+					console.log(response.json());
+					throw response;
+				}
+			});
+	}
 
-    /**
-     * Проверяет, авторизован ли пользователь
-     * @return {boolean}
-     */
-    isAuthorized() {
-        console.log("[UserService] in isAuthorized, this.user.getId = " + this.user.getId());
-        return !!this.user.getId();
-    }
+	/**
+	 * Проверяет, авторизован ли пользователь
+	 * @return {boolean}
+	 */
+	isAuthorized() {
+		console.log("[UserService] in isAuthorized, this.user.getId = " + this.user.getId());
+		return !!this.user.getId();
+	}
 
-    /**
-     * Загружает данные о текущем пользователе
-     * @param {boolean} [force=true] - игнорировать ли кэш?
-     * @return {Promise}
-     */
-    getProfile(force = true) {
-        if (this.isAuthorized() && !force) {
-            return Promise.resolve(this.user.get());
-        }
-        return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchGet('/profile')
-            .then((response) => {
-                if (response.status === 200) {
-                    return response.json();
-                } else {
-                    throw response;
-                }
-            })
-    }
+	/**
+	 * Загружает данные о текущем пользователе
+	 * @param {boolean} [force=true] - игнорировать ли кэш?
+	 * @return {Promise}
+	 */
+	getProfile(force = true) {
+		if (this.isAuthorized() && !force) {
+			return Promise.resolve(this.user.get());
+		}
+		return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchGet('/profile')
+			.then((response) => {
+				if (response.status === 200) {
+					return response.json();
+				} else {
+					throw response;
+				}
+			})
+	}
 
-    /**
-     * Получить данного пользователя
-     */
-    getUserLogin() {
-        return this.user.get();
-    }
+	getScorelist(page) {
+		return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/scorelist', {page})
+			.then((response) => {
+				if (response.status === 200) {
+					return response.json();
+				} else {
+					console.log(response.json());
+					throw response;
+				}
+			});
+	}
 
-    /**
-     * Выход
-     */
-    logout() {
-        return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchGet('/logout');
-    }
+	/**
+	 * Получить данного пользователя
+	 */
+	getUserLogin() {
+		return this.user.get();
+	}
+
+	/**
+	 * Выход
+	 */
+	logout() {
+		return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchGet('/logout');
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = UserService;
 
@@ -2626,8 +2638,6 @@ function createRegMenu() {
 /* harmony export (immutable) */ __webpack_exports__["a"] = createAboutUs;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Table_Table__ = __webpack_require__(13);
 
-
-
 let data = {
     idButton: 'aboutUs-button-back',
     classTable: 'about_table',
@@ -2751,7 +2761,6 @@ exports.push([module.i, ".table__title {\n    display: flex;\n    align-items: c
 /* harmony export (immutable) */ __webpack_exports__["a"] = Scoreboard;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Table_Table__ = __webpack_require__(13);
 
-let number = 45;
 let data = {
     idButton: 'score-button-back',
     classTable: 'score_table',
@@ -2782,7 +2791,6 @@ let data = {
             position: '250'
         }
     ],
-    num: number,
 };
 
 /**
@@ -4115,44 +4123,51 @@ class SignUpController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /* 
 
 class ScoreListController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /* default */] {
 
-    constructor(opt = {}) {
-        if(ScoreListController.__instance) {
-            return ScoreListController.__instance;
-        }
+	constructor(opt = {}) {
+		if (ScoreListController.__instance) {
+			return ScoreListController.__instance;
+		}
 
-        super(opt);
-        ScoreListController.__instance = this;
+		super(opt);
+		ScoreListController.__instance = this;
 		this.theme = new __WEBPACK_IMPORTED_MODULE_1__static_css_style__["a" /* default */]();
-        this.addListener();
-    }
+		this.addListener();
+	}
 
-    addListener() {
+	addListener() {
 		document.getElementsByClassName('theme')[0].addEventListener('click', event => {
 			event.preventDefault();
 			this.theme.changeTheme();
 		});
 
-        document.getElementById('score-button-back').addEventListener('click', event => {
-            event.preventDefault();
-            this._router.go('/');
-        });
+		document.getElementById('score-button-back').addEventListener('click', event => {
+			event.preventDefault();
+			this._router.go('/');
+		});
+	}
 
+	resume() {
+		this.show();
+	}
 
-    }
+	show() {
+		this.page_parts.get("Header").show();
+		this.userService
+			.getScorelist()
+			.then((resp) => {
+				console.log('good answer');
+				console.log(this.page_parts.get("Scoreboard").data);
+			})
+			.catch((err) => {
+				console.log('bad answer');
+			});
+		this.page_parts.get("Scoreboard").show();
+	}
 
-    resume() {
-        this.show();
-    }
-
-    show() {
-        this.page_parts.get("Header").show();
-        this.page_parts.get("Scoreboard").show();
-    }
-
-    hide() {
-        this.page_parts.get("Header").hide();
-        this.page_parts.get("Scoreboard").hide();
-    }
+	hide() {
+		this.page_parts.get("Header").hide();
+		this.page_parts.get("Scoreboard").hide();
+	}
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (ScoreListController);
