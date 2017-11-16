@@ -17,6 +17,7 @@ let page = new CreatePage();
 
 theme.changeTheme();
 
+
 (new Router())
     .addRoute('/', MenuStartController, {userService: userService, page: page})
     .addRoute('/play', PlayGameController, {userService: userService, page: page})
