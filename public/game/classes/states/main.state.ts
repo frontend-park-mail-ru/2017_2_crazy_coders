@@ -32,7 +32,7 @@ export default class MainState extends State {
   }
 
   startGame(): void {
-
+    debugger;
     this.game.state.start('world', true, false);
 
   }
