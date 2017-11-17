@@ -18,37 +18,39 @@ const box_tree    = require('../../../static/staticsGame/images/box_tree.png');
 
 // The state for loading core resources for the game
 export default class PreloaderState extends State {
-  // _background: Phaser.Sprite;
-  // _preloadBar: Phaser.Sprite;
+    _background: Phaser.Sprite;
+    _preloadBar: Phaser.Sprite;
 
-  preload(): void {
-    console.debug('Assets loading started');
+    preload(): void {
+        console.debug('Assets loading started');
 
-    this.game.load.image('titlepage', titlepage);
-    this.game.load.image('logo', logo);
-    // this.game.load.audio('startAudio', startAudio, true);
-    this.game.load.image('earth', earth);
-    this.game.load.image('pause', pause);
-    this.game.load.image('box_tree', box_tree);
-    this.game.load.atlas('tank', tanks, tanksJSON);
-    this.game.load.atlas('enemy', enemy, tanksJSON);
-    this.game.load.image('bullet', bullet);
-    this.game.load.spritesheet('kaboom', kaboom, 64, 64, 23);
-  }
+        debugger;
+        this.game.load.image('titlepage', titlepage);
+        this.game.load.image('logo', logo);
+        // this.game.load.audio('startAudio', startAudio, true);
+        this.game.load.image('earth', earth);
+        this.game.load.image('pause', pause);
+        this.game.load.image('box_tree', box_tree);
+        this.game.load.atlas('tank', tanks, tanksJSON);
+        this.game.load.atlas('enemy', enemy, tanksJSON);
+        this.game.load.image('bullet', bullet);
+        this.game.load.spritesheet('kaboom', kaboom, 64, 64, 23);
+        debugger;
+    }
 
-  create(): void {
-    console.debug('Assets loading completed');
+    create(): void {
+        console.debug('Assets loading completed');
+        debugger;
+        this._background = this.game.add.sprite(0, 0,'titlepage');
+        this._background.alpha = 0;
+        let tween = this.game.add.tween(this._background).to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None, true);
+        tween.onComplete.add(this.startMainMenu, this);
+    }
 
-    // this._background = this.game.add.sprite(0, 0,'titlepage');
-    // this._background.alpha = 0;
-    // let tween = this.game.add.tween(this._background).to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None, true);
-    // // let tween = this.game.add.tween(this._preloadBar).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
-    // tween.onComplete.add(this.startMainMenu, this);
-  }
+    startMainMenu(): void {
+        debugger;
+        this.game.add.tween(this._background).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
+        this.game.state.start('main', true, false);
 
-  startMainMenu(): void {
-    // this.game.add.tween(this._background).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
-    this.game.state.start('main', true, false);
-
-  }
+    }
 }

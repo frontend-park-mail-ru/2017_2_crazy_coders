@@ -67,6 +67,7 @@ bundle.js.map
 /public/components/template/Table.pug.js
 
 /public/game/phaser.min.js
+/public/game/phaser.js
 /public/components/Header/Header.'pug.js'
 /public/components/Header/Header.pug.js
 /public/components/Menu/Menu.'pug.js'

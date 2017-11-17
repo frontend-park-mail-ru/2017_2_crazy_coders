@@ -7,7 +7,7 @@ const cacheUrls = [
 	'/static/img/score.png',
 	'/static/img/sound.png',
 
-	'/game/phaser.min.js',
+	'/game/phaser.js',
 
 	'/static/staticsGame/images/bullet.png',
 	'/static/staticsGame/images/continue_button.png',
