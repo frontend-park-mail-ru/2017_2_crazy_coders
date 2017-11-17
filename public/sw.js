@@ -1,4 +1,4 @@
-const CACHE_NAME = 'app_serviceworker';
+const CACHE_NAME = 'app_serviceworker_v1';
 const cacheUrls = [
 	'/',
 
@@ -7,14 +7,15 @@ const cacheUrls = [
 	'/static/img/score.png',
 	'/static/img/sound.png',
 
-	'/static/game/phaser.min.js',
+	'/game/phaser.min.js',
+
 	'/static/staticsGame/images/bullet.png',
 	'/static/staticsGame/images/continue_button.png',
 	'/static/staticsGame/images/enemy-tanks.png',
 	'/static/staticsGame/images/exit_button.png',
 	'/static/staticsGame/images/explosion.png',
 	'/static/staticsGame/images/gameover_logo.png',
-	'/static/staticsGame/images/ground.png',
+	'/static/staticsGame/images/ground.jpg',
 	'/static/staticsGame/images/loader.png',
 	'/static/staticsGame/images/logo.png',
 	'/static/staticsGame/images/pause_button.png',
@@ -24,15 +25,15 @@ const cacheUrls = [
 	'/static/staticsGame/images/tank1.png',
 	'/static/staticsGame/images/tanks.json',
 	'/static/staticsGame/images/tanks.png',
-	'/static/staticsGame/images/titlepage.png',
+	'/static/staticsGame/images/titlepage.jpg',
 	'/static/staticsGame/images/try_again_button.png',
 	'/static/staticsGame/images/turret.png',
-	'/static/staticsGame/images/white_background.png',
+	'/static/staticsGame/images/white_background.jpg',
 
 	'/static/staticsGame/music/boom.mp3',
 
 	'/components/Footer/Footer.css',
-	'/components/From/Form/Form.css',
+	'/components/Form/Form/Form.css',
 	'/components/Footer/Footer.css',
 	'/components/Header/Header.css',
 	'/components/Menu/Menu.css',
@@ -65,4 +66,3 @@ this.addEventListener('fetch', event => {
 		})
 	);
 });
-
