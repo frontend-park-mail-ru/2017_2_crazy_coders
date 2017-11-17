@@ -18,8 +18,8 @@ const box_tree    = require('assets/images/box_tree.png');
 
 // The state for loading core resources for the game
 export default class PreloaderState extends State {
-  _background: Phaser.Sprite;
-  _preloadBar: Phaser.Sprite;
+  // _background: Phaser.Sprite;
+  // _preloadBar: Phaser.Sprite;
 
   preload(): void {
     console.debug('Assets loading started');
@@ -39,15 +39,15 @@ export default class PreloaderState extends State {
   create(): void {
     console.debug('Assets loading completed');
 
-    this._background = this.game.add.sprite(0, 0,'titlepage');
-    this._background.alpha = 0;
-    let tween = this.game.add.tween(this._background).to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None, true);
-    // let tween = this.game.add.tween(this._preloadBar).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
-    tween.onComplete.add(this.startMainMenu, this);
+    // this._background = this.game.add.sprite(0, 0,'titlepage');
+    // this._background.alpha = 0;
+    // let tween = this.game.add.tween(this._background).to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None, true);
+    // // let tween = this.game.add.tween(this._preloadBar).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
+    // tween.onComplete.add(this.startMainMenu, this);
   }
 
   startMainMenu(): void {
-    this.game.add.tween(this._background).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
+    // this.game.add.tween(this._background).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
     this.game.state.start('main', true, false);
 
   }

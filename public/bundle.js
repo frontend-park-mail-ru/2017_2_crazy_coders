@@ -1714,6 +1714,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__controllers_ScoreListController__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__controllers_AboutUsController__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__static_css_style__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_ServiceWorker__ = __webpack_require__(65);
 
 
 
@@ -1730,6 +1731,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 let theme = new __WEBPACK_IMPORTED_MODULE_9__static_css_style__["a" /* default */]();
 let userService = new __WEBPACK_IMPORTED_MODULE_0__services_UserService__["a" /* default */]();
 let page = new __WEBPACK_IMPORTED_MODULE_1__views_CreatePage_js__["a" /* default */]();
+
+
+Object(__WEBPACK_IMPORTED_MODULE_10__services_ServiceWorker__["a" /* default */])();
 
 theme.changeTheme();
 
@@ -2752,7 +2756,7 @@ exports = module.exports = __webpack_require__(5)(undefined);
 
 
 // module
-exports.push([module.i, ".table__title {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 2em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    margin: 1% 0 1% 1%;\n}\n\n.table__content {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n}\n\n.table__back {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n    flex-flow: column nowrap;\n\n}\n\n.table__button {\n    background-color: whitesmoke;\n    font-size: 1.5em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    padding: 7px 17px;\n    border: 3px solid #041712;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 15px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n}\n\n.table__button:hover {\n    background-color: rgba(4, 23, 18, 0.04);\n    border: 3px solid rgba(169, 169, 169, 0.19);\n}\n\n\n.table__tag {\n    border-collapse: collapse;\n    font-family: \"Verdana\", sans-serif;\n}\n\n.table__td, .table__th {\n    text-align: center;\n    padding: 10px;\n}\n\n.table__player {\n    align-items: center;\n}\n\n", ""]);
+exports.push([module.i, ".table__title {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 2em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    margin: 1% 0 1% 1%;\n}\n\n.table__content {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n}\n\n.table__back {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n    flex-flow: column nowrap;\n\n}\n\n.table__button {\n    background-color: whitesmoke;\n    font-size: 1.5em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    padding: 7px 17px;\n    border: 3px solid #041712;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 15px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n}\n\n.table__button:hover {\n    background-color: rgba(4, 23, 18, 0.04);\n    border: 3px solid rgba(169, 169, 169, 0.19);\n}\n\n\n.table__tag {\n    border-collapse: collapse;\n    font-family: \"Verdana\", sans-serif;\n}\n\n.table__td, .table__th {\n    text-align: center;\n    padding: 10px;\n}\n\n.table__player {\n    justify-content: center;\n    display: flex;\n    margin: 18px 0 15px;\n}\n", ""]);
 
 // exports
 
@@ -3553,7 +3557,7 @@ class World extends __WEBPACK_IMPORTED_MODULE_0__phaser_min___default.a.State {
 		this.tank = this.add.sprite(50, 400, 'tank', 'tank1');
 		this.tank.anchor.setTo(__WEBPACK_IMPORTED_MODULE_2__Constants_Constant__["a" /* default */].anchor, __WEBPACK_IMPORTED_MODULE_2__Constants_Constant__["a" /* default */].anchor);
 
-		this.physics.enable(this.tank, __WEBPACK_IMPORTED_MODULE_0__phaser_min___default.a.Physics.MATTER);
+		this.physics.enable(this.tank, __WEBPACK_IMPORTED_MODULE_0__phaser_min___default.a.Physics.Arcade);
 		this.tank.body.maxVelocity.setTo(__WEBPACK_IMPORTED_MODULE_2__Constants_Constant__["a" /* default */].max_velocity, __WEBPACK_IMPORTED_MODULE_2__Constants_Constant__["a" /* default */].max_velocity);
 		this.tank.body.collideWorldBounds = true;
 
@@ -3564,7 +3568,7 @@ class World extends __WEBPACK_IMPORTED_MODULE_0__phaser_min___default.a.State {
 		//  пули врагов
 		this.enemyBullets = this.add.group();
 		this.enemyBullets.enableBody = true;
-		this.enemyBullets.physicsBodyType = __WEBPACK_IMPORTED_MODULE_0__phaser_min___default.a.Physics.MATTER; //Phaser.Physics.ARCADE;
+		this.enemyBullets.physicsBodyType = __WEBPACK_IMPORTED_MODULE_0__phaser_min___default.a.Physics.Arcade; //Phaser.Physics.ARCADE;
 		this.enemyBullets.createMultiple(5, 'bullet'); // создадим пули
 
 		this.enemyBullets.setAll('anchor.x', 0.5);
@@ -4239,6 +4243,24 @@ class AboutUsController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /*
 
 /* harmony default export */ __webpack_exports__["a"] = (AboutUsController);
 
+
+/***/ }),
+/* 65 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = RegisterSW;
+function RegisterSW() {
+	if (navigator.serviceWorker !== undefined) {
+		navigator.serviceWorker.register('./sw.js', {scope: '/'})
+			.then(registration => {
+				console.log(`good registration worker: ${registration}`);
+			})
+			.catch(error => {
+				console.log(`bad registration worker: ${error}`);
+			});
+	}
+}
 
 /***/ })
 /******/ ]);

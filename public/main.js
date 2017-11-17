@@ -14,9 +14,11 @@ import Theme from './static/css/style';
 let theme = new Theme();
 let userService = new UserService();
 let page = new CreatePage();
+import RegisterSW from './services/ServiceWorker';
+
+RegisterSW();
 
 theme.changeTheme();
-
 
 (new Router())
     .addRoute('/', MenuStartController, {userService: userService, page: page})
