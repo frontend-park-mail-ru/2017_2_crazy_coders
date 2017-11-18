@@ -1,7 +1,7 @@
 'use strict';
 /** Imports */
 import State from './state';
-import Tank from './tank.state';
+import Tank from '../Tank/Tank';
 
 const earth       = require('../../../static/staticsGame/images/ground.jpg');
 const pause       = require('../../../static/staticsGame/images/pause_button.png');

@@ -6,10 +6,10 @@ import State from './state';
 const tanks       = require('../../../static/staticsGame/images/tanks.png');
 const tanksJSON   = require('../../../static/staticsGame/images/tanks.json');
 const enemy       = require('../../../static/staticsGame/images/enemy-tanks.png');
-const bullet       = require('../../../static/staticsGame/images/bullet.png');
-const kaboom       = require('../../../static/staticsGame/images/explosion.png');
-const titlepage       = require('../../../static/staticsGame/images/titlepage.jpg');
-const logo            = require('../../../static/staticsGame/images/logo.png');
+const bullet      = require('../../../static/staticsGame/images/bullet.png');
+const kaboom      = require('../../../static/staticsGame/images/explosion.png');
+const titlepage   = require('../../../static/staticsGame/images/titlepage.jpg');
+const logo        = require('../../../static/staticsGame/images/logo.png');
 // const startAudio      = require('../../../static/staticsGame/music/boom.mp3');
 const earth       = require('../../../static/staticsGame/images/ground.jpg');
 const pause       = require('../../../static/staticsGame/images/pause_button.png');
@@ -24,23 +24,20 @@ export default class PreloaderState extends State {
     preload(): void {
         console.debug('Assets loading started');
 
-        debugger;
         this.game.load.image('titlepage', titlepage);
         this.game.load.image('logo', logo);
         // this.game.load.audio('startAudio', startAudio, true);
         this.game.load.image('earth', earth);
         this.game.load.image('pause', pause);
         this.game.load.image('box_tree', box_tree);
-        this.game.load.atlas('tank', tanks, tanksJSON);
-        this.game.load.atlas('enemy', enemy, tanksJSON);
+        this.game.load.atlas('tank', 'static/staticsGame/images/tanks.png', 'static/staticsGame/images/tanks.json');
+        this.game.load.atlas('enemy', 'static/staticsGame/images/enemy-tanks.png', 'static/staticsGame/images/tanks.json');
         this.game.load.image('bullet', bullet);
         this.game.load.spritesheet('kaboom', kaboom, 64, 64, 23);
-        debugger;
     }
 
     create(): void {
         console.debug('Assets loading completed');
-        debugger;
         this._background = this.game.add.sprite(0, 0,'titlepage');
         this._background.alpha = 0;
         let tween = this.game.add.tween(this._background).to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None, true);
@@ -48,7 +45,6 @@ export default class PreloaderState extends State {
     }
 
     startMainMenu(): void {
-        debugger;
         this.game.add.tween(this._background).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
         this.game.state.start('main', true, false);
 

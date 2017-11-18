@@ -14,7 +14,6 @@ export default class BootState extends State {
   }
 
   create(): void {
-    debugger;
     this.game.state.start('preloader', true, false);
   }
 }

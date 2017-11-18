@@ -23,7 +23,6 @@ export default class App extends Phaser.Game {
     this.state.add('main', MainState);
     this.state.add('world', WorldState);
 
-    debugger;
     this.state.start('boot'); // Initialize and start `boot` state
   }
 }

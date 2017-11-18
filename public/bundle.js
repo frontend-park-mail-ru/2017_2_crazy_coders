@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 20);
+/******/ 	return __webpack_require__(__webpack_require__.s = 21);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -595,7 +595,7 @@ function pug_rethrow(err, filename, lineno, str){
     throw err;
   }
   try {
-    str = str || __webpack_require__(27).readFileSync(filename, 'utf8')
+    str = str || __webpack_require__(28).readFileSync(filename, 'utf8')
   } catch (ex) {
     pug_rethrow(err, null, lineno)
   }
@@ -750,7 +750,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(30);
+var	fixUrls = __webpack_require__(31);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -1068,11 +1068,11 @@ function updateLink (link, options, obj) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Form_pug__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Form_pug__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Form_pug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Form_pug__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ValidForm_ValidSignInForm__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidSignUpForm__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Form_css__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Form_css__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Form_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__Form_css__);
 
 
@@ -1220,8 +1220,8 @@ exports.default = State;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_Http__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_User__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_Http__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_User__ = __webpack_require__(23);
 
 
 
@@ -1519,9 +1519,9 @@ class ValidSignUpForm {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Menu_pug__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Menu_pug__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Menu_pug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Menu_pug__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Menu_css__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Menu_css__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Menu_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Menu_css__);
 
 
@@ -1562,9 +1562,9 @@ class Menu extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Table_pug__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Table_pug__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Table_pug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Table_pug__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Table_css__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Table_css__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Table_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Table_css__);
 
 
@@ -1604,55 +1604,99 @@ class Table extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* 
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "4119334de3c71843520250c6c9f0594d.jpg";
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+/** Imports */
+// require('pixi');
+// require('p2');
+// require('phaser');
+// import 'styles/style.styl'; // Registering styles for the page; They will automatically inject.
+var boot_state_1 = __webpack_require__(58);
+var preloader_state_1 = __webpack_require__(60);
+var main_state_1 = __webpack_require__(65);
+var world_state_1 = __webpack_require__(66);
+// The main class of our application
+var App = /** @class */ (function (_super) {
+    __extends(App, _super);
+    function App() {
+        var _this = _super.call(this, document.documentElement.clientWidth, document.documentElement.clientHeight, Phaser.AUTO, 'content', null) || this;
+        _this.state.add('boot', boot_state_1.default);
+        _this.state.add('preloader', preloader_state_1.default);
+        _this.state.add('main', main_state_1.default);
+        _this.state.add('world', world_state_1.default);
+        _this.state.start('boot'); // Initialize and start `boot` state
+        return _this;
+    }
+    return App;
+}(Phaser.Game));
+exports.default = App;
+
 
 /***/ }),
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "5733b613e5ea55c939a6276c4b4b7aa0.png";
+module.exports = __webpack_require__.p + "4119334de3c71843520250c6c9f0594d.jpg";
 
 /***/ }),
 /* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "5733b613e5ea55c939a6276c4b4b7aa0.png";
+
+/***/ }),
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = {"frames":[{"filename":"shadow","frame":{"x":0,"y":0,"w":80,"h":80},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":80,"h":80},"sourceSize":{"w":80,"h":80}},{"filename":"tank1","frame":{"x":190,"y":52,"w":54,"h":52},"rotated":false,"trimmed":true,"spriteSourceSize":{"x":3,"y":5,"w":54,"h":52},"sourceSize":{"w":64,"h":64}},{"filename":"turret","frame":{"x":0,"y":80,"w":48,"h":28},"rotated":false,"trimmed":true,"spriteSourceSize":{"x":1,"y":2,"w":48,"h":28},"sourceSize":{"w":50,"h":32}}]}
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "4119334de3c71843520250c6c9f0594d.jpg";
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "b17c373a3f0117f56d7b0af1a9839bb7.png";
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "e11ba3abfe7c0f81b6f63cca050ba20a.png";
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_UserService__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_CreatePage_js__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_Router__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__controllers_MenuStartController__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__controllers_PlayGameController__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_CreatePage_js__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_Router__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__controllers_MenuStartController__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__controllers_PlayGameController__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_SignInController__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__controllers_SignUpController__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__controllers_ScoreListController__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__controllers_AboutUsController__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__static_css_style__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_ServiceWorker__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__game_classes_index__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__game_classes_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__game_classes_index__);
 
 
 
@@ -1665,28 +1709,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
+
+// import Game from './game/classes/Game/Game';
 
 let theme = new __WEBPACK_IMPORTED_MODULE_9__static_css_style__["a" /* default */]();
 let userService = new __WEBPACK_IMPORTED_MODULE_0__services_UserService__["a" /* default */]();
 let page = new __WEBPACK_IMPORTED_MODULE_1__views_CreatePage_js__["a" /* default */]();
-
-
-Object(__WEBPACK_IMPORTED_MODULE_10__services_ServiceWorker__["a" /* default */])();
+// import RegisterSW from './services/ServiceWorker';
+//
+// RegisterSW();
 
 theme.changeTheme();
+let game = new __WEBPACK_IMPORTED_MODULE_10__game_classes_index___default.a();
 
-(new __WEBPACK_IMPORTED_MODULE_2__modules_Router__["a" /* default */]())
-    .addRoute('/', __WEBPACK_IMPORTED_MODULE_3__controllers_MenuStartController__["a" /* default */], {userService: userService, page: page})
-    .addRoute('/play', __WEBPACK_IMPORTED_MODULE_4__controllers_PlayGameController__["a" /* default */], {userService: userService, page: page})
-    .addRoute('/signin', __WEBPACK_IMPORTED_MODULE_5__controllers_SignInController__["a" /* default */], {userService: userService, page: page})
-    .addRoute('/signup', __WEBPACK_IMPORTED_MODULE_6__controllers_SignUpController__["a" /* default */], {userService: userService, page: page})
-    .addRoute('/score', __WEBPACK_IMPORTED_MODULE_7__controllers_ScoreListController__["a" /* default */], {userService: userService, page: page})
-    .addRoute('/about', __WEBPACK_IMPORTED_MODULE_8__controllers_AboutUsController__["a" /* default */], {userService: userService, page: page})
-    .startRoute();
+// (new Router())
+//     .addRoute('/', MenuStartController, {userService: userService, page: page})
+//     .addRoute('/play', PlayGameController, {userService: userService, page: page})
+//     .addRoute('/signin', SignInController, {userService: userService, page: page})
+//     .addRoute('/signup', SignUpController, {userService: userService, page: page})
+//     .addRoute('/score', ScoreListController, {userService: userService, page: page})
+//     .addRoute('/about', AboutUsController, {userService: userService, page: page})
+//     .startRoute();
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1766,7 +1814,7 @@ class Http {
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1844,19 +1892,19 @@ class User {
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Block_BlockComponents__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SignIn_SignIn__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SignUp_SignUp__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Header_Header__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__UnRegMenu_UnRegMenu__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__RegMenu_RegMenu__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__AboutUs_AboutUs__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Scoreboard_Scoreboard__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Footer_Footer__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SignIn_SignIn__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SignUp_SignUp__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Header_Header__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__UnRegMenu_UnRegMenu__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__RegMenu_RegMenu__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__AboutUs_AboutUs__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Scoreboard_Scoreboard__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Footer_Footer__ = __webpack_require__(49);
 
 
 
@@ -1898,12 +1946,12 @@ class CreatePage {
 /* harmony default export */ __webpack_exports__["a"] = (CreatePage);
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = SignIn;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_SignInForm__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_SignInForm__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Form_ValidForm_ValidSignInForm__ = __webpack_require__(10);
 
 
@@ -1957,7 +2005,7 @@ function SignIn() {
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2008,7 +2056,7 @@ class SignInForm extends __WEBPACK_IMPORTED_MODULE_0__Form__["a" /* default */] 
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(3);
@@ -2037,19 +2085,19 @@ pug_html = pug_html + "\n    \u003Cinput" + (pug.attr("class", pug.classes(["for
 module.exports = template;
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(29);
+var content = __webpack_require__(30);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2074,7 +2122,7 @@ if(false) {
 }
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(undefined);
@@ -2088,7 +2136,7 @@ exports.push([module.i, ".form {\n    display: flex;\n    align-items: center;\n
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports) {
 
 
@@ -2183,12 +2231,12 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = SignUp;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_SignUpForm__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_SignUpForm__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Form_ValidForm_ValidSignUpForm__ = __webpack_require__(11);
 
 
@@ -2256,7 +2304,7 @@ function SignUp() {
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2307,12 +2355,12 @@ class SignUpForm extends __WEBPACK_IMPORTED_MODULE_0__Form__["a" /* default */] 
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = createHeader;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Header_Header__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Header_Header__ = __webpack_require__(35);
 
 
 let data = {
@@ -2328,14 +2376,14 @@ function createHeader() {
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Header_pug__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Header_pug__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Header_pug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Header_pug__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Header_css__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Header_css__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Header_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Header_css__);
 
 
@@ -2373,7 +2421,7 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /*
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(3);
@@ -2383,13 +2431,13 @@ pug_html = pug_html + "\n\u003Cdiv class=\"theme\"\u003Echange theme\u003C\u002F
 module.exports = template;
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(37);
+var content = __webpack_require__(38);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2414,7 +2462,7 @@ if(false) {
 }
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(undefined);
@@ -2422,13 +2470,13 @@ exports = module.exports = __webpack_require__(4)(undefined);
 
 
 // module
-exports.push([module.i, ".header {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    margin-bottom: 15px;\r\n}\r\n\r\n.header__logo {\r\n    width: 230px;\r\n    height: auto;\r\n    margin-left: -60px;\r\n}\r\n\r\n.header__text {\r\n    font-size: 2.7em;\r\n    font-family: \"Arial Black\", Gadget, sans-serif;\r\n    transform: rotate(-90deg);\r\n}\r\n\r\n.theme {\r\n    background-color: whitesmoke;\r\n    font-weight: 700;\r\n    font-family: \"Verdana\", sans-serif;\r\n    color: black;\r\n    border-radius: 10%;\r\n    text-align: center;\r\n    text-decoration: none;\r\n    display: inline-block;\r\n    width: 7em;\r\n    margin: 15px 0 5px 15px;\r\n    cursor: pointer;\r\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\r\n    padding: 1px 7px;\r\n    border: none;\r\n    font-size: 1.1em;\r\n}\r\n\r\n.theme:hover {\r\n    background-color: #e9ecf0;\r\n}", ""]);
+exports.push([module.i, ".header {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n}\n\n.header__logo {\n    width: 230px;\n    height: auto;\n    margin-left: -60px;\n}\n\n.header__text {\n    font-size: 2.7em;\n    font-family: \"Arial Black\", Gadget, sans-serif;\n    transform: rotate(-90deg);\n}\n\n.theme {\n    background-color: whitesmoke;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 15px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n    padding: 1px 7px;\n    border: none;\n    font-size: 1.1em;\n}\n\n.theme:hover {\n    background-color: #e9ecf0;\n}", ""]);
 
 // exports
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2461,7 +2509,7 @@ function createUnRegMenu() {
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(3);
@@ -2493,13 +2541,13 @@ pug_html = pug_html + "\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for
 module.exports = template;
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(41);
+var content = __webpack_require__(42);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2524,7 +2572,7 @@ if(false) {
 }
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(undefined);
@@ -2532,13 +2580,13 @@ exports = module.exports = __webpack_require__(4)(undefined);
 
 
 // module
-exports.push([module.i, ".menu {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    margin-bottom: 15px;\r\n    flex-flow: column nowrap;\r\n}\r\n\r\n.menu__button {\r\n    background-color: whitesmoke;\r\n    font-size: 1.5em;\r\n    font-weight: 700;\r\n    font-family: \"Verdana\", sans-serif;\r\n    color: black;\r\n    padding: 7px 17px;\r\n    border: 3px solid #041712;\r\n    border-radius: 10%;\r\n    text-align: center;\r\n    text-decoration: none;\r\n    display: inline-block;\r\n    width: 7em;\r\n    margin: 15px 0 5px 15px;\r\n    cursor: pointer;\r\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\r\n}\r\n\r\n.menu__button:hover {\r\n    background-color: rgba(4, 23, 18, 0.04);\r\n    border: 3px solid rgba(169, 169, 169, 0.19);\r\n}\r\n\r\n.menu__player {\r\n    text-transform: uppercase;\r\n}", ""]);
+exports.push([module.i, ".menu {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n    flex-flow: column nowrap;\n}\n\n.menu__button {\n    background-color: whitesmoke;\n    font-size: 1.5em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    padding: 7px 17px;\n    border: 3px solid #041712;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 15px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n}\n\n.menu__button:hover {\n    background-color: rgba(4, 23, 18, 0.04);\n    border: 3px solid rgba(169, 169, 169, 0.19);\n}\n\n.menu__player {\n    text-transform: uppercase;\n}", ""]);
 
 // exports
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2573,7 +2621,7 @@ function createRegMenu() {
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2622,7 +2670,7 @@ function createAboutUs() {
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(3);
@@ -2655,13 +2703,13 @@ pug_html = pug_html + "\n    \u003C\u002Ftable\u003E\n  \u003C\u002Fdiv\u003E\n 
 module.exports = template;
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(46);
+var content = __webpack_require__(47);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2686,7 +2734,7 @@ if(false) {
 }
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(undefined);
@@ -2700,7 +2748,7 @@ exports.push([module.i, ".table__title {\n    display: flex;\n    align-items: c
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2749,12 +2797,12 @@ function Scoreboard() {
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = CreateFooter;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Footer_Footer__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Footer_Footer__ = __webpack_require__(50);
 
 
 let data = {
@@ -2786,14 +2834,14 @@ function CreateFooter() {
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Footer_pug__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Footer_pug__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Footer_pug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Footer_pug__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Footer_css__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Footer_css__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Footer_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Footer_css__);
 
 
@@ -2829,7 +2877,7 @@ class Footer extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /*
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(3);
@@ -2858,13 +2906,13 @@ pug_html = pug_html + "\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for
 module.exports = template;
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(52);
+var content = __webpack_require__(53);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2889,7 +2937,7 @@ if(false) {
 }
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(undefined);
@@ -2897,17 +2945,17 @@ exports = module.exports = __webpack_require__(4)(undefined);
 
 
 // module
-exports.push([module.i, ".footer {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    margin-bottom: 15px;\r\n}\r\n\r\n.footer__logo {\r\n    width: 230px;\r\n    height: auto;\r\n    margin-left: -60px;\r\n}\r\n\r\n.footer__sound {\r\n    width: 100px;\r\n    margin: 0 160px;\r\n}\r\n\r\n.footer__score {\r\n    width: 50px;\r\n    margin: 0 125px;\r\n}\r\n\r\n.footer__info {\r\n    width: 50px;\r\n    margin: 0 55px;\r\n}", ""]);
+exports.push([module.i, ".footer {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n}\n\n.footer__logo {\n    width: 230px;\n    height: auto;\n    margin-left: -60px;\n}\n\n.footer__sound {\n    width: 100px;\n    margin: 0 160px;\n}\n\n.footer__score {\n    width: 50px;\n    margin: 0 125px;\n}\n\n.footer__info {\n    width: 50px;\n    margin: 0 55px;\n}", ""]);
 
 // exports
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Route__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Route__ = __webpack_require__(55);
 
 
 
@@ -2977,11 +3025,11 @@ class Router {
     }
 
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = Router;
+/* unused harmony export default */
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3020,7 +3068,7 @@ class Route {
 /* harmony default export */ __webpack_exports__["a"] = (Route);
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3140,16 +3188,16 @@ class MenuStartController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" 
 	}
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (MenuStartController);
+/* unused harmony default export */ var _unused_webpack_default_export = (MenuStartController);
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Controller__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__game_classes_index__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__game_classes_index__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__game_classes_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__game_classes_index__);
 
 
@@ -3189,51 +3237,7 @@ class PlayGameController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /
 
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (PlayGameController);
-
-/***/ }),
-/* 57 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-/** Imports */
-// require('pixi');
-// require('p2');
-// require('phaser');
-// import 'styles/style.styl'; // Registering styles for the page; They will automatically inject.
-var boot_state_1 = __webpack_require__(58);
-var preloader_state_1 = __webpack_require__(60);
-var main_state_1 = __webpack_require__(65);
-var world_state_1 = __webpack_require__(66);
-// The main class of our application
-var App = /** @class */ (function (_super) {
-    __extends(App, _super);
-    function App() {
-        var _this = _super.call(this, document.documentElement.clientWidth, document.documentElement.clientHeight, Phaser.AUTO, 'content', null) || this;
-        _this.state.add('boot', boot_state_1.default);
-        _this.state.add('preloader', preloader_state_1.default);
-        _this.state.add('main', main_state_1.default);
-        _this.state.add('world', world_state_1.default);
-        debugger;
-        _this.state.start('boot'); // Initialize and start `boot` state
-        return _this;
-    }
-    return App;
-}(Phaser.Game));
-exports.default = App;
-
+/* unused harmony default export */ var _unused_webpack_default_export = (PlayGameController);
 
 /***/ }),
 /* 58 */
@@ -3254,7 +3258,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
 var state_1 = __webpack_require__(8);
-var titlepage = __webpack_require__(14);
+var titlepage = __webpack_require__(15);
 var loaderImage = __webpack_require__(59);
 var BootState = /** @class */ (function (_super) {
     __extends(BootState, _super);
@@ -3266,7 +3270,6 @@ var BootState = /** @class */ (function (_super) {
         this.game.load.image('preloadBar', loaderImage);
     };
     BootState.prototype.create = function () {
-        debugger;
         this.game.state.start('preloader', true, false);
     };
     return BootState;
@@ -3300,17 +3303,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
 var state_1 = __webpack_require__(8);
 // Webpack will replace these imports with a URLs to images
-var tanks = __webpack_require__(15);
-var tanksJSON = __webpack_require__(16);
+var tanks = __webpack_require__(16);
+var tanksJSON = __webpack_require__(17);
 var enemy = __webpack_require__(61);
 var bullet = __webpack_require__(62);
 var kaboom = __webpack_require__(63);
-var titlepage = __webpack_require__(14);
+var titlepage = __webpack_require__(15);
 var logo = __webpack_require__(64);
 // const startAudio      = require('../../../static/staticsGame/music/boom.mp3');
-var earth = __webpack_require__(17);
-var pause = __webpack_require__(18);
-var box_tree = __webpack_require__(19);
+var earth = __webpack_require__(18);
+var pause = __webpack_require__(19);
+var box_tree = __webpack_require__(20);
 // The state for loading core resources for the game
 var PreloaderState = /** @class */ (function (_super) {
     __extends(PreloaderState, _super);
@@ -3319,29 +3322,25 @@ var PreloaderState = /** @class */ (function (_super) {
     }
     PreloaderState.prototype.preload = function () {
         console.debug('Assets loading started');
-        debugger;
         this.game.load.image('titlepage', titlepage);
         this.game.load.image('logo', logo);
         // this.game.load.audio('startAudio', startAudio, true);
         this.game.load.image('earth', earth);
         this.game.load.image('pause', pause);
         this.game.load.image('box_tree', box_tree);
-        this.game.load.atlas('tank', tanks, tanksJSON);
-        this.game.load.atlas('enemy', enemy, tanksJSON);
+        this.game.load.atlas('tank', 'static/staticsGame/images/tanks.png', 'static/staticsGame/images/tanks.json');
+        this.game.load.atlas('enemy', 'static/staticsGame/images/enemy-tanks.png', 'static/staticsGame/images/tanks.json');
         this.game.load.image('bullet', bullet);
         this.game.load.spritesheet('kaboom', kaboom, 64, 64, 23);
-        debugger;
     };
     PreloaderState.prototype.create = function () {
         console.debug('Assets loading completed');
-        debugger;
         this._background = this.game.add.sprite(0, 0, 'titlepage');
         this._background.alpha = 0;
         var tween = this.game.add.tween(this._background).to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None, true);
         tween.onComplete.add(this.startMainMenu, this);
     };
     PreloaderState.prototype.startMainMenu = function () {
-        debugger;
         this.game.add.tween(this._background).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
         this.game.state.start('main', true, false);
     };
@@ -3441,12 +3440,13 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
 var state_1 = __webpack_require__(8);
-var tank_state_1 = __webpack_require__(67);
-var earth = __webpack_require__(17);
-var pause = __webpack_require__(18);
-var box_tree = __webpack_require__(19);
-var tanks = __webpack_require__(15);
-var tanksJSON = __webpack_require__(16);
+// import Tank from './tank.state';
+var Tank_1 = __webpack_require__(67);
+var earth = __webpack_require__(18);
+var pause = __webpack_require__(19);
+var box_tree = __webpack_require__(20);
+var tanks = __webpack_require__(16);
+var tanksJSON = __webpack_require__(17);
 var WorldState = /** @class */ (function (_super) {
     __extends(WorldState, _super);
     function WorldState() {
@@ -3457,7 +3457,7 @@ var WorldState = /** @class */ (function (_super) {
         this._music.play();
         this._land = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'earth');
         this._land.fixedToCamera = true;
-        this._tank = new tank_state_1.default(this.game, "hello");
+        this._tank = new Tank_1.default(this.game, "hello");
         this._pause = this.game.add.button(10, 10, "pause", this.startPause, this);
         this._pause.scale.setTo(0.2, 0.2);
         this._pause.frame = 1;
@@ -3619,7 +3619,7 @@ class SignInController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /* 
 	}
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (SignInController);
+/* unused harmony default export */ var _unused_webpack_default_export = (SignInController);
 
 /***/ }),
 /* 69 */
@@ -3690,7 +3690,7 @@ class SignUpController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /* 
     }
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (SignUpController);
+/* unused harmony default export */ var _unused_webpack_default_export = (SignUpController);
 
 /***/ }),
 /* 70 */
@@ -3759,7 +3759,7 @@ class ScoreListController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" 
 	}
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (ScoreListController);
+/* unused harmony default export */ var _unused_webpack_default_export = (ScoreListController);
 
 
 /***/ }),
@@ -3814,26 +3814,8 @@ class AboutUsController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /*
     }
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (AboutUsController);
+/* unused harmony default export */ var _unused_webpack_default_export = (AboutUsController);
 
-
-/***/ }),
-/* 72 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = RegisterSW;
-function RegisterSW() {
-	if (navigator.serviceWorker !== undefined) {
-		navigator.serviceWorker.register('./sw.js', {scope: '/'})
-			.then(registration => {
-				console.log(`good registration worker: ${registration}`);
-			})
-			.catch(error => {
-				console.log(`bad registration worker: ${error}`);
-			});
-	}
-}
 
 /***/ })
 /******/ ]);

@@ -76354,6 +76354,7 @@ Phaser.Loader.prototype = {
         //  A URL to a json/xml file has been given
         if (atlasURL)
         {
+            console.log(`[atlas : function] atlasURL = ${atlasURL}`);
             this.addToFileList('textureatlas', key, textureURL, { atlasURL: atlasURL, format: format });
         }
         else
@@ -76824,8 +76825,8 @@ Phaser.Loader.prototype = {
         {
             return false;
         }
-        console.log(`url = ${url}`);
-        url += '';
+        console.log(`url = ${url} + object name = ${url.constructor.name}`);
+        //url += '';
         if (url.match(/^(?:blob:|data:|http:\/\/|https:\/\/|\/\/)/))
         {
             return url;
@@ -77460,6 +77461,11 @@ Phaser.Loader.prototype = {
 
                     if (file.format === Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY || file.format === Phaser.Loader.TEXTURE_ATLAS_JSON_HASH || file.format === Phaser.Loader.TEXTURE_ATLAS_JSON_PYXEL)
                     {
+                        debugger;
+                        for (prop in file) {
+                            console.log(`[fileComplete] prop = ${prop} file[prop] = ${file[prop]}`)
+                        }
+                        debugger;
                         this.xhrLoad(file, this.transformUrl(file.atlasURL, file), 'text', this.jsonLoadComplete);
                     }
                     else if (file.format === Phaser.Loader.TEXTURE_ATLAS_XML_STARLING)
