@@ -1,6 +1,6 @@
 import TankBody from './TankBody/TankBody';
 import Turret from './TankTurret/TankTurret';
-import Ex from './Ex';
+
 
 export default class TankState extends Phaser.Sprite {
     _game: Phaser.Game;

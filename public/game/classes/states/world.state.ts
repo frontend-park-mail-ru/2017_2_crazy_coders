@@ -2,6 +2,7 @@
 /** Imports */
 import State from './state';
 import Tank from '../Tank/Tank';
+import TreeBox from '../Box/TreeBox/TreeBox';
 
 const earth       = require('../../../static/staticsGame/images/ground.jpg');
 const pause       = require('../../../static/staticsGame/images/pause_button.png');
@@ -13,7 +14,8 @@ const tanksJSON   = require('../../../static/staticsGame/images/tanks.json');
 export default class WorldState extends State {
     _music: Phaser.Sound;
     _land: any;
-    _tank: Phaser.Sprite;
+    _tank: Tank;
+    _box: TreeBox;
     _pause: Phaser.Button;
 
     create(): void {
@@ -25,6 +27,9 @@ export default class WorldState extends State {
         this._land.fixedToCamera = true;
 
         this._tank = new Tank(this.game, "hello");
+        this._box = new TreeBox(this.game, 100, 100);
+
+        let hitBoxes = this.game.physics.arcade.collide(this._tank._tank._body.body, this._box._box.body);
 
         this._pause = this.game.add.button(10, 10, "pause", this.startPause, this);
         this._pause.scale.setTo(0.2, 0.2);
