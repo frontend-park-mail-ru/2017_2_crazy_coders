@@ -1,4 +1,3 @@
-
 export default class TankState extends Phaser.Sprite {
     _game: Phaser.Game;
     _tank: Phaser.Sprite;
