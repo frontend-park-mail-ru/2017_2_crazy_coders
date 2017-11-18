@@ -32,13 +32,8 @@ const cacheUrls = [
 
 	'/static/staticsGame/music/boom.mp3',
 
-	'/components/Footer/Footer.css',
-	'/components/Form/Form/Form.css',
-	'/components/Footer/Footer.css',
-	'/components/Header/Header.css',
-	'/components/Menu/Menu.css',
-	'/components/Table/Table.css',
 
+	'/styles.css',
 	'/bundle.js',
 ];
 

@@ -60,12 +60,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 20);
+/******/ 	return __webpack_require__(__webpack_require__.s = 18);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -74,7 +74,16 @@
  * Базовый класс блока
  * @module Block
  */
-class Block {
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Block = function () {
     /**
      * @param {string} [tagName='div'] - tagName блока
      * @param {*} [attrs={}] - объект с атрибутами блока
@@ -82,14 +91,21 @@ class Block {
      * @param {*} [data={}] - объект с данными блока
      * @constructor
      */
-    constructor(tagName = 'div', attrs = {}, classes = [], data = {}) {
+    function Block() {
+        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+        var data = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+
+        _classCallCheck(this, Block);
+
         this.el = document.createElement(tagName);
 
         classes.forEach(function (className) {
             this.el.classList.add(className);
         });
 
-        for (let name in attrs) {
+        for (var name in attrs) {
             this.el.setAttribute(name, attrs[name]);
         }
 
@@ -100,105 +116,146 @@ class Block {
      * Установить новые данные блока
      * @param {string} data
      */
-    setData(data) {
-
-        console.log("setting data: "+ data);
-
-        this.data = data;
-    }
-
-    /**
-     * Получить данные блока
-     */
-    getData() {
-        return this.data;
-    }
-
-    /**
-     * Установить HTML содержимое блока
-     * @param {HTMLElement} html
-     */
-    setHTML(html) {
-        this.el.innerHTML = html;
-    }
-
-    /**
-     * Устанавливает новый текст для элемента
-     * @param {string} text - устанавливаем текст
-     */
-    setText(text) {
-        this.el.textContent = text;
-    }
-
-    /**
-     * Очищаем содержимое элемента
-     */
-    clear() {
-        this.el.innerHTML = '';
-    }
-
-    /**
-     * Скрывает элемент
-     */
-    hide() {
-        this.el.setAttribute('hidden', 'hidden');
-    }
-
-    /**
-     * Отображает элемент
-     */
-    show() {
-        this.el.removeAttribute('hidden');
-    }
-
-    /**
-     * Возвращает элемент
-     * @returns {HTMLElement}
-     */
-    getElement() {
-        return this.el;
-    }
-
-    /**
-     * Вставляет в себя элемент
-     * @param {HTMLElement} block
-     */
-    append(block) {
-        this.getElement().appendChild(block);
-        return this;
-    }
-
-    /**
-     * Позволяет подписаться на событие
-     * @param {string} event
-     * @param {EventListener} callback
-     * @return {function(this:Block)} - функция отписки от события
-     */
-    on(event, callback) {
-        this.el.addEventListener(event, callback);
-        return function () {
-            this.el.removeEventListener(event, callback);
-        }.bind(this);
-    }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Block;
 
 
+    _createClass(Block, [{
+        key: 'setData',
+        value: function setData(data) {
 
+            console.log("setting data: " + data);
+
+            this.data = data;
+        }
+
+        /**
+         * Получить данные блока
+         */
+
+    }, {
+        key: 'getData',
+        value: function getData() {
+            return this.data;
+        }
+
+        /**
+         * Установить HTML содержимое блока
+         * @param {HTMLElement} html
+         */
+
+    }, {
+        key: 'setHTML',
+        value: function setHTML(html) {
+            this.el.innerHTML = html;
+        }
+
+        /**
+         * Устанавливает новый текст для элемента
+         * @param {string} text - устанавливаем текст
+         */
+
+    }, {
+        key: 'setText',
+        value: function setText(text) {
+            this.el.textContent = text;
+        }
+
+        /**
+         * Очищаем содержимое элемента
+         */
+
+    }, {
+        key: 'clear',
+        value: function clear() {
+            this.el.innerHTML = '';
+        }
+
+        /**
+         * Скрывает элемент
+         */
+
+    }, {
+        key: 'hide',
+        value: function hide() {
+            this.el.setAttribute('hidden', 'hidden');
+        }
+
+        /**
+         * Отображает элемент
+         */
+
+    }, {
+        key: 'show',
+        value: function show() {
+            this.el.removeAttribute('hidden');
+        }
+
+        /**
+         * Возвращает элемент
+         * @returns {HTMLElement}
+         */
+
+    }, {
+        key: 'getElement',
+        value: function getElement() {
+            return this.el;
+        }
+
+        /**
+         * Вставляет в себя элемент
+         * @param {HTMLElement} block
+         */
+
+    }, {
+        key: 'append',
+        value: function append(block) {
+            this.getElement().appendChild(block);
+            return this;
+        }
+
+        /**
+         * Позволяет подписаться на событие
+         * @param {string} event
+         * @param {EventListener} callback
+         * @return {function(this:Block)} - функция отписки от события
+         */
+
+    }, {
+        key: 'on',
+        value: function on(event, callback) {
+            this.el.addEventListener(event, callback);
+            return function () {
+                this.el.removeEventListener(event, callback);
+            }.bind(this);
+        }
+    }]);
+
+    return Block;
+}();
+
+exports.default = Block;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-class Controller {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
-    constructor(opt) {
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Controller = function () {
+    function Controller(opt) {
+        _classCallCheck(this, Controller);
+
         this.userService = opt.userService;
-        this.page = opt.page;                   // объект CreatePage
-        this.page_parts = opt.page.getParts();  // map() вьюх
+        this.page = opt.page; // объект CreatePage
+        this.page_parts = opt.page.getParts(); // map() вьюх
     }
 
     /**
@@ -206,157 +263,212 @@ class Controller {
      * Необходимо перепределять
      * @param {Object} [options={}] - Объект с параметрами
      */
-    init(options = {}) {
-        this.setAttrs(options.attrs);
-    }
-
-    /**
-     * Вызывается при начале или продолжении работы view (после того, как view была скрыта)
-     * Необходимо переопределять своей логикой
-     * @param {Object} [options={}] - Объект с параметрами
-     */
-    resume() {
-        this.show();
-    }
-
-    /**
-     * Показывает view
-     * @param {Object} [options={}] - Объект с параметрами
-     */
-    show() {
-        this._el.style.display = 'block';
-    }
-
-    /**
-     * Скрывает view
-     * @param {Object} [options={}] - Объект с параметрами
-     */
-    hide() {
-        this._el.style.display = 'none';
-    }
 
 
+    _createClass(Controller, [{
+        key: 'init',
+        value: function init() {
+            var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-    /**
-     * Вставляет текущую view в переданный элемент
-     * @param {HTMLElement} el - HTML-элемент, к которому добавляется элемент текущей view
-     */
-    appendTo(el) {
-        el.appendChild(this._el);
-    }
+            this.setAttrs(options.attrs);
+        }
 
-    /**
-     * Удаляет элемент текущей view
-     */
-    remove() {
-        this._el && this._el.remove();
-    }
+        /**
+         * Вызывается при начале или продолжении работы view (после того, как view была скрыта)
+         * Необходимо переопределять своей логикой
+         * @param {Object} [options={}] - Объект с параметрами
+         */
 
-    /**
-     * Заменяет элемент текущей view
-     * @param {HTMLElement} el - HTML-элемент, который становится элементом текущей view
-     */
-    setElement(el) {
-        this._el && this._el.remove();
-        this._el = el;
-    }
+    }, {
+        key: 'resume',
+        value: function resume() {
+            this.show();
+        }
 
-    /**
-     * Устанавливает текущей view набор атрибутов
-     * @param {Object} [attrs={}] - Объект с атрибутами, которые будут установлены у текущего элемента view
-     */
-    setAttrs(attrs = {}) {
-        Object.keys(attrs).forEach((name) => {
-            this._el.setAttribute(name, attrs[name]);
-        });
-    }
+        /**
+         * Показывает view
+         * @param {Object} [options={}] - Объект с параметрами
+         */
 
-    /**
-     * Возвращает строку, содержашую текстовое представление текущей view
-     * @returns {string}
-     */
-    toString() {
-        return this._el.outerHTML;
-    }
+    }, {
+        key: 'show',
+        value: function show() {
+            this._el.style.display = 'block';
+        }
 
-    /**
-     * Устанавливает текущей view роутер
-     * @param {Router} router - инстанс роутера
-     */
-    setRouterController(router) {
-        this._router = router;
-    }
-}
+        /**
+         * Скрывает view
+         * @param {Object} [options={}] - Объект с параметрами
+         */
 
-/* harmony default export */ __webpack_exports__["a"] = (Controller);
+    }, {
+        key: 'hide',
+        value: function hide() {
+            this._el.style.display = 'none';
+        }
 
+        /**
+         * Вставляет текущую view в переданный элемент
+         * @param {HTMLElement} el - HTML-элемент, к которому добавляется элемент текущей view
+         */
 
+    }, {
+        key: 'appendTo',
+        value: function appendTo(el) {
+            el.appendChild(this._el);
+        }
+
+        /**
+         * Удаляет элемент текущей view
+         */
+
+    }, {
+        key: 'remove',
+        value: function remove() {
+            this._el && this._el.remove();
+        }
+
+        /**
+         * Заменяет элемент текущей view
+         * @param {HTMLElement} el - HTML-элемент, который становится элементом текущей view
+         */
+
+    }, {
+        key: 'setElement',
+        value: function setElement(el) {
+            this._el && this._el.remove();
+            this._el = el;
+        }
+
+        /**
+         * Устанавливает текущей view набор атрибутов
+         * @param {Object} [attrs={}] - Объект с атрибутами, которые будут установлены у текущего элемента view
+         */
+
+    }, {
+        key: 'setAttrs',
+        value: function setAttrs() {
+            var _this = this;
+
+            var attrs = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+            Object.keys(attrs).forEach(function (name) {
+                _this._el.setAttribute(name, attrs[name]);
+            });
+        }
+
+        /**
+         * Возвращает строку, содержашую текстовое представление текущей view
+         * @returns {string}
+         */
+
+    }, {
+        key: 'toString',
+        value: function toString() {
+            return this._el.outerHTML;
+        }
+
+        /**
+         * Устанавливает текущей view роутер
+         * @param {Router} router - инстанс роутера
+         */
+
+    }, {
+        key: 'setRouterController',
+        value: function setRouterController(router) {
+            this._router = router;
+        }
+    }]);
+
+    return Controller;
+}();
+
+exports.default = Controller;
 
 /***/ }),
 /* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-class Theme {
-	constructor() {
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Theme = function () {
+	function Theme() {
+		_classCallCheck(this, Theme);
+
 		this.defaultThema = false;
 	}
 
-	changeTheme() {
-		let stylesDeault = this.createStylesheet([bodyStylesWhite, htmlNoneScroll, deleteMargin]);
-		let stylesYellow = this.createStylesheet([bodyStylesYellow, htmlNoneScroll, deleteMargin]);
+	_createClass(Theme, [{
+		key: 'changeTheme',
+		value: function changeTheme() {
+			var stylesDeault = this.createStylesheet([bodyStylesWhite, htmlNoneScroll, deleteMargin]);
+			var stylesYellow = this.createStylesheet([bodyStylesYellow, htmlNoneScroll, deleteMargin]);
 
-		let stylesheet = !this.defaultThema ? stylesDeault : stylesYellow;
+			var stylesheet = !this.defaultThema ? stylesDeault : stylesYellow;
 
-		this.appendStylesheet(stylesheet);
+			this.appendStylesheet(stylesheet);
 
-		this.defaultThema = !this.defaultThema;
-	}
+			this.defaultThema = !this.defaultThema;
+		}
+	}, {
+		key: 'createStylesheet',
+		value: function createStylesheet(styles) {
+			return styles.reduce(function (stylesheet, current) {
+				var properties = Object.entries(current.styles).map(function (prop) {
+					return prop[0] + ':' + prop[1] + ';';
+				});
+				stylesheet += current.selector + ' {' + properties + '}\n';
+				return stylesheet;
+			}, '');
+		}
+	}, {
+		key: 'appendStylesheet',
+		value: function appendStylesheet(stylesheet) {
+			var styleTag = document.getElementById('theme-styles');
+			styleTag.innerHTML = stylesheet;
+		}
+	}]);
+
+	return Theme;
+}();
+
+exports.default = Theme;
 
 
-
-	createStylesheet(styles){
-		return styles.reduce((stylesheet, current) => {
-			const properties = Object.entries(current.styles)
-				.map(prop => prop[0] + ':' + prop[1] + ';');
-			stylesheet += `${current.selector} {${properties}}\n`;
-			return stylesheet;
-		},'');
-	}
-
-	appendStylesheet(stylesheet){
-		let styleTag = document.getElementById('theme-styles');
-		styleTag.innerHTML = stylesheet;
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Theme;
-
-
-const bodyStylesYellow = {
+var bodyStylesYellow = {
 	selector: 'body',
 	styles: {
-		'background-color': '#FFFF00',
+		'background-color': '#FFFF00'
 	}
 };
 
-const bodyStylesWhite = {
+var bodyStylesWhite = {
 	selector: 'body',
 	styles: {
-		'background-color': '#FFF',
+		'background-color': '#FFF'
 	}
 };
 
-const htmlNoneScroll = {
+var htmlNoneScroll = {
 	selector: 'html',
 	styles: {
-		'overflow-y': 'hidden',
+		'overflow-y': 'hidden'
 	}
 };
 
-const deleteMargin = {
+var deleteMargin = {
 	selector: 'body',
 	styles: {
-		'margin': '0',
+		'margin': '0'
 	}
 };
 
@@ -595,7 +707,7 @@ function pug_rethrow(err, filename, lineno, str){
     throw err;
   }
   try {
-    str = str || __webpack_require__(27).readFileSync(filename, 'utf8')
+    str = str || __webpack_require__(25).readFileSync(filename, 'utf8')
   } catch (ex) {
     pug_rethrow(err, null, lineno)
   }
@@ -623,495 +735,89 @@ function pug_rethrow(err, filename, lineno, str){
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
-
-/***/ }),
-/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-
-var stylesInDom = {};
-
-var	memoize = function (fn) {
-	var memo;
-
-	return function () {
-		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
-		return memo;
-	};
-};
-
-var isOldIE = memoize(function () {
-	// Test for IE <= 9 as proposed by Browserhacks
-	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
-	// Tests for existence of standard globals is to allow style-loader
-	// to operate correctly into non-standard environments
-	// @see https://github.com/webpack-contrib/style-loader/issues/177
-	return window && document && document.all && !window.atob;
-});
-
-var getElement = (function (fn) {
-	var memo = {};
-
-	return function(selector) {
-		if (typeof memo[selector] === "undefined") {
-			memo[selector] = fn.call(this, selector);
-		}
-
-		return memo[selector]
-	};
-})(function (target) {
-	return document.querySelector(target)
-});
-
-var singleton = null;
-var	singletonCounter = 0;
-var	stylesInsertedAtTop = [];
-
-var	fixUrls = __webpack_require__(30);
-
-module.exports = function(list, options) {
-	if (typeof DEBUG !== "undefined" && DEBUG) {
-		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
-	}
-
-	options = options || {};
-
-	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
-
-	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-	// tags it will allow on a page
-	if (!options.singleton) options.singleton = isOldIE();
-
-	// By default, add <style> tags to the <head> element
-	if (!options.insertInto) options.insertInto = "head";
-
-	// By default, add <style> tags to the bottom of the target
-	if (!options.insertAt) options.insertAt = "bottom";
-
-	var styles = listToStyles(list, options);
-
-	addStylesToDom(styles, options);
-
-	return function update (newList) {
-		var mayRemove = [];
-
-		for (var i = 0; i < styles.length; i++) {
-			var item = styles[i];
-			var domStyle = stylesInDom[item.id];
-
-			domStyle.refs--;
-			mayRemove.push(domStyle);
-		}
-
-		if(newList) {
-			var newStyles = listToStyles(newList, options);
-			addStylesToDom(newStyles, options);
-		}
-
-		for (var i = 0; i < mayRemove.length; i++) {
-			var domStyle = mayRemove[i];
-
-			if(domStyle.refs === 0) {
-				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
-
-				delete stylesInDom[domStyle.id];
-			}
-		}
-	};
-};
-
-function addStylesToDom (styles, options) {
-	for (var i = 0; i < styles.length; i++) {
-		var item = styles[i];
-		var domStyle = stylesInDom[item.id];
-
-		if(domStyle) {
-			domStyle.refs++;
-
-			for(var j = 0; j < domStyle.parts.length; j++) {
-				domStyle.parts[j](item.parts[j]);
-			}
-
-			for(; j < item.parts.length; j++) {
-				domStyle.parts.push(addStyle(item.parts[j], options));
-			}
-		} else {
-			var parts = [];
-
-			for(var j = 0; j < item.parts.length; j++) {
-				parts.push(addStyle(item.parts[j], options));
-			}
-
-			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
-		}
-	}
-}
-
-function listToStyles (list, options) {
-	var styles = [];
-	var newStyles = {};
-
-	for (var i = 0; i < list.length; i++) {
-		var item = list[i];
-		var id = options.base ? item[0] + options.base : item[0];
-		var css = item[1];
-		var media = item[2];
-		var sourceMap = item[3];
-		var part = {css: css, media: media, sourceMap: sourceMap};
-
-		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
-		else newStyles[id].parts.push(part);
-	}
-
-	return styles;
-}
-
-function insertStyleElement (options, style) {
-	var target = getElement(options.insertInto)
-
-	if (!target) {
-		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
-	}
-
-	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
-
-	if (options.insertAt === "top") {
-		if (!lastStyleElementInsertedAtTop) {
-			target.insertBefore(style, target.firstChild);
-		} else if (lastStyleElementInsertedAtTop.nextSibling) {
-			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
-		} else {
-			target.appendChild(style);
-		}
-		stylesInsertedAtTop.push(style);
-	} else if (options.insertAt === "bottom") {
-		target.appendChild(style);
-	} else {
-		throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
-	}
-}
-
-function removeStyleElement (style) {
-	if (style.parentNode === null) return false;
-	style.parentNode.removeChild(style);
-
-	var idx = stylesInsertedAtTop.indexOf(style);
-	if(idx >= 0) {
-		stylesInsertedAtTop.splice(idx, 1);
-	}
-}
-
-function createStyleElement (options) {
-	var style = document.createElement("style");
-
-	options.attrs.type = "text/css";
-
-	addAttrs(style, options.attrs);
-	insertStyleElement(options, style);
-
-	return style;
-}
-
-function createLinkElement (options) {
-	var link = document.createElement("link");
-
-	options.attrs.type = "text/css";
-	options.attrs.rel = "stylesheet";
-
-	addAttrs(link, options.attrs);
-	insertStyleElement(options, link);
-
-	return link;
-}
-
-function addAttrs (el, attrs) {
-	Object.keys(attrs).forEach(function (key) {
-		el.setAttribute(key, attrs[key]);
-	});
-}
-
-function addStyle (obj, options) {
-	var style, update, remove, result;
-
-	// If a transform function was defined, run it on the css
-	if (options.transform && obj.css) {
-	    result = options.transform(obj.css);
-
-	    if (result) {
-	    	// If transform returns a value, use that instead of the original css.
-	    	// This allows running runtime transformations on the css.
-	    	obj.css = result;
-	    } else {
-	    	// If the transform function returns a falsy value, don't add this css.
-	    	// This allows conditional loading of css
-	    	return function() {
-	    		// noop
-	    	};
-	    }
-	}
-
-	if (options.singleton) {
-		var styleIndex = singletonCounter++;
-
-		style = singleton || (singleton = createStyleElement(options));
-
-		update = applyToSingletonTag.bind(null, style, styleIndex, false);
-		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
-
-	} else if (
-		obj.sourceMap &&
-		typeof URL === "function" &&
-		typeof URL.createObjectURL === "function" &&
-		typeof URL.revokeObjectURL === "function" &&
-		typeof Blob === "function" &&
-		typeof btoa === "function"
-	) {
-		style = createLinkElement(options);
-		update = updateLink.bind(null, style, options);
-		remove = function () {
-			removeStyleElement(style);
-
-			if(style.href) URL.revokeObjectURL(style.href);
-		};
-	} else {
-		style = createStyleElement(options);
-		update = applyToTag.bind(null, style);
-		remove = function () {
-			removeStyleElement(style);
-		};
-	}
-
-	update(obj);
-
-	return function updateStyle (newObj) {
-		if (newObj) {
-			if (
-				newObj.css === obj.css &&
-				newObj.media === obj.media &&
-				newObj.sourceMap === obj.sourceMap
-			) {
-				return;
-			}
-
-			update(obj = newObj);
-		} else {
-			remove();
-		}
-	};
-}
-
-var replaceText = (function () {
-	var textStore = [];
-
-	return function (index, replacement) {
-		textStore[index] = replacement;
-
-		return textStore.filter(Boolean).join('\n');
-	};
-})();
-
-function applyToSingletonTag (style, index, remove, obj) {
-	var css = remove ? "" : obj.css;
-
-	if (style.styleSheet) {
-		style.styleSheet.cssText = replaceText(index, css);
-	} else {
-		var cssNode = document.createTextNode(css);
-		var childNodes = style.childNodes;
-
-		if (childNodes[index]) style.removeChild(childNodes[index]);
-
-		if (childNodes.length) {
-			style.insertBefore(cssNode, childNodes[index]);
-		} else {
-			style.appendChild(cssNode);
-		}
-	}
-}
-
-function applyToTag (style, obj) {
-	var css = obj.css;
-	var media = obj.media;
-
-	if(media) {
-		style.setAttribute("media", media)
-	}
-
-	if(style.styleSheet) {
-		style.styleSheet.cssText = css;
-	} else {
-		while(style.firstChild) {
-			style.removeChild(style.firstChild);
-		}
-
-		style.appendChild(document.createTextNode(css));
-	}
-}
-
-function updateLink (link, options, obj) {
-	var css = obj.css;
-	var sourceMap = obj.sourceMap;
-
-	/*
-		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
-		and there is no publicPath defined then lets turn convertToAbsoluteUrls
-		on by default.  Otherwise default to the convertToAbsoluteUrls option
-		directly
-	*/
-	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
-
-	if (options.convertToAbsoluteUrls || autoFixUrls) {
-		css = fixUrls(css);
-	}
-
-	if (sourceMap) {
-		// http://stackoverflow.com/a/26603875
-		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
-	}
-
-	var blob = new Blob([css], { type: "text/css" });
-
-	var oldSrc = link.href;
-
-	link.href = URL.createObjectURL(blob);
-
-	if(oldSrc) URL.revokeObjectURL(oldSrc);
-}
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Form_pug__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Form_pug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Form_pug__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ValidForm_ValidSignInForm__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ValidForm_ValidSignUpForm__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Form_css__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Form_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__Form_css__);
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _BlockComponents = __webpack_require__(0);
 
+var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
+var _Form = __webpack_require__(24);
 
+var _Form2 = _interopRequireDefault(_Form);
+
+var _ValidSignInForm = __webpack_require__(8);
+
+var _ValidSignInForm2 = _interopRequireDefault(_ValidSignInForm);
+
+var _ValidSignUpForm = __webpack_require__(9);
+
+var _ValidSignUpForm2 = _interopRequireDefault(_ValidSignUpForm);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// import './Form.scss';
 
 /**
  * Класс формы
  * @module Form
  */
-class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* default */] {
-    /**
-     * @param {string} [tagName='div'] - tagName блока
-     * @param {*} [attrs={}] - объект с атрибутами блока
-     * @param {string[]} [classes=[]] - список имён классов
-     * @param {*} [data={}] - объект с данными блока
-     * @constructor
-     */
-    constructor(tagName = 'div', attrs = {}, classes = [], data) {
-        super(tagName, attrs, classes, data);
-    }
+var Form = function (_Block) {
+  _inherits(Form, _Block);
 
-    /**
-     * Получить форму
-     */
-    getClassElement() {
-		let data = this.getData();
-        this.setHTML(__WEBPACK_IMPORTED_MODULE_1__Form_pug___default()({data}));
-        return this.getElement();
+  /**
+   * @param {string} [tagName='div'] - tagName блока
+   * @param {*} [attrs={}] - объект с атрибутами блока
+   * @param {string[]} [classes=[]] - список имён классов
+   * @param {*} [data={}] - объект с данными блока
+   * @constructor
+   */
+  function Form() {
+    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var data = arguments[3];
+
+    _classCallCheck(this, Form);
+
+    return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, tagName, attrs, classes, data));
+  }
+
+  /**
+   * Получить форму
+   */
+
+
+  _createClass(Form, [{
+    key: 'getClassElement',
+    value: function getClassElement() {
+      var data = this.getData();
+      this.setHTML((0, _Form2.default)({ data: data }));
+      return this.getElement();
     }
 
     /**
      * Получить кнопку назад из страницы с формы
      */
-    static getBackButton() {
-        return document.getElementsByClassName('back-button');
+
+  }], [{
+    key: 'getBackButton',
+    value: function getBackButton() {
+      return document.getElementsByClassName('back-button');
     }
 
     /**
@@ -1129,67 +835,93 @@ class Form extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* d
     /**
      * Очищаем поля форм
      */
-    static reset() {
-        Array.from(document.getElementsByTagName('form')).forEach(form => {
-            form.reset();
-        });
+
+  }, {
+    key: 'reset',
+    value: function reset() {
+      Array.from(document.getElementsByTagName('form')).forEach(function (form) {
+        form.reset();
+      });
     }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Form;
+  }]);
 
+  return Form;
+}(_BlockComponents2.default);
 
+exports.default = Form;
 
 /***/ }),
-/* 7 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-class Notify {
-	constructor() {
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Notify = function () {
+	function Notify() {
+		_classCallCheck(this, Notify);
+
 		this.notifyBlock = document.createElement('section');
 		this.notifyBlock.classList.add('notify-container');
 		document.body.appendChild(this.notifyBlock);
 	}
 
-	notify(message = 'Текст нотификации', time = 3) {
-		let notify = this.createNotify(message, time);
-		this.notifyBlock.appendChild(notify);
-	}
+	_createClass(Notify, [{
+		key: 'notify',
+		value: function notify() {
+			var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Текст нотификации';
+			var time = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 3;
 
-	createNotify(msg, time) {
-		let notify = document.createElement('div');
-		notify.classList.add('notify');
-		notify.setAttribute('style', `animation: show 1s, hide .7s ${time}s;`);
+			var notify = this.createNotify(message, time);
+			this.notifyBlock.appendChild(notify);
+		}
+	}, {
+		key: 'createNotify',
+		value: function createNotify(msg, time) {
+			var notify = document.createElement('div');
+			notify.classList.add('notify');
+			notify.setAttribute('style', 'animation: show 1s, hide .7s ' + time + 's;');
 
-		const text = document.createElement('div');
-		text.classList.add('notify__text');
-		text.innerHTML = msg;
+			var text = document.createElement('div');
+			text.classList.add('notify__text');
+			text.innerHTML = msg;
 
-		const closeButton = document.createElement('div');
-		closeButton.classList.add('notify__close');
-		closeButton.innerHTML = '&times;';
-		closeButton.addEventListener('click', (event) => {
-			notify.classList.add('notify_delete');
-		});
-
-		notify.addEventListener('animationend', (event) => {
-			if (event.animationName === 'hide') {
-				notify.removeAttribute('style');
+			var closeButton = document.createElement('div');
+			closeButton.classList.add('notify__close');
+			closeButton.innerHTML = '&times;';
+			closeButton.addEventListener('click', function (event) {
 				notify.classList.add('notify_delete');
-			}
-		});
+			});
 
-		notify.appendChild(text);
-		notify.appendChild(closeButton);
+			notify.addEventListener('animationend', function (event) {
+				if (event.animationName === 'hide') {
+					notify.removeAttribute('style');
+					notify.classList.add('notify_delete');
+				}
+			});
 
-		return notify;
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Notify;
+			notify.appendChild(text);
+			notify.appendChild(closeButton);
 
+			return notify;
+		}
+	}]);
+
+	return Notify;
+}();
+
+exports.default = Notify;
 
 /***/ }),
-/* 8 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1216,43 +948,62 @@ exports.default = State;
 
 
 /***/ }),
-/* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_Http__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_User__ = __webpack_require__(22);
 
 
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Http = __webpack_require__(19);
+
+var _Http2 = _interopRequireDefault(_Http);
+
+var _User = __webpack_require__(20);
+
+var _User2 = _interopRequireDefault(_User);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
  * Сервис для работы с юзерами
  * @module UserService
  */
-class UserService {
+var UserService = function () {
+	function UserService() {
+		_classCallCheck(this, UserService);
 
-	constructor() {
 		// debugger;
 		if (this.user) {
 			return this;
 		}
-		this.user = new __WEBPACK_IMPORTED_MODULE_1__model_User__["a" /* default */]({});
+		this.user = new _User2.default({});
 		this.users = [];
 	}
 
 	/**
-	 * Регистрирует нового пользователя
-	 * @param {string} username
-	 * @param {string} email
-	 * @param {string} password
-	 * @return {Promise}
-	 */
-	signUp(username, email, password) {
+  * Регистрирует нового пользователя
+  * @param {string} username
+  * @param {string} email
+  * @param {string} password
+  * @return {Promise}
+  */
 
-		console.log(`[signUp] email:  ${email}  pass: ${password}`);
-		const requestBody = {username, email, password};
-		return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/signUp', requestBody)
-			.then((response) => {
+
+	_createClass(UserService, [{
+		key: 'signUp',
+		value: function signUp(username, email, password) {
+
+			console.log('[signUp] email:  ' + email + '  pass: ' + password);
+			var requestBody = { username: username, email: email, password: password };
+			return _Http2.default.FetchPost('/signUp', requestBody).then(function (response) {
 				if (response.status === 201) {
 					//this.user.set(response.json());
 					return response.json();
@@ -1261,57 +1012,19 @@ class UserService {
 					throw response;
 				}
 			});
-	}
-
-	/**
-	 * Авторизация пользователя
-	 * @param {string} email
-	 * @param {string} password
-	 * @return {Promise}
-	 */
-	signIn(email, password) {
-		return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/signIn', {email, password})
-			.then((response) => {
-				if (response.status === 200) {
-					return response.json();
-				} else {
-					console.log(response.json());
-					throw response;
-				}
-			});
-	}
-
-	/**
-	 * Проверяет, авторизован ли пользователь
-	 * @return {boolean}
-	 */
-	isAuthorized() {
-		console.log("[UserService] in isAuthorized, this.user.getId = " + this.user.getId());
-		return !!this.user.getId();
-	}
-
-	/**
-	 * Загружает данные о текущем пользователе
-	 * @param {boolean} [force=true] - игнорировать ли кэш?
-	 * @return {Promise}
-	 */
-	getProfile(force = true) {
-		if (this.isAuthorized() && !force) {
-			return Promise.resolve(this.user.get());
 		}
-		return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchGet('/profile')
-			.then((response) => {
-				if (response.status === 200) {
-					return response.json();
-				} else {
-					throw response;
-				}
-			})
-	}
 
-	getScorelist(page) {
-		return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchPost('/scorelist', {page})
-			.then((response) => {
+		/**
+   * Авторизация пользователя
+   * @param {string} email
+   * @param {string} password
+   * @return {Promise}
+   */
+
+	}, {
+		key: 'signIn',
+		value: function signIn(email, password) {
+			return _Http2.default.FetchPost('/signIn', { email: email, password: password }).then(function (response) {
 				if (response.status === 200) {
 					return response.json();
 				} else {
@@ -1319,41 +1032,108 @@ class UserService {
 					throw response;
 				}
 			});
-	}
+		}
 
-	/**
-	 * Получить данного пользователя
-	 */
-	getUserLogin() {
-		return this.user.get();
-	}
+		/**
+   * Проверяет, авторизован ли пользователь
+   * @return {boolean}
+   */
 
-	/**
-	 * Выход
-	 */
-	logout() {
-		return __WEBPACK_IMPORTED_MODULE_0__modules_Http__["a" /* default */].FetchGet('/logout');
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = UserService;
+	}, {
+		key: 'isAuthorized',
+		value: function isAuthorized() {
+			console.log("[UserService] in isAuthorized, this.user.getId = " + this.user.getId());
+			return !!this.user.getId();
+		}
 
+		/**
+   * Загружает данные о текущем пользователе
+   * @param {boolean} [force=true] - игнорировать ли кэш?
+   * @return {Promise}
+   */
 
+	}, {
+		key: 'getProfile',
+		value: function getProfile() {
+			var force = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+			if (this.isAuthorized() && !force) {
+				return Promise.resolve(this.user.get());
+			}
+			return _Http2.default.FetchGet('/profile').then(function (response) {
+				if (response.status === 200) {
+					return response.json();
+				} else {
+					throw response;
+				}
+			});
+		}
+	}, {
+		key: 'getScorelist',
+		value: function getScorelist(page) {
+			return _Http2.default.FetchPost('/scorelist', { page: page }).then(function (response) {
+				if (response.status === 200) {
+					return response.json();
+				} else {
+					console.log(response.json());
+					throw response;
+				}
+			});
+		}
+
+		/**
+   * Получить данного пользователя
+   */
+
+	}, {
+		key: 'getUserLogin',
+		value: function getUserLogin() {
+			return this.user.get();
+		}
+
+		/**
+   * Выход
+   */
+
+	}, {
+		key: 'logout',
+		value: function logout() {
+			return _Http2.default.FetchGet('/logout');
+		}
+	}]);
+
+	return UserService;
+}();
+
+exports.default = UserService;
 
 /***/ }),
-/* 10 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Notify_Notify__ = __webpack_require__(7);
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Notify = __webpack_require__(5);
+
+var _Notify2 = _interopRequireDefault(_Notify);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
  * Проверяем корректность email
  * @param {string} email
  */
 function isCorrectEmail(email) {
-    return email.match(new RegExp('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$'));
+  return email.match(new RegExp('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$'));
 }
 
 /**
@@ -1363,66 +1143,83 @@ function isCorrectEmail(email) {
  * @param {int} maxLenField
  */
 function isCorrectTextField(text, minLenField, maxLenField) {
-    return text.match(new RegExp('^[a-zA-Z0-9_-]{' + minLenField + ','+ maxLenField +'}$'));
+  return text.match(new RegExp('^[a-zA-Z0-9_-]{' + minLenField + ',' + maxLenField + '}$'));
 }
 
 /**
  * Класс валидации формы входа
  * @module ValidSignInForm
  */
-class ValidSignInForm {
-    /**
-     * @param {string} email
-     * @param {string} password
-     * @constructor
-     */
-    constructor(email, password) {
-        this.email = email;
-        this.password = password;
-        // this.currentForm = form;
 
-		this.notify = new __WEBPACK_IMPORTED_MODULE_0__Notify_Notify__["a" /* default */]();
-	}
+var ValidSignInForm = function () {
+  /**
+   * @param {string} email
+   * @param {string} password
+   * @constructor
+   */
+  function ValidSignInForm(email, password) {
+    _classCallCheck(this, ValidSignInForm);
 
-    /**
-     * Валидируем форму
-     * @returns {boolean}
-     */
-    validForm() {
-        let flag = true;
+    this.email = email;
+    this.password = password;
+    // this.currentForm = form;
 
-        const minLenPassword = 6,
-            maxLenPassword = 18;
+    this.notify = new _Notify2.default();
+  }
 
-        if (!isCorrectEmail(this.email)) {
-            flag = false;
-			this.notify.notify('invalid email');
-		}
+  /**
+   * Валидируем форму
+   * @returns {boolean}
+   */
 
-        if (!isCorrectTextField(this.password, minLenPassword, maxLenPassword)) {
-            flag = false;
-			this.notify.notify('invalid password');
-		}
 
-        return flag;
+  _createClass(ValidSignInForm, [{
+    key: 'validForm',
+    value: function validForm() {
+      var flag = true;
+
+      var minLenPassword = 6,
+          maxLenPassword = 18;
+
+      if (!isCorrectEmail(this.email)) {
+        flag = false;
+        this.notify.notify('invalid email');
+      }
+
+      if (!isCorrectTextField(this.password, minLenPassword, maxLenPassword)) {
+        flag = false;
+        this.notify.notify('invalid password');
+      }
+
+      return flag;
     }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = ValidSignInForm;
+  }]);
 
+  return ValidSignInForm;
+}();
 
-
-
-
+exports.default = ValidSignInForm;
 
 /***/ }),
-/* 11 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Notify_Notify__ = __webpack_require__(7);
 
 
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Notify = __webpack_require__(5);
+
+var _Notify2 = _interopRequireDefault(_Notify);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
  * Проверяем корректность поля формы
@@ -1455,251 +1252,349 @@ function isSamePasswords(pswd, pswdRepeat) {
  * Класс валидации формы регистрации
  * @module ValidSignUpForm
  */
-class ValidSignUpForm {
+
+var ValidSignUpForm = function () {
 	/**
-	 * @param {string} login
-	 * @param {string} email
-	 * @param {string} password
-	 * @param {string} repeatPassword
-	 * @constructor
-	 */
-	constructor(login, email, password, repeatPassword) {
+  * @param {string} login
+  * @param {string} email
+  * @param {string} password
+  * @param {string} repeatPassword
+  * @constructor
+  */
+	function ValidSignUpForm(login, email, password, repeatPassword) {
+		_classCallCheck(this, ValidSignUpForm);
+
 		this.username = login;
 		this.email = email;
 		this.password = password;
 		this.repeatPassword = repeatPassword;
 		// this.currentForm = form;
 
-		this.notify = new __WEBPACK_IMPORTED_MODULE_0__Notify_Notify__["a" /* default */]();
+		this.notify = new _Notify2.default();
 	}
 
 	/**
-	 * Валидируем форму
-	 * @returns {boolean}
-	 */
-	validForm() {
-		let flag = true;
+  * Валидируем форму
+  * @returns {boolean}
+  */
 
-		const minLenUsername = 4,
-			maxLenUsername = 15,
-			minLenPassword = 6,
-			maxLenPassword = 18;
 
-		if (!isCorrectTextField(this.username, minLenUsername, maxLenUsername)) {
-			flag = false;
-			this.notify.notify('invalid username');
+	_createClass(ValidSignUpForm, [{
+		key: 'validForm',
+		value: function validForm() {
+			var flag = true;
+
+			var minLenUsername = 4,
+			    maxLenUsername = 15,
+			    minLenPassword = 6,
+			    maxLenPassword = 18;
+
+			if (!isCorrectTextField(this.username, minLenUsername, maxLenUsername)) {
+				flag = false;
+				this.notify.notify('invalid username');
+			}
+
+			if (!isCorrectEmail(this.email)) {
+				flag = false;
+				this.notify.notify('invalid email');
+			}
+
+			if (!isCorrectTextField(this.password, minLenPassword, maxLenPassword)) {
+				flag = false;
+				this.notify.notify('invalid password');
+			}
+
+			if (!isSamePasswords(this.password, this.repeatPassword)) {
+				flag = false;
+				this.notify.notify('error repeat password');
+			}
+
+			return flag;
 		}
+	}]);
 
-		if (!isCorrectEmail(this.email)) {
-			flag = false;
-			this.notify.notify('invalid email');
-		}
+	return ValidSignUpForm;
+}();
 
-		if (!isCorrectTextField(this.password, minLenPassword, maxLenPassword)) {
-			flag = false;
-			this.notify.notify('invalid password');
-		}
-
-		if (!isSamePasswords(this.password, this.repeatPassword)) {
-			flag = false;
-			this.notify.notify('error repeat password');
-		}
-
-		return flag;
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = ValidSignUpForm;
-
-
-
+exports.default = ValidSignUpForm;
 
 /***/ }),
-/* 12 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Menu_pug__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Menu_pug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Menu_pug__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Menu_css__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Menu_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Menu_css__);
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _BlockComponents = __webpack_require__(0);
+
+var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
+
+var _Menu = __webpack_require__(32);
+
+var _Menu2 = _interopRequireDefault(_Menu);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// import './Menu.scss';
 
 /**
  * Класс Menu-а
  * @module Menu
  */
-class Menu extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* default */] {
-    /**
-     * @param {string} [tagName='div'] - tagName блока
-     * @param {*} [attrs={}] - объект с атрибутами блока
-     * @param {string[]} [classes=[]] - список имён классов
-     * @param {*} [data={}] - объект с данными блока
-     * @constructor
-     */
-    constructor(tagName = 'div', attrs = {}, classes = [], data) {
-        super(tagName, attrs, classes, data);
+var Menu = function (_Block) {
+  _inherits(Menu, _Block);
+
+  /**
+   * @param {string} [tagName='div'] - tagName блока
+   * @param {*} [attrs={}] - объект с атрибутами блока
+   * @param {string[]} [classes=[]] - список имён классов
+   * @param {*} [data={}] - объект с данными блока
+   * @constructor
+   */
+  function Menu() {
+    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var data = arguments[3];
+
+    _classCallCheck(this, Menu);
+
+    return _possibleConstructorReturn(this, (Menu.__proto__ || Object.getPrototypeOf(Menu)).call(this, tagName, attrs, classes, data));
+  }
+
+  /**
+   * Получить Menu
+   */
+
+
+  _createClass(Menu, [{
+    key: 'getClassElement',
+    value: function getClassElement() {
+      var data = this.getData();
+      this.setHTML((0, _Menu2.default)({ data: data }));
+      return this.getElement();
     }
+  }]);
 
-    /**
-     * Получить Menu
-     */
-    getClassElement() {
-		let data = this.getData();
-        this.setHTML(__WEBPACK_IMPORTED_MODULE_1__Menu_pug___default()({data}));
-        return this.getElement();
-    }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Menu;
+  return Menu;
+}(_BlockComponents2.default);
 
-
+exports.default = Menu;
 
 /***/ }),
-/* 13 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Table_pug__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Table_pug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Table_pug__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Table_css__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Table_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Table_css__);
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _BlockComponents = __webpack_require__(0);
+
+var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
+
+var _Table = __webpack_require__(35);
+
+var _Table2 = _interopRequireDefault(_Table);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// import './Table.scss';
 
 /**
  * Класс Table
  * @module Table
  */
-class Table extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* default */] {
-    /**
-     * @param {string} [tagName='div'] - tagName блока
-     * @param {*} [attrs={}] - объект с атрибутами блока
-     * @param {string[]} [classes=[]] - список имён классов
-     * @param {*} [data={}] - объект с данными блока
-     * @constructor
-     */
-    constructor(tagName = 'div', attrs = {}, classes = [], data) {
-        super(tagName, attrs, classes, data);
+var Table = function (_Block) {
+  _inherits(Table, _Block);
+
+  /**
+   * @param {string} [tagName='div'] - tagName блока
+   * @param {*} [attrs={}] - объект с атрибутами блока
+   * @param {string[]} [classes=[]] - список имён классов
+   * @param {*} [data={}] - объект с данными блока
+   * @constructor
+   */
+  function Table() {
+    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var data = arguments[3];
+
+    _classCallCheck(this, Table);
+
+    return _possibleConstructorReturn(this, (Table.__proto__ || Object.getPrototypeOf(Table)).call(this, tagName, attrs, classes, data));
+  }
+
+  /**
+   * Получить Table
+   */
+
+
+  _createClass(Table, [{
+    key: 'getClassElement',
+    value: function getClassElement() {
+      var data = this.getData();
+
+      this.setHTML((0, _Table2.default)({ data: data }));
+      return this.getElement();
     }
+  }]);
 
-    /**
-     * Получить Table
-     */
-    getClassElement() {
-        let data = this.getData();
+  return Table;
+}(_BlockComponents2.default);
 
-        this.setHTML(__WEBPACK_IMPORTED_MODULE_1__Table_pug___default()({data}));
-        return this.getElement();
-    }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Table;
-
-
+exports.default = Table;
 
 /***/ }),
-/* 14 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "4119334de3c71843520250c6c9f0594d.jpg";
 
 /***/ }),
-/* 15 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "5733b613e5ea55c939a6276c4b4b7aa0.png";
 
 /***/ }),
-/* 16 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = {"frames":[{"filename":"shadow","frame":{"x":0,"y":0,"w":80,"h":80},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":80,"h":80},"sourceSize":{"w":80,"h":80}},{"filename":"tank1","frame":{"x":190,"y":52,"w":54,"h":52},"rotated":false,"trimmed":true,"spriteSourceSize":{"x":3,"y":5,"w":54,"h":52},"sourceSize":{"w":64,"h":64}},{"filename":"turret","frame":{"x":0,"y":80,"w":48,"h":28},"rotated":false,"trimmed":true,"spriteSourceSize":{"x":1,"y":2,"w":48,"h":28},"sourceSize":{"w":50,"h":32}}]}
 
 /***/ }),
-/* 17 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "4119334de3c71843520250c6c9f0594d.jpg";
 
 /***/ }),
-/* 18 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "b17c373a3f0117f56d7b0af1a9839bb7.png";
 
 /***/ }),
-/* 19 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "e11ba3abfe7c0f81b6f63cca050ba20a.png";
 
 /***/ }),
-/* 20 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_UserService__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_CreatePage_js__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_Router__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__controllers_MenuStartController__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__controllers_PlayGameController__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_SignInController__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__controllers_SignUpController__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__controllers_ScoreListController__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__controllers_AboutUsController__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__static_css_style__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_ServiceWorker__ = __webpack_require__(72);
 
 
+var _UserService = __webpack_require__(7);
+
+var _UserService2 = _interopRequireDefault(_UserService);
+
+var _CreatePage = __webpack_require__(21);
+
+var _CreatePage2 = _interopRequireDefault(_CreatePage);
+
+var _Router = __webpack_require__(40);
+
+var _Router2 = _interopRequireDefault(_Router);
+
+var _MenuStartController = __webpack_require__(42);
+
+var _MenuStartController2 = _interopRequireDefault(_MenuStartController);
+
+var _PlayGameController = __webpack_require__(43);
+
+var _PlayGameController2 = _interopRequireDefault(_PlayGameController);
+
+var _SignInController = __webpack_require__(55);
+
+var _SignInController2 = _interopRequireDefault(_SignInController);
+
+var _SignUpController = __webpack_require__(56);
+
+var _SignUpController2 = _interopRequireDefault(_SignUpController);
+
+var _ScoreListController = __webpack_require__(57);
+
+var _ScoreListController2 = _interopRequireDefault(_ScoreListController);
+
+var _AboutUsController = __webpack_require__(58);
+
+var _AboutUsController2 = _interopRequireDefault(_AboutUsController);
+
+var _style = __webpack_require__(2);
+
+var _style2 = _interopRequireDefault(_style);
+
+var _ServiceWorker = __webpack_require__(59);
+
+var _ServiceWorker2 = _interopRequireDefault(_ServiceWorker);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var theme = new _style2.default();
+var userService = new _UserService2.default();
+var page = new _CreatePage2.default();
 
 
-
-
-
-
-
-
-
-
-
-let theme = new __WEBPACK_IMPORTED_MODULE_9__static_css_style__["a" /* default */]();
-let userService = new __WEBPACK_IMPORTED_MODULE_0__services_UserService__["a" /* default */]();
-let page = new __WEBPACK_IMPORTED_MODULE_1__views_CreatePage_js__["a" /* default */]();
-
-
-Object(__WEBPACK_IMPORTED_MODULE_10__services_ServiceWorker__["a" /* default */])();
+(0, _ServiceWorker2.default)();
 
 theme.changeTheme();
 
-(new __WEBPACK_IMPORTED_MODULE_2__modules_Router__["a" /* default */]())
-    .addRoute('/', __WEBPACK_IMPORTED_MODULE_3__controllers_MenuStartController__["a" /* default */], {userService: userService, page: page})
-    .addRoute('/play', __WEBPACK_IMPORTED_MODULE_4__controllers_PlayGameController__["a" /* default */], {userService: userService, page: page})
-    .addRoute('/signin', __WEBPACK_IMPORTED_MODULE_5__controllers_SignInController__["a" /* default */], {userService: userService, page: page})
-    .addRoute('/signup', __WEBPACK_IMPORTED_MODULE_6__controllers_SignUpController__["a" /* default */], {userService: userService, page: page})
-    .addRoute('/score', __WEBPACK_IMPORTED_MODULE_7__controllers_ScoreListController__["a" /* default */], {userService: userService, page: page})
-    .addRoute('/about', __WEBPACK_IMPORTED_MODULE_8__controllers_AboutUsController__["a" /* default */], {userService: userService, page: page})
-    .startRoute();
-
+new _Router2.default().addRoute('/', _MenuStartController2.default, { userService: userService, page: page }).addRoute('/play', _PlayGameController2.default, { userService: userService, page: page }).addRoute('/signin', _SignInController2.default, { userService: userService, page: page }).addRoute('/signup', _SignUpController2.default, { userService: userService, page: page }).addRoute('/score', _ScoreListController2.default, { userService: userService, page: page }).addRoute('/about', _AboutUsController2.default, { userService: userService, page: page }).startRoute();
 
 /***/ }),
-/* 21 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
  * Модуль, предоставляющий методы для выполнения HTTP-запросов
  * @module Http
  */
-class Http {
+var Http = function () {
     /**
      * @constructor
      */
-    constructor() {
+    function Http() {
+        _classCallCheck(this, Http);
+
         this.baseUrl = 'http://82.202.246.5:8080';
     }
 
@@ -1708,66 +1603,70 @@ class Http {
      * @param {string} address - адрес запроса
      * @return {Promise}
      */
-    static FetchGet(address) {
-        // const url = this.baseUrl + address;
-        const url = 'http://82.202.246.5:8080' + address;
-        // const url = 'https://tanks-backend.xyz' + address;
 
-        console.log("[FetchGet] try get from " + url);
 
-        return fetch(url, {
-            method: 'GET',
-            mode: 'cors',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8',
-                'Accept': 'application/json'
-            }
-        })
-            .then(function (response) {
+    _createClass(Http, null, [{
+        key: 'FetchGet',
+        value: function FetchGet(address) {
+            // const url = this.baseUrl + address;
+            var url = 'http://82.202.246.5:8080' + address;
+            // const url = 'https://tanks-backend.xyz' + address;
+
+            console.log("[FetchGet] try get from " + url);
+
+            return fetch(url, {
+                method: 'GET',
+                mode: 'cors',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'Accept': 'application/json'
+                }
+            }).then(function (response) {
                 console.log("[FetchGet] now get from " + url);
                 return response;
             });
-    }
+        }
 
-    /**
-     * Выполняет POST-запрос по указанному адресу с использованием fetch
-     * @param {string} address - адрес запроса
-     * @param {*} body - тело запроса (объект)
-     * @return {Promise}
-     */
-    static FetchPost (address, body) {
+        /**
+         * Выполняет POST-запрос по указанному адресу с использованием fetch
+         * @param {string} address - адрес запроса
+         * @param {*} body - тело запроса (объект)
+         * @return {Promise}
+         */
 
-        const url = 'http://82.202.246.5:8080' + address;
-        // const url = 'https://tanks-backend.xyz' + address;
+    }, {
+        key: 'FetchPost',
+        value: function FetchPost(address, body) {
 
-        console.log("[FetchPost] try post to " + url);
+            var url = 'http://82.202.246.5:8080' + address;
+            // const url = 'https://tanks-backend.xyz' + address;
 
-        return fetch(url, {
-            method: 'POST',
-            mode: 'cors',
-            credentials: 'include',
-            body: JSON.stringify(body),
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8',
-                'Accept': 'application/json'
-            }
-        })
-            .then(function(response) {
-                return  response;
+            console.log("[FetchPost] try post to " + url);
+
+            return fetch(url, {
+                method: 'POST',
+                mode: 'cors',
+                credentials: 'include',
+                body: JSON.stringify(body),
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'Accept': 'application/json'
+                }
+            }).then(function (response) {
+                return response;
             });
+        }
+    }]);
 
-    }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Http;
+    return Http;
+}();
 
-
-
-
+exports.default = Http;
 
 /***/ }),
-/* 22 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -1776,12 +1675,23 @@ class Http {
  * Класс пользователя
  * @module User
  */
-class User {
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var User = function () {
     /**
      * @param {object} opt - данные пользователя
      * @constructor
      */
-    constructor(opt) {
+    function User(opt) {
+        _classCallCheck(this, User);
+
         this.email = opt.email || '';
         this.username = opt.username || '';
         this.id = opt.id || 0;
@@ -1792,179 +1702,253 @@ class User {
      * Установить новые данные пользователя
      * @param {object} userData
      */
-    set(userData) {
-        this.id = userData.id;
-        this.username = userData.username;
-        this.email = userData.email;
-        this.score = userData.score || 0;
-    }
 
-    /**
-     * Возвращаем пользователя
-     */
-    get() {
-        return {
-            'email': this.email,
-            'username': this.username,
-            'id': this.id,
-            'score': this.score
+
+    _createClass(User, [{
+        key: 'set',
+        value: function set(userData) {
+            this.id = userData.id;
+            this.username = userData.username;
+            this.email = userData.email;
+            this.score = userData.score || 0;
         }
-    }
 
-    /**
-     * Возвращаем id пользователя
-     */
-    getId() {
-        return this.id;
-    }
+        /**
+         * Возвращаем пользователя
+         */
 
-    /**
-     * Возвращаем имя пользователя
-     */
-    getUsername() {
-        return this.username;
-    }
+    }, {
+        key: 'get',
+        value: function get() {
+            return {
+                'email': this.email,
+                'username': this.username,
+                'id': this.id,
+                'score': this.score
+            };
+        }
 
-    /**
-     * Возвращаем email пользователя
-     */
-    getEmail() {
-        return this.email;
-    }
+        /**
+         * Возвращаем id пользователя
+         */
 
-    /**
-     * Возвращаем счет пользователя
-     */
-    getScore() {
-        return this.score;
-    }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = User;
+    }, {
+        key: 'getId',
+        value: function getId() {
+            return this.id;
+        }
 
+        /**
+         * Возвращаем имя пользователя
+         */
 
+    }, {
+        key: 'getUsername',
+        value: function getUsername() {
+            return this.username;
+        }
+
+        /**
+         * Возвращаем email пользователя
+         */
+
+    }, {
+        key: 'getEmail',
+        value: function getEmail() {
+            return this.email;
+        }
+
+        /**
+         * Возвращаем счет пользователя
+         */
+
+    }, {
+        key: 'getScore',
+        value: function getScore() {
+            return this.score;
+        }
+    }]);
+
+    return User;
+}();
+
+exports.default = User;
 
 /***/ }),
-/* 23 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Block_BlockComponents__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SignIn_SignIn__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SignUp_SignUp__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Header_Header__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__UnRegMenu_UnRegMenu__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__RegMenu_RegMenu__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__AboutUs_AboutUs__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Scoreboard_Scoreboard__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Footer_Footer__ = __webpack_require__(48);
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _BlockComponents = __webpack_require__(0);
 
+var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
+var _SignIn = __webpack_require__(22);
 
+var _SignIn2 = _interopRequireDefault(_SignIn);
 
+var _SignUp = __webpack_require__(26);
 
+var _SignUp2 = _interopRequireDefault(_SignUp);
 
-class CreatePage {
-    constructor() {
+var _Header = __webpack_require__(28);
+
+var _Header2 = _interopRequireDefault(_Header);
+
+var _UnRegMenu = __webpack_require__(31);
+
+var _UnRegMenu2 = _interopRequireDefault(_UnRegMenu);
+
+var _RegMenu = __webpack_require__(33);
+
+var _RegMenu2 = _interopRequireDefault(_RegMenu);
+
+var _AboutUs = __webpack_require__(34);
+
+var _AboutUs2 = _interopRequireDefault(_AboutUs);
+
+var _Scoreboard = __webpack_require__(36);
+
+var _Scoreboard2 = _interopRequireDefault(_Scoreboard);
+
+var _Footer = __webpack_require__(37);
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var CreatePage = function () {
+    function CreatePage() {
+        _classCallCheck(this, CreatePage);
+
         this.body = document.getElementsByTagName('body')[0];
         this.parts = new Map();
 
-        this.addParts("Header", Object(__WEBPACK_IMPORTED_MODULE_3__Header_Header__["a" /* default */])());
-        this.addParts("SignIn", Object(__WEBPACK_IMPORTED_MODULE_1__SignIn_SignIn__["a" /* default */])());
-        this.addParts("SignUp", Object(__WEBPACK_IMPORTED_MODULE_2__SignUp_SignUp__["a" /* default */])());
-        this.addParts("UnRegMenu", Object(__WEBPACK_IMPORTED_MODULE_4__UnRegMenu_UnRegMenu__["a" /* default */])());
-        this.addParts("RegMenu", Object(__WEBPACK_IMPORTED_MODULE_5__RegMenu_RegMenu__["a" /* default */])());
-        this.addParts("AboutUs", Object(__WEBPACK_IMPORTED_MODULE_6__AboutUs_AboutUs__["a" /* default */])());
-        this.addParts("Scoreboard", Object(__WEBPACK_IMPORTED_MODULE_7__Scoreboard_Scoreboard__["a" /* default */])());
-        this.addParts("Footer", Object(__WEBPACK_IMPORTED_MODULE_8__Footer_Footer__["a" /* default */])());
+        this.addParts("Header", (0, _Header2.default)());
+        this.addParts("SignIn", (0, _SignIn2.default)());
+        this.addParts("SignUp", (0, _SignUp2.default)());
+        this.addParts("UnRegMenu", (0, _UnRegMenu2.default)());
+        this.addParts("RegMenu", (0, _RegMenu2.default)());
+        this.addParts("AboutUs", (0, _AboutUs2.default)());
+        this.addParts("Scoreboard", (0, _Scoreboard2.default)());
+        this.addParts("Footer", (0, _Footer2.default)());
     }
 
+    _createClass(CreatePage, [{
+        key: 'addParts',
+        value: function addParts(name, elem) {
+            var parent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.body;
 
-    addParts(name, elem, parent=this.body) {
-        this.parts.delete(name);
-        this.parts.set(name, elem);
-        elem.hide();
-        parent.appendChild(elem.getClassElement());
-    }
+            this.parts.delete(name);
+            this.parts.set(name, elem);
+            elem.hide();
+            parent.appendChild(elem.getClassElement());
+        }
+    }, {
+        key: 'getParts',
+        value: function getParts() {
+            return this.parts;
+        }
+    }]);
 
-    getParts() {
-        return this.parts;
-    }
-}
+    return CreatePage;
+}();
 
-/* harmony default export */ __webpack_exports__["a"] = (CreatePage);
+exports.default = CreatePage;
 
 /***/ }),
-/* 24 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = SignIn;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_SignInForm__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Form_ValidForm_ValidSignInForm__ = __webpack_require__(10);
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = SignIn;
 
+var _SignInForm = __webpack_require__(23);
 
+var _SignInForm2 = _interopRequireDefault(_SignInForm);
 
-let data = {
+var _ValidSignInForm = __webpack_require__(8);
+
+var _ValidSignInForm2 = _interopRequireDefault(_ValidSignInForm);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var data = {
     title: 'SIGN IN',
     classForm: 'form__login',
-    fields: [
-        {
-            attrs: {
-                type: 'text',
-                name: 'email',
-                placeholder: 'Enter email',
-            },
-        },
-        {
-            attrs: {
-                type: 'password',
-                name: 'password',
-                placeholder: 'Enter password',
-            },
-        }],
-    buttons: [
-        {
-            attrs: {
-                type: 'submit',
-                class: 'form__submit',
-                value: 'SIGN IN',
-                id: 'signIn-button-signIn',
-            },
-        },
-        // {
-        //     attrs: {
-        //         class: 'form__back',
-        //         value: 'BACK',
-        //         id: 'signIn-button-back',
-        //     },
-        // },
-    ]
+    fields: [{
+        attrs: {
+            type: 'text',
+            name: 'email',
+            placeholder: 'Enter email'
+        }
+    }, {
+        attrs: {
+            type: 'password',
+            name: 'password',
+            placeholder: 'Enter password'
+        }
+    }],
+    buttons: [{
+        attrs: {
+            type: 'submit',
+            class: 'form__submit',
+            value: 'SIGN IN',
+            id: 'signIn-button-signIn'
+        }
+    }]
 };
 
 /**
  * Получаем страницу входа
  */
 function SignIn() {
-    return new __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_SignInForm__["a" /* default */]('section', {id: 'section-signIn'}, [], data, __WEBPACK_IMPORTED_MODULE_1__components_Form_ValidForm_ValidSignInForm__["a" /* default */]);
+    return new _SignInForm2.default('section', { id: 'section-signIn' }, [], data, _ValidSignInForm2.default);
 }
 
-
-
 /***/ }),
-/* 25 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Form__ = __webpack_require__(6);
 
 
-class SignInForm extends __WEBPACK_IMPORTED_MODULE_0__Form__["a" /* default */] {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Form2 = __webpack_require__(4);
+
+var _Form3 = _interopRequireDefault(_Form2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SignInForm = function (_Form) {
+    _inherits(SignInForm, _Form);
+
     /**
      * @param {string} [tagName='div'] - tagName блока
      * @param {*} [attrs={}] - объект с атрибутами блока
@@ -1973,42 +1957,61 @@ class SignInForm extends __WEBPACK_IMPORTED_MODULE_0__Form__["a" /* default */] 
      * @param {class} ValidSignInForm - кдасс валидации данных
      * @constructor
      */
-    constructor(tagName = 'div', attrs = {}, classes = [], data, ValidSignInForm) {
-        super(tagName, attrs, classes, data);
-        this.validator = ValidSignInForm;
+    function SignInForm() {
+        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+        var data = arguments[3];
+        var ValidSignInForm = arguments[4];
+
+        _classCallCheck(this, SignInForm);
+
+        var _this = _possibleConstructorReturn(this, (SignInForm.__proto__ || Object.getPrototypeOf(SignInForm)).call(this, tagName, attrs, classes, data));
+
+        _this.validator = ValidSignInForm;
+        return _this;
     }
 
     /**
      * Позволяет подписаться на событие формы входа
      * @return {object}
      */
-    onSubmitSignInForm(callback) {
-        let signInForm = document.getElementsByClassName('form__login')[0];
 
-        signInForm.addEventListener('submit', (e) => {
-            e.preventDefault();
 
-            const formdata = {};
-            const elements = signInForm.elements;
+    _createClass(SignInForm, [{
+        key: 'onSubmitSignInForm',
+        value: function onSubmitSignInForm(callback) {
+            var _this2 = this;
 
-            for (let name in elements) {
-                formdata[name] = elements[name].value;
-                console.log(elements[name].value);
-            }
+            var signInForm = document.getElementsByClassName('form__login')[0];
 
-            const isValid = new this.validator(formdata.email, formdata.password);
+            signInForm.addEventListener('submit', function (e) {
+                e.preventDefault();
 
-            if(isValid.validForm()) {
-                callback(formdata);
-            }
-        });
-    }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = SignInForm;
+                var formdata = {};
+                var elements = signInForm.elements;
 
+                for (var name in elements) {
+                    formdata[name] = elements[name].value;
+                    console.log(elements[name].value);
+                }
+
+                var isValid = new _this2.validator(formdata.email, formdata.password);
+
+                if (isValid.validForm()) {
+                    callback(formdata);
+                }
+            });
+        }
+    }]);
+
+    return SignInForm;
+}(_Form3.default);
+
+exports.default = SignInForm;
 
 /***/ }),
-/* 26 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(3);
@@ -2037,233 +2040,106 @@ pug_html = pug_html + "\n    \u003Cinput" + (pug.attr("class", pug.classes(["for
 module.exports = template;
 
 /***/ }),
-/* 27 */
+/* 25 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 28 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(29);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(5)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../../node_modules/css-loader/index.js!./Form.css", function() {
-			var newContent = require("!!../../../../node_modules/css-loader/index.js!./Form.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, ".form {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n    flex-flow: column nowrap;\n    margin-left: 2%;\n    margin-top: -20px;\n}\n\n.form__input {\n    display: block;\n    width: 350px;\n    padding: 9px 0 12px 12px;\n    font-size: 1em;\n    margin: 5px 0 16px ;\n    font-family: \"Helvetica\";\n    border-radius: 7px;\n    background: #e9ecf0;\n    color: #5E6D82;\n    box-sizing: border-box;\n}\n\n\n.form__button {\n    background-color: whitesmoke;\n    font-size: 1.5em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    padding: 7px 17px;\n    border: 3px solid #041712;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 25px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n}\n\n.form__submit {\n    background-color: whitesmoke;\n    font-size: 1.5em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    padding: 7px 17px;\n    border: 3px solid #041712;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 15px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n    margin-left: 100px;\n    margin-bottom: -10px;\n}\n\n.form__submit:hover {\n    background-color: rgba(4, 23, 18, 0.04);\n    border: 3px solid rgba(169, 169, 169, 0.19);\n}\n\n.form__error {\n    color: #D8000C;\n    font-family: \"Verdana\", sans-serif;\n    text-align: center;\n    display: block;\n    border: 1px solid;\n    margin: -10px 0 2px 0;\n    padding:10px 10px 10px 10px;\n    background-color: #FFBABA;\n}\n\n.form__back {\n    margin: 25px 0 0 15px;\n    width: 130px;\n}\n\n.form__back:hover {\n    background-color: rgba(4, 23, 18, 0.04);\n    border: 3px solid rgba(169, 169, 169, 0.19);\n}\n\n\n.notify-container {\n    position: fixed;\n    top: 10px;\n    right: 20px;\n    z-index: 999999;\n}\n\n.notify {\n    margin: 10px 0 17px;\n    border-radius: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5),\n    inset 0 1px 0 rgba(255, 255, 255, 0.6);\n    width: 300px;\n    height: 50px;\n    background: red;\n    visibility: visible;\n}\n\n@keyframes show {\n    from {\n        opacity: 0;\n    }\n    to {\n        opacity: 1;\n    }\n}\n\n@keyframes hide {\n    from {\n        opacity: 1;\n    }\n    to {\n        opacity: 0;\n    }\n}\n\n.notify_delete {\n    display: none;\n}\n\n.notify__close {\n    display: inline-block;\n    margin-right: 11px;\n    font-weight: bold;\n    float: right;\n    font-size: 36px;\n    line-height: 50px;\n    color: white;\n    cursor: pointer;\n}\n\n.notify__text {\n    display: inline-block;\n    margin-left: 20px;\n    line-height: 50px;\n    font-family: 'Open Sans', sans-serif;\n    color: white;\n    cursor: default;\n}", ""]);
-
-// exports
-
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports) {
-
-
-/**
- * When source maps are enabled, `style-loader` uses a link element with a data-uri to
- * embed the css on the page. This breaks all relative urls because now they are relative to a
- * bundle instead of the current page.
- *
- * One solution is to only use full urls, but that may be impossible.
- *
- * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
- *
- * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
- *
- */
-
-module.exports = function (css) {
-  // get current location
-  var location = typeof window !== "undefined" && window.location;
-
-  if (!location) {
-    throw new Error("fixUrls requires window.location");
-  }
-
-	// blank or null?
-	if (!css || typeof css !== "string") {
-	  return css;
-  }
-
-  var baseUrl = location.protocol + "//" + location.host;
-  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
-
-	// convert each url(...)
-	/*
-	This regular expression is just a way to recursively match brackets within
-	a string.
-
-	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
-	   (  = Start a capturing group
-	     (?:  = Start a non-capturing group
-	         [^)(]  = Match anything that isn't a parentheses
-	         |  = OR
-	         \(  = Match a start parentheses
-	             (?:  = Start another non-capturing groups
-	                 [^)(]+  = Match anything that isn't a parentheses
-	                 |  = OR
-	                 \(  = Match a start parentheses
-	                     [^)(]*  = Match anything that isn't a parentheses
-	                 \)  = Match a end parentheses
-	             )  = End Group
-              *\) = Match anything and then a close parens
-          )  = Close non-capturing group
-          *  = Match anything
-       )  = Close capturing group
-	 \)  = Match a close parens
-
-	 /gi  = Get all matches, not the first.  Be case insensitive.
-	 */
-	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
-		// strip quotes (if they exist)
-		var unquotedOrigUrl = origUrl
-			.trim()
-			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
-			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
-
-		// already a full url? no change
-		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(unquotedOrigUrl)) {
-		  return fullMatch;
-		}
-
-		// convert the url to a full url
-		var newUrl;
-
-		if (unquotedOrigUrl.indexOf("//") === 0) {
-		  	//TODO: should we add protocol?
-			newUrl = unquotedOrigUrl;
-		} else if (unquotedOrigUrl.indexOf("/") === 0) {
-			// path should be relative to the base url
-			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
-		} else {
-			// path should be relative to current directory
-			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
-		}
-
-		// send back the fixed url(...)
-		return "url(" + JSON.stringify(newUrl) + ")";
-	});
-
-	// send back the fixed css
-	return fixedCss;
-};
-
-
-/***/ }),
-/* 31 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = SignUp;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_SignUpForm__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Form_ValidForm_ValidSignUpForm__ = __webpack_require__(11);
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = SignUp;
 
+var _SignUpForm = __webpack_require__(27);
 
+var _SignUpForm2 = _interopRequireDefault(_SignUpForm);
 
-let data = {
+var _ValidSignUpForm = __webpack_require__(9);
+
+var _ValidSignUpForm2 = _interopRequireDefault(_ValidSignUpForm);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var data = {
     title: 'SIGN UP',
-	classForm: 'form__signup',
-    fields: [
-        {
-            attrs: {
-                type: 'text',
-                name: 'username',
-                placeholder: 'Enter username',
-            },
-        },
-        {
-            attrs: {
-                type: 'text',
-                name: 'email',
-                placeholder: 'Enter email',
-            },
-        },
-        {
-            attrs: {
-                type: 'password',
-                name: 'password',
-                placeholder: 'Enter password',
-            },
-        },
-        {
-            attrs: {
-                type: 'password',
-                name: 'repeatPassword',
-                placeholder: 'Repeat password',
-            },
-        }],
-    buttons: [
-        {
-            attrs: {
-                type: 'submit',
-                class: 'form__submit',
-                value: 'SIGN UP',
-                id: 'signUp-button-signUp',
-            },
-        },
-        // {
-        //     attrs: {
-        //         class: 'form__back',
-        //         value: 'BACK',
-        //         id: 'signUp-button-back',
-        //     },
-        // },
-    ]
+    classForm: 'form__signup',
+    fields: [{
+        attrs: {
+            type: 'text',
+            name: 'username',
+            placeholder: 'Enter username'
+        }
+    }, {
+        attrs: {
+            type: 'text',
+            name: 'email',
+            placeholder: 'Enter email'
+        }
+    }, {
+        attrs: {
+            type: 'password',
+            name: 'password',
+            placeholder: 'Enter password'
+        }
+    }, {
+        attrs: {
+            type: 'password',
+            name: 'repeatPassword',
+            placeholder: 'Repeat password'
+        }
+    }],
+    buttons: [{
+        attrs: {
+            type: 'submit',
+            class: 'form__submit',
+            value: 'SIGN UP',
+            id: 'signUp-button-signUp'
+        }
+    }]
 };
 
 /**
  * Получаем страницу регистрации
  */
 function SignUp() {
-    return new __WEBPACK_IMPORTED_MODULE_0__components_Form_Form_SignUpForm__["a" /* default */]('section', {id: 'section-signUp'}, [], data, __WEBPACK_IMPORTED_MODULE_1__components_Form_ValidForm_ValidSignUpForm__["a" /* default */]);
+    return new _SignUpForm2.default('section', { id: 'section-signUp' }, [], data, _ValidSignUpForm2.default);
 }
 
-
-
 /***/ }),
-/* 32 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Form__ = __webpack_require__(6);
 
 
-class SignUpForm extends __WEBPACK_IMPORTED_MODULE_0__Form__["a" /* default */] {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Form2 = __webpack_require__(4);
+
+var _Form3 = _interopRequireDefault(_Form2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SignUpForm = function (_Form) {
+    _inherits(SignUpForm, _Form);
+
     /**
      * @param {string} [tagName='div'] - tagName блока
      * @param {*} [attrs={}] - объект с атрибутами блока
@@ -2272,108 +2148,164 @@ class SignUpForm extends __WEBPACK_IMPORTED_MODULE_0__Form__["a" /* default */] 
      * @param {class} ValidSignInForm - кдасс валидации данных
      * @constructor
      */
-    constructor(tagName = 'div', attrs = {}, classes = [], data, ValidSignInForm) {
-        super(tagName, attrs, classes, data);
-        this.validator = ValidSignInForm;
+    function SignUpForm() {
+        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+        var data = arguments[3];
+        var ValidSignInForm = arguments[4];
+
+        _classCallCheck(this, SignUpForm);
+
+        var _this = _possibleConstructorReturn(this, (SignUpForm.__proto__ || Object.getPrototypeOf(SignUpForm)).call(this, tagName, attrs, classes, data));
+
+        _this.validator = ValidSignInForm;
+        return _this;
     }
 
     /**
      * Позволяет подписаться на событие формы регистрации
      * @return {Promise}
      */
-    onSubmitSignUpForm(callback) {
-        let signUpForm = document.getElementsByClassName('form__signup')[0];
 
-        signUpForm.addEventListener('submit', (e) => {
-            e.preventDefault();
 
-            const formdata = {};
-            const elements = signUpForm.elements;
+    _createClass(SignUpForm, [{
+        key: 'onSubmitSignUpForm',
+        value: function onSubmitSignUpForm(callback) {
+            var _this2 = this;
 
-            for (let name in elements) {
-                formdata[name] = elements[name].value;
-            }
+            var signUpForm = document.getElementsByClassName('form__signup')[0];
 
-            const isValid = new this.validator(formdata.username, formdata.email,
-                formdata.password, formdata.repeatPassword);
+            signUpForm.addEventListener('submit', function (e) {
+                e.preventDefault();
 
-            if(isValid.validForm()) {
-                callback(formdata);
-            }
-        });
-    }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = SignUpForm;
+                var formdata = {};
+                var elements = signUpForm.elements;
 
+                for (var name in elements) {
+                    formdata[name] = elements[name].value;
+                }
+
+                var isValid = new _this2.validator(formdata.username, formdata.email, formdata.password, formdata.repeatPassword);
+
+                if (isValid.validForm()) {
+                    callback(formdata);
+                }
+            });
+        }
+    }]);
+
+    return SignUpForm;
+}(_Form3.default);
+
+exports.default = SignUpForm;
 
 /***/ }),
-/* 33 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = createHeader;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Header_Header__ = __webpack_require__(34);
 
 
-let data = {
-    nameGame: 'TANKS',
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = createHeader;
+
+var _Header = __webpack_require__(29);
+
+var _Header2 = _interopRequireDefault(_Header);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var data = {
+    nameGame: 'TANKS'
 };
 
 /**
  * Получаем страницу header
  */
 function createHeader() {
-    return new __WEBPACK_IMPORTED_MODULE_0__components_Header_Header__["a" /* default */]('section', {id: 'section-header'}, [], data);
+    return new _Header2.default('section', { id: 'section-header' }, [], data);
 }
 
-
 /***/ }),
-/* 34 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Header_pug__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Header_pug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Header_pug__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Header_css__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Header_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Header_css__);
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _BlockComponents = __webpack_require__(0);
+
+var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
+
+var _Header = __webpack_require__(30);
+
+var _Header2 = _interopRequireDefault(_Header);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
  * Класс Header-а
  * @module Header
  */
-class Header extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* default */] {
-    /**
-     * @param {string} [tagName='div'] - tagName блока
-     * @param {*} [attrs={}] - объект с атрибутами блока
-     * @param {string[]} [classes=[]] - список имён классов
-     * @param {*} [data={}] - объект с данными блока
-     * @constructor
-     */
-    constructor(tagName = 'div', attrs = {}, classes = [], data) {
-        super(tagName, attrs, classes, data);
+var Header = function (_Block) {
+  _inherits(Header, _Block);
+
+  /**
+   * @param {string} [tagName='div'] - tagName блока
+   * @param {*} [attrs={}] - объект с атрибутами блока
+   * @param {string[]} [classes=[]] - список имён классов
+   * @param {*} [data={}] - объект с данными блока
+   * @constructor
+   */
+  function Header() {
+    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var data = arguments[3];
+
+    _classCallCheck(this, Header);
+
+    return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, tagName, attrs, classes, data));
+  }
+
+  /**
+   * Получить Header
+   */
+
+
+  _createClass(Header, [{
+    key: 'getClassElement',
+    value: function getClassElement() {
+
+      var data = this.getData();
+
+      this.setHTML((0, _Header2.default)({ data: data }));
+      return this.getElement();
     }
+  }]);
 
-    /**
-     * Получить Header
-     */
-    getClassElement() {
+  return Header;
+}(_BlockComponents2.default);
 
-        let data = this.getData();
-
-        this.setHTML(__WEBPACK_IMPORTED_MODULE_1__Header_pug___default()({data}));
-        return this.getElement();
-    }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Header;
-
-
+exports.default = Header;
 
 /***/ }),
-/* 35 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(3);
@@ -2383,85 +2315,45 @@ pug_html = pug_html + "\n\u003Cdiv class=\"theme\"\u003Echange theme\u003C\u002F
 module.exports = template;
 
 /***/ }),
-/* 36 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(37);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(5)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!./Header.css", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!./Header.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, ".header {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    margin-bottom: 15px;\r\n}\r\n\r\n.header__logo {\r\n    width: 230px;\r\n    height: auto;\r\n    margin-left: -60px;\r\n}\r\n\r\n.header__text {\r\n    font-size: 2.7em;\r\n    font-family: \"Arial Black\", Gadget, sans-serif;\r\n    transform: rotate(-90deg);\r\n}\r\n\r\n.theme {\r\n    background-color: whitesmoke;\r\n    font-weight: 700;\r\n    font-family: \"Verdana\", sans-serif;\r\n    color: black;\r\n    border-radius: 10%;\r\n    text-align: center;\r\n    text-decoration: none;\r\n    display: inline-block;\r\n    width: 7em;\r\n    margin: 15px 0 5px 15px;\r\n    cursor: pointer;\r\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\r\n    padding: 1px 7px;\r\n    border: none;\r\n    font-size: 1.1em;\r\n}\r\n\r\n.theme:hover {\r\n    background-color: #e9ecf0;\r\n}", ""]);
-
-// exports
-
-
-/***/ }),
-/* 38 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = createUnRegMenu;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Menu_Menu__ = __webpack_require__(12);
 
 
-let data = {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = createUnRegMenu;
+
+var _Menu = __webpack_require__(10);
+
+var _Menu2 = _interopRequireDefault(_Menu);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var data = {
     user: undefined,
-    buttons: [
-        {
-            text: 'SIGN IN',
-            id: 'menu-button-signIn',
-            class: 'menu__button',
-        },
-        {
-            text: 'SIGN UP',
-            id: 'menu-button-signUp',
-            class: 'menu__button',
-        }
-    ]
+    buttons: [{
+        text: 'SIGN IN',
+        id: 'menu-button-signIn',
+        class: 'menu__button'
+    }, {
+        text: 'SIGN UP',
+        id: 'menu-button-signUp',
+        class: 'menu__button'
+    }]
 };
 
 /**
  * Получаем страницу незарегистрированного пользователя
  */
 function createUnRegMenu() {
-    return new __WEBPACK_IMPORTED_MODULE_0__components_Menu_Menu__["a" /* default */]('section', {id: 'section-unRegMenu'}, [], data);
+    return new _Menu2.default('section', { id: 'section-unRegMenu' }, [], data);
 }
 
-
 /***/ }),
-/* 39 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(3);
@@ -2493,136 +2385,101 @@ pug_html = pug_html + "\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for
 module.exports = template;
 
 /***/ }),
-/* 40 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(41);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(5)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!./Menu.css", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!./Menu.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, ".menu {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    margin-bottom: 15px;\r\n    flex-flow: column nowrap;\r\n}\r\n\r\n.menu__button {\r\n    background-color: whitesmoke;\r\n    font-size: 1.5em;\r\n    font-weight: 700;\r\n    font-family: \"Verdana\", sans-serif;\r\n    color: black;\r\n    padding: 7px 17px;\r\n    border: 3px solid #041712;\r\n    border-radius: 10%;\r\n    text-align: center;\r\n    text-decoration: none;\r\n    display: inline-block;\r\n    width: 7em;\r\n    margin: 15px 0 5px 15px;\r\n    cursor: pointer;\r\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\r\n}\r\n\r\n.menu__button:hover {\r\n    background-color: rgba(4, 23, 18, 0.04);\r\n    border: 3px solid rgba(169, 169, 169, 0.19);\r\n}\r\n\r\n.menu__player {\r\n    text-transform: uppercase;\r\n}", ""]);
-
-// exports
-
-
-/***/ }),
-/* 42 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = createRegMenu;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Menu_Menu__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_UserService__ = __webpack_require__(9);
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = createRegMenu;
+
+var _Menu = __webpack_require__(10);
+
+var _Menu2 = _interopRequireDefault(_Menu);
+
+var _UserService = __webpack_require__(7);
+
+var _UserService2 = _interopRequireDefault(_UserService);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Получаем страницу зарегестрированного пользователя
  */
 function createRegMenu() {
-    let data = {
+    var data = {
         user: 'name',
-        buttons: [
-            {
-                text: 'START',
-                id: 'menu-button-playGame',
-                class: 'menu__button',
-            },
-            {
-                text: 'LOG OUT',
-                id: 'menu-button-logout',
-                class: 'menu__button',
-            }
-        ]
+        buttons: [{
+            text: 'START',
+            id: 'menu-button-playGame',
+            class: 'menu__button'
+        }, {
+            text: 'LOG OUT',
+            id: 'menu-button-logout',
+            class: 'menu__button'
+        }]
     };
 
-    return new __WEBPACK_IMPORTED_MODULE_0__components_Menu_Menu__["a" /* default */]('section', {id: 'section-regMenu'}, [], data);
+    return new _Menu2.default('section', { id: 'section-regMenu' }, [], data);
 }
 
-
 /***/ }),
-/* 43 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = createAboutUs;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Table_Table__ = __webpack_require__(13);
 
-let data = {
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = createAboutUs;
+
+var _Table = __webpack_require__(11);
+
+var _Table2 = _interopRequireDefault(_Table);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var data = {
     idButton: 'aboutUs-button-back',
     classTable: 'about_table',
     title: 'DEVELOPERS',
-    users: [
-        {
-            name: 'GRIGOREV PAVEL',
-            position: 'FRONTEND',
+    users: [{
+        name: 'GRIGOREV PAVEL',
+        position: 'FRONTEND'
 
-        },
-        {
-            name: 'SAMOKHIN MAXIM',
-            position: 'FRONTEND',
+    }, {
+        name: 'SAMOKHIN MAXIM',
+        position: 'FRONTEND'
 
-        },
-        {
-            name: 'ZUBAREV ANTON',
-            position: 'BACKEND',
+    }, {
+        name: 'ZUBAREV ANTON',
+        position: 'BACKEND'
 
-        },
-        {
-            name: 'PITIK DIMA',
-            position: 'BACKEND',
+    }, {
+        name: 'PITIK DIMA',
+        position: 'BACKEND'
 
-        },
-        {
-            name: 'ALEXANDER TSVETKOV',
-            position: 'MENTOR',
+    }, {
+        name: 'ALEXANDER TSVETKOV',
+        position: 'MENTOR'
 
-        },
-    ]
+    }]
 };
 
 /**
  * Получаем страницу о нас
  */
 function createAboutUs() {
-    return new __WEBPACK_IMPORTED_MODULE_0__components_Table_Table__["a" /* default */]('section', {id: 'section-aboutUs'}, [], data);
+    return new _Table2.default('section', { id: 'section-aboutUs' }, [], data);
 }
 
-
 /***/ }),
-/* 44 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(3);
@@ -2655,181 +2512,175 @@ pug_html = pug_html + "\n    \u003C\u002Ftable\u003E\n  \u003C\u002Fdiv\u003E\n 
 module.exports = template;
 
 /***/ }),
-/* 45 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(46);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(5)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!./Table.css", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!./Table.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 46 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, ".table__title {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 2em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    margin: 1% 0 1% 1%;\n}\n\n.table__content {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n}\n\n.table__back {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 15px;\n    flex-flow: column nowrap;\n\n}\n\n.table__button {\n    background-color: whitesmoke;\n    font-size: 1.5em;\n    font-weight: 700;\n    font-family: \"Verdana\", sans-serif;\n    color: black;\n    padding: 7px 17px;\n    border: 3px solid #041712;\n    border-radius: 10%;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    width: 7em;\n    margin: 15px 0 5px 15px;\n    cursor: pointer;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n}\n\n.table__button:hover {\n    background-color: rgba(4, 23, 18, 0.04);\n    border: 3px solid rgba(169, 169, 169, 0.19);\n}\n\n\n.table__tag {\n    border-collapse: collapse;\n    font-family: \"Verdana\", sans-serif;\n}\n\n.table__td, .table__th {\n    text-align: center;\n    padding: 10px;\n}\n\n.table__player {\n    justify-content: center;\n    display: flex;\n    margin: 18px 0 15px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 47 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = Scoreboard;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Table_Table__ = __webpack_require__(13);
 
-let data = {
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = Scoreboard;
+
+var _Table = __webpack_require__(11);
+
+var _Table2 = _interopRequireDefault(_Table);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var data = {
     idButton: 'score-button-back',
     classTable: 'score_table',
     title: 'SCOREBOARD',
-    users: [
-        {
-            name: 'Name',
-            position: 'Rating',
+    users: [{
+        name: 'Name',
+        position: 'Rating'
 
-        },
-        {
-            name: 'Peter',
-            position: '100',
+    }, {
+        name: 'Peter',
+        position: '100'
 
-        },
-        {
-            name: 'Lois',
-            position: '150',
+    }, {
+        name: 'Lois',
+        position: '150'
 
-        },
-        {
-            name: 'Joe',
-            position: '300',
+    }, {
+        name: 'Joe',
+        position: '300'
 
-        },
-        {
-            name: 'Cleveland',
-            position: '250'
-        }
-    ],
-    userScore: 'score',
+    }, {
+        name: 'Cleveland',
+        position: '250'
+    }],
+    userScore: 'score'
 };
 
 /**
  * Получаем страницу счета
  */
 function Scoreboard() {
-    return new __WEBPACK_IMPORTED_MODULE_0__components_Table_Table__["a" /* default */]('section', {id: 'section-scoreList'}, [], data);
+    return new _Table2.default('section', { id: 'section-scoreList' }, [], data);
 }
 
-
 /***/ }),
-/* 48 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = CreateFooter;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Footer_Footer__ = __webpack_require__(49);
 
 
-let data = {
-    imgListData: [
-        {
-            class: "footer__sound",
-            src: "./static/img/sound.png",
-            id: "menu-button-music",
-        },
-        {
-            class: "footer__score",
-            src: "./static/img/score.png",
-            id: "menu-button-score",
-        },
-        {
-            class: "footer__info",
-            src: "./static/img/info.png",
-            id: "menu-button-about",
-        },
-    ]
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = CreateFooter;
+
+var _Footer = __webpack_require__(38);
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var data = {
+    imgListData: [{
+        class: "footer__sound",
+        src: "./static/img/sound.png",
+        id: "menu-button-music"
+    }, {
+        class: "footer__score",
+        src: "./static/img/score.png",
+        id: "menu-button-score"
+    }, {
+        class: "footer__info",
+        src: "./static/img/info.png",
+        id: "menu-button-about"
+    }]
 };
 
 /**
  * Получаем страницу footer-а
  */
 function CreateFooter() {
-    return new __WEBPACK_IMPORTED_MODULE_0__components_Footer_Footer__["a" /* default */]('section', {id: 'section-footer'}, [], data);
+    return new _Footer2.default('section', { id: 'section-footer' }, [], data);
 }
 
-
 /***/ }),
-/* 49 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Footer_pug__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Footer_pug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Footer_pug__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Footer_css__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Footer_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Footer_css__);
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _BlockComponents = __webpack_require__(0);
+
+var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
+
+var _Footer = __webpack_require__(39);
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// import './Footer.scss';
 
 /**
  * Класс footer-а
  * @module Footer
  */
-class Footer extends __WEBPACK_IMPORTED_MODULE_0__Block_BlockComponents__["a" /* default */] {
-    /**
-     * @param {string} [tagName='div'] - tagName блока
-     * @param {*} [attrs={}] - объект с атрибутами блока
-     * @param {string[]} [classes=[]] - список имён классов
-     * @param {*} [data={}] - объект с данными блока
-     * @constructor
-     */
-    constructor(tagName = 'div', attrs = {}, classes = [], data) {
-        super(tagName, attrs, classes, data);
+var Footer = function (_Block) {
+  _inherits(Footer, _Block);
+
+  /**
+   * @param {string} [tagName='div'] - tagName блока
+   * @param {*} [attrs={}] - объект с атрибутами блока
+   * @param {string[]} [classes=[]] - список имён классов
+   * @param {*} [data={}] - объект с данными блока
+   * @constructor
+   */
+  function Footer() {
+    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var data = arguments[3];
+
+    _classCallCheck(this, Footer);
+
+    return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, tagName, attrs, classes, data));
+  }
+
+  /**
+   * Получить footer
+   */
+
+
+  _createClass(Footer, [{
+    key: 'getClassElement',
+    value: function getClassElement() {
+      var data = this.getData();
+      this.setHTML((0, _Footer2.default)({ data: data }));
+      return this.getElement();
     }
+  }]);
 
-    /**
-     * Получить footer
-     */
-    getClassElement() {
-		let data = this.getData();
-        this.setHTML(__WEBPACK_IMPORTED_MODULE_1__Footer_pug___default()({data}));
-        return this.getElement();
-    }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Footer;
+  return Footer;
+}(_BlockComponents2.default);
 
-
+exports.default = Footer;
 
 /***/ }),
-/* 50 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(3);
@@ -2858,65 +2709,32 @@ pug_html = pug_html + "\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for
 module.exports = template;
 
 /***/ }),
-/* 51 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(52);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(5)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!./Footer.css", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!./Footer.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, ".footer {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    margin-bottom: 15px;\r\n}\r\n\r\n.footer__logo {\r\n    width: 230px;\r\n    height: auto;\r\n    margin-left: -60px;\r\n}\r\n\r\n.footer__sound {\r\n    width: 100px;\r\n    margin: 0 160px;\r\n}\r\n\r\n.footer__score {\r\n    width: 50px;\r\n    margin: 0 125px;\r\n}\r\n\r\n.footer__info {\r\n    width: 50px;\r\n    margin: 0 55px;\r\n}", ""]);
-
-// exports
-
-
-/***/ }),
-/* 53 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Route__ = __webpack_require__(54);
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _Route = __webpack_require__(41);
 
-class Router {
+var _Route2 = _interopRequireDefault(_Route);
 
-    constructor() {
-        if (Router.__instance) {  // если роутер существует - вернуть его самого
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Router = function () {
+    function Router() {
+        _classCallCheck(this, Router);
+
+        if (Router.__instance) {
+            // если роутер существует - вернуть его самого
             return Router.__instance;
         }
 
@@ -2928,271 +2746,353 @@ class Router {
         Router.__instance = this;
     }
 
+    _createClass(Router, [{
+        key: 'addRoute',
+        value: function addRoute(pathname, view) {
+            var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
-    addRoute(pathname, view, options = {}) {
-        const route = new __WEBPACK_IMPORTED_MODULE_0__Route__["a" /* default */](pathname, view, options);
-        route.setRouter(this);
-        this.routes.push(route);
+            var route = new _Route2.default(pathname, view, options);
+            route.setRouter(this);
+            this.routes.push(route);
 
-        return this;
-    }
+            return this;
+        }
+    }, {
+        key: 'startRoute',
+        value: function startRoute() {
+            // для записи с истории
+            window.onpopstate = function (event) {
+                var pathname = window.location.pathname;
+                this.onroute(pathname);
+            }.bind(this);
 
-
-    startRoute() { // для записи с истории
-        window.onpopstate = function(event) {
-            const pathname = window.location.pathname;
+            var pathname = window.location.pathname;
             this.onroute(pathname);
-        }.bind(this);
-
-        const pathname = window.location.pathname;
-        this.onroute(pathname);
-    }
-
-
-    onroute(pathname) {
-        pathname = pathname.toString();
-		let path = (pathname !== '/') ? ( pathname[pathname.length - 1] === '/' ? pathname.slice(0, pathname.length - 1) : pathname) : pathname;
-        const route = this.routes.find( route => route.pathname.test(path) );
-
-        if (!route) {
-            console.log("[onroute] in Router: can't find route");
-            return;
         }
+    }, {
+        key: 'onroute',
+        value: function onroute(pathname) {
+            pathname = pathname.toString();
+            var path = pathname !== '/' ? pathname[pathname.length - 1] === '/' ? pathname.slice(0, pathname.length - 1) : pathname : pathname;
+            var route = this.routes.find(function (route) {
+                return route.pathname.test(path);
+            });
 
-        if (this.activeRoute) {
-            this.activeRoute.leave();
+            if (!route) {
+                console.log("[onroute] in Router: can't find route");
+                return;
+            }
+
+            if (this.activeRoute) {
+                this.activeRoute.leave();
+            }
+
+            this.activeRoute = route;
+            this.activeRoute.navigate();
         }
+    }, {
+        key: 'go',
+        value: function go(pathname) {
+            if (window.location.pathname === pathname) {
+                return;
+            }
+            this.history.pushState({}, '', pathname);
 
-        this.activeRoute = route;
-        this.activeRoute.navigate();
-    }
-
-    go(pathname) {
-        if (window.location.pathname === pathname) {
-            return;
+            this.onroute(pathname);
         }
-        this.history.pushState({}, '', pathname);
+    }]);
 
-        this.onroute(pathname);
-    }
+    return Router;
+}();
 
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Router;
-
+exports.default = Router;
 
 /***/ }),
-/* 54 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-class Route {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
-    constructor(pathname, controller, options = {}) {
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-        this.pathname = new RegExp("\\"+pathname+"((\\?[a-z0-9\\-?\\[\\]=&;#]+)|$)");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Route = function () {
+    function Route(pathname, controller) {
+        var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+        _classCallCheck(this, Route);
+
+        this.pathname = new RegExp("\\" + pathname + "((\\?[a-z0-9\\-?\\[\\]=&;#]+)|$)");
         this.Controller = controller;
         this.options = options;
     }
 
+    _createClass(Route, [{
+        key: "navigate",
+        value: function navigate() {
+            if (!this._controller) {
+                var controller = new this.Controller(this.options); // пр: создаём новый ScoreListController
+                controller.init(this.options);
+                controller.setRouterController(this.__router);
+                this._controller = controller;
+            }
 
-    navigate() {
-        if (!this._controller) {
-            const controller = new this.Controller(this.options); // пр: создаём новый ScoreListController
-            controller.init(this.options);
-            controller.setRouterController(this.__router);
-            this._controller = controller;
+            this._controller.show();
         }
+    }, {
+        key: "leave",
+        value: function leave() {
+            this._controller.hide();
+        }
+    }, {
+        key: "setRouter",
+        value: function setRouter(router) {
+            this.__router = router;
+        }
+    }]);
 
-        this._controller.show();
-    }
+    return Route;
+}();
 
-    leave() {
-        this._controller.hide();
-    }
-    
-    setRouter(router) {
-        this.__router = router;
-    }
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (Route);
+exports.default = Route;
 
 /***/ }),
-/* 55 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Controller__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__static_css_style__ = __webpack_require__(2);
 
 
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _Controller2 = __webpack_require__(1);
 
+var _Controller3 = _interopRequireDefault(_Controller2);
 
-class MenuStartController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /* default */] {
+var _style = __webpack_require__(2);
 
-	constructor(opt = {}) {
+var _style2 = _interopRequireDefault(_style);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MenuStartController = function (_Controller) {
+	_inherits(MenuStartController, _Controller);
+
+	function MenuStartController() {
+		var opt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+		_classCallCheck(this, MenuStartController);
+
 		if (MenuStartController.__instance) {
-			return MenuStartController.__instance;
+			var _ret;
+
+			return _ret = MenuStartController.__instance, _possibleConstructorReturn(_this, _ret);
 		}
 
-		super(opt);
-		MenuStartController.__instance = this;
-		this.theme = new __WEBPACK_IMPORTED_MODULE_1__static_css_style__["a" /* default */]();
-		this.flag = true;
-		this.addListener();
+		var _this = _possibleConstructorReturn(this, (MenuStartController.__proto__ || Object.getPrototypeOf(MenuStartController)).call(this, opt));
+
+		MenuStartController.__instance = _this;
+		_this.theme = new _style2.default();
+		_this.flag = true;
+		_this.addListener();
+		return _this;
 	}
 
-	addListener() {
+	_createClass(MenuStartController, [{
+		key: 'addListener',
+		value: function addListener() {
+			var _this2 = this;
 
-		document.getElementById('menu-button-playGame').addEventListener('click', event => {
-			event.preventDefault();
-			this._router.go('/play');
-		});
+			document.getElementById('menu-button-playGame').addEventListener('click', function (event) {
+				event.preventDefault();
+				_this2._router.go('/play');
+			});
 
-		document.getElementById('menu-button-logout').addEventListener('click', event => {
-			event.preventDefault();
-			this.userService.logout()
-				.then((response) => {
+			document.getElementById('menu-button-logout').addEventListener('click', function (event) {
+				event.preventDefault();
+				_this2.userService.logout().then(function (response) {
 					console.log(response);
-					this.userService.user.id = 0;
-					this.show();
-					this.page_parts.get("RegMenu").hide();
-					this._router.go('/');
-				})
-				.catch(e => {
+					_this2.userService.user.id = 0;
+					_this2.show();
+					_this2.page_parts.get("RegMenu").hide();
+					_this2._router.go('/');
+				}).catch(function (e) {
 					alert(e);
 				});
-		});
-
-		if (this.flag) {
-			document.getElementsByClassName('theme')[0].addEventListener('click', event => {
-				event.preventDefault();
-				this.theme.changeTheme();
 			});
 
-			document.getElementById('menu-button-music').addEventListener('click', event => {
-				event.preventDefault();
-				this._router.go('/');
-			});
+			if (this.flag) {
+				document.getElementsByClassName('theme')[0].addEventListener('click', function (event) {
+					event.preventDefault();
+					_this2.theme.changeTheme();
+				});
 
-			document.getElementById('menu-button-score').addEventListener('click', event => {
-				event.preventDefault();
-				this._router.go('/score');
-			});
+				document.getElementById('menu-button-music').addEventListener('click', function (event) {
+					event.preventDefault();
+					_this2._router.go('/');
+				});
 
-			document.getElementById('menu-button-about').addEventListener('click', event => {
-				event.preventDefault();
-				this._router.go('/about');
-			});
+				document.getElementById('menu-button-score').addEventListener('click', function (event) {
+					event.preventDefault();
+					_this2._router.go('/score');
+				});
 
-			document.getElementById('menu-button-signIn').addEventListener('click', event => {
-				event.preventDefault();
-				this._router.go('/signin');
-			});
+				document.getElementById('menu-button-about').addEventListener('click', function (event) {
+					event.preventDefault();
+					_this2._router.go('/about');
+				});
 
-			document.getElementById('menu-button-signUp').addEventListener('click', event => {
-				event.preventDefault();
-				this._router.go('/signup');
-			});
+				document.getElementById('menu-button-signIn').addEventListener('click', function (event) {
+					event.preventDefault();
+					_this2._router.go('/signin');
+				});
 
-			this.flag = false;
+				document.getElementById('menu-button-signUp').addEventListener('click', function (event) {
+					event.preventDefault();
+					_this2._router.go('/signup');
+				});
+
+				this.flag = false;
+			}
 		}
+	}, {
+		key: 'resume',
+		value: function resume() {
+			this.show();
+		}
+	}, {
+		key: 'show',
+		value: function show() {
+			var _this3 = this;
 
-	}
+			this.page_parts.get("Header").show();
+			console.log("[MenuStartController] in show");
 
-	resume() {
-		this.show();
-	}
-
-	show() {
-		this.page_parts.get("Header").show();
-		console.log("[MenuStartController] in show");
-
-		this.userService
-			.getProfile()
-			.then((resp) => {
+			this.userService.getProfile().then(function (resp) {
 				console.log("[userService.getProfile] response: " + resp);
-				this.userService.user.set(resp);
+				_this3.userService.user.set(resp);
 				console.log("alkscjbasbcasbucaosubc:");
-				console.log(this.page_parts.get("RegMenu").data.user);
-				this.page_parts.get("RegMenu").data.user = this.userService.user.getUsername();
-				this.page_parts.get("RegMenu").getClassElement().hidden=false;
-				this.addListener();
+				console.log(_this3.page_parts.get("RegMenu").data.user);
+				_this3.page_parts.get("RegMenu").data.user = _this3.userService.user.getUsername();
+				_this3.page_parts.get("RegMenu").getClassElement().hidden = false;
+				_this3.addListener();
 				// this.page_parts.get("RegMenu").show();
-			})
-			.catch((err) => {
+			}).catch(function (err) {
 				console.log("[userService.getProfile] err: " + err);
-				this.page_parts.get("UnRegMenu").show();
+				_this3.page_parts.get("UnRegMenu").show();
 			});
 
-		this.page_parts.get("Footer").show();
-	}
+			this.page_parts.get("Footer").show();
+		}
+	}, {
+		key: 'hide',
+		value: function hide() {
+			this.page_parts.get("Header").hide();
+			this.page_parts.get("UnRegMenu").hide();
+			this.page_parts.get("RegMenu").hide();
+			this.page_parts.get("Footer").hide();
+		}
+	}]);
 
-	hide() {
-		this.page_parts.get("Header").hide();
-		this.page_parts.get("UnRegMenu").hide();
-		this.page_parts.get("RegMenu").hide();
-		this.page_parts.get("Footer").hide();
-	}
-}
+	return MenuStartController;
+}(_Controller3.default);
 
-/* harmony default export */ __webpack_exports__["a"] = (MenuStartController);
-
+exports.default = MenuStartController;
 
 /***/ }),
-/* 56 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Controller__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__game_classes_index__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__game_classes_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__game_classes_index__);
 
 
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Controller2 = __webpack_require__(1);
+
+var _Controller3 = _interopRequireDefault(_Controller2);
+
+var _index = __webpack_require__(44);
+
+var _index2 = _interopRequireDefault(_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 // import Game from '../game/classes/Game/Game';
 
 
-class PlayGameController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /* default */] {
+var PlayGameController = function (_Controller) {
+	_inherits(PlayGameController, _Controller);
 
-	constructor(opt = {}) {
+	function PlayGameController() {
+		var opt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+		_classCallCheck(this, PlayGameController);
+
 		if (PlayGameController.__instance) {
-			return PlayGameController.__instance;
+			var _ret;
+
+			return _ret = PlayGameController.__instance, _possibleConstructorReturn(_this, _ret);
 		}
 
-		super(opt);
-		PlayGameController.__instance = this;
+		var _this = _possibleConstructorReturn(this, (PlayGameController.__proto__ || Object.getPrototypeOf(PlayGameController)).call(this, opt));
 
+		PlayGameController.__instance = _this;
+
+		return _this;
 	}
 
-	show() {
-		this.userService
-			.getProfile()
-			.then((resp) => {
+	_createClass(PlayGameController, [{
+		key: 'show',
+		value: function show() {
+			var _this2 = this;
+
+			this.userService.getProfile().then(function (resp) {
 				console.log("[userService.getProfile] response: " + resp);
-				this.userService.user.set(resp);
-				let game = new __WEBPACK_IMPORTED_MODULE_1__game_classes_index___default.a();
-			})
-			.catch((err) => {
+				_this2.userService.user.set(resp);
+				var game = new _index2.default();
+			}).catch(function (err) {
 				console.log("[userService.getProfile] err: " + err);
-				this._router.go('/');
+				_this2._router.go('/');
 			});
-	}
+		}
+	}, {
+		key: 'hide',
+		value: function hide() {}
+	}]);
 
-	hide() {
+	return PlayGameController;
+}(_Controller3.default);
 
-	}
-
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (PlayGameController);
+exports.default = PlayGameController;
 
 /***/ }),
-/* 57 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3213,10 +3113,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // require('p2');
 // require('phaser');
 // import 'styles/style.styl'; // Registering styles for the page; They will automatically inject.
-var boot_state_1 = __webpack_require__(58);
-var preloader_state_1 = __webpack_require__(60);
-var main_state_1 = __webpack_require__(65);
-var world_state_1 = __webpack_require__(66);
+var boot_state_1 = __webpack_require__(45);
+var preloader_state_1 = __webpack_require__(47);
+var main_state_1 = __webpack_require__(52);
+var world_state_1 = __webpack_require__(53);
 // The main class of our application
 var App = /** @class */ (function (_super) {
     __extends(App, _super);
@@ -3236,7 +3136,7 @@ exports.default = App;
 
 
 /***/ }),
-/* 58 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3253,9 +3153,9 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
-var state_1 = __webpack_require__(8);
-var titlepage = __webpack_require__(14);
-var loaderImage = __webpack_require__(59);
+var state_1 = __webpack_require__(6);
+var titlepage = __webpack_require__(12);
+var loaderImage = __webpack_require__(46);
 var BootState = /** @class */ (function (_super) {
     __extends(BootState, _super);
     function BootState() {
@@ -3275,13 +3175,13 @@ exports.default = BootState;
 
 
 /***/ }),
-/* 59 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "14d4ff248dc707525c77546bd8f6a020.png";
 
 /***/ }),
-/* 60 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3298,19 +3198,19 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
-var state_1 = __webpack_require__(8);
+var state_1 = __webpack_require__(6);
 // Webpack will replace these imports with a URLs to images
-var tanks = __webpack_require__(15);
-var tanksJSON = __webpack_require__(16);
-var enemy = __webpack_require__(61);
-var bullet = __webpack_require__(62);
-var kaboom = __webpack_require__(63);
-var titlepage = __webpack_require__(14);
-var logo = __webpack_require__(64);
+var tanks = __webpack_require__(13);
+var tanksJSON = __webpack_require__(14);
+var enemy = __webpack_require__(48);
+var bullet = __webpack_require__(49);
+var kaboom = __webpack_require__(50);
+var titlepage = __webpack_require__(12);
+var logo = __webpack_require__(51);
 // const startAudio      = require('../../../static/staticsGame/music/boom.mp3');
-var earth = __webpack_require__(17);
-var pause = __webpack_require__(18);
-var box_tree = __webpack_require__(19);
+var earth = __webpack_require__(15);
+var pause = __webpack_require__(16);
+var box_tree = __webpack_require__(17);
 // The state for loading core resources for the game
 var PreloaderState = /** @class */ (function (_super) {
     __extends(PreloaderState, _super);
@@ -3351,31 +3251,31 @@ exports.default = PreloaderState;
 
 
 /***/ }),
-/* 61 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "f50e6d82d4bfab326976a927ee97741f.png";
 
 /***/ }),
-/* 62 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "fae6edb0e0a51c1e45006a123c63dff2.png";
 
 /***/ }),
-/* 63 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "5ddcf208bfb5ee103c39ea71c64a107f.png";
 
 /***/ }),
-/* 64 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "6f7c29bcd42fe6d20b75c1853ca7e6d3.png";
 
 /***/ }),
-/* 65 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3392,7 +3292,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
-var state_1 = __webpack_require__(8);
+var state_1 = __webpack_require__(6);
 // The main state of the game
 var MainState = /** @class */ (function (_super) {
     __extends(MainState, _super);
@@ -3423,7 +3323,7 @@ exports.default = MainState;
 
 
 /***/ }),
-/* 66 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3440,13 +3340,13 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
-var state_1 = __webpack_require__(8);
-var tank_state_1 = __webpack_require__(67);
-var earth = __webpack_require__(17);
-var pause = __webpack_require__(18);
-var box_tree = __webpack_require__(19);
-var tanks = __webpack_require__(15);
-var tanksJSON = __webpack_require__(16);
+var state_1 = __webpack_require__(6);
+var tank_state_1 = __webpack_require__(54);
+var earth = __webpack_require__(15);
+var pause = __webpack_require__(16);
+var box_tree = __webpack_require__(17);
+var tanks = __webpack_require__(13);
+var tanksJSON = __webpack_require__(14);
 var WorldState = /** @class */ (function (_super) {
     __extends(WorldState, _super);
     function WorldState() {
@@ -3480,7 +3380,7 @@ exports.default = WorldState;
 
 
 /***/ }),
-/* 67 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3552,289 +3452,431 @@ exports.default = TankState;
 
 
 /***/ }),
-/* 68 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Controller__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Form_Form_Form__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__static_css_style__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Form_ValidForm_Notify_Notify__ = __webpack_require__(7);
 
 
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _Controller2 = __webpack_require__(1);
 
+var _Controller3 = _interopRequireDefault(_Controller2);
 
+var _Form = __webpack_require__(4);
 
-class SignInController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /* default */] {
+var _Form2 = _interopRequireDefault(_Form);
 
-	constructor(opt = {}) {
+var _style = __webpack_require__(2);
+
+var _style2 = _interopRequireDefault(_style);
+
+var _Notify = __webpack_require__(5);
+
+var _Notify2 = _interopRequireDefault(_Notify);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SignInController = function (_Controller) {
+	_inherits(SignInController, _Controller);
+
+	function SignInController() {
+		var opt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+		_classCallCheck(this, SignInController);
+
 		if (SignInController.__instance) {
-			return SignInController.__instance;
+			var _ret;
+
+			return _ret = SignInController.__instance, _possibleConstructorReturn(_this, _ret);
 		}
 
-		super(opt);
-		SignInController.__instance = this;
-		this.theme = new __WEBPACK_IMPORTED_MODULE_2__static_css_style__["a" /* default */]();
-		this.addListener();
+		var _this = _possibleConstructorReturn(this, (SignInController.__proto__ || Object.getPrototypeOf(SignInController)).call(this, opt));
+
+		SignInController.__instance = _this;
+		_this.theme = new _style2.default();
+		_this.addListener();
+		return _this;
 	}
 
-	addListener() {
-		document.getElementsByClassName('theme')[0].addEventListener('click', event => {
-			event.preventDefault();
-			this.theme.changeTheme();
-		});
+	_createClass(SignInController, [{
+		key: 'addListener',
+		value: function addListener() {
+			var _this2 = this;
 
-		this.page_parts.get('SignIn').onSubmitSignInForm(formdata => {
-			this.userService
-				.signIn(formdata.email, formdata.password)
-				.then((data) => {
-					this.userService.user.set(data);
+			document.getElementsByClassName('theme')[0].addEventListener('click', function (event) {
+				event.preventDefault();
+				_this2.theme.changeTheme();
+			});
+
+			this.page_parts.get('SignIn').onSubmitSignInForm(function (formdata) {
+				_this2.userService.signIn(formdata.email, formdata.password).then(function (data) {
+					_this2.userService.user.set(data);
 					console.log("[onSubmitSignInForm] Success sign in");
-					console.log('signIn: ' + this.userService.user.getUsername());
-					__WEBPACK_IMPORTED_MODULE_1__components_Form_Form_Form__["a" /* default */].reset();
-					this._router.go('/');
-				})
-				.catch((err) => {
+					console.log('signIn: ' + _this2.userService.user.getUsername());
+					_Form2.default.reset();
+					_this2._router.go('/');
+				}).catch(function (err) {
 					console.log("[onSubmitSignInForm] err: " + err);
-					let notify = new __WEBPACK_IMPORTED_MODULE_3__components_Form_ValidForm_Notify_Notify__["a" /* default */]();
+					var notify = new _Notify2.default();
 					notify.notify('server error');
 				});
-		});
-	}
+			});
+		}
+	}, {
+		key: 'resume',
+		value: function resume() {
+			this.show();
+		}
+	}, {
+		key: 'show',
+		value: function show() {
+			this.page_parts.get("Header").show();
+			this.page_parts.get("SignIn").show();
+		}
+	}, {
+		key: 'hide',
+		value: function hide() {
+			this.page_parts.get("Header").hide();
+			this.page_parts.get("SignIn").hide();
+		}
+	}]);
 
-	resume() {
-		this.show();
-	}
+	return SignInController;
+}(_Controller3.default);
 
-	show() {
-		this.page_parts.get("Header").show();
-		this.page_parts.get("SignIn").show();
-	}
-
-	hide() {
-		this.page_parts.get("Header").hide();
-		this.page_parts.get("SignIn").hide();
-	}
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (SignInController);
+exports.default = SignInController;
 
 /***/ }),
-/* 69 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Controller__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Form_Form_Form__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__static_css_style__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Form_ValidForm_Notify_Notify__ = __webpack_require__(7);
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _Controller2 = __webpack_require__(1);
 
+var _Controller3 = _interopRequireDefault(_Controller2);
 
+var _Form = __webpack_require__(4);
 
+var _Form2 = _interopRequireDefault(_Form);
 
-class SignUpController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /* default */] {
+var _style = __webpack_require__(2);
 
-    constructor(opt = {}) {
-        if(SignUpController.__instance) {
-            return SignUpController.__instance;
+var _style2 = _interopRequireDefault(_style);
+
+var _Notify = __webpack_require__(5);
+
+var _Notify2 = _interopRequireDefault(_Notify);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SignUpController = function (_Controller) {
+    _inherits(SignUpController, _Controller);
+
+    function SignUpController() {
+        var opt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+        _classCallCheck(this, SignUpController);
+
+        if (SignUpController.__instance) {
+            var _ret;
+
+            return _ret = SignUpController.__instance, _possibleConstructorReturn(_this, _ret);
         }
 
-        super(opt);
-        SignUpController.__instance = this;
-		this.theme = new __WEBPACK_IMPORTED_MODULE_2__static_css_style__["a" /* default */]();
-        this.addListener();
+        var _this = _possibleConstructorReturn(this, (SignUpController.__proto__ || Object.getPrototypeOf(SignUpController)).call(this, opt));
+
+        SignUpController.__instance = _this;
+        _this.theme = new _style2.default();
+        _this.addListener();
+        return _this;
     }
 
-    addListener() {
+    _createClass(SignUpController, [{
+        key: 'addListener',
+        value: function addListener() {
+            var _this2 = this;
 
-		document.getElementsByClassName('theme')[0].addEventListener('click', event => {
-			event.preventDefault();
-			this.theme.changeTheme();
-		});
+            document.getElementsByClassName('theme')[0].addEventListener('click', function (event) {
+                event.preventDefault();
+                _this2.theme.changeTheme();
+            });
 
-        this.page_parts.get('SignUp').onSubmitSignUpForm(formdata => {
-            this.userService
-                .signUp(formdata.username, formdata.email, formdata.password)
-                .then((data) => { this.userService.user.set(data);
+            this.page_parts.get('SignUp').onSubmitSignUpForm(function (formdata) {
+                _this2.userService.signUp(formdata.username, formdata.email, formdata.password).then(function (data) {
+                    _this2.userService.user.set(data);
                     console.log("[onSubmitSignUpForm] Success sign up");
-                    __WEBPACK_IMPORTED_MODULE_1__components_Form_Form_Form__["a" /* default */].reset();
-                    this._router.go('/');
-                })
-
-                .catch((err) => {
+                    _Form2.default.reset();
+                    _this2._router.go('/');
+                }).catch(function (err) {
                     console.log("[onSubmitSignUpForm] err: " + err);
-					let notify = new __WEBPACK_IMPORTED_MODULE_3__components_Form_ValidForm_Notify_Notify__["a" /* default */]();
+                    var notify = new _Notify2.default();
                     notify.notify('server error');
-				});
-        });
-    }
+                });
+            });
+        }
+    }, {
+        key: 'resume',
+        value: function resume() {
+            this.show();
+        }
+    }, {
+        key: 'show',
+        value: function show() {
+            this.page_parts.get("Header").show();
+            this.page_parts.get("SignUp").show();
+        }
+    }, {
+        key: 'hide',
+        value: function hide() {
+            this.page_parts.get("Header").hide();
+            this.page_parts.get("SignUp").hide();
+        }
+    }]);
 
-    resume() {
-        this.show();
-    }
+    return SignUpController;
+}(_Controller3.default);
 
-    show() {
-        this.page_parts.get("Header").show();
-        this.page_parts.get("SignUp").show();
-    }
-
-    hide() {
-        this.page_parts.get("Header").hide();
-        this.page_parts.get("SignUp").hide();
-    }
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (SignUpController);
+exports.default = SignUpController;
 
 /***/ }),
-/* 70 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Controller__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__static_css_style__ = __webpack_require__(2);
 
 
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _Controller2 = __webpack_require__(1);
 
-class ScoreListController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /* default */] {
+var _Controller3 = _interopRequireDefault(_Controller2);
 
-	constructor(opt = {}) {
+var _style = __webpack_require__(2);
+
+var _style2 = _interopRequireDefault(_style);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ScoreListController = function (_Controller) {
+	_inherits(ScoreListController, _Controller);
+
+	function ScoreListController() {
+		var opt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+		_classCallCheck(this, ScoreListController);
+
 		if (ScoreListController.__instance) {
-			return ScoreListController.__instance;
+			var _ret;
+
+			return _ret = ScoreListController.__instance, _possibleConstructorReturn(_this, _ret);
 		}
 
-		super(opt);
-		ScoreListController.__instance = this;
-		this.theme = new __WEBPACK_IMPORTED_MODULE_1__static_css_style__["a" /* default */]();
-		this.addListener();
+		var _this = _possibleConstructorReturn(this, (ScoreListController.__proto__ || Object.getPrototypeOf(ScoreListController)).call(this, opt));
+
+		ScoreListController.__instance = _this;
+		_this.theme = new _style2.default();
+		_this.addListener();
+		return _this;
 	}
 
-	addListener() {
-		document.getElementsByClassName('theme')[0].addEventListener('click', event => {
-			event.preventDefault();
-			this.theme.changeTheme();
-		});
+	_createClass(ScoreListController, [{
+		key: 'addListener',
+		value: function addListener() {
+			var _this2 = this;
 
-		document.getElementById('score-button-back').addEventListener('click', event => {
-			event.preventDefault();
-			this._router.go('/');
-		});
-	}
+			document.getElementsByClassName('theme')[0].addEventListener('click', function (event) {
+				event.preventDefault();
+				_this2.theme.changeTheme();
+			});
 
-	resume() {
-		this.show();
-	}
+			document.getElementById('score-button-back').addEventListener('click', function (event) {
+				event.preventDefault();
+				_this2._router.go('/');
+			});
+		}
+	}, {
+		key: 'resume',
+		value: function resume() {
+			this.show();
+		}
+	}, {
+		key: 'show',
+		value: function show() {
+			var _this3 = this;
 
-	show() {
-		this.page_parts.get("Header").show();
-		this.userService
-			.getScorelist()
-			.then((resp) => {
+			this.page_parts.get("Header").show();
+			this.userService.getScorelist().then(function (resp) {
 				console.log('good answer');
-				console.log(this.page_parts.get("Scoreboard").data);
-			})
-			.catch((err) => {
+				console.log(_this3.page_parts.get("Scoreboard").data);
+			}).catch(function (err) {
 				console.log('bad answer');
 			});
 
-		console.log(this.userService.user.getScore());
+			console.log(this.userService.user.getScore());
 
-		this.page_parts.get("Scoreboard").data.userScore = this.userService.user.getScore();
-		this.page_parts.get("Scoreboard").getClassElement().hidden=false;
-		this.addListener();
+			this.page_parts.get("Scoreboard").data.userScore = this.userService.user.getScore();
+			this.page_parts.get("Scoreboard").getClassElement().hidden = false;
+			this.addListener();
+		}
+	}, {
+		key: 'hide',
+		value: function hide() {
+			this.page_parts.get("Header").hide();
+			this.page_parts.get("Scoreboard").hide();
+		}
+	}]);
 
-	}
+	return ScoreListController;
+}(_Controller3.default);
 
-	hide() {
-		this.page_parts.get("Header").hide();
-		this.page_parts.get("Scoreboard").hide();
-	}
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (ScoreListController);
-
+exports.default = ScoreListController;
 
 /***/ }),
-/* 71 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Controller__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__static_css_style__ = __webpack_require__(2);
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _Controller2 = __webpack_require__(1);
 
-class AboutUsController extends __WEBPACK_IMPORTED_MODULE_0__Controller__["a" /* default */] {
+var _Controller3 = _interopRequireDefault(_Controller2);
 
-    constructor(opt = {}) {
-        if(AboutUsController.__instance) {
-            return AboutUsController.__instance;
+var _style = __webpack_require__(2);
+
+var _style2 = _interopRequireDefault(_style);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AboutUsController = function (_Controller) {
+    _inherits(AboutUsController, _Controller);
+
+    function AboutUsController() {
+        var opt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+        _classCallCheck(this, AboutUsController);
+
+        if (AboutUsController.__instance) {
+            var _ret;
+
+            return _ret = AboutUsController.__instance, _possibleConstructorReturn(_this, _ret);
         }
 
-        super(opt);
-        AboutUsController.__instance = this;
-		this.theme = new __WEBPACK_IMPORTED_MODULE_1__static_css_style__["a" /* default */]();
-        this.addListener();
+        var _this = _possibleConstructorReturn(this, (AboutUsController.__proto__ || Object.getPrototypeOf(AboutUsController)).call(this, opt));
+
+        AboutUsController.__instance = _this;
+        _this.theme = new _style2.default();
+        _this.addListener();
+        return _this;
     }
 
-    addListener() {
-		document.getElementsByClassName('theme')[0].addEventListener('click', event => {
-			event.preventDefault();
-			this.theme.changeTheme();
-		});
+    _createClass(AboutUsController, [{
+        key: 'addListener',
+        value: function addListener() {
+            var _this2 = this;
 
-        document.getElementById('aboutUs-button-back').addEventListener('click', event => {
-            event.preventDefault();
-            this._router.go('/');
-        });
-    }
+            document.getElementsByClassName('theme')[0].addEventListener('click', function (event) {
+                event.preventDefault();
+                _this2.theme.changeTheme();
+            });
 
-    resume() {
-        this.show();
-    }
+            document.getElementById('aboutUs-button-back').addEventListener('click', function (event) {
+                event.preventDefault();
+                _this2._router.go('/');
+            });
+        }
+    }, {
+        key: 'resume',
+        value: function resume() {
+            this.show();
+        }
+    }, {
+        key: 'show',
+        value: function show() {
+            this.page_parts.get("Header").show();
+            this.page_parts.get("AboutUs").show();
+        }
+    }, {
+        key: 'hide',
+        value: function hide() {
+            this.page_parts.get("Header").hide();
+            this.page_parts.get("AboutUs").hide();
+        }
+    }]);
 
-    show() {
-        this.page_parts.get("Header").show();
-        this.page_parts.get("AboutUs").show();
-    }
+    return AboutUsController;
+}(_Controller3.default);
 
-    hide() {
-        this.page_parts.get("Header").hide();
-        this.page_parts.get("AboutUs").hide();
-    }
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (AboutUsController);
-
+exports.default = AboutUsController;
 
 /***/ }),
-/* 72 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = RegisterSW;
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = RegisterSW;
 function RegisterSW() {
 	if (navigator.serviceWorker !== undefined) {
-		navigator.serviceWorker.register('./sw.js', {scope: '/'})
-			.then(registration => {
-				console.log(`good registration worker: ${registration}`);
-			})
-			.catch(error => {
-				console.log(`bad registration worker: ${error}`);
-			});
+		navigator.serviceWorker.register('./sw.js', { scope: '/' }).then(function (registration) {
+			console.log('good registration worker: ' + registration);
+		}).catch(function (error) {
+			console.log('bad registration worker: ' + error);
+		});
 	}
 }
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=bundle.js.map

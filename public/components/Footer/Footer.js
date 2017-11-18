@@ -1,6 +1,6 @@
 import Block from '../Block/BlockComponents';
 import FooterTemp from './Footer.pug';
-import './Footer.css';
+// import './Footer.scss';
 
 /**
  * Класс footer-а
