@@ -1569,19 +1569,19 @@ var _PlayGameController = __webpack_require__(44);
 
 var _PlayGameController2 = _interopRequireDefault(_PlayGameController);
 
-var _SignInController = __webpack_require__(59);
+var _SignInController = __webpack_require__(54);
 
 var _SignInController2 = _interopRequireDefault(_SignInController);
 
-var _SignUpController = __webpack_require__(60);
+var _SignUpController = __webpack_require__(55);
 
 var _SignUpController2 = _interopRequireDefault(_SignUpController);
 
-var _ScoreListController = __webpack_require__(61);
+var _ScoreListController = __webpack_require__(56);
 
 var _ScoreListController2 = _interopRequireDefault(_ScoreListController);
 
-var _AboutUsController = __webpack_require__(62);
+var _AboutUsController = __webpack_require__(57);
 
 var _AboutUsController2 = _interopRequireDefault(_AboutUsController);
 
@@ -3339,8 +3339,6 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
 var state_1 = __webpack_require__(6);
-var Tank_1 = __webpack_require__(54);
-var TreeBox_1 = __webpack_require__(57);
 var earth = __webpack_require__(16);
 var pause = __webpack_require__(17);
 var box_tree = __webpack_require__(18);
@@ -3356,9 +3354,22 @@ var WorldState = /** @class */ (function (_super) {
         this._music.play();
         this._land = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'earth');
         this._land.fixedToCamera = true;
-        this._tank = new Tank_1.default(this.game, "hello");
-        this._box = new TreeBox_1.default(this.game, 100, 100);
-        this.game.debug.spriteBounds(this._box._box);
+        // this._tank = new Tank(this.game, "hello");
+        // this._box = new TreeBox(this.game, 100, 100);
+        this._cursor = this.game.input.keyboard.createCursorKeys();
+        debugger;
+        this.tank = this.game.add.sprite(50, 400, 'tank', 'tank1');
+        this.tank.anchor.setTo(0.5, 0.5);
+        this.game.physics.arcade.enable(this.tank);
+        this.tank.body.maxVelocity.setTo(100, 100);
+        this.tank.body.collideWorldBounds = true;
+        this.turret = this.game.add.sprite(0, 0, 'tank', 'turret');
+        this.turret.anchor.setTo(0.5, 0.5);
+        this.game.debug.spriteBounds(this.tank);
+        this.box = this.game.add.sprite(400, 400, 'box_tree');
+        this.box.anchor.setTo(0.5, 0.5);
+        this.game.physics.arcade.enable(this.box);
+        this.box.body.immovable = true;
         this._pause = this.game.add.button(10, 10, "pause", this.startPause, this);
         this._pause.scale.setTo(0.2, 0.2);
         this._pause.frame = 1;
@@ -3369,10 +3380,36 @@ var WorldState = /** @class */ (function (_super) {
     };
     WorldState.prototype.update = function () {
         // this.game.physics.arcade.collide(this._tank._tank._body.body, this._box._box.body);
-        this.game.physics.arcade.overlap(this._tank, this._box, this.collisionHandler, null, this);
+        this.game.physics.arcade.collide(this.tank, this.box);
+        // величина угла поворота
+        if (this._cursor.left.isDown) {
+            this.tank.angle -= 5;
+        }
+        else if (this._cursor.right.isDown) {
+            this.tank.angle += 5;
+        }
+        // скорость
+        if (this._cursor.up.isDown) {
+            this.currentSpeed = 210;
+        }
+        else {
+            if (this.currentSpeed > 0) {
+                this.currentSpeed -= 100; // скорость торможения
+            }
+        }
+        // движение и поворотами
+        if (this.currentSpeed > 0) {
+            this.physics.arcade.velocityFromRotation(this.tank.rotation, this.currentSpeed, this.tank.body.velocity);
+        }
         this._land.tilePosition.x = -this.camera.x;
         this._land.tilePosition.y = -this.camera.y;
-        this._tank.update();
+        // привязываем башню к танку
+        this.turret.x = this.tank.x;
+        this.turret.y = this.tank.y;
+        this.turret.rotation = this.physics.arcade.angleToPointer(this.turret);
+        // this._land.tilePosition.x = -this.camera.x;
+        // this._land.tilePosition.y = -this.camera.y;
+        // this._tank.update();
     };
     WorldState.prototype.collisionHandler = function () {
         console.log("collision");
@@ -3387,263 +3424,6 @@ exports.default = WorldState;
 
 /***/ }),
 /* 54 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var TankBody_1 = __webpack_require__(55);
-var TankTurret_1 = __webpack_require__(56);
-var TankState = /** @class */ (function (_super) {
-    __extends(TankState, _super);
-    function TankState(game, index) {
-        var _this = _super.call(this, game, 0, 0) || this;
-        _this._game = game;
-        _this._xPosition = Math.random() * _this.game.world.width;
-        _this._yPosition = Math.random() * _this.game.world.height;
-        _this._health = 3;
-        _this._fireRate = 1000; // скорострельность
-        _this._nextFire = 0; //следующий выстрел
-        _this._alive = true;
-        _this.create();
-        return _this;
-    }
-    TankState.prototype.create = function () {
-        this._cursor = this._game.input.keyboard.createCursorKeys();
-        this._tank = new TankBody_1.default(this._game, this._cursor);
-        this._turret = new TankTurret_1.default(this._game, this._cursor);
-    };
-    TankState.prototype.update = function () {
-        this._tank.update();
-        this._turret.turretCoordinate = this._tank.currentPosition;
-        this._turret.update();
-    };
-    return TankState;
-}(Phaser.Sprite));
-exports.default = TankState;
-
-
-/***/ }),
-/* 55 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var TankBody = /** @class */ (function (_super) {
-    __extends(TankBody, _super);
-    function TankBody(game, cursor) {
-        var _this = _super.call(this, game, 0, 0) || this;
-        _this._game = game;
-        _this._cursor = cursor;
-        _this.create();
-        return _this;
-    }
-    TankBody.prototype.create = function () {
-        this._body = this._game.add.sprite(50, 400, 'tank', 'tank1');
-        this._body.anchor.setTo(0.5, 0.5);
-        // this._game.physics.enable(this._body, Phaser.Physics.ARCADE);
-        this._game.physics.arcade.enable(this._body);
-        this._body.body.maxVelocity.setTo(100, 100);
-        this._body.body.collideWorldBounds = true;
-    };
-    TankBody.prototype.update = function () {
-        // величина угла поворота
-        if (this._cursor.left.isDown) {
-            this._body.angle -= 5;
-        }
-        else if (this._cursor.right.isDown) {
-            this._body.angle += 5;
-        }
-        // скорость
-        if (this._cursor.up.isDown) {
-            this._currentSpeed = 210;
-        }
-        else {
-            if (this._currentSpeed > 0) {
-                this._currentSpeed -= 100; // скорость торможения
-            }
-        }
-        // движение и поворотами
-        if (this._currentSpeed > 0) {
-            this._game.physics.arcade.velocityFromRotation(this._body.rotation, this._currentSpeed, this._body.body.velocity);
-        }
-    };
-    Object.defineProperty(TankBody.prototype, "currentPosition", {
-        get: function () {
-            return {
-                xCoordinate: this._body.x,
-                yCoordinate: this._body.y,
-            };
-        },
-        set: function (coordinate) {
-            this._body.x = coordinate.xCoordinate;
-            this._body.y = coordinate.yCoordinate;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return TankBody;
-}(Phaser.Sprite));
-exports.default = TankBody;
-
-
-/***/ }),
-/* 56 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var TankTurret = /** @class */ (function (_super) {
-    __extends(TankTurret, _super);
-    function TankTurret(game, cursor) {
-        var _this = _super.call(this, game, 0, 0) || this;
-        _this._game = game;
-        _this._cursor = cursor;
-        _this.create();
-        return _this;
-    }
-    TankTurret.prototype.create = function () {
-        this._turret = this._game.add.sprite(50, 400, 'tank', 'turret');
-        this._turret.anchor.setTo(0.5, 0.5);
-    };
-    TankTurret.prototype.update = function () {
-        this._turret.rotation = this._game.physics.arcade.angleToPointer(this._turret);
-    };
-    Object.defineProperty(TankTurret.prototype, "turretCoordinate", {
-        set: function (coordinate) {
-            this._turret.x = coordinate.xCoordinate;
-            this._turret.y = coordinate.yCoordinate;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return TankTurret;
-}(Phaser.Sprite));
-exports.default = TankTurret;
-
-
-/***/ }),
-/* 57 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var Box_1 = __webpack_require__(58);
-var TreeBox = /** @class */ (function (_super) {
-    __extends(TreeBox, _super);
-    function TreeBox(game, xCoord, yCoord) {
-        var _this = _super.call(this, game, xCoord, yCoord) || this;
-        _this.create();
-        return _this;
-    }
-    TreeBox.prototype.create = function () {
-        this._box = this._game.add.sprite(this._xCoordinate, this._yCoordinate, 'box_tree');
-        this._box.anchor.setTo(0.5, 0.5);
-        // this._game.physics.enable(this._box, Phaser.Physics.ARCADE);
-        this._game.physics.arcade.enable(this._box);
-        this._box.collideWorldBounds = true;
-        this._box.body.immovable = true;
-        this._box.body.bounce.setTo(1, 1);
-        // this._box.moves = false;
-    };
-    return TreeBox;
-}(Box_1.default));
-exports.default = TreeBox;
-
-
-/***/ }),
-/* 58 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var Box = /** @class */ (function (_super) {
-    __extends(Box, _super);
-    function Box(game, xCoord, yCoord) {
-        var _this = _super.call(this, game, 0, 0) || this;
-        _this._game = game;
-        _this._height = 100;
-        _this._width = 100;
-        _this._xCoordinate = xCoord;
-        _this._yCoordinate = yCoord;
-        _this.create();
-        return _this;
-    }
-    Object.defineProperty(Box.prototype, "currentPosition", {
-        get: function () {
-            return {
-                xCoordinate: this._box.x,
-                yCoordinate: this._box.y,
-            };
-        },
-        set: function (coordinate) {
-            this._box.x = coordinate.xCoordinate;
-            this._box.y = coordinate.yCoordinate;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return Box;
-}(Phaser.Sprite));
-exports.default = Box;
-
-
-/***/ }),
-/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3750,7 +3530,7 @@ var SignInController = function (_Controller) {
 exports.default = SignInController;
 
 /***/ }),
-/* 60 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3856,7 +3636,7 @@ var SignUpController = function (_Controller) {
 exports.default = SignUpController;
 
 /***/ }),
-/* 61 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3959,7 +3739,7 @@ var ScoreListController = function (_Controller) {
 exports.default = ScoreListController;
 
 /***/ }),
-/* 62 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
