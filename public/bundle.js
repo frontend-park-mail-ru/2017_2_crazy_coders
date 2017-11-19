@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 18);
+/******/ 	return __webpack_require__(__webpack_require__.s = 19);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -707,7 +707,7 @@ function pug_rethrow(err, filename, lineno, str){
     throw err;
   }
   try {
-    str = str || __webpack_require__(25).readFileSync(filename, 'utf8')
+    str = str || __webpack_require__(26).readFileSync(filename, 'utf8')
   } catch (ex) {
     pug_rethrow(err, null, lineno)
   }
@@ -741,7 +741,7 @@ function pug_rethrow(err, filename, lineno, str){
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -750,7 +750,7 @@ var _BlockComponents = __webpack_require__(0);
 
 var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
-var _Form = __webpack_require__(24);
+var _Form = __webpack_require__(25);
 
 var _Form2 = _interopRequireDefault(_Form);
 
@@ -777,75 +777,75 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Form
  */
 var Form = function (_Block) {
-  _inherits(Form, _Block);
+    _inherits(Form, _Block);
 
-  /**
-   * @param {string} [tagName='div'] - tagName блока
-   * @param {*} [attrs={}] - объект с атрибутами блока
-   * @param {string[]} [classes=[]] - список имён классов
-   * @param {*} [data={}] - объект с данными блока
-   * @constructor
-   */
-  function Form() {
-    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-    var data = arguments[3];
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @constructor
+     */
+    function Form() {
+        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+        var data = arguments[3];
 
-    _classCallCheck(this, Form);
+        _classCallCheck(this, Form);
 
-    return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, tagName, attrs, classes, data));
-  }
-
-  /**
-   * Получить форму
-   */
-
-
-  _createClass(Form, [{
-    key: 'getClassElement',
-    value: function getClassElement() {
-      var data = this.getData();
-      this.setHTML((0, _Form2.default)({ data: data }));
-      return this.getElement();
+        return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, tagName, attrs, classes, data));
     }
 
     /**
-     * Получить кнопку назад из страницы с формы
+     * Получить форму
      */
 
-  }], [{
-    key: 'getBackButton',
-    value: function getBackButton() {
-      return document.getElementsByClassName('back-button');
-    }
 
-    /**
-     * Показываем ошибки к форме
-     * @param {string}  msg - сообщение
-     * @param {HTMLElement} form
-     * @return {Promise}
-     */
-    // static showFormMessage(msg, form) {
-    //     console.log(1);
-    //     let currentForm = form.getElement().getElementsByTagName('form')[0];
-    //     currentForm.insertBefore(ValidSignUpForm.createErrorElement(msg), currentForm.children[0]);
-    // }
+    _createClass(Form, [{
+        key: 'getClassElement',
+        value: function getClassElement() {
+            var data = this.getData();
+            this.setHTML((0, _Form2.default)({ data: data }));
+            return this.getElement();
+        }
 
-    /**
-     * Очищаем поля форм
-     */
+        /**
+         * Получить кнопку назад из страницы с формы
+         */
 
-  }, {
-    key: 'reset',
-    value: function reset() {
-      Array.from(document.getElementsByTagName('form')).forEach(function (form) {
-        form.reset();
-      });
-    }
-  }]);
+    }], [{
+        key: 'getBackButton',
+        value: function getBackButton() {
+            return document.getElementsByClassName('back-button');
+        }
 
-  return Form;
+        /**
+         * Показываем ошибки к форме
+         * @param {string}  msg - сообщение
+         * @param {HTMLElement} form
+         * @return {Promise}
+         */
+        // static showFormMessage(msg, form) {
+        //     console.log(1);
+        //     let currentForm = form.getElement().getElementsByTagName('form')[0];
+        //     currentForm.insertBefore(ValidSignUpForm.createErrorElement(msg), currentForm.children[0]);
+        // }
+
+        /**
+         * Очищаем поля форм
+         */
+
+    }, {
+        key: 'reset',
+        value: function reset() {
+            Array.from(document.getElementsByTagName('form')).forEach(function (form) {
+                form.reset();
+            });
+        }
+    }]);
+
+    return Form;
 }(_BlockComponents2.default);
 
 exports.default = Form;
@@ -960,11 +960,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Http = __webpack_require__(19);
+var _Http = __webpack_require__(20);
 
 var _Http2 = _interopRequireDefault(_Http);
 
-var _User = __webpack_require__(20);
+var _User = __webpack_require__(21);
 
 var _User2 = _interopRequireDefault(_User);
 
@@ -1326,7 +1326,7 @@ exports.default = ValidSignUpForm;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1335,7 +1335,7 @@ var _BlockComponents = __webpack_require__(0);
 
 var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
-var _Menu = __webpack_require__(32);
+var _Menu = __webpack_require__(33);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
@@ -1354,41 +1354,41 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Menu
  */
 var Menu = function (_Block) {
-  _inherits(Menu, _Block);
+    _inherits(Menu, _Block);
 
-  /**
-   * @param {string} [tagName='div'] - tagName блока
-   * @param {*} [attrs={}] - объект с атрибутами блока
-   * @param {string[]} [classes=[]] - список имён классов
-   * @param {*} [data={}] - объект с данными блока
-   * @constructor
-   */
-  function Menu() {
-    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-    var data = arguments[3];
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @constructor
+     */
+    function Menu() {
+        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+        var data = arguments[3];
 
-    _classCallCheck(this, Menu);
+        _classCallCheck(this, Menu);
 
-    return _possibleConstructorReturn(this, (Menu.__proto__ || Object.getPrototypeOf(Menu)).call(this, tagName, attrs, classes, data));
-  }
-
-  /**
-   * Получить Menu
-   */
-
-
-  _createClass(Menu, [{
-    key: 'getClassElement',
-    value: function getClassElement() {
-      var data = this.getData();
-      this.setHTML((0, _Menu2.default)({ data: data }));
-      return this.getElement();
+        return _possibleConstructorReturn(this, (Menu.__proto__ || Object.getPrototypeOf(Menu)).call(this, tagName, attrs, classes, data));
     }
-  }]);
 
-  return Menu;
+    /**
+     * Получить Menu
+     */
+
+
+    _createClass(Menu, [{
+        key: 'getClassElement',
+        value: function getClassElement() {
+            var data = this.getData();
+            this.setHTML((0, _Menu2.default)({ data: data }));
+            return this.getElement();
+        }
+    }]);
+
+    return Menu;
 }(_BlockComponents2.default);
 
 exports.default = Menu;
@@ -1401,7 +1401,7 @@ exports.default = Menu;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1410,7 +1410,7 @@ var _BlockComponents = __webpack_require__(0);
 
 var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
-var _Table = __webpack_require__(35);
+var _Table = __webpack_require__(36);
 
 var _Table2 = _interopRequireDefault(_Table);
 
@@ -1429,42 +1429,42 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Table
  */
 var Table = function (_Block) {
-  _inherits(Table, _Block);
+    _inherits(Table, _Block);
 
-  /**
-   * @param {string} [tagName='div'] - tagName блока
-   * @param {*} [attrs={}] - объект с атрибутами блока
-   * @param {string[]} [classes=[]] - список имён классов
-   * @param {*} [data={}] - объект с данными блока
-   * @constructor
-   */
-  function Table() {
-    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-    var data = arguments[3];
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @constructor
+     */
+    function Table() {
+        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+        var data = arguments[3];
 
-    _classCallCheck(this, Table);
+        _classCallCheck(this, Table);
 
-    return _possibleConstructorReturn(this, (Table.__proto__ || Object.getPrototypeOf(Table)).call(this, tagName, attrs, classes, data));
-  }
-
-  /**
-   * Получить Table
-   */
-
-
-  _createClass(Table, [{
-    key: 'getClassElement',
-    value: function getClassElement() {
-      var data = this.getData();
-
-      this.setHTML((0, _Table2.default)({ data: data }));
-      return this.getElement();
+        return _possibleConstructorReturn(this, (Table.__proto__ || Object.getPrototypeOf(Table)).call(this, tagName, attrs, classes, data));
     }
-  }]);
 
-  return Table;
+    /**
+     * Получить Table
+     */
+
+
+    _createClass(Table, [{
+        key: 'getClassElement',
+        value: function getClassElement() {
+            var data = this.getData();
+
+            this.setHTML((0, _Table2.default)({ data: data }));
+            return this.getElement();
+        }
+    }]);
+
+    return Table;
 }(_BlockComponents2.default);
 
 exports.default = Table;
@@ -1473,40 +1473,77 @@ exports.default = Table;
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "4119334de3c71843520250c6c9f0594d.jpg";
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var boot_state_1 = __webpack_require__(45);
+var preloader_state_1 = __webpack_require__(47);
+var main_state_1 = __webpack_require__(52);
+var world_state_1 = __webpack_require__(53);
+var App = /** @class */ (function (_super) {
+    __extends(App, _super);
+    function App() {
+        var _this = _super.call(this, document.documentElement.clientWidth, document.documentElement.clientHeight, Phaser.AUTO, 'content', null) || this;
+        _this.state.add('boot', boot_state_1.default);
+        _this.state.add('preloader', preloader_state_1.default);
+        _this.state.add('main', main_state_1.default);
+        _this.state.add('world', world_state_1.default);
+        _this.state.start('boot'); // Initialize and start `boot` state
+        return _this;
+    }
+    return App;
+}(Phaser.Game));
+exports.default = App;
+
 
 /***/ }),
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "5733b613e5ea55c939a6276c4b4b7aa0.png";
+module.exports = __webpack_require__.p + "4119334de3c71843520250c6c9f0594d.jpg";
 
 /***/ }),
 /* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "5733b613e5ea55c939a6276c4b4b7aa0.png";
+
+/***/ }),
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports = {"frames":[{"filename":"shadow","frame":{"x":0,"y":0,"w":80,"h":80},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":80,"h":80},"sourceSize":{"w":80,"h":80}},{"filename":"tank1","frame":{"x":190,"y":52,"w":54,"h":52},"rotated":false,"trimmed":true,"spriteSourceSize":{"x":3,"y":5,"w":54,"h":52},"sourceSize":{"w":64,"h":64}},{"filename":"turret","frame":{"x":0,"y":80,"w":48,"h":28},"rotated":false,"trimmed":true,"spriteSourceSize":{"x":1,"y":2,"w":48,"h":28},"sourceSize":{"w":50,"h":32}}]}
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "4119334de3c71843520250c6c9f0594d.jpg";
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "b17c373a3f0117f56d7b0af1a9839bb7.png";
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "e11ba3abfe7c0f81b6f63cca050ba20a.png";
+module.exports = __webpack_require__.p + "fdfd09de3c00231354d7fa064d79af79.png";
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1516,35 +1553,35 @@ var _UserService = __webpack_require__(7);
 
 var _UserService2 = _interopRequireDefault(_UserService);
 
-var _CreatePage = __webpack_require__(21);
+var _CreatePage = __webpack_require__(22);
 
 var _CreatePage2 = _interopRequireDefault(_CreatePage);
 
-var _Router = __webpack_require__(40);
+var _Router = __webpack_require__(41);
 
 var _Router2 = _interopRequireDefault(_Router);
 
-var _MenuStartController = __webpack_require__(42);
+var _MenuStartController = __webpack_require__(43);
 
 var _MenuStartController2 = _interopRequireDefault(_MenuStartController);
 
-var _PlayGameController = __webpack_require__(43);
+var _PlayGameController = __webpack_require__(44);
 
 var _PlayGameController2 = _interopRequireDefault(_PlayGameController);
 
-var _SignInController = __webpack_require__(55);
+var _SignInController = __webpack_require__(59);
 
 var _SignInController2 = _interopRequireDefault(_SignInController);
 
-var _SignUpController = __webpack_require__(56);
+var _SignUpController = __webpack_require__(60);
 
 var _SignUpController2 = _interopRequireDefault(_SignUpController);
 
-var _ScoreListController = __webpack_require__(57);
+var _ScoreListController = __webpack_require__(61);
 
 var _ScoreListController2 = _interopRequireDefault(_ScoreListController);
 
-var _AboutUsController = __webpack_require__(58);
+var _AboutUsController = __webpack_require__(62);
 
 var _AboutUsController2 = _interopRequireDefault(_AboutUsController);
 
@@ -1552,25 +1589,35 @@ var _style = __webpack_require__(2);
 
 var _style2 = _interopRequireDefault(_style);
 
-var _ServiceWorker = __webpack_require__(59);
+var _index = __webpack_require__(12);
 
-var _ServiceWorker2 = _interopRequireDefault(_ServiceWorker);
+var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// import Game from './game/classes/Game/Game';
 
 var theme = new _style2.default();
 var userService = new _UserService2.default();
 var page = new _CreatePage2.default();
-
-
-(0, _ServiceWorker2.default)();
+// import RegisterSW from './services/ServiceWorker';
+//
+// RegisterSW();
 
 theme.changeTheme();
+var game = new _index2.default();
 
-new _Router2.default().addRoute('/', _MenuStartController2.default, { userService: userService, page: page }).addRoute('/play', _PlayGameController2.default, { userService: userService, page: page }).addRoute('/signin', _SignInController2.default, { userService: userService, page: page }).addRoute('/signup', _SignUpController2.default, { userService: userService, page: page }).addRoute('/score', _ScoreListController2.default, { userService: userService, page: page }).addRoute('/about', _AboutUsController2.default, { userService: userService, page: page }).startRoute();
+// (new Router())
+//     .addRoute('/', MenuStartController, {userService: userService, page: page})
+//     .addRoute('/play', PlayGameController, {userService: userService, page: page})
+//     .addRoute('/signin', SignInController, {userService: userService, page: page})
+//     .addRoute('/signup', SignUpController, {userService: userService, page: page})
+//     .addRoute('/score', ScoreListController, {userService: userService, page: page})
+//     .addRoute('/about', AboutUsController, {userService: userService, page: page})
+//     .startRoute();
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1665,7 +1712,7 @@ var Http = function () {
 exports.default = Http;
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1775,7 +1822,7 @@ var User = function () {
 exports.default = User;
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1791,35 +1838,35 @@ var _BlockComponents = __webpack_require__(0);
 
 var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
-var _SignIn = __webpack_require__(22);
+var _SignIn = __webpack_require__(23);
 
 var _SignIn2 = _interopRequireDefault(_SignIn);
 
-var _SignUp = __webpack_require__(26);
+var _SignUp = __webpack_require__(27);
 
 var _SignUp2 = _interopRequireDefault(_SignUp);
 
-var _Header = __webpack_require__(28);
+var _Header = __webpack_require__(29);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _UnRegMenu = __webpack_require__(31);
+var _UnRegMenu = __webpack_require__(32);
 
 var _UnRegMenu2 = _interopRequireDefault(_UnRegMenu);
 
-var _RegMenu = __webpack_require__(33);
+var _RegMenu = __webpack_require__(34);
 
 var _RegMenu2 = _interopRequireDefault(_RegMenu);
 
-var _AboutUs = __webpack_require__(34);
+var _AboutUs = __webpack_require__(35);
 
 var _AboutUs2 = _interopRequireDefault(_AboutUs);
 
-var _Scoreboard = __webpack_require__(36);
+var _Scoreboard = __webpack_require__(37);
 
 var _Scoreboard2 = _interopRequireDefault(_Scoreboard);
 
-var _Footer = __webpack_require__(37);
+var _Footer = __webpack_require__(38);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -1867,7 +1914,7 @@ var CreatePage = function () {
 exports.default = CreatePage;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1878,7 +1925,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = SignIn;
 
-var _SignInForm = __webpack_require__(23);
+var _SignInForm = __webpack_require__(24);
 
 var _SignInForm2 = _interopRequireDefault(_SignInForm);
 
@@ -1922,7 +1969,7 @@ function SignIn() {
 }
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2011,7 +2058,7 @@ var SignInForm = function (_Form) {
 exports.default = SignInForm;
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(3);
@@ -2040,13 +2087,13 @@ pug_html = pug_html + "\n    \u003Cinput" + (pug.attr("class", pug.classes(["for
 module.exports = template;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2057,7 +2104,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = SignUp;
 
-var _SignUpForm = __webpack_require__(27);
+var _SignUpForm = __webpack_require__(28);
 
 var _SignUpForm2 = _interopRequireDefault(_SignUpForm);
 
@@ -2113,7 +2160,7 @@ function SignUp() {
 }
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2201,7 +2248,7 @@ var SignUpForm = function (_Form) {
 exports.default = SignUpForm;
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2212,7 +2259,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createHeader;
 
-var _Header = __webpack_require__(29);
+var _Header = __webpack_require__(30);
 
 var _Header2 = _interopRequireDefault(_Header);
 
@@ -2230,14 +2277,14 @@ function createHeader() {
 }
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -2246,7 +2293,7 @@ var _BlockComponents = __webpack_require__(0);
 
 var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
-var _Header = __webpack_require__(30);
+var _Header = __webpack_require__(31);
 
 var _Header2 = _interopRequireDefault(_Header);
 
@@ -2263,49 +2310,49 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Header
  */
 var Header = function (_Block) {
-  _inherits(Header, _Block);
+    _inherits(Header, _Block);
 
-  /**
-   * @param {string} [tagName='div'] - tagName блока
-   * @param {*} [attrs={}] - объект с атрибутами блока
-   * @param {string[]} [classes=[]] - список имён классов
-   * @param {*} [data={}] - объект с данными блока
-   * @constructor
-   */
-  function Header() {
-    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-    var data = arguments[3];
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @constructor
+     */
+    function Header() {
+        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+        var data = arguments[3];
 
-    _classCallCheck(this, Header);
+        _classCallCheck(this, Header);
 
-    return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, tagName, attrs, classes, data));
-  }
-
-  /**
-   * Получить Header
-   */
-
-
-  _createClass(Header, [{
-    key: 'getClassElement',
-    value: function getClassElement() {
-
-      var data = this.getData();
-
-      this.setHTML((0, _Header2.default)({ data: data }));
-      return this.getElement();
+        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, tagName, attrs, classes, data));
     }
-  }]);
 
-  return Header;
+    /**
+     * Получить Header
+     */
+
+
+    _createClass(Header, [{
+        key: 'getClassElement',
+        value: function getClassElement() {
+
+            var data = this.getData();
+
+            this.setHTML((0, _Header2.default)({ data: data }));
+            return this.getElement();
+        }
+    }]);
+
+    return Header;
 }(_BlockComponents2.default);
 
 exports.default = Header;
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(3);
@@ -2315,7 +2362,7 @@ pug_html = pug_html + "\n\u003Cdiv class=\"theme\"\u003Echange theme\u003C\u002F
 module.exports = template;
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2353,7 +2400,7 @@ function createUnRegMenu() {
 }
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(3);
@@ -2385,7 +2432,7 @@ pug_html = pug_html + "\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for
 module.exports = template;
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2427,7 +2474,7 @@ function createRegMenu() {
 }
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2479,7 +2526,7 @@ function createAboutUs() {
 }
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(3);
@@ -2512,7 +2559,7 @@ pug_html = pug_html + "\n    \u003C\u002Ftable\u003E\n  \u003C\u002Fdiv\u003E\n 
 module.exports = template;
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2564,7 +2611,7 @@ function Scoreboard() {
 }
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2575,7 +2622,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = CreateFooter;
 
-var _Footer = __webpack_require__(38);
+var _Footer = __webpack_require__(39);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -2605,14 +2652,14 @@ function CreateFooter() {
 }
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -2621,7 +2668,7 @@ var _BlockComponents = __webpack_require__(0);
 
 var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
-var _Footer = __webpack_require__(39);
+var _Footer = __webpack_require__(40);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -2640,47 +2687,47 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Footer
  */
 var Footer = function (_Block) {
-  _inherits(Footer, _Block);
+    _inherits(Footer, _Block);
 
-  /**
-   * @param {string} [tagName='div'] - tagName блока
-   * @param {*} [attrs={}] - объект с атрибутами блока
-   * @param {string[]} [classes=[]] - список имён классов
-   * @param {*} [data={}] - объект с данными блока
-   * @constructor
-   */
-  function Footer() {
-    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-    var data = arguments[3];
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @constructor
+     */
+    function Footer() {
+        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+        var data = arguments[3];
 
-    _classCallCheck(this, Footer);
+        _classCallCheck(this, Footer);
 
-    return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, tagName, attrs, classes, data));
-  }
-
-  /**
-   * Получить footer
-   */
-
-
-  _createClass(Footer, [{
-    key: 'getClassElement',
-    value: function getClassElement() {
-      var data = this.getData();
-      this.setHTML((0, _Footer2.default)({ data: data }));
-      return this.getElement();
+        return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, tagName, attrs, classes, data));
     }
-  }]);
 
-  return Footer;
+    /**
+     * Получить footer
+     */
+
+
+    _createClass(Footer, [{
+        key: 'getClassElement',
+        value: function getClassElement() {
+            var data = this.getData();
+            this.setHTML((0, _Footer2.default)({ data: data }));
+            return this.getElement();
+        }
+    }]);
+
+    return Footer;
 }(_BlockComponents2.default);
 
 exports.default = Footer;
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(3);
@@ -2709,7 +2756,7 @@ pug_html = pug_html + "\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for
 module.exports = template;
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2721,7 +2768,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Route = __webpack_require__(41);
+var _Route = __webpack_require__(42);
 
 var _Route2 = _interopRequireDefault(_Route);
 
@@ -2808,7 +2855,7 @@ var Router = function () {
 exports.default = Router;
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2863,7 +2910,7 @@ var Route = function () {
 exports.default = Route;
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3016,7 +3063,7 @@ var MenuStartController = function (_Controller) {
 exports.default = MenuStartController;
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3032,7 +3079,7 @@ var _Controller2 = __webpack_require__(1);
 
 var _Controller3 = _interopRequireDefault(_Controller2);
 
-var _index = __webpack_require__(44);
+var _index = __webpack_require__(12);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -3092,50 +3139,6 @@ var PlayGameController = function (_Controller) {
 exports.default = PlayGameController;
 
 /***/ }),
-/* 44 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-/** Imports */
-// require('pixi');
-// require('p2');
-// require('phaser');
-// import 'styles/style.styl'; // Registering styles for the page; They will automatically inject.
-var boot_state_1 = __webpack_require__(45);
-var preloader_state_1 = __webpack_require__(47);
-var main_state_1 = __webpack_require__(52);
-var world_state_1 = __webpack_require__(53);
-// The main class of our application
-var App = /** @class */ (function (_super) {
-    __extends(App, _super);
-    function App() {
-        var _this = _super.call(this, document.documentElement.clientWidth, document.documentElement.clientHeight, Phaser.AUTO, 'content', null) || this;
-        _this.state.add('boot', boot_state_1.default);
-        _this.state.add('preloader', preloader_state_1.default);
-        _this.state.add('main', main_state_1.default);
-        _this.state.add('world', world_state_1.default);
-        debugger;
-        _this.state.start('boot'); // Initialize and start `boot` state
-        return _this;
-    }
-    return App;
-}(Phaser.Game));
-exports.default = App;
-
-
-/***/ }),
 /* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3154,7 +3157,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
 var state_1 = __webpack_require__(6);
-var titlepage = __webpack_require__(12);
+var titlepage = __webpack_require__(13);
 var loaderImage = __webpack_require__(46);
 var BootState = /** @class */ (function (_super) {
     __extends(BootState, _super);
@@ -3166,7 +3169,6 @@ var BootState = /** @class */ (function (_super) {
         this.game.load.image('preloadBar', loaderImage);
     };
     BootState.prototype.create = function () {
-        debugger;
         this.game.state.start('preloader', true, false);
     };
     return BootState;
@@ -3200,17 +3202,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
 var state_1 = __webpack_require__(6);
 // Webpack will replace these imports with a URLs to images
-var tanks = __webpack_require__(13);
-var tanksJSON = __webpack_require__(14);
+var tanks = __webpack_require__(14);
+var tanksJSON = __webpack_require__(15);
 var enemy = __webpack_require__(48);
 var bullet = __webpack_require__(49);
 var kaboom = __webpack_require__(50);
-var titlepage = __webpack_require__(12);
+var titlepage = __webpack_require__(13);
 var logo = __webpack_require__(51);
 // const startAudio      = require('../../../static/staticsGame/music/boom.mp3');
-var earth = __webpack_require__(15);
-var pause = __webpack_require__(16);
-var box_tree = __webpack_require__(17);
+var earth = __webpack_require__(16);
+var pause = __webpack_require__(17);
+var box_tree = __webpack_require__(18);
 // The state for loading core resources for the game
 var PreloaderState = /** @class */ (function (_super) {
     __extends(PreloaderState, _super);
@@ -3219,29 +3221,25 @@ var PreloaderState = /** @class */ (function (_super) {
     }
     PreloaderState.prototype.preload = function () {
         console.debug('Assets loading started');
-        debugger;
         this.game.load.image('titlepage', titlepage);
         this.game.load.image('logo', logo);
         // this.game.load.audio('startAudio', startAudio, true);
         this.game.load.image('earth', earth);
         this.game.load.image('pause', pause);
         this.game.load.image('box_tree', box_tree);
-        this.game.load.atlas('tank', tanks, tanksJSON);
-        this.game.load.atlas('enemy', enemy, tanksJSON);
+        this.game.load.atlas('tank', 'static/staticsGame/images/tanks.png', 'static/staticsGame/images/tanks.json');
+        this.game.load.atlas('enemy', 'static/staticsGame/images/enemy-tanks.png', 'static/staticsGame/images/tanks.json');
         this.game.load.image('bullet', bullet);
         this.game.load.spritesheet('kaboom', kaboom, 64, 64, 23);
-        debugger;
     };
     PreloaderState.prototype.create = function () {
         console.debug('Assets loading completed');
-        debugger;
         this._background = this.game.add.sprite(0, 0, 'titlepage');
         this._background.alpha = 0;
         var tween = this.game.add.tween(this._background).to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None, true);
         tween.onComplete.add(this.startMainMenu, this);
     };
     PreloaderState.prototype.startMainMenu = function () {
-        debugger;
         this.game.add.tween(this._background).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
         this.game.state.start('main', true, false);
     };
@@ -3341,12 +3339,13 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
 var state_1 = __webpack_require__(6);
-var tank_state_1 = __webpack_require__(54);
-var earth = __webpack_require__(15);
-var pause = __webpack_require__(16);
-var box_tree = __webpack_require__(17);
-var tanks = __webpack_require__(13);
-var tanksJSON = __webpack_require__(14);
+var Tank_1 = __webpack_require__(54);
+var TreeBox_1 = __webpack_require__(57);
+var earth = __webpack_require__(16);
+var pause = __webpack_require__(17);
+var box_tree = __webpack_require__(18);
+var tanks = __webpack_require__(14);
+var tanksJSON = __webpack_require__(15);
 var WorldState = /** @class */ (function (_super) {
     __extends(WorldState, _super);
     function WorldState() {
@@ -3357,7 +3356,9 @@ var WorldState = /** @class */ (function (_super) {
         this._music.play();
         this._land = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'earth');
         this._land.fixedToCamera = true;
-        this._tank = new tank_state_1.default(this.game, "hello");
+        this._tank = new Tank_1.default(this.game, "hello");
+        this._box = new TreeBox_1.default(this.game, 100, 100);
+        this.game.debug.spriteBounds(this._box._box);
         this._pause = this.game.add.button(10, 10, "pause", this.startPause, this);
         this._pause.scale.setTo(0.2, 0.2);
         this._pause.frame = 1;
@@ -3367,9 +3368,14 @@ var WorldState = /** @class */ (function (_super) {
         this.game.camera.focusOnXY(0, 0);
     };
     WorldState.prototype.update = function () {
+        // this.game.physics.arcade.collide(this._tank._tank._body.body, this._box._box.body);
+        this.game.physics.arcade.overlap(this._tank, this._box, this.collisionHandler, null, this);
         this._land.tilePosition.x = -this.camera.x;
         this._land.tilePosition.y = -this.camera.y;
         this._tank.update();
+    };
+    WorldState.prototype.collisionHandler = function () {
+        console.log("collision");
     };
     WorldState.prototype.startPause = function () {
     };
@@ -3396,6 +3402,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
+var TankBody_1 = __webpack_require__(55);
+var TankTurret_1 = __webpack_require__(56);
 var TankState = /** @class */ (function (_super) {
     __extends(TankState, _super);
     function TankState(game, index) {
@@ -3411,22 +3419,61 @@ var TankState = /** @class */ (function (_super) {
         return _this;
     }
     TankState.prototype.create = function () {
-        this._tank = this._game.add.sprite(50, 400, 'tank', 'tank1');
-        this._tank.anchor.setTo(0.5, 0.5);
-        this._game.physics.enable(this._tank, Phaser.Physics.ARCADE);
-        this._tank.body.maxVelocity.setTo(100, 100);
-        this._tank.body.collideWorldBounds = true;
-        this._turret = this._game.add.sprite(50, 400, 'tank', 'turret');
-        this._turret.anchor.setTo(0.5, 0.5);
         this._cursor = this._game.input.keyboard.createCursorKeys();
+        this._tank = new TankBody_1.default(this._game, this._cursor);
+        this._turret = new TankTurret_1.default(this._game, this._cursor);
     };
     TankState.prototype.update = function () {
+        this._tank.update();
+        this._turret.turretCoordinate = this._tank.currentPosition;
+        this._turret.update();
+    };
+    return TankState;
+}(Phaser.Sprite));
+exports.default = TankState;
+
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var TankBody = /** @class */ (function (_super) {
+    __extends(TankBody, _super);
+    function TankBody(game, cursor) {
+        var _this = _super.call(this, game, 0, 0) || this;
+        _this._game = game;
+        _this._cursor = cursor;
+        _this.create();
+        return _this;
+    }
+    TankBody.prototype.create = function () {
+        this._body = this._game.add.sprite(50, 400, 'tank', 'tank1');
+        this._body.anchor.setTo(0.5, 0.5);
+        // this._game.physics.enable(this._body, Phaser.Physics.ARCADE);
+        this._game.physics.arcade.enable(this._body);
+        this._body.body.maxVelocity.setTo(100, 100);
+        this._body.body.collideWorldBounds = true;
+    };
+    TankBody.prototype.update = function () {
         // величина угла поворота
         if (this._cursor.left.isDown) {
-            this._tank.angle -= 5;
+            this._body.angle -= 5;
         }
         else if (this._cursor.right.isDown) {
-            this._tank.angle += 5;
+            this._body.angle += 5;
         }
         // скорость
         if (this._cursor.up.isDown) {
@@ -3439,20 +3486,164 @@ var TankState = /** @class */ (function (_super) {
         }
         // движение и поворотами
         if (this._currentSpeed > 0) {
-            this._game.physics.arcade.velocityFromRotation(this._tank.rotation, this._currentSpeed, this._tank.body.velocity);
+            this._game.physics.arcade.velocityFromRotation(this._body.rotation, this._currentSpeed, this._body.body.velocity);
         }
-        // привязываем башню к танку
-        this._turret.x = this._tank.x;
-        this._turret.y = this._tank.y;
-        this._turret.rotation = this._game.physics.arcade.angleToPointer(this._turret);
     };
-    return TankState;
+    Object.defineProperty(TankBody.prototype, "currentPosition", {
+        get: function () {
+            return {
+                xCoordinate: this._body.x,
+                yCoordinate: this._body.y,
+            };
+        },
+        set: function (coordinate) {
+            this._body.x = coordinate.xCoordinate;
+            this._body.y = coordinate.yCoordinate;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return TankBody;
 }(Phaser.Sprite));
-exports.default = TankState;
+exports.default = TankBody;
 
 
 /***/ }),
-/* 55 */
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var TankTurret = /** @class */ (function (_super) {
+    __extends(TankTurret, _super);
+    function TankTurret(game, cursor) {
+        var _this = _super.call(this, game, 0, 0) || this;
+        _this._game = game;
+        _this._cursor = cursor;
+        _this.create();
+        return _this;
+    }
+    TankTurret.prototype.create = function () {
+        this._turret = this._game.add.sprite(50, 400, 'tank', 'turret');
+        this._turret.anchor.setTo(0.5, 0.5);
+    };
+    TankTurret.prototype.update = function () {
+        this._turret.rotation = this._game.physics.arcade.angleToPointer(this._turret);
+    };
+    Object.defineProperty(TankTurret.prototype, "turretCoordinate", {
+        set: function (coordinate) {
+            this._turret.x = coordinate.xCoordinate;
+            this._turret.y = coordinate.yCoordinate;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return TankTurret;
+}(Phaser.Sprite));
+exports.default = TankTurret;
+
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Box_1 = __webpack_require__(58);
+var TreeBox = /** @class */ (function (_super) {
+    __extends(TreeBox, _super);
+    function TreeBox(game, xCoord, yCoord) {
+        var _this = _super.call(this, game, xCoord, yCoord) || this;
+        _this.create();
+        return _this;
+    }
+    TreeBox.prototype.create = function () {
+        this._box = this._game.add.sprite(this._xCoordinate, this._yCoordinate, 'box_tree');
+        this._box.anchor.setTo(0.5, 0.5);
+        // this._game.physics.enable(this._box, Phaser.Physics.ARCADE);
+        this._game.physics.arcade.enable(this._box);
+        this._box.collideWorldBounds = true;
+        this._box.body.immovable = true;
+        this._box.body.bounce.setTo(1, 1);
+        // this._box.moves = false;
+    };
+    return TreeBox;
+}(Box_1.default));
+exports.default = TreeBox;
+
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Box = /** @class */ (function (_super) {
+    __extends(Box, _super);
+    function Box(game, xCoord, yCoord) {
+        var _this = _super.call(this, game, 0, 0) || this;
+        _this._game = game;
+        _this._height = 100;
+        _this._width = 100;
+        _this._xCoordinate = xCoord;
+        _this._yCoordinate = yCoord;
+        _this.create();
+        return _this;
+    }
+    Object.defineProperty(Box.prototype, "currentPosition", {
+        get: function () {
+            return {
+                xCoordinate: this._box.x,
+                yCoordinate: this._box.y,
+            };
+        },
+        set: function (coordinate) {
+            this._box.x = coordinate.xCoordinate;
+            this._box.y = coordinate.yCoordinate;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return Box;
+}(Phaser.Sprite));
+exports.default = Box;
+
+
+/***/ }),
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3559,7 +3750,7 @@ var SignInController = function (_Controller) {
 exports.default = SignInController;
 
 /***/ }),
-/* 56 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3665,7 +3856,7 @@ var SignUpController = function (_Controller) {
 exports.default = SignUpController;
 
 /***/ }),
-/* 57 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3768,7 +3959,7 @@ var ScoreListController = function (_Controller) {
 exports.default = ScoreListController;
 
 /***/ }),
-/* 58 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3856,27 +4047,6 @@ var AboutUsController = function (_Controller) {
 }(_Controller3.default);
 
 exports.default = AboutUsController;
-
-/***/ }),
-/* 59 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.default = RegisterSW;
-function RegisterSW() {
-	if (navigator.serviceWorker !== undefined) {
-		navigator.serviceWorker.register('./sw.js', { scope: '/' }).then(function (registration) {
-			console.log('good registration worker: ' + registration);
-		}).catch(function (error) {
-			console.log('bad registration worker: ' + error);
-		});
-	}
-}
 
 /***/ })
 /******/ ]);

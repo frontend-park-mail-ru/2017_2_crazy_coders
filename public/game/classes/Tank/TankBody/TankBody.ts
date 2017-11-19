@@ -15,7 +15,10 @@ export default class TankBody extends Phaser.Sprite {
 
         this._body = this._game.add.sprite(50, 400, 'tank', 'tank1');
         this._body.anchor.setTo(0.5, 0.5);
-        this._game.physics.enable(this._body, Phaser.Physics.ARCADE);
+
+        // this._game.physics.enable(this._body, Phaser.Physics.ARCADE);
+        this._game.physics.arcade.enable(this._body);
+
         this._body.body.maxVelocity.setTo(100, 100);
         this._body.body.collideWorldBounds = true;
     }

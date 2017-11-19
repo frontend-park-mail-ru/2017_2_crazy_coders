@@ -29,7 +29,8 @@ export default class WorldState extends State {
         this._tank = new Tank(this.game, "hello");
         this._box = new TreeBox(this.game, 100, 100);
 
-        let hitBoxes = this.game.physics.arcade.collide(this._tank._tank._body.body, this._box._box.body);
+        this.game.debug.spriteBounds(this._box._box);
+
 
         this._pause = this.game.add.button(10, 10, "pause", this.startPause, this);
         this._pause.scale.setTo(0.2, 0.2);
@@ -43,9 +44,16 @@ export default class WorldState extends State {
     }
 
     update(): void {
+        // this.game.physics.arcade.collide(this._tank._tank._body.body, this._box._box.body);
+        this.game.physics.arcade.overlap(this._tank, this._box, this.collisionHandler, null, this);
+
         this._land.tilePosition.x = -this.camera.x;
         this._land.tilePosition.y = -this.camera.y;
         this._tank.update();
+    }
+
+    collisionHandler(): void {
+        console.log("collision");
     }
 
     startPause(): void {

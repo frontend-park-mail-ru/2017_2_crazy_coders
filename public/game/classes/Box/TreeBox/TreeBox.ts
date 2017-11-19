@@ -11,9 +11,13 @@ export default class TreeBox extends Box {
     create() {
         this._box = this._game.add.sprite(this._xCoordinate, this._yCoordinate, 'box_tree');
         this._box.anchor.setTo(0.5, 0.5);
-        this._game.physics.enable(this._box, Phaser.Physics.ARCADE);
-        this._box.body.collideWorldBounds = true;
+
+        // this._game.physics.enable(this._box, Phaser.Physics.ARCADE);
+        this._game.physics.arcade.enable(this._box);
+
+        this._box.collideWorldBounds = true;
         this._box.body.immovable = true;
-        this._box.body.moves = false;
+        this._box.body.bounce.setTo(1, 1);
+        // this._box.moves = false;
     }
 }
