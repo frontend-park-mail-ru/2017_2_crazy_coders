@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 19);
+/******/ 	return __webpack_require__(__webpack_require__.s = 18);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -707,7 +707,7 @@ function pug_rethrow(err, filename, lineno, str){
     throw err;
   }
   try {
-    str = str || __webpack_require__(26).readFileSync(filename, 'utf8')
+    str = str || __webpack_require__(25).readFileSync(filename, 'utf8')
   } catch (ex) {
     pug_rethrow(err, null, lineno)
   }
@@ -750,7 +750,7 @@ var _BlockComponents = __webpack_require__(0);
 
 var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
-var _Form = __webpack_require__(25);
+var _Form = __webpack_require__(24);
 
 var _Form2 = _interopRequireDefault(_Form);
 
@@ -960,11 +960,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Http = __webpack_require__(20);
+var _Http = __webpack_require__(19);
 
 var _Http2 = _interopRequireDefault(_Http);
 
-var _User = __webpack_require__(21);
+var _User = __webpack_require__(20);
 
 var _User2 = _interopRequireDefault(_User);
 
@@ -1335,7 +1335,7 @@ var _BlockComponents = __webpack_require__(0);
 
 var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
-var _Menu = __webpack_require__(33);
+var _Menu = __webpack_require__(32);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
@@ -1410,7 +1410,7 @@ var _BlockComponents = __webpack_require__(0);
 
 var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
-var _Table = __webpack_require__(36);
+var _Table = __webpack_require__(35);
 
 var _Table2 = _interopRequireDefault(_Table);
 
@@ -1486,8 +1486,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var boot_state_1 = __webpack_require__(45);
-var preloader_state_1 = __webpack_require__(47);
+var boot_state_1 = __webpack_require__(44);
+var preloader_state_1 = __webpack_require__(46);
 var main_state_1 = __webpack_require__(52);
 var world_state_1 = __webpack_require__(53);
 var App = /** @class */ (function (_super) {
@@ -1520,30 +1520,24 @@ module.exports = __webpack_require__.p + "5733b613e5ea55c939a6276c4b4b7aa0.png";
 
 /***/ }),
 /* 15 */
-/***/ (function(module, exports) {
-
-module.exports = {"frames":[{"filename":"shadow","frame":{"x":0,"y":0,"w":80,"h":80},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":80,"h":80},"sourceSize":{"w":80,"h":80}},{"filename":"tank1","frame":{"x":190,"y":52,"w":54,"h":52},"rotated":false,"trimmed":true,"spriteSourceSize":{"x":3,"y":5,"w":54,"h":52},"sourceSize":{"w":64,"h":64}},{"filename":"turret","frame":{"x":0,"y":80,"w":48,"h":28},"rotated":false,"trimmed":true,"spriteSourceSize":{"x":1,"y":2,"w":48,"h":28},"sourceSize":{"w":50,"h":32}}]}
-
-/***/ }),
-/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "4119334de3c71843520250c6c9f0594d.jpg";
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "b17c373a3f0117f56d7b0af1a9839bb7.png";
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "fdfd09de3c00231354d7fa064d79af79.png";
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1553,35 +1547,35 @@ var _UserService = __webpack_require__(7);
 
 var _UserService2 = _interopRequireDefault(_UserService);
 
-var _CreatePage = __webpack_require__(22);
+var _CreatePage = __webpack_require__(21);
 
 var _CreatePage2 = _interopRequireDefault(_CreatePage);
 
-var _Router = __webpack_require__(41);
+var _Router = __webpack_require__(40);
 
 var _Router2 = _interopRequireDefault(_Router);
 
-var _MenuStartController = __webpack_require__(43);
+var _MenuStartController = __webpack_require__(42);
 
 var _MenuStartController2 = _interopRequireDefault(_MenuStartController);
 
-var _PlayGameController = __webpack_require__(44);
+var _PlayGameController = __webpack_require__(43);
 
 var _PlayGameController2 = _interopRequireDefault(_PlayGameController);
 
-var _SignInController = __webpack_require__(54);
+var _SignInController = __webpack_require__(59);
 
 var _SignInController2 = _interopRequireDefault(_SignInController);
 
-var _SignUpController = __webpack_require__(55);
+var _SignUpController = __webpack_require__(60);
 
 var _SignUpController2 = _interopRequireDefault(_SignUpController);
 
-var _ScoreListController = __webpack_require__(56);
+var _ScoreListController = __webpack_require__(61);
 
 var _ScoreListController2 = _interopRequireDefault(_ScoreListController);
 
-var _AboutUsController = __webpack_require__(57);
+var _AboutUsController = __webpack_require__(62);
 
 var _AboutUsController2 = _interopRequireDefault(_AboutUsController);
 
@@ -1617,7 +1611,7 @@ var game = new _index2.default();
 //     .startRoute();
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1712,7 +1706,7 @@ var Http = function () {
 exports.default = Http;
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1822,7 +1816,7 @@ var User = function () {
 exports.default = User;
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1838,35 +1832,35 @@ var _BlockComponents = __webpack_require__(0);
 
 var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
-var _SignIn = __webpack_require__(23);
+var _SignIn = __webpack_require__(22);
 
 var _SignIn2 = _interopRequireDefault(_SignIn);
 
-var _SignUp = __webpack_require__(27);
+var _SignUp = __webpack_require__(26);
 
 var _SignUp2 = _interopRequireDefault(_SignUp);
 
-var _Header = __webpack_require__(29);
+var _Header = __webpack_require__(28);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _UnRegMenu = __webpack_require__(32);
+var _UnRegMenu = __webpack_require__(31);
 
 var _UnRegMenu2 = _interopRequireDefault(_UnRegMenu);
 
-var _RegMenu = __webpack_require__(34);
+var _RegMenu = __webpack_require__(33);
 
 var _RegMenu2 = _interopRequireDefault(_RegMenu);
 
-var _AboutUs = __webpack_require__(35);
+var _AboutUs = __webpack_require__(34);
 
 var _AboutUs2 = _interopRequireDefault(_AboutUs);
 
-var _Scoreboard = __webpack_require__(37);
+var _Scoreboard = __webpack_require__(36);
 
 var _Scoreboard2 = _interopRequireDefault(_Scoreboard);
 
-var _Footer = __webpack_require__(38);
+var _Footer = __webpack_require__(37);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -1914,7 +1908,7 @@ var CreatePage = function () {
 exports.default = CreatePage;
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1925,7 +1919,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = SignIn;
 
-var _SignInForm = __webpack_require__(24);
+var _SignInForm = __webpack_require__(23);
 
 var _SignInForm2 = _interopRequireDefault(_SignInForm);
 
@@ -1969,7 +1963,7 @@ function SignIn() {
 }
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2058,7 +2052,7 @@ var SignInForm = function (_Form) {
 exports.default = SignInForm;
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(3);
@@ -2087,13 +2081,13 @@ pug_html = pug_html + "\n    \u003Cinput" + (pug.attr("class", pug.classes(["for
 module.exports = template;
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2104,7 +2098,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = SignUp;
 
-var _SignUpForm = __webpack_require__(28);
+var _SignUpForm = __webpack_require__(27);
 
 var _SignUpForm2 = _interopRequireDefault(_SignUpForm);
 
@@ -2160,7 +2154,7 @@ function SignUp() {
 }
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2248,7 +2242,7 @@ var SignUpForm = function (_Form) {
 exports.default = SignUpForm;
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2259,7 +2253,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createHeader;
 
-var _Header = __webpack_require__(30);
+var _Header = __webpack_require__(29);
 
 var _Header2 = _interopRequireDefault(_Header);
 
@@ -2277,7 +2271,7 @@ function createHeader() {
 }
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2293,7 +2287,7 @@ var _BlockComponents = __webpack_require__(0);
 
 var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
-var _Header = __webpack_require__(31);
+var _Header = __webpack_require__(30);
 
 var _Header2 = _interopRequireDefault(_Header);
 
@@ -2352,7 +2346,7 @@ var Header = function (_Block) {
 exports.default = Header;
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(3);
@@ -2362,7 +2356,7 @@ pug_html = pug_html + "\n\u003Cdiv class=\"theme\"\u003Echange theme\u003C\u002F
 module.exports = template;
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2400,7 +2394,7 @@ function createUnRegMenu() {
 }
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(3);
@@ -2432,7 +2426,7 @@ pug_html = pug_html + "\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for
 module.exports = template;
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2474,7 +2468,7 @@ function createRegMenu() {
 }
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2526,7 +2520,7 @@ function createAboutUs() {
 }
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(3);
@@ -2559,7 +2553,7 @@ pug_html = pug_html + "\n    \u003C\u002Ftable\u003E\n  \u003C\u002Fdiv\u003E\n 
 module.exports = template;
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2611,7 +2605,7 @@ function Scoreboard() {
 }
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2622,7 +2616,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = CreateFooter;
 
-var _Footer = __webpack_require__(39);
+var _Footer = __webpack_require__(38);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -2652,7 +2646,7 @@ function CreateFooter() {
 }
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2668,7 +2662,7 @@ var _BlockComponents = __webpack_require__(0);
 
 var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
-var _Footer = __webpack_require__(40);
+var _Footer = __webpack_require__(39);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -2727,7 +2721,7 @@ var Footer = function (_Block) {
 exports.default = Footer;
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(3);
@@ -2756,7 +2750,7 @@ pug_html = pug_html + "\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for
 module.exports = template;
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2768,7 +2762,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Route = __webpack_require__(42);
+var _Route = __webpack_require__(41);
 
 var _Route2 = _interopRequireDefault(_Route);
 
@@ -2855,7 +2849,7 @@ var Router = function () {
 exports.default = Router;
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2910,7 +2904,7 @@ var Route = function () {
 exports.default = Route;
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3063,7 +3057,7 @@ var MenuStartController = function (_Controller) {
 exports.default = MenuStartController;
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3139,7 +3133,7 @@ var PlayGameController = function (_Controller) {
 exports.default = PlayGameController;
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3158,7 +3152,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
 var state_1 = __webpack_require__(6);
 var titlepage = __webpack_require__(13);
-var loaderImage = __webpack_require__(46);
+var loaderImage = __webpack_require__(45);
 var BootState = /** @class */ (function (_super) {
     __extends(BootState, _super);
     function BootState() {
@@ -3177,13 +3171,13 @@ exports.default = BootState;
 
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "14d4ff248dc707525c77546bd8f6a020.png";
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3203,16 +3197,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var state_1 = __webpack_require__(6);
 // Webpack will replace these imports with a URLs to images
 var tanks = __webpack_require__(14);
-var tanksJSON = __webpack_require__(15);
+var tanksJSON = __webpack_require__(47);
 var enemy = __webpack_require__(48);
 var bullet = __webpack_require__(49);
 var kaboom = __webpack_require__(50);
 var titlepage = __webpack_require__(13);
 var logo = __webpack_require__(51);
 // const startAudio      = require('../../../static/staticsGame/music/boom.mp3');
-var earth = __webpack_require__(16);
-var pause = __webpack_require__(17);
-var box_tree = __webpack_require__(18);
+var earth = __webpack_require__(15);
+var pause = __webpack_require__(16);
+var box_tree = __webpack_require__(17);
 // The state for loading core resources for the game
 var PreloaderState = /** @class */ (function (_super) {
     __extends(PreloaderState, _super);
@@ -3247,6 +3241,12 @@ var PreloaderState = /** @class */ (function (_super) {
 }(state_1.default));
 exports.default = PreloaderState;
 
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports) {
+
+module.exports = {"frames":[{"filename":"shadow","frame":{"x":0,"y":0,"w":80,"h":80},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":80,"h":80},"sourceSize":{"w":80,"h":80}},{"filename":"tank1","frame":{"x":190,"y":52,"w":54,"h":52},"rotated":false,"trimmed":true,"spriteSourceSize":{"x":3,"y":5,"w":54,"h":52},"sourceSize":{"w":64,"h":64}},{"filename":"turret","frame":{"x":0,"y":80,"w":48,"h":28},"rotated":false,"trimmed":true,"spriteSourceSize":{"x":1,"y":2,"w":48,"h":28},"sourceSize":{"w":50,"h":32}}]}
 
 /***/ }),
 /* 48 */
@@ -3339,11 +3339,12 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
 var state_1 = __webpack_require__(6);
-var earth = __webpack_require__(16);
-var pause = __webpack_require__(17);
-var box_tree = __webpack_require__(18);
+var Tank_1 = __webpack_require__(54);
+var TreeBox_1 = __webpack_require__(57);
+var earth = __webpack_require__(15);
+var pause = __webpack_require__(16);
+var box_tree = __webpack_require__(17);
 var tanks = __webpack_require__(14);
-var tanksJSON = __webpack_require__(15);
 var WorldState = /** @class */ (function (_super) {
     __extends(WorldState, _super);
     function WorldState() {
@@ -3354,22 +3355,8 @@ var WorldState = /** @class */ (function (_super) {
         this._music.play();
         this._land = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'earth');
         this._land.fixedToCamera = true;
-        // this._tank = new Tank(this.game, "hello");
-        // this._box = new TreeBox(this.game, 100, 100);
-        this._cursor = this.game.input.keyboard.createCursorKeys();
-        debugger;
-        this.tank = this.game.add.sprite(50, 400, 'tank', 'tank1');
-        this.tank.anchor.setTo(0.5, 0.5);
-        this.game.physics.arcade.enable(this.tank);
-        this.tank.body.maxVelocity.setTo(100, 100);
-        this.tank.body.collideWorldBounds = true;
-        this.turret = this.game.add.sprite(0, 0, 'tank', 'turret');
-        this.turret.anchor.setTo(0.5, 0.5);
-        this.game.debug.spriteBounds(this.tank);
-        this.box = this.game.add.sprite(400, 400, 'box_tree');
-        this.box.anchor.setTo(0.5, 0.5);
-        this.game.physics.arcade.enable(this.box);
-        this.box.body.immovable = true;
+        this._tank = new Tank_1.default(this.game, "hello");
+        this._box = new TreeBox_1.default(this.game, 100, 100);
         this._pause = this.game.add.button(10, 10, "pause", this.startPause, this);
         this._pause.scale.setTo(0.2, 0.2);
         this._pause.frame = 1;
@@ -3379,40 +3366,10 @@ var WorldState = /** @class */ (function (_super) {
         this.game.camera.focusOnXY(0, 0);
     };
     WorldState.prototype.update = function () {
-        // this.game.physics.arcade.collide(this._tank._tank._body.body, this._box._box.body);
-        this.game.physics.arcade.collide(this.tank, this.box);
-        // величина угла поворота
-        if (this._cursor.left.isDown) {
-            this.tank.angle -= 5;
-        }
-        else if (this._cursor.right.isDown) {
-            this.tank.angle += 5;
-        }
-        // скорость
-        if (this._cursor.up.isDown) {
-            this.currentSpeed = 210;
-        }
-        else {
-            if (this.currentSpeed > 0) {
-                this.currentSpeed -= 100; // скорость торможения
-            }
-        }
-        // движение и поворотами
-        if (this.currentSpeed > 0) {
-            this.physics.arcade.velocityFromRotation(this.tank.rotation, this.currentSpeed, this.tank.body.velocity);
-        }
+        this.game.physics.arcade.collide(this._tank._tank._body, this._box._box);
         this._land.tilePosition.x = -this.camera.x;
         this._land.tilePosition.y = -this.camera.y;
-        // привязываем башню к танку
-        this.turret.x = this.tank.x;
-        this.turret.y = this.tank.y;
-        this.turret.rotation = this.physics.arcade.angleToPointer(this.turret);
-        // this._land.tilePosition.x = -this.camera.x;
-        // this._land.tilePosition.y = -this.camera.y;
-        // this._tank.update();
-    };
-    WorldState.prototype.collisionHandler = function () {
-        console.log("collision");
+        this._tank.update();
     };
     WorldState.prototype.startPause = function () {
     };
@@ -3424,6 +3381,261 @@ exports.default = WorldState;
 
 /***/ }),
 /* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var TankBody_1 = __webpack_require__(55);
+var TankTurret_1 = __webpack_require__(56);
+var TankState = /** @class */ (function (_super) {
+    __extends(TankState, _super);
+    function TankState(game, index) {
+        var _this = _super.call(this, game, 0, 0) || this;
+        _this._game = game;
+        _this._xPosition = Math.random() * _this.game.world.width;
+        _this._yPosition = Math.random() * _this.game.world.height;
+        _this._health = 3;
+        _this._fireRate = 1000; // скорострельность
+        _this._nextFire = 0; //следующий выстрел
+        _this._alive = true;
+        _this.create();
+        return _this;
+    }
+    TankState.prototype.create = function () {
+        this._cursor = this._game.input.keyboard.createCursorKeys();
+        this._tank = new TankBody_1.default(this._game, this._cursor);
+        this._turret = new TankTurret_1.default(this._game, this._cursor);
+    };
+    TankState.prototype.update = function () {
+        this._tank.update();
+        this._turret.turretCoordinate = this._tank.currentPosition;
+        this._turret.update();
+    };
+    return TankState;
+}(Phaser.Sprite));
+exports.default = TankState;
+
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var TankBody = /** @class */ (function (_super) {
+    __extends(TankBody, _super);
+    function TankBody(game, cursor) {
+        var _this = _super.call(this, game, 0, 0) || this;
+        _this._game = game;
+        _this._cursor = cursor;
+        _this.create();
+        return _this;
+    }
+    TankBody.prototype.create = function () {
+        debugger;
+        this._body = this._game.add.sprite(50, 400, 'tank', 'tank1');
+        this._body.anchor.setTo(0.5, 0.5);
+        // this._game.physics.enable(this._body, Phaser.Physics.ARCADE);
+        this._game.physics.arcade.enable(this._body);
+        this._body.body.maxVelocity.setTo(100, 100);
+        this._body.body.collideWorldBounds = true;
+    };
+    TankBody.prototype.update = function () {
+        // величина угла поворота
+        if (this._cursor.left.isDown) {
+            this._body.angle -= 5;
+        }
+        else if (this._cursor.right.isDown) {
+            this._body.angle += 5;
+        }
+        // скорость
+        if (this._cursor.up.isDown) {
+            this._currentSpeed = 210;
+        }
+        else {
+            if (this._currentSpeed > 0) {
+                this._currentSpeed -= 100; // скорость торможения
+            }
+        }
+        // движение и поворотами
+        if (this._currentSpeed > 0) {
+            this._game.physics.arcade.velocityFromRotation(this._body.rotation, this._currentSpeed, this._body.body.velocity);
+        }
+    };
+    Object.defineProperty(TankBody.prototype, "currentPosition", {
+        get: function () {
+            return {
+                xCoordinate: this._body.x,
+                yCoordinate: this._body.y,
+            };
+        },
+        set: function (coordinate) {
+            this._body.x = coordinate.xCoordinate;
+            this._body.y = coordinate.yCoordinate;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return TankBody;
+}(Phaser.Sprite));
+exports.default = TankBody;
+
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var TankTurret = /** @class */ (function (_super) {
+    __extends(TankTurret, _super);
+    function TankTurret(game, cursor) {
+        var _this = _super.call(this, game, 0, 0) || this;
+        _this._game = game;
+        _this._cursor = cursor;
+        _this.create();
+        return _this;
+    }
+    TankTurret.prototype.create = function () {
+        this._turret = this._game.add.sprite(50, 400, 'tank', 'turret');
+        this._turret.anchor.setTo(0.5, 0.5);
+    };
+    TankTurret.prototype.update = function () {
+        this._turret.rotation = this._game.physics.arcade.angleToPointer(this._turret);
+    };
+    Object.defineProperty(TankTurret.prototype, "turretCoordinate", {
+        set: function (coordinate) {
+            this._turret.x = coordinate.xCoordinate;
+            this._turret.y = coordinate.yCoordinate;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return TankTurret;
+}(Phaser.Sprite));
+exports.default = TankTurret;
+
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Box_1 = __webpack_require__(58);
+var TreeBox = /** @class */ (function (_super) {
+    __extends(TreeBox, _super);
+    function TreeBox(game, xCoord, yCoord) {
+        var _this = _super.call(this, game, xCoord, yCoord) || this;
+        _this.create();
+        return _this;
+    }
+    TreeBox.prototype.create = function () {
+        this._box = this._game.add.sprite(this._xCoordinate, this._yCoordinate, 'box_tree');
+        this._box.anchor.setTo(0.5, 0.5);
+        this._game.physics.arcade.enable(this._box);
+        this._box.body.immovable = true;
+        this._box.body.bounce.setTo(1, 1);
+    };
+    return TreeBox;
+}(Box_1.default));
+exports.default = TreeBox;
+
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Box = /** @class */ (function (_super) {
+    __extends(Box, _super);
+    function Box(game, xCoord, yCoord) {
+        var _this = _super.call(this, game, 0, 0) || this;
+        _this._game = game;
+        _this._height = 100;
+        _this._width = 100;
+        _this._xCoordinate = xCoord;
+        _this._yCoordinate = yCoord;
+        _this.create();
+        return _this;
+    }
+    Object.defineProperty(Box.prototype, "currentPosition", {
+        get: function () {
+            return {
+                xCoordinate: this._box.x,
+                yCoordinate: this._box.y,
+            };
+        },
+        set: function (coordinate) {
+            this._box.x = coordinate.xCoordinate;
+            this._box.y = coordinate.yCoordinate;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return Box;
+}(Phaser.Sprite));
+exports.default = Box;
+
+
+/***/ }),
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3530,7 +3742,7 @@ var SignInController = function (_Controller) {
 exports.default = SignInController;
 
 /***/ }),
-/* 55 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3636,7 +3848,7 @@ var SignUpController = function (_Controller) {
 exports.default = SignUpController;
 
 /***/ }),
-/* 56 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3739,7 +3951,7 @@ var ScoreListController = function (_Controller) {
 exports.default = ScoreListController;
 
 /***/ }),
-/* 57 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
