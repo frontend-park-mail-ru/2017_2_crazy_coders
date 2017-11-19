@@ -1563,19 +1563,19 @@ var _PlayGameController = __webpack_require__(43);
 
 var _PlayGameController2 = _interopRequireDefault(_PlayGameController);
 
-var _SignInController = __webpack_require__(59);
+var _SignInController = __webpack_require__(60);
 
 var _SignInController2 = _interopRequireDefault(_SignInController);
 
-var _SignUpController = __webpack_require__(60);
+var _SignUpController = __webpack_require__(61);
 
 var _SignUpController2 = _interopRequireDefault(_SignUpController);
 
-var _ScoreListController = __webpack_require__(61);
+var _ScoreListController = __webpack_require__(62);
 
 var _ScoreListController2 = _interopRequireDefault(_ScoreListController);
 
-var _AboutUsController = __webpack_require__(62);
+var _AboutUsController = __webpack_require__(63);
 
 var _AboutUsController2 = _interopRequireDefault(_AboutUsController);
 
@@ -3340,7 +3340,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
 var state_1 = __webpack_require__(6);
 var Tank_1 = __webpack_require__(54);
-var TreeBox_1 = __webpack_require__(57);
+var TreeBox_1 = __webpack_require__(58);
 var earth = __webpack_require__(15);
 var pause = __webpack_require__(16);
 var box_tree = __webpack_require__(17);
@@ -3355,8 +3355,9 @@ var WorldState = /** @class */ (function (_super) {
         this._music.play();
         this._land = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'earth');
         this._land.fixedToCamera = true;
-        this._tank = new Tank_1.default(this.game, "hello");
+        this._tank = new Tank_1.default(this.game, "Tiger");
         this._box = new TreeBox_1.default(this.game, 100, 100);
+        // this._tankLable = new Lable(this.game, this._tank._tank.currentPosition, "Tiger", 0.5);
         this._pause = this.game.add.button(10, 10, "pause", this.startPause, this);
         this._pause.scale.setTo(0.2, 0.2);
         this._pause.frame = 1;
@@ -3370,6 +3371,7 @@ var WorldState = /** @class */ (function (_super) {
         this._land.tilePosition.x = -this.camera.x;
         this._land.tilePosition.y = -this.camera.y;
         this._tank.update();
+        // this._tankLable.currentPosition = this._tank._tank.currentPosition;
     };
     WorldState.prototype.startPause = function () {
     };
@@ -3398,6 +3400,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var TankBody_1 = __webpack_require__(55);
 var TankTurret_1 = __webpack_require__(56);
+var Lable_1 = __webpack_require__(57);
 var TankState = /** @class */ (function (_super) {
     __extends(TankState, _super);
     function TankState(game, index) {
@@ -3409,6 +3412,7 @@ var TankState = /** @class */ (function (_super) {
         _this._fireRate = 1000; // скорострельность
         _this._nextFire = 0; //следующий выстрел
         _this._alive = true;
+        _this._tankName = index;
         _this.create();
         return _this;
     }
@@ -3416,11 +3420,13 @@ var TankState = /** @class */ (function (_super) {
         this._cursor = this._game.input.keyboard.createCursorKeys();
         this._tank = new TankBody_1.default(this._game, this._cursor);
         this._turret = new TankTurret_1.default(this._game, this._cursor);
+        this._tankLable = new Lable_1.default(this._game, this._tank.currentPosition, this._tankName, 1);
     };
     TankState.prototype.update = function () {
         this._tank.update();
         this._turret.turretCoordinate = this._tank.currentPosition;
         this._turret.update();
+        this._tankLable.currentPosition = this._tank.currentPosition;
     };
     return TankState;
 }(Phaser.Sprite));
@@ -3555,6 +3561,34 @@ exports.default = TankTurret;
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
+var Lable = /** @class */ (function () {
+    function Lable(game, coordinate, content, scale) {
+        this._game = game;
+        this._textStyle = { font: "bold 32px Arial", fill: "#120dff", boundsAlignH: "center", boundsAlignV: "middle" };
+        this._text = this._game.add.text(coordinate.xCoordinate, coordinate.yCoordinate, content, this._textStyle);
+        this._text.anchor.set(0.5);
+        this._scale = scale;
+    }
+    Object.defineProperty(Lable.prototype, "currentPosition", {
+        set: function (coordinate) {
+            this._text.x = coordinate.xCoordinate;
+            this._text.y = coordinate.yCoordinate - 70;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return Lable;
+}());
+exports.default = Lable;
+
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -3566,7 +3600,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Box_1 = __webpack_require__(58);
+var Box_1 = __webpack_require__(59);
 var TreeBox = /** @class */ (function (_super) {
     __extends(TreeBox, _super);
     function TreeBox(game, xCoord, yCoord) {
@@ -3587,7 +3621,7 @@ exports.default = TreeBox;
 
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3635,7 +3669,7 @@ exports.default = Box;
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3742,7 +3776,7 @@ var SignInController = function (_Controller) {
 exports.default = SignInController;
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3848,7 +3882,7 @@ var SignUpController = function (_Controller) {
 exports.default = SignUpController;
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3951,7 +3985,7 @@ var ScoreListController = function (_Controller) {
 exports.default = ScoreListController;
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

@@ -25,7 +25,7 @@ export default class WorldState extends State {
         this._land = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'earth');
         this._land.fixedToCamera = true;
 
-        this._tank = new Tank(this.game, "hello");
+        this._tank = new Tank(this.game, "Tiger");
         this._box = new TreeBox(this.game, 100, 100);
 
         this._pause = this.game.add.button(10, 10, "pause", this.startPause, this);
