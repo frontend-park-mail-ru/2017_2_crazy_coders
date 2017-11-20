@@ -1,4 +1,4 @@
-import Phaser from '../../phaser.min'
+import Phaser from '../../phaser'
 import MainMenu from '../MainMenu/MainMenu';
 
 class Preloader extends Phaser.State {

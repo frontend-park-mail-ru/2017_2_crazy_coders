@@ -1,0 +1,27 @@
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+
+    &__logo {
+        width: 230px;
+        height: auto;
+        margin-left: -60px;
+    }
+
+    &__sound {
+        width: 100px;
+        margin: 0 160px;
+    }
+
+    &__score {
+        width: 50px;
+        margin: 0 125px;
+    }
+
+    &__info {
+        width: 50px;
+        margin: 0 55px;
+    }
+}

@@ -1,6 +1,5 @@
 import Block from '../Block/BlockComponents';
 import HeaderTemp from './Header.pug';
-import './Header.css';
 
 /**
  * Класс Header-а
@@ -23,9 +22,9 @@ export default class Header extends Block {
      */
     getClassElement() {
 
-        console.log(this.getData());
+        let data = this.getData();
 
-        this.setHTML(HeaderTemp(this.getData()));
+        this.setHTML(HeaderTemp({data}));
         return this.getElement();
     }
 }

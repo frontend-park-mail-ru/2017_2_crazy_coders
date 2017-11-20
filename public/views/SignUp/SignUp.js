@@ -44,13 +44,13 @@ let data = {
                 id: 'signUp-button-signUp',
             },
         },
-        {
-            attrs: {
-                class: 'form__back',
-                value: 'BACK',
-                id: 'signUp-button-back',
-            },
-        },
+        // {
+        //     attrs: {
+        //         class: 'form__back',
+        //         value: 'BACK',
+        //         id: 'signUp-button-back',
+        //     },
+        // },
     ]
 };
 
@@ -58,6 +58,6 @@ let data = {
  * Получаем страницу регистрации
  */
 export default function SignUp() {
-    return new SignUpForm('section', {id: 'section-signUp'}, [], {data}, ValidSignUpForm);
+    return new SignUpForm('section', {id: 'section-signUp'}, [], data, ValidSignUpForm);
 }
 

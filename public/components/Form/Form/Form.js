@@ -4,7 +4,7 @@ import Block from '../../Block/BlockComponents';
 import FormTemp from './Form.pug';
 import ValidSignInForm from '../ValidForm/ValidSignInForm';
 import ValidSignUpForm from '../ValidForm/ValidSignUpForm';
-import './Form.css';
+// import './Form.scss';
 
 /**
  * Класс формы
@@ -26,7 +26,8 @@ export default class Form extends Block {
      * Получить форму
      */
     getClassElement() {
-        this.setHTML(FormTemp(this.getData()));
+		let data = this.getData();
+        this.setHTML(FormTemp({data}));
         return this.getElement();
     }
 
@@ -43,10 +44,11 @@ export default class Form extends Block {
      * @param {HTMLElement} form
      * @return {Promise}
      */
-    static showFormMessage(msg, form) {
-        let currentForm = form.getElement().getElementsByTagName('form')[0];
-        currentForm.insertBefore(ValidSignUpForm.createErrorElement(msg), currentForm.children[0]);
-    }
+    // static showFormMessage(msg, form) {
+    //     console.log(1);
+    //     let currentForm = form.getElement().getElementsByTagName('form')[0];
+    //     currentForm.insertBefore(ValidSignUpForm.createErrorElement(msg), currentForm.children[0]);
+    // }
 
     /**
      * Очищаем поля форм

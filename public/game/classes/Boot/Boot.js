@@ -1,4 +1,4 @@
-import Phaser from '../../phaser.min'
+import Phaser from '../../phaser'
 import  Preloader from '../Preloader/Preloader'
 
 class Boot extends Phaser.State {
