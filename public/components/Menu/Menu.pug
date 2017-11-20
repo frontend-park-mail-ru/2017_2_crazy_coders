@@ -1,4 +1,6 @@
 div.menu
+    if data.user
+        div.menu__player='Hi, '+data.user
     each butt in data.buttons
         button(
             class=butt.class

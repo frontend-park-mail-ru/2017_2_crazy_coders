@@ -29,11 +29,10 @@ export default class SignUpForm extends Form {
 
             for (let name in elements) {
                 formdata[name] = elements[name].value;
-                console.log(elements[name].value);
             }
 
             const isValid = new this.validator(formdata.username, formdata.email,
-                formdata.password, formdata.repeatPassword, signUpForm);
+                formdata.password, formdata.repeatPassword);
 
             if(isValid.validForm()) {
                 callback(formdata);

@@ -1,4 +1,4 @@
-import Phaser from '../../phaser.min';
+import Phaser from '../../phaser';
 import Boot from '../Boot/Boot';
 import Preloader from '../Preloader/Preloader';
 import MainMenu from '../MainMenu/MainMenu';

@@ -3,6 +3,8 @@
 import Controller from './Controller';
 import Form from '../components/Form/Form/Form';
 import Theme from '../static/css/style';
+import Notify from '../components/Form/ValidForm/Notify/Notify';
+
 
 class SignUpController extends Controller {
 
@@ -35,13 +37,9 @@ class SignUpController extends Controller {
 
                 .catch((err) => {
                     console.log("[onSubmitSignUpForm] err: " + err);
-                    Form.showFormMessage('server error', this.page_parts.get('SignUp'));
-                });
-        });
-
-        document.getElementById('signUp-button-back').addEventListener('click', event => {
-            event.preventDefault();
-            this._router.go('/');
+					let notify = new Notify();
+                    notify.notify('server error');
+				});
         });
     }
 

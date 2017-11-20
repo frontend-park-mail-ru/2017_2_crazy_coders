@@ -1,7 +1,7 @@
 import Menu from '../../components/Menu/Menu';
 
 let data = {
-    user: null,
+    user: undefined,
     buttons: [
         {
             text: 'SIGN IN',
@@ -20,5 +20,5 @@ let data = {
  * Получаем страницу незарегистрированного пользователя
  */
 export default function createUnRegMenu() {
-    return new Menu('section', {id: 'section-unRegMenu'}, [], {data});
+    return new Menu('section', {id: 'section-unRegMenu'}, [], data);
 }

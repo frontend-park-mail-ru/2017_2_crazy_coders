@@ -1,6 +1,6 @@
 import Block from '../Block/BlockComponents';
 import FooterTemp from './Footer.pug';
-import './Footer.css';
+// import './Footer.scss';
 
 /**
  * Класс footer-а
@@ -22,7 +22,8 @@ export default class Footer extends Block {
      * Получить footer
      */
     getClassElement() {
-        this.setHTML(FooterTemp(this.getData()));
+		let data = this.getData();
+        this.setHTML(FooterTemp({data}));
         return this.getElement();
     }
 }
