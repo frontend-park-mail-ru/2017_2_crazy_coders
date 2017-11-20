@@ -1,5 +1,5 @@
 'use strict';
-/** Imports */
+
 import App from '..';
 
 abstract class State extends Phaser.State {
