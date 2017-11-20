@@ -741,7 +741,7 @@ function pug_rethrow(err, filename, lineno, str){
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -777,75 +777,75 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Form
  */
 var Form = function (_Block) {
-    _inherits(Form, _Block);
+  _inherits(Form, _Block);
 
-    /**
-     * @param {string} [tagName='div'] - tagName блока
-     * @param {*} [attrs={}] - объект с атрибутами блока
-     * @param {string[]} [classes=[]] - список имён классов
-     * @param {*} [data={}] - объект с данными блока
-     * @constructor
-     */
-    function Form() {
-        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-        var data = arguments[3];
+  /**
+   * @param {string} [tagName='div'] - tagName блока
+   * @param {*} [attrs={}] - объект с атрибутами блока
+   * @param {string[]} [classes=[]] - список имён классов
+   * @param {*} [data={}] - объект с данными блока
+   * @constructor
+   */
+  function Form() {
+    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var data = arguments[3];
 
-        _classCallCheck(this, Form);
+    _classCallCheck(this, Form);
 
-        return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, tagName, attrs, classes, data));
+    return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, tagName, attrs, classes, data));
+  }
+
+  /**
+   * Получить форму
+   */
+
+
+  _createClass(Form, [{
+    key: 'getClassElement',
+    value: function getClassElement() {
+      var data = this.getData();
+      this.setHTML((0, _Form2.default)({ data: data }));
+      return this.getElement();
     }
 
     /**
-     * Получить форму
+     * Получить кнопку назад из страницы с формы
      */
 
+  }], [{
+    key: 'getBackButton',
+    value: function getBackButton() {
+      return document.getElementsByClassName('back-button');
+    }
 
-    _createClass(Form, [{
-        key: 'getClassElement',
-        value: function getClassElement() {
-            var data = this.getData();
-            this.setHTML((0, _Form2.default)({ data: data }));
-            return this.getElement();
-        }
+    /**
+     * Показываем ошибки к форме
+     * @param {string}  msg - сообщение
+     * @param {HTMLElement} form
+     * @return {Promise}
+     */
+    // static showFormMessage(msg, form) {
+    //     console.log(1);
+    //     let currentForm = form.getElement().getElementsByTagName('form')[0];
+    //     currentForm.insertBefore(ValidSignUpForm.createErrorElement(msg), currentForm.children[0]);
+    // }
 
-        /**
-         * Получить кнопку назад из страницы с формы
-         */
+    /**
+     * Очищаем поля форм
+     */
 
-    }], [{
-        key: 'getBackButton',
-        value: function getBackButton() {
-            return document.getElementsByClassName('back-button');
-        }
+  }, {
+    key: 'reset',
+    value: function reset() {
+      Array.from(document.getElementsByTagName('form')).forEach(function (form) {
+        form.reset();
+      });
+    }
+  }]);
 
-        /**
-         * Показываем ошибки к форме
-         * @param {string}  msg - сообщение
-         * @param {HTMLElement} form
-         * @return {Promise}
-         */
-        // static showFormMessage(msg, form) {
-        //     console.log(1);
-        //     let currentForm = form.getElement().getElementsByTagName('form')[0];
-        //     currentForm.insertBefore(ValidSignUpForm.createErrorElement(msg), currentForm.children[0]);
-        // }
-
-        /**
-         * Очищаем поля форм
-         */
-
-    }, {
-        key: 'reset',
-        value: function reset() {
-            Array.from(document.getElementsByTagName('form')).forEach(function (form) {
-                form.reset();
-            });
-        }
-    }]);
-
-    return Form;
+  return Form;
 }(_BlockComponents2.default);
 
 exports.default = Form;
@@ -1326,7 +1326,7 @@ exports.default = ValidSignUpForm;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1354,41 +1354,41 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Menu
  */
 var Menu = function (_Block) {
-    _inherits(Menu, _Block);
+  _inherits(Menu, _Block);
 
-    /**
-     * @param {string} [tagName='div'] - tagName блока
-     * @param {*} [attrs={}] - объект с атрибутами блока
-     * @param {string[]} [classes=[]] - список имён классов
-     * @param {*} [data={}] - объект с данными блока
-     * @constructor
-     */
-    function Menu() {
-        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-        var data = arguments[3];
+  /**
+   * @param {string} [tagName='div'] - tagName блока
+   * @param {*} [attrs={}] - объект с атрибутами блока
+   * @param {string[]} [classes=[]] - список имён классов
+   * @param {*} [data={}] - объект с данными блока
+   * @constructor
+   */
+  function Menu() {
+    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var data = arguments[3];
 
-        _classCallCheck(this, Menu);
+    _classCallCheck(this, Menu);
 
-        return _possibleConstructorReturn(this, (Menu.__proto__ || Object.getPrototypeOf(Menu)).call(this, tagName, attrs, classes, data));
+    return _possibleConstructorReturn(this, (Menu.__proto__ || Object.getPrototypeOf(Menu)).call(this, tagName, attrs, classes, data));
+  }
+
+  /**
+   * Получить Menu
+   */
+
+
+  _createClass(Menu, [{
+    key: 'getClassElement',
+    value: function getClassElement() {
+      var data = this.getData();
+      this.setHTML((0, _Menu2.default)({ data: data }));
+      return this.getElement();
     }
+  }]);
 
-    /**
-     * Получить Menu
-     */
-
-
-    _createClass(Menu, [{
-        key: 'getClassElement',
-        value: function getClassElement() {
-            var data = this.getData();
-            this.setHTML((0, _Menu2.default)({ data: data }));
-            return this.getElement();
-        }
-    }]);
-
-    return Menu;
+  return Menu;
 }(_BlockComponents2.default);
 
 exports.default = Menu;
@@ -1401,7 +1401,7 @@ exports.default = Menu;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1429,42 +1429,42 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Table
  */
 var Table = function (_Block) {
-    _inherits(Table, _Block);
+  _inherits(Table, _Block);
 
-    /**
-     * @param {string} [tagName='div'] - tagName блока
-     * @param {*} [attrs={}] - объект с атрибутами блока
-     * @param {string[]} [classes=[]] - список имён классов
-     * @param {*} [data={}] - объект с данными блока
-     * @constructor
-     */
-    function Table() {
-        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-        var data = arguments[3];
+  /**
+   * @param {string} [tagName='div'] - tagName блока
+   * @param {*} [attrs={}] - объект с атрибутами блока
+   * @param {string[]} [classes=[]] - список имён классов
+   * @param {*} [data={}] - объект с данными блока
+   * @constructor
+   */
+  function Table() {
+    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var data = arguments[3];
 
-        _classCallCheck(this, Table);
+    _classCallCheck(this, Table);
 
-        return _possibleConstructorReturn(this, (Table.__proto__ || Object.getPrototypeOf(Table)).call(this, tagName, attrs, classes, data));
+    return _possibleConstructorReturn(this, (Table.__proto__ || Object.getPrototypeOf(Table)).call(this, tagName, attrs, classes, data));
+  }
+
+  /**
+   * Получить Table
+   */
+
+
+  _createClass(Table, [{
+    key: 'getClassElement',
+    value: function getClassElement() {
+      var data = this.getData();
+
+      this.setHTML((0, _Table2.default)({ data: data }));
+      return this.getElement();
     }
+  }]);
 
-    /**
-     * Получить Table
-     */
-
-
-    _createClass(Table, [{
-        key: 'getClassElement',
-        value: function getClassElement() {
-            var data = this.getData();
-
-            this.setHTML((0, _Table2.default)({ data: data }));
-            return this.getElement();
-        }
-    }]);
-
-    return Table;
+  return Table;
 }(_BlockComponents2.default);
 
 exports.default = Table;
@@ -1563,19 +1563,19 @@ var _PlayGameController = __webpack_require__(43);
 
 var _PlayGameController2 = _interopRequireDefault(_PlayGameController);
 
-var _SignInController = __webpack_require__(60);
+var _SignInController = __webpack_require__(61);
 
 var _SignInController2 = _interopRequireDefault(_SignInController);
 
-var _SignUpController = __webpack_require__(61);
+var _SignUpController = __webpack_require__(62);
 
 var _SignUpController2 = _interopRequireDefault(_SignUpController);
 
-var _ScoreListController = __webpack_require__(62);
+var _ScoreListController = __webpack_require__(63);
 
 var _ScoreListController2 = _interopRequireDefault(_ScoreListController);
 
-var _AboutUsController = __webpack_require__(63);
+var _AboutUsController = __webpack_require__(64);
 
 var _AboutUsController2 = _interopRequireDefault(_AboutUsController);
 
@@ -2278,7 +2278,7 @@ function createHeader() {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -2304,43 +2304,43 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Header
  */
 var Header = function (_Block) {
-    _inherits(Header, _Block);
+  _inherits(Header, _Block);
 
-    /**
-     * @param {string} [tagName='div'] - tagName блока
-     * @param {*} [attrs={}] - объект с атрибутами блока
-     * @param {string[]} [classes=[]] - список имён классов
-     * @param {*} [data={}] - объект с данными блока
-     * @constructor
-     */
-    function Header() {
-        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-        var data = arguments[3];
+  /**
+   * @param {string} [tagName='div'] - tagName блока
+   * @param {*} [attrs={}] - объект с атрибутами блока
+   * @param {string[]} [classes=[]] - список имён классов
+   * @param {*} [data={}] - объект с данными блока
+   * @constructor
+   */
+  function Header() {
+    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var data = arguments[3];
 
-        _classCallCheck(this, Header);
+    _classCallCheck(this, Header);
 
-        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, tagName, attrs, classes, data));
+    return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, tagName, attrs, classes, data));
+  }
+
+  /**
+   * Получить Header
+   */
+
+
+  _createClass(Header, [{
+    key: 'getClassElement',
+    value: function getClassElement() {
+
+      var data = this.getData();
+
+      this.setHTML((0, _Header2.default)({ data: data }));
+      return this.getElement();
     }
+  }]);
 
-    /**
-     * Получить Header
-     */
-
-
-    _createClass(Header, [{
-        key: 'getClassElement',
-        value: function getClassElement() {
-
-            var data = this.getData();
-
-            this.setHTML((0, _Header2.default)({ data: data }));
-            return this.getElement();
-        }
-    }]);
-
-    return Header;
+  return Header;
 }(_BlockComponents2.default);
 
 exports.default = Header;
@@ -2653,7 +2653,7 @@ function CreateFooter() {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -2681,41 +2681,41 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Footer
  */
 var Footer = function (_Block) {
-    _inherits(Footer, _Block);
+  _inherits(Footer, _Block);
 
-    /**
-     * @param {string} [tagName='div'] - tagName блока
-     * @param {*} [attrs={}] - объект с атрибутами блока
-     * @param {string[]} [classes=[]] - список имён классов
-     * @param {*} [data={}] - объект с данными блока
-     * @constructor
-     */
-    function Footer() {
-        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-        var data = arguments[3];
+  /**
+   * @param {string} [tagName='div'] - tagName блока
+   * @param {*} [attrs={}] - объект с атрибутами блока
+   * @param {string[]} [classes=[]] - список имён классов
+   * @param {*} [data={}] - объект с данными блока
+   * @constructor
+   */
+  function Footer() {
+    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var data = arguments[3];
 
-        _classCallCheck(this, Footer);
+    _classCallCheck(this, Footer);
 
-        return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, tagName, attrs, classes, data));
+    return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, tagName, attrs, classes, data));
+  }
+
+  /**
+   * Получить footer
+   */
+
+
+  _createClass(Footer, [{
+    key: 'getClassElement',
+    value: function getClassElement() {
+      var data = this.getData();
+      this.setHTML((0, _Footer2.default)({ data: data }));
+      return this.getElement();
     }
+  }]);
 
-    /**
-     * Получить footer
-     */
-
-
-    _createClass(Footer, [{
-        key: 'getClassElement',
-        value: function getClassElement() {
-            var data = this.getData();
-            this.setHTML((0, _Footer2.default)({ data: data }));
-            return this.getElement();
-        }
-    }]);
-
-    return Footer;
+  return Footer;
 }(_BlockComponents2.default);
 
 exports.default = Footer;
@@ -3340,7 +3340,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
 var state_1 = __webpack_require__(6);
 var Tank_1 = __webpack_require__(54);
-var TreeBox_1 = __webpack_require__(58);
+var TreeBox_1 = __webpack_require__(59);
 var earth = __webpack_require__(15);
 var pause = __webpack_require__(16);
 var box_tree = __webpack_require__(17);
@@ -3357,7 +3357,6 @@ var WorldState = /** @class */ (function (_super) {
         this._land.fixedToCamera = true;
         this._tank = new Tank_1.default(this.game, "Tiger");
         this._box = new TreeBox_1.default(this.game, 100, 100);
-        // this._tankLable = new Lable(this.game, this._tank._tank.currentPosition, "Tiger", 0.5);
         this._pause = this.game.add.button(10, 10, "pause", this.startPause, this);
         this._pause.scale.setTo(0.2, 0.2);
         this._pause.frame = 1;
@@ -3371,7 +3370,6 @@ var WorldState = /** @class */ (function (_super) {
         this._land.tilePosition.x = -this.camera.x;
         this._land.tilePosition.y = -this.camera.y;
         this._tank.update();
-        // this._tankLable.currentPosition = this._tank._tank.currentPosition;
     };
     WorldState.prototype.startPause = function () {
     };
@@ -3401,6 +3399,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var TankBody_1 = __webpack_require__(55);
 var TankTurret_1 = __webpack_require__(56);
 var Lable_1 = __webpack_require__(57);
+var HealthBar = __webpack_require__(58);
 var TankState = /** @class */ (function (_super) {
     __extends(TankState, _super);
     function TankState(game, index) {
@@ -3421,12 +3420,15 @@ var TankState = /** @class */ (function (_super) {
         this._tank = new TankBody_1.default(this._game, this._cursor);
         this._turret = new TankTurret_1.default(this._game, this._cursor);
         this._tankLable = new Lable_1.default(this._game, this._tank.currentPosition, this._tankName, 1);
+        this._healthBar = new HealthBar(this._game, { x: this._tank.currentPosition.xCoordinate, y: this._tank.currentPosition.yCoordinate, width: 100, height: 10 });
+        this._healthBar.setPosition(this._tank.currentPosition.xCoordinate, this._tank.currentPosition.yCoordinate);
     };
     TankState.prototype.update = function () {
         this._tank.update();
         this._turret.turretCoordinate = this._tank.currentPosition;
         this._turret.update();
         this._tankLable.currentPosition = this._tank.currentPosition;
+        this._healthBar.setPosition(this._tank.currentPosition.xCoordinate, this._tank.currentPosition.yCoordinate - 50);
     };
     return TankState;
 }(Phaser.Sprite));
@@ -3463,7 +3465,6 @@ var TankBody = /** @class */ (function (_super) {
         debugger;
         this._body = this._game.add.sprite(50, 400, 'tank', 'tank1');
         this._body.anchor.setTo(0.5, 0.5);
-        // this._game.physics.enable(this._body, Phaser.Physics.ARCADE);
         this._game.physics.arcade.enable(this._body);
         this._body.body.maxVelocity.setTo(100, 100);
         this._body.body.collideWorldBounds = true;
@@ -3585,6 +3586,139 @@ exports.default = Lable;
 
 /***/ }),
 /* 58 */
+/***/ (function(module, exports) {
+
+var HealthBar = function (game, providedConfig) {
+    this.game = game;
+    this.setupConfiguration(providedConfig);
+    this.setPosition(this.config.x, this.config.y);
+    this.drawBackground();
+    this.drawHealthBar();
+    this.setFixedToCamera(this.config.isFixedToCamera);
+};
+HealthBar.prototype.constructor = HealthBar;
+HealthBar.prototype.setupConfiguration = function (providedConfig) {
+    this.config = this.mergeWithDefaultConfiguration(providedConfig);
+    this.flipped = this.config.flipped;
+};
+HealthBar.prototype.mergeWithDefaultConfiguration = function (newConfig) {
+    var defaultConfig = {
+        width: 250,
+        height: 40,
+        x: 0,
+        y: 0,
+        bg: {
+            color: '#651828'
+        },
+        bar: {
+            color: '#FEFF03'
+        },
+        animationDuration: 200,
+        flipped: false,
+        isFixedToCamera: false
+    };
+    return mergeObjetcs(defaultConfig, newConfig);
+};
+function mergeObjetcs(targetObj, newObj) {
+    for (var p in newObj) {
+        try {
+            targetObj[p] = newObj[p].constructor == Object ? mergeObjetcs(targetObj[p], newObj[p]) : newObj[p];
+        }
+        catch (e) {
+            targetObj[p] = newObj[p];
+        }
+    }
+    return targetObj;
+}
+HealthBar.prototype.drawBackground = function () {
+    var bmd = this.game.add.bitmapData(this.config.width, this.config.height);
+    bmd.ctx.fillStyle = this.config.bg.color;
+    bmd.ctx.beginPath();
+    bmd.ctx.rect(0, 0, this.config.width, this.config.height);
+    bmd.ctx.fill();
+    bmd.update();
+    this.bgSprite = this.game.add.sprite(this.x, this.y, bmd);
+    this.bgSprite.anchor.set(0.5);
+    if (this.flipped) {
+        this.bgSprite.scale.x = -1;
+    }
+};
+HealthBar.prototype.drawHealthBar = function () {
+    var bmd = this.game.add.bitmapData(this.config.width, this.config.height);
+    bmd.ctx.fillStyle = this.config.bar.color;
+    bmd.ctx.beginPath();
+    bmd.ctx.rect(0, 0, this.config.width, this.config.height);
+    bmd.ctx.fill();
+    bmd.update();
+    this.barSprite = this.game.add.sprite(this.x - this.bgSprite.width / 2, this.y, bmd);
+    this.barSprite.anchor.y = 0.5;
+    if (this.flipped) {
+        this.barSprite.scale.x = -1;
+    }
+};
+HealthBar.prototype.setPosition = function (x, y) {
+    this.x = x;
+    this.y = y;
+    if (this.bgSprite !== undefined && this.barSprite !== undefined) {
+        this.bgSprite.position.x = x;
+        this.bgSprite.position.y = y;
+        this.barSprite.position.x = x - this.config.width / 2;
+        this.barSprite.position.y = y;
+    }
+};
+HealthBar.prototype.setPercent = function (newValue) {
+    if (newValue < 0)
+        newValue = 0;
+    if (newValue > 100)
+        newValue = 100;
+    var newWidth = (newValue * this.config.width) / 100;
+    this.setWidth(newWidth);
+};
+/*
+ Hex format, example #ad3aa3
+ */
+HealthBar.prototype.setBarColor = function (newColor) {
+    var bmd = this.barSprite.key;
+    bmd.update();
+    var currentRGBColor = bmd.getPixelRGB(0, 0);
+    var newRGBColor = hexToRgb(newColor);
+    bmd.replaceRGB(currentRGBColor.r, currentRGBColor.g, currentRGBColor.b, 255, newRGBColor.r, newRGBColor.g, newRGBColor.b, 255);
+};
+HealthBar.prototype.setWidth = function (newWidth) {
+    if (this.flipped) {
+        newWidth = -1 * newWidth;
+    }
+    this.game.add.tween(this.barSprite).to({ width: newWidth }, this.config.animationDuration, Phaser.Easing.Linear.None, true);
+};
+HealthBar.prototype.setFixedToCamera = function (fixedToCamera) {
+    this.bgSprite.fixedToCamera = fixedToCamera;
+    this.barSprite.fixedToCamera = fixedToCamera;
+};
+HealthBar.prototype.kill = function () {
+    this.bgSprite.kill();
+    this.barSprite.kill();
+};
+module.exports = HealthBar;
+/**
+ Utils
+ */
+function hexToRgb(hex) {
+    // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+    var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+        return r + r + g + g + b + b;
+    });
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+}
+
+
+/***/ }),
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3600,7 +3734,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Box_1 = __webpack_require__(59);
+var Box_1 = __webpack_require__(60);
 var TreeBox = /** @class */ (function (_super) {
     __extends(TreeBox, _super);
     function TreeBox(game, xCoord, yCoord) {
@@ -3621,7 +3755,7 @@ exports.default = TreeBox;
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3669,7 +3803,7 @@ exports.default = Box;
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3776,7 +3910,7 @@ var SignInController = function (_Controller) {
 exports.default = SignInController;
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3882,7 +4016,7 @@ var SignUpController = function (_Controller) {
 exports.default = SignUpController;
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3985,7 +4119,7 @@ var ScoreListController = function (_Controller) {
 exports.default = ScoreListController;
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

@@ -1,6 +1,7 @@
 import TankBody from './TankBody/TankBody';
 import Turret from './TankTurret/TankTurret';
 import Lable from '../Lable/Lable';
+const HealthBar = require('../HealthBar/HealthBar');
 
 
 export default class TankState extends Phaser.Sprite {
@@ -16,6 +17,7 @@ export default class TankState extends Phaser.Sprite {
     _cursor: Phaser.CursorKeys;
     _tankLable: Lable;
     _tankName:string;
+    _healthBar: any;
 
     constructor(game: Phaser.Game, index: string) {
         super(game, 0, 0);
@@ -35,6 +37,8 @@ export default class TankState extends Phaser.Sprite {
         this._tank = new TankBody(this._game, this._cursor);
         this._turret = new Turret(this._game, this._cursor);
         this._tankLable = new Lable(this._game, this._tank.currentPosition, this._tankName, 1);
+        this._healthBar = new HealthBar(this._game, {x: this._tank.currentPosition.xCoordinate, y: this._tank.currentPosition.yCoordinate, width: 100, height: 10})
+        this._healthBar.setPosition(this._tank.currentPosition.xCoordinate, this._tank.currentPosition.yCoordinate)
     }
 
     update(): void {
@@ -42,5 +46,6 @@ export default class TankState extends Phaser.Sprite {
         this._turret.turretCoordinate = this._tank.currentPosition;
         this._turret.update();
         this._tankLable.currentPosition = this._tank.currentPosition;
+        this._healthBar.setPosition(this._tank.currentPosition.xCoordinate, this._tank.currentPosition.yCoordinate - 50)
     }
 }
