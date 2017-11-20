@@ -21,10 +21,10 @@ HealthBar.prototype.mergeWithDefaultConfiguration = function(newConfig) {
         x: 0,
         y: 0,
         bg: {
-            color: '#651828'
+            color: '#d40a09'
         },
         bar: {
-            color: '#FEFF03'
+            color: '#08ff22'
         },
         animationDuration: 200,
         flipped: false,

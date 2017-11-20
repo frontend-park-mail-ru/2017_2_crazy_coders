@@ -741,7 +741,7 @@ function pug_rethrow(err, filename, lineno, str){
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -777,75 +777,75 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Form
  */
 var Form = function (_Block) {
-  _inherits(Form, _Block);
+    _inherits(Form, _Block);
 
-  /**
-   * @param {string} [tagName='div'] - tagName блока
-   * @param {*} [attrs={}] - объект с атрибутами блока
-   * @param {string[]} [classes=[]] - список имён классов
-   * @param {*} [data={}] - объект с данными блока
-   * @constructor
-   */
-  function Form() {
-    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-    var data = arguments[3];
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @constructor
+     */
+    function Form() {
+        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+        var data = arguments[3];
 
-    _classCallCheck(this, Form);
+        _classCallCheck(this, Form);
 
-    return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, tagName, attrs, classes, data));
-  }
-
-  /**
-   * Получить форму
-   */
-
-
-  _createClass(Form, [{
-    key: 'getClassElement',
-    value: function getClassElement() {
-      var data = this.getData();
-      this.setHTML((0, _Form2.default)({ data: data }));
-      return this.getElement();
+        return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, tagName, attrs, classes, data));
     }
 
     /**
-     * Получить кнопку назад из страницы с формы
+     * Получить форму
      */
 
-  }], [{
-    key: 'getBackButton',
-    value: function getBackButton() {
-      return document.getElementsByClassName('back-button');
-    }
 
-    /**
-     * Показываем ошибки к форме
-     * @param {string}  msg - сообщение
-     * @param {HTMLElement} form
-     * @return {Promise}
-     */
-    // static showFormMessage(msg, form) {
-    //     console.log(1);
-    //     let currentForm = form.getElement().getElementsByTagName('form')[0];
-    //     currentForm.insertBefore(ValidSignUpForm.createErrorElement(msg), currentForm.children[0]);
-    // }
+    _createClass(Form, [{
+        key: 'getClassElement',
+        value: function getClassElement() {
+            var data = this.getData();
+            this.setHTML((0, _Form2.default)({ data: data }));
+            return this.getElement();
+        }
 
-    /**
-     * Очищаем поля форм
-     */
+        /**
+         * Получить кнопку назад из страницы с формы
+         */
 
-  }, {
-    key: 'reset',
-    value: function reset() {
-      Array.from(document.getElementsByTagName('form')).forEach(function (form) {
-        form.reset();
-      });
-    }
-  }]);
+    }], [{
+        key: 'getBackButton',
+        value: function getBackButton() {
+            return document.getElementsByClassName('back-button');
+        }
 
-  return Form;
+        /**
+         * Показываем ошибки к форме
+         * @param {string}  msg - сообщение
+         * @param {HTMLElement} form
+         * @return {Promise}
+         */
+        // static showFormMessage(msg, form) {
+        //     console.log(1);
+        //     let currentForm = form.getElement().getElementsByTagName('form')[0];
+        //     currentForm.insertBefore(ValidSignUpForm.createErrorElement(msg), currentForm.children[0]);
+        // }
+
+        /**
+         * Очищаем поля форм
+         */
+
+    }, {
+        key: 'reset',
+        value: function reset() {
+            Array.from(document.getElementsByTagName('form')).forEach(function (form) {
+                form.reset();
+            });
+        }
+    }]);
+
+    return Form;
 }(_BlockComponents2.default);
 
 exports.default = Form;
@@ -1326,7 +1326,7 @@ exports.default = ValidSignUpForm;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1354,41 +1354,41 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Menu
  */
 var Menu = function (_Block) {
-  _inherits(Menu, _Block);
+    _inherits(Menu, _Block);
 
-  /**
-   * @param {string} [tagName='div'] - tagName блока
-   * @param {*} [attrs={}] - объект с атрибутами блока
-   * @param {string[]} [classes=[]] - список имён классов
-   * @param {*} [data={}] - объект с данными блока
-   * @constructor
-   */
-  function Menu() {
-    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-    var data = arguments[3];
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @constructor
+     */
+    function Menu() {
+        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+        var data = arguments[3];
 
-    _classCallCheck(this, Menu);
+        _classCallCheck(this, Menu);
 
-    return _possibleConstructorReturn(this, (Menu.__proto__ || Object.getPrototypeOf(Menu)).call(this, tagName, attrs, classes, data));
-  }
-
-  /**
-   * Получить Menu
-   */
-
-
-  _createClass(Menu, [{
-    key: 'getClassElement',
-    value: function getClassElement() {
-      var data = this.getData();
-      this.setHTML((0, _Menu2.default)({ data: data }));
-      return this.getElement();
+        return _possibleConstructorReturn(this, (Menu.__proto__ || Object.getPrototypeOf(Menu)).call(this, tagName, attrs, classes, data));
     }
-  }]);
 
-  return Menu;
+    /**
+     * Получить Menu
+     */
+
+
+    _createClass(Menu, [{
+        key: 'getClassElement',
+        value: function getClassElement() {
+            var data = this.getData();
+            this.setHTML((0, _Menu2.default)({ data: data }));
+            return this.getElement();
+        }
+    }]);
+
+    return Menu;
 }(_BlockComponents2.default);
 
 exports.default = Menu;
@@ -1401,7 +1401,7 @@ exports.default = Menu;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1429,42 +1429,42 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Table
  */
 var Table = function (_Block) {
-  _inherits(Table, _Block);
+    _inherits(Table, _Block);
 
-  /**
-   * @param {string} [tagName='div'] - tagName блока
-   * @param {*} [attrs={}] - объект с атрибутами блока
-   * @param {string[]} [classes=[]] - список имён классов
-   * @param {*} [data={}] - объект с данными блока
-   * @constructor
-   */
-  function Table() {
-    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-    var data = arguments[3];
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @constructor
+     */
+    function Table() {
+        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+        var data = arguments[3];
 
-    _classCallCheck(this, Table);
+        _classCallCheck(this, Table);
 
-    return _possibleConstructorReturn(this, (Table.__proto__ || Object.getPrototypeOf(Table)).call(this, tagName, attrs, classes, data));
-  }
-
-  /**
-   * Получить Table
-   */
-
-
-  _createClass(Table, [{
-    key: 'getClassElement',
-    value: function getClassElement() {
-      var data = this.getData();
-
-      this.setHTML((0, _Table2.default)({ data: data }));
-      return this.getElement();
+        return _possibleConstructorReturn(this, (Table.__proto__ || Object.getPrototypeOf(Table)).call(this, tagName, attrs, classes, data));
     }
-  }]);
 
-  return Table;
+    /**
+     * Получить Table
+     */
+
+
+    _createClass(Table, [{
+        key: 'getClassElement',
+        value: function getClassElement() {
+            var data = this.getData();
+
+            this.setHTML((0, _Table2.default)({ data: data }));
+            return this.getElement();
+        }
+    }]);
+
+    return Table;
 }(_BlockComponents2.default);
 
 exports.default = Table;
@@ -1534,7 +1534,7 @@ module.exports = __webpack_require__.p + "b17c373a3f0117f56d7b0af1a9839bb7.png";
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "fdfd09de3c00231354d7fa064d79af79.png";
+module.exports = __webpack_require__.p + "217b9d48bac4d47a48cc3bc389cd422e.png";
 
 /***/ }),
 /* 18 */
@@ -2278,7 +2278,7 @@ function createHeader() {
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -2304,43 +2304,43 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Header
  */
 var Header = function (_Block) {
-  _inherits(Header, _Block);
+    _inherits(Header, _Block);
 
-  /**
-   * @param {string} [tagName='div'] - tagName блока
-   * @param {*} [attrs={}] - объект с атрибутами блока
-   * @param {string[]} [classes=[]] - список имён классов
-   * @param {*} [data={}] - объект с данными блока
-   * @constructor
-   */
-  function Header() {
-    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-    var data = arguments[3];
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @constructor
+     */
+    function Header() {
+        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+        var data = arguments[3];
 
-    _classCallCheck(this, Header);
+        _classCallCheck(this, Header);
 
-    return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, tagName, attrs, classes, data));
-  }
-
-  /**
-   * Получить Header
-   */
-
-
-  _createClass(Header, [{
-    key: 'getClassElement',
-    value: function getClassElement() {
-
-      var data = this.getData();
-
-      this.setHTML((0, _Header2.default)({ data: data }));
-      return this.getElement();
+        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, tagName, attrs, classes, data));
     }
-  }]);
 
-  return Header;
+    /**
+     * Получить Header
+     */
+
+
+    _createClass(Header, [{
+        key: 'getClassElement',
+        value: function getClassElement() {
+
+            var data = this.getData();
+
+            this.setHTML((0, _Header2.default)({ data: data }));
+            return this.getElement();
+        }
+    }]);
+
+    return Header;
 }(_BlockComponents2.default);
 
 exports.default = Header;
@@ -2653,7 +2653,7 @@ function CreateFooter() {
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -2681,41 +2681,41 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Footer
  */
 var Footer = function (_Block) {
-  _inherits(Footer, _Block);
+    _inherits(Footer, _Block);
 
-  /**
-   * @param {string} [tagName='div'] - tagName блока
-   * @param {*} [attrs={}] - объект с атрибутами блока
-   * @param {string[]} [classes=[]] - список имён классов
-   * @param {*} [data={}] - объект с данными блока
-   * @constructor
-   */
-  function Footer() {
-    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-    var data = arguments[3];
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @constructor
+     */
+    function Footer() {
+        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+        var data = arguments[3];
 
-    _classCallCheck(this, Footer);
+        _classCallCheck(this, Footer);
 
-    return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, tagName, attrs, classes, data));
-  }
-
-  /**
-   * Получить footer
-   */
-
-
-  _createClass(Footer, [{
-    key: 'getClassElement',
-    value: function getClassElement() {
-      var data = this.getData();
-      this.setHTML((0, _Footer2.default)({ data: data }));
-      return this.getElement();
+        return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, tagName, attrs, classes, data));
     }
-  }]);
 
-  return Footer;
+    /**
+     * Получить footer
+     */
+
+
+    _createClass(Footer, [{
+        key: 'getClassElement',
+        value: function getClassElement() {
+            var data = this.getData();
+            this.setHTML((0, _Footer2.default)({ data: data }));
+            return this.getElement();
+        }
+    }]);
+
+    return Footer;
 }(_BlockComponents2.default);
 
 exports.default = Footer;
