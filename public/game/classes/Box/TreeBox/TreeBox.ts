@@ -19,7 +19,6 @@ export default class TreeBox extends Box {
     }
 
     createBox(xCoord: number, yCoord: number): void {
-        debugger;
         this._box = this._treeBoxes.create(xCoord, yCoord, 'box_tree');
         this._box.body.immovable = true;
     }

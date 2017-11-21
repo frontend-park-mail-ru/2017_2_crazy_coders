@@ -74,16 +74,20 @@ export default class WorldState extends State {
 
         // нажали кнокпу мыши
         if (this.game.input.activePointer.isDown) {
+            debugger;
             this.fire();
         }
     }
 
     fire() {
+        debugger;
         if (this.game.time.now > this._tank._nextFire && this._bullets.countDead() > 0) {
             this._tank._nextFire = this.time.now + this._tank._fireRate;
 
             let bullet = this._bullets.getFirstExists(false);
-            bullet.reset(this._tank._turret.x, this._tank._turret.y);
+            bullet.reset(this._tank._turret._turret.x, this._tank._turret._turret.y);
+            debugger;
+            //bullet.setPosition(this._tank._tank.x, this._tank._tank.y);
             bullet.rotation = this.physics.arcade.moveToPointer(bullet, 1000, this.game.input.activePointer, 500);
         }
     }

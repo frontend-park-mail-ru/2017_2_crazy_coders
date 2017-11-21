@@ -25,4 +25,11 @@ export default class TankTurret extends Phaser.Sprite {
         this._turret.x = coordinate.xCoordinate;
         this._turret.y = coordinate.yCoordinate;
     }
+
+    public get turretCoordinate() {
+        return {
+            xCoordinate: this._turret.x,
+            yCoordinate: this._turret.y
+        }
+    }
 }
