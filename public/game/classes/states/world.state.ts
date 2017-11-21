@@ -26,10 +26,8 @@ export default class WorldState extends State {
         this._land.fixedToCamera = true;
 
         this._tank = new Tank(this.game, "Tiger");
-
         this._treeBoxes = new TreeBox(this.game);
 
-        let boxes = [];
         for (let i = 0; i < 10; i++) {
             let coord = this.randomInteger(0, 500);
             let box = this._treeBoxes.createBox(coord, coord);
