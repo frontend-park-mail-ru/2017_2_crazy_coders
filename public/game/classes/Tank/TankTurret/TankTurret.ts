@@ -18,6 +18,7 @@ export default class TankTurret extends Phaser.Sprite {
 
     update(): void {
         this._turret.rotation = this._game.physics.arcade.angleToPointer(this._turret);
+
     }
 
     public set turretCoordinate(coordinate) {

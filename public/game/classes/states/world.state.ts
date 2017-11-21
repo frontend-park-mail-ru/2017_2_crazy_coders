@@ -16,8 +16,12 @@ export default class WorldState extends State {
     _tank: Tank;
     _treeBoxes: TreeBox;
     _pause: Phaser.Button;
+    _bullets: Phaser.Group;
+    _explosions: Phaser.Group;
 
     create(): void {
+        this.load.image('bullet', 'static/staticsGame/images/bullet.png');
+        this.load.spritesheet('kaboom', 'static/staticsGame/images/explosion.png', 64, 64, 23);
 
         this._music = this.game.add.audio('startAudio', 1, false);
         this._music.play();
@@ -31,6 +35,23 @@ export default class WorldState extends State {
         for (let i = 0; i < 10; i++) {
             let coord = this.randomInteger(0, 500);
             let box = this._treeBoxes.createBox(coord, coord);
+        }
+
+        this._bullets = this.game.add.group();
+        this._bullets.enableBody = true;
+        this.game.physics.arcade.enable(this._bullets);
+        this._bullets.createMultiple(30, 'bullet');
+        this._bullets.setAll('anchor.x', 0.5);
+        this._bullets.setAll('anchor.y', 0.5);
+        this._bullets.setAll('outOfBoundsKill', true);
+        this._bullets.setAll('checkWorldBounds', true);
+
+        this._explosions = this.add.group();
+
+        for (let i = 0; i < 10; i++) {
+            let explosionAnimation = this._explosions.create(0, 0, 'kaboom', 0, false);
+            explosionAnimation.anchor.setTo(0.5, 0.5);
+            explosionAnimation.animations.add('kaboom');
         }
 
         this._pause = this.game.add.button(10, 10, "pause", this.startPause, this);
@@ -50,6 +71,21 @@ export default class WorldState extends State {
         this._land.tilePosition.x = -this.camera.x;
         this._land.tilePosition.y = -this.camera.y;
         this._tank.update();
+
+        // нажали кнокпу мыши
+        if (this.game.input.activePointer.isDown) {
+            this.fire();
+        }
+    }
+
+    fire() {
+        if (this.game.time.now > this._tank._nextFire && this._bullets.countDead() > 0) {
+            this._tank._nextFire = this.time.now + this._tank._fireRate;
+
+            let bullet = this._bullets.getFirstExists(false);
+            bullet.reset(this._tank._turret.x, this._tank._turret.y);
+            bullet.rotation = this.physics.arcade.moveToPointer(bullet, 1000, this.game.input.activePointer, 500);
+        }
     }
 
     startPause(): void {
