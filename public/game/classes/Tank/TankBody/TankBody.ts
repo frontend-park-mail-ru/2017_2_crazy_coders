@@ -12,8 +12,6 @@ export default class TankBody extends Phaser.Sprite {
     }
 
     create(): void {
-
-        debugger;
         this._body = this._game.add.sprite(50, 400, 'tank', 'tank1');
         this._body.anchor.setTo(0.5, 0.5);
         this._game.physics.arcade.enable(this._body);

@@ -14,8 +14,7 @@ export default class WorldState extends State {
     _music: Phaser.Sound;
     _land: any;
     _tank: Tank;
-    // _box: TreeBox;
-    _treeBoxes: Phaser.Group;
+    _treeBoxes: TreeBox;
     _pause: Phaser.Button;
 
     create(): void {
@@ -28,18 +27,13 @@ export default class WorldState extends State {
 
         this._tank = new Tank(this.game, "Tiger");
 
+        this._treeBoxes = new TreeBox(this.game);
 
-        this._treeBoxes = this.game.add.group();
-        this._treeBoxes.enableBody = true;
-        this.game.physics.arcade.enable(this._treeBoxes);
-        this._treeBoxes.immovable = true;
-        this._treeBoxes = this.game.add.sprite(100, 100, 'box_tree');
-
-        // for (let i = 0; i < 10; i++) {
-        //     let coord = this.randomInteger(this.game.world.width, this.game.world.height);
-        //     // this._box = new TreeBox(this.game, coord, coord);
-        //     this._treeBoxes.createBox(coord, coord);
-        // }
+        let boxes = [];
+        for (let i = 0; i < 10; i++) {
+            let coord = this.randomInteger(0, 500);
+            let box = this._treeBoxes.createBox(coord, coord);
+        }
 
         this._pause = this.game.add.button(10, 10, "pause", this.startPause, this);
         this._pause.scale.setTo(0.2, 0.2);
@@ -53,7 +47,7 @@ export default class WorldState extends State {
     }
 
     update(): void {
-        this.game.physics.arcade.collide(this._tank._tank._body, this._treeBoxes);
+        this.game.physics.arcade.collide(this._tank._tank._body, this._treeBoxes._treeBoxes);
 
         this._land.tilePosition.x = -this.camera.x;
         this._land.tilePosition.y = -this.camera.y;
