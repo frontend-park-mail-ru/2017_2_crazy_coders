@@ -4,8 +4,8 @@ export default class Theme {
 	}
 
 	changeTheme() {
-		let stylesDeault = this.createStylesheet([bodyStylesWhite, htmlNoneScroll, deleteMargin]);
-		let stylesYellow = this.createStylesheet([bodyStylesYellow, htmlNoneScroll, deleteMargin]);
+		let stylesDeault = this.createStylesheet([bodyStylesWhite, deleteMargin]);
+		let stylesYellow = this.createStylesheet([bodyStylesYellow, deleteMargin]);
 
 		let stylesheet = !this.defaultThema ? stylesDeault : stylesYellow;
 
@@ -45,12 +45,12 @@ const bodyStylesWhite = {
 	}
 };
 
-const htmlNoneScroll = {
-	selector: 'html',
-	styles: {
-		'overflow-y': 'hidden',
-	}
-};
+// const htmlNoneScroll = {
+// 	selector: 'html',
+// 	styles: {
+// 		'overflow-y': 'hidden',
+// 	}
+// };
 
 const deleteMargin = {
 	selector: 'body',
