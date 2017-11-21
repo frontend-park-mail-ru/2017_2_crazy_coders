@@ -34,8 +34,9 @@ export default class WorldState extends State {
 
         for (let i = 0; i < 10; i++) {
             let coord = this.randomInteger(0, 500);
-            this._treeBoxes.createBox(coord, coord);
+            this._treeBoxes.createBox(coord, coord, i);
         }
+        debugger;
 
         this._bullets = this.game.add.group();
         this._bullets.enableBody = true;
@@ -72,22 +73,33 @@ export default class WorldState extends State {
         this._land.tilePosition.y = -this.camera.y;
         this._tank.update();
 
+        this.game.physics.arcade.overlap(this._bullets, this._treeBoxes._treeBoxes, this.bulletHitBox, null, this);
+
         // нажали кнокпу мыши
         if (this.game.input.activePointer.isDown) {
-            debugger;
             this.fire();
         }
     }
 
-    fire() {
+    bulletHitBox(bullet, box) {
         debugger;
+        bullet.kill();
+        // let destroyed = this._treeBoxes._treeBoxes[box.name].damage();
+
+        if (true) {
+            let explosionAnimation = this._explosions.getFirstExists(false);
+            explosionAnimation.reset(box.x, box.y);
+            explosionAnimation.play('kaboom', 30, false, true);
+        }
+        box.kill();
+    }
+
+    fire() {
         if (this.game.time.now > this._tank._nextFire && this._bullets.countDead() > 0) {
             this._tank._nextFire = this.time.now + this._tank._fireRate;
 
             let bullet = this._bullets.getFirstExists(false);
             bullet.reset(this._tank._turret._turret.x, this._tank._turret._turret.y);
-            debugger;
-            //bullet.setPosition(this._tank._tank.x, this._tank._tank.y);
             bullet.rotation = this.physics.arcade.moveToPointer(bullet, 1000, this.game.input.activePointer, 500);
         }
     }

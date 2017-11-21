@@ -5,6 +5,7 @@ export default abstract class Box extends Phaser.Sprite {
     _width: number;
     _xCoordinate: number;
     _yCoordinate: number;
+    _name: string;
 
     constructor(game: Phaser.Game, xCoord: number, yCoord: number) {
         super(game, 0, 0);
