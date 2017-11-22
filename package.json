@@ -55,8 +55,7 @@
     "start": "webpack && npm run compile-pug && node server.js",
     "compile-pug": "pug -c --extension 'pug.js' --name-after-file ./public",
     "eslint": "./node_modules/.bin/eslint ./public",
-    "eslint-fix": "./node_modules/.bin/eslint --fix ./public",
-    "test": "mocha --timeout 10000"
+    "eslint-fix": "./node_modules/.bin/eslint --fix ./public"
   },
   "keywords": [],
   "author": "",
