@@ -19,11 +19,11 @@ export default class TankState extends Phaser.Sprite {
     _tankName:string;
     _healthBar: any;
 
-    constructor(game: Phaser.Game, index: string) {
+    constructor(game: Phaser.Game, index: string, x: number, y: number) {
         super(game, 0, 0);
         this._game = game;
-        this._xPosition = Math.random() * this.game.world.width;
-        this._yPosition = Math.random() * this.game.world.height;
+        this._xPosition = x;
+        this._yPosition = y;
         this._health = 3;
         this._fireRate = 1000; // скорострельность
         this._nextFire = 0;  //следующий выстрел
@@ -34,7 +34,7 @@ export default class TankState extends Phaser.Sprite {
 
     create(): void {
         this._cursor = this._game.input.keyboard.createCursorKeys();
-        this._tank = new TankBody(this._game, this._cursor);
+        this._tank = new TankBody(this._game, this._cursor, this._xPosition, this._yPosition);
         this._turret = new Turret(this._game, this._cursor);
         this._tankLable = new Lable(this._game, this._tank.currentPosition, this._tankName, 1);
         this._healthBar = new HealthBar(this._game, {x: this._tank.currentPosition.xCoordinate, y: this._tank.currentPosition.yCoordinate, width: 100, height: 10})

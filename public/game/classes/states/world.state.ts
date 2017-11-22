@@ -1,9 +1,9 @@
 'use strict';
 /** Imports */
-import io from 'socket.io-client';
 import State from './state';
 import Tank from '../Tank/Tank';
 import TreeBox from '../Box/TreeBox/TreeBox';
+import Client from '../Client/Client';
 
 const earth       = require('../../../static/staticsGame/images/ground.jpg');
 const pause       = require('../../../static/staticsGame/images/pause_button.png');
@@ -15,11 +15,12 @@ export default class WorldState extends State {
     _music: Phaser.Sound;
     _land: any;
     _tank: Tank;
+    _enemy: Tank;
     _treeBoxes: TreeBox;
     _pause: Phaser.Button;
     _bullets: Phaser.Group;
     _explosions: Phaser.Group;
-    _socket: any;
+    _client: any;
 
     create(): void {
         this.load.image('bullet', 'static/staticsGame/images/bullet.png');
@@ -31,9 +32,20 @@ export default class WorldState extends State {
         this._land = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'earth');
         this._land.fixedToCamera = true;
 
-        this._tank = new Tank(this.game, "Tiger");
-        this._socket = io('http://localhost:3000');
+        this._client = new Client();
+        this._client.askNewPlayer();
+        this._client.getPlayersPositions()
+            .then(data => {
+                for(let i = 0; i < data.length; i++){
+                    this._enemy  = new Tank(this.game, "Enemy", data[i].x, data[i].y);
+                }
+            });
+        this._client.appearedNewPlayer()
+            .then(data => {
+            this._enemy = new Tank(this.game, "Enemy", data.x, data.y);
+        });
 
+        this._tank = new Tank(this.game, "Tiger");
         this._treeBoxes = new TreeBox(this.game);
 
         for (let i = 0; i < 10; i++) {
