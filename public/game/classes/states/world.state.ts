@@ -1,5 +1,6 @@
 'use strict';
 /** Imports */
+import io from 'socket.io-client';
 import State from './state';
 import Tank from '../Tank/Tank';
 import TreeBox from '../Box/TreeBox/TreeBox';
@@ -18,6 +19,7 @@ export default class WorldState extends State {
     _pause: Phaser.Button;
     _bullets: Phaser.Group;
     _explosions: Phaser.Group;
+    _socket: any;
 
     create(): void {
         this.load.image('bullet', 'static/staticsGame/images/bullet.png');
@@ -30,6 +32,8 @@ export default class WorldState extends State {
         this._land.fixedToCamera = true;
 
         this._tank = new Tank(this.game, "Tiger");
+        this._socket = io('http://localhost:3000');
+
         this._treeBoxes = new TreeBox(this.game);
 
         for (let i = 0; i < 10; i++) {
