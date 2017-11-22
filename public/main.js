@@ -16,9 +16,9 @@ import Game from './game/classes/index';
 let theme = new Theme();
 let userService = new UserService();
 let page = new CreatePage();
-import RegisterSW from './services/ServiceWorker';
+// import RegisterSW from './services/ServiceWorker';
 
-RegisterSW();
+// RegisterSW();
 //
 theme.changeTheme();
 // let game = new Game();
