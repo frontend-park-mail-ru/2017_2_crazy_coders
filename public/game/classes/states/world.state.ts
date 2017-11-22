@@ -18,7 +18,6 @@ export default class WorldState extends State {
     _pause: Phaser.Button;
     _bullets: Phaser.Group;
     _explosions: Phaser.Group;
-    _socket: any;
 
     create(): void {
         this.load.image('bullet', 'static/staticsGame/images/bullet.png');
