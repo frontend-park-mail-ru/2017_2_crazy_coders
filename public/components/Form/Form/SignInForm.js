@@ -32,7 +32,7 @@ export default class SignInForm extends Form {
                 console.log(elements[name].value);
             }
 
-            const isValid = new this.validator(formdata.email, formdata.password, signInForm);
+            const isValid = new this.validator(formdata.email, formdata.password);
 
             if(isValid.validForm()) {
                 callback(formdata);

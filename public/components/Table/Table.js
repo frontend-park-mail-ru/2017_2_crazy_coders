@@ -1,6 +1,6 @@
 import Block from '../Block/BlockComponents';
 import TableTemp from './Table.pug';
-import './Table.css';
+// import './Table.scss';
 
 /**
  * Класс Table
@@ -22,7 +22,9 @@ export default class Table extends Block {
      * Получить Table
      */
     getClassElement() {
-        this.setHTML(TableTemp(this.getData()));
+        let data = this.getData();
+
+        this.setHTML(TableTemp({data}));
         return this.getElement();
     }
 }

@@ -1,4 +1,4 @@
-import Phaser from '../../phaser.min'
+import Phaser from '../../phaser'
 
 class MainMenu extends Phaser.State {
 

@@ -1,4 +1,5 @@
-import Phaser from '../../phaser.min'
+import Phaser from '../../phaser'
+import Constants from '../Constants/Constant';
 
 class GameOverMenu extends Phaser.State {
     constructor(){
@@ -19,35 +20,35 @@ class GameOverMenu extends Phaser.State {
         this.background = this.add.sprite(0, 0, 'background');
 
         this.logo = this.add.sprite(this.world.centerX, -300, 'game_over');
-        this.logo.anchor.setTo(0.5, 0.5);
+        this.logo.anchor.setTo(Constants.anchor, Constants.anchor);
 
         this.continueButton = this.game.add.button(this.world.centerX, this.world.centerY, "try_again", this.continueGame, this);
-        this.continueButton.anchor.setTo(0.5);
-        this.continueButton.scale.setTo(0.5);
+        this.continueButton.anchor.setTo(Constants.anchor);
+        this.continueButton.scale.setTo(Constants.logo_scale);
         this.continueButton.frame = 1;
         this.continueButton.clicked = false;
         this.continueButton.alpha = 0;
 
         this.exitButton = this.game.add.button(this.world.centerX, this.world.centerY + 100, "exit", this.exitGame, this);
-        this.exitButton.anchor.setTo(0.5);
-        this.exitButton.scale.setTo(0.5);
+        this.exitButton.anchor.setTo(Constants.anchor);
+        this.exitButton.scale.setTo(Constants.logo_scale);
         this.exitButton.frame = 1;
         this.exitButton.clicked = false;
         this.exitButton.alpha = 0;
 
-        this.add.tween(this.background).to({ alpha: 1}, 100, Phaser.Easing.Bounce.InOut, true);
-        this.add.tween(this.logo).to({ y: 100 }, 2000, Phaser.Easing.Elastic.Out, true, 200);
-        this.add.tween(this.continueButton).to({ alpha: 1}, 1000, Phaser.Easing.Bounce.InOut, true);
-        this.add.tween(this.exitButton).to({ alpha: 1}, 1000, Phaser.Easing.Bounce.InOut, true);
+        this.add.tween(this.background).to({ alpha: 1}, Constants.shadow_time, Phaser.Easing.Bounce.InOut, true);
+        this.add.tween(this.logo).to({ y: 100 }, Constants.shadow_time, Phaser.Easing.Elastic.Out, true, 200);
+        this.add.tween(this.continueButton).to({ alpha: 1}, Constants.shadow_time, Phaser.Easing.Bounce.InOut, true);
+        this.add.tween(this.exitButton).to({ alpha: 1}, Constants.shadow_time, Phaser.Easing.Bounce.InOut, true);
     }
 
     continueGame() {
-        this.add.tween(this.background).to({ alpha: 0 }, 100, Phaser.Easing.Linear.None, true);
+        this.add.tween(this.background).to({ alpha: 0 }, Constants.shadow_time, Phaser.Easing.Linear.None, true);
         this.game.state.start('World', true, false);
     }
 
     exitGame() {
-        this.add.tween(this.background).to({ alpha: 0 }, 100, Phaser.Easing.Linear.None, true);
+        this.add.tween(this.background).to({ alpha: 0 }, Constants.shadow_time, Phaser.Easing.Linear.None, true);
         window.open("/", "_self");
     }
 }

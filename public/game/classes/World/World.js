@@ -1,13 +1,7 @@
-import Phaser from '../../phaser.min';
+import Phaser from '../../phaser';
 import EnemyTank from '../Tank/EnemyTank';
+import Constants from '../Constants/Constant';
 
-const Constants = {
-	logo_scale: 0.5,
-	max_velocity: 400,
-	health: 100,
-	anchor: 0.5,
-	button_scale: 0.2
-};
 
 class World extends Phaser.State {
 
@@ -44,7 +38,7 @@ class World extends Phaser.State {
 		this.tank = this.add.sprite(50, 400, 'tank', 'tank1');
 		this.tank.anchor.setTo(Constants.anchor, Constants.anchor);
 
-		this.physics.enable(this.tank, Phaser.Physics.MATTER);
+		this.physics.enable(this.tank, Phaser.Physics.Arcade);
 		this.tank.body.maxVelocity.setTo(Constants.max_velocity, Constants.max_velocity);
 		this.tank.body.collideWorldBounds = true;
 
@@ -55,7 +49,7 @@ class World extends Phaser.State {
 		//  пули врагов
 		this.enemyBullets = this.add.group();
 		this.enemyBullets.enableBody = true;
-		this.enemyBullets.physicsBodyType = Phaser.Physics.MATTER; //Phaser.Physics.ARCADE;
+		this.enemyBullets.physicsBodyType = Phaser.Physics.Arcade; //Phaser.Physics.ARCADE;
 		this.enemyBullets.createMultiple(5, 'bullet'); // создадим пули
 
 		this.enemyBullets.setAll('anchor.x', 0.5);

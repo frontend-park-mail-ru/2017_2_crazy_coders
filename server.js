@@ -14,8 +14,7 @@ const routes = [
     '/menu',
     '/play',
     '/about',
-    '/rules',
-    '/scorelist',
+    '/score',
 ];
 
 routes.forEach(path => {

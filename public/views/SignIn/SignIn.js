@@ -30,13 +30,13 @@ let data = {
                 id: 'signIn-button-signIn',
             },
         },
-        {
-            attrs: {
-                class: 'form__back',
-                value: 'BACK',
-                id: 'signIn-button-back',
-            },
-        },
+        // {
+        //     attrs: {
+        //         class: 'form__back',
+        //         value: 'BACK',
+        //         id: 'signIn-button-back',
+        //     },
+        // },
     ]
 };
 
@@ -44,6 +44,6 @@ let data = {
  * Получаем страницу входа
  */
 export default function SignIn() {
-    return new SignInForm('section', {id: 'section-signIn'}, [], {data}, ValidSignInForm);
+    return new SignInForm('section', {id: 'section-signIn'}, [], data, ValidSignInForm);
 }
 

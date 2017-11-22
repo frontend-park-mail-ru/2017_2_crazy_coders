@@ -1,6 +1,6 @@
 import Block from '../Block/BlockComponents';
 import MenuTemp from './Menu.pug';
-import './Menu.css';
+// import './Menu.scss';
 
 /**
  * Класс Menu-а
@@ -22,7 +22,8 @@ export default class Menu extends Block {
      * Получить Menu
      */
     getClassElement() {
-        this.setHTML(MenuTemp(this.getData()));
+		let data = this.getData();
+        this.setHTML(MenuTemp({data}));
         return this.getElement();
     }
 }

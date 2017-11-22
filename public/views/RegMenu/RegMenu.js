@@ -21,5 +21,5 @@ export default function createRegMenu() {
         ]
     };
 
-    return new Menu('section', {id: 'section-regMenu'}, [], {data});
+    return new Menu('section', {id: 'section-regMenu'}, [], data);
 }

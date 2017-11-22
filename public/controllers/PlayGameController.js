@@ -1,7 +1,8 @@
 'use strict';
 
 import Controller from "./Controller";
-import Game from '../game/classes/Game/Game';
+// import Game from '../game/classes/Game/Game';
+import Game from '../game/classes/index';
 
 class PlayGameController extends Controller {
 
@@ -16,9 +17,21 @@ class PlayGameController extends Controller {
 	}
 
 	show() {
-		if (this.userService.isAuthorized()) {
-			let game = new Game();
-		}
+		this.userService
+			.getProfile()
+			.then((resp) => {
+				console.log("[userService.getProfile] response: " + resp);
+				this.userService.user.set(resp);
+				let game = new Game();
+			})
+			.catch((err) => {
+				console.log("[userService.getProfile] err: " + err);
+				this._router.go('/');
+			});
+	}
+
+	hide() {
+
 	}
 
 }

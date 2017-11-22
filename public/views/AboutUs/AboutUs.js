@@ -1,6 +1,4 @@
 import Table from '../../components/Table/Table'
-
-
 let data = {
     idButton: 'aboutUs-button-back',
     classTable: 'about_table',
@@ -38,5 +36,5 @@ let data = {
  * Получаем страницу о нас
  */
 export default function createAboutUs() {
-    return new Table('section', {id: 'section-aboutUs'}, [], {data});
+    return new Table('section', {id: 'section-aboutUs'}, [], data);
 }
