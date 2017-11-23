@@ -15,6 +15,20 @@ export default class Client {
         this._socket.emit('newplayer');
     }
 
+    sendCoordinate(coordinate) {
+        this._socket.emit('playercoordinate', coordinate.xCoordinate, coordinate.yCoordinate);
+    }
+
+    getEnemyCoordinate() {
+        return new Promise(resolve => {
+            this._socket.on('enemycoordinate',function(x, y){
+                data = {x: x,
+                        y: y};
+                resolve(data);
+            });
+        });
+    }
+
     getPlayerData() {
         return new Promise(resolve => {
             this._socket.on('playerdata',function(data){

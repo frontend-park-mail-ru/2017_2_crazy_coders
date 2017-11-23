@@ -102,12 +102,20 @@ export default class WorldState extends State {
         this.game.physics.arcade.collide(this._tank._tank._body, this._treeBoxes._treeBoxes);
         if(this._enemy) {
             this.game.physics.arcade.collide(this._enemy._tank._body, this._treeBoxes._treeBoxes);
+            this._client.getEnemyCoordinate()
+                .then(data => {
+
+                    this._enemy._tank.currentPosition = {xCoordinate: data.x,
+                                                         yCoordinate: data.y};
+                });
             this._enemy.update();
         }
+
 
         this._land.tilePosition.x = -this.camera.x;
         this._land.tilePosition.y = -this.camera.y;
         this._tank.update();
+        this._client.sendCoordinate(this._tank._tank.currentPosition);
         this.game.physics.arcade.overlap(this._bullets, this._treeBoxes._treeBoxes, this.bulletHitBox, null, this);
 
         // нажали кнокпу мыши
