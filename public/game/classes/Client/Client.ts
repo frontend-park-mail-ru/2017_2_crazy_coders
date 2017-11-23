@@ -22,7 +22,7 @@ export default class Client {
     getEnemyCoordinate() {
         return new Promise(resolve => {
             this._socket.on('enemycoordinate',function(x, y){
-                data = {x: x,
+                let data = {x: x,
                         y: y};
                 resolve(data);
             });

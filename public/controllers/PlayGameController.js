@@ -1,8 +1,8 @@
 'use strict';
 
 import Controller from "./Controller";
-import Game from '../game/classes/Game/Game';
-// import Game from '../game/classes/index';
+// import Game from '../game/classes/Game/Game';
+import Game from '../game/classes/index';
 
 class PlayGameController extends Controller {
 
