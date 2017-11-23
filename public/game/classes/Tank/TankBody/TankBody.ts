@@ -2,17 +2,21 @@ export default class TankBody extends Phaser.Sprite {
     _game: Phaser.Game;
     _body: Phaser.Sprite;
     _currentSpeed: number;
+    _xPosition: number;
+    _yPosition: number;
     _cursor: Phaser.CursorKeys;
 
-    constructor(game: Phaser.Game, cursor: Phaser.CursorKeys) {
+    constructor(game: Phaser.Game, cursor: Phaser.CursorKeys, x: number, y: number) {
         super(game, 0, 0);
         this._game = game;
         this._cursor = cursor;
+        this._xPosition = x;
+        this._yPosition = y;
         this.create();
     }
 
     create(): void {
-        this._body = this._game.add.sprite(50, 400, 'tank', 'tank1');
+        this._body = this._game.add.sprite(this._xPosition, this._yPosition, 'tank', 'tank1');
         this._body.anchor.setTo(0.5, 0.5);
         this._game.physics.arcade.enable(this._body);
         this._body.body.maxVelocity.setTo(100, 100);

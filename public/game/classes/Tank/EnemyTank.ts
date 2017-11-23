@@ -4,7 +4,7 @@ import Lable from '../Lable/Lable';
 const HealthBar = require('../HealthBar/HealthBar');
 
 
-export default class TankState extends Phaser.Sprite {
+export default class EnemyTank extends Phaser.Sprite {
     _game: Phaser.Game;
     _tank: TankBody;
     _turret: Turret;
@@ -42,11 +42,11 @@ export default class TankState extends Phaser.Sprite {
     }
 
     update(): void {
-        this._tank.update();
+        // this._tank.update();
         this._turret.turretCoordinate = this._tank.currentPosition;
-        this._turret.update();
+        // this._turret.update();
         this._tankLable.currentPosition = this._tank.currentPosition;
-        this._healthBar.setPosition(this._tank.currentPosition.xCoordinate, this._tank.currentPosition.yCoordinate - 50)
+        this._healthBar.setPosition(this._tank.currentPosition.xCoordinate, this._tank.currentPosition.yCoordinate - 50);
     }
 
 

@@ -2,7 +2,10 @@
 /** Imports */
 import State from './state';
 import Tank from '../Tank/Tank';
+import EnemyTank from '../Tank/EnemyTank';
 import TreeBox from '../Box/TreeBox/TreeBox';
+import Client from '../Client/Client';
+import {isNullOrUndefined} from "util";
 
 const earth       = require('../../../static/staticsGame/images/ground.jpg');
 const pause       = require('../../../static/staticsGame/images/pause_button.png');
@@ -14,10 +17,13 @@ export default class WorldState extends State {
     _music: Phaser.Sound;
     _land: any;
     _tank: Tank;
+    _enemy: Tank;
     _treeBoxes: TreeBox;
     _pause: Phaser.Button;
     _bullets: Phaser.Group;
     _explosions: Phaser.Group;
+    _client: any;
+    _clientID: number;
 
     create(): void {
         this.load.image('bullet', 'static/staticsGame/images/bullet.png');
@@ -28,15 +34,41 @@ export default class WorldState extends State {
 
         this._land = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'earth');
         this._land.fixedToCamera = true;
+        this._tank = new Tank(this.game, "Tiger", 100, 100);
 
-        this._tank = new Tank(this.game, "Tiger");
+        this._client = new Client();
+        this._client.askNewPlayer();
+        this._client.getPlayerData()
+            .then(data => {
+                this._tank._tank.currentPosition = {xCoordinate: data.x,
+                                                    yCoordinate: data.y};
+                this._clientID = data.id;
+                console.log(`this._clientID = ${this._clientID}`);
+            });
+
+        this._client.getPlayersPositions()
+            .then(data => {
+                for(let i = 0; i < data.length; i++){
+                    if(data[i].id !== this._clientID) {
+                        console.log(`data[i].id = ${data[i].id}`);
+                        this._enemy = new EnemyTank(this.game, "Enemy", data[i].x, data[i].y);
+                    }
+                }
+            });
+
+        this._client.appearedNewPlayer()
+            .then(data => {
+                console.log(`tank dataID = ${data.id}`);
+                this._enemy  = new EnemyTank(this.game, "Enemy", data.x, data.y);
+        });
+
+
         this._treeBoxes = new TreeBox(this.game);
 
         for (let i = 0; i < 10; i++) {
             let coord = this.randomInteger(0, 500);
             this._treeBoxes.createBox(coord, coord, i);
         }
-        debugger;
 
         this._bullets = this.game.add.group();
         this._bullets.enableBody = true;
@@ -68,11 +100,22 @@ export default class WorldState extends State {
 
     update(): void {
         this.game.physics.arcade.collide(this._tank._tank._body, this._treeBoxes._treeBoxes);
+        if(this._enemy) {
+            this.game.physics.arcade.collide(this._enemy._tank._body, this._treeBoxes._treeBoxes);
+            this._client.getEnemyCoordinate()
+                .then(data => {
+
+                    this._enemy._tank.currentPosition = {xCoordinate: data.x,
+                                                         yCoordinate: data.y};
+                });
+            this._enemy.update();
+        }
+
 
         this._land.tilePosition.x = -this.camera.x;
         this._land.tilePosition.y = -this.camera.y;
         this._tank.update();
-
+        this._client.sendCoordinate(this._tank._tank.currentPosition);
         this.game.physics.arcade.overlap(this._bullets, this._treeBoxes._treeBoxes, this.bulletHitBox, null, this);
 
         // нажали кнокпу мыши
@@ -84,13 +127,9 @@ export default class WorldState extends State {
     bulletHitBox(bullet, box) {
         debugger;
         bullet.kill();
-        // let destroyed = this._treeBoxes._treeBoxes[box.name].damage();
-
-        if (true) {
-            let explosionAnimation = this._explosions.getFirstExists(false);
-            explosionAnimation.reset(box.x, box.y);
-            explosionAnimation.play('kaboom', 30, false, true);
-        }
+        let explosionAnimation = this._explosions.getFirstExists(false);
+        explosionAnimation.reset(box.x, box.y);
+        explosionAnimation.play('kaboom', 30, false, true);
         box.kill();
     }
 
@@ -107,7 +146,6 @@ export default class WorldState extends State {
     startPause(): void {
 
     };
-
 
     randomInteger(min: number, max: number): number {
         let rand = min - 0.5 + Math.random() * (max - min + 1);
