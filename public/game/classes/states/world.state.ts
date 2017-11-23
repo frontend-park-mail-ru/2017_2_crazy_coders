@@ -5,7 +5,7 @@ import Tank from '../Tank/Tank';
 import EnemyTank from '../Tank/EnemyTank';
 import TreeBox from '../Box/TreeBox/TreeBox';
 import Client from '../Client/Client';
-import {isNullOrUndefined} from "util";
+// import {isNullOrUndefined} from "util";
 
 const earth       = require('../../../static/staticsGame/images/ground.jpg');
 const pause       = require('../../../static/staticsGame/images/pause_button.png');
