@@ -38,7 +38,9 @@ class World extends Phaser.State {
 		this.tank = this.add.sprite(50, 400, 'tank', 'tank1');
 		this.tank.anchor.setTo(Constants.anchor, Constants.anchor);
 
-		this.physics.enable(this.tank, Phaser.Physics.Arcade);
+		// this.physics.enable(this.tank, Phaser.Physics.Arcade);
+        this.physics.arcade.enable(this.tank);
+		debugger;
 		this.tank.body.maxVelocity.setTo(Constants.max_velocity, Constants.max_velocity);
 		this.tank.body.collideWorldBounds = true;
 
@@ -49,8 +51,9 @@ class World extends Phaser.State {
 		//  пули врагов
 		this.enemyBullets = this.add.group();
 		this.enemyBullets.enableBody = true;
-		this.enemyBullets.physicsBodyType = Phaser.Physics.Arcade; //Phaser.Physics.ARCADE;
-		this.enemyBullets.createMultiple(5, 'bullet'); // создадим пули
+		// this.enemyBullets.physicsBodyType = Phaser.Physics.Arcade; //Phaser.Physics.ARCADE;
+        this.physics.arcade.enable(this.enemyBullets);
+        this.enemyBullets.createMultiple(5, 'bullet'); // создадим пули
 
 		this.enemyBullets.setAll('anchor.x', 0.5);
 		this.enemyBullets.setAll('anchor.y', 0.5);
@@ -75,8 +78,9 @@ class World extends Phaser.State {
 		//  наша группа снарядов
 		this.bullets = this.add.group();
 		this.bullets.enableBody = true;
-		this.bullets.physicsBodyType = Phaser.Physics.MATTER;
-		this.bullets.createMultiple(30, 'bullet');
+		// this.bullets.physicsBodyType = Phaser.Physics.Arcade;
+        this.physics.arcade.enable(this.bullets);
+        this.bullets.createMultiple(30, 'bullet');
 		this.bullets.setAll('anchor.x', 0.5);
 		this.bullets.setAll('anchor.y', 0.5);
 		this.bullets.setAll('outOfBoundsKill', true);
