@@ -21,6 +21,7 @@ import RegisterSW from './services/ServiceWorker';
 RegisterSW();
 
 theme.changeTheme();
+
 // let game = new Game();
 
 (new Router())
