@@ -13,7 +13,6 @@ class PlayGameController extends Controller {
 
 		super(opt);
 		PlayGameController.__instance = this;
-
 	}
 
 	show() {
