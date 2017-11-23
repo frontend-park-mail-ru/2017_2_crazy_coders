@@ -21,6 +21,7 @@ export default class WorldState extends State {
     _bullets: Phaser.Group;
     _explosions: Phaser.Group;
     _client: any;
+    _clientID: number;
 
     create(): void {
         this.load.image('bullet', 'static/staticsGame/images/bullet.png');
@@ -31,21 +32,31 @@ export default class WorldState extends State {
 
         this._land = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'earth');
         this._land.fixedToCamera = true;
+        this._tank = new Tank(this.game, "Tiger", 100, 100);
 
         this._client = new Client();
         this._client.askNewPlayer();
+        this._client.getPlayerData()
+            .then(data => {
+                this._tank._tank.currentPosition = {xCoordinate: data.x,
+                                                    yCoordinate: data.y};
+                this._clientID = data.id;
+            });
         this._client.getPlayersPositions()
             .then(data => {
                 for(let i = 0; i < data.length; i++){
-                    this._enemy  = new Tank(this.game, "Enemy", data[i].x, data[i].y);
+                    if(data[i].id !== this._clientID)
+                        this._enemy  = new Tank(this.game, "Enemy", data[i].x, data[i].y);
                 }
             });
+
         this._client.appearedNewPlayer()
             .then(data => {
-            this._enemy = new Tank(this.game, "Enemy", data.x, data.y);
+                console.log(`tank dataID = ${data.id}`);
+                this._enemy  = new Tank(this.game, "Enemy", data.x, data.y);
         });
 
-        this._tank = new Tank(this.game, "Tiger");
+
         this._treeBoxes = new TreeBox(this.game);
 
         for (let i = 0; i < 10; i++) {

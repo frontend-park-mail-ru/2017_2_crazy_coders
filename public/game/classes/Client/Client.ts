@@ -15,6 +15,14 @@ export default class Client {
         this._socket.emit('newplayer');
     }
 
+    getPlayerData() {
+        return new Promise(resolve => {
+            this._socket.on('playerdata',function(data){
+                resolve(data);
+            });
+        });
+    }
+
     appearedNewPlayer() {
         return new Promise(resolve => {
             this._socket.on('newplayer',function(data){
