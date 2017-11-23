@@ -8,7 +8,8 @@ module.exports = {
 
 	entry: 	{
 		bundle: './public/main.js',
-		styles:'./public/static/css/main.scss'
+		styles:'./public/static/css/main.scss',
+		test: ['chai', __dirname + '/test/test.js']
 	},
 
 	output: {

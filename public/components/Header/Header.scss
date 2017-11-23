@@ -33,6 +33,9 @@
     padding: 1px 7px;
     border: none;
     font-size: 1.1em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .theme:hover {

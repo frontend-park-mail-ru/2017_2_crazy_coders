@@ -1,3 +1,4 @@
+@import './normolize';
 @import '../../components/Form/Form/Form';
 @import '../../components/Form/ValidForm/Notify/Notify';
 @import '../../components/Footer/Footer';
@@ -6,3 +7,7 @@
 @import '../../components/Table/Table';
 
 
+
+@media screen and (max-width: 414px) {
+
+}

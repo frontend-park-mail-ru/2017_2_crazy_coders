@@ -49,6 +49,7 @@ const htmlNoneScroll = {
 	selector: 'html',
 	styles: {
 		'overflow-y': 'hidden',
+		'overflow-x': 'hidden',
 	}
 };
 

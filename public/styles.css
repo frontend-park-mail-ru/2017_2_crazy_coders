@@ -1,11 +1,51 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+body {
+  overflow-y: hidden;
+  overflow-x: hidden; }
+
 .form {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 15px;
   flex-flow: column nowrap;
-  margin-left: 2%;
-  margin-top: -20px; }
+  margin: auto;
+  margin-bottom: 15px; }
   .form__input {
     display: block;
     width: 350px;
@@ -126,6 +166,10 @@
     width: 50px;
     margin: 0 55px; }
 
+@media screen and (max-width: 414px) {
+  #section-footer {
+    margin-right: 55px; } }
+
 .header {
   display: flex;
   align-items: center;
@@ -155,7 +199,10 @@
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 1px 7px;
   border: none;
-  font-size: 1.1em; }
+  font-size: 1.1em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none; }
 
 .theme:hover {
   background-color: #e9ecf0; }
