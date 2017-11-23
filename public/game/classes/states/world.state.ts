@@ -104,7 +104,7 @@ export default class WorldState extends State {
             this.game.physics.arcade.collide(this._enemy._tank._body, this._treeBoxes._treeBoxes);
             this._client.getEnemyCoordinate()
                 .then(data => {
-
+                    console.log(`x.coord = ${data.x}, y.coord = ${data.y}`);
                     this._enemy._tank.currentPosition = {xCoordinate: data.x,
                                                          yCoordinate: data.y};
                 });
@@ -125,7 +125,6 @@ export default class WorldState extends State {
     }
 
     bulletHitBox(bullet, box) {
-        debugger;
         bullet.kill();
         let explosionAnimation = this._explosions.getFirstExists(false);
         explosionAnimation.reset(box.x, box.y);

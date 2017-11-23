@@ -16,18 +16,18 @@ import Game from './game/classes/index';
 let theme = new Theme();
 let userService = new UserService();
 let page = new CreatePage();
-import RegisterSW from './services/ServiceWorker';
+// import RegisterSW from './services/ServiceWorker';
 
-RegisterSW();
-
-theme.changeTheme();
-// let game = new Game();
+// RegisterSW();
 //
-(new Router())
-    .addRoute('/', MenuStartController, {userService: userService, page: page})
-    .addRoute('/play', PlayGameController, {userService: userService, page: page})
-    .addRoute('/signin', SignInController, {userService: userService, page: page})
-    .addRoute('/signup', SignUpController, {userService: userService, page: page})
-    .addRoute('/score', ScoreListController, {userService: userService, page: page})
-    .addRoute('/about', AboutUsController, {userService: userService, page: page})
-    .startRoute();
+// theme.changeTheme();
+let game = new Game();
+//
+// (new Router())
+//     .addRoute('/', MenuStartController, {userService: userService, page: page})
+//     .addRoute('/play', PlayGameController, {userService: userService, page: page})
+//     .addRoute('/signin', SignInController, {userService: userService, page: page})
+//     .addRoute('/signup', SignUpController, {userService: userService, page: page})
+//     .addRoute('/score', ScoreListController, {userService: userService, page: page})
+//     .addRoute('/about', AboutUsController, {userService: userService, page: page})
+//     .startRoute();

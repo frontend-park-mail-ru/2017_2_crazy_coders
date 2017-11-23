@@ -1,7 +1,7 @@
 'use strict';
 
 import Controller from "./Controller";
-import OfflineGame from '../game/classes/Game/Game';
+// import Game from '../game/classes/Game/Game';
 import Game from '../game/classes/index';
 
 class PlayGameController extends Controller {
@@ -26,7 +26,7 @@ class PlayGameController extends Controller {
 			})
 			.catch((err) => {
 				console.log("[userService.getProfile] err: " + err);
-				let game = new OfflineGame();
+				this._router.go('/');
 			});
 	}
 
