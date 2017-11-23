@@ -41,6 +41,11 @@ class MenuStartController extends Controller {
 			this._router.go('/play');
 		});
 
+		document.getElementById('menu-button-playGame').addEventListener('click', event => {
+			event.preventDefault();
+			this._router.go('/play');
+		});
+
 		if (this.flag) {
 			document.getElementsByClassName('theme')[0].addEventListener('click', event => {
 				event.preventDefault();

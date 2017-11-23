@@ -6,7 +6,7 @@ import World from '../World/World';
 import PauseMenu from '../PauseMenu/PauseMenu';
 import GameOverMenu from '../GameOverMenu/GameOverMenu';
 
-class Game extends Phaser.Game {
+export default class OfflineGame extends Phaser.Game {
 
     constructor() {
 
@@ -23,5 +23,3 @@ class Game extends Phaser.Game {
 
     }
 }
-
-export default Game;
