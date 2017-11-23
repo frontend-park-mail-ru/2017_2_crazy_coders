@@ -22,6 +22,7 @@ let page = new CreatePage();
 //
 // theme.changeTheme();
 let game = new Game();
+
 //
 // (new Router())
 //     .addRoute('/', MenuStartController, {userService: userService, page: page})
@@ -31,3 +32,4 @@ let game = new Game();
 //     .addRoute('/score', ScoreListController, {userService: userService, page: page})
 //     .addRoute('/about', AboutUsController, {userService: userService, page: page})
 //     .startRoute();
+
