@@ -20,10 +20,6 @@ class MenuStartController extends Controller {
 
 	addListener() {
 
-		document.getElementById('menu-button-playGame').addEventListener('click', event => {
-			event.preventDefault();
-			this._router.go('/play');
-		});
 
 		document.getElementById('menu-button-logout').addEventListener('click', event => {
 			event.preventDefault();
@@ -38,6 +34,11 @@ class MenuStartController extends Controller {
 				.catch(e => {
 					alert(e);
 				});
+		});
+
+		document.getElementById('menu-button-playOfflineGame').addEventListener('click', event => {
+			event.preventDefault();
+			this._router.go('/play');
 		});
 
 		if (this.flag) {

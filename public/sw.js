@@ -34,6 +34,7 @@ const cacheUrls = [
 
 
 	'/styles.css',
+	'/styles.js',
 	'/bundle.js',
 ];
 

@@ -3,6 +3,11 @@ import Menu from '../../components/Menu/Menu';
 let data = {
     user: undefined,
     buttons: [
+		{
+			text: 'START',
+			id: 'menu-button-playOfflineGame',
+			class: 'menu__button',
+		},
         {
             text: 'SIGN IN',
             id: 'menu-button-signIn',
