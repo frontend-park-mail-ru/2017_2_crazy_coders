@@ -102,7 +102,7 @@ class World extends Phaser.State {
 		this.pauseButton.clicked = false;
 
 
-		this.gameTime = 15;
+		this.gameTime = 45;
 		if (!this.timer) {
 			this.timePause = 0;
 			this.isPaused = false;
