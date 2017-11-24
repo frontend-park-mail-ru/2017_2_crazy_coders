@@ -80,13 +80,9 @@ export default class SingPlayerWorldState extends State {
 
     bulletHitBox(bullet, box) {
         bullet.kill();
-        // let destroyed = this._treeBoxes._treeBoxes[box.name].damage();
-
-        if (true) {
-            let explosionAnimation = this._explosions.getFirstExists(false);
-            explosionAnimation.reset(box.x, box.y);
-            explosionAnimation.play('kaboom', 30, false, true);
-        }
+        let explosionAnimation = this._explosions.getFirstExists(false);
+        explosionAnimation.reset(box.x, box.y);
+        explosionAnimation.play('kaboom', 30, false, true);
         box.kill();
     }
 
@@ -100,8 +96,12 @@ export default class SingPlayerWorldState extends State {
         }
     }
 
-    startPause(): void {
+    startPause(button): void {
         console.log("press pause button");
+        if (!button.clicked) {
+            button.clicked = true;
+        }
+        this.game.state.start('PauseMenu', true, false);
     };
 
     randomInteger(min: number, max: number): number {
