@@ -33,9 +33,9 @@ const cacheUrls = [
 	'/static/staticsGame/music/boom.mp3',
 
 
-	'/styles.css',
-	'/styles.js',
-	'/bundle.js',
+	'/build/styles.css',
+	'/build/styles.js',
+	'/build/bundle.js',
 ];
 
 this.addEventListener('install', event => {
