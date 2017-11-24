@@ -18,7 +18,8 @@ export default class Http {
      */
     static FetchGet(address) {
         // const url = this.baseUrl + address;
-        const url = 'http://82.202.246.5:8080' + address;
+        // const url = 'http://82.202.246.5:8080' + address;
+        const url = 'http://localhost:8080' + address;
         // const url = 'https://tanks-backend.xyz' + address;
 
         console.log("[FetchGet] try get from " + url);
@@ -46,7 +47,8 @@ export default class Http {
      */
     static FetchPost (address, body) {
 
-        const url = 'http://82.202.246.5:8080' + address;
+        // const url = 'http://82.202.246.5:8080' + address;
+        const url = 'http://localhost:8080' + address;
         // const url = 'https://tanks-backend.xyz' + address;
 
         console.log("[FetchPost] try post to " + url);
