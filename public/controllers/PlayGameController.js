@@ -25,7 +25,7 @@ class PlayGameController extends Controller {
 			})
 			.catch((err) => {
 				console.log("[userService.getProfile] err: " + err);
-				this._router.go('/');
+				let game = new Game();
 			});
 	}
 
