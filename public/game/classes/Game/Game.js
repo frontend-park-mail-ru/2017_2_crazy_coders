@@ -22,4 +22,8 @@ export default class OfflineGame extends Phaser.Game {
         this.state.start('Boot');
 
     }
+
+    exit() {
+		window.open("/", "_self");
+	}
 }

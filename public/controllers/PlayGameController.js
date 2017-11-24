@@ -21,16 +21,16 @@ class PlayGameController extends Controller {
 			.then((resp) => {
 				console.log("[userService.getProfile] response: " + resp);
 				this.userService.user.set(resp);
-				let game = new Game();
+				this.game = new Game();
 			})
 			.catch((err) => {
 				console.log("[userService.getProfile] err: " + err);
-				let game = new Game();
+				this.game = new Game();
 			});
 	}
 
 	hide() {
-
+		this.game.exit();
 	}
 
 }
