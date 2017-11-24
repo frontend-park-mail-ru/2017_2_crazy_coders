@@ -3,6 +3,7 @@
 import State from './state';
 import Tank from '../Tank/Tank';
 import TreeBox from '../Box/TreeBox/TreeBox';
+import Button from '../Button/Button';
 
 const earth       = require('../../../static/staticsGame/images/ground.jpg');
 const pause       = require('../../../static/staticsGame/images/pause_button.png');
@@ -15,7 +16,7 @@ export default class SingPlayerWorldState extends State {
     _land: any;
     _tank: Tank;
     _treeBoxes: TreeBox;
-    _pause: Phaser.Button;
+    _pause: Button;
     _bullets: Phaser.Group;
     _explosions: Phaser.Group;
 
@@ -36,7 +37,6 @@ export default class SingPlayerWorldState extends State {
             let coord = this.randomInteger(0, 500);
             this._treeBoxes.createBox(coord, coord, i);
         }
-        debugger;
 
         this._bullets = this.game.add.group();
         this._bullets.enableBody = true;
@@ -55,10 +55,7 @@ export default class SingPlayerWorldState extends State {
             explosionAnimation.animations.add('kaboom');
         }
 
-        this._pause = this.game.add.button(10, 10, "pause", this.startPause, this);
-        this._pause.scale.setTo(0.2, 0.2);
-        this._pause.frame = 1;
-        this._pause['clicked'] = false;
+        this._pause = new Button(this.game, 10, 10, "pause", this.startPause, this);
 
         this.game.camera.follow(this._tank);
         this.game.camera.deadzone = new Phaser.Rectangle(150, 150, 500, 300);
@@ -82,7 +79,6 @@ export default class SingPlayerWorldState extends State {
     }
 
     bulletHitBox(bullet, box) {
-        debugger;
         bullet.kill();
         // let destroyed = this._treeBoxes._treeBoxes[box.name].damage();
 
@@ -105,7 +101,7 @@ export default class SingPlayerWorldState extends State {
     }
 
     startPause(): void {
-
+        console.log("press pause button");
     };
 
     randomInteger(min: number, max: number): number {
