@@ -37,30 +37,30 @@ export default class WorldState extends State {
         this._tank = new Tank(this.game, "Tiger", 100, 100);
 
         this._client = new Client();
-        this._client.askNewPlayer();
-        this._client.getPlayerData()
-            .then(data => {
-                this._tank._tank.currentPosition = {xCoordinate: data.x,
-                                                    yCoordinate: data.y};
-                this._clientID = data.id;
-                console.log(`this._clientID = ${this._clientID}`);
-            });
-
-        this._client.getPlayersPositions()
-            .then(data => {
-                for(let i = 0; i < data.length; i++){
-                    if(data[i].id !== this._clientID) {
-                        console.log(`data[i].id = ${data[i].id}`);
-                        this._enemy = new EnemyTank(this.game, "Enemy", data[i].x, data[i].y);
-                    }
-                }
-            });
-
-        this._client.appearedNewPlayer()
-            .then(data => {
-                console.log(`tank dataID = ${data.id}`);
-                this._enemy  = new EnemyTank(this.game, "Enemy", data.x, data.y);
-        });
+        // this._client.askNewPlayer();
+        // this._client.getPlayerData()
+        //     .then(data => {
+        //         this._tank._tank.currentPosition = {xCoordinate: data.x,
+        //                                             yCoordinate: data.y};
+        //         this._clientID = data.id;
+        //         console.log(`this._clientID = ${this._clientID}`);
+        //     });
+        //
+        // this._client.getPlayersPositions()
+        //     .then(data => {
+        //         for(let i = 0; i < data.length; i++){
+        //             if(data[i].id !== this._clientID) {
+        //                 console.log(`data[i].id = ${data[i].id}`);
+        //                 this._enemy = new EnemyTank(this.game, "Enemy", data[i].x, data[i].y);
+        //             }
+        //         }
+        //     });
+        //
+        // this._client.appearedNewPlayer()
+        //     .then(data => {
+        //         console.log(`tank dataID = ${data.id}`);
+        //         this._enemy  = new EnemyTank(this.game, "Enemy", data.x, data.y);
+        // });
 
 
         this._treeBoxes = new TreeBox(this.game);
@@ -102,12 +102,12 @@ export default class WorldState extends State {
         this.game.physics.arcade.collide(this._tank._tank._body, this._treeBoxes._treeBoxes);
         if(this._enemy) {
             this.game.physics.arcade.collide(this._enemy._tank._body, this._treeBoxes._treeBoxes);
-            this._client.getEnemyCoordinate()
-                .then(data => {
-                    console.log(`x.coord = ${data.x}, y.coord = ${data.y}`);
-                    this._enemy._tank.currentPosition = {xCoordinate: data.x,
-                                                         yCoordinate: data.y};
-                });
+            // this._client.getEnemyCoordinate()
+            //     .then(data => {
+            //         console.log(`x.coord = ${data.x}, y.coord = ${data.y}`);
+            //         this._enemy._tank.currentPosition = {xCoordinate: data.x,
+            //                                              yCoordinate: data.y};
+            //     });
             this._enemy.update();
         }
 
