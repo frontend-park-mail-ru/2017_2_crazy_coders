@@ -3,8 +3,8 @@
 import BootState        from './states/boot.state';
 import PreloaderState   from './states/preloader.state';
 import MainState        from './states/main.state';
-// import WorldState        from './states/world.state';
-import WorldState        from './states/singPlayerWorld.state';
+import WorldState        from './states/world.state';
+// import WorldState        from './states/singPlayerWorld.state';
 import PauseMenu from './PauseMenu/PauseMenu';
 import GameOverMenu from './GameOverMenu/GameOverMenu';
 

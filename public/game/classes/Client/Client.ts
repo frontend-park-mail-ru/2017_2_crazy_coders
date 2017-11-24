@@ -8,7 +8,23 @@ export default class Client {
         if(this._instance)
             return this._instance;
 
-        this._socket = io('http://localhost:3000');
+        this._socket = io('ws://localhost:8080/game');
+        let coord = {valX: 10,
+                    valY: 10};
+        let data = {platform: coord,
+                    platformAngle: 2.2,
+                    turretAngle: 4.5,
+                    isShoot: true,
+                    class: "TankSnap"
+        };
+
+
+
+        console.log("start");
+        this._socket.send(JSON.stringify(data));
+        console.log("stop");
+
+        debugger;
     }
 
     askNewPlayer() {
