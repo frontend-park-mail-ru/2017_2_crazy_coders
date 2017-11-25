@@ -36,9 +36,12 @@ class SignUpController extends Controller {
                 })
 
                 .catch((err) => {
-                    console.log("[onSubmitSignUpForm] err: " + err);
-					let notify = new Notify();
-                    notify.notify('server error');
+                    let notify = new Notify();
+                    if(err.status === 403) {
+                        notify.notify('User name or password is incorrect', 'orange');
+                    } else {
+                        notify.notify('NetworkError.');
+                    }
 				});
         });
     }

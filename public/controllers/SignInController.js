@@ -35,10 +35,12 @@ class SignInController extends Controller {
 					this._router.go('/');
 				})
 				.catch((err) => {
-					if(err.status === 403)
-					console.log("[onSubmitSignInForm] err: " + err);
-					let notify = new Notify();
-					notify.notify('User name or password is incorrect', 'orange');
+                    let notify = new Notify();
+					if(err.status === 403) {
+                        notify.notify('User name or password is incorrect', 'orange');
+                    } else {
+                        notify.notify('NetworkError.');
+					}
 				});
 		});
 	}
