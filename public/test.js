@@ -398,7 +398,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Http = __webpack_require__(23);
+var _Http = __webpack_require__(13);
 
 var _Http2 = _interopRequireDefault(_Http);
 
@@ -546,13 +546,113 @@ var UserService = function () {
 exports.default = UserService;
 
 /***/ }),
-/* 13 */,
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Модуль, предоставляющий методы для выполнения HTTP-запросов
+ * @module Http
+ */
+var Http = function () {
+    /**
+     * @constructor
+     */
+    function Http() {
+        _classCallCheck(this, Http);
+
+        this.baseUrl = 'http://82.202.246.5:8080';
+    }
+
+    /**
+     * Выполняет GET-запрос по указанному адресу с использованием fetch
+     * @param {string} address - адрес запроса
+     * @return {Promise}
+     */
+
+
+    _createClass(Http, null, [{
+        key: 'FetchGet',
+        value: function FetchGet(address) {
+            // const url = this.baseUrl + address;
+            // const url = 'http://82.202.246.5:8080' + address;
+            // const url = 'http://localhost:8080' + address;
+            var url = 'http://10.100.122.201:8080' + address;
+            // const url = 'https://tanks-backend.xyz' + address;
+
+            console.log("[FetchGet] try get from " + url);
+
+            return fetch(url, {
+                method: 'GET',
+                mode: 'cors',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'Accept': 'application/json'
+                }
+            }).then(function (response) {
+                console.log("[FetchGet] now get from " + url);
+                return response;
+            });
+        }
+
+        /**
+         * Выполняет POST-запрос по указанному адресу с использованием fetch
+         * @param {string} address - адрес запроса
+         * @param {*} body - тело запроса (объект)
+         * @return {Promise}
+         */
+
+    }, {
+        key: 'FetchPost',
+        value: function FetchPost(address, body) {
+
+            // const url = 'http://82.202.246.5:8080' + address;
+            // const url = 'http://localhost:8080' + address;
+            var url = 'http://10.100.122.201:8080' + address;
+            // const url = 'https://tanks-backend.xyz' + address;
+
+            console.log("[FetchPost] try post to " + url);
+
+            return fetch(url, {
+                method: 'POST',
+                mode: 'cors',
+                credentials: 'include',
+                body: JSON.stringify(body),
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'Accept': 'application/json'
+                }
+            }).then(function (response) {
+                console.log('[Http.FetchPost] response = ' + response);
+                return response;
+            });
+        }
+    }]);
+
+    return Http;
+}();
+
+exports.default = Http;
+
+/***/ }),
 /* 14 */,
 /* 15 */,
 /* 16 */,
 /* 17 */,
 /* 18 */,
-/* 19 */
+/* 19 */,
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // This is (almost) directly from Node.js utils
@@ -941,7 +1041,7 @@ function objectToString(o) {
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var config = __webpack_require__(3);
@@ -971,7 +1071,7 @@ module.exports = function isProxyEnabled() {
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var config = __webpack_require__(3);
@@ -1039,13 +1139,13 @@ module.exports = function addLengthGuard (fn, assertionName, isChainable) {
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var config = __webpack_require__(3);
 var flag = __webpack_require__(1);
 var getProperties = __webpack_require__(57);
-var isProxyEnabled = __webpack_require__(20);
+var isProxyEnabled = __webpack_require__(21);
 
 /*!
  * Chai - proxify utility
@@ -1168,103 +1268,6 @@ function stringDistance(strA, strB, memo) {
   return memo[strA.length][strB.length];
 }
 
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * Модуль, предоставляющий методы для выполнения HTTP-запросов
- * @module Http
- */
-var Http = function () {
-    /**
-     * @constructor
-     */
-    function Http() {
-        _classCallCheck(this, Http);
-
-        this.baseUrl = 'http://82.202.246.5:8080';
-    }
-
-    /**
-     * Выполняет GET-запрос по указанному адресу с использованием fetch
-     * @param {string} address - адрес запроса
-     * @return {Promise}
-     */
-
-
-    _createClass(Http, null, [{
-        key: 'FetchGet',
-        value: function FetchGet(address) {
-            // const url = this.baseUrl + address;
-            // const url = 'http://82.202.246.5:8080' + address;
-            var url = 'http://localhost:8080' + address;
-            // const url = 'https://tanks-backend.xyz' + address;
-
-            console.log("[FetchGet] try get from " + url);
-
-            return fetch(url, {
-                method: 'GET',
-                mode: 'cors',
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json; charset=utf-8',
-                    'Accept': 'application/json'
-                }
-            }).then(function (response) {
-                console.log("[FetchGet] now get from " + url);
-                return response;
-            });
-        }
-
-        /**
-         * Выполняет POST-запрос по указанному адресу с использованием fetch
-         * @param {string} address - адрес запроса
-         * @param {*} body - тело запроса (объект)
-         * @return {Promise}
-         */
-
-    }, {
-        key: 'FetchPost',
-        value: function FetchPost(address, body) {
-
-            // const url = 'http://82.202.246.5:8080' + address;
-            var url = 'http://localhost:8080' + address;
-            // const url = 'https://tanks-backend.xyz' + address;
-
-            console.log("[FetchPost] try post to " + url);
-
-            return fetch(url, {
-                method: 'POST',
-                mode: 'cors',
-                credentials: 'include',
-                body: JSON.stringify(body),
-                headers: {
-                    'Content-Type': 'application/json; charset=utf-8',
-                    'Accept': 'application/json'
-                }
-            }).then(function (response) {
-                return response;
-            });
-        }
-    }]);
-
-    return Http;
-}();
-
-exports.default = Http;
 
 /***/ }),
 /* 24 */
@@ -2060,7 +2063,7 @@ module.exports = function getProperties(object) {
  * Module dependancies
  */
 
-var inspect = __webpack_require__(19);
+var inspect = __webpack_require__(20);
 var config = __webpack_require__(3);
 
 /**
@@ -2265,7 +2268,7 @@ exports.getActual = __webpack_require__(55);
  * Inspect util
  */
 
-exports.inspect = __webpack_require__(19);
+exports.inspect = __webpack_require__(20);
 
 /*!
  * Object Display util
@@ -2373,19 +2376,19 @@ exports.checkError = __webpack_require__(149);
  * Proxify util
  */
 
-exports.proxify = __webpack_require__(22);
+exports.proxify = __webpack_require__(23);
 
 /*!
  * addLengthGuard util
  */
 
-exports.addLengthGuard = __webpack_require__(21);
+exports.addLengthGuard = __webpack_require__(22);
 
 /*!
  * isProxyEnabled helper
  */
 
-exports.isProxyEnabled = __webpack_require__(20);
+exports.isProxyEnabled = __webpack_require__(21);
 
 /*!
  * isNaN method
@@ -2799,7 +2802,7 @@ module.exports = function expectTypes(obj, types) {
 
 var flag = __webpack_require__(1)
   , getActual = __webpack_require__(55)
-  , inspect = __webpack_require__(19)
+  , inspect = __webpack_require__(20)
   , objDisplay = __webpack_require__(58);
 
 /**
@@ -3346,7 +3349,7 @@ function isPrimitive(value) {
 
 var chai = __webpack_require__(2);
 var flag = __webpack_require__(1);
-var isProxyEnabled = __webpack_require__(20);
+var isProxyEnabled = __webpack_require__(21);
 var transferFlags = __webpack_require__(4);
 
 /**
@@ -3422,10 +3425,10 @@ module.exports = function addProperty(ctx, name, getter) {
  * MIT Licensed
  */
 
-var addLengthGuard = __webpack_require__(21);
+var addLengthGuard = __webpack_require__(22);
 var chai = __webpack_require__(2);
 var flag = __webpack_require__(1);
-var proxify = __webpack_require__(22);
+var proxify = __webpack_require__(23);
 var transferFlags = __webpack_require__(4);
 
 /**
@@ -3498,7 +3501,7 @@ module.exports = function addMethod(ctx, name, method) {
 
 var chai = __webpack_require__(2);
 var flag = __webpack_require__(1);
-var isProxyEnabled = __webpack_require__(20);
+var isProxyEnabled = __webpack_require__(21);
 var transferFlags = __webpack_require__(4);
 
 /**
@@ -3594,10 +3597,10 @@ module.exports = function overwriteProperty(ctx, name, getter) {
  * MIT Licensed
  */
 
-var addLengthGuard = __webpack_require__(21);
+var addLengthGuard = __webpack_require__(22);
 var chai = __webpack_require__(2);
 var flag = __webpack_require__(1);
-var proxify = __webpack_require__(22);
+var proxify = __webpack_require__(23);
 var transferFlags = __webpack_require__(4);
 
 /**
@@ -3696,10 +3699,10 @@ module.exports = function overwriteMethod(ctx, name, method) {
  * Module dependencies
  */
 
-var addLengthGuard = __webpack_require__(21);
+var addLengthGuard = __webpack_require__(22);
 var chai = __webpack_require__(2);
 var flag = __webpack_require__(1);
-var proxify = __webpack_require__(22);
+var proxify = __webpack_require__(23);
 var transferFlags = __webpack_require__(4);
 
 /*!
@@ -3929,7 +3932,7 @@ module.exports = function overwriteChainableMethod(ctx, name, method, chainingBe
  * Module dependancies
  */
 
-var inspect = __webpack_require__(19);
+var inspect = __webpack_require__(20);
 
 /**
  * ### .compareByInspect(mixed, mixed)

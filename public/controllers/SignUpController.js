@@ -4,6 +4,7 @@ import Controller from './Controller';
 import Form from '../components/Form/Form/Form';
 import Theme from '../static/css/style';
 import Notify from '../components/Form/ValidForm/Notify/Notify';
+import Http from "../modules/Http";
 
 
 class SignUpController extends Controller {
@@ -38,7 +39,7 @@ class SignUpController extends Controller {
                 .catch((err) => {
                     let notify = new Notify();
                     if(err.status === 403) {
-                        notify.notify('User name or password is incorrect', 'orange');
+                        notify.notify('User is already exist with current email', 'orange');
                     } else {
                         notify.notify('NetworkError.');
                     }

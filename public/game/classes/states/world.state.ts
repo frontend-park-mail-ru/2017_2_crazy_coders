@@ -5,7 +5,8 @@ import Tank from '../Tank/Tank';
 import EnemyTank from '../Tank/EnemyTank';
 import TreeBox from '../Box/TreeBox/TreeBox';
 import Client from '../Client/Client';
-// import {isNullOrUndefined} from "util";
+import Message from '../Message/Message';
+
 
 const earth       = require('../../../static/staticsGame/images/ground.jpg');
 const pause       = require('../../../static/staticsGame/images/pause_button.png');
@@ -34,7 +35,7 @@ export default class WorldState extends State {
 
         this._land = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'earth');
         this._land.fixedToCamera = true;
-        this._tank = new Tank(this.game, "Tiger", 100, 100);
+        this._tank = new Tank(this.game, "Tiger");
 
         this._client = new Client();
         // this._client.askNewPlayer();
@@ -115,7 +116,7 @@ export default class WorldState extends State {
         this._land.tilePosition.x = -this.camera.x;
         this._land.tilePosition.y = -this.camera.y;
         this._tank.update();
-        this._client.sendCoordinate(this._tank._tank.currentPosition);
+        // this._client.sendCoordinate(this._tank._tank.currentPosition);
         this.game.physics.arcade.overlap(this._bullets, this._treeBoxes._treeBoxes, this.bulletHitBox, null, this);
 
         // нажали кнокпу мыши
