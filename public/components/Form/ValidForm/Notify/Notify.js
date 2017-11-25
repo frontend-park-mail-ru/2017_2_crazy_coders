@@ -5,8 +5,9 @@ export default class Notify {
 		document.body.appendChild(this.notifyBlock);
 	}
 
-	notify(message = 'Текст нотификации', time = 3) {
+	notify(message = 'Текст нотификации', color = 'red', time = 3) {
 		let notify = this.createNotify(message, time);
+		notify.style.background = color;
 		this.notifyBlock.appendChild(notify);
 	}
 
