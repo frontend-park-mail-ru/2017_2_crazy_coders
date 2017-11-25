@@ -5,7 +5,7 @@ import Tank from '../Tank/Tank';
 import EnemyTank from '../Tank/EnemyTank';
 import TreeBox from '../Box/TreeBox/TreeBox';
 import Client from '../Client/Client';
-import Message from '../Message/Message';
+import Snap from '../Snap/Snap';
 
 
 const earth       = require('../../../static/staticsGame/images/ground.jpg');
@@ -24,7 +24,7 @@ export default class WorldState extends State {
     _bullets: Phaser.Group;
     _explosions: Phaser.Group;
     _client: any;
-    _clientID: number;
+    _clientId: number;
 
     create(): void {
         this.load.image('bullet', 'static/staticsGame/images/bullet.png');
@@ -36,32 +36,17 @@ export default class WorldState extends State {
         this._land = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'earth');
         this._land.fixedToCamera = true;
         this._tank = new Tank(this.game, "Tiger");
-
         this._client = new Client();
-        // this._client.askNewPlayer();
-        // this._client.getPlayerData()
-        //     .then(data => {
-        //         this._tank._tank.currentPosition = {xCoordinate: data.x,
-        //                                             yCoordinate: data.y};
-        //         this._clientID = data.id;
-        //         console.log(`this._clientID = ${this._clientID}`);
-        //     });
-        //
-        // this._client.getPlayersPositions()
-        //     .then(data => {
-        //         for(let i = 0; i < data.length; i++){
-        //             if(data[i].id !== this._clientID) {
-        //                 console.log(`data[i].id = ${data[i].id}`);
-        //                 this._enemy = new EnemyTank(this.game, "Enemy", data[i].x, data[i].y);
-        //             }
-        //         }
-        //     });
-        //
-        // this._client.appearedNewPlayer()
-        //     .then(data => {
-        //         console.log(`tank dataID = ${data.id}`);
-        //         this._enemy  = new EnemyTank(this.game, "Enemy", data.x, data.y);
-        // });
+
+        this._client.socket.onmessage = ( (event) => {
+            let message = JSON.parse(event.data);
+
+            if (message.class === "ServerSnap") {
+                this.onServerSnapArrived(message);
+            }
+
+        });
+
 
 
         this._treeBoxes = new TreeBox(this.game);
@@ -116,7 +101,14 @@ export default class WorldState extends State {
         this._land.tilePosition.x = -this.camera.x;
         this._land.tilePosition.y = -this.camera.y;
         this._tank.update();
-        // this._client.sendCoordinate(this._tank._tank.currentPosition);
+
+        this._client.message.sendClientSnap(
+            (new Snap(this.game.user.id,
+                      this._tank._tank.currentPosition.xCoordinate,
+                      this._tank._tank.currentPosition.yCoordinate,
+                      this._tank._tank._body.angle,
+                      this._tank._turret._turret.angle)).playerSnap);
+
         this.game.physics.arcade.overlap(this._bullets, this._treeBoxes._treeBoxes, this.bulletHitBox, null, this);
 
         // нажали кнокпу мыши
@@ -146,6 +138,13 @@ export default class WorldState extends State {
     startPause(): void {
 
     };
+
+    onServerSnapArrived(message){
+        for(let i = 0; i < message.tanks.length; i++) {
+            let tank = message.tanks[i];
+            console.log(`get users coordinates: userId = ${tank.userId}, xCoord = ${tank.platform.valX}, yCoord = ${tank.platform.valY}`);
+        }
+    }
 
     randomInteger(min: number, max: number): number {
         let rand = min - 0.5 + Math.random() * (max - min + 1);

@@ -22,7 +22,7 @@ class PlayGameController extends Controller {
 			.then((resp) => {
 				console.log("[userService.getProfile] response: " + resp);
 				this.userService.user.set(resp);
-				let game = new Game();
+				let game = new Game(this.userService.user);
 			})
 			.catch((err) => {
 				console.log("[userService.getProfile] err: " + err);

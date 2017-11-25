@@ -11,9 +11,12 @@ import GameOverMenu from './GameOverMenu/GameOverMenu';
 
 
 export default class App extends Phaser.Game {
-  constructor() {
+  user: any;
+
+  constructor(User) {
     super(document.documentElement.clientWidth, document.documentElement.clientHeight, Phaser.AUTO, 'content', null);
 
+    this.user = User;
     this.state.add('boot', BootState);
     this.state.add('preloader', PreloaderState);
     this.state.add('main', MainState);

@@ -31,8 +31,8 @@ export default class SignUpForm extends Form {
                 formdata[name] = elements[name].value;
             }
 
-            const isValid = new this.validator(formdata[0], formdata[1],
-                formdata[2], formdata[3]);
+            const isValid = new this.validator(formdata.username, formdata.email,
+                formdata.password, formdata.repeatPassword);
 
             if(isValid.validForm()) {
                 callback(formdata);

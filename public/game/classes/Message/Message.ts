@@ -2,13 +2,15 @@ import Client from '../Client/Client';
 
 export default class Message {
     class: string;
-    joinGameMessage: Object;
+    joinGameMessage: any;
     client: any;
 
     constructor(Client: Client) {
         this.client = Client;
         this.class = "ClientSnap";
-        this.joinGameMessage["class"] = "JoinGame$Request";
+        this.joinGameMessage = {
+            class: "JoinGame$Request",
+        };
     }
 
     sendJoinGameMsg() {
@@ -16,7 +18,6 @@ export default class Message {
     };
 
     sendClientSnap(snap) {
-        snap.class = "ClientSnap";
         this.send(JSON.stringify(snap));
     };
 
@@ -25,6 +26,7 @@ export default class Message {
             this.client.socket.readyState === this.client.socket.CLOSING) {
             return;
         }
+        debugger;
         this.client.socket.send(message);
     };
 }

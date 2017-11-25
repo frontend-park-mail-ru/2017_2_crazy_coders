@@ -16,41 +16,21 @@ export default class Client {
         console.log('Info: try get instants of WebSocket.');
         // this.socket = new WebSocket('ws://localhost:8080/game');
         this.socket = new WebSocket('ws://10.100.122.201:8080/game');
-        this.message = new Message(this.socket);
+        this.message = new Message(this);
         console.log('Info: try create \"onopen\" function.');
 
         this.socket.onopen = (() => {
             console.log('Info: WebSocket connection opened.');
 
             try {
-                // console.log("Creating data...");
-                // let coord = {valX: 10,
-                //     valY: 10};
-                //
-                // let data = {
-                //     platform: coord,
-                //     platformAngle: 2.2,
-                //     turretAngle: 4.5,
-                //     isShoot: true,
-                //     class: "TankSnap"
-                // };
-                //
-                // console.log("Try send data");
-                // debugger;
-                // this.socket.send(JSON.stringify(data));
-
                 this.message.sendJoinGameMsg();
-
                 console.log("completed");
 
             } catch (ex) {
                 console.log("ERROR");
-                debugger;
                 this.socket.close(1001, "error: exeception occured during the initialization stage: " + ex);
             }
         });
-
-        debugger;
     }
 
     // askNewPlayer() {
