@@ -6,6 +6,8 @@ import EnemyTank from '../Tank/EnemyTank';
 import TreeBox from '../Box/TreeBox/TreeBox';
 import Client from '../Client/Client';
 import Snap from '../Snap/Snap';
+import TankBullets from '../Bullet/TankBullet/TankBullet';
+import EnemyBullets from '../Bullet/EnemyBullet/EnemyBullet';
 
 
 const earth       = require('../../../static/staticsGame/images/ground.jpg');
@@ -21,8 +23,8 @@ export default class WorldState extends State {
     _enemy: Tank;
     _treeBoxes: TreeBox;
     _pause: Phaser.Button;
-    _bullets: Phaser.Group;
-    _explosions: Phaser.Group;
+    tankBullets: TankBullets;
+    enemyBullets: EnemyBullets;
     _client: any;
     _clientId: number;
 
@@ -35,19 +37,17 @@ export default class WorldState extends State {
 
         this._land = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'earth');
         this._land.fixedToCamera = true;
+
         this._tank = new Tank(this.game, "Tiger");
-        this._client = new Client();
-
-        this._client.socket.onmessage = ( (event) => {
-            let message = JSON.parse(event.data);
-
-            if (message.class === "ServerSnap") {
-                this.onServerSnapArrived(message);
-            }
-
-        });
-
-
+        // this._client = new Client();
+        // this._client.socket.onmessage = ( (event) => {
+        //     let message = JSON.parse(event.data);
+        //
+        //     if (message.class === "ServerSnap") {
+        //         this.onServerSnapArrived(message);
+        //     }
+        //
+        // });
 
         this._treeBoxes = new TreeBox(this.game);
 
@@ -56,22 +56,9 @@ export default class WorldState extends State {
             this._treeBoxes.createBox(coord, coord, i);
         }
 
-        this._bullets = this.game.add.group();
-        this._bullets.enableBody = true;
-        this.game.physics.arcade.enable(this._bullets);
-        this._bullets.createMultiple(30, 'bullet');
-        this._bullets.setAll('anchor.x', 0.5);
-        this._bullets.setAll('anchor.y', 0.5);
-        this._bullets.setAll('outOfBoundsKill', true);
-        this._bullets.setAll('checkWorldBounds', true);
-
-        this._explosions = this.add.group();
-
-        for (let i = 0; i < 10; i++) {
-            let explosionAnimation = this._explosions.create(0, 0, 'kaboom', 0, false);
-            explosionAnimation.anchor.setTo(0.5, 0.5);
-            explosionAnimation.animations.add('kaboom');
-        }
+        // declaration bullets for out tamk and enemy tank
+        this.tankBullets = new TankBullets(this.game);
+        this.enemyBullets = new EnemyBullets(this.game);
 
         this._pause = this.game.add.button(10, 10, "pause", this.startPause, this);
         this._pause.scale.setTo(0.2, 0.2);
@@ -88,48 +75,35 @@ export default class WorldState extends State {
         this.game.physics.arcade.collide(this._tank._tank._body, this._treeBoxes._treeBoxes);
         if(this._enemy) {
             this.game.physics.arcade.collide(this._enemy._tank._body, this._treeBoxes._treeBoxes);
-            // this._client.getEnemyCoordinate()
-            //     .then(data => {
-            //         console.log(`x.coord = ${data.x}, y.coord = ${data.y}`);
-            //         this._enemy._tank.currentPosition = {xCoordinate: data.x,
-            //                                              yCoordinate: data.y};
-            //     });
             this._enemy.update();
         }
-
 
         this._land.tilePosition.x = -this.camera.x;
         this._land.tilePosition.y = -this.camera.y;
         this._tank.update();
 
-        this._client.message.sendClientSnap(
-            (new Snap(this.game.user.id,
-                      this._tank._tank.currentPosition.xCoordinate,
-                      this._tank._tank.currentPosition.yCoordinate,
-                      this._tank._tank._body.angle,
-                      this._tank._turret._turret.angle)).playerSnap);
+        // this._client.message.sendClientSnap(
+        //     (new Snap(this.game.user.id,
+        //               this._tank._tank.currentPosition.xCoordinate,
+        //               this._tank._tank.currentPosition.yCoordinate,
+        //               this._tank._tank._body.angle,
+        //               this._tank._turret._turret.angle)).playerSnap);
 
-        this.game.physics.arcade.overlap(this._bullets, this._treeBoxes._treeBoxes, this.bulletHitBox, null, this);
 
-        // нажали кнокпу мыши
+        this.game.physics.arcade.overlap(this.tankBullets.tankBullets, this._treeBoxes._treeBoxes, this.tankBullets.bulletHitBox.bind(this.tankBullets), null, this);
+        this.game.physics.arcade.overlap(this.enemyBullets.enemyBullets, this._treeBoxes._treeBoxes, this.enemyBullets.bulletHitBox.bind(this.enemyBullets), null, this);
+
+        // click mouse button
         if (this.game.input.activePointer.isDown) {
             this.fire();
         }
     }
 
-    bulletHitBox(bullet, box) {
-        bullet.kill();
-        let explosionAnimation = this._explosions.getFirstExists(false);
-        explosionAnimation.reset(box.x, box.y);
-        explosionAnimation.play('kaboom', 30, false, true);
-        box.kill();
-    }
-
     fire() {
-        if (this.game.time.now > this._tank._nextFire && this._bullets.countDead() > 0) {
+        if (this.game.time.now > this._tank._nextFire && this.tankBullets.tankBullets.countDead() > 0) {
             this._tank._nextFire = this.time.now + this._tank._fireRate;
 
-            let bullet = this._bullets.getFirstExists(false);
+            let bullet = this.tankBullets.tankBullets.getFirstExists(false);
             bullet.reset(this._tank._turret._turret.x, this._tank._turret._turret.y);
             bullet.rotation = this.physics.arcade.moveToPointer(bullet, 1000, this.game.input.activePointer, 500);
         }
