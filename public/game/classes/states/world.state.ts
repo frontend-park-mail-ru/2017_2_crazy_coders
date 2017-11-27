@@ -8,6 +8,7 @@ import Client from '../Client/Client';
 import Snap from '../Snap/Snap';
 import TankBullets from '../Bullet/TankBullet/TankBullet';
 import EnemyBullets from '../Bullet/EnemyBullet/EnemyBullet';
+import Enemies from '../Tank/EnemyTanks';
 
 
 const earth       = require('../../../static/staticsGame/images/ground.jpg');
@@ -23,8 +24,11 @@ export default class WorldState extends State {
     _enemy: Tank;
     _treeBoxes: TreeBox;
     _pause: Phaser.Button;
+    enemies: Enemies;
     tankBullets: TankBullets;
     enemyBullets: EnemyBullets;
+    enemyArray: number[];
+
     _client: any;
     _clientId: number;
 
@@ -38,16 +42,19 @@ export default class WorldState extends State {
         this._land = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'earth');
         this._land.fixedToCamera = true;
 
+        // create a new group of enemies;
+        this.enemies = new Enemies(this.game);
+        // create our tank whith name "Tiger"
         this._tank = new Tank(this.game, "Tiger");
-        // this._client = new Client();
-        // this._client.socket.onmessage = ( (event) => {
-        //     let message = JSON.parse(event.data);
-        //
-        //     if (message.class === "ServerSnap") {
-        //         this.onServerSnapArrived(message);
-        //     }
-        //
-        // });
+        this._client = new Client();
+        this._client.socket.onmessage = ( (event) => {
+            let message = JSON.parse(event.data);
+
+            if (message.class === "ServerSnap") {
+                this.onServerSnapArrived(message);
+            }
+
+        });
 
         this._treeBoxes = new TreeBox(this.game);
 
@@ -82,12 +89,12 @@ export default class WorldState extends State {
         this._land.tilePosition.y = -this.camera.y;
         this._tank.update();
 
-        // this._client.message.sendClientSnap(
-        //     (new Snap(this.game.user.id,
-        //               this._tank._tank.currentPosition.xCoordinate,
-        //               this._tank._tank.currentPosition.yCoordinate,
-        //               this._tank._tank._body.angle,
-        //               this._tank._turret._turret.angle)).playerSnap);
+        this._client.message.sendClientSnap(
+            (new Snap(this.game.user.id,
+                      this._tank._tank.currentPosition.xCoordinate,
+                      this._tank._tank.currentPosition.yCoordinate,
+                      this._tank._tank._body.angle,
+                      this._tank._turret._turret.angle)).playerSnap);
 
 
         this.game.physics.arcade.overlap(this.tankBullets.tankBullets, this._treeBoxes._treeBoxes, this.tankBullets.bulletHitBox.bind(this.tankBullets), null, this);
@@ -114,9 +121,29 @@ export default class WorldState extends State {
     };
 
     onServerSnapArrived(message){
+        debugger;
         for(let i = 0; i < message.tanks.length; i++) {
             let tank = message.tanks[i];
-            console.log(`get users coordinates: userId = ${tank.userId}, xCoord = ${tank.platform.valX}, yCoord = ${tank.platform.valY}`);
+            debugger;
+            if(tank.userId !== this.game.user.id) {
+                // if new user in the game
+                if(!~this.enemyArray.indexOf(tank.userId)) {
+                    console.log(`the user with id = ${tank.userId} is new`);
+                    this.enemyArray.push(tank.userId);
+                    this.enemies.createEnemyTank(tank.platform.valX, tank.platform.valY, tank.userId);
+                } else {
+                    debugger;
+                    this.enemies.enemyTanks[tank.userId.toString()]._tank._tank.currentPosition = {
+                                                                                            xCoordinate: tank.platform.valX,
+                                                                                            yCoordinate: tank.platform.valY
+                                                                                        };
+                    console.log(`get enemy coordinates: userId = ${tank.userId}, xCoord = ${tank.platform.valX}, yCoord = ${tank.platform.valY}`);
+                }
+
+            }
+            else {
+                console.log(`you id = ${tank.userId}`);
+            }
         }
     }
 

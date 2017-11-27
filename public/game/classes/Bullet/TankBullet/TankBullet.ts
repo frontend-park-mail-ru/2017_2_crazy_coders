@@ -22,7 +22,7 @@ export default class TankBullet extends Bullet {
     }
 
     createBullet(xCoord: number, yCoord: number, id: number): void {
-        this.bullet = this.tankBullets.create(xCoord, yCoord, 'box_tree');
+        this.bullet = this.tankBullets.create(xCoord, yCoord, 'bullet');
         this.bullet.name = id.toString();
         this.bullet.body.immovable = true;
     }
