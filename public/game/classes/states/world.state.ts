@@ -46,6 +46,7 @@ export default class WorldState extends State {
         this.enemies = new Enemies(this.game);
         // create our tank whith name "Tiger"
         this._tank = new Tank(this.game, "Tiger");
+        this.enemyArray = [];
         this._client = new Client();
         this._client.socket.onmessage = ( (event) => {
             let message = JSON.parse(event.data);
@@ -133,10 +134,19 @@ export default class WorldState extends State {
                     this.enemies.createEnemyTank(tank.platform.valX, tank.platform.valY, tank.userId);
                 } else {
                     debugger;
-                    this.enemies.enemyTanks[tank.userId.toString()]._tank._tank.currentPosition = {
-                                                                                            xCoordinate: tank.platform.valX,
-                                                                                            yCoordinate: tank.platform.valY
-                                                                                        };
+                    let childrens = this.enemies.enemyTanks.children;
+                    let tankName = tank.userId.toString();
+                    for(let i = 0; i < childrens.length; i++) {
+                        if(childrens[i].name === tankName) {
+                            childrens[i]._tank.currentPosition = {
+                                        xCoordinate: tank.platform.valX,
+                                        yCoordinate: tank.platform.valY
+                                    };
+                            childrens[i]._tank.setPlatformAngle = tank.platformAngle;
+                            childrens[i]._turret.turretAngle = tank.turretAngle;
+                        }
+                    }
+
                     console.log(`get enemy coordinates: userId = ${tank.userId}, xCoord = ${tank.platform.valX}, yCoord = ${tank.platform.valY}`);
                 }
 

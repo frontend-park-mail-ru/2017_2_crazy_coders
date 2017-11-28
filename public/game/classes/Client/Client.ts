@@ -17,6 +17,7 @@ export default class Client {
         // this.socket = new WebSocket('ws://localhost:8080/game');
         // this.socket = new WebSocket('ws://10.100.122.201:8080/game');
         // this.socket = new WebSocket('ws://10.100.122.151:8080/game');
+
         this.socket = new WebSocket('ws://82.202.246.5:8080/game');
 
         this.message = new Message(this);
@@ -30,7 +31,8 @@ export default class Client {
                 console.log("completed");
 
             } catch (ex) {
-                console.log("ERROR");
+                debugger;
+                console.log("[CLient] OnOpenFunction catch(error)");
                 this.socket.close(1001, "error: exeception occured during the initialization stage: " + ex);
             }
         });

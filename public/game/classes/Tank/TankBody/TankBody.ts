@@ -56,5 +56,9 @@ export default class TankBody extends Phaser.Sprite {
         this._body.y = coordinate.yCoordinate;
     }
 
+    public setPlatformAngle(angle: number) {
+        this._body.angle = angle;
+    }
+
 
 }
