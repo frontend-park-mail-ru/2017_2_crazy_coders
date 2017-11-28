@@ -125,7 +125,6 @@ export default class WorldState extends State {
         debugger;
         for(let i = 0; i < message.tanks.length; i++) {
             let tank = message.tanks[i];
-            debugger;
             if(tank.userId !== this.game.user.id) {
                 // if new user in the game
                 if(!~this.enemyArray.indexOf(tank.userId)) {
@@ -133,7 +132,6 @@ export default class WorldState extends State {
                     this.enemyArray.push(tank.userId);
                     this.enemies.createEnemyTank(tank.platform.valX, tank.platform.valY, tank.userId);
                 } else {
-                    debugger;
                     let childrens = this.enemies.enemyTanks.children;
                     let tankName = tank.userId.toString();
                     for(let i = 0; i < childrens.length; i++) {
@@ -142,8 +140,11 @@ export default class WorldState extends State {
                                         xCoordinate: tank.platform.valX,
                                         yCoordinate: tank.platform.valY
                                     };
-                            childrens[i]._tank.setPlatformAngle = tank.platformAngle;
-                            childrens[i]._turret.turretAngle = tank.turretAngle;
+                            debugger;
+                            let enemyTank = childrens[i];
+                            // enemyTank._tank.setPlatformAngle = tank.platformAngle;
+                            enemyTank._tank._body.angle = tank.platformAngle;
+                            enemyTank._turret.turretAngle = tank.turretAngle;
                         }
                     }
 

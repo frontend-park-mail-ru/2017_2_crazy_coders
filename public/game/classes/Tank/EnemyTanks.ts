@@ -1,4 +1,4 @@
-import Tank from './Tank';
+import Tank from './Enemy';
 
 export default class EnemyTanks {
     enemyTanks: Phaser.Group;
