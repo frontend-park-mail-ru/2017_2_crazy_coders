@@ -50,7 +50,7 @@ export default class WorldState extends State {
         this.enemies = new Enemies(this.game);
 
         // create our tank with own username
-        this._tank = new Tank(this.game, this.game.user.username);
+        this._tank = new Tank(this.game, this.game.user.id, this.game.user.username);
         this.enemyArray = [];
         this._client = new Client();
         this._client.socket.onmessage = ( (event) => {
@@ -136,23 +136,40 @@ export default class WorldState extends State {
                 if(!~this.enemyArray.indexOf(tank.userId)) {
                     console.log(`the user with id = ${tank.userId} is new`);
                     this.enemyArray.push(tank.userId);
-                    this.enemies.createEnemyTank(tank.platform.valX, tank.platform.valY, tank.userId);
+                    this.enemies.createEnemyTank(tank.platform.valX, tank.platform.valY, tank.userId, tank.username);
                 } else {
-                    let childrens = this.enemies.enemyTanks.children;
-                    let tankName = tank.userId.toString();
-                    for(let i = 0; i < childrens.length; i++) {
-                        if(childrens[i].name === tankName) {
-                            childrens[i]._tank.currentPosition = {
-                                        xCoordinate: tank.platform.valX,
-                                        yCoordinate: tank.platform.valY
-                                    };
-                            debugger;
-                            let enemyTank = childrens[i];
-                            // enemyTank._tank.setPlatformAngle = tank.platformAngle;
-                            enemyTank._tank._body.angle = tank.platformAngle;
-                            enemyTank._turret.turretAngle = tank.turretAngle;
+
+                    let availableEnemies = this.enemies.enemyTanks.children;
+
+                    for(let i = 0; i < availableEnemies.length; i++) {
+                        if(availableEnemies[i]._uid === tank.userId) {
+                            let availableEnemy = availableEnemies[i]
+                            availableEnemy._tank.currentPosition = {
+                                xCoordinate: tank.platform.valX,
+                                yCoordinate: tank.platform.valY
+                            };
+
+                            availableEnemy._tank._body.angle = tank.platformAngle;
+                            availableEnemy._turret.turretAngle = tank.turretAngle;
                         }
                     }
+
+
+                    // let childrens = this.enemies.enemyTanks.children;
+                    // let tankName = tank.userId.toString();
+                    // for(let i = 0; i < childrens.length; i++) {
+                    //     if(childrens[i].name === tankName) {
+                    //         childrens[i]._tank.currentPosition = {
+                    //                     xCoordinate: tank.platform.valX,
+                    //                     yCoordinate: tank.platform.valY
+                    //                 };
+                    //         debugger;
+                    //         let enemyTank = childrens[i];
+                    //         // enemyTank._tank.setPlatformAngle = tank.platformAngle;
+                    //         enemyTank._tank._body.angle = tank.platformAngle;
+                    //         enemyTank._turret.turretAngle = tank.turretAngle;
+                    //     }
+                    // }
 
                     console.log(`get enemy coordinates: userId = ${tank.userId}, xCoord = ${tank.platform.valX}, yCoord = ${tank.platform.valY}`);
                 }
