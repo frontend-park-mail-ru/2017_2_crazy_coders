@@ -16,13 +16,13 @@ export default class EnemyTanks {
         this.game.physics.arcade.enable(this.enemyTanks);
     }
 
-    createEnemyTank(xCoord: number, yCoord: number, id: number): void {
-        this.enemy = new Tank(this.game, id.toString());
+    createEnemyTank(xCoord: number, yCoord: number, id: number, title: string): void {
+        this.enemy = new Tank(this.game, id, title);
         this.enemy._tank.currentPosition = {
                                     xCoordinate: xCoord,
                                     yCoordinate: yCoord
                                 };
         this.enemy = this.enemyTanks.add(this.enemy);
-        this.enemy["name"] = id.toString();
+        // this.enemy["name"] = id.toString();
     }
 }
