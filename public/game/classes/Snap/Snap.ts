@@ -3,10 +3,12 @@ export default class Snap {
     tankAngle: number;
     turretAngle: number;
     userId: number;
+    username: string;
 
 
-    constructor(userId: number, x: number, y: number, tnkAng: number, trrAng: number) {
+    constructor(userId: number, username: string, x: number, y: number, tnkAng: number, trrAng: number) {
         this.userId = userId;
+        this.username = username;
         this.position = {
             valX: x,
             valY: y
@@ -22,7 +24,8 @@ export default class Snap {
             turretAngle: this.turretAngle,
             isShoot: true,
             class: "TankSnap",
-            userId: this.userId
+            userId: this.userId,
+            username: this.username
         };
     }
 

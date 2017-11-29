@@ -44,8 +44,9 @@ export default class WorldState extends State {
 
         // create a new group of enemies;
         this.enemies = new Enemies(this.game);
-        // create our tank whith name "Tiger"
-        this._tank = new Tank(this.game, "Tiger");
+
+        // create our tank with own username
+        this._tank = new Tank(this.game, this.game.user.username);
         this.enemyArray = [];
         this._client = new Client();
         this._client.socket.onmessage = ( (event) => {
@@ -92,6 +93,7 @@ export default class WorldState extends State {
 
         this._client.message.sendClientSnap(
             (new Snap(this.game.user.id,
+                      this.game.user.username,
                       this._tank._tank.currentPosition.xCoordinate,
                       this._tank._tank.currentPosition.yCoordinate,
                       this._tank._tank._body.angle,
