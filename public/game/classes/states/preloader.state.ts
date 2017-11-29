@@ -15,6 +15,17 @@ const earth       = require('../../../static/staticsGame/images/ground.jpg');
 const pause       = require('../../../static/staticsGame/images/pause_button.png');
 const box_tree    = require('../../../static/staticsGame/images/box_tree.png');
 
+// const tanks       = require('../../static/staticsGame/images/tanks.png');
+// const tanksJSON   = require('../../static/staticsGame/images/tanks.json');
+// const enemy       = require('../../static/staticsGame/images/enemy-tanks.png');
+// const bullet      = require('../../static/staticsGame/images/bullet.png');
+// const kaboom      = require('../../static/staticsGame/images/explosion.png');
+// const titlepage   = require('../../static/staticsGame/images/titlepage.jpg');
+// const logo        = require('../../static/staticsGame/images/logo.png');
+// // const startAudio      = require('../../static/staticsGame/music/boom.mp3');
+// const earth       = require('../../static/staticsGame/images/ground.jpg');
+// const pause       = require('../../static/staticsGame/images/pause_button.png');
+// const box_tree    = require('../../static/staticsGame/images/box_tree.png');
 
 // The state for loading core resources for the game
 export default class PreloaderState extends State {

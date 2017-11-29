@@ -83,4 +83,4 @@ typings/
 /public/components/template/Header.'pug.js'
 /public/components/template/Menu.'pug.js'
 /public/components/template/Table.'pug.js'
-/public/styles.js
+/public/static/js/styles.js

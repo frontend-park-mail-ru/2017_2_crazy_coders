@@ -9,6 +9,10 @@ const earth       = require('../../../static/staticsGame/images/ground.jpg');
 const pause       = require('../../../static/staticsGame/images/pause_button.png');
 const box_tree    = require('../../../static/staticsGame/images/box_tree.png');
 const tanks       = require('../../../static/staticsGame/images/tanks.png');
+// const earth       = require('../../static/staticsGame/images/ground.jpg');
+// const pause       = require('../../static/staticsGame/images/pause_button.png');
+// const box_tree    = require('../../static/staticsGame/images/box_tree.png');
+// const tanks       = require('../../static/staticsGame/images/tanks.png');
 
 
 export default class SingPlayerWorldState extends State {

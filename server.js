@@ -18,9 +18,10 @@ const routes = [
 ];
 
 routes.forEach(path => {
-    app.use(path, express.static('public'));
+    app.use(path, express.static('public/'));
 });
-app.use(express.static('public'));
+app.use(express.static('public/static/'));
+app.use(express.static('public/static/js'));
 
 const port = process.env.PORT || 8081;
 

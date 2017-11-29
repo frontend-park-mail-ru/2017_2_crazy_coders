@@ -7,14 +7,14 @@ module.exports = {
 	context: __dirname,
 
 	entry: 	{
-		bundle: './public/main.js',
+		bundle: './public/static/js/main.js',
 		styles:'./public/static/css/main.scss',
 		test: ['chai', __dirname + '/test/test.js']
 	},
 
 	output: {
 		filename: '[name].js',
-		path: __dirname + '/public'
+		path: __dirname + '/public/static/js/'
 	},
 
 	resolve: {
