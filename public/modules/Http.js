@@ -22,7 +22,7 @@ export default class Http {
         // const url = 'http://localhost:8080' + address;
         // const url = 'http://10.100.122.201:8080' + address;
         // const url = 'http://10.100.122.151:8080' + address;
-        const url = 'https://tanks-backend.xyz' + address;
+        const url = 'https://tanks-backend.xyz/api' + address;
 
         console.log("[FetchGet] try get from " + url);
 
@@ -53,7 +53,7 @@ export default class Http {
         // const url = 'http://localhost:8080' + address;
         // const url = 'http://10.100.122.201:8080' + address;
         // const url = 'http://10.100.122.151:8080' + address;
-        const url = 'https://tanks-backend.xyz' + address;
+        const url = 'https://tanks-backend.xyz/api' + address;
 
         console.log("[FetchPost] try post to " + url);
 
