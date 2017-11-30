@@ -2,24 +2,20 @@
 /** Imports */
 import State from './state';
 import Tank from '../Tank/Tank';
-import EnemyTank from '../Tank/EnemyTank';
+// import EnemyTank from '../Tank/EnemyTank';
 import TreeBox from '../Box/TreeBox/TreeBox';
 import Client from '../Client/Client';
 import Snap from '../Snap/Snap';
 import TankBullets from '../Bullet/TankBullet/TankBullet';
 import EnemyBullets from '../Bullet/EnemyBullet/EnemyBullet';
 import Enemies from '../Tank/EnemyTanks';
+import {runInThisContext} from "vm";
 
 
 const earth       = require('../../../static/staticsGame/images/ground.jpg');
 const pause       = require('../../../static/staticsGame/images/pause_button.png');
 const box_tree    = require('../../../static/staticsGame/images/box_tree.png');
 const tanks       = require('../../../static/staticsGame/images/tanks.png');
-// const earth       = require('../../static/staticsGame/images/ground.jpg');
-// const pause       = require('../../static/staticsGame/images/pause_button.png');
-// const box_tree    = require('../../static/staticsGame/images/box_tree.png');
-// const tanks       = require('../../static/staticsGame/images/tanks.png');
-
 
 export default class WorldState extends State {
     _music: Phaser.Sound;
@@ -128,57 +124,83 @@ export default class WorldState extends State {
     };
 
     onServerSnapArrived(message){
+        let enemiesOnClient = this.enemies.enemyTanks.children;
+        let playersOnServer = message.players;
+        let tanksSnapshots = message.tanks;
         debugger;
-        for(let i = 0; i < message.tanks.length; i++) {
-            let tank = message.tanks[i];
-            if(tank.userId !== this.game.user.id) {
-                // if new user in the game
-                if(!~this.enemyArray.indexOf(tank.userId)) {
-                    console.log(`the user with id = ${tank.userId} is new`);
-                    this.enemyArray.push(tank.userId);
-                    this.enemies.createEnemyTank(tank.platform.valX, tank.platform.valY, tank.userId, tank.username);
-                } else {
 
-                    let availableEnemies = this.enemies.enemyTanks.children;
+        for(let j = 0; j < tanksSnapshots.length; j++) {
+            let tankSnapshot = tanksSnapshots[j];
 
-                    for(let i = 0; i < availableEnemies.length; i++) {
-                        if(availableEnemies[i]._uid === tank.userId) {
-                            let availableEnemy = availableEnemies[i]
-                            availableEnemy._tank.currentPosition = {
-                                xCoordinate: tank.platform.valX,
-                                yCoordinate: tank.platform.valY
-                            };
-
-                            availableEnemy._tank._body.angle = tank.platformAngle;
-                            availableEnemy._turret.turretAngle = tank.turretAngle;
-                        }
-                    }
-
-
-                    // let childrens = this.enemies.enemyTanks.children;
-                    // let tankName = tank.userId.toString();
-                    // for(let i = 0; i < childrens.length; i++) {
-                    //     if(childrens[i].name === tankName) {
-                    //         childrens[i]._tank.currentPosition = {
-                    //                     xCoordinate: tank.platform.valX,
-                    //                     yCoordinate: tank.platform.valY
-                    //                 };
-                    //         debugger;
-                    //         let enemyTank = childrens[i];
-                    //         // enemyTank._tank.setPlatformAngle = tank.platformAngle;
-                    //         enemyTank._tank._body.angle = tank.platformAngle;
-                    //         enemyTank._turret.turretAngle = tank.turretAngle;
-                    //     }
-                    // }
-
-                    console.log(`get enemy coordinates: userId = ${tank.userId}, xCoord = ${tank.platform.valX}, yCoord = ${tank.platform.valY}`);
-                }
-
-            }
-            else {
-                console.log(`you id = ${tank.userId}`);
+            if (tankSnapshot.userId !== this.game.user.id && !~this.enemyArray.indexOf(tankSnapshot.userId)) {
+                console.log(`try create new enemy`);
+                this.enemyArray.push(tankSnapshot.userId);
+                let platform = tankSnapshot.platform;
+                this.enemies.createEnemyTank(platform.valX, platform.valY, tankSnapshot.userId, tankSnapshot.username);
             }
         }
+
+        for(let i = 0; i < enemiesOnClient.length; i++) {
+            let enemyOnClient = enemiesOnClient[i];
+            if(!~playersOnServer.indexOf(enemyOnClient._uid)){
+                console.log(`try remove enemy`);
+                this.enemyArray.splice(i, 1);
+                console.log(`try remove from group`);
+                this.enemies.enemyTanks.remove(enemyOnClient, true);
+                console.log(`try kill enemyClient`);
+                enemyOnClient.kill();
+                console.log(`kill success`);
+                continue;
+            }
+
+            for(let j = 0; j < tanksSnapshots.length; j++) {
+                let tankSnapshot = tanksSnapshots[j];
+
+                if(enemyOnClient._uid === tankSnapshot.userId) {
+                    enemyOnClient._tank.currentPosition = {
+                        xCoordinate: tankSnapshot.platform.valX,
+                        yCoordinate: tankSnapshot.platform.valY
+                    };
+
+                    enemyOnClient._tank._body.angle = tankSnapshot.platformAngle;
+                    enemyOnClient._turret.turretAngle = tankSnapshot.turretAngle;
+                }
+            }
+        }
+
+        // debugger;
+        // for(let i = 0; i < message.tanks.length; i++) {
+        //     let tank = message.tanks[i];
+        //     if(tank.userId !== this.game.user.id) {
+        //         // if new user in the game
+        //         if(!~this.enemyArray.indexOf(tank.userId)) {
+        //             console.log(`the user with id = ${tank.userId} is new`);
+        //             this.enemyArray.push(tank.userId);
+        //             this.enemies.createEnemyTank(tank.platform.valX, tank.platform.valY, tank.userId, tank.username);
+        //         } else {
+        //
+        //             let availableEnemies = this.enemies.enemyTanks.children;
+        //
+        //             for(let i = 0; i < availableEnemies.length; i++) {
+        //                 if(availableEnemies[i]._uid === tank.userId) {
+        //                     let availableEnemy = availableEnemies[i];
+        //                     availableEnemy._tank.currentPosition = {
+        //                         xCoordinate: tank.platform.valX,
+        //                         yCoordinate: tank.platform.valY
+        //                     };
+        //
+        //                     availableEnemy._tank._body.angle = tank.platformAngle;
+        //                     availableEnemy._turret.turretAngle = tank.turretAngle;
+        //                 }
+        //             }
+        //             console.log(`get enemy coordinates: userId = ${tank.userId}, xCoord = ${tank.platform.valX}, yCoord = ${tank.platform.valY}`);
+        //         }
+        //
+        //     }
+        //     else {
+        //         console.log(`you id = ${tank.userId}`);
+        //     }
+        // }
     }
 
     randomInteger(min: number, max: number): number {

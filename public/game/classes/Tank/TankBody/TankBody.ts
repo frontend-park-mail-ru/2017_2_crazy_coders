@@ -60,5 +60,9 @@ export default class TankBody extends Phaser.Sprite {
         this._body.angle = angle;
     }
 
+    kill() {
+        this._body.kill();
+    }
+
 
 }

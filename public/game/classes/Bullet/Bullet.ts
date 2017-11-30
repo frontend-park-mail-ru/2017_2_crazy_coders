@@ -40,7 +40,6 @@ export default abstract class Bullet extends Phaser.Sprite {
 
     bulletHitBox(bullet, box) {
         bullet.kill();
-        debugger;
         let explosionAnimation = this.explosions.getFirstExists(false);
         explosionAnimation.reset(box.x, box.y);
         explosionAnimation.play('kaboom', 30, false, true);

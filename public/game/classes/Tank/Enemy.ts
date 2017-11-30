@@ -49,5 +49,12 @@ export default class TankState extends Phaser.Sprite {
         this._healthBar.setPosition(this._tank.currentPosition.xCoordinate, this._tank.currentPosition.yCoordinate - 50)
     }
 
+    kill() {
+        this._tank.kill();
+        this._turret.kill();
+        this._tankLable.kill();
+        this._healthBar.kill();
+    }
+
 
 }

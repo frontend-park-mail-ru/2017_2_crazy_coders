@@ -29,4 +29,8 @@ export default class TankTurret extends Phaser.Sprite {
     public set turretAngle(angle: number) {
         this._turret.angle = angle;
     }
+
+    kill() {
+        this._turret.kill();
+    }
 }
