@@ -27,7 +27,7 @@ export default class Message {
             this.client.socket.readyState === this.client.socket.CLOSING) {
             return;
         }
-        debugger;
+
         this.client.socket.send(message);
     };
 }

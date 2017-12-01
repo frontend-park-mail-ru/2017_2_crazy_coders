@@ -91,13 +91,15 @@ export default class WorldState extends State {
         this._land.tilePosition.y = -this.camera.y;
         this._tank.update();
 
-        this._client.message.sendClientSnap(
-            (new Snap(this.game.user.id,
-                      this.game.user.username,
-                      this._tank._tank.currentPosition.xCoordinate,
-                      this._tank._tank.currentPosition.yCoordinate,
-                      this._tank._tank._body.angle,
-                      this._tank._turret._turret.angle)).playerSnap);
+        if(this._client.socket.readyState !== 0) { // websocket connecting, message can't be sending
+            this._client.message.sendClientSnap(
+                (new Snap(this.game.user.id,
+                    this.game.user.username,
+                    this._tank._tank.currentPosition.xCoordinate,
+                    this._tank._tank.currentPosition.yCoordinate,
+                    this._tank._tank._body.angle,
+                    this._tank._turret._turret.angle)).playerSnap);
+        }
 
 
         this.game.physics.arcade.overlap(this.tankBullets.tankBullets, this._treeBoxes._treeBoxes, this.tankBullets.bulletHitBox.bind(this.tankBullets), null, this);
@@ -167,40 +169,6 @@ export default class WorldState extends State {
                 }
             }
         }
-
-        // debugger;
-        // for(let i = 0; i < message.tanks.length; i++) {
-        //     let tank = message.tanks[i];
-        //     if(tank.userId !== this.game.user.id) {
-        //         // if new user in the game
-        //         if(!~this.enemyArray.indexOf(tank.userId)) {
-        //             console.log(`the user with id = ${tank.userId} is new`);
-        //             this.enemyArray.push(tank.userId);
-        //             this.enemies.createEnemyTank(tank.platform.valX, tank.platform.valY, tank.userId, tank.username);
-        //         } else {
-        //
-        //             let availableEnemies = this.enemies.enemyTanks.children;
-        //
-        //             for(let i = 0; i < availableEnemies.length; i++) {
-        //                 if(availableEnemies[i]._uid === tank.userId) {
-        //                     let availableEnemy = availableEnemies[i];
-        //                     availableEnemy._tank.currentPosition = {
-        //                         xCoordinate: tank.platform.valX,
-        //                         yCoordinate: tank.platform.valY
-        //                     };
-        //
-        //                     availableEnemy._tank._body.angle = tank.platformAngle;
-        //                     availableEnemy._turret.turretAngle = tank.turretAngle;
-        //                 }
-        //             }
-        //             console.log(`get enemy coordinates: userId = ${tank.userId}, xCoord = ${tank.platform.valX}, yCoord = ${tank.platform.valY}`);
-        //         }
-        //
-        //     }
-        //     else {
-        //         console.log(`you id = ${tank.userId}`);
-        //     }
-        // }
     }
 
     randomInteger(min: number, max: number): number {
