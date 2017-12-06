@@ -82,6 +82,12 @@ export default class WorldState extends State {
 
     update(): void {
         this.game.physics.arcade.collide(this._tank._tank._body, this._treeBoxes._treeBoxes);
+        debugger;
+        let enemies = this.enemies.enemyTanks.children;
+        for (let i = 0; i < enemies.length; i++) {
+            this.game.physics.arcade.collide(this._tank._tank._body, enemies[i]._tank._body);
+        }
+
         if(this._enemy) {
             this.game.physics.arcade.collide(this._enemy._tank._body, this._treeBoxes._treeBoxes);
             this._enemy.update();
