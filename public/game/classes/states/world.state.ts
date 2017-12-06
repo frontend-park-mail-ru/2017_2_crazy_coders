@@ -42,6 +42,9 @@ export default class WorldState extends State {
         this._land = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'earth');
         this._land.fixedToCamera = true;
 
+        // create box map
+        this._treeBoxes = new TreeBox(this.game);
+
         // create a new group of enemies;
         this.enemies = new Enemies(this.game);
 
@@ -56,14 +59,11 @@ export default class WorldState extends State {
                 this.onServerSnapArrived(message);
             }
 
+            if (message.class === "MapSnap") {
+                this.onServerMapArrived(message);
+            }
+
         });
-
-        this._treeBoxes = new TreeBox(this.game);
-
-        for (let i = 0; i < 10; i++) {
-            let coord = this.randomInteger(0, 500);
-            this._treeBoxes.createBox(coord, coord, i);
-        }
 
         // declaration bullets for out tamk and enemy tank
         this.tankBullets = new TankBullets(this.game);
@@ -124,6 +124,19 @@ export default class WorldState extends State {
     startPause(): void {
 
     };
+
+    onServerMapArrived(message) {
+        let boxes = message.boxes;
+        let tankPosition = message.startTankPosition;
+        this._tank._tank.currentPosition = {
+            xCoordinate: tankPosition.platform.valX,
+            yCoordinate: tankPosition.platform.valY
+        };
+
+        for (let i = 0; i < boxes.length; i++) {
+            this._treeBoxes.createBox(boxes[i].position.valX, boxes[i].position.valY, i);
+        }
+    }
 
     onServerSnapArrived(message){
         let enemiesOnClient = this.enemies.enemyTanks.children;
