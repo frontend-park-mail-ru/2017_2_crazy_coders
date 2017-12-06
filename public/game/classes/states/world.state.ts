@@ -126,11 +126,12 @@ export default class WorldState extends State {
     };
 
     onServerMapArrived(message) {
+        debugger;
         let boxes = message.boxes;
         let tankPosition = message.startTankPosition;
         this._tank._tank.currentPosition = {
-            xCoordinate: tankPosition.platform.valX,
-            yCoordinate: tankPosition.platform.valY
+            xCoordinate: tankPosition.valX,
+            yCoordinate: tankPosition.valY
         };
 
         for (let i = 0; i < boxes.length; i++) {
