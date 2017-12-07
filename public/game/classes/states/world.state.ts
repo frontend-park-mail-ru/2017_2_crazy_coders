@@ -59,8 +59,8 @@ export default class WorldState extends State {
                 this.onServerSnapArrived(message);
             }
 
-            if (message.class === "MapSnap") {
-                this.onServerMapArrived(message);
+            if (message.class === "WorldSnap") {
+                this.onServerWorldArrived(message);
             }
 
         });
@@ -137,7 +137,7 @@ export default class WorldState extends State {
 
     };
 
-    onServerMapArrived(message) {
+    onServerWorldArrived(message) {
 
         let boxes = message.boxes;
         let tankPosition = message.startTankPosition;
@@ -208,12 +208,15 @@ export default class WorldState extends State {
 
                         let degToRad = function(deg) { return deg / 180 * Math.PI; };
 
-                        directX = tankSnapshot.platform.valX + 1000*Math.cos(degToRad(tankSnapshot.turretAngle));
-                        if(tankSnapshot.amgle <= 0) {
-                            directY = tankSnapshot.platform.valY + 1000*Math.sin(degToRad(tankSnapshot.turretAngle));
-                        } else {
-                            directY = tankSnapshot.platform.valY - 1000*Math.sin(degToRad(tankSnapshot.turretAngle));
-                        }
+                        directX = tankSnapshot.platform.valX - 1000*Math.cos(degToRad(180 - tankSnapshot.turretAngle));
+                        directY = tankSnapshot.platform.valY + 1000*Math.sin(degToRad(tankSnapshot.turretAngle));
+
+                        // directX = tankSnapshot.platform.valX + 1000*Math.cos(degToRad(tankSnapshot.turretAngle));
+                        // if(tankSnapshot.amgle <= 0) {
+                        //     directY = tankSnapshot.platform.valY + 1000*Math.sin(degToRad(tankSnapshot.turretAngle));
+                        // } else {
+                        //     directY = tankSnapshot.platform.valY - 1000*Math.sin(degToRad(tankSnapshot.turretAngle));
+                        // }
 
                         let bullet = this.enemyBullets.enemyBullets.getFirstExists(false);
                         bullet.reset(tankSnapshot.platform.valX, tankSnapshot.platform.valY);
