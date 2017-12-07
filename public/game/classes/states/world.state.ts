@@ -82,7 +82,7 @@ export default class WorldState extends State {
 
     update(): void {
         this.game.physics.arcade.collide(this._tank._tank._body, this._treeBoxes._treeBoxes);
-        debugger;
+
         let enemies = this.enemies.enemyTanks.children;
         for (let i = 0; i < enemies.length; i++) {
             this.game.physics.arcade.collide(this._tank._tank._body, enemies[i]._tank._body);
@@ -97,6 +97,11 @@ export default class WorldState extends State {
         this._land.tilePosition.y = -this.camera.y;
         this._tank.update();
 
+        // click mouse button
+        if (this.game.input.activePointer.isDown) {
+            this.fire();
+        }
+
         if(this._client.socket.readyState !== 0) { // websocket connecting, message can't be sending
             this._client.message.sendClientSnap(
                 (new Snap(this.game.user.id,
@@ -104,26 +109,27 @@ export default class WorldState extends State {
                     this._tank._tank.currentPosition.xCoordinate,
                     this._tank._tank.currentPosition.yCoordinate,
                     this._tank._tank._body.angle,
-                    this._tank._turret._turret.angle)).playerSnap);
+                    this._tank._turret._turret.angle,
+                    this._tank.isShoot,
+                    this._tank.health)).playerSnap);
         }
-
 
         this.game.physics.arcade.overlap(this.tankBullets.tankBullets, this._treeBoxes._treeBoxes, this.tankBullets.bulletHitBox.bind(this.tankBullets), null, this);
         this.game.physics.arcade.overlap(this.enemyBullets.enemyBullets, this._treeBoxes._treeBoxes, this.enemyBullets.bulletHitBox.bind(this.enemyBullets), null, this);
 
-        // click mouse button
-        if (this.game.input.activePointer.isDown) {
-            this.fire();
-        }
+        this._tank.isShoot = false;
     }
 
     fire() {
+
         if (this.game.time.now > this._tank._nextFire && this.tankBullets.tankBullets.countDead() > 0) {
             this._tank._nextFire = this.time.now + this._tank._fireRate;
 
             let bullet = this.tankBullets.tankBullets.getFirstExists(false);
             bullet.reset(this._tank._turret._turret.x, this._tank._turret._turret.y);
-            bullet.rotation = this.physics.arcade.moveToPointer(bullet, 1000, this.game.input.activePointer, 500);
+            bullet.rotation = this.physics.arcade.moveToPointer(bullet, 5000, this.game.input.activePointer, 50);
+
+            this._tank.isShoot = true;
         }
     }
 
@@ -132,7 +138,7 @@ export default class WorldState extends State {
     };
 
     onServerMapArrived(message) {
-        debugger;
+
         let boxes = message.boxes;
         let tankPosition = message.startTankPosition;
         this._tank._tank.currentPosition = {
@@ -149,10 +155,19 @@ export default class WorldState extends State {
         let enemiesOnClient = this.enemies.enemyTanks.children;
         let playersOnServer = message.players;
         let tanksSnapshots = message.tanks;
-        debugger;
 
         for(let j = 0; j < tanksSnapshots.length; j++) {
             let tankSnapshot = tanksSnapshots[j];
+
+            if (tankSnapshot.userId === this.game.user.id) {
+                this._tank.health = tankSnapshot.health;
+                console.log(`my health = ${tankSnapshot.health}, my id = ${this.game.user.id}`);
+
+                if(tankSnapshot.health <= 0) {
+                    debugger;
+                    this._tank.kill();
+                }
+            }
 
             if (tankSnapshot.userId !== this.game.user.id && !~this.enemyArray.indexOf(tankSnapshot.userId)) {
                 console.log(`try create new enemy`);
@@ -179,6 +194,32 @@ export default class WorldState extends State {
                 let tankSnapshot = tanksSnapshots[j];
 
                 if(enemyOnClient._uid === tankSnapshot.userId) {
+
+                    console.log(`enemy with id = ${tankSnapshot.userId} have health = ${tankSnapshot.health}`);
+                    enemyOnClient.health = tankSnapshot.health;
+
+                    if (tankSnapshot.health <= 0) {
+                        enemyOnClient.kill();
+                    }
+
+                    if (tankSnapshot.isShoot) {
+                        let directX = null;
+                        let directY = null;
+
+                        let degToRad = function(deg) { return deg / 180 * Math.PI; };
+
+                        directX = tankSnapshot.platform.valX + 1000*Math.cos(degToRad(tankSnapshot.turretAngle));
+                        if(tankSnapshot.amgle <= 0) {
+                            directY = tankSnapshot.platform.valY + 1000*Math.sin(degToRad(tankSnapshot.turretAngle));
+                        } else {
+                            directY = tankSnapshot.platform.valY - 1000*Math.sin(degToRad(tankSnapshot.turretAngle));
+                        }
+
+                        let bullet = this.enemyBullets.enemyBullets.getFirstExists(false);
+                        bullet.reset(tankSnapshot.platform.valX, tankSnapshot.platform.valY);
+                        bullet.rotation = this.physics.arcade.moveToXY(bullet, directX, directY,1000, 500);
+                    }
+
                     enemyOnClient._tank.currentPosition = {
                         xCoordinate: tankSnapshot.platform.valX,
                         yCoordinate: tankSnapshot.platform.valY

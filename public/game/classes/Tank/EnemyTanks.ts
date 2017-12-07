@@ -1,9 +1,9 @@
-import Tank from './Enemy';
+import EnemyTank from './Enemy';
 
 export default class EnemyTanks {
     enemyTanks: Phaser.Group;
     game: Phaser.Game;
-    enemy: Tank;
+    enemy: EnemyTank;
 
     constructor(game: Phaser.Game) {
         this.game = game;
@@ -17,7 +17,7 @@ export default class EnemyTanks {
     }
 
     createEnemyTank(xCoord: number, yCoord: number, id: number, title: string): void {
-        this.enemy = new Tank(this.game, id, title);
+        this.enemy = new EnemyTank(this.game, id, title);
         this.enemy._tank.currentPosition = {
                                     xCoordinate: xCoord,
                                     yCoordinate: yCoord

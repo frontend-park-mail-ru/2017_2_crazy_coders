@@ -19,13 +19,14 @@ export default class TankState extends Phaser.Sprite {
     _title:string;
     _healthBar: any;
     _uid: number;
+    _isShoot: boolean;
 
     constructor(game: Phaser.Game, uid: number, title: string) {
         super(game, 0, 0);
         this._game = game;
         this._xPosition = Math.random() * this.game.world.width;
         this._yPosition = Math.random() * this.game.world.height;
-        this._health = 3;
+        this._health = 100;
         this._fireRate = 1000; // скорострельность
         this._nextFire = 0;  //следующий выстрел
         this._alive = true;
@@ -49,6 +50,29 @@ export default class TankState extends Phaser.Sprite {
         this._turret.update();
         this._tankLable.currentPosition = this._tank.currentPosition;
         this._healthBar.setPosition(this._tank.currentPosition.xCoordinate, this._tank.currentPosition.yCoordinate - 50)
+    }
+
+    kill() {
+        this._tank.kill();
+        this._turret.kill();
+        this._tankLable.kill();
+        this._healthBar.kill();
+    }
+
+    set health(health: number) {
+        this._health = health;
+    }
+
+    get health(): number {
+        return this._health;
+    }
+
+    set isShoot(shoot: boolean) {
+        this._isShoot = shoot;
+    }
+
+    get isShoot(): boolean {
+        return this._isShoot;
     }
 
 

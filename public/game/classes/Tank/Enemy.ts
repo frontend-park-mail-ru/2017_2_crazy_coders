@@ -25,7 +25,7 @@ export default class TankState extends Phaser.Sprite {
         this._game = game;
         this._xPosition = Math.random() * this.game.world.width;
         this._yPosition = Math.random() * this.game.world.height;
-        this._health = 3;
+        this._health = 100;
         this._fireRate = 1000; // скорострельность
         this._nextFire = 0;  //следующий выстрел
         this._alive = true;
@@ -56,5 +56,12 @@ export default class TankState extends Phaser.Sprite {
         this._healthBar.kill();
     }
 
+    set health(health: number) {
+        this._health = health;
+    }
+
+    get health(): number {
+        return this._health;
+    }
 
 }
