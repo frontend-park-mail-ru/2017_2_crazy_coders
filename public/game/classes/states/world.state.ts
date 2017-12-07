@@ -16,6 +16,7 @@ const earth       = require('../../../static/staticsGame/images/ground.jpg');
 const pause       = require('../../../static/staticsGame/images/pause_button.png');
 const box_tree    = require('../../../static/staticsGame/images/box_tree.png');
 const tanks       = require('../../../static/staticsGame/images/tanks.png');
+const tankLandingArea = require('../../../static/staticsGame/images/HelicopterLandingArea.png');
 
 export default class WorldState extends State {
     _music: Phaser.Sound;
@@ -140,6 +141,7 @@ export default class WorldState extends State {
     onServerWorldArrived(message) {
 
         let boxes = message.boxes;
+        let tanksLandingPositions = message.spawnPoints;
         let tankPosition = message.startTankPosition;
         this._tank._tank.currentPosition = {
             xCoordinate: tankPosition.valX,
@@ -149,6 +151,12 @@ export default class WorldState extends State {
         for (let i = 0; i < boxes.length; i++) {
             this._treeBoxes.createBox(boxes[i].position.valX, boxes[i].position.valY, i);
         }
+        debugger;
+        for (let i = 0; i < tanksLandingPositions.length; i++) {
+            let landingPosition = this.game.add.sprite(tanksLandingPositions[i].valX, tanksLandingPositions[i].valY, 'tankLandingArea', 'tankLandingArea');
+        }
+
+
     }
 
     onServerSnapArrived(message){
@@ -160,17 +168,19 @@ export default class WorldState extends State {
             let tankSnapshot = tanksSnapshots[j];
 
             if (tankSnapshot.userId === this.game.user.id) {
-                this._tank.health = tankSnapshot.health;
-                console.log(`my health = ${tankSnapshot.health}, my id = ${this.game.user.id}`);
+
+                if (this._tank.health !== tankSnapshot.health) {
+                    this._tank.health = tankSnapshot.health;
+                    this._tank._healthBar.setPercent(tankSnapshot.health);
+                }
 
                 if(tankSnapshot.health <= 0) {
-                    debugger;
                     this._tank.kill();
                 }
             }
 
             if (tankSnapshot.userId !== this.game.user.id && !~this.enemyArray.indexOf(tankSnapshot.userId)) {
-                console.log(`try create new enemy`);
+                // console.log(`try create new enemy`);
                 this.enemyArray.push(tankSnapshot.userId);
                 let platform = tankSnapshot.platform;
                 this.enemies.createEnemyTank(platform.valX, platform.valY, tankSnapshot.userId, tankSnapshot.username);
@@ -195,8 +205,10 @@ export default class WorldState extends State {
 
                 if(enemyOnClient._uid === tankSnapshot.userId) {
 
-                    console.log(`enemy with id = ${tankSnapshot.userId} have health = ${tankSnapshot.health}`);
-                    enemyOnClient.health = tankSnapshot.health;
+                    if (enemyOnClient.health !== tankSnapshot.health) {
+                        enemyOnClient.health = tankSnapshot.health;
+                        enemyOnClient._healthBar.setPercent(tankSnapshot.health);
+                    }
 
                     if (tankSnapshot.health <= 0) {
                         enemyOnClient.kill();

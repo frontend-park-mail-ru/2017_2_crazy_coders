@@ -13,6 +13,7 @@ export default class TankBody extends Phaser.Sprite {
 
     create(): void {
         this._body = this._game.add.sprite(50, 400, 'tank', 'tank1');
+        console.log(`body height = ${this._body.height} body width = ${this._body.width}`);
         this._body.anchor.setTo(0.5, 0.5);
         this._game.physics.arcade.enable(this._body);
         this._body.body.maxVelocity.setTo(100, 100);

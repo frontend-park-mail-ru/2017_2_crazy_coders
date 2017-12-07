@@ -29,6 +29,7 @@ const cacheUrls = [
 	'/static/staticsGame/images/try_again_button.png',
 	'/static/staticsGame/images/turret.png',
 	'/static/staticsGame/images/white_background.jpg',
+    '/static/staticsGame/images/HelicopterLandingArea.png',
 
 	'/static/staticsGame/music/boom.mp3',
 
