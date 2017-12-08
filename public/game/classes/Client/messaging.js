@@ -5,6 +5,11 @@ var MessagingTools = function (Client) {
         send(JSON.stringify(snap));
     };
 
+    this.sendSpawnQuery = function () {
+        let obj = {class: "SpawnPoint"};
+        send(JSON.stringify(obj));
+    }
+
     var send = function(message) {
         if (Client.socket.readyState === Client.socket.CLOSED ||
             Client.socket.readyState === Client.socket.CLOSING) {

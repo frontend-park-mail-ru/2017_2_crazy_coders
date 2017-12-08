@@ -32,8 +32,8 @@ export default class EnemyBullet extends Bullet {
     bulletHitTank(bullet: EnemyBullet, tank: Tank): void {
         bullet.kill();
         let explosionAnimation = this.explosions.getFirstExists(false);
-        explosionAnimation.reset(800, 500);
-        // explosionAnimation.reset(tank._tank._body.x, tank._tank._body.y);
+        // explosionAnimation.reset(800, 500);
+        explosionAnimation.reset(tank._tank._body.x, tank._tank._body.y);
         explosionAnimation.play('kaboom', 30, false, true);
     }
 }

@@ -5,6 +5,7 @@ import Tank from '../Tank/Tank';
 import TreeBox from '../Box/TreeBox/TreeBox';
 import Client from '../Client/Client';
 import Snap from '../Snap/Snap';
+import SpawnRequest from '../Snap/SpawnRequest';
 import TankBullets from '../Bullet/TankBullet/TankBullet';
 import EnemyBullets from '../Bullet/EnemyBullet/EnemyBullet';
 import Enemies from '../Tank/EnemyTanks';
@@ -28,8 +29,11 @@ export default class WorldState extends State {
     enemyBullets: EnemyBullets;
     enemyArray: number[];
     client: any;
+    isSendSpawnRequest: boolean;
 
     create(): void {
+
+        this.isSendSpawnRequest = false;
         this.load.image('bullet', 'static/staticsGame/images/bullet.png');
         this.load.spritesheet('kaboom', 'static/staticsGame/images/explosion.png', 64, 64, 23);
 
@@ -60,6 +64,10 @@ export default class WorldState extends State {
                 this.onServerWorldArrived(message);
             }
 
+            if (message.class === "SpawnSnap" ) {
+                this.isSendSpawnRequest = false;
+                this.onServerSpawnArrived(message);
+            }
         });
 
         // declaration bullets for out tamk and enemy tank
@@ -100,15 +108,24 @@ export default class WorldState extends State {
         }
 
         if(this.client.socket.readyState !== 0) { // websocket connecting, message can't be sending
-            this.client.message.sendClientSnap(
-                (new Snap(this.game.user.id,
-                    this.game.user.username,
-                    this.tank._tank.currentPosition.xCoordinate,
-                    this.tank._tank.currentPosition.yCoordinate,
-                    this.tank._tank._body.angle,
-                    this.tank._turret._turret.angle,
-                    this.tank.isShoot,
-                    this.tank.health)).playerSnap);
+
+            if (this.tank.isKilled === true && this.isSendSpawnRequest == false) {
+                this.isSendSpawnRequest = true;
+                this.client.message.sendClientSnap(
+                    (new SpawnRequest(this.game.user.id, this.game.user.username)).spawnSnap);
+
+            } else if (this.isSendSpawnRequest == false) {
+
+                this.client.message.sendClientSnap(
+                    (new Snap(this.game.user.id,
+                        this.game.user.username,
+                        this.tank._tank.currentPosition.xCoordinate,
+                        this.tank._tank.currentPosition.yCoordinate,
+                        this.tank._tank._body.angle,
+                        this.tank._turret._turret.angle,
+                        this.tank.isShoot,
+                        this.tank.health)).playerSnap);
+            }
         }
 
         this.game.physics.arcade.overlap(this.tankBullets.tankBullets, this.treeBoxes._treeBoxes, this.tankBullets.bulletHitBox.bind(this.tankBullets), null, this);
@@ -136,6 +153,17 @@ export default class WorldState extends State {
 
     };
 
+    onServerSpawnArrived(message) {
+        this.tank = new Tank(this.game, this.game.user.id, this.game.user.username);
+        let position = message.position;
+        this.tank._tank.currentPosition = {
+            xCoordinate: position.valX,
+            yCoordinate: position.valY
+        };
+        this.tank.isShoot = false;
+
+    }
+
     onServerWorldArrived(message) {
 
         let boxes = message.boxes;
@@ -153,11 +181,10 @@ export default class WorldState extends State {
         for (let i = 0; i < tanksLandingPositions.length; i++) {
             let landingPosition = this.game.add.sprite(tanksLandingPositions[i].valX, tanksLandingPositions[i].valY, 'tankLandingArea', 'tankLandingArea');
         }
-
-
     }
 
     onServerSnapArrived(message){
+
         let enemiesOnClient = this.enemies.enemyTanks.children;
         let playersOnServer = message.players;
         let tanksSnapshots = message.tanks;
@@ -185,15 +212,17 @@ export default class WorldState extends State {
             }
         }
 
+        let removingEnemyFromArray = [];
+
+
         for(let i = 0; i < enemiesOnClient.length; i++) {
             let enemyOnClient = enemiesOnClient[i];
             if(!~playersOnServer.indexOf(enemyOnClient._uid)){
-                console.log(`try remove enemy`);
-                this.enemyArray.splice(i, 1);
                 console.log(`try remove from group`);
                 this.enemies.enemyTanks.remove(enemyOnClient, true);
                 console.log(`try kill enemyClient`);
                 enemyOnClient.kill();
+                removingEnemyFromArray.push(enemyOnClient._uid)
                 console.log(`kill success`);
                 continue;
             }
@@ -209,7 +238,10 @@ export default class WorldState extends State {
                     }
 
                     if (tankSnapshot.health <= 0) {
-                        enemyOnClient.kill();
+                        // because on backend we remove current userId from available players on server
+                        // on it case above in checking not available players current userId is pushing into 'removingEnemyFromArray'
+                        // so taking action here does not make sense
+                        continue;
                     }
 
                     if (tankSnapshot.isShoot) {
@@ -236,6 +268,18 @@ export default class WorldState extends State {
                     enemyOnClient.tankBody.currentPlatformAngle = tankSnapshot.platformAngle;
                     enemyOnClient._turret.turretAngle = tankSnapshot.turretAngle;
                 }
+            }
+        }
+
+
+        for (let k = 0; k < removingEnemyFromArray.length; k++) {
+
+            let enemyId = removingEnemyFromArray[k];
+            console.log('try remove from enemyArray enemyId' + enemyId.toString())
+            let enemyIdx = this.enemyArray.indexOf(enemyId);
+            console.log('try remove from enemyArray by idx = ' + enemyIdx.toString())
+            if (enemyIdx > -1) {
+                this.enemyArray.splice(enemyIdx, 1);
             }
         }
     }

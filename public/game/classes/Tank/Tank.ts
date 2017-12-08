@@ -20,6 +20,7 @@ export default class TankState extends Phaser.Sprite {
     _healthBar: any;
     _uid: number;
     _isShoot: boolean;
+    isKilled: boolean;
 
     constructor(game: Phaser.Game, uid: number, title: string) {
         super(game, 0, 0);
@@ -32,6 +33,7 @@ export default class TankState extends Phaser.Sprite {
         this._alive = true;
         this._title = title;
         this._uid = uid;
+        this.isKilled = false;
         this.create();
     }
 
@@ -57,6 +59,7 @@ export default class TankState extends Phaser.Sprite {
         this._turret.kill();
         this._tankLable.kill();
         this._healthBar.kill();
+        this.isKilled = true;
     }
 
     set health(health: number) {
