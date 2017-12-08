@@ -2,14 +2,12 @@
 /** Imports */
 import State from './state';
 import Tank from '../Tank/Tank';
-// import EnemyTank from '../Tank/EnemyTank';
 import TreeBox from '../Box/TreeBox/TreeBox';
 import Client from '../Client/Client';
 import Snap from '../Snap/Snap';
 import TankBullets from '../Bullet/TankBullet/TankBullet';
 import EnemyBullets from '../Bullet/EnemyBullet/EnemyBullet';
 import Enemies from '../Tank/EnemyTanks';
-import {runInThisContext} from "vm";
 
 
 const earth       = require('../../../static/staticsGame/images/ground.jpg');
@@ -226,12 +224,14 @@ export default class WorldState extends State {
                         bullet.rotation = this.physics.arcade.moveToXY(bullet, directX, directY,1000, 500);
                     }
 
-                    enemyOnClient.tank.currentPosition = {
+                    debugger;
+
+                    enemyOnClient.tankBody.currentPosition = {
                         xCoordinate: tankSnapshot.platform.valX,
                         yCoordinate: tankSnapshot.platform.valY
                     };
 
-                    enemyOnClient.tank._body.angle = tankSnapshot.platformAngle;
+                    enemyOnClient.tankBody._body.angle = tankSnapshot.platformAngle;
                     enemyOnClient._turret.turretAngle = tankSnapshot.turretAngle;
                 }
             }

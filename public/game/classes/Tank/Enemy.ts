@@ -64,4 +64,8 @@ export default class TankState extends Phaser.Sprite {
         return this._health;
     }
 
+    get tankBody(): TankBody {
+        return this._tank
+    }
+
 }
