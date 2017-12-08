@@ -113,6 +113,8 @@ export default class WorldState extends State {
 
         this.game.physics.arcade.overlap(this.tankBullets.tankBullets, this.treeBoxes._treeBoxes, this.tankBullets.bulletHitBox.bind(this.tankBullets), null, this);
         this.game.physics.arcade.overlap(this.enemyBullets.enemyBullets, this.treeBoxes._treeBoxes, this.enemyBullets.bulletHitBox.bind(this.enemyBullets), null, this);
+        this.game.physics.arcade.overlap(this.tankBullets.tankBullets, this.enemies.enemyTanks, this.tankBullets.bulletHitEnemy.bind(this.tankBullets), null, this);
+        this.game.physics.arcade.overlap(this.enemyBullets.enemyBullets, this.tank._tank, this.enemyBullets.bulletHitTank.bind(this.enemyBullets), null, this);
 
         this.tank.isShoot = false;
     }

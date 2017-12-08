@@ -1,4 +1,6 @@
 import Bullet from '../Bullet';
+import Tank from '../../Tank/Tank';
+import EnemyBullet from '../EnemyBullet/EnemyBullet'
 
 export default class EnemyBullet extends Bullet {
     enemyBullets: Phaser.Group;
@@ -25,5 +27,12 @@ export default class EnemyBullet extends Bullet {
         this.bullet = this.enemyBullets.create(xCoord, yCoord, 'box_tree');
         this.bullet.name = id.toString();
         this.bullet.body.immovable = true;
+    }
+
+    bulletHitTank(bullet: EnemyBullet, tank: Tank): void {
+        bullet.kill();
+        let explosionAnimation = this.explosions.getFirstExists(false);
+        explosionAnimation.reset(tank._tank._body.x, tank._tank._body.y);
+        explosionAnimation.play('kaboom', 30, false, true);
     }
 }
