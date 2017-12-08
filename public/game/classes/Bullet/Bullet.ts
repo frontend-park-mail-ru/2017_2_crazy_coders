@@ -1,4 +1,4 @@
-export default abstract class Bullet extends Phaser.Sprite {
+export default class Bullet extends Phaser.Sprite {
     game: Phaser.Game;
     bullet: Phaser.Sprite;
     xCoordinate: number;
@@ -16,7 +16,7 @@ export default abstract class Bullet extends Phaser.Sprite {
         this.create();
     }
 
-    abstract create(): void;
+     create(): void {};
 
     public get currentPosition() {
         return {
@@ -43,6 +43,6 @@ export default abstract class Bullet extends Phaser.Sprite {
         let explosionAnimation = this.explosions.getFirstExists(false);
         explosionAnimation.reset(box.x, box.y);
         explosionAnimation.play('kaboom', 30, false, true);
-        box.kill();
+        // box.kill();
     }
 }
