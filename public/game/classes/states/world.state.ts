@@ -19,41 +19,39 @@ const tanks       = require('../../../static/staticsGame/images/tanks.png');
 const tankLandingArea = require('../../../static/staticsGame/images/HelicopterLandingArea.png');
 
 export default class WorldState extends State {
-    _music: Phaser.Sound;
-    _land: any;
-    _tank: Tank;
-    _enemy: Tank;
-    _treeBoxes: TreeBox;
-    _pause: Phaser.Button;
+    music: Phaser.Sound;
+    land: any;
+    tank: Tank;
+    enemy: Tank;
+    treeBoxes: TreeBox;
+    pause: Phaser.Button;
     enemies: Enemies;
     tankBullets: TankBullets;
     enemyBullets: EnemyBullets;
     enemyArray: number[];
-
-    _client: any;
-    _clientId: number;
+    client: any;
 
     create(): void {
         this.load.image('bullet', 'static/staticsGame/images/bullet.png');
         this.load.spritesheet('kaboom', 'static/staticsGame/images/explosion.png', 64, 64, 23);
 
-        this._music = this.game.add.audio('startAudio', 1, false);
-        this._music.play();
+        this.music = this.game.add.audio('startAudio', 1, false);
+        this.music.play();
 
-        this._land = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'earth');
-        this._land.fixedToCamera = true;
+        this.land = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'earth');
+        this.land.fixedToCamera = true;
 
         // create box map
-        this._treeBoxes = new TreeBox(this.game);
+        this.treeBoxes = new TreeBox(this.game);
 
         // create a new group of enemies;
         this.enemies = new Enemies(this.game);
 
         // create our tank with own username
-        this._tank = new Tank(this.game, this.game.user.id, this.game.user.username);
+        this.tank = new Tank(this.game, this.game.user.id, this.game.user.username);
         this.enemyArray = [];
-        this._client = new Client();
-        this._client.socket.onmessage = ( (event) => {
+        this.client = new Client();
+        this.client.socket.onmessage = ( (event) => {
             let message = JSON.parse(event.data);
 
             if (message.class === "ServerSnap") {
@@ -70,67 +68,67 @@ export default class WorldState extends State {
         this.tankBullets = new TankBullets(this.game);
         this.enemyBullets = new EnemyBullets(this.game);
 
-        this._pause = this.game.add.button(10, 10, "pause", this.startPause, this);
-        this._pause.scale.setTo(0.2, 0.2);
-        this._pause.frame = 1;
-        this._pause['clicked'] = false;
+        this.pause = this.game.add.button(10, 10, "pause", this.startPause, this);
+        this.pause.scale.setTo(0.2, 0.2);
+        this.pause.frame = 1;
+        this.pause['clicked'] = false;
 
-        this.game.camera.follow(this._tank);
+        this.game.camera.follow(this.tank);
         this.game.camera.deadzone = new Phaser.Rectangle(150, 150, 500, 300);
         this.game.camera.focusOnXY(0, 0);
 
     }
 
     update(): void {
-        this.game.physics.arcade.collide(this._tank._tank._body, this._treeBoxes._treeBoxes);
+        this.game.physics.arcade.collide(this.tank._tank._body, this.treeBoxes._treeBoxes);
 
         let enemies = this.enemies.enemyTanks.children;
         for (let i = 0; i < enemies.length; i++) {
-            this.game.physics.arcade.collide(this._tank._tank._body, enemies[i]._tank._body);
+            this.game.physics.arcade.collide(this.tank._tank._body, enemies[i]._tank._body);
         }
 
-        if(this._enemy) {
-            this.game.physics.arcade.collide(this._enemy._tank._body, this._treeBoxes._treeBoxes);
-            this._enemy.update();
+        if(this.enemy) {
+            this.game.physics.arcade.collide(this.enemy._tank._body, this.treeBoxes._treeBoxes);
+            this.enemy.update();
         }
 
-        this._land.tilePosition.x = -this.camera.x;
-        this._land.tilePosition.y = -this.camera.y;
-        this._tank.update();
+        this.land.tilePosition.x = -this.camera.x;
+        this.land.tilePosition.y = -this.camera.y;
+        this.tank.update();
 
         // click mouse button
         if (this.game.input.activePointer.isDown) {
             this.fire();
         }
 
-        if(this._client.socket.readyState !== 0) { // websocket connecting, message can't be sending
-            this._client.message.sendClientSnap(
+        if(this.client.socket.readyState !== 0) { // websocket connecting, message can't be sending
+            this.client.message.sendClientSnap(
                 (new Snap(this.game.user.id,
                     this.game.user.username,
-                    this._tank._tank.currentPosition.xCoordinate,
-                    this._tank._tank.currentPosition.yCoordinate,
-                    this._tank._tank._body.angle,
-                    this._tank._turret._turret.angle,
-                    this._tank.isShoot,
-                    this._tank.health)).playerSnap);
+                    this.tank._tank.currentPosition.xCoordinate,
+                    this.tank._tank.currentPosition.yCoordinate,
+                    this.tank._tank._body.angle,
+                    this.tank._turret._turret.angle,
+                    this.tank.isShoot,
+                    this.tank.health)).playerSnap);
         }
 
-        this.game.physics.arcade.overlap(this.tankBullets.tankBullets, this._treeBoxes._treeBoxes, this.tankBullets.bulletHitBox.bind(this.tankBullets), null, this);
-        this.game.physics.arcade.overlap(this.enemyBullets.enemyBullets, this._treeBoxes._treeBoxes, this.enemyBullets.bulletHitBox.bind(this.enemyBullets), null, this);
+        this.game.physics.arcade.overlap(this.tankBullets.tankBullets, this.treeBoxes._treeBoxes, this.tankBullets.bulletHitBox.bind(this.tankBullets), null, this);
+        this.game.physics.arcade.overlap(this.enemyBullets.enemyBullets, this.treeBoxes._treeBoxes, this.enemyBullets.bulletHitBox.bind(this.enemyBullets), null, this);
 
-        this._tank.isShoot = false;
+        this.tank.isShoot = false;
     }
 
     fire() {
 
-        if (this.game.time.now > this._tank._nextFire && this.tankBullets.tankBullets.countDead() > 0) {
-            this._tank._nextFire = this.time.now + this._tank._fireRate;
+        if (this.game.time.now > this.tank._nextFire && this.tankBullets.tankBullets.countDead() > 0) {
+            this.tank._nextFire = this.time.now + this.tank._fireRate;
 
             let bullet = this.tankBullets.tankBullets.getFirstExists(false);
-            bullet.reset(this._tank._turret._turret.x, this._tank._turret._turret.y);
+            bullet.reset(this.tank._turret._turret.x, this.tank._turret._turret.y);
             bullet.rotation = this.physics.arcade.moveToPointer(bullet, 5000, this.game.input.activePointer, 50);
 
-            this._tank.isShoot = true;
+            this.tank.isShoot = true;
         }
     }
 
@@ -143,13 +141,13 @@ export default class WorldState extends State {
         let boxes = message.boxes;
         let tanksLandingPositions = message.spawnPoints;
         let tankPosition = message.startTankPosition;
-        this._tank._tank.currentPosition = {
+        this.tank._tank.currentPosition = {
             xCoordinate: tankPosition.valX,
             yCoordinate: tankPosition.valY
         };
 
         for (let i = 0; i < boxes.length; i++) {
-            this._treeBoxes.createBox(boxes[i].position.valX, boxes[i].position.valY, i);
+            this.treeBoxes.createBox(boxes[i].position.valX, boxes[i].position.valY, i);
         }
         debugger;
         for (let i = 0; i < tanksLandingPositions.length; i++) {
@@ -169,13 +167,13 @@ export default class WorldState extends State {
 
             if (tankSnapshot.userId === this.game.user.id) {
 
-                if (this._tank.health !== tankSnapshot.health) {
-                    this._tank.health = tankSnapshot.health;
-                    this._tank._healthBar.setPercent(tankSnapshot.health);
+                if (this.tank.health !== tankSnapshot.health) {
+                    this.tank.health = tankSnapshot.health;
+                    this.tank._healthBar.setPercent(tankSnapshot.health);
                 }
 
                 if(tankSnapshot.health <= 0) {
-                    this._tank.kill();
+                    this.tank.kill();
                 }
             }
 
@@ -223,35 +221,22 @@ export default class WorldState extends State {
                         directX = tankSnapshot.platform.valX - 1000*Math.cos(degToRad(180 - tankSnapshot.turretAngle));
                         directY = tankSnapshot.platform.valY + 1000*Math.sin(degToRad(tankSnapshot.turretAngle));
 
-                        // directX = tankSnapshot.platform.valX + 1000*Math.cos(degToRad(tankSnapshot.turretAngle));
-                        // if(tankSnapshot.amgle <= 0) {
-                        //     directY = tankSnapshot.platform.valY + 1000*Math.sin(degToRad(tankSnapshot.turretAngle));
-                        // } else {
-                        //     directY = tankSnapshot.platform.valY - 1000*Math.sin(degToRad(tankSnapshot.turretAngle));
-                        // }
-
                         let bullet = this.enemyBullets.enemyBullets.getFirstExists(false);
                         bullet.reset(tankSnapshot.platform.valX, tankSnapshot.platform.valY);
                         bullet.rotation = this.physics.arcade.moveToXY(bullet, directX, directY,1000, 500);
                     }
 
-                    enemyOnClient._tank.currentPosition = {
+                    enemyOnClient.tank.currentPosition = {
                         xCoordinate: tankSnapshot.platform.valX,
                         yCoordinate: tankSnapshot.platform.valY
                     };
 
-                    enemyOnClient._tank._body.angle = tankSnapshot.platformAngle;
+                    enemyOnClient.tank._body.angle = tankSnapshot.platformAngle;
                     enemyOnClient._turret.turretAngle = tankSnapshot.turretAngle;
                 }
             }
         }
     }
-
-    randomInteger(min: number, max: number): number {
-        let rand = min - 0.5 + Math.random() * (max - min + 1);
-        rand = Math.round(rand);
-        return rand;
-    };
 }
 
 
