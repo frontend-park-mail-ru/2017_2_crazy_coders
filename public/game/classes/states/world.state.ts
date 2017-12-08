@@ -231,7 +231,7 @@ export default class WorldState extends State {
                         yCoordinate: tankSnapshot.platform.valY
                     };
 
-                    enemyOnClient.tankBody._body.angle = tankSnapshot.platformAngle;
+                    enemyOnClient.tankBody.currentPlatformAngle = tankSnapshot.platformAngle;
                     enemyOnClient._turret.turretAngle = tankSnapshot.turretAngle;
                 }
             }
