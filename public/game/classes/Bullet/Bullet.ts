@@ -39,6 +39,7 @@ export default class Bullet extends Phaser.Sprite {
     }
 
     bulletHitBox(bullet, box) {
+        debugger;
         bullet.kill();
         let explosionAnimation = this.explosions.getFirstExists(false);
         explosionAnimation.reset(box.x, box.y);
@@ -46,11 +47,5 @@ export default class Bullet extends Phaser.Sprite {
         // box.kill();
     }
 
-    bulletHitEnemy(bullet, enemyTank) {
-        bullet.kill();
-        let explosionAnimation = this.explosions.getFirstExists(false);
-        explosionAnimation.reset(enemyTank._tank._body.x, enemyTank._tank._body.y);
-        // explosionAnimation.reset(800, 500);
-        explosionAnimation.play('kaboom', 30, false, true);
-    }
+
 }

@@ -23,7 +23,18 @@ export default class TankBullet extends Bullet {
 
     createBullet(xCoord: number, yCoord: number, id: number): void {
         this.bullet = this.tankBullets.create(xCoord, yCoord, 'bullet');
+        // this.bullet.anchor.setTo(0.5, 0.5);
         this.bullet.name = id.toString();
         this.bullet.body.immovable = true;
+    }
+
+
+    bulletHitEnemy(enemyTank, bullet ) {
+        debugger;
+        bullet.kill();
+        let explosionAnimation = this.explosions.getFirstExists(false);
+        explosionAnimation.reset(enemyTank.x, enemyTank.y);
+        // explosionAnimation.reset(800, 500);
+        explosionAnimation.play('kaboom', 30, false, true);
     }
 }

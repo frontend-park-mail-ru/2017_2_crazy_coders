@@ -9,6 +9,8 @@ import SpawnRequest from '../Snap/SpawnRequest';
 import TankBullets from '../Bullet/TankBullet/TankBullet';
 import EnemyBullets from '../Bullet/EnemyBullet/EnemyBullet';
 import Enemies from '../Tank/EnemyTanks';
+import TankLandings from '../TankLanding/TankLanding';
+import StaticList from '../StaticList/StaticList';
 
 
 const earth       = require('../../../static/staticsGame/images/ground.jpg');
@@ -30,6 +32,8 @@ export default class WorldState extends State {
     enemyArray: number[];
     client: any;
     isSendSpawnRequest: boolean;
+    tankLandings: TankLandings;
+    statistics: StaticList;
 
     create(): void {
 
@@ -42,6 +46,9 @@ export default class WorldState extends State {
 
         this.land = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'earth');
         this.land.fixedToCamera = true;
+
+        // create landing group
+        this.tankLandings = new TankLandings(this.game);
 
         // create box map
         this.treeBoxes = new TreeBox(this.game);
@@ -78,6 +85,8 @@ export default class WorldState extends State {
         this.pause.scale.setTo(0.2, 0.2);
         this.pause.frame = 1;
         this.pause['clicked'] = false;
+
+        this.statistics = new StaticList(this.game, this.);
 
         this.game.camera.follow(this.tank);
         this.game.camera.deadzone = new Phaser.Rectangle(150, 150, 500, 300);
@@ -128,10 +137,18 @@ export default class WorldState extends State {
             }
         }
 
+        debugger;
         this.game.physics.arcade.overlap(this.tankBullets.tankBullets, this.treeBoxes._treeBoxes, this.tankBullets.bulletHitBox.bind(this.tankBullets), null, this);
         this.game.physics.arcade.overlap(this.enemyBullets.enemyBullets, this.treeBoxes._treeBoxes, this.enemyBullets.bulletHitBox.bind(this.enemyBullets), null, this);
-        this.game.physics.arcade.overlap(this.tankBullets.tankBullets, this.enemies.enemyTanks, this.tankBullets.bulletHitEnemy.bind(this.tankBullets), null, this);
-        this.game.physics.arcade.overlap(this.enemyBullets.enemyBullets, this.tank._tank, this.enemyBullets.bulletHitTank.bind(this.enemyBullets), null, this);
+
+        for (let  i = 0; i < this.enemies.enemyTanks.children.length; i++) {
+            this.game.physics.arcade.overlap(this.tankBullets.tankBullets, this.enemies.enemyTanks.children[i]._tank._body, this.tankBullets.bulletHitEnemy.bind(this.tankBullets), null, this);
+        }
+
+
+        if (this.tank._tank._body) {
+            this.game.physics.arcade.overlap(this.enemyBullets.enemyBullets, this.tank._tank._body, this.enemyBullets.bulletHitTank.bind(this.enemyBullets), null, this);
+        }
 
         this.tank.isShoot = false;
     }
@@ -177,9 +194,9 @@ export default class WorldState extends State {
         for (let i = 0; i < boxes.length; i++) {
             this.treeBoxes.createBox(boxes[i].position.valX, boxes[i].position.valY, i);
         }
-        debugger;
+
         for (let i = 0; i < tanksLandingPositions.length; i++) {
-            let landingPosition = this.game.add.sprite(tanksLandingPositions[i].valX, tanksLandingPositions[i].valY, 'tankLandingArea', 'tankLandingArea');
+            this.tankLandings.createLanding(tanksLandingPositions[i].valX, tanksLandingPositions[i].valY, i);
         }
     }
 
@@ -188,6 +205,9 @@ export default class WorldState extends State {
         let enemiesOnClient = this.enemies.enemyTanks.children;
         let playersOnServer = message.players;
         let tanksSnapshots = message.tanks;
+        let statistics = message.statistics;
+
+        this.
 
         for(let j = 0; j < tanksSnapshots.length; j++) {
             let tankSnapshot = tanksSnapshots[j];
@@ -255,10 +275,8 @@ export default class WorldState extends State {
 
                         let bullet = this.enemyBullets.enemyBullets.getFirstExists(false);
                         bullet.reset(tankSnapshot.platform.valX, tankSnapshot.platform.valY);
-                        bullet.rotation = this.physics.arcade.moveToXY(bullet, directX, directY,1000, 500);
+                        bullet.rotation = this.physics.arcade.moveToXY(bullet, directX, directY,1000, 50);
                     }
-
-                    debugger;
 
                     enemyOnClient.tankBody.currentPosition = {
                         xCoordinate: tankSnapshot.platform.valX,
