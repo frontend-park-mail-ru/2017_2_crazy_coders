@@ -71,6 +71,11 @@ export default class WorldState extends State {
                 this.onServerWorldArrived(message);
             }
 
+            if (message.class === "StatisticsSnap") {
+                console.log(`statistics snap is comming`);
+                this.onServerStatisticsSnap(message);
+            }
+
             if (message.class === "SpawnSnap" ) {
                 this.isSendSpawnRequest = false;
                 this.onServerSpawnArrived(message);
@@ -86,7 +91,7 @@ export default class WorldState extends State {
         this.pause.frame = 1;
         this.pause['clicked'] = false;
 
-        this.statistics = new StaticList(this.game, this.);
+        this.statistics = new StaticList(this.game, this.game.user.id);
 
         this.game.camera.follow(this.tank);
         this.game.camera.deadzone = new Phaser.Rectangle(150, 150, 500, 300);
@@ -137,7 +142,7 @@ export default class WorldState extends State {
             }
         }
 
-        debugger;
+
         this.game.physics.arcade.overlap(this.tankBullets.tankBullets, this.treeBoxes._treeBoxes, this.tankBullets.bulletHitBox.bind(this.tankBullets), null, this);
         this.game.physics.arcade.overlap(this.enemyBullets.enemyBullets, this.treeBoxes._treeBoxes, this.enemyBullets.bulletHitBox.bind(this.enemyBullets), null, this);
 
@@ -170,6 +175,15 @@ export default class WorldState extends State {
 
     };
 
+    onServerStatisticsSnap(message) {
+        debugger;
+        console.log(`statistics snap length = ${message.leaders.length}`);
+
+        if(message.leaders) {
+            this.statistics.updateList(message.leaders);
+        }
+    }
+
     onServerSpawnArrived(message) {
         this.tank = new Tank(this.game, this.game.user.id, this.game.user.username);
         let position = message.position;
@@ -186,6 +200,7 @@ export default class WorldState extends State {
         let boxes = message.boxes;
         let tanksLandingPositions = message.spawnPoints;
         let tankPosition = message.startTankPosition;
+
         this.tank._tank.currentPosition = {
             xCoordinate: tankPosition.valX,
             yCoordinate: tankPosition.valY
@@ -205,9 +220,6 @@ export default class WorldState extends State {
         let enemiesOnClient = this.enemies.enemyTanks.children;
         let playersOnServer = message.players;
         let tanksSnapshots = message.tanks;
-        let statistics = message.statistics;
-
-        this.
 
         for(let j = 0; j < tanksSnapshots.length; j++) {
             let tankSnapshot = tanksSnapshots[j];

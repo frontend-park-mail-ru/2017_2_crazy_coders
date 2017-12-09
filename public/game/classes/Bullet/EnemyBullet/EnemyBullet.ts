@@ -30,7 +30,6 @@ export default class EnemyBullet extends Bullet {
     }
 
     bulletHitTank(tank, bullet) {
-        debugger;
         bullet.kill();
         let explosionAnimation = this.explosions.getFirstExists(false);
         // explosionAnimation.reset(800, 500);
