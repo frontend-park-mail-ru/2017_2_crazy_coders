@@ -509,7 +509,6 @@ var UserService = function () {
 	}, {
 		key: 'getScorelist',
 		value: function getScorelist(page) {
-			// return Http.FetchGet('/scorelist')
 			return _Http2.default.FetchGet('/index').then(function (response) {
 				if (response.status === 200) {
 					return response.json();
@@ -578,7 +577,7 @@ var Http = function () {
     /**
      * Выполняет GET-запрос по указанному адресу с использованием fetch
      * @param {string} address - адрес запроса
-    * @return {Promise}
+     * @return {Promise}
      */
 
 
@@ -1303,7 +1302,7 @@ var User = function () {
         this.email = opt.email || '';
         this.username = opt.username || '';
         this.id = opt.id || 0;
-        this.score = opt.score || 0.1;
+        this.score = opt.score || 0;
     }
 
     /**

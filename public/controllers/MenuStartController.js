@@ -27,6 +27,7 @@ class MenuStartController extends Controller {
 				.then((response) => {
 					console.log(response);
 					this.userService.user.id = 0;
+				    this.page_parts.get("Scoreboard").data.userScore = 0;
 					this.show();
 					this.page_parts.get("RegMenu").hide();
 					this._router.go('/');
@@ -95,8 +96,6 @@ class MenuStartController extends Controller {
 			.then((resp) => {
 				console.log("[userService.getProfile] response: " + resp);
 				this.userService.user.set(resp);
-				console.log("alkscjbasbcasbucaosubc:");
-				console.log(this.page_parts.get("RegMenu").data.user);
 				this.page_parts.get("RegMenu").data.user = this.userService.user.getUsername();
 				this.page_parts.get("RegMenu").getClassElement().hidden=false;
 				this.addListener();
