@@ -35,9 +35,10 @@ class ScoreListController extends Controller {
 	show() {
 		this.page_parts.get("Header").show();
 		this.userService
-			.getScorelist()
+			.getScorelist(1)
 			.then((resp) => {
 				console.log('good answer');
+				console.log(resp);
 				console.log(this.page_parts.get("Scoreboard").data);
 			})
 			.catch((err) => {

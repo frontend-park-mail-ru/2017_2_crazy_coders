@@ -509,7 +509,8 @@ var UserService = function () {
 	}, {
 		key: 'getScorelist',
 		value: function getScorelist(page) {
-			return _Http2.default.FetchPost('/scorelist', { page: page }).then(function (response) {
+			// return Http.FetchGet('/scorelist')
+			return _Http2.default.FetchGet('/index').then(function (response) {
 				if (response.status === 200) {
 					return response.json();
 				} else {
@@ -577,7 +578,7 @@ var Http = function () {
     /**
      * Выполняет GET-запрос по указанному адресу с использованием fetch
      * @param {string} address - адрес запроса
-     * @return {Promise}
+    * @return {Promise}
      */
 
 

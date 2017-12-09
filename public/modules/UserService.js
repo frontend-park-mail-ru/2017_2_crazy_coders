@@ -86,7 +86,7 @@ export default class UserService {
 	}
 
 	getScorelist(page) {
-		return Http.FetchPost('/scorelist', {page})
+		return Http.FetchGet('/index')
 			.then((response) => {
 				if (response.status === 200) {
 					return response.json();
