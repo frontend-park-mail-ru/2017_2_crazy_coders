@@ -509,7 +509,7 @@ var UserService = function () {
 	}, {
 		key: 'getScorelist',
 		value: function getScorelist(page) {
-			return _Http2.default.FetchGet('/index').then(function (response) {
+			return _Http2.default.FetchPost('/scorelist', { page: page }).then(function (response) {
 				if (response.status === 200) {
 					return response.json();
 				} else {
@@ -586,8 +586,8 @@ var Http = function () {
         value: function FetchGet(address) {
             // const url = this.baseUrl + address;
             // const url = 'http://82.202.246.5:8080' + address;
-            var url = 'http://localhost:8080/api' + address;
-            // const url = 'http://10.100.122.201:8080/api' + address;
+            // const url = 'http://localhost:8080' + address;
+            var url = 'http://10.100.122.201:8080/api' + address;
             // const url = 'http://10.100.122.151:8080/api' + address;
             // const url = 'https://tanks-backend.xyz/api' + address;
 
@@ -619,8 +619,8 @@ var Http = function () {
         value: function FetchPost(address, body) {
 
             // const url = 'http://82.202.246.5:8080' + address;
-            var url = 'http://localhost:8080/api' + address;
-            // const url = 'http://10.100.122.201:8080/api' + address;
+            // const url = 'http://localhost:8080' + address;
+            var url = 'http://10.100.122.201:8080/api' + address;
             // const url = 'http://10.100.122.151:8080/api' + address;
             // const url = 'https://tanks-backend.xyz/api' + address;
 
@@ -1302,7 +1302,7 @@ var User = function () {
         this.email = opt.email || '';
         this.username = opt.username || '';
         this.id = opt.id || 0;
-        this.score = opt.score || 0;
+        this.score = opt.score || 0.1;
     }
 
     /**
