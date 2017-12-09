@@ -1,5 +1,5 @@
 import chai from 'chai';
-import UserService from '../public/services/UserService';
+import UserService from '../public/modules/UserService';
 
 mocha.setup('bdd');
 let expect = chai.expect;

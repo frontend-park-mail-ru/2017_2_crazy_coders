@@ -1,5 +1,5 @@
 import Menu from '../../components/Menu/Menu';
-import UserService from '../../services/UserService'
+import UserService from '../../modules/UserService'
 
 /**
  * Получаем страницу зарегестрированного пользователя

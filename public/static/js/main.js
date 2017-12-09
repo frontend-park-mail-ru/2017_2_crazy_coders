@@ -1,6 +1,6 @@
 'use strict';
 
-import UserService from '../../services/UserService';
+import UserService from '../../modules/UserService';
 import CreatePage from '../../views/CreatePage.js';
 import Router from '../../modules/Router';
 import MenuStartController from '../../controllers/MenuStartController';
@@ -16,7 +16,7 @@ import Game from '../../game/classes/index';
 let theme = new Theme();
 let userService = new UserService();
 let page = new CreatePage();
-// import RegisterSW from '../../services/ServiceWorker';
+// import RegisterSW from '../../modules/ServiceWorker';
 //
 // RegisterSW();
 

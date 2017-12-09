@@ -11,7 +11,6 @@ const routes = [
     '/',
     '/signin',
     '/signup',
-    '/menu',
     '/play',
     '/about',
     '/score',

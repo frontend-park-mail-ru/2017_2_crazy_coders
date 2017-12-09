@@ -1,7 +1,7 @@
 const path = require('path');
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+process.noDeprecation = true;
 
 module.exports = {
 	context: __dirname,
@@ -39,7 +39,8 @@ module.exports = {
 				exclude: /node_modules/,
 				loader: 'babel-loader',
 				query: {
-					presets: ['es2015']
+					presets: ['es2015'],
+					compact: false
 				}
 			},
 			{
@@ -57,9 +58,6 @@ module.exports = {
 			{
 				test: /\.(png|svg|jpg|gif|jpeg)$/,
                 loader: "file-loader?publicPath=../&name=../img/[hash].[ext]"
-                // use: [
-					// 'file-loader'
-                // ]
 			},
 			{
 				test: /\.(html)$/,
