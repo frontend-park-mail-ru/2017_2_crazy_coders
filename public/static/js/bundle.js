@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 66);
+/******/ 	return __webpack_require__(__webpack_require__.s = 67);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -681,15 +681,15 @@ Emitter.prototype.hasListeners = function(event){
  * Module dependencies.
  */
 
-var keys = __webpack_require__(115);
-var hasBinary = __webpack_require__(47);
-var sliceBuffer = __webpack_require__(116);
-var after = __webpack_require__(117);
-var utf8 = __webpack_require__(118);
+var keys = __webpack_require__(116);
+var hasBinary = __webpack_require__(48);
+var sliceBuffer = __webpack_require__(117);
+var after = __webpack_require__(118);
+var utf8 = __webpack_require__(119);
 
 var base64encoder;
 if (global && global.ArrayBuffer) {
-  base64encoder = __webpack_require__(120);
+  base64encoder = __webpack_require__(121);
 }
 
 /**
@@ -747,7 +747,7 @@ var err = { type: 'error', data: 'parser error' };
  * Create a blob api even for blob builder when vendor prefixes exist
  */
 
-var Blob = __webpack_require__(121);
+var Blob = __webpack_require__(122);
 
 /**
  * Encodes a packet.
@@ -1521,7 +1521,7 @@ function pug_rethrow(err, filename, lineno, str){
     throw err;
   }
   try {
-    str = str || __webpack_require__(71).readFileSync(filename, 'utf8')
+    str = str || __webpack_require__(72).readFileSync(filename, 'utf8')
   } catch (ex) {
     pug_rethrow(err, null, lineno)
   }
@@ -1557,7 +1557,7 @@ function pug_rethrow(err, filename, lineno, str){
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(107);
+exports = module.exports = __webpack_require__(108);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -1737,7 +1737,7 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(25)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(26)))
 
 /***/ }),
 /* 12 */
@@ -1756,7 +1756,7 @@ var _Http = __webpack_require__(13);
 
 var _Http2 = _interopRequireDefault(_Http);
 
-var _User = __webpack_require__(24);
+var _User = __webpack_require__(25);
 
 var _User2 = _interopRequireDefault(_User);
 
@@ -2018,15 +2018,15 @@ var _BlockComponents = __webpack_require__(5);
 
 var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
-var _Form = __webpack_require__(70);
+var _Form = __webpack_require__(71);
 
 var _Form2 = _interopRequireDefault(_Form);
 
-var _ValidSignInForm = __webpack_require__(30);
+var _ValidSignInForm = __webpack_require__(31);
 
 var _ValidSignInForm2 = _interopRequireDefault(_ValidSignInForm);
 
-var _ValidSignUpForm = __webpack_require__(31);
+var _ValidSignUpForm = __webpack_require__(32);
 
 var _ValidSignUpForm2 = _interopRequireDefault(_ValidSignUpForm);
 
@@ -2282,7 +2282,7 @@ module.exports = function(a, b){
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(122);
+exports = module.exports = __webpack_require__(123);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -2462,3503 +2462,10 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(25)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(26)))
 
 /***/ }),
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Класс пользователя
- * @module User
- */
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var User = function () {
-    /**
-     * @param {object} opt - данные пользователя
-     * @constructor
-     */
-    function User(opt) {
-        _classCallCheck(this, User);
-
-        this.email = opt.email || '';
-        this.username = opt.username || '';
-        this.id = opt.id || 0;
-        this.score = opt.score || 0;
-    }
-
-    /**
-     * Установить новые данные пользователя
-     * @param {object} userData
-     */
-
-
-    _createClass(User, [{
-        key: 'set',
-        value: function set(userData) {
-            this.id = userData.id;
-            this.username = userData.username;
-            this.email = userData.email;
-            this.score = userData.score || 0;
-        }
-
-        /**
-         * Возвращаем пользователя
-         */
-
-    }, {
-        key: 'get',
-        value: function get() {
-            return {
-                'email': this.email,
-                'username': this.username,
-                'id': this.id,
-                'score': this.score
-            };
-        }
-
-        /**
-         * Возвращаем id пользователя
-         */
-
-    }, {
-        key: 'getId',
-        value: function getId() {
-            return this.id;
-        }
-
-        /**
-         * Возвращаем имя пользователя
-         */
-
-    }, {
-        key: 'getUsername',
-        value: function getUsername() {
-            return this.username;
-        }
-
-        /**
-         * Возвращаем email пользователя
-         */
-
-    }, {
-        key: 'getEmail',
-        value: function getEmail() {
-            return this.email;
-        }
-
-        /**
-         * Возвращаем счет пользователя
-         */
-
-    }, {
-        key: 'getScore',
-        value: function getScore() {
-            return this.score;
-        }
-    }]);
-
-    return User;
-}();
-
-exports.default = User;
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports) {
-
-// shim for using process in browser
-var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function defaultClearTimeout () {
-    throw new Error('clearTimeout has not been defined');
-}
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
-        } else {
-            cachedSetTimeout = defaultSetTimout;
-        }
-    } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
-        } else {
-            cachedClearTimeout = defaultClearTimeout;
-        }
-    } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
-    }
-} ())
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
-    }
-    // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch(e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch(e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-
-
-}
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
-    }
-    // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
-        }
-    }
-
-
-
-}
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
-
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/**
- * Module dependencies.
- */
-
-var debug = __webpack_require__(11)('socket.io-parser');
-var Emitter = __webpack_require__(8);
-var hasBin = __webpack_require__(47);
-var binary = __webpack_require__(109);
-var isBuf = __webpack_require__(48);
-
-/**
- * Protocol version.
- *
- * @api public
- */
-
-exports.protocol = 4;
-
-/**
- * Packet types.
- *
- * @api public
- */
-
-exports.types = [
-  'CONNECT',
-  'DISCONNECT',
-  'EVENT',
-  'ACK',
-  'ERROR',
-  'BINARY_EVENT',
-  'BINARY_ACK'
-];
-
-/**
- * Packet type `connect`.
- *
- * @api public
- */
-
-exports.CONNECT = 0;
-
-/**
- * Packet type `disconnect`.
- *
- * @api public
- */
-
-exports.DISCONNECT = 1;
-
-/**
- * Packet type `event`.
- *
- * @api public
- */
-
-exports.EVENT = 2;
-
-/**
- * Packet type `ack`.
- *
- * @api public
- */
-
-exports.ACK = 3;
-
-/**
- * Packet type `error`.
- *
- * @api public
- */
-
-exports.ERROR = 4;
-
-/**
- * Packet type 'binary event'
- *
- * @api public
- */
-
-exports.BINARY_EVENT = 5;
-
-/**
- * Packet type `binary ack`. For acks with binary arguments.
- *
- * @api public
- */
-
-exports.BINARY_ACK = 6;
-
-/**
- * Encoder constructor.
- *
- * @api public
- */
-
-exports.Encoder = Encoder;
-
-/**
- * Decoder constructor.
- *
- * @api public
- */
-
-exports.Decoder = Decoder;
-
-/**
- * A socket.io Encoder instance
- *
- * @api public
- */
-
-function Encoder() {}
-
-/**
- * Encode a packet as a single string if non-binary, or as a
- * buffer sequence, depending on packet type.
- *
- * @param {Object} obj - packet object
- * @param {Function} callback - function to handle encodings (likely engine.write)
- * @return Calls callback with Array of encodings
- * @api public
- */
-
-Encoder.prototype.encode = function(obj, callback){
-  if ((obj.type === exports.EVENT || obj.type === exports.ACK) && hasBin(obj.data)) {
-    obj.type = obj.type === exports.EVENT ? exports.BINARY_EVENT : exports.BINARY_ACK;
-  }
-
-  debug('encoding packet %j', obj);
-
-  if (exports.BINARY_EVENT === obj.type || exports.BINARY_ACK === obj.type) {
-    encodeAsBinary(obj, callback);
-  }
-  else {
-    var encoding = encodeAsString(obj);
-    callback([encoding]);
-  }
-};
-
-/**
- * Encode packet as string.
- *
- * @param {Object} packet
- * @return {String} encoded
- * @api private
- */
-
-function encodeAsString(obj) {
-
-  // first is type
-  var str = '' + obj.type;
-
-  // attachments if we have them
-  if (exports.BINARY_EVENT === obj.type || exports.BINARY_ACK === obj.type) {
-    str += obj.attachments + '-';
-  }
-
-  // if we have a namespace other than `/`
-  // we append it followed by a comma `,`
-  if (obj.nsp && '/' !== obj.nsp) {
-    str += obj.nsp + ',';
-  }
-
-  // immediately followed by the id
-  if (null != obj.id) {
-    str += obj.id;
-  }
-
-  // json data
-  if (null != obj.data) {
-    str += JSON.stringify(obj.data);
-  }
-
-  debug('encoded %j as %s', obj, str);
-  return str;
-}
-
-/**
- * Encode packet as 'buffer sequence' by removing blobs, and
- * deconstructing packet into object with placeholders and
- * a list of buffers.
- *
- * @param {Object} packet
- * @return {Buffer} encoded
- * @api private
- */
-
-function encodeAsBinary(obj, callback) {
-
-  function writeEncoding(bloblessData) {
-    var deconstruction = binary.deconstructPacket(bloblessData);
-    var pack = encodeAsString(deconstruction.packet);
-    var buffers = deconstruction.buffers;
-
-    buffers.unshift(pack); // add packet info to beginning of data list
-    callback(buffers); // write all the buffers
-  }
-
-  binary.removeBlobs(obj, writeEncoding);
-}
-
-/**
- * A socket.io Decoder instance
- *
- * @return {Object} decoder
- * @api public
- */
-
-function Decoder() {
-  this.reconstructor = null;
-}
-
-/**
- * Mix in `Emitter` with Decoder.
- */
-
-Emitter(Decoder.prototype);
-
-/**
- * Decodes an ecoded packet string into packet JSON.
- *
- * @param {String} obj - encoded packet
- * @return {Object} packet
- * @api public
- */
-
-Decoder.prototype.add = function(obj) {
-  var packet;
-  if (typeof obj === 'string') {
-    packet = decodeString(obj);
-    if (exports.BINARY_EVENT === packet.type || exports.BINARY_ACK === packet.type) { // binary packet's json
-      this.reconstructor = new BinaryReconstructor(packet);
-
-      // no attachments, labeled binary but no binary data to follow
-      if (this.reconstructor.reconPack.attachments === 0) {
-        this.emit('decoded', packet);
-      }
-    } else { // non-binary full packet
-      this.emit('decoded', packet);
-    }
-  }
-  else if (isBuf(obj) || obj.base64) { // raw binary data
-    if (!this.reconstructor) {
-      throw new Error('got binary data when not reconstructing a packet');
-    } else {
-      packet = this.reconstructor.takeBinaryData(obj);
-      if (packet) { // received final buffer
-        this.reconstructor = null;
-        this.emit('decoded', packet);
-      }
-    }
-  }
-  else {
-    throw new Error('Unknown type: ' + obj);
-  }
-};
-
-/**
- * Decode a packet String (JSON data)
- *
- * @param {String} str
- * @return {Object} packet
- * @api private
- */
-
-function decodeString(str) {
-  var i = 0;
-  // look up type
-  var p = {
-    type: Number(str.charAt(0))
-  };
-
-  if (null == exports.types[p.type]) return error();
-
-  // look up attachments if type binary
-  if (exports.BINARY_EVENT === p.type || exports.BINARY_ACK === p.type) {
-    var buf = '';
-    while (str.charAt(++i) !== '-') {
-      buf += str.charAt(i);
-      if (i == str.length) break;
-    }
-    if (buf != Number(buf) || str.charAt(i) !== '-') {
-      throw new Error('Illegal attachments');
-    }
-    p.attachments = Number(buf);
-  }
-
-  // look up namespace (if any)
-  if ('/' === str.charAt(i + 1)) {
-    p.nsp = '';
-    while (++i) {
-      var c = str.charAt(i);
-      if (',' === c) break;
-      p.nsp += c;
-      if (i === str.length) break;
-    }
-  } else {
-    p.nsp = '/';
-  }
-
-  // look up id
-  var next = str.charAt(i + 1);
-  if ('' !== next && Number(next) == next) {
-    p.id = '';
-    while (++i) {
-      var c = str.charAt(i);
-      if (null == c || Number(c) != c) {
-        --i;
-        break;
-      }
-      p.id += str.charAt(i);
-      if (i === str.length) break;
-    }
-    p.id = Number(p.id);
-  }
-
-  // look up json data
-  if (str.charAt(++i)) {
-    p = tryParse(p, str.substr(i));
-  }
-
-  debug('decoded %s as %j', str, p);
-  return p;
-}
-
-function tryParse(p, str) {
-  try {
-    p.data = JSON.parse(str);
-  } catch(e){
-    return error();
-  }
-  return p; 
-}
-
-/**
- * Deallocates a parser's resources
- *
- * @api public
- */
-
-Decoder.prototype.destroy = function() {
-  if (this.reconstructor) {
-    this.reconstructor.finishedReconstruction();
-  }
-};
-
-/**
- * A manager of a binary event's 'buffer sequence'. Should
- * be constructed whenever a packet of type BINARY_EVENT is
- * decoded.
- *
- * @param {Object} packet
- * @return {BinaryReconstructor} initialized reconstructor
- * @api private
- */
-
-function BinaryReconstructor(packet) {
-  this.reconPack = packet;
-  this.buffers = [];
-}
-
-/**
- * Method to be called when binary data received from connection
- * after a BINARY_EVENT packet.
- *
- * @param {Buffer | ArrayBuffer} binData - the raw binary data received
- * @return {null | Object} returns null if more binary data is expected or
- *   a reconstructed packet object if all buffers have been received.
- * @api private
- */
-
-BinaryReconstructor.prototype.takeBinaryData = function(binData) {
-  this.buffers.push(binData);
-  if (this.buffers.length === this.reconPack.attachments) { // done with buffer list
-    var packet = binary.reconstructPacket(this.reconPack, this.buffers);
-    this.finishedReconstruction();
-    return packet;
-  }
-  return null;
-};
-
-/**
- * Cleans up binary packet reconstruction variables.
- *
- * @api private
- */
-
-BinaryReconstructor.prototype.finishedReconstruction = function() {
-  this.reconPack = null;
-  this.buffers = [];
-};
-
-function error() {
-  return {
-    type: exports.ERROR,
-    data: 'parser error'
-  };
-}
-
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {// browser shim for xmlhttprequest module
-
-var hasCORS = __webpack_require__(113);
-
-module.exports = function (opts) {
-  var xdomain = opts.xdomain;
-
-  // scheme must be same when usign XDomainRequest
-  // http://blogs.msdn.com/b/ieinternals/archive/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds.aspx
-  var xscheme = opts.xscheme;
-
-  // XDomainRequest has a flow of not sending cookie, therefore it should be disabled as a default.
-  // https://github.com/Automattic/engine.io-client/pull/217
-  var enablesXDR = opts.enablesXDR;
-
-  // XMLHttpRequest can be disabled on IE
-  try {
-    if ('undefined' !== typeof XMLHttpRequest && (!xdomain || hasCORS)) {
-      return new XMLHttpRequest();
-    }
-  } catch (e) { }
-
-  // Use XDomainRequest for IE8 if enablesXDR is true
-  // because loading bar keeps flashing when using jsonp-polling
-  // https://github.com/yujiosaka/socke.io-ie8-loading-example
-  try {
-    if ('undefined' !== typeof XDomainRequest && !xscheme && enablesXDR) {
-      return new XDomainRequest();
-    }
-  } catch (e) { }
-
-  if (!xdomain) {
-    try {
-      return new global[['Active'].concat('Object').join('X')]('Microsoft.XMLHTTP');
-    } catch (e) { }
-  }
-};
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Module dependencies.
- */
-
-var parser = __webpack_require__(9);
-var Emitter = __webpack_require__(8);
-
-/**
- * Module exports.
- */
-
-module.exports = Transport;
-
-/**
- * Transport abstract constructor.
- *
- * @param {Object} options.
- * @api private
- */
-
-function Transport (opts) {
-  this.path = opts.path;
-  this.hostname = opts.hostname;
-  this.port = opts.port;
-  this.secure = opts.secure;
-  this.query = opts.query;
-  this.timestampParam = opts.timestampParam;
-  this.timestampRequests = opts.timestampRequests;
-  this.readyState = '';
-  this.agent = opts.agent || false;
-  this.socket = opts.socket;
-  this.enablesXDR = opts.enablesXDR;
-
-  // SSL options for Node.js client
-  this.pfx = opts.pfx;
-  this.key = opts.key;
-  this.passphrase = opts.passphrase;
-  this.cert = opts.cert;
-  this.ca = opts.ca;
-  this.ciphers = opts.ciphers;
-  this.rejectUnauthorized = opts.rejectUnauthorized;
-  this.forceNode = opts.forceNode;
-
-  // other options for Node.js client
-  this.extraHeaders = opts.extraHeaders;
-  this.localAddress = opts.localAddress;
-}
-
-/**
- * Mix in `Emitter`.
- */
-
-Emitter(Transport.prototype);
-
-/**
- * Emits an error.
- *
- * @param {String} str
- * @return {Transport} for chaining
- * @api public
- */
-
-Transport.prototype.onError = function (msg, desc) {
-  var err = new Error(msg);
-  err.type = 'TransportError';
-  err.description = desc;
-  this.emit('error', err);
-  return this;
-};
-
-/**
- * Opens the transport.
- *
- * @api public
- */
-
-Transport.prototype.open = function () {
-  if ('closed' === this.readyState || '' === this.readyState) {
-    this.readyState = 'opening';
-    this.doOpen();
-  }
-
-  return this;
-};
-
-/**
- * Closes the transport.
- *
- * @api private
- */
-
-Transport.prototype.close = function () {
-  if ('opening' === this.readyState || 'open' === this.readyState) {
-    this.doClose();
-    this.onClose();
-  }
-
-  return this;
-};
-
-/**
- * Sends multiple packets.
- *
- * @param {Array} packets
- * @api private
- */
-
-Transport.prototype.send = function (packets) {
-  if ('open' === this.readyState) {
-    this.write(packets);
-  } else {
-    throw new Error('Transport not open');
-  }
-};
-
-/**
- * Called upon open
- *
- * @api private
- */
-
-Transport.prototype.onOpen = function () {
-  this.readyState = 'open';
-  this.writable = true;
-  this.emit('open');
-};
-
-/**
- * Called with data.
- *
- * @param {String} data
- * @api private
- */
-
-Transport.prototype.onData = function (data) {
-  var packet = parser.decodePacket(data, this.socket.binaryType);
-  this.onPacket(packet);
-};
-
-/**
- * Called with a decoded packet.
- */
-
-Transport.prototype.onPacket = function (packet) {
-  this.emit('packet', packet);
-};
-
-/**
- * Called upon close.
- *
- * @api private
- */
-
-Transport.prototype.onClose = function () {
-  this.readyState = 'closed';
-  this.emit('close');
-};
-
-
-/***/ }),
-/* 29 */,
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _Notify = __webpack_require__(15);
-
-var _Notify2 = _interopRequireDefault(_Notify);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * Проверяем корректность email
- * @param {string} email
- */
-function isCorrectEmail(email) {
-  return email.match(new RegExp('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$'));
-}
-
-/**
- * Проверяем корректность поля формы
- * @param {string} text
- * @param {int} minLenField
- * @param {int} maxLenField
- */
-function isCorrectTextField(text, minLenField, maxLenField) {
-  return text.match(new RegExp('^[a-zA-Z0-9_-]{' + minLenField + ',' + maxLenField + '}$'));
-}
-
-/**
- * Класс валидации формы входа
- * @module ValidSignInForm
- */
-
-var ValidSignInForm = function () {
-  /**
-   * @param {string} email
-   * @param {string} password
-   * @constructor
-   */
-  function ValidSignInForm(email, password) {
-    _classCallCheck(this, ValidSignInForm);
-
-    this.email = email;
-    this.password = password;
-    // this.currentForm = form;
-
-    this.notify = new _Notify2.default();
-  }
-
-  /**
-   * Валидируем форму
-   * @returns {boolean}
-   */
-
-
-  _createClass(ValidSignInForm, [{
-    key: 'validForm',
-    value: function validForm() {
-      var flag = true;
-
-      var minLenPassword = 6,
-          maxLenPassword = 18;
-
-      if (!isCorrectEmail(this.email)) {
-        flag = false;
-        this.notify.notify('invalid email');
-      }
-
-      if (!isCorrectTextField(this.password, minLenPassword, maxLenPassword)) {
-        flag = false;
-        this.notify.notify('invalid password');
-      }
-
-      return flag;
-    }
-  }]);
-
-  return ValidSignInForm;
-}();
-
-exports.default = ValidSignInForm;
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _Notify = __webpack_require__(15);
-
-var _Notify2 = _interopRequireDefault(_Notify);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * Проверяем корректность поля формы
- * @param {string} text
- * @param {int} minLenField
- * @param {int} maxLenField
- */
-function isCorrectTextField(text, minLenField, maxLenField) {
-	return text.match(new RegExp('^[a-zA-Z0-9_-]{' + minLenField + ',' + maxLenField + '}$'));
-}
-
-/**
- * Проверяем корректность email
- * @param {string} email
- */
-function isCorrectEmail(email) {
-	return email.match(new RegExp('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$'));
-}
-
-/**
- * Проверяем пароль на совпадение
- * @param {string} pswd
- * @param {string} pswdRepeat
- */
-function isSamePasswords(pswd, pswdRepeat) {
-	return pswd === pswdRepeat && pswd !== '' && pswdRepeat !== '';
-}
-
-/**
- * Класс валидации формы регистрации
- * @module ValidSignUpForm
- */
-
-var ValidSignUpForm = function () {
-	/**
-  * @param {string} login
-  * @param {string} email
-  * @param {string} password
-  * @param {string} repeatPassword
-  * @constructor
-  */
-	function ValidSignUpForm(login, email, password, repeatPassword) {
-		_classCallCheck(this, ValidSignUpForm);
-
-		this.username = login;
-		this.email = email;
-		this.password = password;
-		this.repeatPassword = repeatPassword;
-		// this.currentForm = form;
-
-		this.notify = new _Notify2.default();
-	}
-
-	/**
-  * Валидируем форму
-  * @returns {boolean}
-  */
-
-
-	_createClass(ValidSignUpForm, [{
-		key: 'validForm',
-		value: function validForm() {
-			var flag = true;
-
-			var minLenUsername = 4,
-			    maxLenUsername = 15,
-			    minLenPassword = 6,
-			    maxLenPassword = 18;
-
-			if (!isCorrectTextField(this.username, minLenUsername, maxLenUsername)) {
-				flag = false;
-				this.notify.notify('invalid username');
-			}
-
-			if (!isCorrectEmail(this.email)) {
-				flag = false;
-				this.notify.notify('invalid email');
-			}
-
-			if (!isCorrectTextField(this.password, minLenPassword, maxLenPassword)) {
-				flag = false;
-				this.notify.notify('invalid password');
-			}
-
-			if (!isSamePasswords(this.password, this.repeatPassword)) {
-				flag = false;
-				this.notify.notify('error repeat password');
-			}
-
-			return flag;
-		}
-	}]);
-
-	return ValidSignUpForm;
-}();
-
-exports.default = ValidSignUpForm;
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _BlockComponents = __webpack_require__(5);
-
-var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
-
-var _Menu = __webpack_require__(78);
-
-var _Menu2 = _interopRequireDefault(_Menu);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-// import './Menu.scss';
-
-/**
- * Класс Menu-а
- * @module Menu
- */
-var Menu = function (_Block) {
-  _inherits(Menu, _Block);
-
-  /**
-   * @param {string} [tagName='div'] - tagName блока
-   * @param {*} [attrs={}] - объект с атрибутами блока
-   * @param {string[]} [classes=[]] - список имён классов
-   * @param {*} [data={}] - объект с данными блока
-   * @constructor
-   */
-  function Menu() {
-    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-    var data = arguments[3];
-
-    _classCallCheck(this, Menu);
-
-    return _possibleConstructorReturn(this, (Menu.__proto__ || Object.getPrototypeOf(Menu)).call(this, tagName, attrs, classes, data));
-  }
-
-  /**
-   * Получить Menu
-   */
-
-
-  _createClass(Menu, [{
-    key: 'getClassElement',
-    value: function getClassElement() {
-      var data = this.getData();
-      this.setHTML((0, _Menu2.default)({ data: data }));
-      return this.getElement();
-    }
-  }]);
-
-  return Menu;
-}(_BlockComponents2.default);
-
-exports.default = Menu;
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _BlockComponents = __webpack_require__(5);
-
-var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
-
-var _Table = __webpack_require__(81);
-
-var _Table2 = _interopRequireDefault(_Table);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-// import './Table.scss';
-
-/**
- * Класс Table
- * @module Table
- */
-var Table = function (_Block) {
-  _inherits(Table, _Block);
-
-  /**
-   * @param {string} [tagName='div'] - tagName блока
-   * @param {*} [attrs={}] - объект с атрибутами блока
-   * @param {string[]} [classes=[]] - список имён классов
-   * @param {*} [data={}] - объект с данными блока
-   * @constructor
-   */
-  function Table() {
-    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-    var data = arguments[3];
-
-    _classCallCheck(this, Table);
-
-    return _possibleConstructorReturn(this, (Table.__proto__ || Object.getPrototypeOf(Table)).call(this, tagName, attrs, classes, data));
-  }
-
-  /**
-   * Получить Table
-   */
-
-
-  _createClass(Table, [{
-    key: 'getClassElement',
-    value: function getClassElement() {
-      var data = this.getData();
-
-      this.setHTML((0, _Table2.default)({ data: data }));
-      return this.getElement();
-    }
-  }]);
-
-  return Table;
-}(_BlockComponents2.default);
-
-exports.default = Table;
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var boot_state_1 = __webpack_require__(90);
-var preloader_state_1 = __webpack_require__(92);
-var main_state_1 = __webpack_require__(98);
-var world_state_1 = __webpack_require__(99);
-// import WorldState        from './states/singPlayerWorld.state';
-var PauseMenu_1 = __webpack_require__(134);
-var GameOverMenu_1 = __webpack_require__(135);
-var App = /** @class */ (function (_super) {
-    __extends(App, _super);
-    function App(User) {
-        var _this = _super.call(this, document.documentElement.clientWidth, document.documentElement.clientHeight, Phaser.AUTO, 'content', null) || this;
-        _this.user = User;
-        _this.state.add('boot', boot_state_1.default);
-        _this.state.add('preloader', preloader_state_1.default);
-        _this.state.add('main', main_state_1.default);
-        _this.state.add('world', world_state_1.default);
-        _this.state.add('PauseMenu', PauseMenu_1.default, false);
-        _this.state.add('GameOverMenu', GameOverMenu_1.default, false);
-        _this.state.start('boot'); // Initialize and start `boot` state
-        return _this;
-    }
-    return App;
-}(Phaser.Game));
-exports.default = App;
-
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports) {
-
-module.exports = "../../img/4119334de3c71843520250c6c9f0594d.jpg";
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports) {
-
-module.exports = "../../img/81d724516f8076962ff565d9defc08ba.png";
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports) {
-
-module.exports = "../../img/5733b613e5ea55c939a6276c4b4b7aa0.png";
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports) {
-
-module.exports = "../../img/4119334de3c71843520250c6c9f0594d.jpg";
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports) {
-
-module.exports = "../../img/b17c373a3f0117f56d7b0af1a9839bb7.png";
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports) {
-
-module.exports = "../../img/217b9d48bac4d47a48cc3bc389cd422e.png";
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var TankBody = /** @class */ (function (_super) {
-    __extends(TankBody, _super);
-    function TankBody(game, cursor) {
-        var _this = _super.call(this, game, 0, 0) || this;
-        _this._game = game;
-        _this._cursor = cursor;
-        _this.create();
-        return _this;
-    }
-    TankBody.prototype.create = function () {
-        this._body = this._game.add.sprite(50, 400, 'tank', 'tank1');
-        console.log("body height = " + this._body.height + " body width = " + this._body.width);
-        this._body.anchor.setTo(0.5, 0.5);
-        this._game.physics.arcade.enable(this._body);
-        this._body.body.maxVelocity.setTo(100, 100);
-        this._body.body.collideWorldBounds = true;
-    };
-    TankBody.prototype.update = function () {
-        // величина угла поворота
-        if (this._cursor.left.isDown) {
-            this._body.angle -= 5;
-        }
-        else if (this._cursor.right.isDown) {
-            this._body.angle += 5;
-        }
-        // скорость
-        if (this._cursor.up.isDown) {
-            this._currentSpeed = 210;
-        }
-        else {
-            if (this._currentSpeed > 0) {
-                this._currentSpeed -= 100; // скорость торможения
-            }
-        }
-        // движение и поворотами
-        if (this._currentSpeed > 0) {
-            this._game.physics.arcade.velocityFromRotation(this._body.rotation, this._currentSpeed, this._body.body.velocity);
-        }
-    };
-    Object.defineProperty(TankBody.prototype, "currentPosition", {
-        get: function () {
-            return {
-                xCoordinate: this._body.x,
-                yCoordinate: this._body.y,
-            };
-        },
-        set: function (coordinate) {
-            this._body.x = coordinate.xCoordinate;
-            this._body.y = coordinate.yCoordinate;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(TankBody.prototype, "currentPlatformAngle", {
-        set: function (angle) {
-            this._body.angle = angle;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    TankBody.prototype.setPlatformAngle = function (angle) {
-        this._body.angle = angle;
-    };
-    TankBody.prototype.kill = function () {
-        this._body.kill();
-    };
-    return TankBody;
-}(Phaser.Sprite));
-exports.default = TankBody;
-
-
-/***/ }),
-/* 42 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var TankTurret = /** @class */ (function (_super) {
-    __extends(TankTurret, _super);
-    function TankTurret(game, cursor) {
-        var _this = _super.call(this, game, 0, 0) || this;
-        _this._game = game;
-        _this._cursor = cursor;
-        _this.create();
-        return _this;
-    }
-    TankTurret.prototype.create = function () {
-        this._turret = this._game.add.sprite(50, 400, 'tank', 'turret');
-        this._turret.anchor.setTo(0.5, 0.5);
-    };
-    TankTurret.prototype.update = function () {
-        this._turret.rotation = this._game.physics.arcade.angleToPointer(this._turret);
-    };
-    Object.defineProperty(TankTurret.prototype, "turretCoordinate", {
-        set: function (coordinate) {
-            this._turret.x = coordinate.xCoordinate;
-            this._turret.y = coordinate.yCoordinate;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(TankTurret.prototype, "turretAngle", {
-        set: function (angle) {
-            this._turret.angle = angle;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    TankTurret.prototype.kill = function () {
-        this._turret.kill();
-    };
-    return TankTurret;
-}(Phaser.Sprite));
-exports.default = TankTurret;
-
-
-/***/ }),
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var Lable = /** @class */ (function () {
-    function Lable(game, coordinate, content, scale) {
-        this._game = game;
-        this._textStyle = { font: "bold 32px Arial", fill: "#120dff", boundsAlignH: "center", boundsAlignV: "middle" };
-        this._text = this._game.add.text(coordinate.xCoordinate, coordinate.yCoordinate, content, this._textStyle);
-        this._text.anchor.set(0.5);
-        this._scale = scale;
-    }
-    Object.defineProperty(Lable.prototype, "currentPosition", {
-        set: function (coordinate) {
-            this._text.x = coordinate.xCoordinate;
-            this._text.y = coordinate.yCoordinate - 70;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Lable.prototype.kill = function () {
-        this._text.kill();
-    };
-    return Lable;
-}());
-exports.default = Lable;
-
-
-/***/ }),
-/* 44 */
-/***/ (function(module, exports) {
-
-var HealthBar = function (game, providedConfig) {
-    this.game = game;
-    this.setupConfiguration(providedConfig);
-    this.setPosition(this.config.x, this.config.y);
-    this.drawBackground();
-    this.drawHealthBar();
-    this.setFixedToCamera(this.config.isFixedToCamera);
-};
-HealthBar.prototype.constructor = HealthBar;
-HealthBar.prototype.setupConfiguration = function (providedConfig) {
-    this.config = this.mergeWithDefaultConfiguration(providedConfig);
-    this.flipped = this.config.flipped;
-};
-HealthBar.prototype.mergeWithDefaultConfiguration = function (newConfig) {
-    var defaultConfig = {
-        width: 250,
-        height: 40,
-        x: 0,
-        y: 0,
-        bg: {
-            color: '#d40a09'
-        },
-        bar: {
-            color: '#08ff22'
-        },
-        animationDuration: 200,
-        flipped: false,
-        isFixedToCamera: false
-    };
-    return mergeObjetcs(defaultConfig, newConfig);
-};
-function mergeObjetcs(targetObj, newObj) {
-    for (var p in newObj) {
-        try {
-            targetObj[p] = newObj[p].constructor == Object ? mergeObjetcs(targetObj[p], newObj[p]) : newObj[p];
-        }
-        catch (e) {
-            targetObj[p] = newObj[p];
-        }
-    }
-    return targetObj;
-}
-HealthBar.prototype.drawBackground = function () {
-    var bmd = this.game.add.bitmapData(this.config.width, this.config.height);
-    bmd.ctx.fillStyle = this.config.bg.color;
-    bmd.ctx.beginPath();
-    bmd.ctx.rect(0, 0, this.config.width, this.config.height);
-    bmd.ctx.fill();
-    bmd.update();
-    this.bgSprite = this.game.add.sprite(this.x, this.y, bmd);
-    this.bgSprite.anchor.set(0.5);
-    if (this.flipped) {
-        this.bgSprite.scale.x = -1;
-    }
-};
-HealthBar.prototype.drawHealthBar = function () {
-    var bmd = this.game.add.bitmapData(this.config.width, this.config.height);
-    bmd.ctx.fillStyle = this.config.bar.color;
-    bmd.ctx.beginPath();
-    bmd.ctx.rect(0, 0, this.config.width, this.config.height);
-    bmd.ctx.fill();
-    bmd.update();
-    this.barSprite = this.game.add.sprite(this.x - this.bgSprite.width / 2, this.y, bmd);
-    this.barSprite.anchor.y = 0.5;
-    if (this.flipped) {
-        this.barSprite.scale.x = -1;
-    }
-};
-HealthBar.prototype.setPosition = function (x, y) {
-    this.x = x;
-    this.y = y;
-    if (this.bgSprite !== undefined && this.barSprite !== undefined) {
-        this.bgSprite.position.x = x;
-        this.bgSprite.position.y = y;
-        this.barSprite.position.x = x - this.config.width / 2;
-        this.barSprite.position.y = y;
-    }
-};
-HealthBar.prototype.setPercent = function (newValue) {
-    if (newValue < 0)
-        newValue = 0;
-    if (newValue > 100)
-        newValue = 100;
-    var newWidth = (newValue * this.config.width) / 100;
-    this.setWidth(newWidth);
-};
-/*
- Hex format, example #ad3aa3
- */
-HealthBar.prototype.setBarColor = function (newColor) {
-    var bmd = this.barSprite.key;
-    bmd.update();
-    var currentRGBColor = bmd.getPixelRGB(0, 0);
-    var newRGBColor = hexToRgb(newColor);
-    bmd.replaceRGB(currentRGBColor.r, currentRGBColor.g, currentRGBColor.b, 255, newRGBColor.r, newRGBColor.g, newRGBColor.b, 255);
-};
-HealthBar.prototype.setWidth = function (newWidth) {
-    if (this.flipped) {
-        newWidth = -1 * newWidth;
-    }
-    this.game.add.tween(this.barSprite).to({ width: newWidth }, this.config.animationDuration, Phaser.Easing.Linear.None, true);
-};
-HealthBar.prototype.setFixedToCamera = function (fixedToCamera) {
-    this.bgSprite.fixedToCamera = fixedToCamera;
-    this.barSprite.fixedToCamera = fixedToCamera;
-};
-HealthBar.prototype.kill = function () {
-    this.bgSprite.kill();
-    this.barSprite.kill();
-};
-module.exports = HealthBar;
-/**
- Utils
- */
-function hexToRgb(hex) {
-    // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
-    var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-    hex = hex.replace(shorthandRegex, function (m, r, g, b) {
-        return r + r + g + g + b + b;
-    });
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-    } : null;
-}
-
-
-/***/ }),
-/* 45 */
-/***/ (function(module, exports) {
-
-/**
- * Parses an URI
- *
- * @author Steven Levithan <stevenlevithan.com> (MIT license)
- * @api private
- */
-
-var re = /^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/;
-
-var parts = [
-    'source', 'protocol', 'authority', 'userInfo', 'user', 'password', 'host', 'port', 'relative', 'path', 'directory', 'file', 'query', 'anchor'
-];
-
-module.exports = function parseuri(str) {
-    var src = str,
-        b = str.indexOf('['),
-        e = str.indexOf(']');
-
-    if (b != -1 && e != -1) {
-        str = str.substring(0, b) + str.substring(b, e).replace(/:/g, ';') + str.substring(e, str.length);
-    }
-
-    var m = re.exec(str || ''),
-        uri = {},
-        i = 14;
-
-    while (i--) {
-        uri[parts[i]] = m[i] || '';
-    }
-
-    if (b != -1 && e != -1) {
-        uri.source = src;
-        uri.host = uri.host.substring(1, uri.host.length - 1).replace(/;/g, ':');
-        uri.authority = uri.authority.replace('[', '').replace(']', '').replace(/;/g, ':');
-        uri.ipv6uri = true;
-    }
-
-    return uri;
-};
-
-
-/***/ }),
-/* 46 */
-/***/ (function(module, exports) {
-
-/**
- * Helpers.
- */
-
-var s = 1000;
-var m = s * 60;
-var h = m * 60;
-var d = h * 24;
-var y = d * 365.25;
-
-/**
- * Parse or format the given `val`.
- *
- * Options:
- *
- *  - `long` verbose formatting [false]
- *
- * @param {String|Number} val
- * @param {Object} [options]
- * @throws {Error} throw an error if val is not a non-empty string or a number
- * @return {String|Number}
- * @api public
- */
-
-module.exports = function(val, options) {
-  options = options || {};
-  var type = typeof val;
-  if (type === 'string' && val.length > 0) {
-    return parse(val);
-  } else if (type === 'number' && isNaN(val) === false) {
-    return options.long ? fmtLong(val) : fmtShort(val);
-  }
-  throw new Error(
-    'val is not a non-empty string or a valid number. val=' +
-      JSON.stringify(val)
-  );
-};
-
-/**
- * Parse the given `str` and return milliseconds.
- *
- * @param {String} str
- * @return {Number}
- * @api private
- */
-
-function parse(str) {
-  str = String(str);
-  if (str.length > 100) {
-    return;
-  }
-  var match = /^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(
-    str
-  );
-  if (!match) {
-    return;
-  }
-  var n = parseFloat(match[1]);
-  var type = (match[2] || 'ms').toLowerCase();
-  switch (type) {
-    case 'years':
-    case 'year':
-    case 'yrs':
-    case 'yr':
-    case 'y':
-      return n * y;
-    case 'days':
-    case 'day':
-    case 'd':
-      return n * d;
-    case 'hours':
-    case 'hour':
-    case 'hrs':
-    case 'hr':
-    case 'h':
-      return n * h;
-    case 'minutes':
-    case 'minute':
-    case 'mins':
-    case 'min':
-    case 'm':
-      return n * m;
-    case 'seconds':
-    case 'second':
-    case 'secs':
-    case 'sec':
-    case 's':
-      return n * s;
-    case 'milliseconds':
-    case 'millisecond':
-    case 'msecs':
-    case 'msec':
-    case 'ms':
-      return n;
-    default:
-      return undefined;
-  }
-}
-
-/**
- * Short format for `ms`.
- *
- * @param {Number} ms
- * @return {String}
- * @api private
- */
-
-function fmtShort(ms) {
-  if (ms >= d) {
-    return Math.round(ms / d) + 'd';
-  }
-  if (ms >= h) {
-    return Math.round(ms / h) + 'h';
-  }
-  if (ms >= m) {
-    return Math.round(ms / m) + 'm';
-  }
-  if (ms >= s) {
-    return Math.round(ms / s) + 's';
-  }
-  return ms + 'ms';
-}
-
-/**
- * Long format for `ms`.
- *
- * @param {Number} ms
- * @return {String}
- * @api private
- */
-
-function fmtLong(ms) {
-  return plural(ms, d, 'day') ||
-    plural(ms, h, 'hour') ||
-    plural(ms, m, 'minute') ||
-    plural(ms, s, 'second') ||
-    ms + ' ms';
-}
-
-/**
- * Pluralization helper.
- */
-
-function plural(ms, n, name) {
-  if (ms < n) {
-    return;
-  }
-  if (ms < n * 1.5) {
-    return Math.floor(ms / n) + ' ' + name;
-  }
-  return Math.ceil(ms / n) + ' ' + name + 's';
-}
-
-
-/***/ }),
-/* 47 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {/* global Blob File */
-
-/*
- * Module requirements.
- */
-
-var isArray = __webpack_require__(108);
-
-var toString = Object.prototype.toString;
-var withNativeBlob = typeof global.Blob === 'function' || toString.call(global.Blob) === '[object BlobConstructor]';
-var withNativeFile = typeof global.File === 'function' || toString.call(global.File) === '[object FileConstructor]';
-
-/**
- * Module exports.
- */
-
-module.exports = hasBinary;
-
-/**
- * Checks for binary data.
- *
- * Supports Buffer, ArrayBuffer, Blob and File.
- *
- * @param {Object} anything
- * @api public
- */
-
-function hasBinary (obj) {
-  if (!obj || typeof obj !== 'object') {
-    return false;
-  }
-
-  if (isArray(obj)) {
-    for (var i = 0, l = obj.length; i < l; i++) {
-      if (hasBinary(obj[i])) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  if ((typeof global.Buffer === 'function' && global.Buffer.isBuffer && global.Buffer.isBuffer(obj)) ||
-     (typeof global.ArrayBuffer === 'function' && obj instanceof ArrayBuffer) ||
-     (withNativeBlob && obj instanceof Blob) ||
-     (withNativeFile && obj instanceof File)
-    ) {
-    return true;
-  }
-
-  // see: https://github.com/Automattic/has-binary/pull/4
-  if (obj.toJSON && typeof obj.toJSON === 'function' && arguments.length === 1) {
-    return hasBinary(obj.toJSON(), true);
-  }
-
-  for (var key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key) && hasBinary(obj[key])) {
-      return true;
-    }
-  }
-
-  return false;
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 48 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {
-module.exports = isBuf;
-
-/**
- * Returns true if obj is a buffer or an arraybuffer.
- *
- * @api private
- */
-
-function isBuf(obj) {
-  return (global.Buffer && global.Buffer.isBuffer(obj)) ||
-         (global.ArrayBuffer && obj instanceof ArrayBuffer);
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/**
- * Module dependencies.
- */
-
-var eio = __webpack_require__(111);
-var Socket = __webpack_require__(54);
-var Emitter = __webpack_require__(8);
-var parser = __webpack_require__(26);
-var on = __webpack_require__(55);
-var bind = __webpack_require__(56);
-var debug = __webpack_require__(11)('socket.io-client:manager');
-var indexOf = __webpack_require__(53);
-var Backoff = __webpack_require__(127);
-
-/**
- * IE6+ hasOwnProperty
- */
-
-var has = Object.prototype.hasOwnProperty;
-
-/**
- * Module exports
- */
-
-module.exports = Manager;
-
-/**
- * `Manager` constructor.
- *
- * @param {String} engine instance or engine uri/opts
- * @param {Object} options
- * @api public
- */
-
-function Manager (uri, opts) {
-  if (!(this instanceof Manager)) return new Manager(uri, opts);
-  if (uri && ('object' === typeof uri)) {
-    opts = uri;
-    uri = undefined;
-  }
-  opts = opts || {};
-
-  opts.path = opts.path || '/socket.io';
-  this.nsps = {};
-  this.subs = [];
-  this.opts = opts;
-  this.reconnection(opts.reconnection !== false);
-  this.reconnectionAttempts(opts.reconnectionAttempts || Infinity);
-  this.reconnectionDelay(opts.reconnectionDelay || 1000);
-  this.reconnectionDelayMax(opts.reconnectionDelayMax || 5000);
-  this.randomizationFactor(opts.randomizationFactor || 0.5);
-  this.backoff = new Backoff({
-    min: this.reconnectionDelay(),
-    max: this.reconnectionDelayMax(),
-    jitter: this.randomizationFactor()
-  });
-  this.timeout(null == opts.timeout ? 20000 : opts.timeout);
-  this.readyState = 'closed';
-  this.uri = uri;
-  this.connecting = [];
-  this.lastPing = null;
-  this.encoding = false;
-  this.packetBuffer = [];
-  var _parser = opts.parser || parser;
-  this.encoder = new _parser.Encoder();
-  this.decoder = new _parser.Decoder();
-  this.autoConnect = opts.autoConnect !== false;
-  if (this.autoConnect) this.open();
-}
-
-/**
- * Propagate given event to sockets and emit on `this`
- *
- * @api private
- */
-
-Manager.prototype.emitAll = function () {
-  this.emit.apply(this, arguments);
-  for (var nsp in this.nsps) {
-    if (has.call(this.nsps, nsp)) {
-      this.nsps[nsp].emit.apply(this.nsps[nsp], arguments);
-    }
-  }
-};
-
-/**
- * Update `socket.id` of all sockets
- *
- * @api private
- */
-
-Manager.prototype.updateSocketIds = function () {
-  for (var nsp in this.nsps) {
-    if (has.call(this.nsps, nsp)) {
-      this.nsps[nsp].id = this.generateId(nsp);
-    }
-  }
-};
-
-/**
- * generate `socket.id` for the given `nsp`
- *
- * @param {String} nsp
- * @return {String}
- * @api private
- */
-
-Manager.prototype.generateId = function (nsp) {
-  return (nsp === '/' ? '' : (nsp + '#')) + this.engine.id;
-};
-
-/**
- * Mix in `Emitter`.
- */
-
-Emitter(Manager.prototype);
-
-/**
- * Sets the `reconnection` config.
- *
- * @param {Boolean} true/false if it should automatically reconnect
- * @return {Manager} self or value
- * @api public
- */
-
-Manager.prototype.reconnection = function (v) {
-  if (!arguments.length) return this._reconnection;
-  this._reconnection = !!v;
-  return this;
-};
-
-/**
- * Sets the reconnection attempts config.
- *
- * @param {Number} max reconnection attempts before giving up
- * @return {Manager} self or value
- * @api public
- */
-
-Manager.prototype.reconnectionAttempts = function (v) {
-  if (!arguments.length) return this._reconnectionAttempts;
-  this._reconnectionAttempts = v;
-  return this;
-};
-
-/**
- * Sets the delay between reconnections.
- *
- * @param {Number} delay
- * @return {Manager} self or value
- * @api public
- */
-
-Manager.prototype.reconnectionDelay = function (v) {
-  if (!arguments.length) return this._reconnectionDelay;
-  this._reconnectionDelay = v;
-  this.backoff && this.backoff.setMin(v);
-  return this;
-};
-
-Manager.prototype.randomizationFactor = function (v) {
-  if (!arguments.length) return this._randomizationFactor;
-  this._randomizationFactor = v;
-  this.backoff && this.backoff.setJitter(v);
-  return this;
-};
-
-/**
- * Sets the maximum delay between reconnections.
- *
- * @param {Number} delay
- * @return {Manager} self or value
- * @api public
- */
-
-Manager.prototype.reconnectionDelayMax = function (v) {
-  if (!arguments.length) return this._reconnectionDelayMax;
-  this._reconnectionDelayMax = v;
-  this.backoff && this.backoff.setMax(v);
-  return this;
-};
-
-/**
- * Sets the connection timeout. `false` to disable
- *
- * @return {Manager} self or value
- * @api public
- */
-
-Manager.prototype.timeout = function (v) {
-  if (!arguments.length) return this._timeout;
-  this._timeout = v;
-  return this;
-};
-
-/**
- * Starts trying to reconnect if reconnection is enabled and we have not
- * started reconnecting yet
- *
- * @api private
- */
-
-Manager.prototype.maybeReconnectOnOpen = function () {
-  // Only try to reconnect if it's the first time we're connecting
-  if (!this.reconnecting && this._reconnection && this.backoff.attempts === 0) {
-    // keeps reconnection from firing twice for the same reconnection loop
-    this.reconnect();
-  }
-};
-
-/**
- * Sets the current transport `socket`.
- *
- * @param {Function} optional, callback
- * @return {Manager} self
- * @api public
- */
-
-Manager.prototype.open =
-Manager.prototype.connect = function (fn, opts) {
-  debug('readyState %s', this.readyState);
-  if (~this.readyState.indexOf('open')) return this;
-
-  debug('opening %s', this.uri);
-  this.engine = eio(this.uri, this.opts);
-  var socket = this.engine;
-  var self = this;
-  this.readyState = 'opening';
-  this.skipReconnect = false;
-
-  // emit `open`
-  var openSub = on(socket, 'open', function () {
-    self.onopen();
-    fn && fn();
-  });
-
-  // emit `connect_error`
-  var errorSub = on(socket, 'error', function (data) {
-    debug('connect_error');
-    self.cleanup();
-    self.readyState = 'closed';
-    self.emitAll('connect_error', data);
-    if (fn) {
-      var err = new Error('Connection error');
-      err.data = data;
-      fn(err);
-    } else {
-      // Only do this if there is no fn to handle the error
-      self.maybeReconnectOnOpen();
-    }
-  });
-
-  // emit `connect_timeout`
-  if (false !== this._timeout) {
-    var timeout = this._timeout;
-    debug('connect attempt will timeout after %d', timeout);
-
-    // set timer
-    var timer = setTimeout(function () {
-      debug('connect attempt timed out after %d', timeout);
-      openSub.destroy();
-      socket.close();
-      socket.emit('error', 'timeout');
-      self.emitAll('connect_timeout', timeout);
-    }, timeout);
-
-    this.subs.push({
-      destroy: function () {
-        clearTimeout(timer);
-      }
-    });
-  }
-
-  this.subs.push(openSub);
-  this.subs.push(errorSub);
-
-  return this;
-};
-
-/**
- * Called upon transport open.
- *
- * @api private
- */
-
-Manager.prototype.onopen = function () {
-  debug('open');
-
-  // clear old subs
-  this.cleanup();
-
-  // mark as open
-  this.readyState = 'open';
-  this.emit('open');
-
-  // add new subs
-  var socket = this.engine;
-  this.subs.push(on(socket, 'data', bind(this, 'ondata')));
-  this.subs.push(on(socket, 'ping', bind(this, 'onping')));
-  this.subs.push(on(socket, 'pong', bind(this, 'onpong')));
-  this.subs.push(on(socket, 'error', bind(this, 'onerror')));
-  this.subs.push(on(socket, 'close', bind(this, 'onclose')));
-  this.subs.push(on(this.decoder, 'decoded', bind(this, 'ondecoded')));
-};
-
-/**
- * Called upon a ping.
- *
- * @api private
- */
-
-Manager.prototype.onping = function () {
-  this.lastPing = new Date();
-  this.emitAll('ping');
-};
-
-/**
- * Called upon a packet.
- *
- * @api private
- */
-
-Manager.prototype.onpong = function () {
-  this.emitAll('pong', new Date() - this.lastPing);
-};
-
-/**
- * Called with data.
- *
- * @api private
- */
-
-Manager.prototype.ondata = function (data) {
-  this.decoder.add(data);
-};
-
-/**
- * Called when parser fully decodes a packet.
- *
- * @api private
- */
-
-Manager.prototype.ondecoded = function (packet) {
-  this.emit('packet', packet);
-};
-
-/**
- * Called upon socket error.
- *
- * @api private
- */
-
-Manager.prototype.onerror = function (err) {
-  debug('error', err);
-  this.emitAll('error', err);
-};
-
-/**
- * Creates a new socket for the given `nsp`.
- *
- * @return {Socket}
- * @api public
- */
-
-Manager.prototype.socket = function (nsp, opts) {
-  var socket = this.nsps[nsp];
-  if (!socket) {
-    socket = new Socket(this, nsp, opts);
-    this.nsps[nsp] = socket;
-    var self = this;
-    socket.on('connecting', onConnecting);
-    socket.on('connect', function () {
-      socket.id = self.generateId(nsp);
-    });
-
-    if (this.autoConnect) {
-      // manually call here since connecting event is fired before listening
-      onConnecting();
-    }
-  }
-
-  function onConnecting () {
-    if (!~indexOf(self.connecting, socket)) {
-      self.connecting.push(socket);
-    }
-  }
-
-  return socket;
-};
-
-/**
- * Called upon a socket close.
- *
- * @param {Socket} socket
- */
-
-Manager.prototype.destroy = function (socket) {
-  var index = indexOf(this.connecting, socket);
-  if (~index) this.connecting.splice(index, 1);
-  if (this.connecting.length) return;
-
-  this.close();
-};
-
-/**
- * Writes a packet.
- *
- * @param {Object} packet
- * @api private
- */
-
-Manager.prototype.packet = function (packet) {
-  debug('writing packet %j', packet);
-  var self = this;
-  if (packet.query && packet.type === 0) packet.nsp += '?' + packet.query;
-
-  if (!self.encoding) {
-    // encode, then write to engine with result
-    self.encoding = true;
-    this.encoder.encode(packet, function (encodedPackets) {
-      for (var i = 0; i < encodedPackets.length; i++) {
-        self.engine.write(encodedPackets[i], packet.options);
-      }
-      self.encoding = false;
-      self.processPacketQueue();
-    });
-  } else { // add packet to the queue
-    self.packetBuffer.push(packet);
-  }
-};
-
-/**
- * If packet buffer is non-empty, begins encoding the
- * next packet in line.
- *
- * @api private
- */
-
-Manager.prototype.processPacketQueue = function () {
-  if (this.packetBuffer.length > 0 && !this.encoding) {
-    var pack = this.packetBuffer.shift();
-    this.packet(pack);
-  }
-};
-
-/**
- * Clean up transport subscriptions and packet buffer.
- *
- * @api private
- */
-
-Manager.prototype.cleanup = function () {
-  debug('cleanup');
-
-  var subsLength = this.subs.length;
-  for (var i = 0; i < subsLength; i++) {
-    var sub = this.subs.shift();
-    sub.destroy();
-  }
-
-  this.packetBuffer = [];
-  this.encoding = false;
-  this.lastPing = null;
-
-  this.decoder.destroy();
-};
-
-/**
- * Close the current socket.
- *
- * @api private
- */
-
-Manager.prototype.close =
-Manager.prototype.disconnect = function () {
-  debug('disconnect');
-  this.skipReconnect = true;
-  this.reconnecting = false;
-  if ('opening' === this.readyState) {
-    // `onclose` will not fire because
-    // an open event never happened
-    this.cleanup();
-  }
-  this.backoff.reset();
-  this.readyState = 'closed';
-  if (this.engine) this.engine.close();
-};
-
-/**
- * Called upon engine close.
- *
- * @api private
- */
-
-Manager.prototype.onclose = function (reason) {
-  debug('onclose');
-
-  this.cleanup();
-  this.backoff.reset();
-  this.readyState = 'closed';
-  this.emit('close', reason);
-
-  if (this._reconnection && !this.skipReconnect) {
-    this.reconnect();
-  }
-};
-
-/**
- * Attempt a reconnection.
- *
- * @api private
- */
-
-Manager.prototype.reconnect = function () {
-  if (this.reconnecting || this.skipReconnect) return this;
-
-  var self = this;
-
-  if (this.backoff.attempts >= this._reconnectionAttempts) {
-    debug('reconnect failed');
-    this.backoff.reset();
-    this.emitAll('reconnect_failed');
-    this.reconnecting = false;
-  } else {
-    var delay = this.backoff.duration();
-    debug('will wait %dms before reconnect attempt', delay);
-
-    this.reconnecting = true;
-    var timer = setTimeout(function () {
-      if (self.skipReconnect) return;
-
-      debug('attempting reconnect');
-      self.emitAll('reconnect_attempt', self.backoff.attempts);
-      self.emitAll('reconnecting', self.backoff.attempts);
-
-      // check again for the case socket closed in above events
-      if (self.skipReconnect) return;
-
-      self.open(function (err) {
-        if (err) {
-          debug('reconnect attempt error');
-          self.reconnecting = false;
-          self.reconnect();
-          self.emitAll('reconnect_error', err.data);
-        } else {
-          debug('reconnect success');
-          self.onreconnect();
-        }
-      });
-    }, delay);
-
-    this.subs.push({
-      destroy: function () {
-        clearTimeout(timer);
-      }
-    });
-  }
-};
-
-/**
- * Called upon successful reconnect.
- *
- * @api private
- */
-
-Manager.prototype.onreconnect = function () {
-  var attempt = this.backoff.attempts;
-  this.reconnecting = false;
-  this.backoff.reset();
-  this.updateSocketIds();
-  this.emitAll('reconnect', attempt);
-};
-
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {/**
- * Module dependencies
- */
-
-var XMLHttpRequest = __webpack_require__(27);
-var XHR = __webpack_require__(114);
-var JSONP = __webpack_require__(123);
-var websocket = __webpack_require__(124);
-
-/**
- * Export transports.
- */
-
-exports.polling = polling;
-exports.websocket = websocket;
-
-/**
- * Polling transport polymorphic constructor.
- * Decides on xhr vs jsonp based on feature detection.
- *
- * @api private
- */
-
-function polling (opts) {
-  var xhr;
-  var xd = false;
-  var xs = false;
-  var jsonp = false !== opts.jsonp;
-
-  if (global.location) {
-    var isSSL = 'https:' === location.protocol;
-    var port = location.port;
-
-    // some user agents have empty `location.port`
-    if (!port) {
-      port = isSSL ? 443 : 80;
-    }
-
-    xd = opts.hostname !== location.hostname || port !== opts.port;
-    xs = opts.secure !== isSSL;
-  }
-
-  opts.xdomain = xd;
-  opts.xscheme = xs;
-  xhr = new XMLHttpRequest(opts);
-
-  if ('open' in xhr && !opts.forceJSONP) {
-    return new XHR(opts);
-  } else {
-    if (!jsonp) throw new Error('JSONP disabled');
-    return new JSONP(opts);
-  }
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Module dependencies.
- */
-
-var Transport = __webpack_require__(28);
-var parseqs = __webpack_require__(17);
-var parser = __webpack_require__(9);
-var inherit = __webpack_require__(18);
-var yeast = __webpack_require__(52);
-var debug = __webpack_require__(19)('engine.io-client:polling');
-
-/**
- * Module exports.
- */
-
-module.exports = Polling;
-
-/**
- * Is XHR2 supported?
- */
-
-var hasXHR2 = (function () {
-  var XMLHttpRequest = __webpack_require__(27);
-  var xhr = new XMLHttpRequest({ xdomain: false });
-  return null != xhr.responseType;
-})();
-
-/**
- * Polling interface.
- *
- * @param {Object} opts
- * @api private
- */
-
-function Polling (opts) {
-  var forceBase64 = (opts && opts.forceBase64);
-  if (!hasXHR2 || forceBase64) {
-    this.supportsBinary = false;
-  }
-  Transport.call(this, opts);
-}
-
-/**
- * Inherits from Transport.
- */
-
-inherit(Polling, Transport);
-
-/**
- * Transport name.
- */
-
-Polling.prototype.name = 'polling';
-
-/**
- * Opens the socket (triggers polling). We write a PING message to determine
- * when the transport is open.
- *
- * @api private
- */
-
-Polling.prototype.doOpen = function () {
-  this.poll();
-};
-
-/**
- * Pauses polling.
- *
- * @param {Function} callback upon buffers are flushed and transport is paused
- * @api private
- */
-
-Polling.prototype.pause = function (onPause) {
-  var self = this;
-
-  this.readyState = 'pausing';
-
-  function pause () {
-    debug('paused');
-    self.readyState = 'paused';
-    onPause();
-  }
-
-  if (this.polling || !this.writable) {
-    var total = 0;
-
-    if (this.polling) {
-      debug('we are currently polling - waiting to pause');
-      total++;
-      this.once('pollComplete', function () {
-        debug('pre-pause polling complete');
-        --total || pause();
-      });
-    }
-
-    if (!this.writable) {
-      debug('we are currently writing - waiting to pause');
-      total++;
-      this.once('drain', function () {
-        debug('pre-pause writing complete');
-        --total || pause();
-      });
-    }
-  } else {
-    pause();
-  }
-};
-
-/**
- * Starts polling cycle.
- *
- * @api public
- */
-
-Polling.prototype.poll = function () {
-  debug('polling');
-  this.polling = true;
-  this.doPoll();
-  this.emit('poll');
-};
-
-/**
- * Overloads onData to detect payloads.
- *
- * @api private
- */
-
-Polling.prototype.onData = function (data) {
-  var self = this;
-  debug('polling got data %s', data);
-  var callback = function (packet, index, total) {
-    // if its the first message we consider the transport open
-    if ('opening' === self.readyState) {
-      self.onOpen();
-    }
-
-    // if its a close packet, we close the ongoing requests
-    if ('close' === packet.type) {
-      self.onClose();
-      return false;
-    }
-
-    // otherwise bypass onData and handle the message
-    self.onPacket(packet);
-  };
-
-  // decode payload
-  parser.decodePayload(data, this.socket.binaryType, callback);
-
-  // if an event did not trigger closing
-  if ('closed' !== this.readyState) {
-    // if we got data we're not polling
-    this.polling = false;
-    this.emit('pollComplete');
-
-    if ('open' === this.readyState) {
-      this.poll();
-    } else {
-      debug('ignoring poll - transport state "%s"', this.readyState);
-    }
-  }
-};
-
-/**
- * For polling, send a close packet.
- *
- * @api private
- */
-
-Polling.prototype.doClose = function () {
-  var self = this;
-
-  function close () {
-    debug('writing close packet');
-    self.write([{ type: 'close' }]);
-  }
-
-  if ('open' === this.readyState) {
-    debug('transport open - closing');
-    close();
-  } else {
-    // in case we're trying to close while
-    // handshaking is in progress (GH-164)
-    debug('transport not open - deferring close');
-    this.once('open', close);
-  }
-};
-
-/**
- * Writes a packets payload.
- *
- * @param {Array} data packets
- * @param {Function} drain callback
- * @api private
- */
-
-Polling.prototype.write = function (packets) {
-  var self = this;
-  this.writable = false;
-  var callbackfn = function () {
-    self.writable = true;
-    self.emit('drain');
-  };
-
-  parser.encodePayload(packets, this.supportsBinary, function (data) {
-    self.doWrite(data, callbackfn);
-  });
-};
-
-/**
- * Generates uri for connection.
- *
- * @api private
- */
-
-Polling.prototype.uri = function () {
-  var query = this.query || {};
-  var schema = this.secure ? 'https' : 'http';
-  var port = '';
-
-  // cache busting is forced
-  if (false !== this.timestampRequests) {
-    query[this.timestampParam] = yeast();
-  }
-
-  if (!this.supportsBinary && !query.sid) {
-    query.b64 = 1;
-  }
-
-  query = parseqs.encode(query);
-
-  // avoid port if default for schema
-  if (this.port && (('https' === schema && Number(this.port) !== 443) ||
-     ('http' === schema && Number(this.port) !== 80))) {
-    port = ':' + this.port;
-  }
-
-  // prepend ? to query
-  if (query.length) {
-    query = '?' + query;
-  }
-
-  var ipv6 = this.hostname.indexOf(':') !== -1;
-  return schema + '://' + (ipv6 ? '[' + this.hostname + ']' : this.hostname) + port + this.path + query;
-};
-
-
-/***/ }),
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_'.split('')
-  , length = 64
-  , map = {}
-  , seed = 0
-  , i = 0
-  , prev;
-
-/**
- * Return a string representing the specified number.
- *
- * @param {Number} num The number to convert.
- * @returns {String} The string representation of the number.
- * @api public
- */
-function encode(num) {
-  var encoded = '';
-
-  do {
-    encoded = alphabet[num % length] + encoded;
-    num = Math.floor(num / length);
-  } while (num > 0);
-
-  return encoded;
-}
-
-/**
- * Return the integer value specified by the given string.
- *
- * @param {String} str The string to convert.
- * @returns {Number} The integer value represented by the string.
- * @api public
- */
-function decode(str) {
-  var decoded = 0;
-
-  for (i = 0; i < str.length; i++) {
-    decoded = decoded * length + map[str.charAt(i)];
-  }
-
-  return decoded;
-}
-
-/**
- * Yeast: A tiny growing id generator.
- *
- * @returns {String} A unique id.
- * @api public
- */
-function yeast() {
-  var now = encode(+new Date());
-
-  if (now !== prev) return seed = 0, prev = now;
-  return now +'.'+ encode(seed++);
-}
-
-//
-// Map each character to its index.
-//
-for (; i < length; i++) map[alphabet[i]] = i;
-
-//
-// Expose the `yeast`, `encode` and `decode` functions.
-//
-yeast.encode = encode;
-yeast.decode = decode;
-module.exports = yeast;
-
-
-/***/ }),
-/* 53 */
-/***/ (function(module, exports) {
-
-
-var indexOf = [].indexOf;
-
-module.exports = function(arr, obj){
-  if (indexOf) return arr.indexOf(obj);
-  for (var i = 0; i < arr.length; ++i) {
-    if (arr[i] === obj) return i;
-  }
-  return -1;
-};
-
-/***/ }),
-/* 54 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/**
- * Module dependencies.
- */
-
-var parser = __webpack_require__(26);
-var Emitter = __webpack_require__(8);
-var toArray = __webpack_require__(126);
-var on = __webpack_require__(55);
-var bind = __webpack_require__(56);
-var debug = __webpack_require__(11)('socket.io-client:socket');
-var parseqs = __webpack_require__(17);
-
-/**
- * Module exports.
- */
-
-module.exports = exports = Socket;
-
-/**
- * Internal events (blacklisted).
- * These events can't be emitted by the user.
- *
- * @api private
- */
-
-var events = {
-  connect: 1,
-  connect_error: 1,
-  connect_timeout: 1,
-  connecting: 1,
-  disconnect: 1,
-  error: 1,
-  reconnect: 1,
-  reconnect_attempt: 1,
-  reconnect_failed: 1,
-  reconnect_error: 1,
-  reconnecting: 1,
-  ping: 1,
-  pong: 1
-};
-
-/**
- * Shortcut to `Emitter#emit`.
- */
-
-var emit = Emitter.prototype.emit;
-
-/**
- * `Socket` constructor.
- *
- * @api public
- */
-
-function Socket (io, nsp, opts) {
-  this.io = io;
-  this.nsp = nsp;
-  this.json = this; // compat
-  this.ids = 0;
-  this.acks = {};
-  this.receiveBuffer = [];
-  this.sendBuffer = [];
-  this.connected = false;
-  this.disconnected = true;
-  if (opts && opts.query) {
-    this.query = opts.query;
-  }
-  if (this.io.autoConnect) this.open();
-}
-
-/**
- * Mix in `Emitter`.
- */
-
-Emitter(Socket.prototype);
-
-/**
- * Subscribe to open, close and packet events
- *
- * @api private
- */
-
-Socket.prototype.subEvents = function () {
-  if (this.subs) return;
-
-  var io = this.io;
-  this.subs = [
-    on(io, 'open', bind(this, 'onopen')),
-    on(io, 'packet', bind(this, 'onpacket')),
-    on(io, 'close', bind(this, 'onclose'))
-  ];
-};
-
-/**
- * "Opens" the socket.
- *
- * @api public
- */
-
-Socket.prototype.open =
-Socket.prototype.connect = function () {
-  if (this.connected) return this;
-
-  this.subEvents();
-  this.io.open(); // ensure open
-  if ('open' === this.io.readyState) this.onopen();
-  this.emit('connecting');
-  return this;
-};
-
-/**
- * Sends a `message` event.
- *
- * @return {Socket} self
- * @api public
- */
-
-Socket.prototype.send = function () {
-  var args = toArray(arguments);
-  args.unshift('message');
-  this.emit.apply(this, args);
-  return this;
-};
-
-/**
- * Override `emit`.
- * If the event is in `events`, it's emitted normally.
- *
- * @param {String} event name
- * @return {Socket} self
- * @api public
- */
-
-Socket.prototype.emit = function (ev) {
-  if (events.hasOwnProperty(ev)) {
-    emit.apply(this, arguments);
-    return this;
-  }
-
-  var args = toArray(arguments);
-  var packet = { type: parser.EVENT, data: args };
-
-  packet.options = {};
-  packet.options.compress = !this.flags || false !== this.flags.compress;
-
-  // event ack callback
-  if ('function' === typeof args[args.length - 1]) {
-    debug('emitting packet with ack id %d', this.ids);
-    this.acks[this.ids] = args.pop();
-    packet.id = this.ids++;
-  }
-
-  if (this.connected) {
-    this.packet(packet);
-  } else {
-    this.sendBuffer.push(packet);
-  }
-
-  delete this.flags;
-
-  return this;
-};
-
-/**
- * Sends a packet.
- *
- * @param {Object} packet
- * @api private
- */
-
-Socket.prototype.packet = function (packet) {
-  packet.nsp = this.nsp;
-  this.io.packet(packet);
-};
-
-/**
- * Called upon engine `open`.
- *
- * @api private
- */
-
-Socket.prototype.onopen = function () {
-  debug('transport is open - connecting');
-
-  // write connect packet if necessary
-  if ('/' !== this.nsp) {
-    if (this.query) {
-      var query = typeof this.query === 'object' ? parseqs.encode(this.query) : this.query;
-      debug('sending connect packet with query %s', query);
-      this.packet({type: parser.CONNECT, query: query});
-    } else {
-      this.packet({type: parser.CONNECT});
-    }
-  }
-};
-
-/**
- * Called upon engine `close`.
- *
- * @param {String} reason
- * @api private
- */
-
-Socket.prototype.onclose = function (reason) {
-  debug('close (%s)', reason);
-  this.connected = false;
-  this.disconnected = true;
-  delete this.id;
-  this.emit('disconnect', reason);
-};
-
-/**
- * Called with socket packet.
- *
- * @param {Object} packet
- * @api private
- */
-
-Socket.prototype.onpacket = function (packet) {
-  if (packet.nsp !== this.nsp) return;
-
-  switch (packet.type) {
-    case parser.CONNECT:
-      this.onconnect();
-      break;
-
-    case parser.EVENT:
-      this.onevent(packet);
-      break;
-
-    case parser.BINARY_EVENT:
-      this.onevent(packet);
-      break;
-
-    case parser.ACK:
-      this.onack(packet);
-      break;
-
-    case parser.BINARY_ACK:
-      this.onack(packet);
-      break;
-
-    case parser.DISCONNECT:
-      this.ondisconnect();
-      break;
-
-    case parser.ERROR:
-      this.emit('error', packet.data);
-      break;
-  }
-};
-
-/**
- * Called upon a server event.
- *
- * @param {Object} packet
- * @api private
- */
-
-Socket.prototype.onevent = function (packet) {
-  var args = packet.data || [];
-  debug('emitting event %j', args);
-
-  if (null != packet.id) {
-    debug('attaching ack callback to event');
-    args.push(this.ack(packet.id));
-  }
-
-  if (this.connected) {
-    emit.apply(this, args);
-  } else {
-    this.receiveBuffer.push(args);
-  }
-};
-
-/**
- * Produces an ack callback to emit with an event.
- *
- * @api private
- */
-
-Socket.prototype.ack = function (id) {
-  var self = this;
-  var sent = false;
-  return function () {
-    // prevent double callbacks
-    if (sent) return;
-    sent = true;
-    var args = toArray(arguments);
-    debug('sending ack %j', args);
-
-    self.packet({
-      type: parser.ACK,
-      id: id,
-      data: args
-    });
-  };
-};
-
-/**
- * Called upon a server acknowlegement.
- *
- * @param {Object} packet
- * @api private
- */
-
-Socket.prototype.onack = function (packet) {
-  var ack = this.acks[packet.id];
-  if ('function' === typeof ack) {
-    debug('calling ack %s with %j', packet.id, packet.data);
-    ack.apply(this, packet.data);
-    delete this.acks[packet.id];
-  } else {
-    debug('bad ack %s', packet.id);
-  }
-};
-
-/**
- * Called upon server connect.
- *
- * @api private
- */
-
-Socket.prototype.onconnect = function () {
-  this.connected = true;
-  this.disconnected = false;
-  this.emit('connect');
-  this.emitBuffered();
-};
-
-/**
- * Emit buffered events (received and emitted).
- *
- * @api private
- */
-
-Socket.prototype.emitBuffered = function () {
-  var i;
-  for (i = 0; i < this.receiveBuffer.length; i++) {
-    emit.apply(this, this.receiveBuffer[i]);
-  }
-  this.receiveBuffer = [];
-
-  for (i = 0; i < this.sendBuffer.length; i++) {
-    this.packet(this.sendBuffer[i]);
-  }
-  this.sendBuffer = [];
-};
-
-/**
- * Called upon server disconnect.
- *
- * @api private
- */
-
-Socket.prototype.ondisconnect = function () {
-  debug('server disconnect (%s)', this.nsp);
-  this.destroy();
-  this.onclose('io server disconnect');
-};
-
-/**
- * Called upon forced client/server side disconnections,
- * this method ensures the manager stops tracking us and
- * that reconnections don't get triggered for this.
- *
- * @api private.
- */
-
-Socket.prototype.destroy = function () {
-  if (this.subs) {
-    // clean subscriptions to avoid reconnections
-    for (var i = 0; i < this.subs.length; i++) {
-      this.subs[i].destroy();
-    }
-    this.subs = null;
-  }
-
-  this.io.destroy(this);
-};
-
-/**
- * Disconnects the socket manually.
- *
- * @return {Socket} self
- * @api public
- */
-
-Socket.prototype.close =
-Socket.prototype.disconnect = function () {
-  if (this.connected) {
-    debug('performing disconnect (%s)', this.nsp);
-    this.packet({ type: parser.DISCONNECT });
-  }
-
-  // remove socket from pool
-  this.destroy();
-
-  if (this.connected) {
-    // fire events
-    this.onclose('io client disconnect');
-  }
-  return this;
-};
-
-/**
- * Sets the compress flag.
- *
- * @param {Boolean} if `true`, compresses the sending data
- * @return {Socket} self
- * @api public
- */
-
-Socket.prototype.compress = function (compress) {
-  this.flags = this.flags || {};
-  this.flags.compress = compress;
-  return this;
-};
-
-
-/***/ }),
-/* 55 */
-/***/ (function(module, exports) {
-
-
-/**
- * Module exports.
- */
-
-module.exports = on;
-
-/**
- * Helper for subscriptions.
- *
- * @param {Object|EventEmitter} obj with `Emitter` mixin or `EventEmitter`
- * @param {String} event name
- * @param {Function} callback
- * @api public
- */
-
-function on (obj, ev, fn) {
-  obj.on(ev, fn);
-  return {
-    destroy: function () {
-      obj.removeListener(ev, fn);
-    }
-  };
-}
-
-
-/***/ }),
-/* 56 */
-/***/ (function(module, exports) {
-
-/**
- * Slice reference.
- */
-
-var slice = [].slice;
-
-/**
- * Bind `obj` to `fn`.
- *
- * @param {Object} obj
- * @param {Function|String} fn or string
- * @return {Function}
- * @api public
- */
-
-module.exports = function(obj, fn){
-  if ('string' == typeof fn) fn = obj[fn];
-  if ('function' != typeof fn) throw new Error('bind() requires a function');
-  var args = slice.call(arguments, 2);
-  return function(){
-    return fn.apply(obj, args.concat(slice.call(arguments)));
-  }
-};
-
-
-/***/ }),
-/* 57 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var Bullet = /** @class */ (function (_super) {
-    __extends(Bullet, _super);
-    function Bullet(game, xCoord, yCoord) {
-        var _this = _super.call(this, game, 0, 0) || this;
-        _this.game = game;
-        _this.xCoordinate = xCoord;
-        _this.yCoordinate = yCoord;
-        _this.explosions = _this.game.add.group();
-        _this.makeExposition();
-        _this.create();
-        return _this;
-    }
-    Bullet.prototype.create = function () { };
-    ;
-    Object.defineProperty(Bullet.prototype, "currentPosition", {
-        get: function () {
-            return {
-                xCoordinate: this.bullet.x,
-                yCoordinate: this.bullet.y,
-            };
-        },
-        set: function (coordinate) {
-            this.bullet.x = coordinate.xCoordinate;
-            this.bullet.y = coordinate.yCoordinate;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Bullet.prototype.makeExposition = function () {
-        for (var i = 0; i < 10; i++) {
-            var explosionAnimation = this.explosions.create(0, 0, 'kaboom', 0, false);
-            explosionAnimation.anchor.setTo(0.5, 0.5);
-            explosionAnimation.animations.add('kaboom');
-        }
-    };
-    Bullet.prototype.bulletHitBox = function (bullet, box) {
-        bullet.kill();
-        var explosionAnimation = this.explosions.getFirstExists(false);
-        explosionAnimation.reset(box.x, box.y);
-        explosionAnimation.play('kaboom', 30, false, true);
-        // box.kill();
-    };
-    Bullet.prototype.bulletHitEnemy = function (bullet, enemyTank) {
-        bullet.kill();
-        var explosionAnimation = this.explosions.getFirstExists(false);
-        explosionAnimation.reset(enemyTank._tank._body.x, enemyTank._tank._body.y);
-        // explosionAnimation.reset(800, 500);
-        explosionAnimation.play('kaboom', 30, false, true);
-    };
-    return Bullet;
-}(Phaser.Sprite));
-exports.default = Bullet;
-
-
-/***/ }),
-/* 58 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105381,17 +101888,3538 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 /*
 * "What matters in this life is not what we do but what we do for others, the legacy we leave and the imprint we make." - Eric Meyer
 */
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(25)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(26)))
 
 /***/ }),
-/* 59 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Класс пользователя
+ * @module User
+ */
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var User = function () {
+    /**
+     * @param {object} opt - данные пользователя
+     * @constructor
+     */
+    function User(opt) {
+        _classCallCheck(this, User);
+
+        this.email = opt.email || '';
+        this.username = opt.username || '';
+        this.id = opt.id || 0;
+        this.score = opt.score || 0;
+    }
+
+    /**
+     * Установить новые данные пользователя
+     * @param {object} userData
+     */
+
+
+    _createClass(User, [{
+        key: 'set',
+        value: function set(userData) {
+            this.id = userData.id;
+            this.username = userData.username;
+            this.email = userData.email;
+            this.score = userData.score || 0;
+        }
+
+        /**
+         * Возвращаем пользователя
+         */
+
+    }, {
+        key: 'get',
+        value: function get() {
+            return {
+                'email': this.email,
+                'username': this.username,
+                'id': this.id,
+                'score': this.score
+            };
+        }
+
+        /**
+         * Возвращаем id пользователя
+         */
+
+    }, {
+        key: 'getId',
+        value: function getId() {
+            return this.id;
+        }
+
+        /**
+         * Возвращаем имя пользователя
+         */
+
+    }, {
+        key: 'getUsername',
+        value: function getUsername() {
+            return this.username;
+        }
+
+        /**
+         * Возвращаем email пользователя
+         */
+
+    }, {
+        key: 'getEmail',
+        value: function getEmail() {
+            return this.email;
+        }
+
+        /**
+         * Возвращаем счет пользователя
+         */
+
+    }, {
+        key: 'getScore',
+        value: function getScore() {
+            return this.score;
+        }
+    }]);
+
+    return User;
+}();
+
+exports.default = User;
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports) {
+
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/**
+ * Module dependencies.
+ */
+
+var debug = __webpack_require__(11)('socket.io-parser');
+var Emitter = __webpack_require__(8);
+var hasBin = __webpack_require__(48);
+var binary = __webpack_require__(110);
+var isBuf = __webpack_require__(49);
+
+/**
+ * Protocol version.
+ *
+ * @api public
+ */
+
+exports.protocol = 4;
+
+/**
+ * Packet types.
+ *
+ * @api public
+ */
+
+exports.types = [
+  'CONNECT',
+  'DISCONNECT',
+  'EVENT',
+  'ACK',
+  'ERROR',
+  'BINARY_EVENT',
+  'BINARY_ACK'
+];
+
+/**
+ * Packet type `connect`.
+ *
+ * @api public
+ */
+
+exports.CONNECT = 0;
+
+/**
+ * Packet type `disconnect`.
+ *
+ * @api public
+ */
+
+exports.DISCONNECT = 1;
+
+/**
+ * Packet type `event`.
+ *
+ * @api public
+ */
+
+exports.EVENT = 2;
+
+/**
+ * Packet type `ack`.
+ *
+ * @api public
+ */
+
+exports.ACK = 3;
+
+/**
+ * Packet type `error`.
+ *
+ * @api public
+ */
+
+exports.ERROR = 4;
+
+/**
+ * Packet type 'binary event'
+ *
+ * @api public
+ */
+
+exports.BINARY_EVENT = 5;
+
+/**
+ * Packet type `binary ack`. For acks with binary arguments.
+ *
+ * @api public
+ */
+
+exports.BINARY_ACK = 6;
+
+/**
+ * Encoder constructor.
+ *
+ * @api public
+ */
+
+exports.Encoder = Encoder;
+
+/**
+ * Decoder constructor.
+ *
+ * @api public
+ */
+
+exports.Decoder = Decoder;
+
+/**
+ * A socket.io Encoder instance
+ *
+ * @api public
+ */
+
+function Encoder() {}
+
+/**
+ * Encode a packet as a single string if non-binary, or as a
+ * buffer sequence, depending on packet type.
+ *
+ * @param {Object} obj - packet object
+ * @param {Function} callback - function to handle encodings (likely engine.write)
+ * @return Calls callback with Array of encodings
+ * @api public
+ */
+
+Encoder.prototype.encode = function(obj, callback){
+  if ((obj.type === exports.EVENT || obj.type === exports.ACK) && hasBin(obj.data)) {
+    obj.type = obj.type === exports.EVENT ? exports.BINARY_EVENT : exports.BINARY_ACK;
+  }
+
+  debug('encoding packet %j', obj);
+
+  if (exports.BINARY_EVENT === obj.type || exports.BINARY_ACK === obj.type) {
+    encodeAsBinary(obj, callback);
+  }
+  else {
+    var encoding = encodeAsString(obj);
+    callback([encoding]);
+  }
+};
+
+/**
+ * Encode packet as string.
+ *
+ * @param {Object} packet
+ * @return {String} encoded
+ * @api private
+ */
+
+function encodeAsString(obj) {
+
+  // first is type
+  var str = '' + obj.type;
+
+  // attachments if we have them
+  if (exports.BINARY_EVENT === obj.type || exports.BINARY_ACK === obj.type) {
+    str += obj.attachments + '-';
+  }
+
+  // if we have a namespace other than `/`
+  // we append it followed by a comma `,`
+  if (obj.nsp && '/' !== obj.nsp) {
+    str += obj.nsp + ',';
+  }
+
+  // immediately followed by the id
+  if (null != obj.id) {
+    str += obj.id;
+  }
+
+  // json data
+  if (null != obj.data) {
+    str += JSON.stringify(obj.data);
+  }
+
+  debug('encoded %j as %s', obj, str);
+  return str;
+}
+
+/**
+ * Encode packet as 'buffer sequence' by removing blobs, and
+ * deconstructing packet into object with placeholders and
+ * a list of buffers.
+ *
+ * @param {Object} packet
+ * @return {Buffer} encoded
+ * @api private
+ */
+
+function encodeAsBinary(obj, callback) {
+
+  function writeEncoding(bloblessData) {
+    var deconstruction = binary.deconstructPacket(bloblessData);
+    var pack = encodeAsString(deconstruction.packet);
+    var buffers = deconstruction.buffers;
+
+    buffers.unshift(pack); // add packet info to beginning of data list
+    callback(buffers); // write all the buffers
+  }
+
+  binary.removeBlobs(obj, writeEncoding);
+}
+
+/**
+ * A socket.io Decoder instance
+ *
+ * @return {Object} decoder
+ * @api public
+ */
+
+function Decoder() {
+  this.reconstructor = null;
+}
+
+/**
+ * Mix in `Emitter` with Decoder.
+ */
+
+Emitter(Decoder.prototype);
+
+/**
+ * Decodes an ecoded packet string into packet JSON.
+ *
+ * @param {String} obj - encoded packet
+ * @return {Object} packet
+ * @api public
+ */
+
+Decoder.prototype.add = function(obj) {
+  var packet;
+  if (typeof obj === 'string') {
+    packet = decodeString(obj);
+    if (exports.BINARY_EVENT === packet.type || exports.BINARY_ACK === packet.type) { // binary packet's json
+      this.reconstructor = new BinaryReconstructor(packet);
+
+      // no attachments, labeled binary but no binary data to follow
+      if (this.reconstructor.reconPack.attachments === 0) {
+        this.emit('decoded', packet);
+      }
+    } else { // non-binary full packet
+      this.emit('decoded', packet);
+    }
+  }
+  else if (isBuf(obj) || obj.base64) { // raw binary data
+    if (!this.reconstructor) {
+      throw new Error('got binary data when not reconstructing a packet');
+    } else {
+      packet = this.reconstructor.takeBinaryData(obj);
+      if (packet) { // received final buffer
+        this.reconstructor = null;
+        this.emit('decoded', packet);
+      }
+    }
+  }
+  else {
+    throw new Error('Unknown type: ' + obj);
+  }
+};
+
+/**
+ * Decode a packet String (JSON data)
+ *
+ * @param {String} str
+ * @return {Object} packet
+ * @api private
+ */
+
+function decodeString(str) {
+  var i = 0;
+  // look up type
+  var p = {
+    type: Number(str.charAt(0))
+  };
+
+  if (null == exports.types[p.type]) return error();
+
+  // look up attachments if type binary
+  if (exports.BINARY_EVENT === p.type || exports.BINARY_ACK === p.type) {
+    var buf = '';
+    while (str.charAt(++i) !== '-') {
+      buf += str.charAt(i);
+      if (i == str.length) break;
+    }
+    if (buf != Number(buf) || str.charAt(i) !== '-') {
+      throw new Error('Illegal attachments');
+    }
+    p.attachments = Number(buf);
+  }
+
+  // look up namespace (if any)
+  if ('/' === str.charAt(i + 1)) {
+    p.nsp = '';
+    while (++i) {
+      var c = str.charAt(i);
+      if (',' === c) break;
+      p.nsp += c;
+      if (i === str.length) break;
+    }
+  } else {
+    p.nsp = '/';
+  }
+
+  // look up id
+  var next = str.charAt(i + 1);
+  if ('' !== next && Number(next) == next) {
+    p.id = '';
+    while (++i) {
+      var c = str.charAt(i);
+      if (null == c || Number(c) != c) {
+        --i;
+        break;
+      }
+      p.id += str.charAt(i);
+      if (i === str.length) break;
+    }
+    p.id = Number(p.id);
+  }
+
+  // look up json data
+  if (str.charAt(++i)) {
+    p = tryParse(p, str.substr(i));
+  }
+
+  debug('decoded %s as %j', str, p);
+  return p;
+}
+
+function tryParse(p, str) {
+  try {
+    p.data = JSON.parse(str);
+  } catch(e){
+    return error();
+  }
+  return p; 
+}
+
+/**
+ * Deallocates a parser's resources
+ *
+ * @api public
+ */
+
+Decoder.prototype.destroy = function() {
+  if (this.reconstructor) {
+    this.reconstructor.finishedReconstruction();
+  }
+};
+
+/**
+ * A manager of a binary event's 'buffer sequence'. Should
+ * be constructed whenever a packet of type BINARY_EVENT is
+ * decoded.
+ *
+ * @param {Object} packet
+ * @return {BinaryReconstructor} initialized reconstructor
+ * @api private
+ */
+
+function BinaryReconstructor(packet) {
+  this.reconPack = packet;
+  this.buffers = [];
+}
+
+/**
+ * Method to be called when binary data received from connection
+ * after a BINARY_EVENT packet.
+ *
+ * @param {Buffer | ArrayBuffer} binData - the raw binary data received
+ * @return {null | Object} returns null if more binary data is expected or
+ *   a reconstructed packet object if all buffers have been received.
+ * @api private
+ */
+
+BinaryReconstructor.prototype.takeBinaryData = function(binData) {
+  this.buffers.push(binData);
+  if (this.buffers.length === this.reconPack.attachments) { // done with buffer list
+    var packet = binary.reconstructPacket(this.reconPack, this.buffers);
+    this.finishedReconstruction();
+    return packet;
+  }
+  return null;
+};
+
+/**
+ * Cleans up binary packet reconstruction variables.
+ *
+ * @api private
+ */
+
+BinaryReconstructor.prototype.finishedReconstruction = function() {
+  this.reconPack = null;
+  this.buffers = [];
+};
+
+function error() {
+  return {
+    type: exports.ERROR,
+    data: 'parser error'
+  };
+}
+
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {// browser shim for xmlhttprequest module
+
+var hasCORS = __webpack_require__(114);
+
+module.exports = function (opts) {
+  var xdomain = opts.xdomain;
+
+  // scheme must be same when usign XDomainRequest
+  // http://blogs.msdn.com/b/ieinternals/archive/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds.aspx
+  var xscheme = opts.xscheme;
+
+  // XDomainRequest has a flow of not sending cookie, therefore it should be disabled as a default.
+  // https://github.com/Automattic/engine.io-client/pull/217
+  var enablesXDR = opts.enablesXDR;
+
+  // XMLHttpRequest can be disabled on IE
+  try {
+    if ('undefined' !== typeof XMLHttpRequest && (!xdomain || hasCORS)) {
+      return new XMLHttpRequest();
+    }
+  } catch (e) { }
+
+  // Use XDomainRequest for IE8 if enablesXDR is true
+  // because loading bar keeps flashing when using jsonp-polling
+  // https://github.com/yujiosaka/socke.io-ie8-loading-example
+  try {
+    if ('undefined' !== typeof XDomainRequest && !xscheme && enablesXDR) {
+      return new XDomainRequest();
+    }
+  } catch (e) { }
+
+  if (!xdomain) {
+    try {
+      return new global[['Active'].concat('Object').join('X')]('Microsoft.XMLHTTP');
+    } catch (e) { }
+  }
+};
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Module dependencies.
+ */
+
+var parser = __webpack_require__(9);
+var Emitter = __webpack_require__(8);
+
+/**
+ * Module exports.
+ */
+
+module.exports = Transport;
+
+/**
+ * Transport abstract constructor.
+ *
+ * @param {Object} options.
+ * @api private
+ */
+
+function Transport (opts) {
+  this.path = opts.path;
+  this.hostname = opts.hostname;
+  this.port = opts.port;
+  this.secure = opts.secure;
+  this.query = opts.query;
+  this.timestampParam = opts.timestampParam;
+  this.timestampRequests = opts.timestampRequests;
+  this.readyState = '';
+  this.agent = opts.agent || false;
+  this.socket = opts.socket;
+  this.enablesXDR = opts.enablesXDR;
+
+  // SSL options for Node.js client
+  this.pfx = opts.pfx;
+  this.key = opts.key;
+  this.passphrase = opts.passphrase;
+  this.cert = opts.cert;
+  this.ca = opts.ca;
+  this.ciphers = opts.ciphers;
+  this.rejectUnauthorized = opts.rejectUnauthorized;
+  this.forceNode = opts.forceNode;
+
+  // other options for Node.js client
+  this.extraHeaders = opts.extraHeaders;
+  this.localAddress = opts.localAddress;
+}
+
+/**
+ * Mix in `Emitter`.
+ */
+
+Emitter(Transport.prototype);
+
+/**
+ * Emits an error.
+ *
+ * @param {String} str
+ * @return {Transport} for chaining
+ * @api public
+ */
+
+Transport.prototype.onError = function (msg, desc) {
+  var err = new Error(msg);
+  err.type = 'TransportError';
+  err.description = desc;
+  this.emit('error', err);
+  return this;
+};
+
+/**
+ * Opens the transport.
+ *
+ * @api public
+ */
+
+Transport.prototype.open = function () {
+  if ('closed' === this.readyState || '' === this.readyState) {
+    this.readyState = 'opening';
+    this.doOpen();
+  }
+
+  return this;
+};
+
+/**
+ * Closes the transport.
+ *
+ * @api private
+ */
+
+Transport.prototype.close = function () {
+  if ('opening' === this.readyState || 'open' === this.readyState) {
+    this.doClose();
+    this.onClose();
+  }
+
+  return this;
+};
+
+/**
+ * Sends multiple packets.
+ *
+ * @param {Array} packets
+ * @api private
+ */
+
+Transport.prototype.send = function (packets) {
+  if ('open' === this.readyState) {
+    this.write(packets);
+  } else {
+    throw new Error('Transport not open');
+  }
+};
+
+/**
+ * Called upon open
+ *
+ * @api private
+ */
+
+Transport.prototype.onOpen = function () {
+  this.readyState = 'open';
+  this.writable = true;
+  this.emit('open');
+};
+
+/**
+ * Called with data.
+ *
+ * @param {String} data
+ * @api private
+ */
+
+Transport.prototype.onData = function (data) {
+  var packet = parser.decodePacket(data, this.socket.binaryType);
+  this.onPacket(packet);
+};
+
+/**
+ * Called with a decoded packet.
+ */
+
+Transport.prototype.onPacket = function (packet) {
+  this.emit('packet', packet);
+};
+
+/**
+ * Called upon close.
+ *
+ * @api private
+ */
+
+Transport.prototype.onClose = function () {
+  this.readyState = 'closed';
+  this.emit('close');
+};
+
+
+/***/ }),
+/* 30 */,
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Notify = __webpack_require__(15);
+
+var _Notify2 = _interopRequireDefault(_Notify);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Проверяем корректность email
+ * @param {string} email
+ */
+function isCorrectEmail(email) {
+  return email.match(new RegExp('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$'));
+}
+
+/**
+ * Проверяем корректность поля формы
+ * @param {string} text
+ * @param {int} minLenField
+ * @param {int} maxLenField
+ */
+function isCorrectTextField(text, minLenField, maxLenField) {
+  return text.match(new RegExp('^[a-zA-Z0-9_-]{' + minLenField + ',' + maxLenField + '}$'));
+}
+
+/**
+ * Класс валидации формы входа
+ * @module ValidSignInForm
+ */
+
+var ValidSignInForm = function () {
+  /**
+   * @param {string} email
+   * @param {string} password
+   * @constructor
+   */
+  function ValidSignInForm(email, password) {
+    _classCallCheck(this, ValidSignInForm);
+
+    this.email = email;
+    this.password = password;
+    // this.currentForm = form;
+
+    this.notify = new _Notify2.default();
+  }
+
+  /**
+   * Валидируем форму
+   * @returns {boolean}
+   */
+
+
+  _createClass(ValidSignInForm, [{
+    key: 'validForm',
+    value: function validForm() {
+      var flag = true;
+
+      var minLenPassword = 6,
+          maxLenPassword = 18;
+
+      if (!isCorrectEmail(this.email)) {
+        flag = false;
+        this.notify.notify('invalid email');
+      }
+
+      if (!isCorrectTextField(this.password, minLenPassword, maxLenPassword)) {
+        flag = false;
+        this.notify.notify('invalid password');
+      }
+
+      return flag;
+    }
+  }]);
+
+  return ValidSignInForm;
+}();
+
+exports.default = ValidSignInForm;
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Notify = __webpack_require__(15);
+
+var _Notify2 = _interopRequireDefault(_Notify);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Проверяем корректность поля формы
+ * @param {string} text
+ * @param {int} minLenField
+ * @param {int} maxLenField
+ */
+function isCorrectTextField(text, minLenField, maxLenField) {
+	return text.match(new RegExp('^[a-zA-Z0-9_-]{' + minLenField + ',' + maxLenField + '}$'));
+}
+
+/**
+ * Проверяем корректность email
+ * @param {string} email
+ */
+function isCorrectEmail(email) {
+	return email.match(new RegExp('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$'));
+}
+
+/**
+ * Проверяем пароль на совпадение
+ * @param {string} pswd
+ * @param {string} pswdRepeat
+ */
+function isSamePasswords(pswd, pswdRepeat) {
+	return pswd === pswdRepeat && pswd !== '' && pswdRepeat !== '';
+}
+
+/**
+ * Класс валидации формы регистрации
+ * @module ValidSignUpForm
+ */
+
+var ValidSignUpForm = function () {
+	/**
+  * @param {string} login
+  * @param {string} email
+  * @param {string} password
+  * @param {string} repeatPassword
+  * @constructor
+  */
+	function ValidSignUpForm(login, email, password, repeatPassword) {
+		_classCallCheck(this, ValidSignUpForm);
+
+		this.username = login;
+		this.email = email;
+		this.password = password;
+		this.repeatPassword = repeatPassword;
+		// this.currentForm = form;
+
+		this.notify = new _Notify2.default();
+	}
+
+	/**
+  * Валидируем форму
+  * @returns {boolean}
+  */
+
+
+	_createClass(ValidSignUpForm, [{
+		key: 'validForm',
+		value: function validForm() {
+			var flag = true;
+
+			var minLenUsername = 4,
+			    maxLenUsername = 15,
+			    minLenPassword = 6,
+			    maxLenPassword = 18;
+
+			if (!isCorrectTextField(this.username, minLenUsername, maxLenUsername)) {
+				flag = false;
+				this.notify.notify('invalid username');
+			}
+
+			if (!isCorrectEmail(this.email)) {
+				flag = false;
+				this.notify.notify('invalid email');
+			}
+
+			if (!isCorrectTextField(this.password, minLenPassword, maxLenPassword)) {
+				flag = false;
+				this.notify.notify('invalid password');
+			}
+
+			if (!isSamePasswords(this.password, this.repeatPassword)) {
+				flag = false;
+				this.notify.notify('error repeat password');
+			}
+
+			return flag;
+		}
+	}]);
+
+	return ValidSignUpForm;
+}();
+
+exports.default = ValidSignUpForm;
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _BlockComponents = __webpack_require__(5);
+
+var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
+
+var _Menu = __webpack_require__(79);
+
+var _Menu2 = _interopRequireDefault(_Menu);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// import './Menu.scss';
+
+/**
+ * Класс Menu-а
+ * @module Menu
+ */
+var Menu = function (_Block) {
+  _inherits(Menu, _Block);
+
+  /**
+   * @param {string} [tagName='div'] - tagName блока
+   * @param {*} [attrs={}] - объект с атрибутами блока
+   * @param {string[]} [classes=[]] - список имён классов
+   * @param {*} [data={}] - объект с данными блока
+   * @constructor
+   */
+  function Menu() {
+    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var data = arguments[3];
+
+    _classCallCheck(this, Menu);
+
+    return _possibleConstructorReturn(this, (Menu.__proto__ || Object.getPrototypeOf(Menu)).call(this, tagName, attrs, classes, data));
+  }
+
+  /**
+   * Получить Menu
+   */
+
+
+  _createClass(Menu, [{
+    key: 'getClassElement',
+    value: function getClassElement() {
+      var data = this.getData();
+      this.setHTML((0, _Menu2.default)({ data: data }));
+      return this.getElement();
+    }
+  }]);
+
+  return Menu;
+}(_BlockComponents2.default);
+
+exports.default = Menu;
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _BlockComponents = __webpack_require__(5);
+
+var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
+
+var _Table = __webpack_require__(82);
+
+var _Table2 = _interopRequireDefault(_Table);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// import './Table.scss';
+
+/**
+ * Класс Table
+ * @module Table
+ */
+var Table = function (_Block) {
+  _inherits(Table, _Block);
+
+  /**
+   * @param {string} [tagName='div'] - tagName блока
+   * @param {*} [attrs={}] - объект с атрибутами блока
+   * @param {string[]} [classes=[]] - список имён классов
+   * @param {*} [data={}] - объект с данными блока
+   * @constructor
+   */
+  function Table() {
+    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var data = arguments[3];
+
+    _classCallCheck(this, Table);
+
+    return _possibleConstructorReturn(this, (Table.__proto__ || Object.getPrototypeOf(Table)).call(this, tagName, attrs, classes, data));
+  }
+
+  /**
+   * Получить Table
+   */
+
+
+  _createClass(Table, [{
+    key: 'getClassElement',
+    value: function getClassElement() {
+      var data = this.getData();
+
+      this.setHTML((0, _Table2.default)({ data: data }));
+      return this.getElement();
+    }
+  }]);
+
+  return Table;
+}(_BlockComponents2.default);
+
+exports.default = Table;
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var boot_state_1 = __webpack_require__(91);
+var preloader_state_1 = __webpack_require__(93);
+var main_state_1 = __webpack_require__(99);
+var world_state_1 = __webpack_require__(100);
+// import WorldState        from './states/singPlayerWorld.state';
+var PauseMenu_1 = __webpack_require__(137);
+var GameOverMenu_1 = __webpack_require__(138);
+var World_js_1 = __webpack_require__(139);
+var App = /** @class */ (function (_super) {
+    __extends(App, _super);
+    function App(User, GameStrategy) {
+        if (GameStrategy === void 0) { GameStrategy = 'multiplayer'; }
+        var _this = _super.call(this, document.documentElement.clientWidth, document.documentElement.clientHeight, Phaser.AUTO, 'content', null) || this;
+        _this.user = User;
+        _this.state.add('boot', boot_state_1.default);
+        _this.state.add('preloader', preloader_state_1.default);
+        _this.state.add('main', main_state_1.default);
+        switch (GameStrategy) {
+            case 'multiplayer':
+                _this.state.add('world', world_state_1.default);
+                break;
+            case "single-offline":
+                _this.state.add('world', World_js_1.default, false);
+                break;
+        }
+        _this.state.add('PauseMenu', PauseMenu_1.default, false);
+        _this.state.add('GameOverMenu', GameOverMenu_1.default, false);
+        _this.state.start('boot'); // Initialize and start `boot` state
+        return _this;
+    }
+    App.prototype.exit = function () {
+        window.open("/", "_self");
+    };
+    return App;
+}(Phaser.Game));
+exports.default = App;
+
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports) {
+
+module.exports = "../../img/4119334de3c71843520250c6c9f0594d.jpg";
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports) {
+
+module.exports = "../../img/81d724516f8076962ff565d9defc08ba.png";
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports) {
+
+module.exports = "../../img/5733b613e5ea55c939a6276c4b4b7aa0.png";
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports) {
+
+module.exports = "../../img/4119334de3c71843520250c6c9f0594d.jpg";
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports) {
+
+module.exports = "../../img/b17c373a3f0117f56d7b0af1a9839bb7.png";
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports) {
+
+module.exports = "../../img/217b9d48bac4d47a48cc3bc389cd422e.png";
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var TankBody = /** @class */ (function (_super) {
+    __extends(TankBody, _super);
+    function TankBody(game, cursor) {
+        var _this = _super.call(this, game, 0, 0) || this;
+        _this._game = game;
+        _this._cursor = cursor;
+        _this.create();
+        return _this;
+    }
+    TankBody.prototype.create = function () {
+        this._body = this._game.add.sprite(50, 400, 'tank', 'tank1');
+        console.log("body height = " + this._body.height + " body width = " + this._body.width);
+        this._body.anchor.setTo(0.5, 0.5);
+        this._game.physics.arcade.enable(this._body);
+        this._body.body.maxVelocity.setTo(100, 100);
+        this._body.body.collideWorldBounds = true;
+    };
+    TankBody.prototype.update = function () {
+        // величина угла поворота
+        if (this._cursor.left.isDown) {
+            this._body.angle -= 5;
+        }
+        else if (this._cursor.right.isDown) {
+            this._body.angle += 5;
+        }
+        // скорость
+        if (this._cursor.up.isDown) {
+            this._currentSpeed = 210;
+        }
+        else {
+            if (this._currentSpeed > 0) {
+                this._currentSpeed -= 100; // скорость торможения
+            }
+        }
+        // движение и поворотами
+        if (this._currentSpeed > 0) {
+            this._game.physics.arcade.velocityFromRotation(this._body.rotation, this._currentSpeed, this._body.body.velocity);
+        }
+    };
+    Object.defineProperty(TankBody.prototype, "currentPosition", {
+        get: function () {
+            return {
+                xCoordinate: this._body.x,
+                yCoordinate: this._body.y,
+            };
+        },
+        set: function (coordinate) {
+            this._body.x = coordinate.xCoordinate;
+            this._body.y = coordinate.yCoordinate;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TankBody.prototype, "currentPlatformAngle", {
+        set: function (angle) {
+            this._body.angle = angle;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    TankBody.prototype.setPlatformAngle = function (angle) {
+        this._body.angle = angle;
+    };
+    TankBody.prototype.kill = function () {
+        this._body.kill();
+    };
+    return TankBody;
+}(Phaser.Sprite));
+exports.default = TankBody;
+
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var TankTurret = /** @class */ (function (_super) {
+    __extends(TankTurret, _super);
+    function TankTurret(game, cursor) {
+        var _this = _super.call(this, game, 0, 0) || this;
+        _this._game = game;
+        _this._cursor = cursor;
+        _this.create();
+        return _this;
+    }
+    TankTurret.prototype.create = function () {
+        this._turret = this._game.add.sprite(50, 400, 'tank', 'turret');
+        this._turret.anchor.setTo(0.5, 0.5);
+    };
+    TankTurret.prototype.update = function () {
+        this._turret.rotation = this._game.physics.arcade.angleToPointer(this._turret);
+    };
+    Object.defineProperty(TankTurret.prototype, "turretCoordinate", {
+        set: function (coordinate) {
+            this._turret.x = coordinate.xCoordinate;
+            this._turret.y = coordinate.yCoordinate;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TankTurret.prototype, "turretAngle", {
+        set: function (angle) {
+            this._turret.angle = angle;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    TankTurret.prototype.kill = function () {
+        this._turret.kill();
+    };
+    return TankTurret;
+}(Phaser.Sprite));
+exports.default = TankTurret;
+
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Lable = /** @class */ (function () {
+    function Lable(game, coordinate, content, scale) {
+        this._game = game;
+        this._textStyle = { font: "bold 32px Arial", fill: "#120dff", boundsAlignH: "center", boundsAlignV: "middle" };
+        this._text = this._game.add.text(coordinate.xCoordinate, coordinate.yCoordinate, content, this._textStyle);
+        this._text.anchor.set(0.5);
+        this._scale = scale;
+    }
+    Object.defineProperty(Lable.prototype, "currentPosition", {
+        set: function (coordinate) {
+            this._text.x = coordinate.xCoordinate;
+            this._text.y = coordinate.yCoordinate - 70;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Lable.prototype.kill = function () {
+        this._text.kill();
+    };
+    return Lable;
+}());
+exports.default = Lable;
+
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports) {
+
+var HealthBar = function (game, providedConfig) {
+    this.game = game;
+    this.setupConfiguration(providedConfig);
+    this.setPosition(this.config.x, this.config.y);
+    this.drawBackground();
+    this.drawHealthBar();
+    this.setFixedToCamera(this.config.isFixedToCamera);
+};
+HealthBar.prototype.constructor = HealthBar;
+HealthBar.prototype.setupConfiguration = function (providedConfig) {
+    this.config = this.mergeWithDefaultConfiguration(providedConfig);
+    this.flipped = this.config.flipped;
+};
+HealthBar.prototype.mergeWithDefaultConfiguration = function (newConfig) {
+    var defaultConfig = {
+        width: 250,
+        height: 40,
+        x: 0,
+        y: 0,
+        bg: {
+            color: '#d40a09'
+        },
+        bar: {
+            color: '#08ff22'
+        },
+        animationDuration: 200,
+        flipped: false,
+        isFixedToCamera: false
+    };
+    return mergeObjetcs(defaultConfig, newConfig);
+};
+function mergeObjetcs(targetObj, newObj) {
+    for (var p in newObj) {
+        try {
+            targetObj[p] = newObj[p].constructor == Object ? mergeObjetcs(targetObj[p], newObj[p]) : newObj[p];
+        }
+        catch (e) {
+            targetObj[p] = newObj[p];
+        }
+    }
+    return targetObj;
+}
+HealthBar.prototype.drawBackground = function () {
+    var bmd = this.game.add.bitmapData(this.config.width, this.config.height);
+    bmd.ctx.fillStyle = this.config.bg.color;
+    bmd.ctx.beginPath();
+    bmd.ctx.rect(0, 0, this.config.width, this.config.height);
+    bmd.ctx.fill();
+    bmd.update();
+    this.bgSprite = this.game.add.sprite(this.x, this.y, bmd);
+    this.bgSprite.anchor.set(0.5);
+    if (this.flipped) {
+        this.bgSprite.scale.x = -1;
+    }
+};
+HealthBar.prototype.drawHealthBar = function () {
+    var bmd = this.game.add.bitmapData(this.config.width, this.config.height);
+    bmd.ctx.fillStyle = this.config.bar.color;
+    bmd.ctx.beginPath();
+    bmd.ctx.rect(0, 0, this.config.width, this.config.height);
+    bmd.ctx.fill();
+    bmd.update();
+    this.barSprite = this.game.add.sprite(this.x - this.bgSprite.width / 2, this.y, bmd);
+    this.barSprite.anchor.y = 0.5;
+    if (this.flipped) {
+        this.barSprite.scale.x = -1;
+    }
+};
+HealthBar.prototype.setPosition = function (x, y) {
+    this.x = x;
+    this.y = y;
+    if (this.bgSprite !== undefined && this.barSprite !== undefined) {
+        this.bgSprite.position.x = x;
+        this.bgSprite.position.y = y;
+        this.barSprite.position.x = x - this.config.width / 2;
+        this.barSprite.position.y = y;
+    }
+};
+HealthBar.prototype.setPercent = function (newValue) {
+    if (newValue < 0)
+        newValue = 0;
+    if (newValue > 100)
+        newValue = 100;
+    var newWidth = (newValue * this.config.width) / 100;
+    this.setWidth(newWidth);
+};
+/*
+ Hex format, example #ad3aa3
+ */
+HealthBar.prototype.setBarColor = function (newColor) {
+    var bmd = this.barSprite.key;
+    bmd.update();
+    var currentRGBColor = bmd.getPixelRGB(0, 0);
+    var newRGBColor = hexToRgb(newColor);
+    bmd.replaceRGB(currentRGBColor.r, currentRGBColor.g, currentRGBColor.b, 255, newRGBColor.r, newRGBColor.g, newRGBColor.b, 255);
+};
+HealthBar.prototype.setWidth = function (newWidth) {
+    if (this.flipped) {
+        newWidth = -1 * newWidth;
+    }
+    this.game.add.tween(this.barSprite).to({ width: newWidth }, this.config.animationDuration, Phaser.Easing.Linear.None, true);
+};
+HealthBar.prototype.setFixedToCamera = function (fixedToCamera) {
+    this.bgSprite.fixedToCamera = fixedToCamera;
+    this.barSprite.fixedToCamera = fixedToCamera;
+};
+HealthBar.prototype.kill = function () {
+    this.bgSprite.kill();
+    this.barSprite.kill();
+};
+module.exports = HealthBar;
+/**
+ Utils
+ */
+function hexToRgb(hex) {
+    // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+    var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+        return r + r + g + g + b + b;
+    });
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+}
+
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports) {
+
+/**
+ * Parses an URI
+ *
+ * @author Steven Levithan <stevenlevithan.com> (MIT license)
+ * @api private
+ */
+
+var re = /^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/;
+
+var parts = [
+    'source', 'protocol', 'authority', 'userInfo', 'user', 'password', 'host', 'port', 'relative', 'path', 'directory', 'file', 'query', 'anchor'
+];
+
+module.exports = function parseuri(str) {
+    var src = str,
+        b = str.indexOf('['),
+        e = str.indexOf(']');
+
+    if (b != -1 && e != -1) {
+        str = str.substring(0, b) + str.substring(b, e).replace(/:/g, ';') + str.substring(e, str.length);
+    }
+
+    var m = re.exec(str || ''),
+        uri = {},
+        i = 14;
+
+    while (i--) {
+        uri[parts[i]] = m[i] || '';
+    }
+
+    if (b != -1 && e != -1) {
+        uri.source = src;
+        uri.host = uri.host.substring(1, uri.host.length - 1).replace(/;/g, ':');
+        uri.authority = uri.authority.replace('[', '').replace(']', '').replace(/;/g, ':');
+        uri.ipv6uri = true;
+    }
+
+    return uri;
+};
+
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports) {
+
+/**
+ * Helpers.
+ */
+
+var s = 1000;
+var m = s * 60;
+var h = m * 60;
+var d = h * 24;
+var y = d * 365.25;
+
+/**
+ * Parse or format the given `val`.
+ *
+ * Options:
+ *
+ *  - `long` verbose formatting [false]
+ *
+ * @param {String|Number} val
+ * @param {Object} [options]
+ * @throws {Error} throw an error if val is not a non-empty string or a number
+ * @return {String|Number}
+ * @api public
+ */
+
+module.exports = function(val, options) {
+  options = options || {};
+  var type = typeof val;
+  if (type === 'string' && val.length > 0) {
+    return parse(val);
+  } else if (type === 'number' && isNaN(val) === false) {
+    return options.long ? fmtLong(val) : fmtShort(val);
+  }
+  throw new Error(
+    'val is not a non-empty string or a valid number. val=' +
+      JSON.stringify(val)
+  );
+};
+
+/**
+ * Parse the given `str` and return milliseconds.
+ *
+ * @param {String} str
+ * @return {Number}
+ * @api private
+ */
+
+function parse(str) {
+  str = String(str);
+  if (str.length > 100) {
+    return;
+  }
+  var match = /^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(
+    str
+  );
+  if (!match) {
+    return;
+  }
+  var n = parseFloat(match[1]);
+  var type = (match[2] || 'ms').toLowerCase();
+  switch (type) {
+    case 'years':
+    case 'year':
+    case 'yrs':
+    case 'yr':
+    case 'y':
+      return n * y;
+    case 'days':
+    case 'day':
+    case 'd':
+      return n * d;
+    case 'hours':
+    case 'hour':
+    case 'hrs':
+    case 'hr':
+    case 'h':
+      return n * h;
+    case 'minutes':
+    case 'minute':
+    case 'mins':
+    case 'min':
+    case 'm':
+      return n * m;
+    case 'seconds':
+    case 'second':
+    case 'secs':
+    case 'sec':
+    case 's':
+      return n * s;
+    case 'milliseconds':
+    case 'millisecond':
+    case 'msecs':
+    case 'msec':
+    case 'ms':
+      return n;
+    default:
+      return undefined;
+  }
+}
+
+/**
+ * Short format for `ms`.
+ *
+ * @param {Number} ms
+ * @return {String}
+ * @api private
+ */
+
+function fmtShort(ms) {
+  if (ms >= d) {
+    return Math.round(ms / d) + 'd';
+  }
+  if (ms >= h) {
+    return Math.round(ms / h) + 'h';
+  }
+  if (ms >= m) {
+    return Math.round(ms / m) + 'm';
+  }
+  if (ms >= s) {
+    return Math.round(ms / s) + 's';
+  }
+  return ms + 'ms';
+}
+
+/**
+ * Long format for `ms`.
+ *
+ * @param {Number} ms
+ * @return {String}
+ * @api private
+ */
+
+function fmtLong(ms) {
+  return plural(ms, d, 'day') ||
+    plural(ms, h, 'hour') ||
+    plural(ms, m, 'minute') ||
+    plural(ms, s, 'second') ||
+    ms + ' ms';
+}
+
+/**
+ * Pluralization helper.
+ */
+
+function plural(ms, n, name) {
+  if (ms < n) {
+    return;
+  }
+  if (ms < n * 1.5) {
+    return Math.floor(ms / n) + ' ' + name;
+  }
+  return Math.ceil(ms / n) + ' ' + name + 's';
+}
+
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {/* global Blob File */
+
+/*
+ * Module requirements.
+ */
+
+var isArray = __webpack_require__(109);
+
+var toString = Object.prototype.toString;
+var withNativeBlob = typeof global.Blob === 'function' || toString.call(global.Blob) === '[object BlobConstructor]';
+var withNativeFile = typeof global.File === 'function' || toString.call(global.File) === '[object FileConstructor]';
+
+/**
+ * Module exports.
+ */
+
+module.exports = hasBinary;
+
+/**
+ * Checks for binary data.
+ *
+ * Supports Buffer, ArrayBuffer, Blob and File.
+ *
+ * @param {Object} anything
+ * @api public
+ */
+
+function hasBinary (obj) {
+  if (!obj || typeof obj !== 'object') {
+    return false;
+  }
+
+  if (isArray(obj)) {
+    for (var i = 0, l = obj.length; i < l; i++) {
+      if (hasBinary(obj[i])) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  if ((typeof global.Buffer === 'function' && global.Buffer.isBuffer && global.Buffer.isBuffer(obj)) ||
+     (typeof global.ArrayBuffer === 'function' && obj instanceof ArrayBuffer) ||
+     (withNativeBlob && obj instanceof Blob) ||
+     (withNativeFile && obj instanceof File)
+    ) {
+    return true;
+  }
+
+  // see: https://github.com/Automattic/has-binary/pull/4
+  if (obj.toJSON && typeof obj.toJSON === 'function' && arguments.length === 1) {
+    return hasBinary(obj.toJSON(), true);
+  }
+
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key) && hasBinary(obj[key])) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {
+module.exports = isBuf;
+
+/**
+ * Returns true if obj is a buffer or an arraybuffer.
+ *
+ * @api private
+ */
+
+function isBuf(obj) {
+  return (global.Buffer && global.Buffer.isBuffer(obj)) ||
+         (global.ArrayBuffer && obj instanceof ArrayBuffer);
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/**
+ * Module dependencies.
+ */
+
+var eio = __webpack_require__(112);
+var Socket = __webpack_require__(55);
+var Emitter = __webpack_require__(8);
+var parser = __webpack_require__(27);
+var on = __webpack_require__(56);
+var bind = __webpack_require__(57);
+var debug = __webpack_require__(11)('socket.io-client:manager');
+var indexOf = __webpack_require__(54);
+var Backoff = __webpack_require__(128);
+
+/**
+ * IE6+ hasOwnProperty
+ */
+
+var has = Object.prototype.hasOwnProperty;
+
+/**
+ * Module exports
+ */
+
+module.exports = Manager;
+
+/**
+ * `Manager` constructor.
+ *
+ * @param {String} engine instance or engine uri/opts
+ * @param {Object} options
+ * @api public
+ */
+
+function Manager (uri, opts) {
+  if (!(this instanceof Manager)) return new Manager(uri, opts);
+  if (uri && ('object' === typeof uri)) {
+    opts = uri;
+    uri = undefined;
+  }
+  opts = opts || {};
+
+  opts.path = opts.path || '/socket.io';
+  this.nsps = {};
+  this.subs = [];
+  this.opts = opts;
+  this.reconnection(opts.reconnection !== false);
+  this.reconnectionAttempts(opts.reconnectionAttempts || Infinity);
+  this.reconnectionDelay(opts.reconnectionDelay || 1000);
+  this.reconnectionDelayMax(opts.reconnectionDelayMax || 5000);
+  this.randomizationFactor(opts.randomizationFactor || 0.5);
+  this.backoff = new Backoff({
+    min: this.reconnectionDelay(),
+    max: this.reconnectionDelayMax(),
+    jitter: this.randomizationFactor()
+  });
+  this.timeout(null == opts.timeout ? 20000 : opts.timeout);
+  this.readyState = 'closed';
+  this.uri = uri;
+  this.connecting = [];
+  this.lastPing = null;
+  this.encoding = false;
+  this.packetBuffer = [];
+  var _parser = opts.parser || parser;
+  this.encoder = new _parser.Encoder();
+  this.decoder = new _parser.Decoder();
+  this.autoConnect = opts.autoConnect !== false;
+  if (this.autoConnect) this.open();
+}
+
+/**
+ * Propagate given event to sockets and emit on `this`
+ *
+ * @api private
+ */
+
+Manager.prototype.emitAll = function () {
+  this.emit.apply(this, arguments);
+  for (var nsp in this.nsps) {
+    if (has.call(this.nsps, nsp)) {
+      this.nsps[nsp].emit.apply(this.nsps[nsp], arguments);
+    }
+  }
+};
+
+/**
+ * Update `socket.id` of all sockets
+ *
+ * @api private
+ */
+
+Manager.prototype.updateSocketIds = function () {
+  for (var nsp in this.nsps) {
+    if (has.call(this.nsps, nsp)) {
+      this.nsps[nsp].id = this.generateId(nsp);
+    }
+  }
+};
+
+/**
+ * generate `socket.id` for the given `nsp`
+ *
+ * @param {String} nsp
+ * @return {String}
+ * @api private
+ */
+
+Manager.prototype.generateId = function (nsp) {
+  return (nsp === '/' ? '' : (nsp + '#')) + this.engine.id;
+};
+
+/**
+ * Mix in `Emitter`.
+ */
+
+Emitter(Manager.prototype);
+
+/**
+ * Sets the `reconnection` config.
+ *
+ * @param {Boolean} true/false if it should automatically reconnect
+ * @return {Manager} self or value
+ * @api public
+ */
+
+Manager.prototype.reconnection = function (v) {
+  if (!arguments.length) return this._reconnection;
+  this._reconnection = !!v;
+  return this;
+};
+
+/**
+ * Sets the reconnection attempts config.
+ *
+ * @param {Number} max reconnection attempts before giving up
+ * @return {Manager} self or value
+ * @api public
+ */
+
+Manager.prototype.reconnectionAttempts = function (v) {
+  if (!arguments.length) return this._reconnectionAttempts;
+  this._reconnectionAttempts = v;
+  return this;
+};
+
+/**
+ * Sets the delay between reconnections.
+ *
+ * @param {Number} delay
+ * @return {Manager} self or value
+ * @api public
+ */
+
+Manager.prototype.reconnectionDelay = function (v) {
+  if (!arguments.length) return this._reconnectionDelay;
+  this._reconnectionDelay = v;
+  this.backoff && this.backoff.setMin(v);
+  return this;
+};
+
+Manager.prototype.randomizationFactor = function (v) {
+  if (!arguments.length) return this._randomizationFactor;
+  this._randomizationFactor = v;
+  this.backoff && this.backoff.setJitter(v);
+  return this;
+};
+
+/**
+ * Sets the maximum delay between reconnections.
+ *
+ * @param {Number} delay
+ * @return {Manager} self or value
+ * @api public
+ */
+
+Manager.prototype.reconnectionDelayMax = function (v) {
+  if (!arguments.length) return this._reconnectionDelayMax;
+  this._reconnectionDelayMax = v;
+  this.backoff && this.backoff.setMax(v);
+  return this;
+};
+
+/**
+ * Sets the connection timeout. `false` to disable
+ *
+ * @return {Manager} self or value
+ * @api public
+ */
+
+Manager.prototype.timeout = function (v) {
+  if (!arguments.length) return this._timeout;
+  this._timeout = v;
+  return this;
+};
+
+/**
+ * Starts trying to reconnect if reconnection is enabled and we have not
+ * started reconnecting yet
+ *
+ * @api private
+ */
+
+Manager.prototype.maybeReconnectOnOpen = function () {
+  // Only try to reconnect if it's the first time we're connecting
+  if (!this.reconnecting && this._reconnection && this.backoff.attempts === 0) {
+    // keeps reconnection from firing twice for the same reconnection loop
+    this.reconnect();
+  }
+};
+
+/**
+ * Sets the current transport `socket`.
+ *
+ * @param {Function} optional, callback
+ * @return {Manager} self
+ * @api public
+ */
+
+Manager.prototype.open =
+Manager.prototype.connect = function (fn, opts) {
+  debug('readyState %s', this.readyState);
+  if (~this.readyState.indexOf('open')) return this;
+
+  debug('opening %s', this.uri);
+  this.engine = eio(this.uri, this.opts);
+  var socket = this.engine;
+  var self = this;
+  this.readyState = 'opening';
+  this.skipReconnect = false;
+
+  // emit `open`
+  var openSub = on(socket, 'open', function () {
+    self.onopen();
+    fn && fn();
+  });
+
+  // emit `connect_error`
+  var errorSub = on(socket, 'error', function (data) {
+    debug('connect_error');
+    self.cleanup();
+    self.readyState = 'closed';
+    self.emitAll('connect_error', data);
+    if (fn) {
+      var err = new Error('Connection error');
+      err.data = data;
+      fn(err);
+    } else {
+      // Only do this if there is no fn to handle the error
+      self.maybeReconnectOnOpen();
+    }
+  });
+
+  // emit `connect_timeout`
+  if (false !== this._timeout) {
+    var timeout = this._timeout;
+    debug('connect attempt will timeout after %d', timeout);
+
+    // set timer
+    var timer = setTimeout(function () {
+      debug('connect attempt timed out after %d', timeout);
+      openSub.destroy();
+      socket.close();
+      socket.emit('error', 'timeout');
+      self.emitAll('connect_timeout', timeout);
+    }, timeout);
+
+    this.subs.push({
+      destroy: function () {
+        clearTimeout(timer);
+      }
+    });
+  }
+
+  this.subs.push(openSub);
+  this.subs.push(errorSub);
+
+  return this;
+};
+
+/**
+ * Called upon transport open.
+ *
+ * @api private
+ */
+
+Manager.prototype.onopen = function () {
+  debug('open');
+
+  // clear old subs
+  this.cleanup();
+
+  // mark as open
+  this.readyState = 'open';
+  this.emit('open');
+
+  // add new subs
+  var socket = this.engine;
+  this.subs.push(on(socket, 'data', bind(this, 'ondata')));
+  this.subs.push(on(socket, 'ping', bind(this, 'onping')));
+  this.subs.push(on(socket, 'pong', bind(this, 'onpong')));
+  this.subs.push(on(socket, 'error', bind(this, 'onerror')));
+  this.subs.push(on(socket, 'close', bind(this, 'onclose')));
+  this.subs.push(on(this.decoder, 'decoded', bind(this, 'ondecoded')));
+};
+
+/**
+ * Called upon a ping.
+ *
+ * @api private
+ */
+
+Manager.prototype.onping = function () {
+  this.lastPing = new Date();
+  this.emitAll('ping');
+};
+
+/**
+ * Called upon a packet.
+ *
+ * @api private
+ */
+
+Manager.prototype.onpong = function () {
+  this.emitAll('pong', new Date() - this.lastPing);
+};
+
+/**
+ * Called with data.
+ *
+ * @api private
+ */
+
+Manager.prototype.ondata = function (data) {
+  this.decoder.add(data);
+};
+
+/**
+ * Called when parser fully decodes a packet.
+ *
+ * @api private
+ */
+
+Manager.prototype.ondecoded = function (packet) {
+  this.emit('packet', packet);
+};
+
+/**
+ * Called upon socket error.
+ *
+ * @api private
+ */
+
+Manager.prototype.onerror = function (err) {
+  debug('error', err);
+  this.emitAll('error', err);
+};
+
+/**
+ * Creates a new socket for the given `nsp`.
+ *
+ * @return {Socket}
+ * @api public
+ */
+
+Manager.prototype.socket = function (nsp, opts) {
+  var socket = this.nsps[nsp];
+  if (!socket) {
+    socket = new Socket(this, nsp, opts);
+    this.nsps[nsp] = socket;
+    var self = this;
+    socket.on('connecting', onConnecting);
+    socket.on('connect', function () {
+      socket.id = self.generateId(nsp);
+    });
+
+    if (this.autoConnect) {
+      // manually call here since connecting event is fired before listening
+      onConnecting();
+    }
+  }
+
+  function onConnecting () {
+    if (!~indexOf(self.connecting, socket)) {
+      self.connecting.push(socket);
+    }
+  }
+
+  return socket;
+};
+
+/**
+ * Called upon a socket close.
+ *
+ * @param {Socket} socket
+ */
+
+Manager.prototype.destroy = function (socket) {
+  var index = indexOf(this.connecting, socket);
+  if (~index) this.connecting.splice(index, 1);
+  if (this.connecting.length) return;
+
+  this.close();
+};
+
+/**
+ * Writes a packet.
+ *
+ * @param {Object} packet
+ * @api private
+ */
+
+Manager.prototype.packet = function (packet) {
+  debug('writing packet %j', packet);
+  var self = this;
+  if (packet.query && packet.type === 0) packet.nsp += '?' + packet.query;
+
+  if (!self.encoding) {
+    // encode, then write to engine with result
+    self.encoding = true;
+    this.encoder.encode(packet, function (encodedPackets) {
+      for (var i = 0; i < encodedPackets.length; i++) {
+        self.engine.write(encodedPackets[i], packet.options);
+      }
+      self.encoding = false;
+      self.processPacketQueue();
+    });
+  } else { // add packet to the queue
+    self.packetBuffer.push(packet);
+  }
+};
+
+/**
+ * If packet buffer is non-empty, begins encoding the
+ * next packet in line.
+ *
+ * @api private
+ */
+
+Manager.prototype.processPacketQueue = function () {
+  if (this.packetBuffer.length > 0 && !this.encoding) {
+    var pack = this.packetBuffer.shift();
+    this.packet(pack);
+  }
+};
+
+/**
+ * Clean up transport subscriptions and packet buffer.
+ *
+ * @api private
+ */
+
+Manager.prototype.cleanup = function () {
+  debug('cleanup');
+
+  var subsLength = this.subs.length;
+  for (var i = 0; i < subsLength; i++) {
+    var sub = this.subs.shift();
+    sub.destroy();
+  }
+
+  this.packetBuffer = [];
+  this.encoding = false;
+  this.lastPing = null;
+
+  this.decoder.destroy();
+};
+
+/**
+ * Close the current socket.
+ *
+ * @api private
+ */
+
+Manager.prototype.close =
+Manager.prototype.disconnect = function () {
+  debug('disconnect');
+  this.skipReconnect = true;
+  this.reconnecting = false;
+  if ('opening' === this.readyState) {
+    // `onclose` will not fire because
+    // an open event never happened
+    this.cleanup();
+  }
+  this.backoff.reset();
+  this.readyState = 'closed';
+  if (this.engine) this.engine.close();
+};
+
+/**
+ * Called upon engine close.
+ *
+ * @api private
+ */
+
+Manager.prototype.onclose = function (reason) {
+  debug('onclose');
+
+  this.cleanup();
+  this.backoff.reset();
+  this.readyState = 'closed';
+  this.emit('close', reason);
+
+  if (this._reconnection && !this.skipReconnect) {
+    this.reconnect();
+  }
+};
+
+/**
+ * Attempt a reconnection.
+ *
+ * @api private
+ */
+
+Manager.prototype.reconnect = function () {
+  if (this.reconnecting || this.skipReconnect) return this;
+
+  var self = this;
+
+  if (this.backoff.attempts >= this._reconnectionAttempts) {
+    debug('reconnect failed');
+    this.backoff.reset();
+    this.emitAll('reconnect_failed');
+    this.reconnecting = false;
+  } else {
+    var delay = this.backoff.duration();
+    debug('will wait %dms before reconnect attempt', delay);
+
+    this.reconnecting = true;
+    var timer = setTimeout(function () {
+      if (self.skipReconnect) return;
+
+      debug('attempting reconnect');
+      self.emitAll('reconnect_attempt', self.backoff.attempts);
+      self.emitAll('reconnecting', self.backoff.attempts);
+
+      // check again for the case socket closed in above events
+      if (self.skipReconnect) return;
+
+      self.open(function (err) {
+        if (err) {
+          debug('reconnect attempt error');
+          self.reconnecting = false;
+          self.reconnect();
+          self.emitAll('reconnect_error', err.data);
+        } else {
+          debug('reconnect success');
+          self.onreconnect();
+        }
+      });
+    }, delay);
+
+    this.subs.push({
+      destroy: function () {
+        clearTimeout(timer);
+      }
+    });
+  }
+};
+
+/**
+ * Called upon successful reconnect.
+ *
+ * @api private
+ */
+
+Manager.prototype.onreconnect = function () {
+  var attempt = this.backoff.attempts;
+  this.reconnecting = false;
+  this.backoff.reset();
+  this.updateSocketIds();
+  this.emitAll('reconnect', attempt);
+};
+
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {/**
+ * Module dependencies
+ */
+
+var XMLHttpRequest = __webpack_require__(28);
+var XHR = __webpack_require__(115);
+var JSONP = __webpack_require__(124);
+var websocket = __webpack_require__(125);
+
+/**
+ * Export transports.
+ */
+
+exports.polling = polling;
+exports.websocket = websocket;
+
+/**
+ * Polling transport polymorphic constructor.
+ * Decides on xhr vs jsonp based on feature detection.
+ *
+ * @api private
+ */
+
+function polling (opts) {
+  var xhr;
+  var xd = false;
+  var xs = false;
+  var jsonp = false !== opts.jsonp;
+
+  if (global.location) {
+    var isSSL = 'https:' === location.protocol;
+    var port = location.port;
+
+    // some user agents have empty `location.port`
+    if (!port) {
+      port = isSSL ? 443 : 80;
+    }
+
+    xd = opts.hostname !== location.hostname || port !== opts.port;
+    xs = opts.secure !== isSSL;
+  }
+
+  opts.xdomain = xd;
+  opts.xscheme = xs;
+  xhr = new XMLHttpRequest(opts);
+
+  if ('open' in xhr && !opts.forceJSONP) {
+    return new XHR(opts);
+  } else {
+    if (!jsonp) throw new Error('JSONP disabled');
+    return new JSONP(opts);
+  }
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Module dependencies.
+ */
+
+var Transport = __webpack_require__(29);
+var parseqs = __webpack_require__(17);
+var parser = __webpack_require__(9);
+var inherit = __webpack_require__(18);
+var yeast = __webpack_require__(53);
+var debug = __webpack_require__(19)('engine.io-client:polling');
+
+/**
+ * Module exports.
+ */
+
+module.exports = Polling;
+
+/**
+ * Is XHR2 supported?
+ */
+
+var hasXHR2 = (function () {
+  var XMLHttpRequest = __webpack_require__(28);
+  var xhr = new XMLHttpRequest({ xdomain: false });
+  return null != xhr.responseType;
+})();
+
+/**
+ * Polling interface.
+ *
+ * @param {Object} opts
+ * @api private
+ */
+
+function Polling (opts) {
+  var forceBase64 = (opts && opts.forceBase64);
+  if (!hasXHR2 || forceBase64) {
+    this.supportsBinary = false;
+  }
+  Transport.call(this, opts);
+}
+
+/**
+ * Inherits from Transport.
+ */
+
+inherit(Polling, Transport);
+
+/**
+ * Transport name.
+ */
+
+Polling.prototype.name = 'polling';
+
+/**
+ * Opens the socket (triggers polling). We write a PING message to determine
+ * when the transport is open.
+ *
+ * @api private
+ */
+
+Polling.prototype.doOpen = function () {
+  this.poll();
+};
+
+/**
+ * Pauses polling.
+ *
+ * @param {Function} callback upon buffers are flushed and transport is paused
+ * @api private
+ */
+
+Polling.prototype.pause = function (onPause) {
+  var self = this;
+
+  this.readyState = 'pausing';
+
+  function pause () {
+    debug('paused');
+    self.readyState = 'paused';
+    onPause();
+  }
+
+  if (this.polling || !this.writable) {
+    var total = 0;
+
+    if (this.polling) {
+      debug('we are currently polling - waiting to pause');
+      total++;
+      this.once('pollComplete', function () {
+        debug('pre-pause polling complete');
+        --total || pause();
+      });
+    }
+
+    if (!this.writable) {
+      debug('we are currently writing - waiting to pause');
+      total++;
+      this.once('drain', function () {
+        debug('pre-pause writing complete');
+        --total || pause();
+      });
+    }
+  } else {
+    pause();
+  }
+};
+
+/**
+ * Starts polling cycle.
+ *
+ * @api public
+ */
+
+Polling.prototype.poll = function () {
+  debug('polling');
+  this.polling = true;
+  this.doPoll();
+  this.emit('poll');
+};
+
+/**
+ * Overloads onData to detect payloads.
+ *
+ * @api private
+ */
+
+Polling.prototype.onData = function (data) {
+  var self = this;
+  debug('polling got data %s', data);
+  var callback = function (packet, index, total) {
+    // if its the first message we consider the transport open
+    if ('opening' === self.readyState) {
+      self.onOpen();
+    }
+
+    // if its a close packet, we close the ongoing requests
+    if ('close' === packet.type) {
+      self.onClose();
+      return false;
+    }
+
+    // otherwise bypass onData and handle the message
+    self.onPacket(packet);
+  };
+
+  // decode payload
+  parser.decodePayload(data, this.socket.binaryType, callback);
+
+  // if an event did not trigger closing
+  if ('closed' !== this.readyState) {
+    // if we got data we're not polling
+    this.polling = false;
+    this.emit('pollComplete');
+
+    if ('open' === this.readyState) {
+      this.poll();
+    } else {
+      debug('ignoring poll - transport state "%s"', this.readyState);
+    }
+  }
+};
+
+/**
+ * For polling, send a close packet.
+ *
+ * @api private
+ */
+
+Polling.prototype.doClose = function () {
+  var self = this;
+
+  function close () {
+    debug('writing close packet');
+    self.write([{ type: 'close' }]);
+  }
+
+  if ('open' === this.readyState) {
+    debug('transport open - closing');
+    close();
+  } else {
+    // in case we're trying to close while
+    // handshaking is in progress (GH-164)
+    debug('transport not open - deferring close');
+    this.once('open', close);
+  }
+};
+
+/**
+ * Writes a packets payload.
+ *
+ * @param {Array} data packets
+ * @param {Function} drain callback
+ * @api private
+ */
+
+Polling.prototype.write = function (packets) {
+  var self = this;
+  this.writable = false;
+  var callbackfn = function () {
+    self.writable = true;
+    self.emit('drain');
+  };
+
+  parser.encodePayload(packets, this.supportsBinary, function (data) {
+    self.doWrite(data, callbackfn);
+  });
+};
+
+/**
+ * Generates uri for connection.
+ *
+ * @api private
+ */
+
+Polling.prototype.uri = function () {
+  var query = this.query || {};
+  var schema = this.secure ? 'https' : 'http';
+  var port = '';
+
+  // cache busting is forced
+  if (false !== this.timestampRequests) {
+    query[this.timestampParam] = yeast();
+  }
+
+  if (!this.supportsBinary && !query.sid) {
+    query.b64 = 1;
+  }
+
+  query = parseqs.encode(query);
+
+  // avoid port if default for schema
+  if (this.port && (('https' === schema && Number(this.port) !== 443) ||
+     ('http' === schema && Number(this.port) !== 80))) {
+    port = ':' + this.port;
+  }
+
+  // prepend ? to query
+  if (query.length) {
+    query = '?' + query;
+  }
+
+  var ipv6 = this.hostname.indexOf(':') !== -1;
+  return schema + '://' + (ipv6 ? '[' + this.hostname + ']' : this.hostname) + port + this.path + query;
+};
+
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_'.split('')
+  , length = 64
+  , map = {}
+  , seed = 0
+  , i = 0
+  , prev;
+
+/**
+ * Return a string representing the specified number.
+ *
+ * @param {Number} num The number to convert.
+ * @returns {String} The string representation of the number.
+ * @api public
+ */
+function encode(num) {
+  var encoded = '';
+
+  do {
+    encoded = alphabet[num % length] + encoded;
+    num = Math.floor(num / length);
+  } while (num > 0);
+
+  return encoded;
+}
+
+/**
+ * Return the integer value specified by the given string.
+ *
+ * @param {String} str The string to convert.
+ * @returns {Number} The integer value represented by the string.
+ * @api public
+ */
+function decode(str) {
+  var decoded = 0;
+
+  for (i = 0; i < str.length; i++) {
+    decoded = decoded * length + map[str.charAt(i)];
+  }
+
+  return decoded;
+}
+
+/**
+ * Yeast: A tiny growing id generator.
+ *
+ * @returns {String} A unique id.
+ * @api public
+ */
+function yeast() {
+  var now = encode(+new Date());
+
+  if (now !== prev) return seed = 0, prev = now;
+  return now +'.'+ encode(seed++);
+}
+
+//
+// Map each character to its index.
+//
+for (; i < length; i++) map[alphabet[i]] = i;
+
+//
+// Expose the `yeast`, `encode` and `decode` functions.
+//
+yeast.encode = encode;
+yeast.decode = decode;
+module.exports = yeast;
+
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports) {
+
+
+var indexOf = [].indexOf;
+
+module.exports = function(arr, obj){
+  if (indexOf) return arr.indexOf(obj);
+  for (var i = 0; i < arr.length; ++i) {
+    if (arr[i] === obj) return i;
+  }
+  return -1;
+};
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/**
+ * Module dependencies.
+ */
+
+var parser = __webpack_require__(27);
+var Emitter = __webpack_require__(8);
+var toArray = __webpack_require__(127);
+var on = __webpack_require__(56);
+var bind = __webpack_require__(57);
+var debug = __webpack_require__(11)('socket.io-client:socket');
+var parseqs = __webpack_require__(17);
+
+/**
+ * Module exports.
+ */
+
+module.exports = exports = Socket;
+
+/**
+ * Internal events (blacklisted).
+ * These events can't be emitted by the user.
+ *
+ * @api private
+ */
+
+var events = {
+  connect: 1,
+  connect_error: 1,
+  connect_timeout: 1,
+  connecting: 1,
+  disconnect: 1,
+  error: 1,
+  reconnect: 1,
+  reconnect_attempt: 1,
+  reconnect_failed: 1,
+  reconnect_error: 1,
+  reconnecting: 1,
+  ping: 1,
+  pong: 1
+};
+
+/**
+ * Shortcut to `Emitter#emit`.
+ */
+
+var emit = Emitter.prototype.emit;
+
+/**
+ * `Socket` constructor.
+ *
+ * @api public
+ */
+
+function Socket (io, nsp, opts) {
+  this.io = io;
+  this.nsp = nsp;
+  this.json = this; // compat
+  this.ids = 0;
+  this.acks = {};
+  this.receiveBuffer = [];
+  this.sendBuffer = [];
+  this.connected = false;
+  this.disconnected = true;
+  if (opts && opts.query) {
+    this.query = opts.query;
+  }
+  if (this.io.autoConnect) this.open();
+}
+
+/**
+ * Mix in `Emitter`.
+ */
+
+Emitter(Socket.prototype);
+
+/**
+ * Subscribe to open, close and packet events
+ *
+ * @api private
+ */
+
+Socket.prototype.subEvents = function () {
+  if (this.subs) return;
+
+  var io = this.io;
+  this.subs = [
+    on(io, 'open', bind(this, 'onopen')),
+    on(io, 'packet', bind(this, 'onpacket')),
+    on(io, 'close', bind(this, 'onclose'))
+  ];
+};
+
+/**
+ * "Opens" the socket.
+ *
+ * @api public
+ */
+
+Socket.prototype.open =
+Socket.prototype.connect = function () {
+  if (this.connected) return this;
+
+  this.subEvents();
+  this.io.open(); // ensure open
+  if ('open' === this.io.readyState) this.onopen();
+  this.emit('connecting');
+  return this;
+};
+
+/**
+ * Sends a `message` event.
+ *
+ * @return {Socket} self
+ * @api public
+ */
+
+Socket.prototype.send = function () {
+  var args = toArray(arguments);
+  args.unshift('message');
+  this.emit.apply(this, args);
+  return this;
+};
+
+/**
+ * Override `emit`.
+ * If the event is in `events`, it's emitted normally.
+ *
+ * @param {String} event name
+ * @return {Socket} self
+ * @api public
+ */
+
+Socket.prototype.emit = function (ev) {
+  if (events.hasOwnProperty(ev)) {
+    emit.apply(this, arguments);
+    return this;
+  }
+
+  var args = toArray(arguments);
+  var packet = { type: parser.EVENT, data: args };
+
+  packet.options = {};
+  packet.options.compress = !this.flags || false !== this.flags.compress;
+
+  // event ack callback
+  if ('function' === typeof args[args.length - 1]) {
+    debug('emitting packet with ack id %d', this.ids);
+    this.acks[this.ids] = args.pop();
+    packet.id = this.ids++;
+  }
+
+  if (this.connected) {
+    this.packet(packet);
+  } else {
+    this.sendBuffer.push(packet);
+  }
+
+  delete this.flags;
+
+  return this;
+};
+
+/**
+ * Sends a packet.
+ *
+ * @param {Object} packet
+ * @api private
+ */
+
+Socket.prototype.packet = function (packet) {
+  packet.nsp = this.nsp;
+  this.io.packet(packet);
+};
+
+/**
+ * Called upon engine `open`.
+ *
+ * @api private
+ */
+
+Socket.prototype.onopen = function () {
+  debug('transport is open - connecting');
+
+  // write connect packet if necessary
+  if ('/' !== this.nsp) {
+    if (this.query) {
+      var query = typeof this.query === 'object' ? parseqs.encode(this.query) : this.query;
+      debug('sending connect packet with query %s', query);
+      this.packet({type: parser.CONNECT, query: query});
+    } else {
+      this.packet({type: parser.CONNECT});
+    }
+  }
+};
+
+/**
+ * Called upon engine `close`.
+ *
+ * @param {String} reason
+ * @api private
+ */
+
+Socket.prototype.onclose = function (reason) {
+  debug('close (%s)', reason);
+  this.connected = false;
+  this.disconnected = true;
+  delete this.id;
+  this.emit('disconnect', reason);
+};
+
+/**
+ * Called with socket packet.
+ *
+ * @param {Object} packet
+ * @api private
+ */
+
+Socket.prototype.onpacket = function (packet) {
+  if (packet.nsp !== this.nsp) return;
+
+  switch (packet.type) {
+    case parser.CONNECT:
+      this.onconnect();
+      break;
+
+    case parser.EVENT:
+      this.onevent(packet);
+      break;
+
+    case parser.BINARY_EVENT:
+      this.onevent(packet);
+      break;
+
+    case parser.ACK:
+      this.onack(packet);
+      break;
+
+    case parser.BINARY_ACK:
+      this.onack(packet);
+      break;
+
+    case parser.DISCONNECT:
+      this.ondisconnect();
+      break;
+
+    case parser.ERROR:
+      this.emit('error', packet.data);
+      break;
+  }
+};
+
+/**
+ * Called upon a server event.
+ *
+ * @param {Object} packet
+ * @api private
+ */
+
+Socket.prototype.onevent = function (packet) {
+  var args = packet.data || [];
+  debug('emitting event %j', args);
+
+  if (null != packet.id) {
+    debug('attaching ack callback to event');
+    args.push(this.ack(packet.id));
+  }
+
+  if (this.connected) {
+    emit.apply(this, args);
+  } else {
+    this.receiveBuffer.push(args);
+  }
+};
+
+/**
+ * Produces an ack callback to emit with an event.
+ *
+ * @api private
+ */
+
+Socket.prototype.ack = function (id) {
+  var self = this;
+  var sent = false;
+  return function () {
+    // prevent double callbacks
+    if (sent) return;
+    sent = true;
+    var args = toArray(arguments);
+    debug('sending ack %j', args);
+
+    self.packet({
+      type: parser.ACK,
+      id: id,
+      data: args
+    });
+  };
+};
+
+/**
+ * Called upon a server acknowlegement.
+ *
+ * @param {Object} packet
+ * @api private
+ */
+
+Socket.prototype.onack = function (packet) {
+  var ack = this.acks[packet.id];
+  if ('function' === typeof ack) {
+    debug('calling ack %s with %j', packet.id, packet.data);
+    ack.apply(this, packet.data);
+    delete this.acks[packet.id];
+  } else {
+    debug('bad ack %s', packet.id);
+  }
+};
+
+/**
+ * Called upon server connect.
+ *
+ * @api private
+ */
+
+Socket.prototype.onconnect = function () {
+  this.connected = true;
+  this.disconnected = false;
+  this.emit('connect');
+  this.emitBuffered();
+};
+
+/**
+ * Emit buffered events (received and emitted).
+ *
+ * @api private
+ */
+
+Socket.prototype.emitBuffered = function () {
+  var i;
+  for (i = 0; i < this.receiveBuffer.length; i++) {
+    emit.apply(this, this.receiveBuffer[i]);
+  }
+  this.receiveBuffer = [];
+
+  for (i = 0; i < this.sendBuffer.length; i++) {
+    this.packet(this.sendBuffer[i]);
+  }
+  this.sendBuffer = [];
+};
+
+/**
+ * Called upon server disconnect.
+ *
+ * @api private
+ */
+
+Socket.prototype.ondisconnect = function () {
+  debug('server disconnect (%s)', this.nsp);
+  this.destroy();
+  this.onclose('io server disconnect');
+};
+
+/**
+ * Called upon forced client/server side disconnections,
+ * this method ensures the manager stops tracking us and
+ * that reconnections don't get triggered for this.
+ *
+ * @api private.
+ */
+
+Socket.prototype.destroy = function () {
+  if (this.subs) {
+    // clean subscriptions to avoid reconnections
+    for (var i = 0; i < this.subs.length; i++) {
+      this.subs[i].destroy();
+    }
+    this.subs = null;
+  }
+
+  this.io.destroy(this);
+};
+
+/**
+ * Disconnects the socket manually.
+ *
+ * @return {Socket} self
+ * @api public
+ */
+
+Socket.prototype.close =
+Socket.prototype.disconnect = function () {
+  if (this.connected) {
+    debug('performing disconnect (%s)', this.nsp);
+    this.packet({ type: parser.DISCONNECT });
+  }
+
+  // remove socket from pool
+  this.destroy();
+
+  if (this.connected) {
+    // fire events
+    this.onclose('io client disconnect');
+  }
+  return this;
+};
+
+/**
+ * Sets the compress flag.
+ *
+ * @param {Boolean} if `true`, compresses the sending data
+ * @return {Socket} self
+ * @api public
+ */
+
+Socket.prototype.compress = function (compress) {
+  this.flags = this.flags || {};
+  this.flags.compress = compress;
+  return this;
+};
+
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports) {
+
+
+/**
+ * Module exports.
+ */
+
+module.exports = on;
+
+/**
+ * Helper for subscriptions.
+ *
+ * @param {Object|EventEmitter} obj with `Emitter` mixin or `EventEmitter`
+ * @param {String} event name
+ * @param {Function} callback
+ * @api public
+ */
+
+function on (obj, ev, fn) {
+  obj.on(ev, fn);
+  return {
+    destroy: function () {
+      obj.removeListener(ev, fn);
+    }
+  };
+}
+
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports) {
+
+/**
+ * Slice reference.
+ */
+
+var slice = [].slice;
+
+/**
+ * Bind `obj` to `fn`.
+ *
+ * @param {Object} obj
+ * @param {Function|String} fn or string
+ * @return {Function}
+ * @api public
+ */
+
+module.exports = function(obj, fn){
+  if ('string' == typeof fn) fn = obj[fn];
+  if ('function' != typeof fn) throw new Error('bind() requires a function');
+  var args = slice.call(arguments, 2);
+  return function(){
+    return fn.apply(obj, args.concat(slice.call(arguments)));
+  }
+};
+
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Bullet = /** @class */ (function (_super) {
+    __extends(Bullet, _super);
+    function Bullet(game, xCoord, yCoord) {
+        var _this = _super.call(this, game, 0, 0) || this;
+        _this.game = game;
+        _this.xCoordinate = xCoord;
+        _this.yCoordinate = yCoord;
+        _this.explosions = _this.game.add.group();
+        _this.makeExposition();
+        _this.create();
+        return _this;
+    }
+    Bullet.prototype.create = function () { };
+    ;
+    Object.defineProperty(Bullet.prototype, "currentPosition", {
+        get: function () {
+            return {
+                xCoordinate: this.bullet.x,
+                yCoordinate: this.bullet.y,
+            };
+        },
+        set: function (coordinate) {
+            this.bullet.x = coordinate.xCoordinate;
+            this.bullet.y = coordinate.yCoordinate;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Bullet.prototype.makeExposition = function () {
+        for (var i = 0; i < 10; i++) {
+            var explosionAnimation = this.explosions.create(0, 0, 'kaboom', 0, false);
+            explosionAnimation.anchor.setTo(0.5, 0.5);
+            explosionAnimation.animations.add('kaboom');
+        }
+    };
+    Bullet.prototype.bulletHitBox = function (bullet, box) {
+        bullet.kill();
+        var explosionAnimation = this.explosions.getFirstExists(false);
+        explosionAnimation.reset(box.x, box.y);
+        explosionAnimation.play('kaboom', 30, false, true);
+        // box.kill();
+    };
+    return Bullet;
+}(Phaser.Sprite));
+exports.default = Bullet;
+
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var Constants = {
+    logo_scale: 0.5,
+    max_velocity: 400,
+    health: 100,
+    anchor: 0.5,
+    button_scale: 0.2,
+    shadow_time: 1000,
+    visible_time: 2000
+
+};
+
+exports.default = Constants;
+
+/***/ }),
 /* 60 */,
 /* 61 */,
 /* 62 */,
 /* 63 */,
 /* 64 */,
 /* 65 */,
-/* 66 */
+/* 66 */,
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105401,35 +105429,35 @@ var _UserService = __webpack_require__(12);
 
 var _UserService2 = _interopRequireDefault(_UserService);
 
-var _CreatePage = __webpack_require__(67);
+var _CreatePage = __webpack_require__(68);
 
 var _CreatePage2 = _interopRequireDefault(_CreatePage);
 
-var _Router = __webpack_require__(86);
+var _Router = __webpack_require__(87);
 
 var _Router2 = _interopRequireDefault(_Router);
 
-var _MenuStartController = __webpack_require__(88);
+var _MenuStartController = __webpack_require__(89);
 
 var _MenuStartController2 = _interopRequireDefault(_MenuStartController);
 
-var _PlayGameController = __webpack_require__(89);
+var _PlayGameController = __webpack_require__(90);
 
 var _PlayGameController2 = _interopRequireDefault(_PlayGameController);
 
-var _SignInController = __webpack_require__(137);
+var _SignInController = __webpack_require__(141);
 
 var _SignInController2 = _interopRequireDefault(_SignInController);
 
-var _SignUpController = __webpack_require__(138);
+var _SignUpController = __webpack_require__(142);
 
 var _SignUpController2 = _interopRequireDefault(_SignUpController);
 
-var _ScoreListController = __webpack_require__(139);
+var _ScoreListController = __webpack_require__(143);
 
 var _ScoreListController2 = _interopRequireDefault(_ScoreListController);
 
-var _AboutUsController = __webpack_require__(140);
+var _AboutUsController = __webpack_require__(144);
 
 var _AboutUsController2 = _interopRequireDefault(_AboutUsController);
 
@@ -105437,7 +105465,7 @@ var _style = __webpack_require__(7);
 
 var _style2 = _interopRequireDefault(_style);
 
-var _index = __webpack_require__(34);
+var _index = __webpack_require__(35);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -105457,7 +105485,7 @@ theme.changeTheme();
 new _Router2.default().addRoute('/', _MenuStartController2.default, { userService: userService, page: page }).addRoute('/play', _PlayGameController2.default, { userService: userService, page: page }).addRoute('/signin', _SignInController2.default, { userService: userService, page: page }).addRoute('/signup', _SignUpController2.default, { userService: userService, page: page }).addRoute('/score', _ScoreListController2.default, { userService: userService, page: page }).addRoute('/about', _AboutUsController2.default, { userService: userService, page: page }).startRoute();
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105473,35 +105501,35 @@ var _BlockComponents = __webpack_require__(5);
 
 var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
-var _SignIn = __webpack_require__(68);
+var _SignIn = __webpack_require__(69);
 
 var _SignIn2 = _interopRequireDefault(_SignIn);
 
-var _SignUp = __webpack_require__(72);
+var _SignUp = __webpack_require__(73);
 
 var _SignUp2 = _interopRequireDefault(_SignUp);
 
-var _Header = __webpack_require__(74);
+var _Header = __webpack_require__(75);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _UnRegMenu = __webpack_require__(77);
+var _UnRegMenu = __webpack_require__(78);
 
 var _UnRegMenu2 = _interopRequireDefault(_UnRegMenu);
 
-var _RegMenu = __webpack_require__(79);
+var _RegMenu = __webpack_require__(80);
 
 var _RegMenu2 = _interopRequireDefault(_RegMenu);
 
-var _AboutUs = __webpack_require__(80);
+var _AboutUs = __webpack_require__(81);
 
 var _AboutUs2 = _interopRequireDefault(_AboutUs);
 
-var _Scoreboard = __webpack_require__(82);
+var _Scoreboard = __webpack_require__(83);
 
 var _Scoreboard2 = _interopRequireDefault(_Scoreboard);
 
-var _Footer = __webpack_require__(83);
+var _Footer = __webpack_require__(84);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -105549,7 +105577,7 @@ var CreatePage = function () {
 exports.default = CreatePage;
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105560,11 +105588,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = SignIn;
 
-var _SignInForm = __webpack_require__(69);
+var _SignInForm = __webpack_require__(70);
 
 var _SignInForm2 = _interopRequireDefault(_SignInForm);
 
-var _ValidSignInForm = __webpack_require__(30);
+var _ValidSignInForm = __webpack_require__(31);
 
 var _ValidSignInForm2 = _interopRequireDefault(_ValidSignInForm);
 
@@ -105604,7 +105632,7 @@ function SignIn() {
 }
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105693,7 +105721,7 @@ var SignInForm = function (_Form) {
 exports.default = SignInForm;
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(10);
@@ -105722,13 +105750,13 @@ pug_html = pug_html + "\n    \u003Cinput" + (pug.attr("class", pug.classes(["for
 module.exports = template;
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105739,11 +105767,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = SignUp;
 
-var _SignUpForm = __webpack_require__(73);
+var _SignUpForm = __webpack_require__(74);
 
 var _SignUpForm2 = _interopRequireDefault(_SignUpForm);
 
-var _ValidSignUpForm = __webpack_require__(31);
+var _ValidSignUpForm = __webpack_require__(32);
 
 var _ValidSignUpForm2 = _interopRequireDefault(_ValidSignUpForm);
 
@@ -105795,7 +105823,7 @@ function SignUp() {
 }
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105883,7 +105911,7 @@ var SignUpForm = function (_Form) {
 exports.default = SignUpForm;
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105894,7 +105922,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createHeader;
 
-var _Header = __webpack_require__(75);
+var _Header = __webpack_require__(76);
 
 var _Header2 = _interopRequireDefault(_Header);
 
@@ -105912,7 +105940,7 @@ function createHeader() {
 }
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105928,7 +105956,7 @@ var _BlockComponents = __webpack_require__(5);
 
 var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
-var _Header = __webpack_require__(76);
+var _Header = __webpack_require__(77);
 
 var _Header2 = _interopRequireDefault(_Header);
 
@@ -105987,7 +106015,7 @@ var Header = function (_Block) {
 exports.default = Header;
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(10);
@@ -105997,7 +106025,7 @@ pug_html = pug_html + "\n\u003Cdiv class=\"theme\"\u003Echange theme\u003C\u002F
 module.exports = template;
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106008,7 +106036,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createUnRegMenu;
 
-var _Menu = __webpack_require__(32);
+var _Menu = __webpack_require__(33);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
@@ -106039,7 +106067,7 @@ function createUnRegMenu() {
 }
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(10);
@@ -106071,7 +106099,7 @@ pug_html = pug_html + "\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for
 module.exports = template;
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106082,7 +106110,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createRegMenu;
 
-var _Menu = __webpack_require__(32);
+var _Menu = __webpack_require__(33);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
@@ -106113,7 +106141,7 @@ function createRegMenu() {
 }
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106124,7 +106152,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createAboutUs;
 
-var _Table = __webpack_require__(33);
+var _Table = __webpack_require__(34);
 
 var _Table2 = _interopRequireDefault(_Table);
 
@@ -106165,7 +106193,7 @@ function createAboutUs() {
 }
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(10);
@@ -106198,7 +106226,7 @@ pug_html = pug_html + "\n    \u003C\u002Ftable\u003E\n  \u003C\u002Fdiv\u003E\n 
 module.exports = template;
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106209,7 +106237,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Scoreboard;
 
-var _Table = __webpack_require__(33);
+var _Table = __webpack_require__(34);
 
 var _Table2 = _interopRequireDefault(_Table);
 
@@ -106250,7 +106278,7 @@ function Scoreboard() {
 }
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106261,7 +106289,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = CreateFooter;
 
-var _Footer = __webpack_require__(84);
+var _Footer = __webpack_require__(85);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -106291,7 +106319,7 @@ function CreateFooter() {
 }
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106307,7 +106335,7 @@ var _BlockComponents = __webpack_require__(5);
 
 var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
-var _Footer = __webpack_require__(85);
+var _Footer = __webpack_require__(86);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -106366,7 +106394,7 @@ var Footer = function (_Block) {
 exports.default = Footer;
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(10);
@@ -106395,7 +106423,7 @@ pug_html = pug_html + "\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for
 module.exports = template;
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106407,7 +106435,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Route = __webpack_require__(87);
+var _Route = __webpack_require__(88);
 
 var _Route2 = _interopRequireDefault(_Route);
 
@@ -106494,7 +106522,7 @@ var Router = function () {
 exports.default = Router;
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106549,7 +106577,7 @@ var Route = function () {
 exports.default = Route;
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106706,7 +106734,7 @@ var MenuStartController = function (_Controller) {
 exports.default = MenuStartController;
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106722,7 +106750,7 @@ var _Controller2 = __webpack_require__(6);
 
 var _Controller3 = _interopRequireDefault(_Controller2);
 
-var _index = __webpack_require__(34);
+var _index = __webpack_require__(35);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -106765,7 +106793,8 @@ var PlayGameController = function (_Controller) {
 			this.userService.getProfile().then(function (resp) {
 				console.log("[userService.getProfile] response: " + resp);
 				_this2.userService.user.set(resp);
-				var game = new _index2.default(_this2.userService.user);
+
+				_this2.game = new _index2.default(_this2.userService.user);
 			}).catch(function (err) {
 				console.log("[userService.getProfile] err: " + err);
 				_this2._router.go('/');
@@ -106773,7 +106802,9 @@ var PlayGameController = function (_Controller) {
 		}
 	}, {
 		key: 'hide',
-		value: function hide() {}
+		value: function hide() {
+			this.game.exit();
+		}
 	}]);
 
 	return PlayGameController;
@@ -106782,7 +106813,7 @@ var PlayGameController = function (_Controller) {
 exports.default = PlayGameController;
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106800,9 +106831,9 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
 var state_1 = __webpack_require__(16);
-var titlepage = __webpack_require__(35);
-var loaderImage = __webpack_require__(91);
-var tankLandingArea = __webpack_require__(36);
+var titlepage = __webpack_require__(36);
+var loaderImage = __webpack_require__(92);
+var tankLandingArea = __webpack_require__(37);
 // const titlepage          = require('../../static/staticsGame/images/titlepage.jpg');
 // const loaderImage        = require('../../static/staticsGame/images/loader.png');
 var BootState = /** @class */ (function (_super) {
@@ -106824,13 +106855,13 @@ exports.default = BootState;
 
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports) {
 
 module.exports = "../../img/14d4ff248dc707525c77546bd8f6a020.png";
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106849,17 +106880,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
 var state_1 = __webpack_require__(16);
 // Webpack will replace these imports with a URLs to images
-var tanks = __webpack_require__(37);
-var tanksJSON = __webpack_require__(93);
-var enemy = __webpack_require__(94);
-var bullet = __webpack_require__(95);
-var kaboom = __webpack_require__(96);
-var titlepage = __webpack_require__(35);
-var logo = __webpack_require__(97);
+var tanks = __webpack_require__(38);
+var tanksJSON = __webpack_require__(94);
+var enemy = __webpack_require__(95);
+var bullet = __webpack_require__(96);
+var kaboom = __webpack_require__(97);
+var titlepage = __webpack_require__(36);
+var logo = __webpack_require__(98);
 // const startAudio      = require('../../../static/staticsGame/music/boom.mp3');
-var earth = __webpack_require__(38);
-var pause = __webpack_require__(39);
-var box_tree = __webpack_require__(40);
+var earth = __webpack_require__(39);
+var pause = __webpack_require__(40);
+var box_tree = __webpack_require__(41);
 // const tanks       = require('../../static/staticsGame/images/tanks.png');
 // const tanksJSON   = require('../../static/staticsGame/images/tanks.json');
 // const enemy       = require('../../static/staticsGame/images/enemy-tanks.png');
@@ -106907,37 +106938,37 @@ exports.default = PreloaderState;
 
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports) {
 
 module.exports = {"frames":[{"filename":"shadow","frame":{"x":0,"y":0,"w":80,"h":80},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":80,"h":80},"sourceSize":{"w":80,"h":80}},{"filename":"tank1","frame":{"x":190,"y":52,"w":54,"h":52},"rotated":false,"trimmed":true,"spriteSourceSize":{"x":3,"y":5,"w":54,"h":52},"sourceSize":{"w":64,"h":64}},{"filename":"turret","frame":{"x":0,"y":80,"w":48,"h":28},"rotated":false,"trimmed":true,"spriteSourceSize":{"x":1,"y":2,"w":48,"h":28},"sourceSize":{"w":50,"h":32}}]}
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports) {
 
 module.exports = "../../img/f50e6d82d4bfab326976a927ee97741f.png";
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports) {
 
 module.exports = "../../img/fae6edb0e0a51c1e45006a123c63dff2.png";
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports) {
 
 module.exports = "../../img/5ddcf208bfb5ee103c39ea71c64a107f.png";
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports) {
 
 module.exports = "../../img/6f7c29bcd42fe6d20b75c1853ca7e6d3.png";
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106985,7 +107016,7 @@ exports.default = MainState;
 
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -107003,19 +107034,21 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
 var state_1 = __webpack_require__(16);
-var Tank_1 = __webpack_require__(100);
-var TreeBox_1 = __webpack_require__(101);
-var Client_1 = __webpack_require__(103);
-var Snap_1 = __webpack_require__(128);
-var SpawnRequest_1 = __webpack_require__(129);
-var TankBullet_1 = __webpack_require__(130);
-var EnemyBullet_1 = __webpack_require__(131);
-var EnemyTanks_1 = __webpack_require__(132);
-var earth = __webpack_require__(38);
-var pause = __webpack_require__(39);
-var box_tree = __webpack_require__(40);
-var tanks = __webpack_require__(37);
-var tankLandingArea = __webpack_require__(36);
+var Tank_1 = __webpack_require__(101);
+var TreeBox_1 = __webpack_require__(102);
+var Client_1 = __webpack_require__(104);
+var Snap_1 = __webpack_require__(129);
+var SpawnRequest_1 = __webpack_require__(130);
+var TankBullet_1 = __webpack_require__(131);
+var EnemyBullet_1 = __webpack_require__(132);
+var EnemyTanks_1 = __webpack_require__(133);
+var TankLanding_1 = __webpack_require__(135);
+var StaticList_1 = __webpack_require__(136);
+var earth = __webpack_require__(39);
+var pause = __webpack_require__(40);
+var box_tree = __webpack_require__(41);
+var tanks = __webpack_require__(38);
+var tankLandingArea = __webpack_require__(37);
 var WorldState = /** @class */ (function (_super) {
     __extends(WorldState, _super);
     function WorldState() {
@@ -107030,6 +107063,8 @@ var WorldState = /** @class */ (function (_super) {
         this.music.play();
         this.land = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'earth');
         this.land.fixedToCamera = true;
+        // create landing group
+        this.tankLandings = new TankLanding_1.default(this.game);
         // create box map
         this.treeBoxes = new TreeBox_1.default(this.game);
         // create a new group of enemies;
@@ -107046,6 +107081,10 @@ var WorldState = /** @class */ (function (_super) {
             if (message.class === "WorldSnap") {
                 _this.onServerWorldArrived(message);
             }
+            if (message.class === "StatisticsSnap") {
+                console.log("statistics snap is comming");
+                _this.onServerStatisticsSnap(message);
+            }
             if (message.class === "SpawnSnap") {
                 _this.isSendSpawnRequest = false;
                 _this.onServerSpawnArrived(message);
@@ -107058,6 +107097,7 @@ var WorldState = /** @class */ (function (_super) {
         this.pause.scale.setTo(0.2, 0.2);
         this.pause.frame = 1;
         this.pause['clicked'] = false;
+        this.statistics = new StaticList_1.default(this.game, this.game.user.id);
         this.game.camera.follow(this.tank);
         this.game.camera.deadzone = new Phaser.Rectangle(150, 150, 500, 300);
         this.game.camera.focusOnXY(0, 0);
@@ -107090,8 +107130,12 @@ var WorldState = /** @class */ (function (_super) {
         }
         this.game.physics.arcade.overlap(this.tankBullets.tankBullets, this.treeBoxes._treeBoxes, this.tankBullets.bulletHitBox.bind(this.tankBullets), null, this);
         this.game.physics.arcade.overlap(this.enemyBullets.enemyBullets, this.treeBoxes._treeBoxes, this.enemyBullets.bulletHitBox.bind(this.enemyBullets), null, this);
-        this.game.physics.arcade.overlap(this.tankBullets.tankBullets, this.enemies.enemyTanks, this.tankBullets.bulletHitEnemy.bind(this.tankBullets), null, this);
-        this.game.physics.arcade.overlap(this.enemyBullets.enemyBullets, this.tank._tank, this.enemyBullets.bulletHitTank.bind(this.enemyBullets), null, this);
+        for (var i = 0; i < this.enemies.enemyTanks.children.length; i++) {
+            this.game.physics.arcade.overlap(this.tankBullets.tankBullets, this.enemies.enemyTanks.children[i]._tank._body, this.tankBullets.bulletHitEnemy.bind(this.tankBullets), null, this);
+        }
+        if (this.tank._tank._body) {
+            this.game.physics.arcade.overlap(this.enemyBullets.enemyBullets, this.tank._tank._body, this.enemyBullets.bulletHitTank.bind(this.enemyBullets), null, this);
+        }
         this.tank.isShoot = false;
     };
     WorldState.prototype.fire = function () {
@@ -107106,6 +107150,13 @@ var WorldState = /** @class */ (function (_super) {
     WorldState.prototype.startPause = function () {
     };
     ;
+    WorldState.prototype.onServerStatisticsSnap = function (message) {
+        debugger;
+        console.log("statistics snap length = " + message.leaders.length);
+        if (message.leaders) {
+            this.statistics.updateList(message.leaders);
+        }
+    };
     WorldState.prototype.onServerSpawnArrived = function (message) {
         this.tank = new Tank_1.default(this.game, this.game.user.id, this.game.user.username);
         var position = message.position;
@@ -107126,9 +107177,8 @@ var WorldState = /** @class */ (function (_super) {
         for (var i = 0; i < boxes.length; i++) {
             this.treeBoxes.createBox(boxes[i].position.valX, boxes[i].position.valY, i);
         }
-        debugger;
         for (var i = 0; i < tanksLandingPositions.length; i++) {
-            var landingPosition = this.game.add.sprite(tanksLandingPositions[i].valX, tanksLandingPositions[i].valY, 'tankLandingArea', 'tankLandingArea');
+            this.tankLandings.createLanding(tanksLandingPositions[i].valX, tanksLandingPositions[i].valY, i);
         }
     };
     WorldState.prototype.onServerSnapArrived = function (message) {
@@ -107186,9 +107236,8 @@ var WorldState = /** @class */ (function (_super) {
                         directY = tankSnapshot.platform.valY + 1000 * Math.sin(degToRad(tankSnapshot.turretAngle));
                         var bullet = this.enemyBullets.enemyBullets.getFirstExists(false);
                         bullet.reset(tankSnapshot.platform.valX, tankSnapshot.platform.valY);
-                        bullet.rotation = this.physics.arcade.moveToXY(bullet, directX, directY, 1000, 500);
+                        bullet.rotation = this.physics.arcade.moveToXY(bullet, directX, directY, 1000, 50);
                     }
-                    debugger;
                     enemyOnClient.tankBody.currentPosition = {
                         xCoordinate: tankSnapshot.platform.valX,
                         yCoordinate: tankSnapshot.platform.valY
@@ -107214,7 +107263,7 @@ exports.default = WorldState;
 
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -107230,10 +107279,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var TankBody_1 = __webpack_require__(41);
-var TankTurret_1 = __webpack_require__(42);
-var Lable_1 = __webpack_require__(43);
-var HealthBar = __webpack_require__(44);
+var TankBody_1 = __webpack_require__(42);
+var TankTurret_1 = __webpack_require__(43);
+var Lable_1 = __webpack_require__(44);
+var HealthBar = __webpack_require__(45);
 var TankState = /** @class */ (function (_super) {
     __extends(TankState, _super);
     function TankState(game, uid, title) {
@@ -107299,7 +107348,7 @@ exports.default = TankState;
 
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -107315,7 +107364,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Box_1 = __webpack_require__(102);
+var Box_1 = __webpack_require__(103);
 var TreeBox = /** @class */ (function (_super) {
     __extends(TreeBox, _super);
     // _box = Phaser.Sprite;
@@ -107329,9 +107378,15 @@ var TreeBox = /** @class */ (function (_super) {
         this._treeBoxes = this._game.add.group();
         this._treeBoxes.enableBody = true;
         this._game.physics.arcade.enable(this._treeBoxes);
+        this._treeBoxes.createMultiple(30, 'bullet');
+        this._treeBoxes.setAll('anchor.x', 0.5);
+        this._treeBoxes.setAll('anchor.y', 0.5);
+        this._treeBoxes.setAll('outOfBoundsKill', true);
+        this._treeBoxes.setAll('checkWorldBounds', true);
     };
     TreeBox.prototype.createBox = function (xCoord, yCoord, id) {
         this._box = this._treeBoxes.create(xCoord, yCoord, 'box_tree');
+        this._box.anchor.setTo(0.5, 0.5);
         this._box.name = id.toString();
         this._box.body.immovable = true;
     };
@@ -107341,7 +107396,7 @@ exports.default = TreeBox;
 
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -107391,14 +107446,14 @@ exports.default = Box;
 
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Message_1 = __webpack_require__(104);
-var io = __webpack_require__(105);
+var Message_1 = __webpack_require__(105);
+var io = __webpack_require__(106);
 var Client = /** @class */ (function () {
     function Client() {
         var _this = this;
@@ -107407,8 +107462,8 @@ var Client = /** @class */ (function () {
         // this.socket = io('ws://10.100.122.201:8080/game');
         console.log('Info: try get instants of WebSocket.');
         // this.socket = new WebSocket('ws://localhost:8080/game');
-        this.socket = new WebSocket('ws://10.100.122.201:8080/api/game');
-        // this.socket = new WebSocket('ws://10.100.122.151:8080/api/game');
+        // this.socket = new WebSocket('ws://10.100.122.201:8080/api/game');
+        this.socket = new WebSocket('ws://10.100.122.151:8080/api/game');
         // this.socket = new WebSocket('ws://82.202.246.5:8080/game');
         // this.socket = new WebSocket('wss://tanks-backend.xyz/api/game');
         this.message = new Message_1.default(this);
@@ -107432,7 +107487,7 @@ exports.default = Client;
 
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -107469,7 +107524,7 @@ exports.default = Message;
 
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -107477,9 +107532,9 @@ exports.default = Message;
  * Module dependencies.
  */
 
-var url = __webpack_require__(106);
-var parser = __webpack_require__(26);
-var Manager = __webpack_require__(49);
+var url = __webpack_require__(107);
+var parser = __webpack_require__(27);
+var Manager = __webpack_require__(50);
 var debug = __webpack_require__(11)('socket.io-client');
 
 /**
@@ -107564,12 +107619,12 @@ exports.connect = lookup;
  * @api public
  */
 
-exports.Manager = __webpack_require__(49);
-exports.Socket = __webpack_require__(54);
+exports.Manager = __webpack_require__(50);
+exports.Socket = __webpack_require__(55);
 
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -107577,7 +107632,7 @@ exports.Socket = __webpack_require__(54);
  * Module dependencies.
  */
 
-var parseuri = __webpack_require__(45);
+var parseuri = __webpack_require__(46);
 var debug = __webpack_require__(11)('socket.io-client:url');
 
 /**
@@ -107651,7 +107706,7 @@ function url (uri, loc) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -107667,7 +107722,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(46);
+exports.humanize = __webpack_require__(47);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -107859,7 +107914,7 @@ function coerce(val) {
 
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -107870,7 +107925,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/*global Blob,File*/
@@ -107879,8 +107934,8 @@ module.exports = Array.isArray || function (arr) {
  * Module requirements
  */
 
-var isArray = __webpack_require__(110);
-var isBuf = __webpack_require__(48);
+var isArray = __webpack_require__(111);
+var isBuf = __webpack_require__(49);
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof global.Blob === 'function' || toString.call(global.Blob) === '[object BlobConstructor]';
 var withNativeFile = typeof global.File === 'function' || toString.call(global.File) === '[object FileConstructor]';
@@ -108018,7 +108073,7 @@ exports.removeBlobs = function(data, callback) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -108029,11 +108084,11 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-module.exports = __webpack_require__(112);
+module.exports = __webpack_require__(113);
 
 /**
  * Exports parser
@@ -108045,19 +108100,19 @@ module.exports.parser = __webpack_require__(9);
 
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * Module dependencies.
  */
 
-var transports = __webpack_require__(50);
+var transports = __webpack_require__(51);
 var Emitter = __webpack_require__(8);
 var debug = __webpack_require__(19)('engine.io-client:socket');
-var index = __webpack_require__(53);
+var index = __webpack_require__(54);
 var parser = __webpack_require__(9);
-var parseuri = __webpack_require__(45);
+var parseuri = __webpack_require__(46);
 var parseqs = __webpack_require__(17);
 
 /**
@@ -108191,8 +108246,8 @@ Socket.protocol = parser.protocol; // this is an int
  */
 
 Socket.Socket = Socket;
-Socket.Transport = __webpack_require__(28);
-Socket.transports = __webpack_require__(50);
+Socket.Transport = __webpack_require__(29);
+Socket.transports = __webpack_require__(51);
 Socket.parser = __webpack_require__(9);
 
 /**
@@ -108795,7 +108850,7 @@ Socket.prototype.filterUpgrades = function (upgrades) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports) {
 
 
@@ -108818,15 +108873,15 @@ try {
 
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * Module requirements.
  */
 
-var XMLHttpRequest = __webpack_require__(27);
-var Polling = __webpack_require__(51);
+var XMLHttpRequest = __webpack_require__(28);
+var Polling = __webpack_require__(52);
 var Emitter = __webpack_require__(8);
 var inherit = __webpack_require__(18);
 var debug = __webpack_require__(19)('engine.io-client:polling-xhr');
@@ -109238,7 +109293,7 @@ function unloadHandler () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports) {
 
 
@@ -109263,7 +109318,7 @@ module.exports = Object.keys || function keys (obj){
 
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports) {
 
 /**
@@ -109298,7 +109353,7 @@ module.exports = function(arraybuffer, start, end) {
 
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports) {
 
 module.exports = after
@@ -109332,7 +109387,7 @@ function noop() {}
 
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module, global) {var __WEBPACK_AMD_DEFINE_RESULT__;/*! https://mths.be/utf8js v2.1.2 by @mathias */
@@ -109590,10 +109645,10 @@ function noop() {}
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(119)(module), __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(120)(module), __webpack_require__(0)))
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -109621,7 +109676,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports) {
 
 /*
@@ -109694,7 +109749,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -109797,7 +109852,7 @@ module.exports = (function() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -109813,7 +109868,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(46);
+exports.humanize = __webpack_require__(47);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -110005,7 +110060,7 @@ function coerce(val) {
 
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -110013,7 +110068,7 @@ function coerce(val) {
  * Module requirements.
  */
 
-var Polling = __webpack_require__(51);
+var Polling = __webpack_require__(52);
 var inherit = __webpack_require__(18);
 
 /**
@@ -110243,24 +110298,24 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * Module dependencies.
  */
 
-var Transport = __webpack_require__(28);
+var Transport = __webpack_require__(29);
 var parser = __webpack_require__(9);
 var parseqs = __webpack_require__(17);
 var inherit = __webpack_require__(18);
-var yeast = __webpack_require__(52);
+var yeast = __webpack_require__(53);
 var debug = __webpack_require__(19)('engine.io-client:websocket');
 var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
 if (typeof window === 'undefined') {
   try {
-    NodeWebSocket = __webpack_require__(125);
+    NodeWebSocket = __webpack_require__(126);
   } catch (e) { }
 }
 
@@ -110536,13 +110591,13 @@ WS.prototype.check = function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports) {
 
 module.exports = toArray
@@ -110561,7 +110616,7 @@ function toArray(list, index) {
 
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports) {
 
 
@@ -110652,7 +110707,7 @@ Backoff.prototype.setJitter = function(jitter){
 
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -110693,7 +110748,7 @@ exports.default = Snap;
 
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -110721,7 +110776,7 @@ exports.default = SpawnRequest;
 
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -110737,7 +110792,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Bullet_1 = __webpack_require__(57);
+var Bullet_1 = __webpack_require__(58);
 var TankBullet = /** @class */ (function (_super) {
     __extends(TankBullet, _super);
     function TankBullet(game) {
@@ -110758,8 +110813,16 @@ var TankBullet = /** @class */ (function (_super) {
     };
     TankBullet.prototype.createBullet = function (xCoord, yCoord, id) {
         this.bullet = this.tankBullets.create(xCoord, yCoord, 'bullet');
+        // this.bullet.anchor.setTo(0.5, 0.5);
         this.bullet.name = id.toString();
         this.bullet.body.immovable = true;
+    };
+    TankBullet.prototype.bulletHitEnemy = function (enemyTank, bullet) {
+        bullet.kill();
+        var explosionAnimation = this.explosions.getFirstExists(false);
+        explosionAnimation.reset(enemyTank.x, enemyTank.y);
+        // explosionAnimation.reset(800, 500);
+        explosionAnimation.play('kaboom', 30, false, true);
     };
     return TankBullet;
 }(Bullet_1.default));
@@ -110767,7 +110830,7 @@ exports.default = TankBullet;
 
 
 /***/ }),
-/* 131 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -110783,7 +110846,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Bullet_1 = __webpack_require__(57);
+var Bullet_1 = __webpack_require__(58);
 var EnemyBullet = /** @class */ (function (_super) {
     __extends(EnemyBullet, _super);
     function EnemyBullet(game) {
@@ -110804,14 +110867,15 @@ var EnemyBullet = /** @class */ (function (_super) {
     };
     EnemyBullet.prototype.createBullet = function (xCoord, yCoord, id) {
         this.bullet = this.enemyBullets.create(xCoord, yCoord, 'box_tree');
+        // this.bullet.anchor.setTo(0.5, 0.5);
         this.bullet.name = id.toString();
         this.bullet.body.immovable = true;
     };
-    EnemyBullet.prototype.bulletHitTank = function (bullet, tank) {
+    EnemyBullet.prototype.bulletHitTank = function (tank, bullet) {
         bullet.kill();
         var explosionAnimation = this.explosions.getFirstExists(false);
         // explosionAnimation.reset(800, 500);
-        explosionAnimation.reset(tank._tank._body.x, tank._tank._body.y);
+        explosionAnimation.reset(tank.x, tank.y);
         explosionAnimation.play('kaboom', 30, false, true);
     };
     return EnemyBullet;
@@ -110820,13 +110884,13 @@ exports.default = EnemyBullet;
 
 
 /***/ }),
-/* 132 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Enemy_1 = __webpack_require__(133);
+var Enemy_1 = __webpack_require__(134);
 var EnemyTanks = /** @class */ (function () {
     function EnemyTanks(game) {
         this.game = game;
@@ -110852,7 +110916,7 @@ exports.default = EnemyTanks;
 
 
 /***/ }),
-/* 133 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -110868,10 +110932,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var TankBody_1 = __webpack_require__(41);
-var TankTurret_1 = __webpack_require__(42);
-var Lable_1 = __webpack_require__(43);
-var HealthBar = __webpack_require__(44);
+var TankBody_1 = __webpack_require__(42);
+var TankTurret_1 = __webpack_require__(43);
+var Lable_1 = __webpack_require__(44);
+var HealthBar = __webpack_require__(45);
 var TankState = /** @class */ (function (_super) {
     __extends(TankState, _super);
     function TankState(game, uid, title) {
@@ -110930,7 +110994,108 @@ exports.default = TankState;
 
 
 /***/ }),
-/* 134 */
+/* 135 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var TankLanding = /** @class */ (function () {
+    function TankLanding(game) {
+        this.game = game;
+        this.create();
+    }
+    TankLanding.prototype.create = function () {
+        this.playses = this.game.add.group();
+        this.playses.setAll('anchor.x', 0.5);
+        this.playses.setAll('anchor.y', 0.5);
+    };
+    TankLanding.prototype.createLanding = function (xCoord, yCoord, id) {
+        this.land = this.playses.create(xCoord, yCoord, 'tankLandingArea');
+        this.land.anchor.setTo(0.5, 0.5);
+        this.land.name = id.toString();
+    };
+    return TankLanding;
+}());
+exports.default = TankLanding;
+
+
+/***/ }),
+/* 136 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var StaticList = /** @class */ (function () {
+    function StaticList(game, ownerId) {
+        this.game = game;
+        this.list = this.game.add.group();
+        this._uid = ownerId;
+        this._statisticList = [];
+        this.create();
+    }
+    StaticList.prototype.create = function () {
+        this.list.add(this.game.make.text(this.game.width - 400, 10, '         STATISTICS', { font: "bold 26px Arial", fill: '#d566db',
+            boundsAlignH: "center", boundsAlignV: "middle" }));
+    };
+    StaticList.prototype.addLine = function (dataString, yPosition) {
+        this.list.add(this.game.make.text(this.game.width - 400, yPosition, dataString, { font: "bold 26px PT Mono", fill: '#9370DB',
+            boundsAlignH: "center", boundsAlignV: "middle" }));
+    };
+    // updateList(statistics: Array<any>): void {
+    //     debugger;
+    //
+    //     statistics.sort((a, b) => {
+    //         return a.kills - b.kills;
+    //     });
+    //
+    //     this._statisticList = statistics.slice(0,3);
+    //
+    //     let userData = null;
+    //     let userPosition = null;
+    //
+    //     for(let i = 0; i < statistics.length; i++) {
+    //         if(statistics[i].uId === i) {
+    //             userData = statistics[i];
+    //             userPosition = i;
+    //         }
+    //     }
+    //
+    //     this._statisticList.forEach((elem, position) => {
+    //         this.addLine(`${position + 1} name: ${elem.username} kills: ${elem.kills}`, ((position + 1) + 1) * 20);
+    //     });
+    //
+    //     if(userPosition > 3) {
+    //         this.addLine("...", 70);
+    //         this.addLine(`${userPosition + 1} name: ${userData.username} kills: ${userData.kills}`, 90);
+    //     }
+    //
+    // }
+    StaticList.prototype.updateList = function (statistics) {
+        debugger;
+        for (var i = 0; i < this.list.children.length; i++) {
+            this.list.children[i].kill();
+        }
+        this.create();
+        for (var i = 0; i < statistics.length; i++) {
+            var name = statistics[i].username;
+            if (name.length > 10) {
+                name = name.slice(0, 3) + '...' + name.slice(name.length - 5, name.length);
+            }
+            else if (name.length < 10) {
+                name += Array(10 - name.length).join(' ');
+            }
+            this.addLine(i + 1 + ". " + name + " kills: " + statistics[i].kills, ((i + 1) + 1) * 20);
+        }
+    };
+    return StaticList;
+}());
+exports.default = StaticList;
+
+
+/***/ }),
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -110942,7 +111107,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _phaser = __webpack_require__(58);
+var _phaser = __webpack_require__(20);
 
 var _phaser2 = _interopRequireDefault(_phaser);
 
@@ -111023,7 +111188,7 @@ var PauseMenu = function (_Phaser$State) {
 exports.default = PauseMenu;
 
 /***/ }),
-/* 135 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111035,11 +111200,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _phaser = __webpack_require__(58);
+var _phaser = __webpack_require__(20);
 
 var _phaser2 = _interopRequireDefault(_phaser);
 
-var _Constant = __webpack_require__(136);
+var _Constant = __webpack_require__(59);
 
 var _Constant2 = _interopRequireDefault(_Constant);
 
@@ -111120,7 +111285,297 @@ var GameOverMenu = function (_Phaser$State) {
 exports.default = GameOverMenu;
 
 /***/ }),
-/* 136 */
+/* 139 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _phaser = __webpack_require__(20);
+
+var _phaser2 = _interopRequireDefault(_phaser);
+
+var _EnemyTank = __webpack_require__(140);
+
+var _EnemyTank2 = _interopRequireDefault(_EnemyTank);
+
+var _Constant = __webpack_require__(59);
+
+var _Constant2 = _interopRequireDefault(_Constant);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var World = function (_Phaser$State) {
+	_inherits(World, _Phaser$State);
+
+	function World() {
+		_classCallCheck(this, World);
+
+		var _this = _possibleConstructorReturn(this, (World.__proto__ || Object.getPrototypeOf(World)).call(this));
+
+		_this.background = _phaser2.default.Sprite;
+		_this.music = _phaser2.default.Sound;
+		return _this;
+	}
+
+	_createClass(World, [{
+		key: 'preload',
+		value: function preload() {
+			this.load.atlas('tank', 'static/staticsGame/images/tanks.png', 'static/staticsGame/images/tanks.json');
+			this.load.atlas('enemy', 'static/staticsGame/images/enemy-tanks.png', 'static/staticsGame/images/tanks.json');
+			this.load.image('logo', 'static/staticsGame/images/logo.png');
+			this.load.image('bullet', 'static/staticsGame/images/bullet.png');
+			this.load.image('earth', 'static/staticsGame/images/ground.jpg');
+			this.load.spritesheet('kaboom', 'static/staticsGame/images/explosion.png', 64, 64, 23);
+
+			this.load.image('pause', 'static/staticsGame/images/pause_button.png');
+			this.load.image('box_tree', 'static/staticsGame/images/box_tree.png');
+		}
+	}, {
+		key: 'create',
+		value: function create() {
+			this.music = this.add.audio('music', 1, false);
+			this.music.play();
+
+			this.land = this.add.tileSprite(0, 0, this.world.width, this.world.height, 'earth');
+			this.land.fixedToCamera = true;
+
+			this.currentSpeed = 0;
+			this.nextFire = 0; //следующий выстрел
+			this.health = 100;
+
+			this.tank = this.add.sprite(50, 400, 'tank', 'tank1');
+			this.tank.anchor.setTo(_Constant2.default.anchor, _Constant2.default.anchor);
+
+			// this.physics.enable(this.tank, Phaser.Physics.Arcade);
+			this.physics.arcade.enable(this.tank);
+			this.tank.body.maxVelocity.setTo(_Constant2.default.max_velocity, _Constant2.default.max_velocity);
+			this.tank.body.collideWorldBounds = true;
+
+			this.turret = this.add.sprite(0, 0, 'tank', 'turret');
+			this.turret.anchor.setTo(_Constant2.default.anchor, _Constant2.default.anchor);
+
+			//  пули врагов
+			this.enemyBullets = this.add.group();
+			this.enemyBullets.enableBody = true;
+			// this.enemyBullets.physicsBodyType = Phaser.Physics.Arcade; //Phaser.Physics.ARCADE;
+			this.physics.arcade.enable(this.enemyBullets);
+			this.enemyBullets.createMultiple(5, 'bullet'); // создадим пули
+
+			this.enemyBullets.setAll('anchor.x', 0.5);
+			this.enemyBullets.setAll('anchor.y', 0.5);
+			this.enemyBullets.setAll('outOfBoundsKill', true); // ??
+			this.enemyBullets.setAll('checkWorldBounds', true); // ??
+
+			//  создаём ботов
+			this.enemies = [];
+
+			this.enemiesTotal = 8; // всего
+			this.enemiesAlive = 8; // живых
+			this.fireRate = 100; // скорострельность
+
+			for (var i = 0; i < this.enemiesTotal; i++) {
+				this.enemies.push(new _EnemyTank2.default(i, this, this.tank, this.enemyBullets));
+			}
+
+			//  тень под танками
+			this.shadow = this.add.sprite(0, 0, 'tank', 'shadow');
+			this.shadow.anchor.setTo(_Constant2.default.anchor, _Constant2.default.anchor);
+
+			//  наша группа снарядов
+			this.bullets = this.add.group();
+			this.bullets.enableBody = true;
+			// this.bullets.physicsBodyType = Phaser.Physics.Arcade;
+			this.physics.arcade.enable(this.bullets);
+			this.bullets.createMultiple(30, 'bullet');
+			this.bullets.setAll('anchor.x', 0.5);
+			this.bullets.setAll('anchor.y', 0.5);
+			this.bullets.setAll('outOfBoundsKill', true);
+			this.bullets.setAll('checkWorldBounds', true);
+
+			//  взрыв
+			this.explosions = this.add.group();
+
+			for (var _i = 0; _i < 10; _i++) {
+				var explosionAnimation = this.explosions.create(0, 0, 'kaboom', [0], false);
+				explosionAnimation.anchor.setTo(_Constant2.default.anchor, _Constant2.default.anchor);
+				explosionAnimation.animations.add('kaboom');
+			}
+
+			this.pauseButton = this.game.add.button(10, 10, "pause", this.startPause, this);
+			this.pauseButton.scale.setTo(_Constant2.default.button_scale, _Constant2.default.button_scale);
+			this.pauseButton.frame = 1;
+			this.pauseButton.clicked = false;
+
+			this.gameTime = 45;
+			if (!this.timer) {
+				this.timePause = 0;
+				this.isPaused = false;
+				this.total = 0;
+				this.timer = this.game.time.create(false);
+				this.timer.loop(1000, this.updateCounter, this);
+				this.timer.start();
+			} else {
+				this.total = this.timePause;
+				this.timer = this.game.time.create(false);
+				this.timer.loop(1000, this.updateCounter, this);
+				this.timer.start();
+			}
+
+			this.tank.bringToTop();
+			this.turret.bringToTop();
+
+			this.camera.follow(this.tank);
+			this.camera.deadzone = new _phaser2.default.Rectangle(150, 150, 500, 300);
+			this.camera.focusOnXY(0, 0);
+
+			this.cursors = this.input.keyboard.createCursorKeys();
+		}
+	}, {
+		key: 'update',
+		value: function update() {
+			//убираем перекрытие объектов
+			this.physics.arcade.overlap(this.enemyBullets, this.tank, this.bulletHitPlayer, null, this);
+			// враги живые
+			this.enemiesAlive = 0;
+
+			for (var i = 0; i < this.enemies.length; i++) {
+				if (this.enemies[i].alive) {
+					// если жив
+					this.enemiesAlive++;
+					// проверяем колизии между нашим танком и другими танками
+					this.physics.arcade.collide(this.tank, this.enemies[i].tank);
+					// уничтожаем пулю в случае столкновения
+					this.physics.arcade.overlap(this.bullets, this.enemies[i].tank, this.bulletHitEnemy, null, this);
+					this.enemies[i].update();
+				}
+			}
+
+			// величина угла поворота
+			if (this.cursors.left.isDown) {
+				this.tank.angle -= 5;
+			} else if (this.cursors.right.isDown) {
+				this.tank.angle += 5;
+			}
+
+			// скорость
+			if (this.cursors.up.isDown) {
+				this.currentSpeed = 210;
+			} else {
+				if (this.currentSpeed > 0) {
+					this.currentSpeed -= 100; // скорость торможения
+				}
+			}
+
+			// движение и поворотами
+			if (this.currentSpeed > 0) {
+				this.physics.arcade.velocityFromRotation(this.tank.rotation, this.currentSpeed, this.tank.body.velocity);
+			}
+			this.land.tilePosition.x = -this.camera.x;
+			this.land.tilePosition.y = -this.camera.y;
+
+			//  привязываем тень к танку
+			this.shadow.x = this.tank.x;
+			this.shadow.y = this.tank.y;
+			this.shadow.rotation = this.tank.rotation;
+
+			// привязываем башню к танку
+			this.turret.x = this.tank.x;
+			this.turret.y = this.tank.y;
+
+			this.turret.rotation = this.physics.arcade.angleToPointer(this.turret);
+
+			// нажали кнокпу мыши
+			if (this.input.activePointer.isDown) {
+				this.fire();
+			}
+
+			if (this.gameTime - this.total < 0 || this.health <= 0 || this.enemiesAlive === 0) {
+				this.score = (this.gameTime - this.total) * 50 + (this.enemiesTotal - this.enemiesAlive) * 50;
+
+				if (this.health <= 0) {
+					this.score = 0;
+				}
+				console.log('score: ' + this.score);
+				this.total = 0;
+				this.timePause = 0;
+
+				this.game.state.start('GameOverMenu', true, false);
+			}
+		}
+	}, {
+		key: 'bulletHitEnemy',
+		value: function bulletHitEnemy(tank, bullet) {
+			bullet.kill();
+			var destroyed = this.enemies[tank.name].damage();
+
+			if (destroyed) {
+				var explosionAnimation = this.explosions.getFirstExists(false);
+				explosionAnimation.reset(tank.x, tank.y);
+				explosionAnimation.play('kaboom', 30, false, true);
+			}
+		}
+	}, {
+		key: 'fire',
+		value: function fire() {
+			if (this.time.now > this.nextFire && this.bullets.countDead() > 0) {
+				this.nextFire = this.time.now + this.fireRate;
+
+				var bullet = this.bullets.getFirstExists(false);
+				bullet.reset(this.turret.x, this.turret.y);
+				bullet.rotation = this.physics.arcade.moveToPointer(bullet, 1000, this.input.activePointer, 500);
+			}
+		}
+	}, {
+		key: 'bulletHitPlayer',
+		value: function bulletHitPlayer(tank, bullet) {
+			bullet.kill();
+			this.health -= 5;
+		}
+	}, {
+		key: 'updateCounter',
+		value: function updateCounter() {
+			this.total++;
+			this.game.debug.text(this.formatTime(Math.round(this.gameTime - this.total)), this.world.centerX, 14, "#ff0");
+			this.game.debug.text('Hp: ' + this.health + '     Count opponents:' + this.enemiesAlive, 84, 42, "#ff0");
+		}
+	}, {
+		key: 'formatTime',
+		value: function formatTime(s) {
+			var minutes = "0" + Math.floor(s / 60);
+			var seconds = "0" + (s - minutes * 60);
+			return minutes.substr(-2) + ":" + seconds.substr(-2);
+		}
+	}, {
+		key: 'startPause',
+		value: function startPause(button) {
+			if (!button.clicked) {
+				button.clicked = true;
+			}
+			this.timePause = this.total;
+			this.game.state.start('PauseMenu', true, false);
+		}
+	}]);
+
+	return World;
+}(_phaser2.default.State);
+
+exports.default = World;
+
+/***/ }),
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111129,21 +111584,98 @@ exports.default = GameOverMenu;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-var Constants = {
-    logo_scale: 0.5,
-    max_velocity: 400,
-    health: 100,
-    anchor: 0.5,
-    button_scale: 0.2,
-    shadow_time: 1000,
-    visible_time: 2000
 
-};
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-exports.default = Constants;
+var _phaser = __webpack_require__(20);
+
+var _phaser2 = _interopRequireDefault(_phaser);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var EnemyTank = function () {
+    function EnemyTank(index, game, player, bullets) {
+        _classCallCheck(this, EnemyTank);
+
+        var x = Math.random() * game.world.width;
+        var y = Math.random() * game.world.height;
+
+        this.game = game;
+        this.health = 3;
+        this.player = player;
+        this.bullets = bullets;
+        this.fireRate = 1000; // скорострельность
+        this.nextFire = 0; //следующий выстрел
+        this.alive = true;
+
+        this.shadow = game.add.sprite(x, y, 'enemy', 'shadow');
+        this.tank = game.add.sprite(x, y, 'enemy', 'tank1');
+        this.turret = game.add.sprite(x, y, 'enemy', 'turret');
+
+        this.shadow.anchor.set(0.5);
+        this.tank.anchor.set(0.5);
+        this.turret.anchor.set(0.3, 0.5);
+
+        this.tank.name = index.toString();
+        game.physics.enable(this.tank, _phaser2.default.Physics.ARCADE);
+        this.tank.body.immovable = true;
+        this.tank.body.collideWorldBounds = true;
+        this.tank.body.bounce.setTo(1, 1);
+
+        this.tank.angle = game.rnd.angle();
+
+        game.physics.arcade.velocityFromRotation(this.tank.rotation, 100, this.tank.body.velocity);
+    }
+
+    _createClass(EnemyTank, [{
+        key: 'damage',
+        value: function damage() {
+            this.health -= 1;
+
+            if (this.health <= 0) {
+                this.alive = false;
+                this.shadow.kill();
+                this.tank.kill();
+                this.turret.kill();
+
+                return true;
+            }
+            return false;
+        }
+    }, {
+        key: 'update',
+        value: function update() {
+            this.shadow.x = this.tank.x;
+            this.shadow.y = this.tank.y;
+            this.shadow.rotation = this.tank.rotation;
+
+            this.turret.x = this.tank.x;
+            this.turret.y = this.tank.y;
+            this.turret.rotation = this.game.physics.arcade.angleBetween(this.tank, this.player);
+
+            if (this.game.physics.arcade.distanceBetween(this.tank, this.player) < 300) {
+                if (this.game.time.now > this.nextFire && this.bullets.countDead() > 0) {
+                    this.nextFire = this.game.time.now + this.fireRate;
+
+                    var bullet = this.bullets.getFirstDead();
+
+                    bullet.reset(this.turret.x, this.turret.y);
+
+                    bullet.rotation = this.game.physics.arcade.moveToObject(bullet, this.player, 500);
+                }
+            }
+        }
+    }]);
+
+    return EnemyTank;
+}();
+
+exports.default = EnemyTank;
 
 /***/ }),
-/* 137 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111253,7 +111785,7 @@ var SignInController = function (_Controller) {
 exports.default = SignInController;
 
 /***/ }),
-/* 138 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111366,7 +111898,7 @@ var SignUpController = function (_Controller) {
 exports.default = SignUpController;
 
 /***/ }),
-/* 139 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111501,7 +112033,7 @@ var ScoreListController = function (_Controller) {
 exports.default = ScoreListController;
 
 /***/ }),
-/* 140 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
