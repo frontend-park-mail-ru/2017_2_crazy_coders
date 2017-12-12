@@ -3,17 +3,17 @@
 import BootState        from './states/boot.state';
 import PreloaderState   from './states/preloader.state';
 import MainState        from './states/main.state';
-import WorldState        from './states/world.state';
+import WorldState       from './states/world.state';
 // import WorldState        from './states/singPlayerWorld.state';
 import PauseMenu from './PauseMenu/PauseMenu';
 import GameOverMenu from './GameOverMenu/GameOverMenu';
 import World from './World/World.js';
-
+import strategy from './strategyControl';
 
 export default class App extends Phaser.Game {
   user: any;
 
-  constructor(User, GameStrategy='multiplayer') {
+  constructor(User) {
     super(document.documentElement.clientWidth, document.documentElement.clientHeight, Phaser.AUTO, 'content', null);
 
     this.user = User;
@@ -21,7 +21,7 @@ export default class App extends Phaser.Game {
     this.state.add('preloader', PreloaderState);
     this.state.add('main', MainState);
 
-    switch (GameStrategy) {
+    switch (strategy.getStrategy()) {
       case 'multiplayer':
         this.state.add('world', WorldState);
         break;
@@ -35,6 +35,7 @@ export default class App extends Phaser.Game {
 
     this.state.start('boot'); // Initialize and start `boot` state
   }
+
 
   exit() {
     window.open("/", "_self");

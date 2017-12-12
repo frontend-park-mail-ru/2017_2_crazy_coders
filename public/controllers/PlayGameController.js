@@ -2,7 +2,7 @@
 
 import Controller from "./Controller";
 // import Game from '../game/classes/Game/Game';
-import Game from '../game/classes/index';
+import App from '../game/classes/index';
 
 class PlayGameController extends Controller {
 
@@ -10,8 +10,9 @@ class PlayGameController extends Controller {
 		if (PlayGameController.__instance) {
 			return PlayGameController.__instance;
 		}
-
+		
 		super(opt);
+
 		PlayGameController.__instance = this;
 
 	}
@@ -22,12 +23,13 @@ class PlayGameController extends Controller {
 			.then((resp) => {
 				console.log("[userService.getProfile] response: " + resp);
 				this.userService.user.set(resp);
-
-				this.game = new Game(this.userService.user);
+				this.game = new App(this.userService.user);
 			})
 			.catch((err) => {
 				console.log("[userService.getProfile] err: " + err);
-				this._router.go('/');
+				// this.game = new Game(this.userService.user);
+				console.log('play_game_catch');
+				this.game = new App(this.userService.user);
 			});
 	}
 

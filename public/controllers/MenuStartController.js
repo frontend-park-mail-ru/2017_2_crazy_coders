@@ -3,6 +3,7 @@
 import Controller from "./Controller";
 import Theme from '../static/css/style';
 
+import strategy from '../game/classes/strategyControl.ts';
 
 class MenuStartController extends Controller {
 
@@ -13,14 +14,13 @@ class MenuStartController extends Controller {
 
 		super(opt);
 		MenuStartController.__instance = this;
+
 		this.theme = new Theme();
 		this.flag = true;
 		this.addListener();
 	}
 
 	addListener() {
-
-
 		document.getElementById('menu-button-logout').addEventListener('click', event => {
 			event.preventDefault();
 			this.userService.logout()
@@ -39,11 +39,13 @@ class MenuStartController extends Controller {
 
 		document.getElementById('menu-button-playOfflineGame').addEventListener('click', event => {
 			event.preventDefault();
+			strategy.setOfflineStrategy();
 			this._router.go('/play');
 		});
 
 		document.getElementById('menu-button-playGame').addEventListener('click', event => {
 			event.preventDefault();
+			strategy.setMultiStrategy();
 			this._router.go('/play');
 		});
 

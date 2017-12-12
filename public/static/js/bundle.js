@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 67);
+/******/ 	return __webpack_require__(__webpack_require__.s = 68);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -681,15 +681,15 @@ Emitter.prototype.hasListeners = function(event){
  * Module dependencies.
  */
 
-var keys = __webpack_require__(116);
-var hasBinary = __webpack_require__(48);
-var sliceBuffer = __webpack_require__(117);
-var after = __webpack_require__(118);
-var utf8 = __webpack_require__(119);
+var keys = __webpack_require__(117);
+var hasBinary = __webpack_require__(49);
+var sliceBuffer = __webpack_require__(118);
+var after = __webpack_require__(119);
+var utf8 = __webpack_require__(120);
 
 var base64encoder;
 if (global && global.ArrayBuffer) {
-  base64encoder = __webpack_require__(121);
+  base64encoder = __webpack_require__(122);
 }
 
 /**
@@ -747,7 +747,7 @@ var err = { type: 'error', data: 'parser error' };
  * Create a blob api even for blob builder when vendor prefixes exist
  */
 
-var Blob = __webpack_require__(122);
+var Blob = __webpack_require__(123);
 
 /**
  * Encodes a packet.
@@ -1521,7 +1521,7 @@ function pug_rethrow(err, filename, lineno, str){
     throw err;
   }
   try {
-    str = str || __webpack_require__(72).readFileSync(filename, 'utf8')
+    str = str || __webpack_require__(73).readFileSync(filename, 'utf8')
   } catch (ex) {
     pug_rethrow(err, null, lineno)
   }
@@ -1557,7 +1557,7 @@ function pug_rethrow(err, filename, lineno, str){
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(108);
+exports = module.exports = __webpack_require__(109);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -2018,7 +2018,7 @@ var _BlockComponents = __webpack_require__(5);
 
 var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
-var _Form = __webpack_require__(71);
+var _Form = __webpack_require__(72);
 
 var _Form2 = _interopRequireDefault(_Form);
 
@@ -2282,7 +2282,7 @@ module.exports = function(a, b){
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(123);
+exports = module.exports = __webpack_require__(124);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -102205,9 +102205,9 @@ process.umask = function() { return 0; };
 
 var debug = __webpack_require__(11)('socket.io-parser');
 var Emitter = __webpack_require__(8);
-var hasBin = __webpack_require__(48);
-var binary = __webpack_require__(110);
-var isBuf = __webpack_require__(49);
+var hasBin = __webpack_require__(49);
+var binary = __webpack_require__(111);
+var isBuf = __webpack_require__(50);
 
 /**
  * Protocol version.
@@ -102606,7 +102606,7 @@ function error() {
 
 /* WEBPACK VAR INJECTION */(function(global) {// browser shim for xmlhttprequest module
 
-var hasCORS = __webpack_require__(114);
+var hasCORS = __webpack_require__(115);
 
 module.exports = function (opts) {
   var xdomain = opts.xdomain;
@@ -103036,7 +103036,7 @@ var _BlockComponents = __webpack_require__(5);
 
 var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
-var _Menu = __webpack_require__(79);
+var _Menu = __webpack_require__(80);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
@@ -103111,7 +103111,7 @@ var _BlockComponents = __webpack_require__(5);
 
 var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
-var _Table = __webpack_require__(82);
+var _Table = __webpack_require__(83);
 
 var _Table2 = _interopRequireDefault(_Table);
 
@@ -103176,6 +103176,40 @@ exports.default = Table;
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
+var Strategy = /** @class */ (function () {
+    function Strategy() {
+        if (Strategy.__instance) {
+            return Strategy.__instance;
+        }
+        this.strategy = 'single-offline';
+        Strategy.__instance = this;
+    }
+    Strategy.prototype.setMultiStrategy = function () {
+        this.strategy = 'multiplayer';
+    };
+    Strategy.prototype.setOfflineStrategy = function () {
+        console.log('strategy offline mode');
+        this.strategy = 'single-offline';
+    };
+    Strategy.prototype.setSingleStrategy = function () {
+        this.strategy = 'single-offline';
+    };
+    Strategy.prototype.getStrategy = function () {
+        return this.strategy;
+    };
+    return Strategy;
+}());
+var strategy = new Strategy();
+exports.default = strategy;
+
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -103187,24 +103221,24 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var boot_state_1 = __webpack_require__(91);
-var preloader_state_1 = __webpack_require__(93);
-var main_state_1 = __webpack_require__(99);
-var world_state_1 = __webpack_require__(100);
+var boot_state_1 = __webpack_require__(92);
+var preloader_state_1 = __webpack_require__(94);
+var main_state_1 = __webpack_require__(100);
+var world_state_1 = __webpack_require__(101);
 // import WorldState        from './states/singPlayerWorld.state';
-var PauseMenu_1 = __webpack_require__(137);
-var GameOverMenu_1 = __webpack_require__(138);
-var World_js_1 = __webpack_require__(139);
+var PauseMenu_1 = __webpack_require__(138);
+var GameOverMenu_1 = __webpack_require__(139);
+var World_js_1 = __webpack_require__(140);
+var strategyControl_1 = __webpack_require__(35);
 var App = /** @class */ (function (_super) {
     __extends(App, _super);
-    function App(User, GameStrategy) {
-        if (GameStrategy === void 0) { GameStrategy = 'multiplayer'; }
+    function App(User) {
         var _this = _super.call(this, document.documentElement.clientWidth, document.documentElement.clientHeight, Phaser.AUTO, 'content', null) || this;
         _this.user = User;
         _this.state.add('boot', boot_state_1.default);
         _this.state.add('preloader', preloader_state_1.default);
         _this.state.add('main', main_state_1.default);
-        switch (GameStrategy) {
+        switch (strategyControl_1.default.getStrategy()) {
             case 'multiplayer':
                 _this.state.add('world', world_state_1.default);
                 break;
@@ -103226,43 +103260,43 @@ exports.default = App;
 
 
 /***/ }),
-/* 36 */
-/***/ (function(module, exports) {
-
-module.exports = "../../img/4119334de3c71843520250c6c9f0594d.jpg";
-
-/***/ }),
 /* 37 */
 /***/ (function(module, exports) {
 
-module.exports = "../../img/81d724516f8076962ff565d9defc08ba.png";
+module.exports = "../../img/4119334de3c71843520250c6c9f0594d.jpg";
 
 /***/ }),
 /* 38 */
 /***/ (function(module, exports) {
 
-module.exports = "../../img/5733b613e5ea55c939a6276c4b4b7aa0.png";
+module.exports = "../../img/81d724516f8076962ff565d9defc08ba.png";
 
 /***/ }),
 /* 39 */
 /***/ (function(module, exports) {
 
-module.exports = "../../img/4119334de3c71843520250c6c9f0594d.jpg";
+module.exports = "../../img/5733b613e5ea55c939a6276c4b4b7aa0.png";
 
 /***/ }),
 /* 40 */
 /***/ (function(module, exports) {
 
-module.exports = "../../img/b17c373a3f0117f56d7b0af1a9839bb7.png";
+module.exports = "../../img/4119334de3c71843520250c6c9f0594d.jpg";
 
 /***/ }),
 /* 41 */
 /***/ (function(module, exports) {
 
-module.exports = "../../img/217b9d48bac4d47a48cc3bc389cd422e.png";
+module.exports = "../../img/b17c373a3f0117f56d7b0af1a9839bb7.png";
 
 /***/ }),
 /* 42 */
+/***/ (function(module, exports) {
+
+module.exports = "../../img/217b9d48bac4d47a48cc3bc389cd422e.png";
+
+/***/ }),
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -103350,7 +103384,7 @@ exports.default = TankBody;
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -103406,7 +103440,7 @@ exports.default = TankTurret;
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -103437,7 +103471,7 @@ exports.default = Lable;
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 var HealthBar = function (game, providedConfig) {
@@ -103570,7 +103604,7 @@ function hexToRgb(hex) {
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports) {
 
 /**
@@ -103615,7 +103649,7 @@ module.exports = function parseuri(str) {
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports) {
 
 /**
@@ -103773,7 +103807,7 @@ function plural(ms, n, name) {
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/* global Blob File */
@@ -103782,7 +103816,7 @@ function plural(ms, n, name) {
  * Module requirements.
  */
 
-var isArray = __webpack_require__(109);
+var isArray = __webpack_require__(110);
 
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof global.Blob === 'function' || toString.call(global.Blob) === '[object BlobConstructor]';
@@ -103842,7 +103876,7 @@ function hasBinary (obj) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -103862,7 +103896,7 @@ function isBuf(obj) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -103870,15 +103904,15 @@ function isBuf(obj) {
  * Module dependencies.
  */
 
-var eio = __webpack_require__(112);
-var Socket = __webpack_require__(55);
+var eio = __webpack_require__(113);
+var Socket = __webpack_require__(56);
 var Emitter = __webpack_require__(8);
 var parser = __webpack_require__(27);
-var on = __webpack_require__(56);
-var bind = __webpack_require__(57);
+var on = __webpack_require__(57);
+var bind = __webpack_require__(58);
 var debug = __webpack_require__(11)('socket.io-client:manager');
-var indexOf = __webpack_require__(54);
-var Backoff = __webpack_require__(128);
+var indexOf = __webpack_require__(55);
+var Backoff = __webpack_require__(129);
 
 /**
  * IE6+ hasOwnProperty
@@ -104441,7 +104475,7 @@ Manager.prototype.onreconnect = function () {
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -104449,9 +104483,9 @@ Manager.prototype.onreconnect = function () {
  */
 
 var XMLHttpRequest = __webpack_require__(28);
-var XHR = __webpack_require__(115);
-var JSONP = __webpack_require__(124);
-var websocket = __webpack_require__(125);
+var XHR = __webpack_require__(116);
+var JSONP = __webpack_require__(125);
+var websocket = __webpack_require__(126);
 
 /**
  * Export transports.
@@ -104501,7 +104535,7 @@ function polling (opts) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -104512,7 +104546,7 @@ var Transport = __webpack_require__(29);
 var parseqs = __webpack_require__(17);
 var parser = __webpack_require__(9);
 var inherit = __webpack_require__(18);
-var yeast = __webpack_require__(53);
+var yeast = __webpack_require__(54);
 var debug = __webpack_require__(19)('engine.io-client:polling');
 
 /**
@@ -104752,7 +104786,7 @@ Polling.prototype.uri = function () {
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -104827,7 +104861,7 @@ module.exports = yeast;
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports) {
 
 
@@ -104842,7 +104876,7 @@ module.exports = function(arr, obj){
 };
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -104852,9 +104886,9 @@ module.exports = function(arr, obj){
 
 var parser = __webpack_require__(27);
 var Emitter = __webpack_require__(8);
-var toArray = __webpack_require__(127);
-var on = __webpack_require__(56);
-var bind = __webpack_require__(57);
+var toArray = __webpack_require__(128);
+var on = __webpack_require__(57);
+var bind = __webpack_require__(58);
 var debug = __webpack_require__(11)('socket.io-client:socket');
 var parseqs = __webpack_require__(17);
 
@@ -105266,7 +105300,7 @@ Socket.prototype.compress = function (compress) {
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports) {
 
 
@@ -105296,7 +105330,7 @@ function on (obj, ev, fn) {
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports) {
 
 /**
@@ -105325,7 +105359,7 @@ module.exports = function(obj, fn){
 
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105389,7 +105423,7 @@ exports.default = Bullet;
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105412,14 +105446,14 @@ var Constants = {
 exports.default = Constants;
 
 /***/ }),
-/* 60 */,
 /* 61 */,
 /* 62 */,
 /* 63 */,
 /* 64 */,
 /* 65 */,
 /* 66 */,
-/* 67 */
+/* 67 */,
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105429,35 +105463,35 @@ var _UserService = __webpack_require__(12);
 
 var _UserService2 = _interopRequireDefault(_UserService);
 
-var _CreatePage = __webpack_require__(68);
+var _CreatePage = __webpack_require__(69);
 
 var _CreatePage2 = _interopRequireDefault(_CreatePage);
 
-var _Router = __webpack_require__(87);
+var _Router = __webpack_require__(88);
 
 var _Router2 = _interopRequireDefault(_Router);
 
-var _MenuStartController = __webpack_require__(89);
+var _MenuStartController = __webpack_require__(90);
 
 var _MenuStartController2 = _interopRequireDefault(_MenuStartController);
 
-var _PlayGameController = __webpack_require__(90);
+var _PlayGameController = __webpack_require__(91);
 
 var _PlayGameController2 = _interopRequireDefault(_PlayGameController);
 
-var _SignInController = __webpack_require__(141);
+var _SignInController = __webpack_require__(142);
 
 var _SignInController2 = _interopRequireDefault(_SignInController);
 
-var _SignUpController = __webpack_require__(142);
+var _SignUpController = __webpack_require__(143);
 
 var _SignUpController2 = _interopRequireDefault(_SignUpController);
 
-var _ScoreListController = __webpack_require__(143);
+var _ScoreListController = __webpack_require__(144);
 
 var _ScoreListController2 = _interopRequireDefault(_ScoreListController);
 
-var _AboutUsController = __webpack_require__(144);
+var _AboutUsController = __webpack_require__(145);
 
 var _AboutUsController2 = _interopRequireDefault(_AboutUsController);
 
@@ -105465,7 +105499,7 @@ var _style = __webpack_require__(7);
 
 var _style2 = _interopRequireDefault(_style);
 
-var _index = __webpack_require__(35);
+var _index = __webpack_require__(36);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -105485,7 +105519,7 @@ theme.changeTheme();
 new _Router2.default().addRoute('/', _MenuStartController2.default, { userService: userService, page: page }).addRoute('/play', _PlayGameController2.default, { userService: userService, page: page }).addRoute('/signin', _SignInController2.default, { userService: userService, page: page }).addRoute('/signup', _SignUpController2.default, { userService: userService, page: page }).addRoute('/score', _ScoreListController2.default, { userService: userService, page: page }).addRoute('/about', _AboutUsController2.default, { userService: userService, page: page }).startRoute();
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105501,35 +105535,35 @@ var _BlockComponents = __webpack_require__(5);
 
 var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
-var _SignIn = __webpack_require__(69);
+var _SignIn = __webpack_require__(70);
 
 var _SignIn2 = _interopRequireDefault(_SignIn);
 
-var _SignUp = __webpack_require__(73);
+var _SignUp = __webpack_require__(74);
 
 var _SignUp2 = _interopRequireDefault(_SignUp);
 
-var _Header = __webpack_require__(75);
+var _Header = __webpack_require__(76);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _UnRegMenu = __webpack_require__(78);
+var _UnRegMenu = __webpack_require__(79);
 
 var _UnRegMenu2 = _interopRequireDefault(_UnRegMenu);
 
-var _RegMenu = __webpack_require__(80);
+var _RegMenu = __webpack_require__(81);
 
 var _RegMenu2 = _interopRequireDefault(_RegMenu);
 
-var _AboutUs = __webpack_require__(81);
+var _AboutUs = __webpack_require__(82);
 
 var _AboutUs2 = _interopRequireDefault(_AboutUs);
 
-var _Scoreboard = __webpack_require__(83);
+var _Scoreboard = __webpack_require__(84);
 
 var _Scoreboard2 = _interopRequireDefault(_Scoreboard);
 
-var _Footer = __webpack_require__(84);
+var _Footer = __webpack_require__(85);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -105577,7 +105611,7 @@ var CreatePage = function () {
 exports.default = CreatePage;
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105588,7 +105622,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = SignIn;
 
-var _SignInForm = __webpack_require__(70);
+var _SignInForm = __webpack_require__(71);
 
 var _SignInForm2 = _interopRequireDefault(_SignInForm);
 
@@ -105632,7 +105666,7 @@ function SignIn() {
 }
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105721,7 +105755,7 @@ var SignInForm = function (_Form) {
 exports.default = SignInForm;
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(10);
@@ -105750,13 +105784,13 @@ pug_html = pug_html + "\n    \u003Cinput" + (pug.attr("class", pug.classes(["for
 module.exports = template;
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105767,7 +105801,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = SignUp;
 
-var _SignUpForm = __webpack_require__(74);
+var _SignUpForm = __webpack_require__(75);
 
 var _SignUpForm2 = _interopRequireDefault(_SignUpForm);
 
@@ -105823,7 +105857,7 @@ function SignUp() {
 }
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105911,7 +105945,7 @@ var SignUpForm = function (_Form) {
 exports.default = SignUpForm;
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105922,7 +105956,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createHeader;
 
-var _Header = __webpack_require__(76);
+var _Header = __webpack_require__(77);
 
 var _Header2 = _interopRequireDefault(_Header);
 
@@ -105940,7 +105974,7 @@ function createHeader() {
 }
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105956,7 +105990,7 @@ var _BlockComponents = __webpack_require__(5);
 
 var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
-var _Header = __webpack_require__(77);
+var _Header = __webpack_require__(78);
 
 var _Header2 = _interopRequireDefault(_Header);
 
@@ -106015,7 +106049,7 @@ var Header = function (_Block) {
 exports.default = Header;
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(10);
@@ -106025,7 +106059,7 @@ pug_html = pug_html + "\n\u003Cdiv class=\"theme\"\u003Echange theme\u003C\u002F
 module.exports = template;
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106067,7 +106101,7 @@ function createUnRegMenu() {
 }
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(10);
@@ -106099,7 +106133,7 @@ pug_html = pug_html + "\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for
 module.exports = template;
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106141,7 +106175,7 @@ function createRegMenu() {
 }
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106193,7 +106227,7 @@ function createAboutUs() {
 }
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(10);
@@ -106226,7 +106260,7 @@ pug_html = pug_html + "\n    \u003C\u002Ftable\u003E\n  \u003C\u002Fdiv\u003E\n 
 module.exports = template;
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106278,7 +106312,7 @@ function Scoreboard() {
 }
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106289,7 +106323,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = CreateFooter;
 
-var _Footer = __webpack_require__(85);
+var _Footer = __webpack_require__(86);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -106319,7 +106353,7 @@ function CreateFooter() {
 }
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106335,7 +106369,7 @@ var _BlockComponents = __webpack_require__(5);
 
 var _BlockComponents2 = _interopRequireDefault(_BlockComponents);
 
-var _Footer = __webpack_require__(86);
+var _Footer = __webpack_require__(87);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -106394,7 +106428,7 @@ var Footer = function (_Block) {
 exports.default = Footer;
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pug = __webpack_require__(10);
@@ -106423,7 +106457,7 @@ pug_html = pug_html + "\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for
 module.exports = template;
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106435,7 +106469,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Route = __webpack_require__(88);
+var _Route = __webpack_require__(89);
 
 var _Route2 = _interopRequireDefault(_Route);
 
@@ -106522,7 +106556,7 @@ var Router = function () {
 exports.default = Router;
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106577,7 +106611,7 @@ var Route = function () {
 exports.default = Route;
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106596,6 +106630,10 @@ var _Controller3 = _interopRequireDefault(_Controller2);
 var _style = __webpack_require__(7);
 
 var _style2 = _interopRequireDefault(_style);
+
+var _strategyControl = __webpack_require__(35);
+
+var _strategyControl2 = _interopRequireDefault(_strategyControl);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -106622,6 +106660,7 @@ var MenuStartController = function (_Controller) {
 		var _this = _possibleConstructorReturn(this, (MenuStartController.__proto__ || Object.getPrototypeOf(MenuStartController)).call(this, opt));
 
 		MenuStartController.__instance = _this;
+
 		_this.theme = new _style2.default();
 		_this.flag = true;
 		_this.addListener();
@@ -106649,11 +106688,13 @@ var MenuStartController = function (_Controller) {
 
 			document.getElementById('menu-button-playOfflineGame').addEventListener('click', function (event) {
 				event.preventDefault();
+				_strategyControl2.default.setOfflineStrategy();
 				_this2._router.go('/play');
 			});
 
 			document.getElementById('menu-button-playGame').addEventListener('click', function (event) {
 				event.preventDefault();
+				_strategyControl2.default.setMultiStrategy();
 				_this2._router.go('/play');
 			});
 
@@ -106734,7 +106775,7 @@ var MenuStartController = function (_Controller) {
 exports.default = MenuStartController;
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106750,7 +106791,7 @@ var _Controller2 = __webpack_require__(6);
 
 var _Controller3 = _interopRequireDefault(_Controller2);
 
-var _index = __webpack_require__(35);
+var _index = __webpack_require__(36);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -106793,11 +106834,12 @@ var PlayGameController = function (_Controller) {
 			this.userService.getProfile().then(function (resp) {
 				console.log("[userService.getProfile] response: " + resp);
 				_this2.userService.user.set(resp);
-
 				_this2.game = new _index2.default(_this2.userService.user);
 			}).catch(function (err) {
 				console.log("[userService.getProfile] err: " + err);
-				_this2._router.go('/');
+				// this.game = new Game(this.userService.user);
+				console.log('play_game_catch');
+				_this2.game = new _index2.default(_this2.userService.user);
 			});
 		}
 	}, {
@@ -106813,7 +106855,7 @@ var PlayGameController = function (_Controller) {
 exports.default = PlayGameController;
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106831,9 +106873,9 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
 var state_1 = __webpack_require__(16);
-var titlepage = __webpack_require__(36);
-var loaderImage = __webpack_require__(92);
-var tankLandingArea = __webpack_require__(37);
+var titlepage = __webpack_require__(37);
+var loaderImage = __webpack_require__(93);
+var tankLandingArea = __webpack_require__(38);
 // const titlepage          = require('../../static/staticsGame/images/titlepage.jpg');
 // const loaderImage        = require('../../static/staticsGame/images/loader.png');
 var BootState = /** @class */ (function (_super) {
@@ -106855,13 +106897,13 @@ exports.default = BootState;
 
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports) {
 
 module.exports = "../../img/14d4ff248dc707525c77546bd8f6a020.png";
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106880,17 +106922,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
 var state_1 = __webpack_require__(16);
 // Webpack will replace these imports with a URLs to images
-var tanks = __webpack_require__(38);
-var tanksJSON = __webpack_require__(94);
-var enemy = __webpack_require__(95);
-var bullet = __webpack_require__(96);
-var kaboom = __webpack_require__(97);
-var titlepage = __webpack_require__(36);
-var logo = __webpack_require__(98);
+var tanks = __webpack_require__(39);
+var tanksJSON = __webpack_require__(95);
+var enemy = __webpack_require__(96);
+var bullet = __webpack_require__(97);
+var kaboom = __webpack_require__(98);
+var titlepage = __webpack_require__(37);
+var logo = __webpack_require__(99);
 // const startAudio      = require('../../../static/staticsGame/music/boom.mp3');
-var earth = __webpack_require__(39);
-var pause = __webpack_require__(40);
-var box_tree = __webpack_require__(41);
+var earth = __webpack_require__(40);
+var pause = __webpack_require__(41);
+var box_tree = __webpack_require__(42);
 // const tanks       = require('../../static/staticsGame/images/tanks.png');
 // const tanksJSON   = require('../../static/staticsGame/images/tanks.json');
 // const enemy       = require('../../static/staticsGame/images/enemy-tanks.png');
@@ -106938,37 +106980,37 @@ exports.default = PreloaderState;
 
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports) {
 
 module.exports = {"frames":[{"filename":"shadow","frame":{"x":0,"y":0,"w":80,"h":80},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":80,"h":80},"sourceSize":{"w":80,"h":80}},{"filename":"tank1","frame":{"x":190,"y":52,"w":54,"h":52},"rotated":false,"trimmed":true,"spriteSourceSize":{"x":3,"y":5,"w":54,"h":52},"sourceSize":{"w":64,"h":64}},{"filename":"turret","frame":{"x":0,"y":80,"w":48,"h":28},"rotated":false,"trimmed":true,"spriteSourceSize":{"x":1,"y":2,"w":48,"h":28},"sourceSize":{"w":50,"h":32}}]}
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports) {
 
 module.exports = "../../img/f50e6d82d4bfab326976a927ee97741f.png";
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports) {
 
 module.exports = "../../img/fae6edb0e0a51c1e45006a123c63dff2.png";
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports) {
 
 module.exports = "../../img/5ddcf208bfb5ee103c39ea71c64a107f.png";
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports) {
 
 module.exports = "../../img/6f7c29bcd42fe6d20b75c1853ca7e6d3.png";
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -107016,7 +107058,7 @@ exports.default = MainState;
 
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -107034,21 +107076,21 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
 var state_1 = __webpack_require__(16);
-var Tank_1 = __webpack_require__(101);
-var TreeBox_1 = __webpack_require__(102);
-var Client_1 = __webpack_require__(104);
-var Snap_1 = __webpack_require__(129);
-var SpawnRequest_1 = __webpack_require__(130);
-var TankBullet_1 = __webpack_require__(131);
-var EnemyBullet_1 = __webpack_require__(132);
-var EnemyTanks_1 = __webpack_require__(133);
-var TankLanding_1 = __webpack_require__(135);
-var StaticList_1 = __webpack_require__(136);
-var earth = __webpack_require__(39);
-var pause = __webpack_require__(40);
-var box_tree = __webpack_require__(41);
-var tanks = __webpack_require__(38);
-var tankLandingArea = __webpack_require__(37);
+var Tank_1 = __webpack_require__(102);
+var TreeBox_1 = __webpack_require__(103);
+var Client_1 = __webpack_require__(105);
+var Snap_1 = __webpack_require__(130);
+var SpawnRequest_1 = __webpack_require__(131);
+var TankBullet_1 = __webpack_require__(132);
+var EnemyBullet_1 = __webpack_require__(133);
+var EnemyTanks_1 = __webpack_require__(134);
+var TankLanding_1 = __webpack_require__(136);
+var StaticList_1 = __webpack_require__(137);
+var earth = __webpack_require__(40);
+var pause = __webpack_require__(41);
+var box_tree = __webpack_require__(42);
+var tanks = __webpack_require__(39);
+var tankLandingArea = __webpack_require__(38);
 var WorldState = /** @class */ (function (_super) {
     __extends(WorldState, _super);
     function WorldState() {
@@ -107263,7 +107305,7 @@ exports.default = WorldState;
 
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -107279,10 +107321,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var TankBody_1 = __webpack_require__(42);
-var TankTurret_1 = __webpack_require__(43);
-var Lable_1 = __webpack_require__(44);
-var HealthBar = __webpack_require__(45);
+var TankBody_1 = __webpack_require__(43);
+var TankTurret_1 = __webpack_require__(44);
+var Lable_1 = __webpack_require__(45);
+var HealthBar = __webpack_require__(46);
 var TankState = /** @class */ (function (_super) {
     __extends(TankState, _super);
     function TankState(game, uid, title) {
@@ -107348,7 +107390,7 @@ exports.default = TankState;
 
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -107364,7 +107406,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Box_1 = __webpack_require__(103);
+var Box_1 = __webpack_require__(104);
 var TreeBox = /** @class */ (function (_super) {
     __extends(TreeBox, _super);
     // _box = Phaser.Sprite;
@@ -107396,7 +107438,7 @@ exports.default = TreeBox;
 
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -107446,14 +107488,14 @@ exports.default = Box;
 
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Message_1 = __webpack_require__(105);
-var io = __webpack_require__(106);
+var Message_1 = __webpack_require__(106);
+var io = __webpack_require__(107);
 var Client = /** @class */ (function () {
     function Client() {
         var _this = this;
@@ -107487,7 +107529,7 @@ exports.default = Client;
 
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -107524,7 +107566,7 @@ exports.default = Message;
 
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -107532,9 +107574,9 @@ exports.default = Message;
  * Module dependencies.
  */
 
-var url = __webpack_require__(107);
+var url = __webpack_require__(108);
 var parser = __webpack_require__(27);
-var Manager = __webpack_require__(50);
+var Manager = __webpack_require__(51);
 var debug = __webpack_require__(11)('socket.io-client');
 
 /**
@@ -107619,12 +107661,12 @@ exports.connect = lookup;
  * @api public
  */
 
-exports.Manager = __webpack_require__(50);
-exports.Socket = __webpack_require__(55);
+exports.Manager = __webpack_require__(51);
+exports.Socket = __webpack_require__(56);
 
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -107632,7 +107674,7 @@ exports.Socket = __webpack_require__(55);
  * Module dependencies.
  */
 
-var parseuri = __webpack_require__(46);
+var parseuri = __webpack_require__(47);
 var debug = __webpack_require__(11)('socket.io-client:url');
 
 /**
@@ -107706,7 +107748,7 @@ function url (uri, loc) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -107722,7 +107764,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(47);
+exports.humanize = __webpack_require__(48);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -107914,7 +107956,7 @@ function coerce(val) {
 
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -107925,7 +107967,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/*global Blob,File*/
@@ -107934,8 +107976,8 @@ module.exports = Array.isArray || function (arr) {
  * Module requirements
  */
 
-var isArray = __webpack_require__(111);
-var isBuf = __webpack_require__(49);
+var isArray = __webpack_require__(112);
+var isBuf = __webpack_require__(50);
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof global.Blob === 'function' || toString.call(global.Blob) === '[object BlobConstructor]';
 var withNativeFile = typeof global.File === 'function' || toString.call(global.File) === '[object FileConstructor]';
@@ -108073,7 +108115,7 @@ exports.removeBlobs = function(data, callback) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -108084,11 +108126,11 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-module.exports = __webpack_require__(113);
+module.exports = __webpack_require__(114);
 
 /**
  * Exports parser
@@ -108100,19 +108142,19 @@ module.exports.parser = __webpack_require__(9);
 
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * Module dependencies.
  */
 
-var transports = __webpack_require__(51);
+var transports = __webpack_require__(52);
 var Emitter = __webpack_require__(8);
 var debug = __webpack_require__(19)('engine.io-client:socket');
-var index = __webpack_require__(54);
+var index = __webpack_require__(55);
 var parser = __webpack_require__(9);
-var parseuri = __webpack_require__(46);
+var parseuri = __webpack_require__(47);
 var parseqs = __webpack_require__(17);
 
 /**
@@ -108247,7 +108289,7 @@ Socket.protocol = parser.protocol; // this is an int
 
 Socket.Socket = Socket;
 Socket.Transport = __webpack_require__(29);
-Socket.transports = __webpack_require__(51);
+Socket.transports = __webpack_require__(52);
 Socket.parser = __webpack_require__(9);
 
 /**
@@ -108850,7 +108892,7 @@ Socket.prototype.filterUpgrades = function (upgrades) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports) {
 
 
@@ -108873,7 +108915,7 @@ try {
 
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -108881,7 +108923,7 @@ try {
  */
 
 var XMLHttpRequest = __webpack_require__(28);
-var Polling = __webpack_require__(52);
+var Polling = __webpack_require__(53);
 var Emitter = __webpack_require__(8);
 var inherit = __webpack_require__(18);
 var debug = __webpack_require__(19)('engine.io-client:polling-xhr');
@@ -109293,7 +109335,7 @@ function unloadHandler () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports) {
 
 
@@ -109318,7 +109360,7 @@ module.exports = Object.keys || function keys (obj){
 
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports) {
 
 /**
@@ -109353,7 +109395,7 @@ module.exports = function(arraybuffer, start, end) {
 
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports) {
 
 module.exports = after
@@ -109387,7 +109429,7 @@ function noop() {}
 
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module, global) {var __WEBPACK_AMD_DEFINE_RESULT__;/*! https://mths.be/utf8js v2.1.2 by @mathias */
@@ -109645,10 +109687,10 @@ function noop() {}
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(120)(module), __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(121)(module), __webpack_require__(0)))
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -109676,7 +109718,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports) {
 
 /*
@@ -109749,7 +109791,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -109852,7 +109894,7 @@ module.exports = (function() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -109868,7 +109910,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(47);
+exports.humanize = __webpack_require__(48);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -110060,7 +110102,7 @@ function coerce(val) {
 
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -110068,7 +110110,7 @@ function coerce(val) {
  * Module requirements.
  */
 
-var Polling = __webpack_require__(52);
+var Polling = __webpack_require__(53);
 var inherit = __webpack_require__(18);
 
 /**
@@ -110298,7 +110340,7 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -110309,13 +110351,13 @@ var Transport = __webpack_require__(29);
 var parser = __webpack_require__(9);
 var parseqs = __webpack_require__(17);
 var inherit = __webpack_require__(18);
-var yeast = __webpack_require__(53);
+var yeast = __webpack_require__(54);
 var debug = __webpack_require__(19)('engine.io-client:websocket');
 var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
 if (typeof window === 'undefined') {
   try {
-    NodeWebSocket = __webpack_require__(126);
+    NodeWebSocket = __webpack_require__(127);
   } catch (e) { }
 }
 
@@ -110591,13 +110633,13 @@ WS.prototype.check = function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports) {
 
 module.exports = toArray
@@ -110616,7 +110658,7 @@ function toArray(list, index) {
 
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports) {
 
 
@@ -110707,7 +110749,7 @@ Backoff.prototype.setJitter = function(jitter){
 
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -110748,7 +110790,7 @@ exports.default = Snap;
 
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -110776,7 +110818,7 @@ exports.default = SpawnRequest;
 
 
 /***/ }),
-/* 131 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -110792,7 +110834,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Bullet_1 = __webpack_require__(58);
+var Bullet_1 = __webpack_require__(59);
 var TankBullet = /** @class */ (function (_super) {
     __extends(TankBullet, _super);
     function TankBullet(game) {
@@ -110830,7 +110872,7 @@ exports.default = TankBullet;
 
 
 /***/ }),
-/* 132 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -110846,7 +110888,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Bullet_1 = __webpack_require__(58);
+var Bullet_1 = __webpack_require__(59);
 var EnemyBullet = /** @class */ (function (_super) {
     __extends(EnemyBullet, _super);
     function EnemyBullet(game) {
@@ -110884,13 +110926,13 @@ exports.default = EnemyBullet;
 
 
 /***/ }),
-/* 133 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Enemy_1 = __webpack_require__(134);
+var Enemy_1 = __webpack_require__(135);
 var EnemyTanks = /** @class */ (function () {
     function EnemyTanks(game) {
         this.game = game;
@@ -110916,7 +110958,7 @@ exports.default = EnemyTanks;
 
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -110932,10 +110974,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var TankBody_1 = __webpack_require__(42);
-var TankTurret_1 = __webpack_require__(43);
-var Lable_1 = __webpack_require__(44);
-var HealthBar = __webpack_require__(45);
+var TankBody_1 = __webpack_require__(43);
+var TankTurret_1 = __webpack_require__(44);
+var Lable_1 = __webpack_require__(45);
+var HealthBar = __webpack_require__(46);
 var TankState = /** @class */ (function (_super) {
     __extends(TankState, _super);
     function TankState(game, uid, title) {
@@ -110994,7 +111036,7 @@ exports.default = TankState;
 
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111021,7 +111063,7 @@ exports.default = TankLanding;
 
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111095,7 +111137,7 @@ exports.default = StaticList;
 
 
 /***/ }),
-/* 137 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111188,7 +111230,7 @@ var PauseMenu = function (_Phaser$State) {
 exports.default = PauseMenu;
 
 /***/ }),
-/* 138 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111204,7 +111246,7 @@ var _phaser = __webpack_require__(20);
 
 var _phaser2 = _interopRequireDefault(_phaser);
 
-var _Constant = __webpack_require__(59);
+var _Constant = __webpack_require__(60);
 
 var _Constant2 = _interopRequireDefault(_Constant);
 
@@ -111285,7 +111327,7 @@ var GameOverMenu = function (_Phaser$State) {
 exports.default = GameOverMenu;
 
 /***/ }),
-/* 139 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111301,11 +111343,11 @@ var _phaser = __webpack_require__(20);
 
 var _phaser2 = _interopRequireDefault(_phaser);
 
-var _EnemyTank = __webpack_require__(140);
+var _EnemyTank = __webpack_require__(141);
 
 var _EnemyTank2 = _interopRequireDefault(_EnemyTank);
 
-var _Constant = __webpack_require__(59);
+var _Constant = __webpack_require__(60);
 
 var _Constant2 = _interopRequireDefault(_Constant);
 
@@ -111575,7 +111617,7 @@ var World = function (_Phaser$State) {
 exports.default = World;
 
 /***/ }),
-/* 140 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111675,7 +111717,7 @@ var EnemyTank = function () {
 exports.default = EnemyTank;
 
 /***/ }),
-/* 141 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111785,7 +111827,7 @@ var SignInController = function (_Controller) {
 exports.default = SignInController;
 
 /***/ }),
-/* 142 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111898,7 +111940,7 @@ var SignUpController = function (_Controller) {
 exports.default = SignUpController;
 
 /***/ }),
-/* 143 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112033,7 +112075,7 @@ var ScoreListController = function (_Controller) {
 exports.default = ScoreListController;
 
 /***/ }),
-/* 144 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
