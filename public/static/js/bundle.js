@@ -111311,7 +111311,7 @@ var GameOverMenu = function (_Phaser$State) {
         key: 'continueGame',
         value: function continueGame() {
             this.add.tween(this.background).to({ alpha: 0 }, _Constant2.default.shadow_time, _phaser2.default.Easing.Linear.None, true);
-            this.game.state.start('World', true, false);
+            this.game.state.start('world', true, false);
         }
     }, {
         key: 'exitGame',
