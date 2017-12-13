@@ -27,8 +27,8 @@ export default class SignUpForm extends Form {
             const formdata = {};
             const elements = signUpForm.elements;
 
-            for (let name in elements) {
-                formdata[name] = elements[name].value;
+            for (let name of elements) {
+                formdata[name.name] = name.value;
             }
 
             const isValid = new this.validator(formdata.username, formdata.email,

@@ -15,6 +15,8 @@ export default class App extends Phaser.Game {
 
   constructor(User) {
     super(document.documentElement.clientWidth, document.documentElement.clientHeight, Phaser.AUTO, 'content', null);
+    // super(1890, 1000, Phaser.AUTO, 'content', null);
+    // super(800, 600, Phaser.AUTO, 'content', null);
 
     this.user = User;
     this.state.add('boot', BootState);

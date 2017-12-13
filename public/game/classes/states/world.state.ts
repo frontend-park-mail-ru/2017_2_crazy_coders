@@ -37,6 +37,8 @@ export default class WorldState extends State {
 
     create(): void {
 
+        this.game.world.setBounds(0, 0, 1890, 1000);
+
         this.isSendSpawnRequest = false;
         this.load.image('bullet', 'static/staticsGame/images/bullet.png');
         this.load.spritesheet('kaboom', 'static/staticsGame/images/explosion.png', 64, 64, 23);
@@ -93,13 +95,15 @@ export default class WorldState extends State {
 
         this.statistics = new StaticList(this.game, this.game.user.id);
 
-        this.game.camera.follow(this.tank);
-        this.game.camera.deadzone = new Phaser.Rectangle(150, 150, 500, 300);
-        this.game.camera.focusOnXY(0, 0);
+        debugger;
+        this.game.camera.follow(this.tank._tank._body);
+        // this.game.camera.deadzone = new Phaser.Rectangle(15, 15, 50, 30);
+        // this.game.camera.focusOnXY(0, 0);
 
     }
 
     update(): void {
+        // this.game.camera.focusOnXY(this.tank._tank.currentPosition.xCoordinate, this.tank._tank.currentPosition.yCoordinate);
         this.game.physics.arcade.collide(this.tank._tank._body, this.treeBoxes._treeBoxes);
 
         let enemies = this.enemies.enemyTanks.children;
@@ -112,8 +116,8 @@ export default class WorldState extends State {
             this.enemy.update();
         }
 
-        this.land.tilePosition.x = -this.camera.x;
-        this.land.tilePosition.y = -this.camera.y;
+        // this.land.tilePosition.x = -this.camera.x;
+        // this.land.tilePosition.y = -this.camera.y;
         this.tank.update();
 
         // click mouse button
