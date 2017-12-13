@@ -85,8 +85,8 @@ export default class UserService {
 			})
 	}
 
-	getScorelist(page) {
-		return Http.FetchGet('/index')
+	getScorelist(limit) {
+		return Http.FetchGet(`/top?limit=${limit}`)
 			.then((response) => {
 				if (response.status === 200) {
 					return response.json();

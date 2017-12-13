@@ -5,94 +5,83 @@ import Theme from '../static/css/style';
 
 class ScoreListController extends Controller {
 
-	constructor(opt = {}) {
-		if (ScoreListController.__instance) {
-			return ScoreListController.__instance;
-		}
+    constructor(opt = {}) {
+        if (ScoreListController.__instance) {
+            return ScoreListController.__instance;
+        }
 
-		super(opt);
-		ScoreListController.__instance = this;
-		this.theme = new Theme();
-		this.addListener();
-	}
+        super(opt);
+        ScoreListController.__instance = this;
+        this.theme = new Theme();
+        this.addListener();
+    }
 
-	addListener() {
-		document.getElementsByClassName('theme')[0].addEventListener('click', event => {
-			event.preventDefault();
-			this.theme.changeTheme();
-		});
+    addListener() {
+        document.getElementsByClassName('theme')[0].addEventListener('click', event => {
+            event.preventDefault();
+            this.theme.changeTheme();
+        });
 
-		document.getElementById('score-button-back').addEventListener('click', event => {
-			event.preventDefault();
-			this._router.go('/');
-		});
-	}
+        document.getElementById('score-button-back').addEventListener('click', event => {
+            event.preventDefault();
+            this._router.go('/');
+        });
+    }
 
-	resume() {
-		this.show();
-	}
+    resume() {
+        this.show();
+    }
 
-	show() {
-		this.page_parts.get("Header").show();
-		this.userService
-			.getScorelist(1)
-			.then((resp) => {
-				console.log('good answer');
+    show() {
+        this.page_parts.get("Header").show();
+        this.userService
+            .getScorelist(1)
+            .then((resp) => {
 
-				console.log(resp);
+                const topList = [];
 
-				resp = [
-					{
-						name: 'PeterS',
-						position: '1000',
+                for (let user of resp) {
+                    topList.push({
+                        position: user.position,
+                        username: user.username,
+                        kills: user.kills,
+                        deaths: user.deaths,
+                        maxKills: user.maxKills
+                    })
+                }
 
-					},
-					{
-						name: 'LoisS',
-						position: '1500',
+                debugger;
 
-					},
-					{
-						name: 'JoeS',
-						position: '3000',
+                this.page_parts.get("Scoreboard").data.users = topList;
 
-					},
-					{
-						name: 'ClevelandS',
-						position: '2500'
-					}
-				];
+                if (this.userService.isAuthorized()) {
+                    // this.page_parts.get("Scoreboard").data.userScore = this.userService.user.getScore();
+                    this.page_parts.get("Scoreboard").data.userScore = 10000;
+                } else {
+                    this.page_parts.get("Scoreboard").data.userScore = 0;
+                }
+                // this.userService.getProfile().then( (ans) => {
+                // 		// this.page_parts.get("Scoreboard").data.userScore = this.userService.user.getScore();
+                // 	console.log('1000');
+                // 	this.page_parts.get("Scoreboard").data.userScore = 10000;
+                // }).catch( (badAns) => {
+                // 	console.log('err_1000');
+                // 	this.page_parts.get("Scoreboard").data.userScore = 0;
+                // });
 
-				this.page_parts.get("Scoreboard").data.users = resp;
+                this.page_parts.get("Scoreboard").getClassElement().hidden = false;
+                this.addListener();
+            })
+            .catch((err) => {
+                console.log('bad answer');
+            });
 
-				if (this.userService.isAuthorized()) {
-					// this.page_parts.get("Scoreboard").data.userScore = this.userService.user.getScore();
-					this.page_parts.get("Scoreboard").data.userScore = 10000;
-				} else {
-					this.page_parts.get("Scoreboard").data.userScore = 0;
-				}
-				// this.userService.getProfile().then( (ans) => {
-				// 		// this.page_parts.get("Scoreboard").data.userScore = this.userService.user.getScore();
-				// 	console.log('1000');
-				// 	this.page_parts.get("Scoreboard").data.userScore = 10000;
-				// }).catch( (badAns) => {
-				// 	console.log('err_1000');
-				// 	this.page_parts.get("Scoreboard").data.userScore = 0;
-				// });
+    }
 
-				this.page_parts.get("Scoreboard").getClassElement().hidden = false;
-				this.addListener();
-			})
-			.catch((err) => {
-				console.log('bad answer');
-			});
-
-	}
-
-	hide() {
-		this.page_parts.get("Header").hide();
-		this.page_parts.get("Scoreboard").hide();
-	}
+    hide() {
+        this.page_parts.get("Header").hide();
+        this.page_parts.get("Scoreboard").hide();
+    }
 }
 
 export default ScoreListController;
