@@ -112016,7 +112016,7 @@ var ScoreListController = function (_Controller) {
             var _this3 = this;
 
             this.page_parts.get("Header").show();
-            this.userService.getScorelist(1).then(function (resp) {
+            this.userService.getScorelist(5).then(function (resp) {
 
                 var topList = [];
 

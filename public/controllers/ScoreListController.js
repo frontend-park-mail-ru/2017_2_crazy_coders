@@ -35,7 +35,7 @@ class ScoreListController extends Controller {
     show() {
         this.page_parts.get("Header").show();
         this.userService
-            .getScorelist(1)
+            .getScorelist(5)
             .then((resp) => {
 
                 const topList = [];
