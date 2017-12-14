@@ -37,7 +37,7 @@ export default class WorldState extends State {
 
     create(): void {
 
-        this.game.world.setBounds(0, 0, 1890, 1000);
+        this.game.world.setBounds(0, 0, 1920, 1080);
 
         this.isSendSpawnRequest = false;
         this.load.image('bullet', 'static/staticsGame/images/bullet.png');
@@ -95,7 +95,6 @@ export default class WorldState extends State {
 
         this.statistics = new StaticList(this.game, this.game.user.id);
 
-        debugger;
         this.game.camera.follow(this.tank._tank._body);
         // this.game.camera.deadzone = new Phaser.Rectangle(15, 15, 50, 30);
         // this.game.camera.focusOnXY(0, 0);
@@ -159,6 +158,7 @@ export default class WorldState extends State {
             this.game.physics.arcade.overlap(this.enemyBullets.enemyBullets, this.tank._tank._body, this.enemyBullets.bulletHitTank.bind(this.enemyBullets), null, this);
         }
 
+        // this.statistics.updatePosition(this.tank._tank.currentPosition.xCoordinate, this.tank._tank.currentPosition.yCoordinate);
         this.tank.isShoot = false;
     }
 
@@ -169,7 +169,7 @@ export default class WorldState extends State {
 
             let bullet = this.tankBullets.tankBullets.getFirstExists(false);
             bullet.reset(this.tank._turret._turret.x, this.tank._turret._turret.y);
-            bullet.rotation = this.physics.arcade.moveToPointer(bullet, 5000, this.game.input.activePointer, 50);
+            bullet.rotation = this.physics.arcade.moveToPointer(bullet, 3500, this.game.input.activePointer);
 
             this.tank.isShoot = true;
         }
@@ -180,9 +180,6 @@ export default class WorldState extends State {
     };
 
     onServerStatisticsSnap(message) {
-        debugger;
-        console.log(`statistics snap length = ${message.leaders.length}`);
-
         if(message.leaders) {
             this.statistics.updateList(message.leaders);
         }
@@ -291,7 +288,7 @@ export default class WorldState extends State {
 
                         let bullet = this.enemyBullets.enemyBullets.getFirstExists(false);
                         bullet.reset(tankSnapshot.platform.valX, tankSnapshot.platform.valY);
-                        bullet.rotation = this.physics.arcade.moveToXY(bullet, directX, directY,1000, 50);
+                        bullet.rotation = this.physics.arcade.moveToXY(bullet, directX, directY,3500);
                     }
 
                     enemyOnClient.tankBody.currentPosition = {

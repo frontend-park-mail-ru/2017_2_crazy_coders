@@ -2009,7 +2009,7 @@ exports.default = Http;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -2045,75 +2045,75 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Form
  */
 var Form = function (_Block) {
-    _inherits(Form, _Block);
+  _inherits(Form, _Block);
 
-    /**
-     * @param {string} [tagName='div'] - tagName блока
-     * @param {*} [attrs={}] - объект с атрибутами блока
-     * @param {string[]} [classes=[]] - список имён классов
-     * @param {*} [data={}] - объект с данными блока
-     * @constructor
-     */
-    function Form() {
-        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-        var data = arguments[3];
+  /**
+   * @param {string} [tagName='div'] - tagName блока
+   * @param {*} [attrs={}] - объект с атрибутами блока
+   * @param {string[]} [classes=[]] - список имён классов
+   * @param {*} [data={}] - объект с данными блока
+   * @constructor
+   */
+  function Form() {
+    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var data = arguments[3];
 
-        _classCallCheck(this, Form);
+    _classCallCheck(this, Form);
 
-        return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, tagName, attrs, classes, data));
+    return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, tagName, attrs, classes, data));
+  }
+
+  /**
+   * Получить форму
+   */
+
+
+  _createClass(Form, [{
+    key: 'getClassElement',
+    value: function getClassElement() {
+      var data = this.getData();
+      this.setHTML((0, _Form2.default)({ data: data }));
+      return this.getElement();
     }
 
     /**
-     * Получить форму
+     * Получить кнопку назад из страницы с формы
      */
 
+  }], [{
+    key: 'getBackButton',
+    value: function getBackButton() {
+      return document.getElementsByClassName('back-button');
+    }
 
-    _createClass(Form, [{
-        key: 'getClassElement',
-        value: function getClassElement() {
-            var data = this.getData();
-            this.setHTML((0, _Form2.default)({ data: data }));
-            return this.getElement();
-        }
+    /**
+     * Показываем ошибки к форме
+     * @param {string}  msg - сообщение
+     * @param {HTMLElement} form
+     * @return {Promise}
+     */
+    // static showFormMessage(msg, form) {
+    //     console.log(1);
+    //     let currentForm = form.getElement().getElementsByTagName('form')[0];
+    //     currentForm.insertBefore(ValidSignUpForm.createErrorElement(msg), currentForm.children[0]);
+    // }
 
-        /**
-         * Получить кнопку назад из страницы с формы
-         */
+    /**
+     * Очищаем поля форм
+     */
 
-    }], [{
-        key: 'getBackButton',
-        value: function getBackButton() {
-            return document.getElementsByClassName('back-button');
-        }
+  }, {
+    key: 'reset',
+    value: function reset() {
+      Array.from(document.getElementsByTagName('form')).forEach(function (form) {
+        form.reset();
+      });
+    }
+  }]);
 
-        /**
-         * Показываем ошибки к форме
-         * @param {string}  msg - сообщение
-         * @param {HTMLElement} form
-         * @return {Promise}
-         */
-        // static showFormMessage(msg, form) {
-        //     console.log(1);
-        //     let currentForm = form.getElement().getElementsByTagName('form')[0];
-        //     currentForm.insertBefore(ValidSignUpForm.createErrorElement(msg), currentForm.children[0]);
-        // }
-
-        /**
-         * Очищаем поля форм
-         */
-
-    }, {
-        key: 'reset',
-        value: function reset() {
-            Array.from(document.getElementsByTagName('form')).forEach(function (form) {
-                form.reset();
-            });
-        }
-    }]);
-
-    return Form;
+  return Form;
 }(_BlockComponents2.default);
 
 exports.default = Form;
@@ -5580,12 +5580,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                         c = c2;
                         angle = angle2;
                     }
-                      for(var i=0; i!==c.axes.length; i++){
-                          var normal = c.axes[i];
-                          // Project hulls onto that normal
+                     for(var i=0; i!==c.axes.length; i++){
+                         var normal = c.axes[i];
+                         // Project hulls onto that normal
                         Narrowphase.projectConvexOntoAxis(c1, offset1, angle1, normal, span1);
                         Narrowphase.projectConvexOntoAxis(c2, offset2, angle2, normal, span2);
-                          // Order by span position
+                         // Order by span position
                         var a=span1,
                             b=span2,
                             swapped = false;
@@ -5594,10 +5594,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                             a=span2;
                             swapped = true;
                         }
-                          // Get separating distance
+                         // Get separating distance
                         var dist = b[0] - a[1];
                         overlap = (dist <= Narrowphase.convexPrecision);
-                          if(maxDist===null || dist > maxDist){
+                         if(maxDist===null || dist > maxDist){
                             vec2.copy(sepAxis, normal);
                             maxDist = dist;
                             found = overlap;
@@ -7234,14 +7234,14 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 this.localAxisA = localAxisA;
 
                 /*
-                  The constraint violation for the common axis point is
-                      g = ( xj + rj - xi - ri ) * t   :=  gg*t
-                  where r are body-local anchor points, and t is a tangent to the constraint axis defined in body i frame.
-                      gdot =  ( vj + wj x rj - vi - wi x ri ) * t + ( xj + rj - xi - ri ) * ( wi x t )
-                  Note the use of the chain rule. Now we identify the jacobian
-                      G*W = [ -t      -ri x t + t x gg     t    rj x t ] * [vi wi vj wj]
-                  The rotational part is just a rotation lock.
-                   */
+                 The constraint violation for the common axis point is
+                     g = ( xj + rj - xi - ri ) * t   :=  gg*t
+                 where r are body-local anchor points, and t is a tangent to the constraint axis defined in body i frame.
+                     gdot =  ( vj + wj x rj - vi - wi x ri ) * t + ( xj + rj - xi - ri ) * ( wi x t )
+                 Note the use of the chain rule. Now we identify the jacobian
+                     G*W = [ -t      -ri x t + t x gg     t    rj x t ] * [vi wi vj wj]
+                 The rotational part is just a rotation lock.
+                  */
 
                 var maxForce = this.maxForce = typeof options.maxForce !== "undefined" ? options.maxForce : Number.MAX_VALUE;
 
@@ -7421,7 +7421,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     Add contact equation, with normal along the constraint axis.
                     min/maxForce is set so the constraint is repulsive in the correct direction.
                     Some offset is added to either equation.contactPointA or .contactPointB to get the correct upper/lower limit.
-                               ^
+                              ^
                              |
                   upperLimit x
                              |    ------
@@ -7739,20 +7739,20 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 }
 
                 /*
-                  The constraint violation is
-                      g = xj + rj - xi - ri
-                  ...where xi and xj are the body positions and ri and rj world-oriented offset vectors. Differentiate:
-                      gdot = vj + wj x rj - vi - wi x ri
-                  We split this into x and y directions. (let x and y be unit vectors along the respective axes)
-                      gdot * x = ( vj + wj x rj - vi - wi x ri ) * x
+                 The constraint violation is
+                     g = xj + rj - xi - ri
+                 ...where xi and xj are the body positions and ri and rj world-oriented offset vectors. Differentiate:
+                     gdot = vj + wj x rj - vi - wi x ri
+                 We split this into x and y directions. (let x and y be unit vectors along the respective axes)
+                     gdot * x = ( vj + wj x rj - vi - wi x ri ) * x
                              = ( vj*x + (wj x rj)*x -vi*x -(wi x ri)*x
                              = ( vj*x + (rj x x)*wj -vi*x -(ri x x)*wi
                              = [ -x   -(ri x x)   x   (rj x x)] * [vi wi vj wj]
                              = G*W
-                  ...and similar for y. We have then identified the jacobian entries for x and y directions:
-                      Gx = [ x   (rj x x)   -x   -(ri x x)]
+                 ...and similar for y. We have then identified the jacobian entries for x and y directions:
+                     Gx = [ x   (rj x x)   -x   -(ri x x)]
                     Gy = [ y   (rj x y)   -y   -(ri x y)]
-                   */
+                  */
 
                 vec2.rotate(worldPivotA, pivotA, bodyA.angle);
                 vec2.rotate(worldPivotB, pivotB, bodyB.angle);
@@ -8769,8 +8769,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 PolyK library
                 url: http://polyk.ivank.net
                 Released under MIT licence.
-                  Copyright (c) 2012 Ivan Kuckir
-                  Permission is hereby granted, free of charge, to any person
+                 Copyright (c) 2012 Ivan Kuckir
+                 Permission is hereby granted, free of charge, to any person
                 obtaining a copy of this software and associated documentation
                 files (the "Software"), to deal in the Software without
                 restriction, including without limitation the rights to use,
@@ -8778,9 +8778,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 copies of the Software, and to permit persons to whom the
                 Software is furnished to do so, subject to the following
                 conditions:
-                  The above copyright notice and this permission notice shall be
+                 The above copyright notice and this permission notice shall be
                 included in all copies or substantial portions of the Software.
-                  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+                 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
                 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
                 OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
                 NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
@@ -8794,7 +8794,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             /*
                 Is Polygon self-intersecting?
-                  O(n^2)
+                 O(n^2)
             */
             /*
             PolyK.IsSimple = function(p)
@@ -8804,27 +8804,27 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 var a1 = new PolyK._P(), a2 = new PolyK._P();
                 var b1 = new PolyK._P(), b2 = new PolyK._P();
                 var c = new PolyK._P();
-                  for(var i=0; i<n; i++)
+                 for(var i=0; i<n; i++)
                 {
                     a1.x = p[2*i  ];
                     a1.y = p[2*i+1];
                     if(i==n-1)  { a2.x = p[0    ];  a2.y = p[1    ]; }
                     else        { a2.x = p[2*i+2];  a2.y = p[2*i+3]; }
-                      for(var j=0; j<n; j++)
+                     for(var j=0; j<n; j++)
                     {
                         if(Math.abs(i-j) < 2) continue;
                         if(j==n-1 && i==0) continue;
                         if(i==n-1 && j==0) continue;
-                          b1.x = p[2*j  ];
+                         b1.x = p[2*j  ];
                         b1.y = p[2*j+1];
                         if(j==n-1)  { b2.x = p[0    ];  b2.y = p[1    ]; }
                         else        { b2.x = p[2*j+2];  b2.y = p[2*j+3]; }
-                          if(PolyK._GetLineIntersection(a1,a2,b1,b2,c) != null) return false;
+                         if(PolyK._GetLineIntersection(a1,a2,b1,b2,c) != null) return false;
                     }
                 }
                 return true;
             }
-              PolyK.IsConvex = function(p)
+             PolyK.IsConvex = function(p)
             {
                 if(p.length<6) return true;
                 var l = p.length - 4;
@@ -8918,24 +8918,24 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     if(ay< 0 && by< 0) continue;    // both "up" or both "donw"
                     if(ay>=0 && by>=0) continue;    // both "up" or both "donw"
                     if(ax< 0 && bx< 0) continue;
-                      var lx = ax + (bx-ax)*(-ay)/(by-ay);
+                     var lx = ax + (bx-ax)*(-ay)/(by-ay);
                     if(lx>0) depth++;
                 }
                 return (depth & 1) == 1;
             }
-              PolyK.Slice = function(p, ax, ay, bx, by)
+             PolyK.Slice = function(p, ax, ay, bx, by)
             {
                 if(PolyK.ContainsPoint(p, ax, ay) || PolyK.ContainsPoint(p, bx, by)) return [p.slice(0)];
-                  var a = new PolyK._P(ax, ay);
+                 var a = new PolyK._P(ax, ay);
                 var b = new PolyK._P(bx, by);
                 var iscs = [];  // intersections
                 var ps = [];    // points
                 for(var i=0; i<p.length; i+=2) ps.push(new PolyK._P(p[i], p[i+1]));
-                  for(var i=0; i<ps.length; i++)
+                 for(var i=0; i<ps.length; i++)
                 {
                     var isc = new PolyK._P(0,0);
                     isc = PolyK._GetLineIntersection(a, b, ps[i], ps[(i+1)%ps.length], isc);
-                      if(isc)
+                     if(isc)
                     {
                         isc.flag = true;
                         iscs.push(isc);
@@ -8946,7 +8946,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if(iscs.length == 0) return [p.slice(0)];
                 var comp = function(u,v) {return PolyK._P.dist(a,u) - PolyK._P.dist(a,v); }
                 iscs.sort(comp);
-                  var pgs = [];
+                 var pgs = [];
                 var dir = 0;
                 while(iscs.length > 0)
                 {
@@ -8956,7 +8956,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     var ind0 = ps.indexOf(i0);
                     var ind1 = ps.indexOf(i1);
                     var solved = false;
-                      if(PolyK._firstWithFlag(ps, ind0) == ind1) solved = true;
+                     if(PolyK._firstWithFlag(ps, ind0) == ind1) solved = true;
                     else
                     {
                         i0 = iscs[1];
@@ -8988,7 +8988,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 }
                 return result;
             }
-              PolyK.Raycast = function(p, x, y, dx, dy, isc)
+             PolyK.Raycast = function(p, x, y, dx, dy, isc)
             {
                 var l = p.length - 2;
                 var tp = PolyK._tp;
@@ -8996,9 +8996,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 b1 = tp[2], b2 = tp[3], c = tp[4];
                 a1.x = x; a1.y = y;
                 a2.x = x+dx; a2.y = y+dy;
-                  if(isc==null) isc = {dist:0, edge:0, norm:{x:0, y:0}, refl:{x:0, y:0}};
+                 if(isc==null) isc = {dist:0, edge:0, norm:{x:0, y:0}, refl:{x:0, y:0}};
                 isc.dist = Infinity;
-                  for(var i=0; i<l; i+=2)
+                 for(var i=0; i<l; i+=2)
                 {
                     b1.x = p[i  ];  b1.y = p[i+1];
                     b2.x = p[i+2];  b2.y = p[i+3];
@@ -9009,18 +9009,18 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 b2.x = p[0];  b2.y = p[1];
                 var nisc = PolyK._RayLineIntersection(a1, a2, b1, b2, c);
                 if(nisc) PolyK._updateISC(dx, dy, a1, b1, b2, c, p.length/2, isc);
-                  return (isc.dist != Infinity) ? isc : null;
+                 return (isc.dist != Infinity) ? isc : null;
             }
-              PolyK.ClosestEdge = function(p, x, y, isc)
+             PolyK.ClosestEdge = function(p, x, y, isc)
             {
                 var l = p.length - 2;
                 var tp = PolyK._tp;
                 var a1 = tp[0],
                 b1 = tp[2], b2 = tp[3], c = tp[4];
                 a1.x = x; a1.y = y;
-                  if(isc==null) isc = {dist:0, edge:0, point:{x:0, y:0}, norm:{x:0, y:0}};
+                 if(isc==null) isc = {dist:0, edge:0, point:{x:0, y:0}, norm:{x:0, y:0}};
                 isc.dist = Infinity;
-                  for(var i=0; i<l; i+=2)
+                 for(var i=0; i<l; i+=2)
                 {
                     b1.x = p[i  ];  b1.y = p[i+1];
                     b2.x = p[i+2];  b2.y = p[i+3];
@@ -9029,23 +9029,23 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 b1.x = b2.x;  b1.y = b2.y;
                 b2.x = p[0];  b2.y = p[1];
                 PolyK._pointLineDist(a1, b1, b2, l>>1, isc);
-                  var idst = 1/isc.dist;
+                 var idst = 1/isc.dist;
                 isc.norm.x = (x-isc.point.x)*idst;
                 isc.norm.y = (y-isc.point.y)*idst;
                 return isc;
             }
-              PolyK._pointLineDist = function(p, a, b, edge, isc)
+             PolyK._pointLineDist = function(p, a, b, edge, isc)
             {
                 var x = p.x, y = p.y, x1 = a.x, y1 = a.y, x2 = b.x, y2 = b.y;
-                  var A = x - x1;
+                 var A = x - x1;
                 var B = y - y1;
                 var C = x2 - x1;
                 var D = y2 - y1;
-                  var dot = A * C + B * D;
+                 var dot = A * C + B * D;
                 var len_sq = C * C + D * D;
                 var param = dot / len_sq;
-                  var xx, yy;
-                  if (param < 0 || (x1 == x2 && y1 == y2)) {
+                 var xx, yy;
+                 if (param < 0 || (x1 == x2 && y1 == y2)) {
                     xx = x1;
                     yy = y1;
                 }
@@ -9057,7 +9057,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     xx = x1 + param * C;
                     yy = y1 + param * D;
                 }
-                  var dx = x - xx;
+                 var dx = x - xx;
                 var dy = y - yy;
                 var dst = Math.sqrt(dx * dx + dy * dy);
                 if(dst<isc.dist)
@@ -9068,7 +9068,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     isc.point.y = yy;
                 }
             }
-              PolyK._updateISC = function(dx, dy, a1, b1, b2, c, edge, isc)
+             PolyK._updateISC = function(dx, dy, a1, b1, b2, c, edge, isc)
             {
                 var nrl = PolyK._P.dist(a1, c);
                 if(nrl<isc.dist)
@@ -9085,7 +9085,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     isc.edge = edge;
                 }
             }
-              PolyK._getPoints = function(ps, ind0, ind1)
+             PolyK._getPoints = function(ps, ind0, ind1)
             {
                 var n = ps.length;
                 var nps = [];
@@ -9093,7 +9093,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 for(var i=ind0; i<= ind1; i++) nps.push(ps[i%n]);
                 return nps;
             }
-              PolyK._firstWithFlag = function(ps, ind)
+             PolyK._firstWithFlag = function(ps, ind)
             {
                 var n = ps.length;
                 while(true)
@@ -9129,38 +9129,38 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             {
                 var dax = (a1.x-a2.x), dbx = (b1.x-b2.x);
                 var day = (a1.y-a2.y), dby = (b1.y-b2.y);
-                  var Den = dax*dby - day*dbx;
+                 var Den = dax*dby - day*dbx;
                 if (Den == 0) return null;  // parallel
-                  var A = (a1.x * a2.y - a1.y * a2.x);
+                 var A = (a1.x * a2.y - a1.y * a2.x);
                 var B = (b1.x * b2.y - b1.y * b2.x);
-                  var I = c;
+                 var I = c;
                 var iDen = 1/Den;
                 I.x = ( A*dbx - dax*B ) * iDen;
                 I.y = ( A*dby - day*B ) * iDen;
-                  if(!PolyK._InRect(I, b1, b2)) return null;
+                 if(!PolyK._InRect(I, b1, b2)) return null;
                 if((day>0 && I.y>a1.y) || (day<0 && I.y<a1.y)) return null;
                 if((dax>0 && I.x>a1.x) || (dax<0 && I.x<a1.x)) return null;
                 return I;
             }
-              PolyK._GetLineIntersection = function(a1, a2, b1, b2, c)
+             PolyK._GetLineIntersection = function(a1, a2, b1, b2, c)
             {
                 var dax = (a1.x-a2.x), dbx = (b1.x-b2.x);
                 var day = (a1.y-a2.y), dby = (b1.y-b2.y);
-                  var Den = dax*dby - day*dbx;
+                 var Den = dax*dby - day*dbx;
                 if (Den == 0) return null;  // parallel
-                  var A = (a1.x * a2.y - a1.y * a2.x);
+                 var A = (a1.x * a2.y - a1.y * a2.x);
                 var B = (b1.x * b2.y - b1.y * b2.x);
-                  var I = c;
+                 var I = c;
                 I.x = ( A*dbx - dax*B ) / Den;
                 I.y = ( A*dby - day*B ) / Den;
-                  if(PolyK._InRect(I, a1, a2) && PolyK._InRect(I, b1, b2)) return I;
+                 if(PolyK._InRect(I, a1, a2) && PolyK._InRect(I, b1, b2)) return I;
                 return null;
             }
-              PolyK._InRect = function(a, b, c)
+             PolyK._InRect = function(a, b, c)
             {
                 if  (b.x == c.x) return (a.y>=Math.min(b.y, c.y) && a.y<=Math.max(b.y, c.y));
                 if  (b.y == c.y) return (a.x>=Math.min(b.x, c.x) && a.x<=Math.max(b.x, c.x));
-                  if(a.x >= Math.min(b.x, c.x) && a.x <= Math.max(b.x, c.x)
+                 if(a.x >= Math.min(b.x, c.x) && a.x <= Math.max(b.x, c.x)
                 && a.y >= Math.min(b.y, c.y) && a.y <= Math.max(b.y, c.y))
                 return true;
                 return false;
@@ -9186,7 +9186,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 var dy = b.y-a.y;
                 return Math.sqrt(dx*dx + dy*dy);
             }
-              PolyK._tp = [];
+             PolyK._tp = [];
             for(var i=0; i<10; i++) PolyK._tp.push(new PolyK._P(0,0));
                 */
 
@@ -91181,7 +91181,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         * If this Body had a previously set Collision Group you will need to re-apply it to the new Shape this creates.
         *
         * @method Phaser.Physics.P2.Body#addShape
-          * @param {p2.Shape} shape - The shape to add to the body.
+         * @param {p2.Shape} shape - The shape to add to the body.
         * @param {number} [offsetX=0] - Local horizontal offset of the shape relative to the body center of mass.
         * @param {number} [offsetY=0] - Local vertical offset of the shape relative to the body center of mass.
         * @param {number} [rotation=0] - Local rotation of the shape relative to the body center of mass, specified in radians.
@@ -102882,10 +102882,14 @@ var ValidSignInForm = function () {
       var minLenPassword = 6,
           maxLenPassword = 18;
 
+      debugger;
+
       if (!isCorrectEmail(this.email)) {
         flag = false;
         this.notify.notify('invalid email');
       }
+
+      debugger;
 
       if (!isCorrectTextField(this.password, minLenPassword, maxLenPassword)) {
         flag = false;
@@ -103027,7 +103031,7 @@ exports.default = ValidSignUpForm;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -103055,41 +103059,41 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Menu
  */
 var Menu = function (_Block) {
-    _inherits(Menu, _Block);
+  _inherits(Menu, _Block);
 
-    /**
-     * @param {string} [tagName='div'] - tagName блока
-     * @param {*} [attrs={}] - объект с атрибутами блока
-     * @param {string[]} [classes=[]] - список имён классов
-     * @param {*} [data={}] - объект с данными блока
-     * @constructor
-     */
-    function Menu() {
-        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-        var data = arguments[3];
+  /**
+   * @param {string} [tagName='div'] - tagName блока
+   * @param {*} [attrs={}] - объект с атрибутами блока
+   * @param {string[]} [classes=[]] - список имён классов
+   * @param {*} [data={}] - объект с данными блока
+   * @constructor
+   */
+  function Menu() {
+    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var data = arguments[3];
 
-        _classCallCheck(this, Menu);
+    _classCallCheck(this, Menu);
 
-        return _possibleConstructorReturn(this, (Menu.__proto__ || Object.getPrototypeOf(Menu)).call(this, tagName, attrs, classes, data));
+    return _possibleConstructorReturn(this, (Menu.__proto__ || Object.getPrototypeOf(Menu)).call(this, tagName, attrs, classes, data));
+  }
+
+  /**
+   * Получить Menu
+   */
+
+
+  _createClass(Menu, [{
+    key: 'getClassElement',
+    value: function getClassElement() {
+      var data = this.getData();
+      this.setHTML((0, _Menu2.default)({ data: data }));
+      return this.getElement();
     }
+  }]);
 
-    /**
-     * Получить Menu
-     */
-
-
-    _createClass(Menu, [{
-        key: 'getClassElement',
-        value: function getClassElement() {
-            var data = this.getData();
-            this.setHTML((0, _Menu2.default)({ data: data }));
-            return this.getElement();
-        }
-    }]);
-
-    return Menu;
+  return Menu;
 }(_BlockComponents2.default);
 
 exports.default = Menu;
@@ -103102,7 +103106,7 @@ exports.default = Menu;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -103130,42 +103134,42 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Table
  */
 var Table = function (_Block) {
-    _inherits(Table, _Block);
+  _inherits(Table, _Block);
 
-    /**
-     * @param {string} [tagName='div'] - tagName блока
-     * @param {*} [attrs={}] - объект с атрибутами блока
-     * @param {string[]} [classes=[]] - список имён классов
-     * @param {*} [data={}] - объект с данными блока
-     * @constructor
-     */
-    function Table() {
-        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-        var data = arguments[3];
+  /**
+   * @param {string} [tagName='div'] - tagName блока
+   * @param {*} [attrs={}] - объект с атрибутами блока
+   * @param {string[]} [classes=[]] - список имён классов
+   * @param {*} [data={}] - объект с данными блока
+   * @constructor
+   */
+  function Table() {
+    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var data = arguments[3];
 
-        _classCallCheck(this, Table);
+    _classCallCheck(this, Table);
 
-        return _possibleConstructorReturn(this, (Table.__proto__ || Object.getPrototypeOf(Table)).call(this, tagName, attrs, classes, data));
+    return _possibleConstructorReturn(this, (Table.__proto__ || Object.getPrototypeOf(Table)).call(this, tagName, attrs, classes, data));
+  }
+
+  /**
+   * Получить Table
+   */
+
+
+  _createClass(Table, [{
+    key: 'getClassElement',
+    value: function getClassElement() {
+      var data = this.getData();
+
+      this.setHTML((0, _Table2.default)({ data: data }));
+      return this.getElement();
     }
+  }]);
 
-    /**
-     * Получить Table
-     */
-
-
-    _createClass(Table, [{
-        key: 'getClassElement',
-        value: function getClassElement() {
-            var data = this.getData();
-
-            this.setHTML((0, _Table2.default)({ data: data }));
-            return this.getElement();
-        }
-    }]);
-
-    return Table;
+  return Table;
 }(_BlockComponents2.default);
 
 exports.default = Table;
@@ -103234,6 +103238,8 @@ var App = /** @class */ (function (_super) {
     __extends(App, _super);
     function App(User) {
         var _this = _super.call(this, document.documentElement.clientWidth, document.documentElement.clientHeight, Phaser.AUTO, 'content', null) || this;
+        // super(1890, 1000, Phaser.AUTO, 'content', null);
+        // super(800, 600, Phaser.AUTO, 'content', null);
         _this.user = User;
         _this.state.add('boot', boot_state_1.default);
         _this.state.add('preloader', preloader_state_1.default);
@@ -105735,9 +105741,31 @@ var SignInForm = function (_Form) {
                 var formdata = {};
                 var elements = signInForm.elements;
 
-                for (var name in elements) {
-                    formdata[name] = elements[name].value;
-                    console.log(elements[name].value);
+                debugger;
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
+
+                try {
+                    for (var _iterator = elements[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var name = _step.value;
+
+                        formdata[name.name] = name.value;
+                        console.log(name.value);
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
                 }
 
                 var isValid = new _this2.validator(formdata.email, formdata.password);
@@ -105926,8 +105954,29 @@ var SignUpForm = function (_Form) {
                 var formdata = {};
                 var elements = signUpForm.elements;
 
-                for (var name in elements) {
-                    formdata[name] = elements[name].value;
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
+
+                try {
+                    for (var _iterator = elements[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var name = _step.value;
+
+                        formdata[name.name] = name.value;
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
                 }
 
                 var isValid = new _this2.validator(formdata.username, formdata.email, formdata.password, formdata.repeatPassword);
@@ -105981,7 +106030,7 @@ function createHeader() {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -106007,43 +106056,43 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Header
  */
 var Header = function (_Block) {
-    _inherits(Header, _Block);
+  _inherits(Header, _Block);
 
-    /**
-     * @param {string} [tagName='div'] - tagName блока
-     * @param {*} [attrs={}] - объект с атрибутами блока
-     * @param {string[]} [classes=[]] - список имён классов
-     * @param {*} [data={}] - объект с данными блока
-     * @constructor
-     */
-    function Header() {
-        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-        var data = arguments[3];
+  /**
+   * @param {string} [tagName='div'] - tagName блока
+   * @param {*} [attrs={}] - объект с атрибутами блока
+   * @param {string[]} [classes=[]] - список имён классов
+   * @param {*} [data={}] - объект с данными блока
+   * @constructor
+   */
+  function Header() {
+    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var data = arguments[3];
 
-        _classCallCheck(this, Header);
+    _classCallCheck(this, Header);
 
-        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, tagName, attrs, classes, data));
+    return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, tagName, attrs, classes, data));
+  }
+
+  /**
+   * Получить Header
+   */
+
+
+  _createClass(Header, [{
+    key: 'getClassElement',
+    value: function getClassElement() {
+
+      var data = this.getData();
+
+      this.setHTML((0, _Header2.default)({ data: data }));
+      return this.getElement();
     }
+  }]);
 
-    /**
-     * Получить Header
-     */
-
-
-    _createClass(Header, [{
-        key: 'getClassElement',
-        value: function getClassElement() {
-
-            var data = this.getData();
-
-            this.setHTML((0, _Header2.default)({ data: data }));
-            return this.getElement();
-        }
-    }]);
-
-    return Header;
+  return Header;
 }(_BlockComponents2.default);
 
 exports.default = Header;
@@ -106360,7 +106409,7 @@ function CreateFooter() {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -106388,41 +106437,41 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Footer
  */
 var Footer = function (_Block) {
-    _inherits(Footer, _Block);
+  _inherits(Footer, _Block);
 
-    /**
-     * @param {string} [tagName='div'] - tagName блока
-     * @param {*} [attrs={}] - объект с атрибутами блока
-     * @param {string[]} [classes=[]] - список имён классов
-     * @param {*} [data={}] - объект с данными блока
-     * @constructor
-     */
-    function Footer() {
-        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-        var data = arguments[3];
+  /**
+   * @param {string} [tagName='div'] - tagName блока
+   * @param {*} [attrs={}] - объект с атрибутами блока
+   * @param {string[]} [classes=[]] - список имён классов
+   * @param {*} [data={}] - объект с данными блока
+   * @constructor
+   */
+  function Footer() {
+    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var data = arguments[3];
 
-        _classCallCheck(this, Footer);
+    _classCallCheck(this, Footer);
 
-        return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, tagName, attrs, classes, data));
+    return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, tagName, attrs, classes, data));
+  }
+
+  /**
+   * Получить footer
+   */
+
+
+  _createClass(Footer, [{
+    key: 'getClassElement',
+    value: function getClassElement() {
+      var data = this.getData();
+      this.setHTML((0, _Footer2.default)({ data: data }));
+      return this.getElement();
     }
+  }]);
 
-    /**
-     * Получить footer
-     */
-
-
-    _createClass(Footer, [{
-        key: 'getClassElement',
-        value: function getClassElement() {
-            var data = this.getData();
-            this.setHTML((0, _Footer2.default)({ data: data }));
-            return this.getElement();
-        }
-    }]);
-
-    return Footer;
+  return Footer;
 }(_BlockComponents2.default);
 
 exports.default = Footer;
@@ -107098,6 +107147,7 @@ var WorldState = /** @class */ (function (_super) {
     }
     WorldState.prototype.create = function () {
         var _this = this;
+        this.game.world.setBounds(0, 0, 1920, 1080);
         this.isSendSpawnRequest = false;
         this.load.image('bullet', 'static/staticsGame/images/bullet.png');
         this.load.spritesheet('kaboom', 'static/staticsGame/images/explosion.png', 64, 64, 23);
@@ -107140,11 +107190,12 @@ var WorldState = /** @class */ (function (_super) {
         this.pause.frame = 1;
         this.pause['clicked'] = false;
         this.statistics = new StaticList_1.default(this.game, this.game.user.id);
-        this.game.camera.follow(this.tank);
-        this.game.camera.deadzone = new Phaser.Rectangle(150, 150, 500, 300);
-        this.game.camera.focusOnXY(0, 0);
+        this.game.camera.follow(this.tank._tank._body);
+        // this.game.camera.deadzone = new Phaser.Rectangle(15, 15, 50, 30);
+        // this.game.camera.focusOnXY(0, 0);
     };
     WorldState.prototype.update = function () {
+        // this.game.camera.focusOnXY(this.tank._tank.currentPosition.xCoordinate, this.tank._tank.currentPosition.yCoordinate);
         this.game.physics.arcade.collide(this.tank._tank._body, this.treeBoxes._treeBoxes);
         var enemies = this.enemies.enemyTanks.children;
         for (var i = 0; i < enemies.length; i++) {
@@ -107178,6 +107229,7 @@ var WorldState = /** @class */ (function (_super) {
         if (this.tank._tank._body) {
             this.game.physics.arcade.overlap(this.enemyBullets.enemyBullets, this.tank._tank._body, this.enemyBullets.bulletHitTank.bind(this.enemyBullets), null, this);
         }
+        // this.statistics.updatePosition(this.tank._tank.currentPosition.xCoordinate, this.tank._tank.currentPosition.yCoordinate);
         this.tank.isShoot = false;
     };
     WorldState.prototype.fire = function () {
@@ -107185,7 +107237,7 @@ var WorldState = /** @class */ (function (_super) {
             this.tank._nextFire = this.time.now + this.tank._fireRate;
             var bullet = this.tankBullets.tankBullets.getFirstExists(false);
             bullet.reset(this.tank._turret._turret.x, this.tank._turret._turret.y);
-            bullet.rotation = this.physics.arcade.moveToPointer(bullet, 5000, this.game.input.activePointer, 50);
+            bullet.rotation = this.physics.arcade.moveToPointer(bullet, 3500, this.game.input.activePointer);
             this.tank.isShoot = true;
         }
     };
@@ -107193,8 +107245,6 @@ var WorldState = /** @class */ (function (_super) {
     };
     ;
     WorldState.prototype.onServerStatisticsSnap = function (message) {
-        debugger;
-        console.log("statistics snap length = " + message.leaders.length);
         if (message.leaders) {
             this.statistics.updateList(message.leaders);
         }
@@ -107278,7 +107328,7 @@ var WorldState = /** @class */ (function (_super) {
                         directY = tankSnapshot.platform.valY + 1000 * Math.sin(degToRad(tankSnapshot.turretAngle));
                         var bullet = this.enemyBullets.enemyBullets.getFirstExists(false);
                         bullet.reset(tankSnapshot.platform.valX, tankSnapshot.platform.valY);
-                        bullet.rotation = this.physics.arcade.moveToXY(bullet, directX, directY, 1000, 50);
+                        bullet.rotation = this.physics.arcade.moveToXY(bullet, directX, directY, 3500);
                     }
                     enemyOnClient.tankBody.currentPosition = {
                         xCoordinate: tankSnapshot.platform.valX,
@@ -107502,7 +107552,7 @@ var Client = /** @class */ (function () {
         if (this._instance)
             return this._instance;
         // this.socket = io('ws://10.100.122.201:8080/game');
-        console.log('Info: try get instants of WebSocket.');
+        // console.log('Info: try get instants of WebSocket.');
         // this.socket = new WebSocket('ws://localhost:8080/game');
         // this.socket = new WebSocket('ws://10.100.122.201:8080/api/game');
         // this.socket = new WebSocket('ws://10.100.122.151:8080/api/game');
@@ -111078,44 +111128,16 @@ var StaticList = /** @class */ (function () {
         this.create();
     }
     StaticList.prototype.create = function () {
-        this.list.add(this.game.make.text(this.game.width - 400, 10, '         STATISTICS', { font: "bold 26px Arial", fill: '#d566db',
+        this.list.add(this.game.make.text(this.game.width - 300, 10, '   STATISTICS', { font: "bold 26px Courier New", fill: '#db0e59',
+            boundsAlignH: "center", boundsAlignV: "middle" }));
+        this.list.add(this.game.make.text(this.game.width - 300, 40, '№  USERNAME  KILLS', { font: "bold 22px Courier New", fill: '#d566db',
             boundsAlignH: "center", boundsAlignV: "middle" }));
     };
     StaticList.prototype.addLine = function (dataString, yPosition) {
-        this.list.add(this.game.make.text(this.game.width - 400, yPosition, dataString, { font: "bold 26px PT Mono", fill: '#9370DB',
+        this.list.add(this.game.make.text(this.game.width - 300, yPosition, dataString, { font: "bold 22px Courier New", fill: '#9370DB',
             boundsAlignH: "center", boundsAlignV: "middle" }));
     };
-    // updateList(statistics: Array<any>): void {
-    //     debugger;
-    //
-    //     statistics.sort((a, b) => {
-    //         return a.kills - b.kills;
-    //     });
-    //
-    //     this._statisticList = statistics.slice(0,3);
-    //
-    //     let userData = null;
-    //     let userPosition = null;
-    //
-    //     for(let i = 0; i < statistics.length; i++) {
-    //         if(statistics[i].uId === i) {
-    //             userData = statistics[i];
-    //             userPosition = i;
-    //         }
-    //     }
-    //
-    //     this._statisticList.forEach((elem, position) => {
-    //         this.addLine(`${position + 1} name: ${elem.username} kills: ${elem.kills}`, ((position + 1) + 1) * 20);
-    //     });
-    //
-    //     if(userPosition > 3) {
-    //         this.addLine("...", 70);
-    //         this.addLine(`${userPosition + 1} name: ${userData.username} kills: ${userData.kills}`, 90);
-    //     }
-    //
-    // }
     StaticList.prototype.updateList = function (statistics) {
-        debugger;
         for (var i = 0; i < this.list.children.length; i++) {
             this.list.children[i].kill();
         }
@@ -111128,8 +111150,9 @@ var StaticList = /** @class */ (function () {
             else if (name.length < 10) {
                 name += Array(10 - name.length).join(' ');
             }
-            this.addLine(i + 1 + ". " + name + " kills: " + statistics[i].kills, ((i + 1) + 1) * 20);
+            this.addLine(i + 1 + ". " + name + "  " + statistics[i].kills, ((i + 1) + 2) * 20);
         }
+        this.list.fixedToCamera = true;
     };
     return StaticList;
 }());
@@ -111624,7 +111647,7 @@ exports.default = World;
 
 
 Object.defineProperty(exports, "__esModule", {
-        value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -111638,80 +111661,80 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var EnemyTank = function () {
-        function EnemyTank(index, game, player, bullets) {
-                _classCallCheck(this, EnemyTank);
+    function EnemyTank(index, game, player, bullets) {
+        _classCallCheck(this, EnemyTank);
 
-                var x = Math.random() * game.world.width;
-                var y = Math.random() * game.world.height;
+        var x = Math.random() * game.world.width;
+        var y = Math.random() * game.world.height;
 
-                this.game = game;
-                this.health = 3;
-                this.player = player;
-                this.bullets = bullets;
-                this.fireRate = 1000; // скорострельность
-                this.nextFire = 0; //следующий выстрел
-                this.alive = true;
+        this.game = game;
+        this.health = 3;
+        this.player = player;
+        this.bullets = bullets;
+        this.fireRate = 1000; // скорострельность
+        this.nextFire = 0; //следующий выстрел
+        this.alive = true;
 
-                this.shadow = game.add.sprite(x, y, 'enemy', 'shadow');
-                this.tank = game.add.sprite(x, y, 'enemy', 'tank1');
-                this.turret = game.add.sprite(x, y, 'enemy', 'turret');
+        this.shadow = game.add.sprite(x, y, 'enemy', 'shadow');
+        this.tank = game.add.sprite(x, y, 'enemy', 'tank1');
+        this.turret = game.add.sprite(x, y, 'enemy', 'turret');
 
-                this.shadow.anchor.set(0.5);
-                this.tank.anchor.set(0.5);
-                this.turret.anchor.set(0.3, 0.5);
+        this.shadow.anchor.set(0.5);
+        this.tank.anchor.set(0.5);
+        this.turret.anchor.set(0.3, 0.5);
 
-                this.tank.name = index.toString();
-                game.physics.enable(this.tank, _phaser2.default.Physics.ARCADE);
-                this.tank.body.immovable = true;
-                this.tank.body.collideWorldBounds = true;
-                this.tank.body.bounce.setTo(1, 1);
+        this.tank.name = index.toString();
+        game.physics.enable(this.tank, _phaser2.default.Physics.ARCADE);
+        this.tank.body.immovable = true;
+        this.tank.body.collideWorldBounds = true;
+        this.tank.body.bounce.setTo(1, 1);
 
-                this.tank.angle = game.rnd.angle();
+        this.tank.angle = game.rnd.angle();
 
-                game.physics.arcade.velocityFromRotation(this.tank.rotation, 100, this.tank.body.velocity);
+        game.physics.arcade.velocityFromRotation(this.tank.rotation, 100, this.tank.body.velocity);
+    }
+
+    _createClass(EnemyTank, [{
+        key: 'damage',
+        value: function damage() {
+            this.health -= 1;
+
+            if (this.health <= 0) {
+                this.alive = false;
+                this.shadow.kill();
+                this.tank.kill();
+                this.turret.kill();
+
+                return true;
+            }
+            return false;
         }
+    }, {
+        key: 'update',
+        value: function update() {
+            this.shadow.x = this.tank.x;
+            this.shadow.y = this.tank.y;
+            this.shadow.rotation = this.tank.rotation;
 
-        _createClass(EnemyTank, [{
-                key: 'damage',
-                value: function damage() {
-                        this.health -= 1;
+            this.turret.x = this.tank.x;
+            this.turret.y = this.tank.y;
+            this.turret.rotation = this.game.physics.arcade.angleBetween(this.tank, this.player);
 
-                        if (this.health <= 0) {
-                                this.alive = false;
-                                this.shadow.kill();
-                                this.tank.kill();
-                                this.turret.kill();
+            if (this.game.physics.arcade.distanceBetween(this.tank, this.player) < 300) {
+                if (this.game.time.now > this.nextFire && this.bullets.countDead() > 0) {
+                    this.nextFire = this.game.time.now + this.fireRate;
 
-                                return true;
-                        }
-                        return false;
+                    var bullet = this.bullets.getFirstDead();
+
+                    bullet.reset(this.turret.x, this.turret.y);
+
+                    bullet.rotation = this.game.physics.arcade.moveToObject(bullet, this.player, 500);
                 }
-        }, {
-                key: 'update',
-                value: function update() {
-                        this.shadow.x = this.tank.x;
-                        this.shadow.y = this.tank.y;
-                        this.shadow.rotation = this.tank.rotation;
+            }
+        }
+    }]);
 
-                        this.turret.x = this.tank.x;
-                        this.turret.y = this.tank.y;
-                        this.turret.rotation = this.game.physics.arcade.angleBetween(this.tank, this.player);
-
-                        if (this.game.physics.arcade.distanceBetween(this.tank, this.player) < 300) {
-                                if (this.game.time.now > this.nextFire && this.bullets.countDead() > 0) {
-                                        this.nextFire = this.game.time.now + this.fireRate;
-
-                                        var bullet = this.bullets.getFirstDead();
-
-                                        bullet.reset(this.turret.x, this.turret.y);
-
-                                        bullet.rotation = this.game.physics.arcade.moveToObject(bullet, this.player, 500);
-                                }
-                        }
-                }
-        }]);
-
-        return EnemyTank;
+    return EnemyTank;
 }();
 
 exports.default = EnemyTank;
