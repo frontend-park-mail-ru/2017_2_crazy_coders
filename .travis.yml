@@ -1,0 +1,24 @@
+sudo: required
+language: node_js
+node_js:
+- '8'
+
+addons:
+  ssh_known_hosts: 82.202.246.5
+
+script:
+- npm run build
+
+before_deploy:
+- openssl aes-256-cbc -K $encrypted_35ee943c02f0_key -iv $encrypted_35ee943c02f0_iv
+  -in id_rsa.enc -out /tmp/id_rsa -d
+- eval "$(ssh-agent -s)"
+- chmod 600 /tmp/id_rsa
+- ssh-add /tmp/id_rsa
+
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/public/static root@82.202.246.5:/root/travis-files/tanks-frontend
+  on:
+    branch: developer
