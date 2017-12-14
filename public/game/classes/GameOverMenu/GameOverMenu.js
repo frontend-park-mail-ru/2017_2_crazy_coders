@@ -44,7 +44,7 @@ class GameOverMenu extends Phaser.State {
 
     continueGame() {
         this.add.tween(this.background).to({ alpha: 0 }, Constants.shadow_time, Phaser.Easing.Linear.None, true);
-        this.game.state.start('World', true, false);
+        this.game.state.start('world', true, false);
     }
 
     exitGame() {

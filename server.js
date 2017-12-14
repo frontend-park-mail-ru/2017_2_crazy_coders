@@ -11,16 +11,17 @@ const routes = [
     '/',
     '/signin',
     '/signup',
-    '/menu',
     '/play',
     '/about',
     '/score',
 ];
 
 routes.forEach(path => {
-    app.use(path, express.static('public'));
+    app.use(path, express.static('public/static'));
+    app.use(path, express.static('public/'));
+	app.use(path, express.static('public/static/js'));
 });
-app.use(express.static('public'));
+
 
 const port = process.env.PORT || 8081;
 

@@ -1,4 +1,4 @@
-export default abstract class Box extends Phaser.Sprite {
+export default class Box extends Phaser.Sprite {
     _game: Phaser.Game;
     _box: Phaser.Sprite;
     _height: number;
@@ -17,7 +17,7 @@ export default abstract class Box extends Phaser.Sprite {
         this.create();
     }
 
-    abstract create(): void;
+    create(): void {};
 
     public get currentPosition() {
         return {

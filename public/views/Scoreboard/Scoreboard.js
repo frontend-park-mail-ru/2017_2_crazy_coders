@@ -29,7 +29,7 @@ let data = {
             position: '250'
         }
     ],
-    userScore: 'score',
+    userScore: 0,
 };
 
 /**
