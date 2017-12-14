@@ -192,6 +192,8 @@ export default class WorldState extends State {
             xCoordinate: position.valX,
             yCoordinate: position.valY
         };
+
+        this.game.camera.follow(this.tank._tank._body);
         this.tank.isShoot = false;
 
     }
