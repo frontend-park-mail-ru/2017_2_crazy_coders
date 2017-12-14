@@ -116,8 +116,8 @@ export default class WorldState extends State {
             this.enemy.update();
         }
 
-        // this.land.tilePosition.x = -this.camera.x;
-        // this.land.tilePosition.y = -this.camera.y;
+        this.land.tilePosition.x = -this.camera.x;
+        this.land.tilePosition.y = -this.camera.y;
         this.tank.update();
 
         // click mouse button

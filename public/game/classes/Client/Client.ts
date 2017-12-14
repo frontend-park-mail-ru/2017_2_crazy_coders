@@ -13,7 +13,7 @@ export default class Client {
             return this._instance;
 
         // this.socket = io('ws://10.100.122.201:8080/game');
-        console.log('Info: try get instants of WebSocket.');
+        // console.log('Info: try get instants of WebSocket.');
         // this.socket = new WebSocket('ws://localhost:8080/game');
         // this.socket = new WebSocket('ws://10.100.122.201:8080/api/game');
         // this.socket = new WebSocket('ws://10.100.122.151:8080/api/game');
