@@ -47,10 +47,14 @@ export default class ValidSignInForm {
         const minLenPassword = 6,
             maxLenPassword = 18;
 
+        debugger;
+
         if (!isCorrectEmail(this.email)) {
             flag = false;
 			this.notify.notify('invalid email');
 		}
+
+		debugger;
 
         if (!isCorrectTextField(this.password, minLenPassword, maxLenPassword)) {
             flag = false;

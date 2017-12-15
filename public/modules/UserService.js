@@ -1,4 +1,4 @@
-import Http from '../modules/Http';
+import Http from './Http';
 import User from '../model/User';
 
 /**
@@ -85,8 +85,8 @@ export default class UserService {
 			})
 	}
 
-	getScorelist(page) {
-		return Http.FetchPost('/scorelist', {page})
+	getScorelist(limit) {
+		return Http.FetchGet(`/top?limit=${limit}`)
 			.then((response) => {
 				if (response.status === 200) {
 					return response.json();

@@ -16,4 +16,8 @@ export default class Lable {
         this._text.x = coordinate.xCoordinate;
         this._text.y = coordinate.yCoordinate - 70;
     }
+
+    kill() {
+        this._text.kill();
+    }
 }

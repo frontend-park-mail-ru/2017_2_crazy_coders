@@ -1,4 +1,5 @@
-import Table from '../../components/Table/Table'
+import Table from '../../components/Table/About/Table';
+
 let data = {
     idButton: 'score-button-back',
     classTable: 'score_table',
@@ -29,7 +30,7 @@ let data = {
             position: '250'
         }
     ],
-    userScore: 'score',
+    userScore: 0,
 };
 
 /**

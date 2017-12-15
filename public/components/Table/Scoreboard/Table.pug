@@ -1,0 +1,24 @@
+div.table
+    div.table__title=data.title
+
+    if (data.userScore)
+        div.table__player='Your score: ' + data.userScore
+
+    div.table__content
+        table.table__tag(class=data.classTable)
+            tr.table__tr
+                td.table__td='Position'
+                td.table__td='Username'
+                td.table__td='Kills'
+                td.table__td='Deaths'
+                td.table__td='Max Kills'
+            each user in data.users
+                tr.table__tr
+                    td.table__td=user.position
+                    td.table__td=user.username
+                    td.table__td=user.kills
+                    td.table__td=user.deaths
+                    td.table__td=user.maxKills
+
+    div.table__back
+        butto.table__button(id=data.idButton)='BACK'

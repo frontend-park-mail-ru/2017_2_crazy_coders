@@ -13,6 +13,7 @@ export default class TankBody extends Phaser.Sprite {
 
     create(): void {
         this._body = this._game.add.sprite(50, 400, 'tank', 'tank1');
+        console.log(`body height = ${this._body.height} body width = ${this._body.width}`);
         this._body.anchor.setTo(0.5, 0.5);
         this._game.physics.arcade.enable(this._body);
         this._body.body.maxVelocity.setTo(100, 100);
@@ -54,6 +55,18 @@ export default class TankBody extends Phaser.Sprite {
     public set currentPosition(coordinate) {
         this._body.x = coordinate.xCoordinate;
         this._body.y = coordinate.yCoordinate;
+    }
+
+    public set currentPlatformAngle(angle: number) {
+        this._body.angle = angle;
+    }
+
+    public setPlatformAngle(angle: number) {
+        this._body.angle = angle;
+    }
+
+    kill() {
+        this._body.kill();
     }
 
 

@@ -40,7 +40,6 @@ class World extends Phaser.State {
 
 		// this.physics.enable(this.tank, Phaser.Physics.Arcade);
         this.physics.arcade.enable(this.tank);
-		debugger;
 		this.tank.body.maxVelocity.setTo(Constants.max_velocity, Constants.max_velocity);
 		this.tank.body.collideWorldBounds = true;
 

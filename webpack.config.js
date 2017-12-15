@@ -1,20 +1,20 @@
 const path = require('path');
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+process.noDeprecation = true;
 
 module.exports = {
 	context: __dirname,
 
 	entry: 	{
-		bundle: './public/main.js',
+		bundle: './public/static/js/main.js',
 		styles:'./public/static/css/main.scss',
 		test: ['chai', __dirname + '/test/test.js']
 	},
 
 	output: {
 		filename: '[name].js',
-		path: __dirname + '/public'
+		path: __dirname + '/public/static/js/'
 	},
 
 	resolve: {
@@ -39,7 +39,8 @@ module.exports = {
 				exclude: /node_modules/,
 				loader: 'babel-loader',
 				query: {
-					presets: ['es2015']
+					presets: ['es2015'],
+					compact: false
 				}
 			},
 			{
@@ -56,9 +57,7 @@ module.exports = {
 			},
 			{
 				test: /\.(png|svg|jpg|gif|jpeg)$/,
-				use: [
-					'file-loader'
-				]
+                loader: "file-loader?publicPath=../&name=../img/[hash].[ext]"
 			},
 			{
 				test: /\.(html)$/,

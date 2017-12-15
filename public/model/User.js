@@ -13,7 +13,7 @@ export default class User {
         this.email = opt.email || '';
         this.username = opt.username || '';
         this.id = opt.id || 0;
-        this.score = opt.score || 0.1;
+        this.score = opt.score || 0;
     }
 
     /**
