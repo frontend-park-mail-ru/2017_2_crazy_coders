@@ -19,4 +19,4 @@ deploy:
   skip_cleanup: true
   script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/public/static root@82.202.246.5:/root/travis-files/tanks-frontend
   on:
-    branch: developer
+    branch: game-dev
