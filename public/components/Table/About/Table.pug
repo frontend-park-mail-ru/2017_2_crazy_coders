@@ -1,0 +1,12 @@
+div.table
+    div.table__title=data.title
+
+    div.table__content
+        table.table__tag(class=data.classTable)
+            each user in data.users
+                tr.table__tr
+                    td.table__td=user.name
+                    td.table__td=user.position
+
+    div.table__back
+        butto.table__button(id=data.idButton)='BACK'
