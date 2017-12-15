@@ -1,4 +1,5 @@
-import Table from '../../components/Table/Table'
+import Table from '../../components/Table/About/Table';
+
 let data = {
     idButton: 'aboutUs-button-back',
     classTable: 'about_table',

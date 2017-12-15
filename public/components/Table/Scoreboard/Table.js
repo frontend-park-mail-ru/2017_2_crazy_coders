@@ -1,6 +1,5 @@
-import Block from '../Block/BlockComponents';
+import Block from '../../Block/BlockComponents';
 import TableTemp from './Table.pug';
-// import './Table.scss';
 
 /**
  * Класс Table

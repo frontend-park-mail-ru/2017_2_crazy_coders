@@ -106282,25 +106282,21 @@ function createAboutUs() {
 var pug = __webpack_require__(10);
 
 function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (data) {var pug_indent = [];
-pug_html = pug_html + "\n\u003Cdiv class=\"table\"\u003E\n  \u003Cdiv class=\"table__title\"\u003E" + (pug.escape(null == (pug_interp = data.title) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E";
-if ((data.userScore)) {
-pug_html = pug_html + "\n  \u003Cdiv class=\"table__player\"\u003E" + (pug.escape(null == (pug_interp = 'Your score: ' + data.userScore) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E";
-}
-pug_html = pug_html + "\n  \u003Cdiv class=\"table__content\"\u003E\n    \u003Ctable" + (pug.attr("class", pug.classes(["table__tag",data.classTable], [false,true]), false, true)) + "\u003E\n      \u003Ctr class=\"table__tr\"\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = 'Position') ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = 'Username') ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = 'Kills') ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = 'Deaths') ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = 'Max Kills') ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n      \u003C\u002Ftr\u003E";
+pug_html = pug_html + "\n\u003Cdiv class=\"table\"\u003E\n  \u003Cdiv class=\"table__title\"\u003E" + (pug.escape(null == (pug_interp = data.title) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E\n  \u003Cdiv class=\"table__content\"\u003E\n    \u003Ctable" + (pug.attr("class", pug.classes(["table__tag",data.classTable], [false,true]), false, true)) + "\u003E";
 // iterate data.users
 ;(function(){
   var $$obj = data.users;
   if ('number' == typeof $$obj.length) {
       for (var pug_index0 = 0, $$l = $$obj.length; pug_index0 < $$l; pug_index0++) {
         var user = $$obj[pug_index0];
-pug_html = pug_html + "\n      \u003Ctr class=\"table__tr\"\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.position) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.username) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.kills) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.deaths) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.maxKills) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n      \u003C\u002Ftr\u003E";
+pug_html = pug_html + "\n      \u003Ctr class=\"table__tr\"\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.name) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.position) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n      \u003C\u002Ftr\u003E";
       }
   } else {
     var $$l = 0;
     for (var pug_index0 in $$obj) {
       $$l++;
       var user = $$obj[pug_index0];
-pug_html = pug_html + "\n      \u003Ctr class=\"table__tr\"\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.position) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.username) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.kills) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.deaths) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.maxKills) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n      \u003C\u002Ftr\u003E";
+pug_html = pug_html + "\n      \u003Ctr class=\"table__tr\"\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.name) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.position) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n      \u003C\u002Ftr\u003E";
     }
   }
 }).call(this);
@@ -107256,6 +107252,7 @@ var WorldState = /** @class */ (function (_super) {
             xCoordinate: position.valX,
             yCoordinate: position.valY
         };
+        this.game.camera.follow(this.tank._tank._body);
         this.tank.isShoot = false;
     };
     WorldState.prototype.onServerWorldArrived = function (message) {
