@@ -7,7 +7,7 @@ addons:
 
 before_install:
 - openssl aes-256-cbc -K $encrypted_7124dd760b8f_key -iv $encrypted_7124dd760b8f_iv
-  -in deploy_rsa.enc -out deploy_rsa -d
+  -in deploy_rsa.enc -out /tmp/deploy_rsa -d
 
 before_deploy:
 - npm run build
