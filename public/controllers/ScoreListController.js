@@ -50,7 +50,7 @@ class ScoreListController extends Controller {
                     })
                 }
 
-                debugger;
+                // debugger;
 
                 this.page_parts.get("Scoreboard").data.users = topList;
 

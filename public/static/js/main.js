@@ -1,5 +1,7 @@
 'use strict';
 
+import Phaser from './phaser.min.js';
+
 import UserService from '../../modules/UserService';
 import CreatePage from '../../views/CreatePage.js';
 import Router from '../../modules/Router';
@@ -16,6 +18,7 @@ import Game from '../../game/classes/index';
 let theme = new Theme();
 let userService = new UserService();
 let page = new CreatePage();
+
 // import RegisterSW from '../../modules/ServiceWorker';
 //
 // RegisterSW();
