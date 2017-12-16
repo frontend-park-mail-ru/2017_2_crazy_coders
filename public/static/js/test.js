@@ -402,7 +402,7 @@ var _Http = __webpack_require__(13);
 
 var _Http2 = _interopRequireDefault(_Http);
 
-var _User = __webpack_require__(25);
+var _User = __webpack_require__(24);
 
 var _User2 = _interopRequireDefault(_User);
 
@@ -1272,8 +1272,7 @@ function stringDistance(strA, strB, memo) {
 
 
 /***/ }),
-/* 24 */,
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1383,10 +1382,10 @@ var User = function () {
 exports.default = User;
 
 /***/ }),
+/* 25 */,
 /* 26 */,
 /* 27 */,
-/* 28 */,
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {(function (global, factory) {
@@ -1781,6 +1780,7 @@ return typeDetect;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
+/* 29 */,
 /* 30 */,
 /* 31 */,
 /* 32 */,
@@ -2261,7 +2261,7 @@ exports.test = __webpack_require__(150);
  * type utility
  */
 
-exports.type = __webpack_require__(29);
+exports.type = __webpack_require__(28);
 
 /*!
  * expectTypes utility
@@ -2771,7 +2771,7 @@ module.exports = function test(obj, args) {
 
 var AssertionError = __webpack_require__(61);
 var flag = __webpack_require__(1);
-var type = __webpack_require__(29);
+var type = __webpack_require__(28);
 
 module.exports = function expectTypes(obj, types) {
   var flagMsg = flag(obj, 'message');
@@ -2904,7 +2904,7 @@ module.exports = function getEnumerableProperties(object) {
  * MIT Licensed
  */
 
-var type = __webpack_require__(29);
+var type = __webpack_require__(28);
 function FakeMap() {
   this._key = 'chai/deep-eql__' + Math.random() + Date.now();
 }

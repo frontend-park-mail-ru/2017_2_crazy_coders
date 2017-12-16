@@ -1,7 +1,5 @@
 'use strict';
 
-import Phaser from './phaser.min.js';
-
 import UserService from '../../modules/UserService';
 import CreatePage from '../../views/CreatePage.js';
 import Router from '../../modules/Router';
@@ -19,13 +17,11 @@ let theme = new Theme();
 let userService = new UserService();
 let page = new CreatePage();
 
-// import RegisterSW from '../../modules/ServiceWorker';
-//
-// RegisterSW();
+import RegisterSW from '../../modules/ServiceWorker';
+RegisterSW();
 
 theme.changeTheme();
 
-// let game = new Game();
 
 (new Router())
     .addRoute('/', MenuStartController, {userService: userService, page: page})
