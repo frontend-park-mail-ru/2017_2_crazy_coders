@@ -586,10 +586,10 @@ var Http = function () {
         value: function FetchGet(address) {
             // const url = this.baseUrl + address;
             // const url = 'http://82.202.246.5:8080' + address;
-            var url = 'http://localhost:8080/api' + address;
+            // const url = 'http://localhost:8080/api' + address;
             // const url = 'http://10.100.122.201:8080/api' + address;
             // const url = 'http://10.100.122.151:8080/api' + address;
-            // const url = 'https://tanks-backend.xyz/api' + address;
+            var url = 'https://tanks-backend.xyz/api' + address;
 
             console.log("[FetchGet] try get from " + url);
 
@@ -619,10 +619,10 @@ var Http = function () {
         value: function FetchPost(address, body) {
 
             // const url = 'http://82.202.246.5:8080' + address;
-            var url = 'http://localhost:8080/api' + address;
+            // const url = 'http://localhost:8080/api' + address;
             // const url = 'http://10.100.122.201:8080/api' + address;
             // const url = 'http://10.100.122.151:8080/api' + address;
-            // const url = 'https://tanks-backend.xyz/api' + address;
+            var url = 'https://tanks-backend.xyz/api' + address;
 
             console.log("[FetchPost] try post to " + url);
 

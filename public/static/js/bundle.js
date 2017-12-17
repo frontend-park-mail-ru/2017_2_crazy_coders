@@ -1940,10 +1940,10 @@ var Http = function () {
         value: function FetchGet(address) {
             // const url = this.baseUrl + address;
             // const url = 'http://82.202.246.5:8080' + address;
-            var url = 'http://localhost:8080/api' + address;
+            // const url = 'http://localhost:8080/api' + address;
             // const url = 'http://10.100.122.201:8080/api' + address;
             // const url = 'http://10.100.122.151:8080/api' + address;
-            // const url = 'https://tanks-backend.xyz/api' + address;
+            var url = 'https://tanks-backend.xyz/api' + address;
 
             console.log("[FetchGet] try get from " + url);
 
@@ -1973,10 +1973,10 @@ var Http = function () {
         value: function FetchPost(address, body) {
 
             // const url = 'http://82.202.246.5:8080' + address;
-            var url = 'http://localhost:8080/api' + address;
+            // const url = 'http://localhost:8080/api' + address;
             // const url = 'http://10.100.122.201:8080/api' + address;
             // const url = 'http://10.100.122.151:8080/api' + address;
-            // const url = 'https://tanks-backend.xyz/api' + address;
+            var url = 'https://tanks-backend.xyz/api' + address;
 
             console.log("[FetchPost] try post to " + url);
 
@@ -2009,7 +2009,7 @@ exports.default = Http;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -2045,75 +2045,75 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Form
  */
 var Form = function (_Block) {
-  _inherits(Form, _Block);
+    _inherits(Form, _Block);
 
-  /**
-   * @param {string} [tagName='div'] - tagName блока
-   * @param {*} [attrs={}] - объект с атрибутами блока
-   * @param {string[]} [classes=[]] - список имён классов
-   * @param {*} [data={}] - объект с данными блока
-   * @constructor
-   */
-  function Form() {
-    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-    var data = arguments[3];
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @constructor
+     */
+    function Form() {
+        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+        var data = arguments[3];
 
-    _classCallCheck(this, Form);
+        _classCallCheck(this, Form);
 
-    return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, tagName, attrs, classes, data));
-  }
-
-  /**
-   * Получить форму
-   */
-
-
-  _createClass(Form, [{
-    key: 'getClassElement',
-    value: function getClassElement() {
-      var data = this.getData();
-      this.setHTML((0, _Form2.default)({ data: data }));
-      return this.getElement();
+        return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, tagName, attrs, classes, data));
     }
 
     /**
-     * Получить кнопку назад из страницы с формы
+     * Получить форму
      */
 
-  }], [{
-    key: 'getBackButton',
-    value: function getBackButton() {
-      return document.getElementsByClassName('back-button');
-    }
 
-    /**
-     * Показываем ошибки к форме
-     * @param {string}  msg - сообщение
-     * @param {HTMLElement} form
-     * @return {Promise}
-     */
-    // static showFormMessage(msg, form) {
-    //     console.log(1);
-    //     let currentForm = form.getElement().getElementsByTagName('form')[0];
-    //     currentForm.insertBefore(ValidSignUpForm.createErrorElement(msg), currentForm.children[0]);
-    // }
+    _createClass(Form, [{
+        key: 'getClassElement',
+        value: function getClassElement() {
+            var data = this.getData();
+            this.setHTML((0, _Form2.default)({ data: data }));
+            return this.getElement();
+        }
 
-    /**
-     * Очищаем поля форм
-     */
+        /**
+         * Получить кнопку назад из страницы с формы
+         */
 
-  }, {
-    key: 'reset',
-    value: function reset() {
-      Array.from(document.getElementsByTagName('form')).forEach(function (form) {
-        form.reset();
-      });
-    }
-  }]);
+    }], [{
+        key: 'getBackButton',
+        value: function getBackButton() {
+            return document.getElementsByClassName('back-button');
+        }
 
-  return Form;
+        /**
+         * Показываем ошибки к форме
+         * @param {string}  msg - сообщение
+         * @param {HTMLElement} form
+         * @return {Promise}
+         */
+        // static showFormMessage(msg, form) {
+        //     console.log(1);
+        //     let currentForm = form.getElement().getElementsByTagName('form')[0];
+        //     currentForm.insertBefore(ValidSignUpForm.createErrorElement(msg), currentForm.children[0]);
+        // }
+
+        /**
+         * Очищаем поля форм
+         */
+
+    }, {
+        key: 'reset',
+        value: function reset() {
+            Array.from(document.getElementsByTagName('form')).forEach(function (form) {
+                form.reset();
+            });
+        }
+    }]);
+
+    return Form;
 }(_BlockComponents2.default);
 
 exports.default = Form;
@@ -3411,7 +3411,7 @@ exports.default = ValidSignUpForm;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -3439,41 +3439,41 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Menu
  */
 var Menu = function (_Block) {
-  _inherits(Menu, _Block);
+    _inherits(Menu, _Block);
 
-  /**
-   * @param {string} [tagName='div'] - tagName блока
-   * @param {*} [attrs={}] - объект с атрибутами блока
-   * @param {string[]} [classes=[]] - список имён классов
-   * @param {*} [data={}] - объект с данными блока
-   * @constructor
-   */
-  function Menu() {
-    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-    var data = arguments[3];
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @constructor
+     */
+    function Menu() {
+        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+        var data = arguments[3];
 
-    _classCallCheck(this, Menu);
+        _classCallCheck(this, Menu);
 
-    return _possibleConstructorReturn(this, (Menu.__proto__ || Object.getPrototypeOf(Menu)).call(this, tagName, attrs, classes, data));
-  }
-
-  /**
-   * Получить Menu
-   */
-
-
-  _createClass(Menu, [{
-    key: 'getClassElement',
-    value: function getClassElement() {
-      var data = this.getData();
-      this.setHTML((0, _Menu2.default)({ data: data }));
-      return this.getElement();
+        return _possibleConstructorReturn(this, (Menu.__proto__ || Object.getPrototypeOf(Menu)).call(this, tagName, attrs, classes, data));
     }
-  }]);
 
-  return Menu;
+    /**
+     * Получить Menu
+     */
+
+
+    _createClass(Menu, [{
+        key: 'getClassElement',
+        value: function getClassElement() {
+            var data = this.getData();
+            this.setHTML((0, _Menu2.default)({ data: data }));
+            return this.getElement();
+        }
+    }]);
+
+    return Menu;
 }(_BlockComponents2.default);
 
 exports.default = Menu;
@@ -3486,7 +3486,7 @@ exports.default = Menu;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -3514,42 +3514,42 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Table
  */
 var Table = function (_Block) {
-  _inherits(Table, _Block);
+    _inherits(Table, _Block);
 
-  /**
-   * @param {string} [tagName='div'] - tagName блока
-   * @param {*} [attrs={}] - объект с атрибутами блока
-   * @param {string[]} [classes=[]] - список имён классов
-   * @param {*} [data={}] - объект с данными блока
-   * @constructor
-   */
-  function Table() {
-    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-    var data = arguments[3];
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @constructor
+     */
+    function Table() {
+        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+        var data = arguments[3];
 
-    _classCallCheck(this, Table);
+        _classCallCheck(this, Table);
 
-    return _possibleConstructorReturn(this, (Table.__proto__ || Object.getPrototypeOf(Table)).call(this, tagName, attrs, classes, data));
-  }
-
-  /**
-   * Получить Table
-   */
-
-
-  _createClass(Table, [{
-    key: 'getClassElement',
-    value: function getClassElement() {
-      var data = this.getData();
-
-      this.setHTML((0, _Table2.default)({ data: data }));
-      return this.getElement();
+        return _possibleConstructorReturn(this, (Table.__proto__ || Object.getPrototypeOf(Table)).call(this, tagName, attrs, classes, data));
     }
-  }]);
 
-  return Table;
+    /**
+     * Получить Table
+     */
+
+
+    _createClass(Table, [{
+        key: 'getClassElement',
+        value: function getClassElement() {
+            var data = this.getData();
+
+            this.setHTML((0, _Table2.default)({ data: data }));
+            return this.getElement();
+        }
+    }]);
+
+    return Table;
 }(_BlockComponents2.default);
 
 exports.default = Table;
@@ -3717,14 +3717,14 @@ var TankBody = /** @class */ (function (_super) {
     };
     TankBody.prototype.update = function () {
         // величина угла поворота
-        if (this._cursor.left.isDown) {
+        if (this._cursor.left.isDown || this.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
             this._body.angle -= 5;
         }
-        else if (this._cursor.right.isDown) {
+        else if (this._cursor.right.isDown || this.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
             this._body.angle += 5;
         }
         // скорость
-        if (this._cursor.up.isDown) {
+        if (this._cursor.up.isDown || this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
             this._currentSpeed = 210;
         }
         else {
@@ -6601,7 +6601,7 @@ function createHeader() {
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -6627,43 +6627,43 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Header
  */
 var Header = function (_Block) {
-  _inherits(Header, _Block);
+    _inherits(Header, _Block);
 
-  /**
-   * @param {string} [tagName='div'] - tagName блока
-   * @param {*} [attrs={}] - объект с атрибутами блока
-   * @param {string[]} [classes=[]] - список имён классов
-   * @param {*} [data={}] - объект с данными блока
-   * @constructor
-   */
-  function Header() {
-    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-    var data = arguments[3];
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @constructor
+     */
+    function Header() {
+        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+        var data = arguments[3];
 
-    _classCallCheck(this, Header);
+        _classCallCheck(this, Header);
 
-    return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, tagName, attrs, classes, data));
-  }
-
-  /**
-   * Получить Header
-   */
-
-
-  _createClass(Header, [{
-    key: 'getClassElement',
-    value: function getClassElement() {
-
-      var data = this.getData();
-
-      this.setHTML((0, _Header2.default)({ data: data }));
-      return this.getElement();
+        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, tagName, attrs, classes, data));
     }
-  }]);
 
-  return Header;
+    /**
+     * Получить Header
+     */
+
+
+    _createClass(Header, [{
+        key: 'getClassElement',
+        value: function getClassElement() {
+
+            var data = this.getData();
+
+            this.setHTML((0, _Header2.default)({ data: data }));
+            return this.getElement();
+        }
+    }]);
+
+    return Header;
 }(_BlockComponents2.default);
 
 exports.default = Header;
@@ -6948,7 +6948,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var data = {
     imgListData: [{
         class: "footer__sound",
-        src: "./static/img/sound.png",
+        src: "./static/img/settings.png",
         id: "menu-button-music"
     }, {
         class: "footer__score",
@@ -6976,7 +6976,7 @@ function CreateFooter() {
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -7004,41 +7004,41 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module Footer
  */
 var Footer = function (_Block) {
-  _inherits(Footer, _Block);
+    _inherits(Footer, _Block);
 
-  /**
-   * @param {string} [tagName='div'] - tagName блока
-   * @param {*} [attrs={}] - объект с атрибутами блока
-   * @param {string[]} [classes=[]] - список имён классов
-   * @param {*} [data={}] - объект с данными блока
-   * @constructor
-   */
-  function Footer() {
-    var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-    var data = arguments[3];
+    /**
+     * @param {string} [tagName='div'] - tagName блока
+     * @param {*} [attrs={}] - объект с атрибутами блока
+     * @param {string[]} [classes=[]] - список имён классов
+     * @param {*} [data={}] - объект с данными блока
+     * @constructor
+     */
+    function Footer() {
+        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        var classes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+        var data = arguments[3];
 
-    _classCallCheck(this, Footer);
+        _classCallCheck(this, Footer);
 
-    return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, tagName, attrs, classes, data));
-  }
-
-  /**
-   * Получить footer
-   */
-
-
-  _createClass(Footer, [{
-    key: 'getClassElement',
-    value: function getClassElement() {
-      var data = this.getData();
-      this.setHTML((0, _Footer2.default)({ data: data }));
-      return this.getElement();
+        return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, tagName, attrs, classes, data));
     }
-  }]);
 
-  return Footer;
+    /**
+     * Получить footer
+     */
+
+
+    _createClass(Footer, [{
+        key: 'getClassElement',
+        value: function getClassElement() {
+            var data = this.getData();
+            this.setHTML((0, _Footer2.default)({ data: data }));
+            return this.getElement();
+        }
+    }]);
+
+    return Footer;
 }(_BlockComponents2.default);
 
 exports.default = Footer;
@@ -7775,8 +7775,8 @@ var WorldState = /** @class */ (function (_super) {
         this.land.tilePosition.x = -this.camera.x;
         this.land.tilePosition.y = -this.camera.y;
         this.tank.update();
-        // click mouse button
-        if (this.game.input.activePointer.isDown) {
+        // fire then click right mouse button or space
+        if (this.game.input.activePointer.isDown || this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
             this.fire();
         }
         if (this.client.socket.readyState !== 0) {
@@ -12205,7 +12205,7 @@ exports.default = World;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+        value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -12215,80 +12215,80 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 // import Phaser from '../../phaser.min';
 
 var EnemyTank = function () {
-    function EnemyTank(index, game, player, bullets) {
-        _classCallCheck(this, EnemyTank);
+        function EnemyTank(index, game, player, bullets) {
+                _classCallCheck(this, EnemyTank);
 
-        var x = Math.random() * game.world.width;
-        var y = Math.random() * game.world.height;
+                var x = Math.random() * game.world.width;
+                var y = Math.random() * game.world.height;
 
-        this.game = game;
-        this.health = 3;
-        this.player = player;
-        this.bullets = bullets;
-        this.fireRate = 1000; // скорострельность
-        this.nextFire = 0; //следующий выстрел
-        this.alive = true;
+                this.game = game;
+                this.health = 3;
+                this.player = player;
+                this.bullets = bullets;
+                this.fireRate = 1000; // скорострельность
+                this.nextFire = 0; //следующий выстрел
+                this.alive = true;
 
-        this.shadow = game.add.sprite(x, y, 'enemy', 'shadow');
-        this.tank = game.add.sprite(x, y, 'enemy', 'tank1');
-        this.turret = game.add.sprite(x, y, 'enemy', 'turret');
+                this.shadow = game.add.sprite(x, y, 'enemy', 'shadow');
+                this.tank = game.add.sprite(x, y, 'enemy', 'tank1');
+                this.turret = game.add.sprite(x, y, 'enemy', 'turret');
 
-        this.shadow.anchor.set(0.5);
-        this.tank.anchor.set(0.5);
-        this.turret.anchor.set(0.3, 0.5);
+                this.shadow.anchor.set(0.5);
+                this.tank.anchor.set(0.5);
+                this.turret.anchor.set(0.3, 0.5);
 
-        this.tank.name = index.toString();
-        game.physics.enable(this.tank, Phaser.Physics.ARCADE);
-        this.tank.body.immovable = true;
-        this.tank.body.collideWorldBounds = true;
-        this.tank.body.bounce.setTo(1, 1);
+                this.tank.name = index.toString();
+                game.physics.enable(this.tank, Phaser.Physics.ARCADE);
+                this.tank.body.immovable = true;
+                this.tank.body.collideWorldBounds = true;
+                this.tank.body.bounce.setTo(1, 1);
 
-        this.tank.angle = game.rnd.angle();
+                this.tank.angle = game.rnd.angle();
 
-        game.physics.arcade.velocityFromRotation(this.tank.rotation, 100, this.tank.body.velocity);
-    }
-
-    _createClass(EnemyTank, [{
-        key: 'damage',
-        value: function damage() {
-            this.health -= 1;
-
-            if (this.health <= 0) {
-                this.alive = false;
-                this.shadow.kill();
-                this.tank.kill();
-                this.turret.kill();
-
-                return true;
-            }
-            return false;
+                game.physics.arcade.velocityFromRotation(this.tank.rotation, 100, this.tank.body.velocity);
         }
-    }, {
-        key: 'update',
-        value: function update() {
-            this.shadow.x = this.tank.x;
-            this.shadow.y = this.tank.y;
-            this.shadow.rotation = this.tank.rotation;
 
-            this.turret.x = this.tank.x;
-            this.turret.y = this.tank.y;
-            this.turret.rotation = this.game.physics.arcade.angleBetween(this.tank, this.player);
+        _createClass(EnemyTank, [{
+                key: 'damage',
+                value: function damage() {
+                        this.health -= 1;
 
-            if (this.game.physics.arcade.distanceBetween(this.tank, this.player) < 300) {
-                if (this.game.time.now > this.nextFire && this.bullets.countDead() > 0) {
-                    this.nextFire = this.game.time.now + this.fireRate;
+                        if (this.health <= 0) {
+                                this.alive = false;
+                                this.shadow.kill();
+                                this.tank.kill();
+                                this.turret.kill();
 
-                    var bullet = this.bullets.getFirstDead();
-
-                    bullet.reset(this.turret.x, this.turret.y);
-
-                    bullet.rotation = this.game.physics.arcade.moveToObject(bullet, this.player, 500);
+                                return true;
+                        }
+                        return false;
                 }
-            }
-        }
-    }]);
+        }, {
+                key: 'update',
+                value: function update() {
+                        this.shadow.x = this.tank.x;
+                        this.shadow.y = this.tank.y;
+                        this.shadow.rotation = this.tank.rotation;
 
-    return EnemyTank;
+                        this.turret.x = this.tank.x;
+                        this.turret.y = this.tank.y;
+                        this.turret.rotation = this.game.physics.arcade.angleBetween(this.tank, this.player);
+
+                        if (this.game.physics.arcade.distanceBetween(this.tank, this.player) < 300) {
+                                if (this.game.time.now > this.nextFire && this.bullets.countDead() > 0) {
+                                        this.nextFire = this.game.time.now + this.fireRate;
+
+                                        var bullet = this.bullets.getFirstDead();
+
+                                        bullet.reset(this.turret.x, this.turret.y);
+
+                                        bullet.rotation = this.game.physics.arcade.moveToObject(bullet, this.player, 500);
+                                }
+                        }
+                }
+        }]);
+
+        return EnemyTank;
 }();
 
 exports.default = EnemyTank;
