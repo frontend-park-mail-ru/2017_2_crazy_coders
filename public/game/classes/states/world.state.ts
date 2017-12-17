@@ -119,8 +119,8 @@ export default class WorldState extends State {
         this.land.tilePosition.y = -this.camera.y;
         this.tank.update();
 
-        // click mouse button
-        if (this.game.input.activePointer.isDown) {
+        // fire then click right mouse button or space
+        if (this.game.input.activePointer.isDown || this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
             this.fire();
         }
 
