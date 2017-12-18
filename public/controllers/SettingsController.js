@@ -18,10 +18,12 @@ class SettingsController extends Controller {
         this.theme = new Theme();
 
         if (this.controllSettings.mouseControll) {
+            document.getElementsByClassName('table__checkbox')[0].checked = true;
             document.getElementsByClassName('table__img_keyboard')[0].style.display = "none";
             document.getElementsByClassName('table__img_keyboard_with_mouse')[0].style.display = "initial";
 
         } else {
+            document.getElementsByClassName('table__checkbox')[0].checked = false;
             document.getElementsByClassName('table__img_keyboard')[0].style.display = "initial";
             document.getElementsByClassName('table__img_keyboard_with_mouse')[0].style.display = "none";
         }
