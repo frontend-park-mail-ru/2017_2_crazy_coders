@@ -19,6 +19,7 @@ class MenuStartController extends Controller {
 		this.theme = new Theme();
 		this.flag = true;
 		this.controllSettings = new ControllSettings();
+		this._isGetProfile = false;
 		console.log(`[MenuStartController.constructor] mausecontroll = ${this.controllSettings.mouseControll}`);
 		this.addListener();
 	}
@@ -102,10 +103,11 @@ class MenuStartController extends Controller {
 			.then((resp) => {
 				console.log("[userService.getProfile] response: " + JSON.stringify(resp));
 				this.userService.user.set(resp);
-				this.controllSettings.mouseControll = resp.mouseControlEnabled;
+				if (this._isGetProfile === false) { this.controllSettings.mouseControll = resp.mouseControlEnabled; }
 				this.page_parts.get("RegMenu").data.user = this.userService.user.getUsername();
 				this.page_parts.get("RegMenu").getClassElement().hidden=false;
 				this.addListener();
+                this._isGetProfile = true;
 				// this.page_parts.get("RegMenu").show();
 			})
 			.catch((err) => {
