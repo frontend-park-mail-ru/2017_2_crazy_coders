@@ -1,6 +1,7 @@
 'use strict';
 
 import Controller from "./Controller";
+import ControllSettings from '../modules/ControllSettings';
 import Theme from '../static/css/style';
 
 class SettingsController extends Controller {
@@ -11,8 +12,20 @@ class SettingsController extends Controller {
         }
 
         super(opt);
+        this.controllSettings = new ControllSettings();
+        console.log(`[SettingsController.constructor] mausecontroll = ${this.controllSettings.mouseControll}`);
         SettingsController.__instance = this;
         this.theme = new Theme();
+
+        if (this.controllSettings.mouseControll) {
+            document.getElementsByClassName('table__img_keyboard')[0].style.display = "none";
+            document.getElementsByClassName('table__img_keyboard_with_mouse')[0].style.display = "initial";
+
+        } else {
+            document.getElementsByClassName('table__img_keyboard')[0].style.display = "initial";
+            document.getElementsByClassName('table__img_keyboard_with_mouse')[0].style.display = "none";
+        }
+
         this.addListener();
     }
 
@@ -30,14 +43,16 @@ class SettingsController extends Controller {
         let slider = document.getElementsByClassName('table__checkbox')[0];
         slider.addEventListener('click', event => {
             if(slider.checked) {
+                this.controllSettings.mouseControll = true;
                 document.getElementsByClassName('table__img_keyboard')[0].style.display = "none";
                 document.getElementsByClassName('table__img_keyboard_with_mouse')[0].style.display = "initial";
 
             } else {
+                this.controllSettings.mouseControll = false;
                 document.getElementsByClassName('table__img_keyboard')[0].style.display = "initial";
                 document.getElementsByClassName('table__img_keyboard_with_mouse')[0].style.display = "none";
             }
-            console.log(slider);
+            console.log('controll settings = ' + this.controllSettings.mouseControll);
         });
     }
 

@@ -291,6 +291,14 @@ body {
   text-align: center;
   padding: 10px; }
 
+.table__img_keyboard {
+  width: 600px;
+  height: 200px; }
+
+.table__img_keyboard_with_mouse {
+  width: 800px;
+  height: 200px; }
+
 .table__switch {
   position: relative;
   display: inline-block;
@@ -313,6 +321,7 @@ body {
   border-radius: 17px; }
 
 .table__slider:before {
+  value: "OFF";
   position: absolute;
   content: "";
   height: 13px;
@@ -324,7 +333,11 @@ body {
   transition: .4s;
   border-radius: 50%; }
 
+.table__checkbox {
+  value: "ON"; }
+
 input:checked + .table__slider {
+  value: "ON";
   background-color: #75f348; }
 
 input:focus + .table__slider {

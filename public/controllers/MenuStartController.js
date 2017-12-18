@@ -1,6 +1,7 @@
 'use strict';
 
 import Controller from "./Controller";
+import ControllSettings from '../modules/ControllSettings';
 import Theme from '../static/css/style';
 
 import strategy from '../game/classes/strategyControl.ts';
@@ -17,6 +18,9 @@ class MenuStartController extends Controller {
 
 		this.theme = new Theme();
 		this.flag = true;
+		this.controllSettings = new ControllSettings();
+		this.controllSettings.mouseControll = true;
+		console.log(`[MenuStartController.constructor] mausecontroll = ${this.controllSettings.mouseControll}`);
 		this.addListener();
 	}
 
@@ -98,6 +102,7 @@ class MenuStartController extends Controller {
 			.then((resp) => {
 				console.log("[userService.getProfile] response: " + JSON.stringify(resp));
 				this.userService.user.set(resp);
+				this.controllSettings.mouseControll = resp.mouseControlEnabled;
 				this.page_parts.get("RegMenu").data.user = this.userService.user.getUsername();
 				this.page_parts.get("RegMenu").getClassElement().hidden=false;
 				this.addListener();
