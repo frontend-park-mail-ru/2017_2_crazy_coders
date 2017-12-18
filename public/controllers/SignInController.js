@@ -4,6 +4,8 @@ import Controller from "./Controller";
 import Form from '../components/Form/Form/Form'
 import Theme from '../static/css/style';
 import Notify from '../components/Form/ValidForm/Notify/Notify';
+import ControllSettings from '../modules/ControllSettings';
+
 
 class SignInController extends Controller {
 
@@ -16,6 +18,7 @@ class SignInController extends Controller {
 		SignInController.__instance = this;
 		this.theme = new Theme();
 		this.addListener();
+		this.controllSettings = new ControllSettings();
 	}
 
 	addListener() {
@@ -30,6 +33,9 @@ class SignInController extends Controller {
 				.then((data) => {
 					this.userService.user.set(data);
 					console.log("[onSubmitSignInForm] Success sign in");
+                    console.log(`[onSubmitSignInForm] data.mouseControlEnabled current = ${this.controllSettings.mouseControll}`);
+                    console.log(`[onSubmitSignInForm] data.mouseControlEnabled = ${data.mouseControlEnabled}`);
+                    this.controllSettings.mouseControll = data.mouseControlEnabled;
 					console.log('signIn: ' + this.userService.user.getUsername());
 					Form.reset();
 					this._router.go('/');

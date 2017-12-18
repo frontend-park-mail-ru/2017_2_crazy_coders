@@ -98,6 +98,18 @@ export default class UserService {
 			});
 	}
 
+	sendControllSettings(value) {
+		return Http.FetchPost('/updateMouseControlEnabled', {"mouseControlEnabled": value})
+			.then((response) => {
+                if (response.status === 200) {
+                    console.log('send controllSettings OK');
+                } else {
+                    console.log('send controllSettings ERROR; statusCode: ' + response.status);
+                }
+			})
+
+	}
+
 	/**
 	 * Получить данного пользователя
 	 */

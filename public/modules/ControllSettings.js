@@ -13,11 +13,11 @@ export default class ControllSettings {
     }
 
     get mouseControll() {
-        return this._mouseControll;
+        return instance._mouseControll;
     }
 
     set mouseControll(value) {
-        this._mouseControll = value;
+        instance._mouseControll = value;
     }
 
 }

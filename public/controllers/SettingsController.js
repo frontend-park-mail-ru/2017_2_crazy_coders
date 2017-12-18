@@ -13,10 +13,10 @@ class SettingsController extends Controller {
 
         super(opt);
         this.controllSettings = new ControllSettings();
-        console.log(`[SettingsController.constructor] mausecontroll = ${this.controllSettings.mouseControll}`);
         SettingsController.__instance = this;
         this.theme = new Theme();
 
+        console.log(`[SettingsController.constructor] data.mouseControlEnabled current = ${this.controllSettings.mouseControll}`);
         if (this.controllSettings.mouseControll) {
             document.getElementsByClassName('table__checkbox')[0].checked = true;
             document.getElementsByClassName('table__img_keyboard')[0].style.display = "none";
@@ -39,6 +39,8 @@ class SettingsController extends Controller {
 
         document.getElementById('settings-button-back').addEventListener('click', event => {
             event.preventDefault();
+            this.userService.sendControllSettings(this.controllSettings.mouseControll);
+
             this._router.go('/');
         });
 
@@ -54,7 +56,6 @@ class SettingsController extends Controller {
                 document.getElementsByClassName('table__img_keyboard')[0].style.display = "initial";
                 document.getElementsByClassName('table__img_keyboard_with_mouse')[0].style.display = "none";
             }
-            console.log('controll settings = ' + this.controllSettings.mouseControll);
         });
     }
 
@@ -63,6 +64,18 @@ class SettingsController extends Controller {
     }
 
     show() {
+        console.log(`[SettingsController.show] data.mouseControlEnabled current = ${this.controllSettings.mouseControll}`);
+        if (this.controllSettings.mouseControll) {
+            document.getElementsByClassName('table__checkbox')[0].checked = true;
+            document.getElementsByClassName('table__img_keyboard')[0].style.display = "none";
+            document.getElementsByClassName('table__img_keyboard_with_mouse')[0].style.display = "initial";
+
+        } else {
+            document.getElementsByClassName('table__checkbox')[0].checked = false;
+            document.getElementsByClassName('table__img_keyboard')[0].style.display = "initial";
+            document.getElementsByClassName('table__img_keyboard_with_mouse')[0].style.display = "none";
+        }
+
         this.page_parts.get("Header").show();
         this.page_parts.get("Settings").show();
     }

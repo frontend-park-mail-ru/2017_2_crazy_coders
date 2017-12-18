@@ -19,7 +19,6 @@ class MenuStartController extends Controller {
 		this.theme = new Theme();
 		this.flag = true;
 		this.controllSettings = new ControllSettings();
-		this.controllSettings.mouseControll = true;
 		console.log(`[MenuStartController.constructor] mausecontroll = ${this.controllSettings.mouseControll}`);
 		this.addListener();
 	}
@@ -61,6 +60,7 @@ class MenuStartController extends Controller {
 
 			document.getElementById('menu-button-music').addEventListener('click', event => {
 				event.preventDefault();
+
 				this._router.go('/settings');
 			});
 

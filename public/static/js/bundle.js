@@ -1873,6 +1873,17 @@ var UserService = function () {
 				}
 			});
 		}
+	}, {
+		key: 'sendControllSettings',
+		value: function sendControllSettings(value) {
+			return _Http2.default.FetchPost('/updateMouseControlEnabled', { "mouseControlEnabled": value }).then(function (response) {
+				if (response.status === 200) {
+					console.log('send controllSettings OK');
+				} else {
+					console.log('send controllSettings ERROR; statusCode: ' + response.status);
+				}
+			});
+		}
 
 		/**
    * Получить данного пользователя
@@ -2023,11 +2034,11 @@ var _Form = __webpack_require__(71);
 
 var _Form2 = _interopRequireDefault(_Form);
 
-var _ValidSignInForm = __webpack_require__(29);
+var _ValidSignInForm = __webpack_require__(30);
 
 var _ValidSignInForm2 = _interopRequireDefault(_ValidSignInForm);
 
-var _ValidSignUpForm = __webpack_require__(30);
+var _ValidSignUpForm = __webpack_require__(31);
 
 var _ValidSignUpForm2 = _interopRequireDefault(_ValidSignUpForm);
 
@@ -2583,6 +2594,50 @@ exports.default = User;
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var instance = null;
+
+var ControllSettings = function () {
+    function ControllSettings() {
+        _classCallCheck(this, ControllSettings);
+
+        if (!instance) {
+            this._mouseControll = false;
+            instance = this;
+        }
+
+        return instance;
+    }
+
+    _createClass(ControllSettings, [{
+        key: "mouseControll",
+        get: function get() {
+            return instance._mouseControll;
+        },
+        set: function set(value) {
+            instance._mouseControll = value;
+        }
+    }]);
+
+    return ControllSettings;
+}();
+
+exports.default = ControllSettings;
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
 
 /**
  * Module dependencies.
@@ -2986,7 +3041,7 @@ function error() {
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {// browser shim for xmlhttprequest module
@@ -3030,7 +3085,7 @@ module.exports = function (opts) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -3193,8 +3248,8 @@ Transport.prototype.onClose = function () {
 
 
 /***/ }),
-/* 28 */,
-/* 29 */
+/* 29 */,
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3287,7 +3342,7 @@ var ValidSignInForm = function () {
 exports.default = ValidSignInForm;
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3405,7 +3460,7 @@ var ValidSignUpForm = function () {
 exports.default = ValidSignUpForm;
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3478,50 +3533,6 @@ var Menu = function (_Block) {
 }(_BlockComponents2.default);
 
 exports.default = Menu;
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var instance = null;
-
-var ControllSettings = function () {
-    function ControllSettings() {
-        _classCallCheck(this, ControllSettings);
-
-        if (!instance) {
-            this._mouseControll = false;
-            instance = this;
-        }
-
-        return instance;
-    }
-
-    _createClass(ControllSettings, [{
-        key: "mouseControll",
-        get: function get() {
-            return this._mouseControll;
-        },
-        set: function set(value) {
-            this._mouseControll = value;
-        }
-    }]);
-
-    return ControllSettings;
-}();
-
-exports.default = ControllSettings;
 
 /***/ }),
 /* 33 */
@@ -4452,7 +4463,7 @@ function isBuf(obj) {
 var eio = __webpack_require__(118);
 var Socket = __webpack_require__(55);
 var Emitter = __webpack_require__(9);
-var parser = __webpack_require__(25);
+var parser = __webpack_require__(26);
 var on = __webpack_require__(56);
 var bind = __webpack_require__(57);
 var debug = __webpack_require__(11)('socket.io-client:manager');
@@ -5027,7 +5038,7 @@ Manager.prototype.onreconnect = function () {
  * Module dependencies
  */
 
-var XMLHttpRequest = __webpack_require__(26);
+var XMLHttpRequest = __webpack_require__(27);
 var XHR = __webpack_require__(121);
 var JSONP = __webpack_require__(130);
 var websocket = __webpack_require__(131);
@@ -5087,7 +5098,7 @@ function polling (opts) {
  * Module dependencies.
  */
 
-var Transport = __webpack_require__(27);
+var Transport = __webpack_require__(28);
 var parseqs = __webpack_require__(17);
 var parser = __webpack_require__(10);
 var inherit = __webpack_require__(18);
@@ -5105,7 +5116,7 @@ module.exports = Polling;
  */
 
 var hasXHR2 = (function () {
-  var XMLHttpRequest = __webpack_require__(26);
+  var XMLHttpRequest = __webpack_require__(27);
   var xhr = new XMLHttpRequest({ xdomain: false });
   return null != xhr.responseType;
 })();
@@ -5429,7 +5440,7 @@ module.exports = function(arr, obj){
  * Module dependencies.
  */
 
-var parser = __webpack_require__(25);
+var parser = __webpack_require__(26);
 var Emitter = __webpack_require__(9);
 var toArray = __webpack_require__(133);
 var on = __webpack_require__(56);
@@ -6181,7 +6192,7 @@ var _SignInForm = __webpack_require__(70);
 
 var _SignInForm2 = _interopRequireDefault(_SignInForm);
 
-var _ValidSignInForm = __webpack_require__(29);
+var _ValidSignInForm = __webpack_require__(30);
 
 var _ValidSignInForm2 = _interopRequireDefault(_ValidSignInForm);
 
@@ -6382,7 +6393,7 @@ var _SignUpForm = __webpack_require__(74);
 
 var _SignUpForm2 = _interopRequireDefault(_SignUpForm);
 
-var _ValidSignUpForm = __webpack_require__(30);
+var _ValidSignUpForm = __webpack_require__(31);
 
 var _ValidSignUpForm2 = _interopRequireDefault(_ValidSignUpForm);
 
@@ -6668,7 +6679,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createUnRegMenu;
 
-var _Menu = __webpack_require__(31);
+var _Menu = __webpack_require__(32);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
@@ -6742,7 +6753,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createRegMenu;
 
-var _Menu = __webpack_require__(31);
+var _Menu = __webpack_require__(32);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
@@ -7519,7 +7530,7 @@ var _Controller2 = __webpack_require__(4);
 
 var _Controller3 = _interopRequireDefault(_Controller2);
 
-var _ControllSettings = __webpack_require__(32);
+var _ControllSettings = __webpack_require__(25);
 
 var _ControllSettings2 = _interopRequireDefault(_ControllSettings);
 
@@ -7560,7 +7571,6 @@ var MenuStartController = function (_Controller) {
 		_this.theme = new _style2.default();
 		_this.flag = true;
 		_this.controllSettings = new _ControllSettings2.default();
-		_this.controllSettings.mouseControll = true;
 		console.log('[MenuStartController.constructor] mausecontroll = ' + _this.controllSettings.mouseControll);
 		_this.addListener();
 		return _this;
@@ -7605,6 +7615,7 @@ var MenuStartController = function (_Controller) {
 
 				document.getElementById('menu-button-music').addEventListener('click', function (event) {
 					event.preventDefault();
+
 					_this2._router.go('/settings');
 				});
 
@@ -8477,7 +8488,7 @@ exports.default = Message;
  */
 
 var url = __webpack_require__(113);
-var parser = __webpack_require__(25);
+var parser = __webpack_require__(26);
 var Manager = __webpack_require__(50);
 var debug = __webpack_require__(11)('socket.io-client');
 
@@ -9190,7 +9201,7 @@ Socket.protocol = parser.protocol; // this is an int
  */
 
 Socket.Socket = Socket;
-Socket.Transport = __webpack_require__(27);
+Socket.Transport = __webpack_require__(28);
 Socket.transports = __webpack_require__(51);
 Socket.parser = __webpack_require__(10);
 
@@ -9824,7 +9835,7 @@ try {
  * Module requirements.
  */
 
-var XMLHttpRequest = __webpack_require__(26);
+var XMLHttpRequest = __webpack_require__(27);
 var Polling = __webpack_require__(52);
 var Emitter = __webpack_require__(9);
 var inherit = __webpack_require__(18);
@@ -11249,7 +11260,7 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
  * Module dependencies.
  */
 
-var Transport = __webpack_require__(27);
+var Transport = __webpack_require__(28);
 var parser = __webpack_require__(10);
 var parseqs = __webpack_require__(17);
 var inherit = __webpack_require__(18);
@@ -12606,6 +12617,10 @@ var _Notify = __webpack_require__(15);
 
 var _Notify2 = _interopRequireDefault(_Notify);
 
+var _ControllSettings = __webpack_require__(25);
+
+var _ControllSettings2 = _interopRequireDefault(_ControllSettings);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -12633,6 +12648,7 @@ var SignInController = function (_Controller) {
 		SignInController.__instance = _this;
 		_this.theme = new _style2.default();
 		_this.addListener();
+		_this.controllSettings = new _ControllSettings2.default();
 		return _this;
 	}
 
@@ -12650,6 +12666,9 @@ var SignInController = function (_Controller) {
 				_this2.userService.signIn(formdata.email, formdata.password).then(function (data) {
 					_this2.userService.user.set(data);
 					console.log("[onSubmitSignInForm] Success sign in");
+					console.log('[onSubmitSignInForm] data.mouseControlEnabled current = ' + _this2.controllSettings.mouseControll);
+					console.log('[onSubmitSignInForm] data.mouseControlEnabled = ' + data.mouseControlEnabled);
+					_this2.controllSettings.mouseControll = data.mouseControlEnabled;
 					console.log('signIn: ' + _this2.userService.user.getUsername());
 					_Form2.default.reset();
 					_this2._router.go('/');
@@ -13049,7 +13068,7 @@ var _Controller2 = __webpack_require__(4);
 
 var _Controller3 = _interopRequireDefault(_Controller2);
 
-var _ControllSettings = __webpack_require__(32);
+var _ControllSettings = __webpack_require__(25);
 
 var _ControllSettings2 = _interopRequireDefault(_ControllSettings);
 
@@ -13082,10 +13101,10 @@ var SettingsController = function (_Controller) {
         var _this = _possibleConstructorReturn(this, (SettingsController.__proto__ || Object.getPrototypeOf(SettingsController)).call(this, opt));
 
         _this.controllSettings = new _ControllSettings2.default();
-        console.log('[SettingsController.constructor] mausecontroll = ' + _this.controllSettings.mouseControll);
         SettingsController.__instance = _this;
         _this.theme = new _style2.default();
 
+        console.log('[SettingsController.constructor] data.mouseControlEnabled current = ' + _this.controllSettings.mouseControll);
         if (_this.controllSettings.mouseControll) {
             document.getElementsByClassName('table__checkbox')[0].checked = true;
             document.getElementsByClassName('table__img_keyboard')[0].style.display = "none";
@@ -13112,6 +13131,8 @@ var SettingsController = function (_Controller) {
 
             document.getElementById('settings-button-back').addEventListener('click', function (event) {
                 event.preventDefault();
+                _this2.userService.sendControllSettings(_this2.controllSettings.mouseControll);
+
                 _this2._router.go('/');
             });
 
@@ -13126,7 +13147,6 @@ var SettingsController = function (_Controller) {
                     document.getElementsByClassName('table__img_keyboard')[0].style.display = "initial";
                     document.getElementsByClassName('table__img_keyboard_with_mouse')[0].style.display = "none";
                 }
-                console.log('controll settings = ' + _this2.controllSettings.mouseControll);
             });
         }
     }, {
@@ -13137,6 +13157,17 @@ var SettingsController = function (_Controller) {
     }, {
         key: 'show',
         value: function show() {
+            console.log('[SettingsController.show] data.mouseControlEnabled current = ' + this.controllSettings.mouseControll);
+            if (this.controllSettings.mouseControll) {
+                document.getElementsByClassName('table__checkbox')[0].checked = true;
+                document.getElementsByClassName('table__img_keyboard')[0].style.display = "none";
+                document.getElementsByClassName('table__img_keyboard_with_mouse')[0].style.display = "initial";
+            } else {
+                document.getElementsByClassName('table__checkbox')[0].checked = false;
+                document.getElementsByClassName('table__img_keyboard')[0].style.display = "initial";
+                document.getElementsByClassName('table__img_keyboard_with_mouse')[0].style.display = "none";
+            }
+
             this.page_parts.get("Header").show();
             this.page_parts.get("Settings").show();
         }
