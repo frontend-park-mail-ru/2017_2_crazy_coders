@@ -96,7 +96,7 @@ class MenuStartController extends Controller {
 		this.userService
 			.getProfile()
 			.then((resp) => {
-				console.log("[userService.getProfile] response: " + resp);
+				console.log("[userService.getProfile] response: " + JSON.stringify(resp));
 				this.userService.user.set(resp);
 				this.page_parts.get("RegMenu").data.user = this.userService.user.getUsername();
 				this.page_parts.get("RegMenu").getClassElement().hidden=false;

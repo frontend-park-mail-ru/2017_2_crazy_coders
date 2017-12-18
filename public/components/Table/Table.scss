@@ -64,6 +64,16 @@
         padding: 10px;
     }
 
+    &__img_keyboard {
+        width: 600px;
+        height: 200px;
+    }
+
+    &__img_keyboard_with_mouse {
+        width: 800px;
+        height: 200px;
+    }
+
     &__switch {
         position: relative;
         display: inline-block;
@@ -87,6 +97,7 @@
     }
 
     &__slider:before {
+        value: "OFF";
         position: absolute;
         content: "";
         height: 13px;
@@ -99,7 +110,12 @@
         border-radius: 50%;
     }
 
+    &__checkbox{
+        value: "ON";
+    }
+
     input:checked + &__slider {
+        value: "ON";
         background-color: #75f348;
     }
 

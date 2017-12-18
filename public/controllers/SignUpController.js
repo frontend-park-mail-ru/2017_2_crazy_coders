@@ -29,7 +29,7 @@ class SignUpController extends Controller {
 
         this.page_parts.get('SignUp').onSubmitSignUpForm(formdata => {
             this.userService
-                .signUp(formdata.username, formdata.email, formdata.password)
+                .signUp(formdata.username, formdata.email, formdata.password, false)
                 .then((data) => { this.userService.user.set(data);
                     console.log("[onSubmitSignUpForm] Success sign up");
                     Form.reset();

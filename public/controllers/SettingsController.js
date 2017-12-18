@@ -26,6 +26,19 @@ class SettingsController extends Controller {
             event.preventDefault();
             this._router.go('/');
         });
+
+        let slider = document.getElementsByClassName('table__checkbox')[0];
+        slider.addEventListener('click', event => {
+            if(slider.checked) {
+                document.getElementsByClassName('table__img_keyboard')[0].style.display = "none";
+                document.getElementsByClassName('table__img_keyboard_with_mouse')[0].style.display = "initial";
+
+            } else {
+                document.getElementsByClassName('table__img_keyboard')[0].style.display = "initial";
+                document.getElementsByClassName('table__img_keyboard_with_mouse')[0].style.display = "none";
+            }
+            console.log(slider);
+        });
     }
 
     resume() {
