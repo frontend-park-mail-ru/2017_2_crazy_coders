@@ -22,23 +22,22 @@ export default class TankBody extends Phaser.Sprite {
 
     update(): void {
         // величина угла поворота
-        if (this._cursor.left.isDown || this.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
+        if (this.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
             this._body.angle -= 5;
-        }
-        else if (this._cursor.right.isDown || this.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
+        } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
             this._body.angle += 5;
         }
 
         // скорость
-        if (this._cursor.up.isDown || this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
-            this._currentSpeed = 210;
+        if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
+            this._currentSpeed = 251;
         } else {
             if (this._currentSpeed > 0) {
-                this._currentSpeed -= 100; // скорость торможения
+                this._currentSpeed -= 25; // скорость торможения
             }
         }
 
-        // движение и поворотами
+        // движение c поворотами
         if (this._currentSpeed > 0) {
             this._game.physics.arcade.velocityFromRotation(this._body.rotation, this._currentSpeed, this._body.body.velocity);
         }
