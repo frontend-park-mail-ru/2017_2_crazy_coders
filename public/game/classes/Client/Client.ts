@@ -15,11 +15,11 @@ export default class Client {
         // this.socket = io('ws://10.100.122.201:8080/game');
         // console.log('Info: try get instants of WebSocket.');
         // this.socket = new WebSocket('ws://localhost:8080/game');
-        this.socket = new WebSocket('ws://10.100.122.201:8080/api/game');
+        // this.socket = new WebSocket('ws://10.100.122.201:8080/api/game');
         // this.socket = new WebSocket('ws://10.100.122.151:8080/api/game');
 
         // this.socket = new WebSocket('ws://82.202.246.5:8080/game');
-        // this.socket = new WebSocket('wss://tanks-backend.xyz/api/game');
+        this.socket = new WebSocket('wss://tanks-backend.xyz/api/game');
 
         this.message = new Message(this);
         console.log('Info: try create \"onopen\" function.');
