@@ -60,14 +60,6 @@ class ScoreListController extends Controller {
                 } else {
                     this.page_parts.get("Scoreboard").data.userScore = 0;
                 }
-                // this.userService.getProfile().then( (ans) => {
-                // 		// this.page_parts.get("Scoreboard").data.userScore = this.userService.user.getScore();
-                // 	console.log('1000');
-                // 	this.page_parts.get("Scoreboard").data.userScore = 10000;
-                // }).catch( (badAns) => {
-                // 	console.log('err_1000');
-                // 	this.page_parts.get("Scoreboard").data.userScore = 0;
-                // });
 
                 this.page_parts.get("Scoreboard").getClassElement().hidden = false;
                 this.addListener();

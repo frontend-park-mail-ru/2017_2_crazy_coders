@@ -7,6 +7,7 @@ import RegMenu from './RegMenu/RegMenu';
 import AboutUs from './AboutUs/AboutUs';
 import Scoreboard from './Scoreboard/Scoreboard';
 import Footer from './Footer/Footer';
+import Settings from './Settings/Settings';
 
 class CreatePage {
     constructor() {
@@ -18,9 +19,12 @@ class CreatePage {
         this.addParts("SignUp", SignUp());
         this.addParts("UnRegMenu", UnRegMenu());
         this.addParts("RegMenu", RegMenu());
+        this.addParts("Settings", Settings());
         this.addParts("AboutUs", AboutUs());
         this.addParts("Scoreboard", Scoreboard());
         this.addParts("Footer", Footer());
+
+
     }
 
 
