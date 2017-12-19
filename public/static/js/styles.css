@@ -347,3 +347,31 @@ input:checked + .table__slider:before {
   -webkit-transform: translateX(13px);
   -ms-transform: translateX(13px);
   transform: translateX(13px); }
+
+.table__img_keyboard {
+  background: url(../../img/7a9eb5d5fafe0c4aa8ddc116edc08932.png) no-repeat;
+  width: 600px;
+  height: 200px;
+  background-size: cover;
+  background-position-x: 50%; }
+
+.table__img_keyboard_with_mouse {
+  background: url(../../img/7336f556bc303a29b41d687e7a03c017.png) no-repeat;
+  width: 800px;
+  height: 200px;
+  background-size: cover;
+  background-position-x: 50%; }
+
+@media screen and (max-width: 414px) {
+  .table__img_keyboard {
+    background: url(../../img/7a9eb5d5fafe0c4aa8ddc116edc08932.png) no-repeat;
+    width: 400px;
+    height: 130px;
+    background-size: contain;
+    background-position-x: 50%; }
+  .table__img_keyboard_with_mouse {
+    background: url(../../img/7336f556bc303a29b41d687e7a03c017.png) no-repeat;
+    width: 400px;
+    height: 100px;
+    background-size: contain;
+    background-position-x: 50%; } }

@@ -1,133 +1,168 @@
 .table {
 
-    &__title {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2em;
-        font-weight: 700;
-        font-family: "Verdana", sans-serif;
-        margin: 1% 0 1% 1%;
-    }
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    font-weight: 700;
+    font-family: "Verdana", sans-serif;
+    margin: 1% 0 1% 1%;
+  }
 
-    &__content {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 15px;
-    }
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
 
-    &__back {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 15px;
-        flex-flow: column nowrap;
-    }
+  &__back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    flex-flow: column nowrap;
+  }
 
-    &__button {
-        background-color: whitesmoke;
-        font-size: 1.5em;
-        font-weight: 700;
-        font-family: "Verdana", sans-serif;
-        color: black;
-        padding: 7px 17px;
-        border: 3px solid #041712;
-        border-radius: 10%;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        width: 7em;
-        margin: 15px 0 5px 15px;
-        cursor: pointer;
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    }
+  &__button {
+    background-color: whitesmoke;
+    font-size: 1.5em;
+    font-weight: 700;
+    font-family: "Verdana", sans-serif;
+    color: black;
+    padding: 7px 17px;
+    border: 3px solid #041712;
+    border-radius: 10%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 7em;
+    margin: 15px 0 5px 15px;
+    cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
 
-    &__button:hover {
-        background-color: rgba(4, 23, 18, 0.04);
-        border: 3px solid rgba(169, 169, 169, 0.19);
-    }
+  &__button:hover {
+    background-color: rgba(4, 23, 18, 0.04);
+    border: 3px solid rgba(169, 169, 169, 0.19);
+  }
 
-    &__tag {
-        border-collapse: collapse;
-        font-family: "Verdana", sans-serif;
-    }
+  &__tag {
+    border-collapse: collapse;
+    font-family: "Verdana", sans-serif;
+  }
 
-    &__player {
-        justify-content: center;
-        display: flex;
-        margin: 18px 0 15px;
-    }
+  &__player {
+    justify-content: center;
+    display: flex;
+    margin: 18px 0 15px;
+  }
 
-    &__td, &__th {
-        text-align: center;
-        padding: 10px;
-    }
+  &__td, &__th {
+    text-align: center;
+    padding: 10px;
+  }
 
-    &__img_keyboard {
-        width: 600px;
-        height: 200px;
-    }
+  &__img_keyboard {
+    width: 600px;
+    height: 200px;
+  }
 
-    &__img_keyboard_with_mouse {
-        width: 800px;
-        height: 200px;
-    }
+  &__img_keyboard_with_mouse {
+    width: 800px;
+    height: 200px;
+  }
 
-    &__switch {
-        position: relative;
-        display: inline-block;
-        width: 30px;
-        height: 17px;
-    }
+  &__switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 17px;
+  }
 
-    &__switch input {display:none;}
+  &__switch input {
+    display: none;
+  }
 
-    &__slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #ccc;
-        -webkit-transition: .4s;
-        transition: .4s;
-        border-radius: 17px;
-    }
+  &__slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 17px;
+  }
 
-    &__slider:before {
-        value: "OFF";
-        position: absolute;
-        content: "";
-        height: 13px;
-        width: 13px;
-        left: 2px;
-        bottom: 2px;
-        background-color: white;
-        -webkit-transition: .4s;
-        transition: .4s;
-        border-radius: 50%;
-    }
+  &__slider:before {
+    value: "OFF";
+    position: absolute;
+    content: "";
+    height: 13px;
+    width: 13px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+  }
 
-    &__checkbox{
-        value: "ON";
-    }
+  &__checkbox {
+    value: "ON";
+  }
 
-    input:checked + &__slider {
-        value: "ON";
-        background-color: #75f348;
-    }
+  input:checked + &__slider {
+    value: "ON";
+    background-color: #75f348;
+  }
 
-    input:focus + &__slider  {
-        box-shadow: 0 0 1px #75f348;
-    }
+  input:focus + &__slider {
+    box-shadow: 0 0 1px #75f348;
+  }
 
-    input:checked + &__slider:before {
-        -webkit-transform: translateX(13px);
-        -ms-transform: translateX(13px);
-        transform: translateX(13px);
-    }
+  input:checked + &__slider:before {
+    -webkit-transform: translateX(13px);
+    -ms-transform: translateX(13px);
+    transform: translateX(13px);
+  }
 
+}
 
+.table__img_keyboard {
+  background: url('../../static/img/keyboard.png') no-repeat;
+  width: 600px;
+  height: 200px;
+  background-size: cover;
+  background-position-x: 50%;
+}
+
+.table__img_keyboard_with_mouse {
+  background: url('../../static/img/keyboard_with_mouse.png') no-repeat;
+  width: 800px;
+  height: 200px;
+  background-size: cover;
+  background-position-x: 50%;
+}
+
+@media screen and (max-width: 414px) {
+  .table__img_keyboard {
+    background: url('../../static/img/keyboard.png') no-repeat;
+    width: 400px;
+    height: 130px;
+    background-size: contain;
+    background-position-x: 50%;
+  }
+
+  .table__img_keyboard_with_mouse {
+    background: url('../../static/img/keyboard_with_mouse.png') no-repeat;
+    width: 400px;
+    height: 100px;
+    background-size: contain;
+    background-position-x: 50%;
+  }
 }

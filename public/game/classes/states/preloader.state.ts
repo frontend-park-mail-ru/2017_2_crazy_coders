@@ -12,7 +12,7 @@ const titlepage   = require('../../../static/staticsGame/images/titlepage.jpg');
 const logo        = require('../../../static/staticsGame/images/logo.png');
 // const startAudio      = require('../../../static/staticsGame/music/boom.mp3');
 const earth       = require('../../../static/staticsGame/images/ground.jpg');
-const pause       = require('../../../static/staticsGame/images/pause_button.png');
+const pause       = require('../../../static/img/home.png');
 const box_tree    = require('../../../static/staticsGame/images/box_tree.png');
 
 // const tanks       = require('../../static/staticsGame/images/tanks.png');
