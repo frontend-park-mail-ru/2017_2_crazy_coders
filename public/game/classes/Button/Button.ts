@@ -15,5 +15,7 @@ export default class Button {
         this._button.scale.setTo(0.2, 0.2);
         this._button.frame = 1;
         this._button['clicked'] = false;
+        this._button.fixedToCamera = true;
     }
+
 }
