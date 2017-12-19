@@ -39,7 +39,7 @@ export default class App extends Phaser.Game {
   }
 
 
-  exit() {
+  static exit() {
     window.open("/", "_self");
   }
 }

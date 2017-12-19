@@ -10,7 +10,6 @@ class PlayGameController extends Controller {
 		if (PlayGameController.__instance) {
 			return PlayGameController.__instance;
 		}
-		
 		super(opt);
 
 		PlayGameController.__instance = this;
@@ -34,7 +33,7 @@ class PlayGameController extends Controller {
 	}
 
 	hide() {
-		this.game.exit();
+		App.exit();
 	}
 
 }

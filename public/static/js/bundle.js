@@ -1595,6 +1595,78 @@ exports.decodePayloadAsBinary = function (data, binaryType, callback) {
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Notify = function () {
+	function Notify() {
+		_classCallCheck(this, Notify);
+
+		this.notifyBlock = document.createElement('section');
+		this.notifyBlock.classList.add('notify-container');
+		document.body.appendChild(this.notifyBlock);
+	}
+
+	_createClass(Notify, [{
+		key: 'notify',
+		value: function notify() {
+			var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Текст нотификации';
+			var color = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'red';
+			var time = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 3;
+
+			var notify = this.createNotify(message, time);
+			notify.style.background = color;
+			this.notifyBlock.appendChild(notify);
+		}
+	}, {
+		key: 'createNotify',
+		value: function createNotify(msg, time) {
+			var notify = document.createElement('div');
+			notify.classList.add('notify');
+			notify.setAttribute('style', 'animation: show 1s, hide .7s ' + time + 's;');
+
+			var text = document.createElement('div');
+			text.classList.add('notify__text');
+			text.innerHTML = msg;
+
+			var closeButton = document.createElement('div');
+			closeButton.classList.add('notify__close');
+			closeButton.innerHTML = '&times;';
+			closeButton.addEventListener('click', function (event) {
+				notify.classList.add('notify_delete');
+			});
+
+			notify.addEventListener('animationend', function (event) {
+				if (event.animationName === 'hide') {
+					notify.removeAttribute('style');
+					notify.classList.add('notify_delete');
+				}
+			});
+
+			notify.appendChild(text);
+			notify.appendChild(closeButton);
+
+			return notify;
+		}
+	}]);
+
+	return Notify;
+}();
+
+exports.default = Notify;
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * This is the web browser implementation of `debug()`.
  *
@@ -1784,7 +1856,7 @@ function localstorage() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(46)))
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1796,7 +1868,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Http = __webpack_require__(14);
+var _Http = __webpack_require__(15);
 
 var _Http2 = _interopRequireDefault(_Http);
 
@@ -1956,7 +2028,7 @@ var UserService = function () {
 exports.default = UserService;
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2058,7 +2130,7 @@ var Http = function () {
 exports.default = Http;
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2173,78 +2245,6 @@ var Form = function (_Block) {
 }(_BlockComponents2.default);
 
 exports.default = Form;
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Notify = function () {
-	function Notify() {
-		_classCallCheck(this, Notify);
-
-		this.notifyBlock = document.createElement('section');
-		this.notifyBlock.classList.add('notify-container');
-		document.body.appendChild(this.notifyBlock);
-	}
-
-	_createClass(Notify, [{
-		key: 'notify',
-		value: function notify() {
-			var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Текст нотификации';
-			var color = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'red';
-			var time = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 3;
-
-			var notify = this.createNotify(message, time);
-			notify.style.background = color;
-			this.notifyBlock.appendChild(notify);
-		}
-	}, {
-		key: 'createNotify',
-		value: function createNotify(msg, time) {
-			var notify = document.createElement('div');
-			notify.classList.add('notify');
-			notify.setAttribute('style', 'animation: show 1s, hide .7s ' + time + 's;');
-
-			var text = document.createElement('div');
-			text.classList.add('notify__text');
-			text.innerHTML = msg;
-
-			var closeButton = document.createElement('div');
-			closeButton.classList.add('notify__close');
-			closeButton.innerHTML = '&times;';
-			closeButton.addEventListener('click', function (event) {
-				notify.classList.add('notify_delete');
-			});
-
-			notify.addEventListener('animationend', function (event) {
-				if (event.animationName === 'hide') {
-					notify.removeAttribute('style');
-					notify.classList.add('notify_delete');
-				}
-			});
-
-			notify.appendChild(text);
-			notify.appendChild(closeButton);
-
-			return notify;
-		}
-	}]);
-
-	return Notify;
-}();
-
-exports.default = Notify;
 
 /***/ }),
 /* 17 */
@@ -2643,7 +2643,7 @@ exports.default = User;
  * Module dependencies.
  */
 
-var debug = __webpack_require__(12)('socket.io-parser');
+var debug = __webpack_require__(13)('socket.io-parser');
 var Emitter = __webpack_require__(10);
 var hasBin = __webpack_require__(48);
 var binary = __webpack_require__(116);
@@ -3261,7 +3261,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Notify = __webpack_require__(16);
+var _Notify = __webpack_require__(12);
 
 var _Notify2 = _interopRequireDefault(_Notify);
 
@@ -3354,7 +3354,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Notify = __webpack_require__(16);
+var _Notify = __webpack_require__(12);
 
 var _Notify2 = _interopRequireDefault(_Notify);
 
@@ -3617,7 +3617,7 @@ var App = /** @class */ (function (_super) {
         _this.state.start('boot'); // Initialize and start `boot` state
         return _this;
     }
-    App.prototype.exit = function () {
+    App.exit = function () {
         window.open("/", "_self");
     };
     return App;
@@ -4494,7 +4494,7 @@ var Emitter = __webpack_require__(10);
 var parser = __webpack_require__(26);
 var on = __webpack_require__(56);
 var bind = __webpack_require__(57);
-var debug = __webpack_require__(12)('socket.io-client:manager');
+var debug = __webpack_require__(13)('socket.io-client:manager');
 var indexOf = __webpack_require__(54);
 var Backoff = __webpack_require__(134);
 
@@ -5473,7 +5473,7 @@ var Emitter = __webpack_require__(10);
 var toArray = __webpack_require__(133);
 var on = __webpack_require__(56);
 var bind = __webpack_require__(57);
-var debug = __webpack_require__(12)('socket.io-client:socket');
+var debug = __webpack_require__(13)('socket.io-client:socket');
 var parseqs = __webpack_require__(18);
 
 /**
@@ -6043,7 +6043,7 @@ exports.default = Constants;
 "use strict";
 
 
-var _UserService = __webpack_require__(13);
+var _UserService = __webpack_require__(14);
 
 var _UserService2 = _interopRequireDefault(_UserService);
 
@@ -6272,7 +6272,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Form2 = __webpack_require__(15);
+var _Form2 = __webpack_require__(16);
 
 var _Form3 = _interopRequireDefault(_Form2);
 
@@ -6485,7 +6485,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Form2 = __webpack_require__(15);
+var _Form2 = __webpack_require__(16);
 
 var _Form3 = _interopRequireDefault(_Form2);
 
@@ -6785,7 +6785,7 @@ var _Menu = __webpack_require__(32);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
-var _UserService = __webpack_require__(13);
+var _UserService = __webpack_require__(14);
 
 var _UserService2 = _interopRequireDefault(_UserService);
 
@@ -7570,6 +7570,10 @@ var _strategyControl = __webpack_require__(33);
 
 var _strategyControl2 = _interopRequireDefault(_strategyControl);
 
+var _Notify = __webpack_require__(12);
+
+var _Notify2 = _interopRequireDefault(_Notify);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -7596,6 +7600,7 @@ var MenuStartController = function (_Controller) {
 
 		MenuStartController.__instance = _this;
 
+		_this.notify = new _Notify2.default();
 		_this.theme = new _style2.default();
 		_this.flag = true;
 		_this.controllSettings = new _ControllSettings2.default();
@@ -7627,13 +7632,25 @@ var MenuStartController = function (_Controller) {
 			document.getElementById('menu-button-playOfflineGame').addEventListener('click', function (event) {
 				event.preventDefault();
 				_strategyControl2.default.setOfflineStrategy();
-				_this2._router.go('/play');
+
+				var widthUserDisplay = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+				if (widthUserDisplay < 414) {
+					_this2.notify.notify('mobile version is not available');
+				} else {
+					_this2._router.go('/play');
+				}
 			});
 
 			document.getElementById('menu-button-playGame').addEventListener('click', function (event) {
 				event.preventDefault();
 				_strategyControl2.default.setMultiStrategy();
-				_this2._router.go('/play');
+
+				var widthUserDisplay = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+				if (widthUserDisplay < 414) {
+					_this2.notify.notify('mobile version is not available');
+				} else {
+					_this2._router.go('/play');
+				}
 			});
 
 			if (this.flag) {
@@ -7788,7 +7805,7 @@ var PlayGameController = function (_Controller) {
 	}, {
 		key: 'hide',
 		value: function hide() {
-			this.game.exit();
+			_index2.default.exit();
 		}
 	}]);
 
@@ -8541,7 +8558,7 @@ exports.default = Message;
 var url = __webpack_require__(113);
 var parser = __webpack_require__(26);
 var Manager = __webpack_require__(50);
-var debug = __webpack_require__(12)('socket.io-client');
+var debug = __webpack_require__(13)('socket.io-client');
 
 /**
  * Module exports.
@@ -8639,7 +8656,7 @@ exports.Socket = __webpack_require__(55);
  */
 
 var parseuri = __webpack_require__(45);
-var debug = __webpack_require__(12)('socket.io-client:url');
+var debug = __webpack_require__(13)('socket.io-client:url');
 
 /**
  * Module exports.
@@ -12656,7 +12673,7 @@ var _Controller2 = __webpack_require__(4);
 
 var _Controller3 = _interopRequireDefault(_Controller2);
 
-var _Form = __webpack_require__(15);
+var _Form = __webpack_require__(16);
 
 var _Form2 = _interopRequireDefault(_Form);
 
@@ -12664,7 +12681,7 @@ var _style = __webpack_require__(5);
 
 var _style2 = _interopRequireDefault(_style);
 
-var _Notify = __webpack_require__(16);
+var _Notify = __webpack_require__(12);
 
 var _Notify2 = _interopRequireDefault(_Notify);
 
@@ -12774,7 +12791,7 @@ var _Controller2 = __webpack_require__(4);
 
 var _Controller3 = _interopRequireDefault(_Controller2);
 
-var _Form = __webpack_require__(15);
+var _Form = __webpack_require__(16);
 
 var _Form2 = _interopRequireDefault(_Form);
 
@@ -12782,11 +12799,11 @@ var _style = __webpack_require__(5);
 
 var _style2 = _interopRequireDefault(_style);
 
-var _Notify = __webpack_require__(16);
+var _Notify = __webpack_require__(12);
 
 var _Notify2 = _interopRequireDefault(_Notify);
 
-var _Http = __webpack_require__(14);
+var _Http = __webpack_require__(15);
 
 var _Http2 = _interopRequireDefault(_Http);
 

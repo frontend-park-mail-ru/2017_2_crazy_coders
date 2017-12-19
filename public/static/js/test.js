@@ -387,7 +387,8 @@ module.exports = function transferFlags(assertion, object, includeAll) {
 /* 10 */,
 /* 11 */,
 /* 12 */,
-/* 13 */
+/* 13 */,
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -399,7 +400,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Http = __webpack_require__(14);
+var _Http = __webpack_require__(15);
 
 var _Http2 = _interopRequireDefault(_Http);
 
@@ -559,7 +560,7 @@ var UserService = function () {
 exports.default = UserService;
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -661,7 +662,6 @@ var Http = function () {
 exports.default = Http;
 
 /***/ }),
-/* 15 */,
 /* 16 */,
 /* 17 */,
 /* 18 */,
@@ -11507,7 +11507,7 @@ var _chai = __webpack_require__(60);
 
 var _chai2 = _interopRequireDefault(_chai);
 
-var _UserService = __webpack_require__(13);
+var _UserService = __webpack_require__(14);
 
 var _UserService2 = _interopRequireDefault(_UserService);
 
