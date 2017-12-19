@@ -14,7 +14,7 @@ import StaticList from '../StaticList/StaticList';
 
 
 const earth       = require('../../../static/staticsGame/images/ground.jpg');
-const pause       = require('../../../static/staticsGame/images/pause_button.png');
+const pause       = require('../../../static/img/home.png');
 const box_tree    = require('../../../static/staticsGame/images/box_tree.png');
 const tanks       = require('../../../static/staticsGame/images/tanks.png');
 const tankLandingArea = require('../../../static/staticsGame/images/HelicopterLandingArea.png');
@@ -91,6 +91,7 @@ export default class WorldState extends State {
         this.enemyBullets = new EnemyBullets(this.game);
 
         this.pause = this.game.add.button(10, 10, "pause", this.startPause, this);
+        this.pause.fixedToCamera = true;
         this.pause.scale.setTo(0.2, 0.2);
         this.pause.frame = 1;
         this.pause['clicked'] = false;
@@ -194,7 +195,7 @@ export default class WorldState extends State {
     }
 
     startPause(): void {
-
+        window.open("/", "_self");
     };
 
     onServerStatisticsSnap(message) {
