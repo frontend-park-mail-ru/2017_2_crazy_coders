@@ -386,7 +386,8 @@ module.exports = function transferFlags(assertion, object, includeAll) {
 /* 9 */,
 /* 10 */,
 /* 11 */,
-/* 12 */
+/* 12 */,
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -398,11 +399,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Http = __webpack_require__(13);
+var _Http = __webpack_require__(14);
 
 var _Http2 = _interopRequireDefault(_Http);
 
-var _User = __webpack_require__(24);
+var _User = __webpack_require__(25);
 
 var _User2 = _interopRequireDefault(_User);
 
@@ -558,7 +559,7 @@ var UserService = function () {
 exports.default = UserService;
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -599,9 +600,9 @@ var Http = function () {
             // const url = this.baseUrl + address;
             // const url = 'http://82.202.246.5:8080' + address;
             // const url = 'http://localhost:8080/api' + address;
-            var url = 'http://10.100.122.201:8080/api' + address;
+            // const url = 'http://10.100.122.201:8080/api' + address;
             // const url = 'http://10.100.122.151:8080/api' + address;
-            // const url = 'https://tanks-backend.xyz/api' + address;
+            var url = 'https://tanks-backend.xyz/api' + address;
 
             console.log("[FetchGet] try get from " + url);
 
@@ -632,9 +633,9 @@ var Http = function () {
 
             // const url = 'http://82.202.246.5:8080' + address;
             // const url = 'http://localhost:8080/api' + address;
-            var url = 'http://10.100.122.201:8080/api' + address;
+            // const url = 'http://10.100.122.201:8080/api' + address;
             // const url = 'http://10.100.122.151:8080/api' + address;
-            // const url = 'https://tanks-backend.xyz/api' + address;
+            var url = 'https://tanks-backend.xyz/api' + address;
 
             console.log("[FetchPost] try post to " + url);
 
@@ -660,13 +661,13 @@ var Http = function () {
 exports.default = Http;
 
 /***/ }),
-/* 14 */,
 /* 15 */,
 /* 16 */,
 /* 17 */,
 /* 18 */,
 /* 19 */,
-/* 20 */
+/* 20 */,
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // This is (almost) directly from Node.js utils
@@ -1055,7 +1056,7 @@ function objectToString(o) {
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var config = __webpack_require__(7);
@@ -1085,7 +1086,7 @@ module.exports = function isProxyEnabled() {
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var config = __webpack_require__(7);
@@ -1153,13 +1154,13 @@ module.exports = function addLengthGuard (fn, assertionName, isChainable) {
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var config = __webpack_require__(7);
 var flag = __webpack_require__(1);
 var getProperties = __webpack_require__(64);
-var isProxyEnabled = __webpack_require__(21);
+var isProxyEnabled = __webpack_require__(22);
 
 /*!
  * Chai - proxify utility
@@ -1284,7 +1285,7 @@ function stringDistance(strA, strB, memo) {
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1394,7 +1395,6 @@ var User = function () {
 exports.default = User;
 
 /***/ }),
-/* 25 */,
 /* 26 */,
 /* 27 */,
 /* 28 */,
@@ -2084,7 +2084,7 @@ module.exports = function getProperties(object) {
  * Module dependancies
  */
 
-var inspect = __webpack_require__(20);
+var inspect = __webpack_require__(21);
 var config = __webpack_require__(7);
 
 /**
@@ -2303,7 +2303,7 @@ exports.getActual = __webpack_require__(62);
  * Inspect util
  */
 
-exports.inspect = __webpack_require__(20);
+exports.inspect = __webpack_require__(21);
 
 /*!
  * Object Display util
@@ -2411,19 +2411,19 @@ exports.checkError = __webpack_require__(170);
  * Proxify util
  */
 
-exports.proxify = __webpack_require__(23);
+exports.proxify = __webpack_require__(24);
 
 /*!
  * addLengthGuard util
  */
 
-exports.addLengthGuard = __webpack_require__(22);
+exports.addLengthGuard = __webpack_require__(23);
 
 /*!
  * isProxyEnabled helper
  */
 
-exports.isProxyEnabled = __webpack_require__(21);
+exports.isProxyEnabled = __webpack_require__(22);
 
 /*!
  * isNaN method
@@ -2837,7 +2837,7 @@ module.exports = function expectTypes(obj, types) {
 
 var flag = __webpack_require__(1)
   , getActual = __webpack_require__(62)
-  , inspect = __webpack_require__(20)
+  , inspect = __webpack_require__(21)
   , objDisplay = __webpack_require__(65);
 
 /**
@@ -3384,7 +3384,7 @@ function isPrimitive(value) {
 
 var chai = __webpack_require__(6);
 var flag = __webpack_require__(1);
-var isProxyEnabled = __webpack_require__(21);
+var isProxyEnabled = __webpack_require__(22);
 var transferFlags = __webpack_require__(8);
 
 /**
@@ -3460,10 +3460,10 @@ module.exports = function addProperty(ctx, name, getter) {
  * MIT Licensed
  */
 
-var addLengthGuard = __webpack_require__(22);
+var addLengthGuard = __webpack_require__(23);
 var chai = __webpack_require__(6);
 var flag = __webpack_require__(1);
-var proxify = __webpack_require__(23);
+var proxify = __webpack_require__(24);
 var transferFlags = __webpack_require__(8);
 
 /**
@@ -3536,7 +3536,7 @@ module.exports = function addMethod(ctx, name, method) {
 
 var chai = __webpack_require__(6);
 var flag = __webpack_require__(1);
-var isProxyEnabled = __webpack_require__(21);
+var isProxyEnabled = __webpack_require__(22);
 var transferFlags = __webpack_require__(8);
 
 /**
@@ -3632,10 +3632,10 @@ module.exports = function overwriteProperty(ctx, name, getter) {
  * MIT Licensed
  */
 
-var addLengthGuard = __webpack_require__(22);
+var addLengthGuard = __webpack_require__(23);
 var chai = __webpack_require__(6);
 var flag = __webpack_require__(1);
-var proxify = __webpack_require__(23);
+var proxify = __webpack_require__(24);
 var transferFlags = __webpack_require__(8);
 
 /**
@@ -3734,10 +3734,10 @@ module.exports = function overwriteMethod(ctx, name, method) {
  * Module dependencies
  */
 
-var addLengthGuard = __webpack_require__(22);
+var addLengthGuard = __webpack_require__(23);
 var chai = __webpack_require__(6);
 var flag = __webpack_require__(1);
-var proxify = __webpack_require__(23);
+var proxify = __webpack_require__(24);
 var transferFlags = __webpack_require__(8);
 
 /*!
@@ -3967,7 +3967,7 @@ module.exports = function overwriteChainableMethod(ctx, name, method, chainingBe
  * Module dependancies
  */
 
-var inspect = __webpack_require__(20);
+var inspect = __webpack_require__(21);
 
 /**
  * ### .compareByInspect(mixed, mixed)
@@ -11507,7 +11507,7 @@ var _chai = __webpack_require__(60);
 
 var _chai2 = _interopRequireDefault(_chai);
 
-var _UserService = __webpack_require__(12);
+var _UserService = __webpack_require__(13);
 
 var _UserService2 = _interopRequireDefault(_UserService);
 
