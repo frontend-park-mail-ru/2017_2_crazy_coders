@@ -5,6 +5,7 @@ import ControllSettings from '../modules/ControllSettings';
 import Theme from '../static/css/style';
 
 import strategy from '../game/classes/strategyControl.ts';
+import Notify from '../components/Form/ValidForm/Notify/Notify';
 
 class MenuStartController extends Controller {
 
@@ -16,6 +17,7 @@ class MenuStartController extends Controller {
 		super(opt);
 		MenuStartController.__instance = this;
 
+		this.notify = new Notify();
 		this.theme = new Theme();
 		this.flag = true;
 		this.controllSettings = new ControllSettings();
@@ -44,13 +46,26 @@ class MenuStartController extends Controller {
 		document.getElementById('menu-button-playOfflineGame').addEventListener('click', event => {
 			event.preventDefault();
 			strategy.setOfflineStrategy();
-			this._router.go('/play');
+
+			let widthUserDisplay = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+			if (widthUserDisplay < 414) {
+				this.notify.notify('mobile version is not available');
+			} else {
+				this._router.go('/play');
+			}
 		});
 
 		document.getElementById('menu-button-playGame').addEventListener('click', event => {
 			event.preventDefault();
 			strategy.setMultiStrategy();
-			this._router.go('/play');
+
+
+			let widthUserDisplay = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+			if (widthUserDisplay < 414) {
+				this.notify.notify('mobile version is not available');
+			} else {
+				this._router.go('/play');
+			}
 		});
 
 		if (this.flag) {

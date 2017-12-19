@@ -134,7 +134,6 @@
 }
 
 .table__img_keyboard {
-  background: url('../../static/img/keyboard.png') no-repeat;
   width: 600px;
   height: 200px;
   background-size: cover;
@@ -142,7 +141,6 @@
 }
 
 .table__img_keyboard_with_mouse {
-  background: url('../../static/img/keyboard_with_mouse.png') no-repeat;
   width: 800px;
   height: 200px;
   background-size: cover;
@@ -151,7 +149,6 @@
 
 @media screen and (max-width: 414px) {
   .table__img_keyboard {
-    background: url('../../static/img/keyboard.png') no-repeat;
     width: 400px;
     height: 130px;
     background-size: contain;
@@ -159,7 +156,6 @@
   }
 
   .table__img_keyboard_with_mouse {
-    background: url('../../static/img/keyboard_with_mouse.png') no-repeat;
     width: 400px;
     height: 100px;
     background-size: contain;
