@@ -769,6 +769,50 @@ var deleteMargin = {
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var instance = null;
+
+var ControllSettings = function () {
+    function ControllSettings() {
+        _classCallCheck(this, ControllSettings);
+
+        if (!instance) {
+            this._mouseControll = false;
+            instance = this;
+        }
+
+        return instance;
+    }
+
+    _createClass(ControllSettings, [{
+        key: "mouseControll",
+        get: function get() {
+            return instance._mouseControll;
+        },
+        set: function set(value) {
+            instance._mouseControll = value;
+        }
+    }]);
+
+    return ControllSettings;
+}();
+
+exports.default = ControllSettings;
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
 
 /**
  * Expose `Emitter`.
@@ -935,7 +979,7 @@ Emitter.prototype.hasListeners = function(event){
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -1548,7 +1592,7 @@ exports.decodePayloadAsBinary = function (data, binaryType, callback) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -1740,7 +1784,7 @@ function localstorage() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(46)))
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1752,11 +1796,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Http = __webpack_require__(13);
+var _Http = __webpack_require__(14);
 
 var _Http2 = _interopRequireDefault(_Http);
 
-var _User = __webpack_require__(24);
+var _User = __webpack_require__(25);
 
 var _User2 = _interopRequireDefault(_User);
 
@@ -1912,7 +1956,7 @@ var UserService = function () {
 exports.default = UserService;
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1953,9 +1997,9 @@ var Http = function () {
             // const url = this.baseUrl + address;
             // const url = 'http://82.202.246.5:8080' + address;
             // const url = 'http://localhost:8080/api' + address;
-            var url = 'http://10.100.122.201:8080/api' + address;
+            // const url = 'http://10.100.122.201:8080/api' + address;
             // const url = 'http://10.100.122.151:8080/api' + address;
-            // const url = 'https://tanks-backend.xyz/api' + address;
+            var url = 'https://tanks-backend.xyz/api' + address;
 
             console.log("[FetchGet] try get from " + url);
 
@@ -1986,9 +2030,9 @@ var Http = function () {
 
             // const url = 'http://82.202.246.5:8080' + address;
             // const url = 'http://localhost:8080/api' + address;
-            var url = 'http://10.100.122.201:8080/api' + address;
+            // const url = 'http://10.100.122.201:8080/api' + address;
             // const url = 'http://10.100.122.151:8080/api' + address;
-            // const url = 'https://tanks-backend.xyz/api' + address;
+            var url = 'https://tanks-backend.xyz/api' + address;
 
             console.log("[FetchPost] try post to " + url);
 
@@ -2014,7 +2058,7 @@ var Http = function () {
 exports.default = Http;
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2131,7 +2175,7 @@ var Form = function (_Block) {
 exports.default = Form;
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2203,7 +2247,7 @@ var Notify = function () {
 exports.default = Notify;
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2230,7 +2274,7 @@ exports.default = State;
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports) {
 
 /**
@@ -2273,7 +2317,7 @@ exports.decode = function(qs){
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports) {
 
 
@@ -2285,7 +2329,7 @@ module.exports = function(a, b){
 };
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -2477,11 +2521,11 @@ function localstorage() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(46)))
 
 /***/ }),
-/* 20 */,
 /* 21 */,
 /* 22 */,
 /* 23 */,
-/* 24 */
+/* 24 */,
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2591,50 +2635,6 @@ var User = function () {
 exports.default = User;
 
 /***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var instance = null;
-
-var ControllSettings = function () {
-    function ControllSettings() {
-        _classCallCheck(this, ControllSettings);
-
-        if (!instance) {
-            this._mouseControll = false;
-            instance = this;
-        }
-
-        return instance;
-    }
-
-    _createClass(ControllSettings, [{
-        key: "mouseControll",
-        get: function get() {
-            return instance._mouseControll;
-        },
-        set: function set(value) {
-            instance._mouseControll = value;
-        }
-    }]);
-
-    return ControllSettings;
-}();
-
-exports.default = ControllSettings;
-
-/***/ }),
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2643,8 +2643,8 @@ exports.default = ControllSettings;
  * Module dependencies.
  */
 
-var debug = __webpack_require__(11)('socket.io-parser');
-var Emitter = __webpack_require__(9);
+var debug = __webpack_require__(12)('socket.io-parser');
+var Emitter = __webpack_require__(10);
 var hasBin = __webpack_require__(48);
 var binary = __webpack_require__(116);
 var isBuf = __webpack_require__(49);
@@ -3092,8 +3092,8 @@ module.exports = function (opts) {
  * Module dependencies.
  */
 
-var parser = __webpack_require__(10);
-var Emitter = __webpack_require__(9);
+var parser = __webpack_require__(11);
+var Emitter = __webpack_require__(10);
 
 /**
  * Module exports.
@@ -3261,7 +3261,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Notify = __webpack_require__(15);
+var _Notify = __webpack_require__(16);
 
 var _Notify2 = _interopRequireDefault(_Notify);
 
@@ -3354,7 +3354,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Notify = __webpack_require__(15);
+var _Notify = __webpack_require__(16);
 
 var _Notify2 = _interopRequireDefault(_Notify);
 
@@ -3697,22 +3697,22 @@ var TankBody = /** @class */ (function (_super) {
     };
     TankBody.prototype.update = function () {
         // величина угла поворота
-        if (this._cursor.left.isDown || this.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
+        if (this.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
             this._body.angle -= 5;
         }
-        else if (this._cursor.right.isDown || this.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
+        else if (this.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
             this._body.angle += 5;
         }
         // скорость
-        if (this._cursor.up.isDown || this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
-            this._currentSpeed = 210;
+        if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
+            this._currentSpeed = 251;
         }
         else {
             if (this._currentSpeed > 0) {
-                this._currentSpeed -= 100; // скорость торможения
+                this._currentSpeed -= 25; // скорость торможения
             }
         }
-        // движение и поворотами
+        // движение c поворотами
         if (this._currentSpeed > 0) {
             this._game.physics.arcade.velocityFromRotation(this._body.rotation, this._currentSpeed, this._body.body.velocity);
         }
@@ -3766,12 +3766,15 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
+var ControllSettings_js_1 = __webpack_require__(9);
 var TankTurret = /** @class */ (function (_super) {
     __extends(TankTurret, _super);
     function TankTurret(game, cursor) {
         var _this = _super.call(this, game, 0, 0) || this;
         _this._game = game;
         _this._cursor = cursor;
+        _this._controlSettings = new ControllSettings_js_1.default();
+        _this._dPhi = 0.07;
         _this.create();
         return _this;
     }
@@ -3780,7 +3783,32 @@ var TankTurret = /** @class */ (function (_super) {
         this._turret.anchor.setTo(0.5, 0.5);
     };
     TankTurret.prototype.update = function () {
-        this._turret.rotation = this._game.physics.arcade.angleToPointer(this._turret);
+        if (this._controlSettings.mouseControll === true) {
+            this._turret.rotation = this._game.physics.arcade.angleToPointer(this._turret);
+        }
+        else {
+            var angle = this._turret.rotation;
+            if (this._cursor.left.isDown) {
+                var newAngle = angle - this._dPhi;
+                if (newAngle < -180) {
+                    var delta = -180 - newAngle;
+                    this._turret.rotation = 180 - delta;
+                }
+                else {
+                    this._turret.rotation = newAngle;
+                }
+            }
+            else if (this._cursor.right.isDown) {
+                var newAngle = angle + this._dPhi;
+                if (newAngle >= 180) {
+                    var delta = newAngle - 180;
+                    this._turret.rotation = -180 + delta;
+                }
+                else {
+                    this._turret.rotation = newAngle;
+                }
+            }
+        }
     };
     Object.defineProperty(TankTurret.prototype, "turretCoordinate", {
         set: function (coordinate) {
@@ -4462,11 +4490,11 @@ function isBuf(obj) {
 
 var eio = __webpack_require__(118);
 var Socket = __webpack_require__(55);
-var Emitter = __webpack_require__(9);
+var Emitter = __webpack_require__(10);
 var parser = __webpack_require__(26);
 var on = __webpack_require__(56);
 var bind = __webpack_require__(57);
-var debug = __webpack_require__(11)('socket.io-client:manager');
+var debug = __webpack_require__(12)('socket.io-client:manager');
 var indexOf = __webpack_require__(54);
 var Backoff = __webpack_require__(134);
 
@@ -5099,11 +5127,11 @@ function polling (opts) {
  */
 
 var Transport = __webpack_require__(28);
-var parseqs = __webpack_require__(17);
-var parser = __webpack_require__(10);
-var inherit = __webpack_require__(18);
+var parseqs = __webpack_require__(18);
+var parser = __webpack_require__(11);
+var inherit = __webpack_require__(19);
 var yeast = __webpack_require__(53);
-var debug = __webpack_require__(19)('engine.io-client:polling');
+var debug = __webpack_require__(20)('engine.io-client:polling');
 
 /**
  * Module exports.
@@ -5441,12 +5469,12 @@ module.exports = function(arr, obj){
  */
 
 var parser = __webpack_require__(26);
-var Emitter = __webpack_require__(9);
+var Emitter = __webpack_require__(10);
 var toArray = __webpack_require__(133);
 var on = __webpack_require__(56);
 var bind = __webpack_require__(57);
-var debug = __webpack_require__(11)('socket.io-client:socket');
-var parseqs = __webpack_require__(17);
+var debug = __webpack_require__(12)('socket.io-client:socket');
+var parseqs = __webpack_require__(18);
 
 /**
  * Module exports.
@@ -6015,7 +6043,7 @@ exports.default = Constants;
 "use strict";
 
 
-var _UserService = __webpack_require__(12);
+var _UserService = __webpack_require__(13);
 
 var _UserService2 = _interopRequireDefault(_UserService);
 
@@ -6244,7 +6272,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Form2 = __webpack_require__(14);
+var _Form2 = __webpack_require__(15);
 
 var _Form3 = _interopRequireDefault(_Form2);
 
@@ -6457,7 +6485,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Form2 = __webpack_require__(14);
+var _Form2 = __webpack_require__(15);
 
 var _Form3 = _interopRequireDefault(_Form2);
 
@@ -6757,7 +6785,7 @@ var _Menu = __webpack_require__(32);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
-var _UserService = __webpack_require__(12);
+var _UserService = __webpack_require__(13);
 
 var _UserService2 = _interopRequireDefault(_UserService);
 
@@ -7356,7 +7384,7 @@ exports.default = Table;
 var pug = __webpack_require__(3);
 
 function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (data) {var pug_indent = [];
-pug_html = pug_html + "\n\u003Cdiv class=\"table\"\u003E\n  \u003Cdiv class=\"table__title\"\u003E" + (pug.escape(null == (pug_interp = data.title) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E\n  \u003Cdiv class=\"table__content\"\u003E\n    \u003Ctable" + (pug.attr("class", pug.classes(["table__tag",data.classTable], [false,true]), false, true)) + "\u003E\n      \u003Ctr class=\"table__tr\"\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = 'MOUSE CONTROL') ? "" : pug_interp)) + "\n          \u003Clabel class=\"table__switch\"\u003E\n            \u003Cinput class=\"table__checkbox\" type=\"checkbox\"\u003E\u003Cspan class=\"table__slider\"\u003E\u003C\u002Fspan\u003E\n          \u003C\u002Flabel\u003E\n        \u003C\u002Ftd\u003E\n      \u003C\u002Ftr\u003E\n      \u003Ctr class=\"table__tr\"\u003E\n        \u003Ctd class=\"table__td\"\u003E\u003Cimg class=\"table__img_keyboard\" src=\"\u002Fimg\u002Fkeyboard.png\"\u003E\u003Cimg class=\"table__img_keyboard_with_mouse\" src=\"\u002Fimg\u002Fkeyboard_with_mouse.png\"\u003E\u003C\u002Ftd\u003E\n      \u003C\u002Ftr\u003E\n    \u003C\u002Ftable\u003E\n  \u003C\u002Fdiv\u003E\n  \u003Cdiv class=\"table__back\"\u003E\n    \u003Cbutton" + (" class=\"table__button\""+pug.attr("id", data.idButton, true, true)) + "\u003E" + (pug.escape(null == (pug_interp = 'BACK') ? "" : pug_interp)) + "\u003C\u002Fbutton\u003E\n  \u003C\u002Fdiv\u003E\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for_with?locals_for_with.data:typeof data!=="undefined"?data:undefined));;return pug_html;};
+pug_html = pug_html + "\n\u003Cdiv class=\"table\"\u003E\n  \u003Cdiv class=\"table__title\"\u003E" + (pug.escape(null == (pug_interp = data.title) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E\n  \u003Cdiv class=\"table__content\"\u003E\n    \u003Ctable" + (pug.attr("class", pug.classes(["table__tag",data.classTable], [false,true]), false, true)) + "\u003E\n      \u003Ctr class=\"table__tr\"\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = 'MOUSE CONTROL') ? "" : pug_interp)) + "\n          \u003Clabel class=\"table__switch\"\u003E\n            \u003Cinput class=\"table__checkbox\" type=\"checkbox\"\u003E\u003Cspan class=\"table__slider\"\u003E\u003C\u002Fspan\u003E\n          \u003C\u002Flabel\u003E\n        \u003C\u002Ftd\u003E\n      \u003C\u002Ftr\u003E\n      \u003Ctr class=\"table__tr\"\u003E\n        \u003Ctd class=\"table__td\"\u003E\u003Cimg class=\"table__img_keyboard\"\u003E\u003Cimg class=\"table__img_keyboard_with_mouse\"\u003E\u003C\u002Ftd\u003E\n      \u003C\u002Ftr\u003E\n    \u003C\u002Ftable\u003E\n  \u003C\u002Fdiv\u003E\n  \u003Cdiv class=\"table__back\"\u003E\n    \u003Cbutton" + (" class=\"table__button\""+pug.attr("id", data.idButton, true, true)) + "\u003E" + (pug.escape(null == (pug_interp = 'BACK') ? "" : pug_interp)) + "\u003C\u002Fbutton\u003E\n  \u003C\u002Fdiv\u003E\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for_with?locals_for_with.data:typeof data!=="undefined"?data:undefined));;return pug_html;};
 module.exports = template;
 
 /***/ }),
@@ -7530,7 +7558,7 @@ var _Controller2 = __webpack_require__(4);
 
 var _Controller3 = _interopRequireDefault(_Controller2);
 
-var _ControllSettings = __webpack_require__(25);
+var _ControllSettings = __webpack_require__(9);
 
 var _ControllSettings2 = _interopRequireDefault(_ControllSettings);
 
@@ -7571,6 +7599,7 @@ var MenuStartController = function (_Controller) {
 		_this.theme = new _style2.default();
 		_this.flag = true;
 		_this.controllSettings = new _ControllSettings2.default();
+		_this._isGetProfile = false;
 		console.log('[MenuStartController.constructor] mausecontroll = ' + _this.controllSettings.mouseControll);
 		_this.addListener();
 		return _this;
@@ -7658,10 +7687,13 @@ var MenuStartController = function (_Controller) {
 			this.userService.getProfile().then(function (resp) {
 				console.log("[userService.getProfile] response: " + JSON.stringify(resp));
 				_this3.userService.user.set(resp);
-				_this3.controllSettings.mouseControll = resp.mouseControlEnabled;
+				if (_this3._isGetProfile === false) {
+					_this3.controllSettings.mouseControll = resp.mouseControlEnabled;
+				}
 				_this3.page_parts.get("RegMenu").data.user = _this3.userService.user.getUsername();
 				_this3.page_parts.get("RegMenu").getClassElement().hidden = false;
 				_this3.addListener();
+				_this3._isGetProfile = true;
 				// this.page_parts.get("RegMenu").show();
 			}).catch(function (err) {
 				console.log("[userService.getProfile] err: " + err);
@@ -7783,7 +7815,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
-var state_1 = __webpack_require__(16);
+var state_1 = __webpack_require__(17);
 var titlepage = __webpack_require__(35);
 var loaderImage = __webpack_require__(98);
 var tankLandingArea = __webpack_require__(36);
@@ -7831,7 +7863,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
-var state_1 = __webpack_require__(16);
+var state_1 = __webpack_require__(17);
 // Webpack will replace these imports with a URLs to images
 var tanks = __webpack_require__(37);
 var tanksJSON = __webpack_require__(100);
@@ -7938,7 +7970,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
-var state_1 = __webpack_require__(16);
+var state_1 = __webpack_require__(17);
 // The main state of the game
 var MainState = /** @class */ (function (_super) {
     __extends(MainState, _super);
@@ -7986,7 +8018,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
-var state_1 = __webpack_require__(16);
+var state_1 = __webpack_require__(17);
 var Tank_1 = __webpack_require__(107);
 var TreeBox_1 = __webpack_require__(108);
 var Client_1 = __webpack_require__(110);
@@ -8002,6 +8034,7 @@ var pause = __webpack_require__(39);
 var box_tree = __webpack_require__(40);
 var tanks = __webpack_require__(37);
 var tankLandingArea = __webpack_require__(36);
+var ControllSettings_js_1 = __webpack_require__(9);
 var WorldState = /** @class */ (function (_super) {
     __extends(WorldState, _super);
     function WorldState() {
@@ -8052,6 +8085,7 @@ var WorldState = /** @class */ (function (_super) {
         this.pause.frame = 1;
         this.pause['clicked'] = false;
         this.statistics = new StaticList_1.default(this.game, this.game.user.id);
+        this._controlSettings = new ControllSettings_js_1.default();
         this.game.camera.follow(this.tank._tank._body);
         // this.game.camera.deadzone = new Phaser.Rectangle(15, 15, 50, 30);
         // this.game.camera.focusOnXY(0, 0);
@@ -8071,8 +8105,15 @@ var WorldState = /** @class */ (function (_super) {
         this.land.tilePosition.y = -this.camera.y;
         this.tank.update();
         // fire then click right mouse button or space
-        if (this.game.input.activePointer.isDown || this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
-            this.fire();
+        if (this._controlSettings.mouseControll) {
+            if (this.game.input.activePointer.isDown) {
+                this.fire();
+            }
+        }
+        else {
+            if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+                this.fire();
+            }
         }
         if (this.client.socket.readyState !== 0) {
             if (this.tank.isKilled === true && this.isSendSpawnRequest == false) {
@@ -8099,7 +8140,15 @@ var WorldState = /** @class */ (function (_super) {
             this.tank._nextFire = this.time.now + this.tank._fireRate;
             var bullet = this.tankBullets.tankBullets.getFirstExists(false);
             bullet.reset(this.tank._turret._turret.x, this.tank._turret._turret.y);
-            bullet.rotation = this.physics.arcade.moveToPointer(bullet, 3500, this.game.input.activePointer);
+            if (this._controlSettings.mouseControll) {
+                bullet.rotation = this.physics.arcade.moveToPointer(bullet, 3500, this.game.input.activePointer);
+            }
+            else {
+                var degToRad = function (deg) { return deg / 180 * Math.PI; };
+                var directX = this.tank._tank.currentPosition.xCoordinate - 1000 * Math.cos(degToRad(180 - this.tank._turret._turret.angle));
+                var directY = this.tank._tank.currentPosition.yCoordinate + 1000 * Math.sin(degToRad(this.tank._turret._turret.angle));
+                bullet.rotation = this.physics.arcade.moveToXY(bullet, directX, directY, 3500);
+            }
             this.tank.isShoot = true;
         }
     };
@@ -8417,10 +8466,10 @@ var Client = /** @class */ (function () {
         // this.socket = io('ws://10.100.122.201:8080/game');
         // console.log('Info: try get instants of WebSocket.');
         // this.socket = new WebSocket('ws://localhost:8080/game');
-        this.socket = new WebSocket('ws://10.100.122.201:8080/api/game');
+        // this.socket = new WebSocket('ws://10.100.122.201:8080/api/game');
         // this.socket = new WebSocket('ws://10.100.122.151:8080/api/game');
         // this.socket = new WebSocket('ws://82.202.246.5:8080/game');
-        // this.socket = new WebSocket('wss://tanks-backend.xyz/api/game');
+        this.socket = new WebSocket('wss://tanks-backend.xyz/api/game');
         this.message = new Message_1.default(this);
         console.log('Info: try create \"onopen\" function.');
         this.socket.onopen = (function () {
@@ -8490,7 +8539,7 @@ exports.default = Message;
 var url = __webpack_require__(113);
 var parser = __webpack_require__(26);
 var Manager = __webpack_require__(50);
-var debug = __webpack_require__(11)('socket.io-client');
+var debug = __webpack_require__(12)('socket.io-client');
 
 /**
  * Module exports.
@@ -8588,7 +8637,7 @@ exports.Socket = __webpack_require__(55);
  */
 
 var parseuri = __webpack_require__(45);
-var debug = __webpack_require__(11)('socket.io-client:url');
+var debug = __webpack_require__(12)('socket.io-client:url');
 
 /**
  * Module exports.
@@ -9051,7 +9100,7 @@ module.exports = __webpack_require__(119);
  * @api public
  *
  */
-module.exports.parser = __webpack_require__(10);
+module.exports.parser = __webpack_require__(11);
 
 
 /***/ }),
@@ -9063,12 +9112,12 @@ module.exports.parser = __webpack_require__(10);
  */
 
 var transports = __webpack_require__(51);
-var Emitter = __webpack_require__(9);
-var debug = __webpack_require__(19)('engine.io-client:socket');
+var Emitter = __webpack_require__(10);
+var debug = __webpack_require__(20)('engine.io-client:socket');
 var index = __webpack_require__(54);
-var parser = __webpack_require__(10);
+var parser = __webpack_require__(11);
 var parseuri = __webpack_require__(45);
-var parseqs = __webpack_require__(17);
+var parseqs = __webpack_require__(18);
 
 /**
  * Module exports.
@@ -9203,7 +9252,7 @@ Socket.protocol = parser.protocol; // this is an int
 Socket.Socket = Socket;
 Socket.Transport = __webpack_require__(28);
 Socket.transports = __webpack_require__(51);
-Socket.parser = __webpack_require__(10);
+Socket.parser = __webpack_require__(11);
 
 /**
  * Creates transport of the given type.
@@ -9837,9 +9886,9 @@ try {
 
 var XMLHttpRequest = __webpack_require__(27);
 var Polling = __webpack_require__(52);
-var Emitter = __webpack_require__(9);
-var inherit = __webpack_require__(18);
-var debug = __webpack_require__(19)('engine.io-client:polling-xhr');
+var Emitter = __webpack_require__(10);
+var inherit = __webpack_require__(19);
+var debug = __webpack_require__(20)('engine.io-client:polling-xhr');
 
 /**
  * Module exports.
@@ -11024,7 +11073,7 @@ function coerce(val) {
  */
 
 var Polling = __webpack_require__(52);
-var inherit = __webpack_require__(18);
+var inherit = __webpack_require__(19);
 
 /**
  * Module exports.
@@ -11261,11 +11310,11 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
  */
 
 var Transport = __webpack_require__(28);
-var parser = __webpack_require__(10);
-var parseqs = __webpack_require__(17);
-var inherit = __webpack_require__(18);
+var parser = __webpack_require__(11);
+var parseqs = __webpack_require__(18);
+var inherit = __webpack_require__(19);
 var yeast = __webpack_require__(53);
-var debug = __webpack_require__(19)('engine.io-client:websocket');
+var debug = __webpack_require__(20)('engine.io-client:websocket');
 var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
 if (typeof window === 'undefined') {
@@ -12605,7 +12654,7 @@ var _Controller2 = __webpack_require__(4);
 
 var _Controller3 = _interopRequireDefault(_Controller2);
 
-var _Form = __webpack_require__(14);
+var _Form = __webpack_require__(15);
 
 var _Form2 = _interopRequireDefault(_Form);
 
@@ -12613,11 +12662,11 @@ var _style = __webpack_require__(5);
 
 var _style2 = _interopRequireDefault(_style);
 
-var _Notify = __webpack_require__(15);
+var _Notify = __webpack_require__(16);
 
 var _Notify2 = _interopRequireDefault(_Notify);
 
-var _ControllSettings = __webpack_require__(25);
+var _ControllSettings = __webpack_require__(9);
 
 var _ControllSettings2 = _interopRequireDefault(_ControllSettings);
 
@@ -12723,7 +12772,7 @@ var _Controller2 = __webpack_require__(4);
 
 var _Controller3 = _interopRequireDefault(_Controller2);
 
-var _Form = __webpack_require__(14);
+var _Form = __webpack_require__(15);
 
 var _Form2 = _interopRequireDefault(_Form);
 
@@ -12731,13 +12780,17 @@ var _style = __webpack_require__(5);
 
 var _style2 = _interopRequireDefault(_style);
 
-var _Notify = __webpack_require__(15);
+var _Notify = __webpack_require__(16);
 
 var _Notify2 = _interopRequireDefault(_Notify);
 
-var _Http = __webpack_require__(13);
+var _Http = __webpack_require__(14);
 
 var _Http2 = _interopRequireDefault(_Http);
+
+var _ControllSettings = __webpack_require__(9);
+
+var _ControllSettings2 = _interopRequireDefault(_ControllSettings);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12765,6 +12818,7 @@ var SignUpController = function (_Controller) {
 
         SignUpController.__instance = _this;
         _this.theme = new _style2.default();
+        _this.controllSettings = new _ControllSettings2.default();
         _this.addListener();
         return _this;
     }
@@ -12780,7 +12834,7 @@ var SignUpController = function (_Controller) {
             });
 
             this.page_parts.get('SignUp').onSubmitSignUpForm(function (formdata) {
-                _this2.userService.signUp(formdata.username, formdata.email, formdata.password, false).then(function (data) {
+                _this2.userService.signUp(formdata.username, formdata.email, formdata.password, _this2.controllSettings.mouseControll).then(function (data) {
                     _this2.userService.user.set(data);
                     console.log("[onSubmitSignUpForm] Success sign up");
                     _Form2.default.reset();
@@ -13068,7 +13122,7 @@ var _Controller2 = __webpack_require__(4);
 
 var _Controller3 = _interopRequireDefault(_Controller2);
 
-var _ControllSettings = __webpack_require__(25);
+var _ControllSettings = __webpack_require__(9);
 
 var _ControllSettings2 = _interopRequireDefault(_ControllSettings);
 
