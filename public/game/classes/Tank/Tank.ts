@@ -77,6 +77,4 @@ export default class TankState extends Phaser.Sprite {
     get isShoot(): boolean {
         return this._isShoot;
     }
-
-
 }

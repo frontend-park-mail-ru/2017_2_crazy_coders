@@ -9,6 +9,7 @@ import SignInController from '../../controllers/SignInController';
 import SignUpController from '../../controllers/SignUpController';
 import ScoreListController from '../../controllers/ScoreListController';
 import AboutUsController from '../../controllers/AboutUsController';
+import SettingsController from '../../controllers/SettingsController';
 import Theme from '../css/style';
 
 import Game from '../../game/classes/index';
@@ -16,13 +17,12 @@ import Game from '../../game/classes/index';
 let theme = new Theme();
 let userService = new UserService();
 let page = new CreatePage();
-// import RegisterSW from '../../modules/ServiceWorker';
-//
-// RegisterSW();
+
+import RegisterSW from '../../modules/ServiceWorker';
+RegisterSW();
 
 theme.changeTheme();
 
-// let game = new Game();
 
 (new Router())
     .addRoute('/', MenuStartController, {userService: userService, page: page})
@@ -31,5 +31,6 @@ theme.changeTheme();
     .addRoute('/signup', SignUpController, {userService: userService, page: page})
     .addRoute('/score', ScoreListController, {userService: userService, page: page})
     .addRoute('/about', AboutUsController, {userService: userService, page: page})
+    .addRoute('/settings', SettingsController, {userService: userService, page: page})
     .startRoute();
 

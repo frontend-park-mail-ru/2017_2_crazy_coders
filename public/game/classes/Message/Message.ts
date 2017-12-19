@@ -14,7 +14,7 @@ export default class Message {
     }
 
     sendJoinGameMsg() {
-        debugger;
+        // debugger;
         this.send(JSON.stringify(this.joinGameMessage));
     };
 

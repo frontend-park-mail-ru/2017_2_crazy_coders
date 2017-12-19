@@ -1,4 +1,4 @@
-import Phaser from '../../phaser';
+// import Phaser from '../../phaser.min';
 import EnemyTank from '../Tank/EnemyTank';
 import Constants from '../Constants/Constant';
 
