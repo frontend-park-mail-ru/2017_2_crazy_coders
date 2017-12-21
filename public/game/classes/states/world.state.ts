@@ -200,7 +200,7 @@ export default class WorldState extends State {
 
     onServerStatisticsSnap(message) {
         if(message.leaders) {
-            this.statistics.updateList(message.leaders);
+            this.statistics.updateList(message.leaders, this.tank.kills);
         }
     }
 
@@ -256,6 +256,8 @@ export default class WorldState extends State {
                 if(tankSnapshot.health <= 0) {
                     this.tank.kill();
                 }
+
+                this.tank.kills = tankSnapshot.kills;
             }
 
             if (tankSnapshot.userId !== this.game.user.id && !~this.enemyArray.indexOf(tankSnapshot.userId)) {

@@ -25,7 +25,11 @@ export default class StaticList {
                                                                                                                                     boundsAlignH: "center", boundsAlignV: "middle" } ))
     }
 
-    updateList(statistics: Array<any>): void {
+    updateList(statistics: Array<any>, kills: number): void {
+
+        if(kills === null) {
+            kills = 0;
+        }
 
         for(let i = 0; i < this.list.children.length; i++) {
             this.list.children[i].kill();
@@ -37,12 +41,13 @@ export default class StaticList {
             let name = statistics[i].username;
 
             if(name.length > 10) {
-                name = name.slice(0, 3) + '...' + name.slice(name.length - 5, name.length);
+                name = name.slice(0, 3) + '...' + name.slice(name.length - 3, name.length);
             } else if (name.length < 10) {
                 name += Array(10 - name.length). join(' ');
             }
             this.addLine(`${i + 1}. ${name}  ${statistics[i].kills}`, ((i + 1) + 2) * 20);
         }
+        this.addLine(`     KILLS: ${kills}`, this.game.height - 30);
 
         this.list.fixedToCamera = true;
 

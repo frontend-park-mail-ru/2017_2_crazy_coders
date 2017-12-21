@@ -19,6 +19,7 @@ export default class TankState extends Phaser.Sprite {
     _title:string;
     _healthBar: any;
     _uid: number;
+    _kills: number;
     _isShoot: boolean;
     isKilled: boolean;
 
@@ -76,5 +77,13 @@ export default class TankState extends Phaser.Sprite {
 
     get isShoot(): boolean {
         return this._isShoot;
+    }
+
+    set kills(kills: number): void {
+        this._kills = kills;
+    }
+
+    get kills(): number {
+        return this._kills;
     }
 }
