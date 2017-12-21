@@ -105,7 +105,7 @@ export default class UserService {
 					return response.json();
 				} else {
 					console.log('[UserService.getOwnScore] status = ' + response.status);
-					throw response;
+					return null;
 				}
 			})
 	}

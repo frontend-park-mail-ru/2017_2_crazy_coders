@@ -67,7 +67,14 @@ class ScoreListController extends Controller {
                     this.userService.getOwnScore()
                         .then((resp) => {
 
-                            debugger;
+                            if (resp === null) {
+                                console.log('need try one multiplayer game; statistics is null');
+                                this.page_parts.get("Scoreboard").data.users = topList;
+                                this.page_parts.get("Scoreboard").getClassElement().hidden = false;
+                                this.addListener();
+                                return;
+                            }
+
                             console.log("arrived own statistic");
 
                             topList.push({
@@ -94,11 +101,6 @@ class ScoreListController extends Controller {
                             this.page_parts.get("Scoreboard").getClassElement().hidden = false;
                             this.addListener();
 
-                        }).catch((err) => {
-                            console.log('need try one multiplayer game');
-                            this.page_parts.get("Scoreboard").data.users = topList;
-                            this.page_parts.get("Scoreboard").getClassElement().hidden = false;
-                            this.addListener();
                         });
 
                 } else {
