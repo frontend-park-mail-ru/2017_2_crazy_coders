@@ -289,7 +289,8 @@ class World extends Phaser.State {
 			button.clicked = true;
 		}
 		this.timePause = this.total;
-		this.game.state.start('PauseMenu', true, false);
+		// this.game.state.start('PauseMenu', true, false);
+        window.open("/", "_self");
 	}
 
 }
