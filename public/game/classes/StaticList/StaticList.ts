@@ -13,16 +13,27 @@ export default class StaticList {
     }
 
     create() {
-        this.list.add(this.game.make.text(this.game.width - 300, 10, '   STATISTICS',  {font: "bold 26px Courier New", fill: '#db0e59',
-                                                                                                                            boundsAlignH: "center", boundsAlignV: "middle" } ))
-        this.list.add(this.game.make.text(this.game.width - 300, 40, '№  USERNAME  KILLS',  {font: "bold 22px Courier New", fill: '#d566db',
-            boundsAlignH: "center", boundsAlignV: "middle" } ))
+
+        let nameText = this.game.make.text(this.game.width - 300, 10, '   STATISTICS',
+            {font: "bold 26px Courier New", fill: '#db0e59',boundsAlignH: "center", boundsAlignV: "middle" });
+        nameText.stroke = '#000000';
+        nameText.strokeThickness = 4;
+        this.list.add(nameText);
+
+        let headerText = this.game.make.text(this.game.width - 300, 40, '№  USERNAME  KILLS',
+            {font: "bold 22px Courier New", fill: '#d566db', boundsAlignH: "center", boundsAlignV: "middle" });
+        headerText.stroke = '#000000';
+        headerText.strokeThickness = 3;
+        this.list.add(headerText);
 
     }
 
     addLine(dataString: string, yPosition: number): void {
-        this.list.add(this.game.make.text(this.game.width - 300, yPosition, dataString,  {font: "bold 22px Courier New", fill: '#9370DB',
-                                                                                                                                    boundsAlignH: "center", boundsAlignV: "middle" } ))
+        let statistictext = this.game.make.text(this.game.width - 300, yPosition, dataString,
+            {font: "bold 22px Courier New", fill: '#9370DB', boundsAlignH: "center", boundsAlignV: "middle" });
+        statistictext.stroke = '#000000';
+        statistictext.strokeThickness = 2;
+        this.list.add(statistictext);
     }
 
     updateList(statistics: Array<any>, kills: number): void {
@@ -45,38 +56,12 @@ export default class StaticList {
             } else if (name.length < 10) {
                 name += Array(10 - name.length). join(' ');
             }
-            this.addLine(`${i + 1}. ${name}  ${statistics[i].kills}`, ((i + 1) + 2) * 20);
+            this.addLine(`${i + 1}. ${name}  ${statistics[i].kills}`, ((i + 1) + 2) * 22);
         }
-        this.addLine(`     KILLS: ${kills}`, this.game.height - 30);
+
+        this.addLine(`            KILLS: ${kills}`, this.game.height - 30);
 
         this.list.fixedToCamera = true;
 
     }
-
-    // updatePosition(x: number, y: number): void {
-    //     let i = 0;
-    //     let width = 0;
-    //     let height = 0;
-    //
-    //     debugger;
-    //
-    //     if( (x + document.documentElement.clientWidth) >= this.game.world.width || (x - document.documentElement.clientWidth) < 0 ) {
-    //         width = document.documentElement.clientWidth - 200;
-    //     } else {
-    //         width = x + document.documentElement.clientWidth - 200;
-    //     }
-    //
-    //     if ( (y - document.documentElement.clientHeight/2) <= 0 ) {
-    //         height = 10;
-    //     } else {
-    //         height = y - document.documentElement.clientHeight/2 - 10;
-    //     }
-    //
-    //     for (let line of this.list.children) {
-    //         i++;
-    //         line.position.set(width, y);
-    //         // line.position.set(x, y);
-    //     }
-    // }
-
 }

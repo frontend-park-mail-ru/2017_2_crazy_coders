@@ -8,6 +8,8 @@ export default class Lable {
         this._game = game;
         this._textStyle = { font: "bold 32px Arial", fill: "#120dff", boundsAlignH: "center", boundsAlignV: "middle" };
         this._text =  this._game.add.text(coordinate.xCoordinate, coordinate.yCoordinate, content, this._textStyle);
+        this._text.stroke = '#000000';
+        this._text.strokeThickness = 1;
         this._text.anchor.set(0.5);
         this._scale = scale;
     }
