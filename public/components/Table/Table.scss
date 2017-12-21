@@ -64,6 +64,15 @@
     padding: 10px;
   }
 
+  &__owner {
+    font-weight: bold;
+  }
+
+  &__scoreboardHeader {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
   &__img_keyboard {
     width: 600px;
     height: 200px;
