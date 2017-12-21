@@ -7,18 +7,25 @@ div.table
     div.table__content
         table.table__tag(class=data.classTable)
             tr.table__tr
-                td.table__td='Position'
-                td.table__td='Username'
-                td.table__td='Kills'
-                td.table__td='Deaths'
-                td.table__td='Max Kills'
+                td.table__td.table__scoreboardHeader='Position'
+                td.table__td.table__scoreboardHeader='Username'
+                td.table__td.table__scoreboardHeader='Kills'
+                td.table__td.table__scoreboardHeader='Deaths'
+                td.table__td.table__scoreboardHeader='Max Kills'
             each user in data.users
                 tr.table__tr
-                    td.table__td=user.position
-                    td.table__td=user.username
-                    td.table__td=user.kills
-                    td.table__td=user.deaths
-                    td.table__td=user.maxKills
+                    if user.isOwner
+                        td.table__td=user.position
+                        td.table__td.table__owner=user.username
+                        td.table__td=user.kills
+                        td.table__td=user.deaths
+                        td.table__td=user.maxKills
+                    else
+                        td.table__td=user.position
+                        td.table__td=user.username
+                        td.table__td=user.kills
+                        td.table__td=user.deaths
+                        td.table__td=user.maxKills
 
     div.table__back
         button.table__button(id=data.idButton)='BACK'

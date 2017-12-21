@@ -98,6 +98,18 @@ export default class UserService {
 			});
 	}
 
+	getOwnScore() {
+		return Http.FetchGet('/statistic')
+			.then((response) => {
+				if (response.status === 200) {
+					return response.json();
+				} else {
+					console.log('[UserService.getOwnScore] status = ' + response.status);
+					throw response;
+				}
+			})
+	}
+
 	sendControllSettings(value) {
 		return Http.FetchPost('/updateMouseControlEnabled', {"mouseControlEnabled": value})
 			.then((response) => {
