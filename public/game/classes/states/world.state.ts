@@ -136,12 +136,12 @@ export default class WorldState extends State {
 
         if(this.client.socket.readyState !== 0) { // websocket connecting, message can't be sending
 
-            if (this.tank.isKilled === true && this.isSendSpawnRequest == false) {
+            if (this.tank.isKilled === true && this.isSendSpawnRequest === false) {
                 this.isSendSpawnRequest = true;
                 this.client.message.sendClientSnap(
                     (new SpawnRequest(this.game.user.id, this.game.user.username)).spawnSnap);
 
-            } else if (this.isSendSpawnRequest == false) {
+            } else if (this.isSendSpawnRequest === false) {
 
                 this.client.message.sendClientSnap(
                     (new Snap(this.game.user.id,

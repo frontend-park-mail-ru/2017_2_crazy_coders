@@ -44,8 +44,8 @@ export default class ValidSignInForm {
     validForm() {
         let flag = true;
 
-        const minLenPassword = 6,
-            maxLenPassword = 18;
+        const minLenPassword = 1,
+            maxLenPassword = 24;
 
         if (!isCorrectEmail(this.email)) {
             flag = false;
