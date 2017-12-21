@@ -682,6 +682,50 @@ exports.default = Controller;
 
 
 Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var instance = null;
+
+var ControllSettings = function () {
+    function ControllSettings() {
+        _classCallCheck(this, ControllSettings);
+
+        if (!instance) {
+            this._mouseControll = false;
+            instance = this;
+        }
+
+        return instance;
+    }
+
+    _createClass(ControllSettings, [{
+        key: "mouseControll",
+        get: function get() {
+            return instance._mouseControll;
+        },
+        set: function set(value) {
+            instance._mouseControll = value;
+        }
+    }]);
+
+    return ControllSettings;
+}();
+
+exports.default = ControllSettings;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
@@ -763,53 +807,9 @@ var deleteMargin = {
 };
 
 /***/ }),
-/* 6 */,
 /* 7 */,
 /* 8 */,
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var instance = null;
-
-var ControllSettings = function () {
-    function ControllSettings() {
-        _classCallCheck(this, ControllSettings);
-
-        if (!instance) {
-            this._mouseControll = false;
-            instance = this;
-        }
-
-        return instance;
-    }
-
-    _createClass(ControllSettings, [{
-        key: "mouseControll",
-        get: function get() {
-            return instance._mouseControll;
-        },
-        set: function set(value) {
-            instance._mouseControll = value;
-        }
-    }]);
-
-    return ControllSettings;
-}();
-
-exports.default = ControllSettings;
-
-/***/ }),
+/* 9 */,
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1985,6 +1985,18 @@ var UserService = function () {
 					return response.json();
 				} else {
 					console.log(response.json());
+					throw response;
+				}
+			});
+		}
+	}, {
+		key: 'getOwnScore',
+		value: function getOwnScore() {
+			return _Http2.default.FetchGet('/statistic').then(function (response) {
+				if (response.status === 200) {
+					return response.json();
+				} else {
+					console.log('[UserService.getOwnScore] status = ' + response.status);
 					throw response;
 				}
 			});
@@ -3319,8 +3331,8 @@ var ValidSignInForm = function () {
     value: function validForm() {
       var flag = true;
 
-      var minLenPassword = 6,
-          maxLenPassword = 18;
+      var minLenPassword = 1,
+          maxLenPassword = 24;
 
       if (!isCorrectEmail(this.email)) {
         flag = false;
@@ -3425,10 +3437,10 @@ var ValidSignUpForm = function () {
 		value: function validForm() {
 			var flag = true;
 
-			var minLenUsername = 4,
-			    maxLenUsername = 15,
-			    minLenPassword = 6,
-			    maxLenPassword = 18;
+			var minLenUsername = 1,
+			    maxLenUsername = 24,
+			    minLenPassword = 1,
+			    maxLenPassword = 24;
 
 			if (!isCorrectTextField(this.username, minLenUsername, maxLenUsername)) {
 				flag = false;
@@ -3597,7 +3609,7 @@ var strategyControl_1 = __webpack_require__(33);
 var App = /** @class */ (function (_super) {
     __extends(App, _super);
     function App(User) {
-        var _this = _super.call(this, document.documentElement.clientWidth, document.documentElement.clientHeight, Phaser.AUTO, 'content', null) || this;
+        var _this = _super.call(this, Math.max(document.documentElement.clientWidth, window.innerWidth || 0), Math.max(document.documentElement.clientHeight, window.innerHeight || 0), Phaser.AUTO, 'content', null) || this;
         // super(1890, 1000, Phaser.AUTO, 'content', null);
         // super(800, 600, Phaser.AUTO, 'content', null);
         _this.user = User;
@@ -3766,7 +3778,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var ControllSettings_js_1 = __webpack_require__(9);
+var ControllSettings_js_1 = __webpack_require__(5);
 var TankTurret = /** @class */ (function (_super) {
     __extends(TankTurret, _super);
     function TankTurret(game, cursor) {
@@ -3845,6 +3857,8 @@ var Lable = /** @class */ (function () {
         this._game = game;
         this._textStyle = { font: "bold 32px Arial", fill: "#120dff", boundsAlignH: "center", boundsAlignV: "middle" };
         this._text = this._game.add.text(coordinate.xCoordinate, coordinate.yCoordinate, content, this._textStyle);
+        this._text.stroke = '#000000';
+        this._text.strokeThickness = 1;
         this._text.anchor.set(0.5);
         this._scale = scale;
     }
@@ -6083,7 +6097,7 @@ var _SettingsController = __webpack_require__(151);
 
 var _SettingsController2 = _interopRequireDefault(_SettingsController);
 
-var _style = __webpack_require__(5);
+var _style = __webpack_require__(6);
 
 var _style2 = _interopRequireDefault(_style);
 
@@ -7105,21 +7119,35 @@ pug_html = pug_html + "\n\u003Cdiv class=\"table\"\u003E\n  \u003Cdiv class=\"ta
 if ((data.userScore)) {
 pug_html = pug_html + "\n  \u003Cdiv class=\"table__player\"\u003E" + (pug.escape(null == (pug_interp = 'Your score: ' + data.userScore) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E";
 }
-pug_html = pug_html + "\n  \u003Cdiv class=\"table__content\"\u003E\n    \u003Ctable" + (pug.attr("class", pug.classes(["table__tag",data.classTable], [false,true]), false, true)) + "\u003E\n      \u003Ctr class=\"table__tr\"\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = 'Position') ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = 'Username') ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = 'Kills') ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = 'Deaths') ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = 'Max Kills') ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n      \u003C\u002Ftr\u003E";
+pug_html = pug_html + "\n  \u003Cdiv class=\"table__content\"\u003E\n    \u003Ctable" + (pug.attr("class", pug.classes(["table__tag",data.classTable], [false,true]), false, true)) + "\u003E\n      \u003Ctr class=\"table__tr\"\u003E\n        \u003Ctd class=\"table__td table__scoreboardHeader\"\u003E" + (pug.escape(null == (pug_interp = 'Position') ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td table__scoreboardHeader\"\u003E" + (pug.escape(null == (pug_interp = 'Username') ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td table__scoreboardHeader\"\u003E" + (pug.escape(null == (pug_interp = 'Kills') ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td table__scoreboardHeader\"\u003E" + (pug.escape(null == (pug_interp = 'Deaths') ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td table__scoreboardHeader\"\u003E" + (pug.escape(null == (pug_interp = 'Max Kills') ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n      \u003C\u002Ftr\u003E";
 // iterate data.users
 ;(function(){
   var $$obj = data.users;
   if ('number' == typeof $$obj.length) {
       for (var pug_index0 = 0, $$l = $$obj.length; pug_index0 < $$l; pug_index0++) {
         var user = $$obj[pug_index0];
-pug_html = pug_html + "\n      \u003Ctr class=\"table__tr\"\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.position) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.username) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.kills) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.deaths) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.maxKills) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n      \u003C\u002Ftr\u003E";
+pug_html = pug_html + "\n      \u003Ctr class=\"table__tr\"\u003E";
+if (user.isOwner) {
+pug_html = pug_html + "\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.position) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td table__owner\"\u003E" + (pug.escape(null == (pug_interp = user.username) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.kills) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.deaths) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.maxKills) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E";
+}
+else {
+pug_html = pug_html + "\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.position) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.username) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.kills) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.deaths) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.maxKills) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E";
+}
+pug_html = pug_html + "\n      \u003C\u002Ftr\u003E";
       }
   } else {
     var $$l = 0;
     for (var pug_index0 in $$obj) {
       $$l++;
       var user = $$obj[pug_index0];
-pug_html = pug_html + "\n      \u003Ctr class=\"table__tr\"\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.position) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.username) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.kills) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.deaths) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.maxKills) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n      \u003C\u002Ftr\u003E";
+pug_html = pug_html + "\n      \u003Ctr class=\"table__tr\"\u003E";
+if (user.isOwner) {
+pug_html = pug_html + "\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.position) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td table__owner\"\u003E" + (pug.escape(null == (pug_interp = user.username) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.kills) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.deaths) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.maxKills) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E";
+}
+else {
+pug_html = pug_html + "\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.position) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.username) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.kills) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.deaths) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = user.maxKills) ? "" : pug_interp)) + "\u003C\u002Ftd\u003E";
+}
+pug_html = pug_html + "\n      \u003C\u002Ftr\u003E";
     }
   }
 }).call(this);
@@ -7384,7 +7412,7 @@ exports.default = Table;
 var pug = __webpack_require__(3);
 
 function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (data) {var pug_indent = [];
-pug_html = pug_html + "\n\u003Cdiv class=\"table\"\u003E\n  \u003Cdiv class=\"table__title\"\u003E" + (pug.escape(null == (pug_interp = data.title) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E\n  \u003Cdiv class=\"table__content\"\u003E\n    \u003Ctable" + (pug.attr("class", pug.classes(["table__tag",data.classTable], [false,true]), false, true)) + "\u003E\n      \u003Ctr class=\"table__tr\"\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = 'MOUSE CONTROL') ? "" : pug_interp)) + "\n          \u003Clabel class=\"table__switch\"\u003E\n            \u003Cinput class=\"table__checkbox\" type=\"checkbox\"\u003E\u003Cspan class=\"table__slider\"\u003E\u003C\u002Fspan\u003E\n          \u003C\u002Flabel\u003E\n        \u003C\u002Ftd\u003E\n      \u003C\u002Ftr\u003E\n      \u003Ctr class=\"table__tr\"\u003E\n        \u003Ctd class=\"table__td\"\u003E\u003Cimg class=\"table__img_keyboard\"\u003E\u003Cimg class=\"table__img_keyboard_with_mouse\"\u003E\u003C\u002Ftd\u003E\n      \u003C\u002Ftr\u003E\n    \u003C\u002Ftable\u003E\n  \u003C\u002Fdiv\u003E\n  \u003Cdiv class=\"table__back\"\u003E\n    \u003Cbutton" + (" class=\"table__button\""+pug.attr("id", data.idButton, true, true)) + "\u003E" + (pug.escape(null == (pug_interp = 'BACK') ? "" : pug_interp)) + "\u003C\u002Fbutton\u003E\n  \u003C\u002Fdiv\u003E\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for_with?locals_for_with.data:typeof data!=="undefined"?data:undefined));;return pug_html;};
+pug_html = pug_html + "\n\u003Cdiv class=\"table\"\u003E\n  \u003Cdiv class=\"table__title\"\u003E" + (pug.escape(null == (pug_interp = data.title) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E\n  \u003Cdiv class=\"table__content\"\u003E\n    \u003Ctable" + (pug.attr("class", pug.classes(["table__tag",data.classTable], [false,true]), false, true)) + "\u003E\n      \u003Ctr class=\"table__tr\"\u003E\n        \u003Ctd class=\"table__td\"\u003E" + (pug.escape(null == (pug_interp = 'MOUSE CONTROL') ? "" : pug_interp)) + "\n          \u003Clabel class=\"table__switch\"\u003E\n            \u003Cinput class=\"table__checkbox\" type=\"checkbox\"\u003E\u003Cspan class=\"table__slider\"\u003E\u003C\u002Fspan\u003E\n          \u003C\u002Flabel\u003E\n        \u003C\u002Ftd\u003E\n      \u003C\u002Ftr\u003E\n      \u003Ctr class=\"table__tr\"\u003E\n        \u003Ctd class=\"table__td\"\u003E\u003Cimg class=\"table__img_keyboard\" src=\"\u002Fimg\u002Fkeyboard.png\"\u003E\u003Cimg class=\"table__img_keyboard_with_mouse\" src=\"\u002Fimg\u002Fkeyboard_with_mouse.png\"\u003E\u003C\u002Ftd\u003E\n      \u003C\u002Ftr\u003E\n    \u003C\u002Ftable\u003E\n  \u003C\u002Fdiv\u003E\n  \u003Cdiv class=\"table__back\"\u003E\n    \u003Cbutton" + (" class=\"table__button\""+pug.attr("id", data.idButton, true, true)) + "\u003E" + (pug.escape(null == (pug_interp = 'BACK') ? "" : pug_interp)) + "\u003C\u002Fbutton\u003E\n  \u003C\u002Fdiv\u003E\n\u003C\u002Fdiv\u003E";}.call(this,"data" in locals_for_with?locals_for_with.data:typeof data!=="undefined"?data:undefined));;return pug_html;};
 module.exports = template;
 
 /***/ }),
@@ -7558,11 +7586,11 @@ var _Controller2 = __webpack_require__(4);
 
 var _Controller3 = _interopRequireDefault(_Controller2);
 
-var _ControllSettings = __webpack_require__(9);
+var _ControllSettings = __webpack_require__(5);
 
 var _ControllSettings2 = _interopRequireDefault(_ControllSettings);
 
-var _style = __webpack_require__(5);
+var _style = __webpack_require__(6);
 
 var _style2 = _interopRequireDefault(_style);
 
@@ -7925,6 +7953,7 @@ var PreloaderState = /** @class */ (function (_super) {
     };
     PreloaderState.prototype.create = function () {
         console.debug('Assets loading completed');
+        this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         this._background = this.game.add.sprite(0, 0, 'titlepage');
         this._background.alpha = 0;
         var tween = this.game.add.tween(this._background).to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None, true);
@@ -7967,7 +7996,7 @@ module.exports = "../../img/5ddcf208bfb5ee103c39ea71c64a107f.png";
 /* 104 */
 /***/ (function(module, exports) {
 
-module.exports = "../../img/164e6752411c5f3c7738b5083e4b6d20.png";
+module.exports = "../../img/1ec878abc02f59ab966e9d4f4bbbff65.png";
 
 /***/ }),
 /* 105 */
@@ -8002,7 +8031,11 @@ var MainState = /** @class */ (function (_super) {
         this._logo.anchor.setTo(0.5, 0.5);
         this.add.tween(this._background).to({ alpha: 1 }, 2000, Phaser.Easing.Bounce.InOut, true);
         this.add.tween(this._logo).to({ y: 220 }, 2000, Phaser.Easing.Elastic.Out, true, 2000);
-        this.input.onDown.addOnce(this.fadeOut, this);
+    };
+    MainState.prototype.update = function () {
+        if (this.game.input.keyboard.isDown(Phaser.Keyboard.ENTER)) {
+            this.fadeOut();
+        }
     };
     MainState.prototype.fadeOut = function () {
         this.add.tween(this._background).to({ alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
@@ -8051,7 +8084,7 @@ var pause = __webpack_require__(39);
 var box_tree = __webpack_require__(40);
 var tanks = __webpack_require__(37);
 var tankLandingArea = __webpack_require__(36);
-var ControllSettings_js_1 = __webpack_require__(9);
+var ControllSettings_js_1 = __webpack_require__(5);
 var WorldState = /** @class */ (function (_super) {
     __extends(WorldState, _super);
     function WorldState() {
@@ -8134,11 +8167,11 @@ var WorldState = /** @class */ (function (_super) {
             }
         }
         if (this.client.socket.readyState !== 0) {
-            if (this.tank.isKilled === true && this.isSendSpawnRequest == false) {
+            if (this.tank.isKilled === true && this.isSendSpawnRequest === false) {
                 this.isSendSpawnRequest = true;
                 this.client.message.sendClientSnap((new SpawnRequest_1.default(this.game.user.id, this.game.user.username)).spawnSnap);
             }
-            else if (this.isSendSpawnRequest == false) {
+            else if (this.isSendSpawnRequest === false) {
                 this.client.message.sendClientSnap((new Snap_1.default(this.game.user.id, this.game.user.username, this.tank._tank.currentPosition.xCoordinate, this.tank._tank.currentPosition.yCoordinate, this.tank._tank._body.angle, this.tank._turret._turret.angle, this.tank.isShoot, this.tank.health)).playerSnap);
             }
         }
@@ -8176,7 +8209,7 @@ var WorldState = /** @class */ (function (_super) {
     ;
     WorldState.prototype.onServerStatisticsSnap = function (message) {
         if (message.leaders) {
-            this.statistics.updateList(message.leaders);
+            this.statistics.updateList(message.leaders, this.tank.kills);
         }
     };
     WorldState.prototype.onServerSpawnArrived = function (message) {
@@ -8218,6 +8251,7 @@ var WorldState = /** @class */ (function (_super) {
                 if (tankSnapshot.health <= 0) {
                     this.tank.kill();
                 }
+                this.tank.kills = tankSnapshot.kills;
             }
             if (tankSnapshot.userId !== this.game.user.id && !~this.enemyArray.indexOf(tankSnapshot.userId)) {
                 // console.log(`try create new enemy`);
@@ -8361,6 +8395,16 @@ var TankState = /** @class */ (function (_super) {
         },
         set: function (shoot) {
             this._isShoot = shoot;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TankState.prototype, "kills", {
+        get: function () {
+            return this._kills;
+        },
+        set: function (kills) {
+            this._kills = kills;
         },
         enumerable: true,
         configurable: true
@@ -12059,16 +12103,25 @@ var StaticList = /** @class */ (function () {
         this.create();
     }
     StaticList.prototype.create = function () {
-        this.list.add(this.game.make.text(this.game.width - 300, 10, '   STATISTICS', { font: "bold 26px Courier New", fill: '#db0e59',
-            boundsAlignH: "center", boundsAlignV: "middle" }));
-        this.list.add(this.game.make.text(this.game.width - 300, 40, '№  USERNAME  KILLS', { font: "bold 22px Courier New", fill: '#d566db',
-            boundsAlignH: "center", boundsAlignV: "middle" }));
+        var nameText = this.game.make.text(this.game.width - 300, 10, '   STATISTICS', { font: "bold 26px Courier New", fill: '#db0e59', boundsAlignH: "center", boundsAlignV: "middle" });
+        nameText.stroke = '#000000';
+        nameText.strokeThickness = 4;
+        this.list.add(nameText);
+        var headerText = this.game.make.text(this.game.width - 300, 40, '№  USERNAME  KILLS', { font: "bold 22px Courier New", fill: '#d566db', boundsAlignH: "center", boundsAlignV: "middle" });
+        headerText.stroke = '#000000';
+        headerText.strokeThickness = 3;
+        this.list.add(headerText);
     };
     StaticList.prototype.addLine = function (dataString, yPosition) {
-        this.list.add(this.game.make.text(this.game.width - 300, yPosition, dataString, { font: "bold 22px Courier New", fill: '#9370DB',
-            boundsAlignH: "center", boundsAlignV: "middle" }));
+        var statistictext = this.game.make.text(this.game.width - 300, yPosition, dataString, { font: "bold 22px Courier New", fill: '#9370DB', boundsAlignH: "center", boundsAlignV: "middle" });
+        statistictext.stroke = '#000000';
+        statistictext.strokeThickness = 2;
+        this.list.add(statistictext);
     };
-    StaticList.prototype.updateList = function (statistics) {
+    StaticList.prototype.updateList = function (statistics, kills) {
+        if (kills === null) {
+            kills = 0;
+        }
         for (var i = 0; i < this.list.children.length; i++) {
             this.list.children[i].kill();
         }
@@ -12076,13 +12129,14 @@ var StaticList = /** @class */ (function () {
         for (var i = 0; i < statistics.length; i++) {
             var name = statistics[i].username;
             if (name.length > 10) {
-                name = name.slice(0, 3) + '...' + name.slice(name.length - 5, name.length);
+                name = name.slice(0, 3) + '...' + name.slice(name.length - 3, name.length);
             }
             else if (name.length < 10) {
                 name += Array(10 - name.length).join(' ');
             }
-            this.addLine(i + 1 + ". " + name + "  " + statistics[i].kills, ((i + 1) + 2) * 20);
+            this.addLine(i + 1 + ". " + name + "  " + statistics[i].kills, ((i + 1) + 2) * 22);
         }
+        this.addLine("            KILLS: " + kills, this.game.height - 30);
         this.list.fixedToCamera = true;
     };
     return StaticList;
@@ -12294,6 +12348,10 @@ var _Constant = __webpack_require__(59);
 
 var _Constant2 = _interopRequireDefault(_Constant);
 
+var _ControllSettings = __webpack_require__(5);
+
+var _ControllSettings2 = _interopRequireDefault(_ControllSettings);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -12326,7 +12384,7 @@ var World = function (_Phaser$State) {
 			this.load.image('earth', 'static/staticsGame/images/ground.jpg');
 			this.load.spritesheet('kaboom', 'static/staticsGame/images/explosion.png', 64, 64, 23);
 
-			this.load.image('pause', 'static/staticsGame/images/pause_button.png');
+			this.load.image('pause', 'static/img/home.png');
 			this.load.image('box_tree', 'static/staticsGame/images/box_tree.png');
 		}
 	}, {
@@ -12428,6 +12486,11 @@ var World = function (_Phaser$State) {
 			this.camera.focusOnXY(0, 0);
 
 			this.cursors = this.input.keyboard.createCursorKeys();
+			this._controlSettings = new _ControllSettings2.default();
+			this._dPhi = 0.07;
+
+			//resize offline game
+			this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
 		}
 	}, {
 		key: 'update',
@@ -12449,26 +12512,64 @@ var World = function (_Phaser$State) {
 				}
 			}
 
-			// величина угла поворота
-			if (this.cursors.left.isDown) {
+			if (this.input.keyboard.isDown(Phaser.Keyboard.A)) {
 				this.tank.angle -= 5;
-			} else if (this.cursors.right.isDown) {
+			} else if (this.input.keyboard.isDown(Phaser.Keyboard.D)) {
 				this.tank.angle += 5;
 			}
 
 			// скорость
-			if (this.cursors.up.isDown) {
-				this.currentSpeed = 210;
+			if (this.input.keyboard.isDown(Phaser.Keyboard.W)) {
+				this.currentSpeed = 251;
 			} else {
 				if (this.currentSpeed > 0) {
-					this.currentSpeed -= 100; // скорость торможения
+					this.currentSpeed -= 25; // скорость торможения
 				}
 			}
 
-			// движение и поворотами
+			if (this._controlSettings.mouseControll === true) {
+				this.turret.rotation = this.physics.arcade.angleToPointer(this.turret);
+			} else {
+
+				var angle = this.turret.rotation;
+
+				if (this.cursors.left.isDown) {
+
+					var newAngle = angle - this._dPhi;
+
+					if (newAngle < -180) {
+						var delta = -180 - newAngle;
+						this.turret.rotation = 180 - delta;
+					} else {
+						this.turret.rotation = newAngle;
+					}
+				} else if (this.cursors.right.isDown) {
+
+					var _newAngle = angle + this._dPhi;
+
+					if (_newAngle >= 180) {
+						var _delta = _newAngle - 180;
+						this.turret.rotation = -180 + _delta;
+					} else {
+						this.turret.rotation = _newAngle;
+					}
+				}
+			}
+
+			if (this._controlSettings.mouseControll) {
+				if (this.input.activePointer.isDown) {
+					this.fire();
+				}
+			} else {
+				if (this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+					this.fire();
+				}
+			}
+
 			if (this.currentSpeed > 0) {
 				this.physics.arcade.velocityFromRotation(this.tank.rotation, this.currentSpeed, this.tank.body.velocity);
 			}
+
 			this.land.tilePosition.x = -this.camera.x;
 			this.land.tilePosition.y = -this.camera.y;
 
@@ -12480,13 +12581,6 @@ var World = function (_Phaser$State) {
 			// привязываем башню к танку
 			this.turret.x = this.tank.x;
 			this.turret.y = this.tank.y;
-
-			this.turret.rotation = this.physics.arcade.angleToPointer(this.turret);
-
-			// нажали кнокпу мыши
-			if (this.input.activePointer.isDown) {
-				this.fire();
-			}
 
 			if (this.gameTime - this.total < 0 || this.health <= 0 || this.enemiesAlive === 0) {
 				this.score = (this.gameTime - this.total) * 50 + (this.enemiesTotal - this.enemiesAlive) * 50;
@@ -12521,7 +12615,18 @@ var World = function (_Phaser$State) {
 
 				var bullet = this.bullets.getFirstExists(false);
 				bullet.reset(this.turret.x, this.turret.y);
-				bullet.rotation = this.physics.arcade.moveToPointer(bullet, 1000, this.input.activePointer, 500);
+
+				if (this._controlSettings.mouseControll) {
+					bullet.rotation = this.physics.arcade.moveToPointer(bullet, 1000, this.input.activePointer);
+				} else {
+					var degToRad = function degToRad(deg) {
+						return deg / 180 * Math.PI;
+					};
+					var directX = this.turret.x - 1000 * Math.cos(degToRad(180 - this.turret.angle));
+					var directY = this.turret.y + 1000 * Math.sin(degToRad(this.turret.angle));
+
+					bullet.rotation = this.physics.arcade.moveToXY(bullet, directX, directY, 3500);
+				}
 			}
 		}
 	}, {
@@ -12551,7 +12656,8 @@ var World = function (_Phaser$State) {
 				button.clicked = true;
 			}
 			this.timePause = this.total;
-			this.game.state.start('PauseMenu', true, false);
+			// this.game.state.start('PauseMenu', true, false);
+			window.open("/", "_self");
 		}
 	}]);
 
@@ -12677,7 +12783,7 @@ var _Form = __webpack_require__(16);
 
 var _Form2 = _interopRequireDefault(_Form);
 
-var _style = __webpack_require__(5);
+var _style = __webpack_require__(6);
 
 var _style2 = _interopRequireDefault(_style);
 
@@ -12685,7 +12791,7 @@ var _Notify = __webpack_require__(12);
 
 var _Notify2 = _interopRequireDefault(_Notify);
 
-var _ControllSettings = __webpack_require__(9);
+var _ControllSettings = __webpack_require__(5);
 
 var _ControllSettings2 = _interopRequireDefault(_ControllSettings);
 
@@ -12795,7 +12901,7 @@ var _Form = __webpack_require__(16);
 
 var _Form2 = _interopRequireDefault(_Form);
 
-var _style = __webpack_require__(5);
+var _style = __webpack_require__(6);
 
 var _style2 = _interopRequireDefault(_style);
 
@@ -12807,7 +12913,7 @@ var _Http = __webpack_require__(15);
 
 var _Http2 = _interopRequireDefault(_Http);
 
-var _ControllSettings = __webpack_require__(9);
+var _ControllSettings = __webpack_require__(5);
 
 var _ControllSettings2 = _interopRequireDefault(_ControllSettings);
 
@@ -12909,7 +13015,7 @@ var _Controller2 = __webpack_require__(4);
 
 var _Controller3 = _interopRequireDefault(_Controller2);
 
-var _style = __webpack_require__(5);
+var _style = __webpack_require__(6);
 
 var _style2 = _interopRequireDefault(_style);
 
@@ -12969,7 +13075,7 @@ var ScoreListController = function (_Controller) {
             var _this3 = this;
 
             this.page_parts.get("Header").show();
-            this.userService.getScorelist(5).then(function (resp) {
+            this.userService.getScorelist(3).then(function (resp) {
 
                 var topList = [];
 
@@ -12982,15 +13088,15 @@ var ScoreListController = function (_Controller) {
                         var user = _step.value;
 
                         topList.push({
+                            userId: user.userId,
                             position: user.position,
                             username: user.username,
                             kills: user.kills,
                             deaths: user.deaths,
-                            maxKills: user.maxKills
+                            maxKills: user.maxKills,
+                            isOwner: false
                         });
                     }
-
-                    // debugger;
                 } catch (err) {
                     _didIteratorError = true;
                     _iteratorError = err;
@@ -13006,17 +13112,73 @@ var ScoreListController = function (_Controller) {
                     }
                 }
 
-                _this3.page_parts.get("Scoreboard").data.users = topList;
+                var inTopFlag = false;
 
-                if (_this3.userService.isAuthorized()) {
-                    // this.page_parts.get("Scoreboard").data.userScore = this.userService.user.getScore();
-                    _this3.page_parts.get("Scoreboard").data.userScore = 10000;
-                } else {
-                    _this3.page_parts.get("Scoreboard").data.userScore = 0;
+                var _iteratorNormalCompletion2 = true;
+                var _didIteratorError2 = false;
+                var _iteratorError2 = undefined;
+
+                try {
+                    for (var _iterator2 = topList[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                        var userStatistic = _step2.value;
+
+                        if (userStatistic.userId === _this3.userService.user.id) {
+                            inTopFlag = true;
+                            userStatistic.isOwner = true;
+                        }
+                    }
+                } catch (err) {
+                    _didIteratorError2 = true;
+                    _iteratorError2 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                            _iterator2.return();
+                        }
+                    } finally {
+                        if (_didIteratorError2) {
+                            throw _iteratorError2;
+                        }
+                    }
                 }
 
-                _this3.page_parts.get("Scoreboard").getClassElement().hidden = false;
-                _this3.addListener();
+                if (_this3.userService.isAuthorized() && inTopFlag !== true) {
+
+                    _this3.userService.getOwnScore().then(function (resp) {
+
+                        debugger;
+                        console.log("arrived own statistic");
+
+                        topList.push({
+                            userId: null,
+                            position: '',
+                            username: '',
+                            kills: '...',
+                            deaths: '',
+                            maxKills: '',
+                            isOwner: false
+                        });
+
+                        topList.push({
+                            userId: null,
+                            position: resp.position,
+                            username: resp.username,
+                            kills: resp.kills,
+                            deaths: resp.deaths,
+                            maxKills: resp.maxKills,
+                            isOwner: true
+                        });
+
+                        _this3.page_parts.get("Scoreboard").data.users = topList;
+                        _this3.page_parts.get("Scoreboard").getClassElement().hidden = false;
+                        _this3.addListener();
+                    });
+                } else {
+
+                    _this3.page_parts.get("Scoreboard").data.users = topList;
+                    _this3.page_parts.get("Scoreboard").getClassElement().hidden = false;
+                    _this3.addListener();
+                }
             }).catch(function (err) {
                 console.log('bad answer');
             });
@@ -13051,7 +13213,7 @@ var _Controller2 = __webpack_require__(4);
 
 var _Controller3 = _interopRequireDefault(_Controller2);
 
-var _style = __webpack_require__(5);
+var _style = __webpack_require__(6);
 
 var _style2 = _interopRequireDefault(_style);
 
@@ -13141,11 +13303,11 @@ var _Controller2 = __webpack_require__(4);
 
 var _Controller3 = _interopRequireDefault(_Controller2);
 
-var _ControllSettings = __webpack_require__(9);
+var _ControllSettings = __webpack_require__(5);
 
 var _ControllSettings2 = _interopRequireDefault(_ControllSettings);
 
-var _style = __webpack_require__(5);
+var _style = __webpack_require__(6);
 
 var _style2 = _interopRequireDefault(_style);
 

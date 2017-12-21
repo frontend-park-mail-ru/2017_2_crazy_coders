@@ -94,6 +94,11 @@ class ScoreListController extends Controller {
                             this.page_parts.get("Scoreboard").getClassElement().hidden = false;
                             this.addListener();
 
+                        }).catch((err) => {
+                            console.log('need try one multiplayer game');
+                            this.page_parts.get("Scoreboard").data.users = topList;
+                            this.page_parts.get("Scoreboard").getClassElement().hidden = false;
+                            this.addListener();
                         });
 
                 } else {
@@ -102,10 +107,6 @@ class ScoreListController extends Controller {
                     this.page_parts.get("Scoreboard").getClassElement().hidden = false;
                     this.addListener();
                 }
-
-
-
-
 
             })
             .catch((err) => {

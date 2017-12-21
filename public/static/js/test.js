@@ -134,7 +134,8 @@ module.exports = function flag(obj, key, value) {
 /* 3 */,
 /* 4 */,
 /* 5 */,
-/* 6 */
+/* 6 */,
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -192,7 +193,7 @@ exports.util = util;
  * Configuration
  */
 
-var config = __webpack_require__(7);
+var config = __webpack_require__(8);
 exports.config = config;
 
 /*!
@@ -232,7 +233,7 @@ exports.use(assert);
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -332,7 +333,7 @@ module.exports = {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 /*!
@@ -383,7 +384,6 @@ module.exports = function transferFlags(assertion, object, includeAll) {
 
 
 /***/ }),
-/* 9 */,
 /* 10 */,
 /* 11 */,
 /* 12 */,
@@ -517,6 +517,18 @@ var UserService = function () {
 					return response.json();
 				} else {
 					console.log(response.json());
+					throw response;
+				}
+			});
+		}
+	}, {
+		key: 'getOwnScore',
+		value: function getOwnScore() {
+			return _Http2.default.FetchGet('/statistic').then(function (response) {
+				if (response.status === 200) {
+					return response.json();
+				} else {
+					console.log('[UserService.getOwnScore] status = ' + response.status);
 					throw response;
 				}
 			});
@@ -676,7 +688,7 @@ exports.default = Http;
 var getName = __webpack_require__(63);
 var getProperties = __webpack_require__(64);
 var getEnumerableProperties = __webpack_require__(160);
-var config = __webpack_require__(7);
+var config = __webpack_require__(8);
 
 module.exports = inspect;
 
@@ -1059,7 +1071,7 @@ function objectToString(o) {
 /* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var config = __webpack_require__(7);
+var config = __webpack_require__(8);
 
 /*!
  * Chai - isProxyEnabled helper
@@ -1089,7 +1101,7 @@ module.exports = function isProxyEnabled() {
 /* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var config = __webpack_require__(7);
+var config = __webpack_require__(8);
 
 var fnLengthDesc = Object.getOwnPropertyDescriptor(function () {}, 'length');
 
@@ -1157,7 +1169,7 @@ module.exports = function addLengthGuard (fn, assertionName, isChainable) {
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var config = __webpack_require__(7);
+var config = __webpack_require__(8);
 var flag = __webpack_require__(1);
 var getProperties = __webpack_require__(64);
 var isProxyEnabled = __webpack_require__(22);
@@ -1826,7 +1838,7 @@ return typeDetect;
 /* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(6);
+module.exports = __webpack_require__(7);
 
 
 /***/ }),
@@ -2085,7 +2097,7 @@ module.exports = function getProperties(object) {
  */
 
 var inspect = __webpack_require__(21);
-var config = __webpack_require__(7);
+var config = __webpack_require__(8);
 
 /**
  * ### .objDisplay(object)
@@ -2321,7 +2333,7 @@ exports.flag = __webpack_require__(1);
  * Flag transferring utility
  */
 
-exports.transferFlags = __webpack_require__(8);
+exports.transferFlags = __webpack_require__(9);
 
 /*!
  * Deep equal utility
@@ -3382,10 +3394,10 @@ function isPrimitive(value) {
  * MIT Licensed
  */
 
-var chai = __webpack_require__(6);
+var chai = __webpack_require__(7);
 var flag = __webpack_require__(1);
 var isProxyEnabled = __webpack_require__(22);
-var transferFlags = __webpack_require__(8);
+var transferFlags = __webpack_require__(9);
 
 /**
  * ### .addProperty(ctx, name, getter)
@@ -3461,10 +3473,10 @@ module.exports = function addProperty(ctx, name, getter) {
  */
 
 var addLengthGuard = __webpack_require__(23);
-var chai = __webpack_require__(6);
+var chai = __webpack_require__(7);
 var flag = __webpack_require__(1);
 var proxify = __webpack_require__(24);
-var transferFlags = __webpack_require__(8);
+var transferFlags = __webpack_require__(9);
 
 /**
  * ### .addMethod(ctx, name, method)
@@ -3534,10 +3546,10 @@ module.exports = function addMethod(ctx, name, method) {
  * MIT Licensed
  */
 
-var chai = __webpack_require__(6);
+var chai = __webpack_require__(7);
 var flag = __webpack_require__(1);
 var isProxyEnabled = __webpack_require__(22);
-var transferFlags = __webpack_require__(8);
+var transferFlags = __webpack_require__(9);
 
 /**
  * ### .overwriteProperty(ctx, name, fn)
@@ -3633,10 +3645,10 @@ module.exports = function overwriteProperty(ctx, name, getter) {
  */
 
 var addLengthGuard = __webpack_require__(23);
-var chai = __webpack_require__(6);
+var chai = __webpack_require__(7);
 var flag = __webpack_require__(1);
 var proxify = __webpack_require__(24);
-var transferFlags = __webpack_require__(8);
+var transferFlags = __webpack_require__(9);
 
 /**
  * ### .overwriteMethod(ctx, name, fn)
@@ -3735,10 +3747,10 @@ module.exports = function overwriteMethod(ctx, name, method) {
  */
 
 var addLengthGuard = __webpack_require__(23);
-var chai = __webpack_require__(6);
+var chai = __webpack_require__(7);
 var flag = __webpack_require__(1);
 var proxify = __webpack_require__(24);
-var transferFlags = __webpack_require__(8);
+var transferFlags = __webpack_require__(9);
 
 /*!
  * Module variables
@@ -3888,8 +3900,8 @@ module.exports = function addChainableMethod(ctx, name, method, chainingBehavior
  * MIT Licensed
  */
 
-var chai = __webpack_require__(6);
-var transferFlags = __webpack_require__(8);
+var chai = __webpack_require__(7);
+var transferFlags = __webpack_require__(9);
 
 /**
  * ### .overwriteChainableMethod(ctx, name, method, chainingBehavior)
@@ -4247,7 +4259,7 @@ module.exports = Number.isNaN || isNaN;
  * MIT Licensed
  */
 
-var config = __webpack_require__(7);
+var config = __webpack_require__(8);
 
 module.exports = function (_chai, util) {
   /*!
