@@ -129,6 +129,9 @@ class World extends Phaser.State {
 		this.cursors = this.input.keyboard.createCursorKeys();
         this._controlSettings = new ControllSettings();
         this._dPhi = 0.07;
+
+        //resize offline game
+		this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
 	}
 
 	update() {

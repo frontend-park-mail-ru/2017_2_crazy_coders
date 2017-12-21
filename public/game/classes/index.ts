@@ -14,7 +14,9 @@ export default class App extends Phaser.Game {
   user: any;
 
   constructor(User) {
-    super(document.documentElement.clientWidth, document.documentElement.clientHeight, Phaser.AUTO, 'content', null);
+    super(Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+          Math.max(document.documentElement.clientHeight, window.innerHeight || 0), 
+          Phaser.AUTO, 'content', null);
     // super(1890, 1000, Phaser.AUTO, 'content', null);
     // super(800, 600, Phaser.AUTO, 'content', null);
 
