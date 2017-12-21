@@ -7953,6 +7953,7 @@ var PreloaderState = /** @class */ (function (_super) {
     };
     PreloaderState.prototype.create = function () {
         console.debug('Assets loading completed');
+        this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         this._background = this.game.add.sprite(0, 0, 'titlepage');
         this._background.alpha = 0;
         var tween = this.game.add.tween(this._background).to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None, true);
