@@ -77,7 +77,7 @@ module.exports = {
 			},
             {
                 test: /\.mp3$/,
-                loader: 'file-loader'
+                loader: "file-loader?publicPath=../&name=../staticGame/music/[hash].[ext]"
             }
 		]
 	},
