@@ -5,6 +5,7 @@ import Form from '../components/Form/Form/Form';
 import Theme from '../static/css/style';
 import Notify from '../components/Form/ValidForm/Notify/Notify';
 import Http from "../modules/Http";
+import ControllSettings from '../modules/ControllSettings';
 
 
 class SignUpController extends Controller {
@@ -17,6 +18,7 @@ class SignUpController extends Controller {
         super(opt);
         SignUpController.__instance = this;
 		this.theme = new Theme();
+		this.controllSettings = new ControllSettings();
         this.addListener();
     }
 
@@ -29,7 +31,7 @@ class SignUpController extends Controller {
 
         this.page_parts.get('SignUp').onSubmitSignUpForm(formdata => {
             this.userService
-                .signUp(formdata.username, formdata.email, formdata.password)
+                .signUp(formdata.username, formdata.email, formdata.password, this.controllSettings.mouseControll)
                 .then((data) => { this.userService.user.set(data);
                     console.log("[onSubmitSignUpForm] Success sign up");
                     Form.reset();

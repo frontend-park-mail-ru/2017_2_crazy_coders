@@ -35,46 +35,85 @@ class ScoreListController extends Controller {
     show() {
         this.page_parts.get("Header").show();
         this.userService
-            .getScorelist(5)
+            .getScorelist(3)
             .then((resp) => {
 
                 const topList = [];
 
                 for (let user of resp) {
                     topList.push({
+                        userId: user.userId,
                         position: user.position,
                         username: user.username,
                         kills: user.kills,
                         deaths: user.deaths,
-                        maxKills: user.maxKills
+                        maxKills: user.maxKills,
+                        isOwner: false
                     })
                 }
 
-                debugger;
+                let inTopFlag = false;
 
-                this.page_parts.get("Scoreboard").data.users = topList;
-
-                if (this.userService.isAuthorized()) {
-                    // this.page_parts.get("Scoreboard").data.userScore = this.userService.user.getScore();
-                    this.page_parts.get("Scoreboard").data.userScore = 10000;
-                } else {
-                    this.page_parts.get("Scoreboard").data.userScore = 0;
+                for (let userStatistic of topList) {
+                    if (userStatistic.userId === this.userService.user.id) {
+                        inTopFlag = true;
+                        userStatistic.isOwner = true;
+                    }
                 }
-                // this.userService.getProfile().then( (ans) => {
-                // 		// this.page_parts.get("Scoreboard").data.userScore = this.userService.user.getScore();
-                // 	console.log('1000');
-                // 	this.page_parts.get("Scoreboard").data.userScore = 10000;
-                // }).catch( (badAns) => {
-                // 	console.log('err_1000');
-                // 	this.page_parts.get("Scoreboard").data.userScore = 0;
-                // });
 
-                this.page_parts.get("Scoreboard").getClassElement().hidden = false;
-                this.addListener();
+
+                if (this.userService.isAuthorized() && inTopFlag !== true) {
+
+                    this.userService.getOwnScore()
+                        .then((resp) => {
+
+                            debugger;
+                            console.log("arrived own statistic");
+
+                            topList.push({
+                                userId: null,
+                                position: '',
+                                username: '',
+                                kills: '...',
+                                deaths: '',
+                                maxKills: '',
+                                isOwner: false
+                            });
+
+                            topList.push({
+                                userId: null,
+                                position: resp.position,
+                                username: resp.username,
+                                kills: resp.kills,
+                                deaths: resp.deaths,
+                                maxKills: resp.maxKills,
+                                isOwner: true
+                            });
+
+                            this.page_parts.get("Scoreboard").data.users = topList;
+                            this.page_parts.get("Scoreboard").getClassElement().hidden = false;
+                            this.addListener();
+
+                        }).catch((err) => {
+                            console.log('need try one multiplayer game');
+                            this.page_parts.get("Scoreboard").data.users = topList;
+                            this.page_parts.get("Scoreboard").getClassElement().hidden = false;
+                            this.addListener();
+                        });
+
+                } else {
+
+                    this.page_parts.get("Scoreboard").data.users = topList;
+                    this.page_parts.get("Scoreboard").getClassElement().hidden = false;
+                    this.addListener();
+                }
+
             })
             .catch((err) => {
                 console.log('bad answer');
             });
+
+
 
     }
 

@@ -12,7 +12,7 @@ const titlepage   = require('../../../static/staticsGame/images/titlepage.jpg');
 const logo        = require('../../../static/staticsGame/images/logo.png');
 // const startAudio      = require('../../../static/staticsGame/music/boom.mp3');
 const earth       = require('../../../static/staticsGame/images/ground.jpg');
-const pause       = require('../../../static/staticsGame/images/pause_button.png');
+const pause       = require('../../../static/img/home.png');
 const box_tree    = require('../../../static/staticsGame/images/box_tree.png');
 
 // const tanks       = require('../../static/staticsGame/images/tanks.png');
@@ -49,6 +49,7 @@ export default class PreloaderState extends State {
 
     create(): void {
         console.debug('Assets loading completed');
+        this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         this._background = this.game.add.sprite(0, 0,'titlepage');
         this._background.alpha = 0;
         let tween = this.game.add.tween(this._background).to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None, true);

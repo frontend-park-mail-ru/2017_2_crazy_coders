@@ -1,4 +1,4 @@
-import Table from '../../components/Table/About/Table';
+import Table from '../../components/Table/Scoreboard/Table';
 
 let data = {
     idButton: 'score-button-back',

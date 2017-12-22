@@ -5,6 +5,7 @@ export default function RegisterSW() {
 				console.log(`good registration worker: ${registration}`);
 			})
 			.catch(error => {
+				console.log(error);
 				console.log(`bad registration worker: ${error}`);
 			});
 	}

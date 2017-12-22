@@ -44,17 +44,14 @@ export default class ValidSignInForm {
     validForm() {
         let flag = true;
 
-        const minLenPassword = 6,
-            maxLenPassword = 18;
-
-        debugger;
+        const minLenPassword = 1,
+            maxLenPassword = 24;
 
         if (!isCorrectEmail(this.email)) {
             flag = false;
 			this.notify.notify('invalid email');
 		}
 
-		debugger;
 
         if (!isCorrectTextField(this.password, minLenPassword, maxLenPassword)) {
             flag = false;

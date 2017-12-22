@@ -1,4 +1,4 @@
-import Phaser from '../../phaser'
+// import Phaser from '../../phaser.min'
 
 class PauseMenu extends Phaser.State {
     constructor(){

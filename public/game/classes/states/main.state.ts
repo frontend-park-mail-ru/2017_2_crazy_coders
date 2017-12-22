@@ -18,8 +18,13 @@ export default class MainState extends State {
 
         this.add.tween(this._background).to({ alpha: 1}, 2000, Phaser.Easing.Bounce.InOut, true);
         this.add.tween(this._logo).to({ y: 220 }, 2000, Phaser.Easing.Elastic.Out, true, 2000);
+    }
 
-        this.input.onDown.addOnce(this.fadeOut, this);
+    update() {
+
+        if (this.game.input.keyboard.isDown(Phaser.Keyboard.ENTER)) {
+            this.fadeOut();
+        }
     }
 
     fadeOut(): void {

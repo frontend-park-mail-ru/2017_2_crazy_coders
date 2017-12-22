@@ -21,12 +21,13 @@ export default class UserService {
 	 * @param {string} username
 	 * @param {string} email
 	 * @param {string} password
+	 * @param {string} mouseControlEnabled
 	 * @return {Promise}
 	 */
-	signUp(username, email, password) {
+	signUp(username, email, password, mouseControlEnabled) {
 
-		console.log(`[signUp] email:  ${email}  pass: ${password}`);
-		const requestBody = {username, email, password};
+		console.log(`[signUp] email:  ${email}  pass: ${password}, mouseControll: ${mouseControlEnabled}`);
+		const requestBody = {username, email, password, mouseControlEnabled};
 		return Http.FetchPost('/signUp', requestBody)
 			.then((response) => {
 				if (response.status === 201) {
@@ -95,6 +96,30 @@ export default class UserService {
 					throw response;
 				}
 			});
+	}
+
+	getOwnScore() {
+		return Http.FetchGet('/statistic')
+			.then((response) => {
+				if (response.status === 200) {
+					return response.json();
+				} else {
+					console.log('[UserService.getOwnScore] status = ' + response.status);
+					throw response;
+				}
+			})
+	}
+
+	sendControllSettings(value) {
+		return Http.FetchPost('/updateMouseControlEnabled', {"mouseControlEnabled": value})
+			.then((response) => {
+                if (response.status === 200) {
+                    console.log('send controllSettings OK');
+                } else {
+                    console.log('send controllSettings ERROR; statusCode: ' + response.status);
+                }
+			})
+
 	}
 
 	/**

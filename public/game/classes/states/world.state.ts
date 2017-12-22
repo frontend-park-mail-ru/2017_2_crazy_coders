@@ -14,10 +14,11 @@ import StaticList from '../StaticList/StaticList';
 
 
 const earth       = require('../../../static/staticsGame/images/ground.jpg');
-const pause       = require('../../../static/staticsGame/images/pause_button.png');
+const pause       = require('../../../static/img/home.png');
 const box_tree    = require('../../../static/staticsGame/images/box_tree.png');
 const tanks       = require('../../../static/staticsGame/images/tanks.png');
 const tankLandingArea = require('../../../static/staticsGame/images/HelicopterLandingArea.png');
+import ControllSettings from '../../../modules/ControllSettings.js';
 
 export default class WorldState extends State {
     music: Phaser.Sound;
@@ -34,6 +35,7 @@ export default class WorldState extends State {
     isSendSpawnRequest: boolean;
     tankLandings: TankLandings;
     statistics: StaticList;
+    _controlSettings: ControllSettings;
 
     create(): void {
 
@@ -89,12 +91,14 @@ export default class WorldState extends State {
         this.enemyBullets = new EnemyBullets(this.game);
 
         this.pause = this.game.add.button(10, 10, "pause", this.startPause, this);
+        this.pause.fixedToCamera = true;
         this.pause.scale.setTo(0.2, 0.2);
         this.pause.frame = 1;
         this.pause['clicked'] = false;
 
         this.statistics = new StaticList(this.game, this.game.user.id);
 
+        this._controlSettings = new ControllSettings();
         this.game.camera.follow(this.tank._tank._body);
         // this.game.camera.deadzone = new Phaser.Rectangle(15, 15, 50, 30);
         // this.game.camera.focusOnXY(0, 0);
@@ -119,19 +123,25 @@ export default class WorldState extends State {
         this.land.tilePosition.y = -this.camera.y;
         this.tank.update();
 
-        // click mouse button
-        if (this.game.input.activePointer.isDown) {
-            this.fire();
+        // fire then click right mouse button or space
+        if (this._controlSettings.mouseControll) {
+            if (this.game.input.activePointer.isDown) {
+                this.fire();
+            }
+        } else {
+            if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+                this.fire();
+            }
         }
 
         if(this.client.socket.readyState !== 0) { // websocket connecting, message can't be sending
 
-            if (this.tank.isKilled === true && this.isSendSpawnRequest == false) {
+            if (this.tank.isKilled === true && this.isSendSpawnRequest === false) {
                 this.isSendSpawnRequest = true;
                 this.client.message.sendClientSnap(
                     (new SpawnRequest(this.game.user.id, this.game.user.username)).spawnSnap);
 
-            } else if (this.isSendSpawnRequest == false) {
+            } else if (this.isSendSpawnRequest === false) {
 
                 this.client.message.sendClientSnap(
                     (new Snap(this.game.user.id,
@@ -169,19 +179,28 @@ export default class WorldState extends State {
 
             let bullet = this.tankBullets.tankBullets.getFirstExists(false);
             bullet.reset(this.tank._turret._turret.x, this.tank._turret._turret.y);
-            bullet.rotation = this.physics.arcade.moveToPointer(bullet, 3500, this.game.input.activePointer);
+
+            if (this._controlSettings.mouseControll) {
+                bullet.rotation = this.physics.arcade.moveToPointer(bullet, 3500, this.game.input.activePointer);
+            } else {
+                let degToRad = function(deg) { return deg / 180 * Math.PI; };
+                let directX = this.tank._tank.currentPosition.xCoordinate - 1000*Math.cos(degToRad(180 - this.tank._turret._turret.angle));
+                let directY = this.tank._tank.currentPosition.yCoordinate + 1000*Math.sin(degToRad(this.tank._turret._turret.angle));
+
+                bullet.rotation = this.physics.arcade.moveToXY(bullet, directX, directY,3500);
+            }
 
             this.tank.isShoot = true;
         }
     }
 
     startPause(): void {
-
+        window.open("/", "_self");
     };
 
     onServerStatisticsSnap(message) {
         if(message.leaders) {
-            this.statistics.updateList(message.leaders);
+            this.statistics.updateList(message.leaders, this.tank.kills);
         }
     }
 
@@ -237,6 +256,8 @@ export default class WorldState extends State {
                 if(tankSnapshot.health <= 0) {
                     this.tank.kill();
                 }
+
+                this.tank.kills = tankSnapshot.kills;
             }
 
             if (tankSnapshot.userId !== this.game.user.id && !~this.enemyArray.indexOf(tankSnapshot.userId)) {

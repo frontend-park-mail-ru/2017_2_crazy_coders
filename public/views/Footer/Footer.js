@@ -4,7 +4,7 @@ let data = {
     imgListData: [
         {
             class: "footer__sound",
-            src: "./static/img/sound.png",
+            src: "./static/img/settings.png",
             id: "menu-button-music",
         },
         {

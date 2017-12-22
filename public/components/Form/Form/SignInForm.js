@@ -27,7 +27,7 @@ export default class SignInForm extends Form {
             const formdata = {};
             const elements = signInForm.elements;
 
-            debugger;
+            // debugger;
             for (let name of elements) {
                 formdata[name.name] = name.value;
                 console.log(name.value);

@@ -1,6 +1,7 @@
-import Phaser from '../../phaser';
+// import Phaser from '../../phaser.min';
 import EnemyTank from '../Tank/EnemyTank';
 import Constants from '../Constants/Constant';
+import ControllSettings from "../../../modules/ControllSettings";
 
 
 class World extends Phaser.State {
@@ -19,7 +20,7 @@ class World extends Phaser.State {
 		this.load.image('earth', 'static/staticsGame/images/ground.jpg');
 		this.load.spritesheet('kaboom', 'static/staticsGame/images/explosion.png', 64, 64, 23);
 
-		this.load.image('pause', 'static/staticsGame/images/pause_button.png');
+		this.load.image('pause', 'static/img/home.png');
 		this.load.image('box_tree', 'static/staticsGame/images/box_tree.png');
 	}
 
@@ -126,6 +127,11 @@ class World extends Phaser.State {
 		this.camera.focusOnXY(0, 0);
 
 		this.cursors = this.input.keyboard.createCursorKeys();
+        this._controlSettings = new ControllSettings();
+        this._dPhi = 0.07;
+
+        //resize offline game
+		this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
 	}
 
 	update() {
@@ -146,27 +152,67 @@ class World extends Phaser.State {
 		}
 
 
-		// величина угла поворота
-		if (this.cursors.left.isDown) {
-			this.tank.angle -= 5;
-		}
-		else if (this.cursors.right.isDown) {
-			this.tank.angle += 5;
-		}
+        if (this.input.keyboard.isDown(Phaser.Keyboard.A)) {
+            this.tank.angle -= 5;
+        } else if (this.input.keyboard.isDown(Phaser.Keyboard.D)) {
+            this.tank.angle += 5;
+        }
 
-		// скорость
-		if (this.cursors.up.isDown) {
-			this.currentSpeed = 210;
-		} else {
-			if (this.currentSpeed > 0) {
-				this.currentSpeed -= 100; // скорость торможения
-			}
-		}
+        // скорость
+        if (this.input.keyboard.isDown(Phaser.Keyboard.W)) {
+            this.currentSpeed = 251;
+        } else {
+            if (this.currentSpeed > 0) {
+                this.currentSpeed -= 25; // скорость торможения
+            }
+        }
 
-		// движение и поворотами
-		if (this.currentSpeed > 0) {
-			this.physics.arcade.velocityFromRotation(this.tank.rotation, this.currentSpeed, this.tank.body.velocity);
-		}
+        if (this._controlSettings.mouseControll === true) {
+            this.turret.rotation = this.physics.arcade.angleToPointer(this.turret);
+        } else {
+
+            let angle = this.turret.rotation;
+
+            if (this.cursors.left.isDown) {
+
+                let newAngle = angle - this._dPhi;
+
+                if (newAngle < -180) {
+                    let delta = -180 - newAngle;
+                    this.turret.rotation = 180 - delta;
+                } else {
+                    this.turret.rotation = newAngle;
+                }
+
+            } else if (this.cursors.right.isDown) {
+
+                let newAngle = angle + this._dPhi;
+
+                if (newAngle >= 180) {
+                    let delta = newAngle - 180;
+                    this.turret.rotation = -180 + delta;
+                } else {
+                    this.turret.rotation = newAngle
+                }
+            }
+        }
+
+        if (this._controlSettings.mouseControll) {
+            if (this.input.activePointer.isDown) {
+                this.fire();
+            }
+        } else {
+            if (this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+                this.fire();
+            }
+        }
+
+
+        if (this.currentSpeed > 0) {
+            this.physics.arcade.velocityFromRotation(this.tank.rotation, this.currentSpeed, this.tank.body.velocity);
+        }
+
+
 		this.land.tilePosition.x = -this.camera.x;
 		this.land.tilePosition.y = -this.camera.y;
 
@@ -179,12 +225,6 @@ class World extends Phaser.State {
 		this.turret.x = this.tank.x;
 		this.turret.y = this.tank.y;
 
-		this.turret.rotation = this.physics.arcade.angleToPointer(this.turret);
-
-		// нажали кнокпу мыши
-		if (this.input.activePointer.isDown) {
-			this.fire();
-		}
 
 		if (this.gameTime - this.total < 0 || this.health <= 0 || this.enemiesAlive === 0) {
 			this.score = (this.gameTime - this.total) * 50 + (this.enemiesTotal - this.enemiesAlive) * 50;
@@ -215,9 +255,18 @@ class World extends Phaser.State {
 		if (this.time.now > this.nextFire && this.bullets.countDead() > 0) {
 			this.nextFire = this.time.now + this.fireRate;
 
-			let bullet = this.bullets.getFirstExists(false);
-			bullet.reset(this.turret.x, this.turret.y);
-			bullet.rotation = this.physics.arcade.moveToPointer(bullet, 1000, this.input.activePointer, 500);
+            let bullet = this.bullets.getFirstExists(false);
+            bullet.reset(this.turret.x, this.turret.y);
+
+			if (this._controlSettings.mouseControll) {
+                bullet.rotation = this.physics.arcade.moveToPointer(bullet, 1000, this.input.activePointer);
+            } else {
+                let degToRad = function(deg) { return deg / 180 * Math.PI; };
+                let directX = this.turret.x - 1000*Math.cos(degToRad(180 - this.turret.angle));
+                let directY = this.turret.y + 1000*Math.sin(degToRad(this.turret.angle));
+
+                bullet.rotation = this.physics.arcade.moveToXY(bullet, directX, directY,3500);
+            }
 		}
 	}
 
@@ -243,7 +292,8 @@ class World extends Phaser.State {
 			button.clicked = true;
 		}
 		this.timePause = this.total;
-		this.game.state.start('PauseMenu', true, false);
+		// this.game.state.start('PauseMenu', true, false);
+        window.open("/", "_self");
 	}
 
 }

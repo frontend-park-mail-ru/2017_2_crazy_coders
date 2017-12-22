@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 147);
+/******/ 	return __webpack_require__(__webpack_require__.s = 154);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -130,7 +130,12 @@ module.exports = function flag(obj, key, value) {
 
 
 /***/ }),
-/* 2 */
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */,
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -151,13 +156,13 @@ exports.version = '4.1.2';
  * Assertion Error
  */
 
-exports.AssertionError = __webpack_require__(62);
+exports.AssertionError = __webpack_require__(61);
 
 /*!
  * Utils for plugins (not exported)
  */
 
-var util = __webpack_require__(148);
+var util = __webpack_require__(155);
 
 /**
  * # .use(function)
@@ -188,47 +193,47 @@ exports.util = util;
  * Configuration
  */
 
-var config = __webpack_require__(3);
+var config = __webpack_require__(8);
 exports.config = config;
 
 /*!
  * Primary `Assertion` prototype
  */
 
-var assertion = __webpack_require__(165);
+var assertion = __webpack_require__(172);
 exports.use(assertion);
 
 /*!
  * Core Assertions
  */
 
-var core = __webpack_require__(166);
+var core = __webpack_require__(173);
 exports.use(core);
 
 /*!
  * Expect interface
  */
 
-var expect = __webpack_require__(167);
+var expect = __webpack_require__(174);
 exports.use(expect);
 
 /*!
  * Should interface
  */
 
-var should = __webpack_require__(168);
+var should = __webpack_require__(175);
 exports.use(should);
 
 /*!
  * Assert interface
  */
 
-var assert = __webpack_require__(169);
+var assert = __webpack_require__(176);
 exports.use(assert);
 
 
 /***/ }),
-/* 3 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -328,7 +333,7 @@ module.exports = {
 
 
 /***/ }),
-/* 4 */
+/* 9 */
 /***/ (function(module, exports) {
 
 /*!
@@ -379,14 +384,11 @@ module.exports = function transferFlags(assertion, object, includeAll) {
 
 
 /***/ }),
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
 /* 10 */,
 /* 11 */,
-/* 12 */
+/* 12 */,
+/* 13 */,
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -398,7 +400,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Http = __webpack_require__(13);
+var _Http = __webpack_require__(15);
 
 var _Http2 = _interopRequireDefault(_Http);
 
@@ -431,16 +433,17 @@ var UserService = function () {
   * @param {string} username
   * @param {string} email
   * @param {string} password
+  * @param {string} mouseControlEnabled
   * @return {Promise}
   */
 
 
 	_createClass(UserService, [{
 		key: 'signUp',
-		value: function signUp(username, email, password) {
+		value: function signUp(username, email, password, mouseControlEnabled) {
 
-			console.log('[signUp] email:  ' + email + '  pass: ' + password);
-			var requestBody = { username: username, email: email, password: password };
+			console.log('[signUp] email:  ' + email + '  pass: ' + password + ', mouseControll: ' + mouseControlEnabled);
+			var requestBody = { username: username, email: email, password: password, mouseControlEnabled: mouseControlEnabled };
 			return _Http2.default.FetchPost('/signUp', requestBody).then(function (response) {
 				if (response.status === 201) {
 					//this.user.set(response.json());
@@ -518,6 +521,29 @@ var UserService = function () {
 				}
 			});
 		}
+	}, {
+		key: 'getOwnScore',
+		value: function getOwnScore() {
+			return _Http2.default.FetchGet('/statistic').then(function (response) {
+				if (response.status === 200) {
+					return response.json();
+				} else {
+					console.log('[UserService.getOwnScore] status = ' + response.status);
+					throw response;
+				}
+			});
+		}
+	}, {
+		key: 'sendControllSettings',
+		value: function sendControllSettings(value) {
+			return _Http2.default.FetchPost('/updateMouseControlEnabled', { "mouseControlEnabled": value }).then(function (response) {
+				if (response.status === 200) {
+					console.log('send controllSettings OK');
+				} else {
+					console.log('send controllSettings ERROR; statusCode: ' + response.status);
+				}
+			});
+		}
 
 		/**
    * Получить данного пользователя
@@ -546,7 +572,7 @@ var UserService = function () {
 exports.default = UserService;
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -648,8 +674,6 @@ var Http = function () {
 exports.default = Http;
 
 /***/ }),
-/* 14 */,
-/* 15 */,
 /* 16 */,
 /* 17 */,
 /* 18 */,
@@ -661,10 +685,10 @@ exports.default = Http;
 // This is (almost) directly from Node.js utils
 // https://github.com/joyent/node/blob/f8c335d0caf47f16d31413f89aa28eda3878e3aa/lib/util.js
 
-var getName = __webpack_require__(64);
-var getProperties = __webpack_require__(65);
-var getEnumerableProperties = __webpack_require__(153);
-var config = __webpack_require__(3);
+var getName = __webpack_require__(63);
+var getProperties = __webpack_require__(64);
+var getEnumerableProperties = __webpack_require__(160);
+var config = __webpack_require__(8);
 
 module.exports = inspect;
 
@@ -1047,7 +1071,7 @@ function objectToString(o) {
 /* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var config = __webpack_require__(3);
+var config = __webpack_require__(8);
 
 /*!
  * Chai - isProxyEnabled helper
@@ -1077,7 +1101,7 @@ module.exports = function isProxyEnabled() {
 /* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var config = __webpack_require__(3);
+var config = __webpack_require__(8);
 
 var fnLengthDesc = Object.getOwnPropertyDescriptor(function () {}, 'length');
 
@@ -1145,9 +1169,9 @@ module.exports = function addLengthGuard (fn, assertionName, isChainable) {
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var config = __webpack_require__(3);
+var config = __webpack_require__(8);
 var flag = __webpack_require__(1);
-var getProperties = __webpack_require__(65);
+var getProperties = __webpack_require__(64);
 var isProxyEnabled = __webpack_require__(22);
 
 /*!
@@ -1386,8 +1410,7 @@ exports.default = User;
 /* 26 */,
 /* 27 */,
 /* 28 */,
-/* 29 */,
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {(function (global, factory) {
@@ -1782,6 +1805,7 @@ return typeDetect;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
+/* 30 */,
 /* 31 */,
 /* 32 */,
 /* 33 */,
@@ -1811,15 +1835,14 @@ return typeDetect;
 /* 57 */,
 /* 58 */,
 /* 59 */,
-/* 60 */,
-/* 61 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(2);
+module.exports = __webpack_require__(7);
 
 
 /***/ }),
-/* 62 */
+/* 61 */
 /***/ (function(module, exports) {
 
 /*!
@@ -1941,7 +1964,7 @@ AssertionError.prototype.toJSON = function (stack) {
 
 
 /***/ }),
-/* 63 */
+/* 62 */
 /***/ (function(module, exports) {
 
 /*!
@@ -1967,7 +1990,7 @@ module.exports = function getActual(obj, args) {
 
 
 /***/ }),
-/* 64 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2018,7 +2041,7 @@ module.exports = getFuncName;
 
 
 /***/ }),
-/* 65 */
+/* 64 */
 /***/ (function(module, exports) {
 
 /*!
@@ -2060,7 +2083,7 @@ module.exports = function getProperties(object) {
 
 
 /***/ }),
-/* 66 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -2074,7 +2097,7 @@ module.exports = function getProperties(object) {
  */
 
 var inspect = __webpack_require__(21);
-var config = __webpack_require__(3);
+var config = __webpack_require__(8);
 
 /**
  * ### .objDisplay(object)
@@ -2116,7 +2139,7 @@ module.exports = function objDisplay(obj) {
 
 
 /***/ }),
-/* 67 */
+/* 66 */
 /***/ (function(module, exports) {
 
 /*!
@@ -2149,6 +2172,7 @@ module.exports = function getOwnEnumerablePropertySymbols(obj) {
 
 
 /***/ }),
+/* 67 */,
 /* 68 */,
 /* 69 */,
 /* 70 */,
@@ -2228,15 +2252,22 @@ module.exports = function getOwnEnumerablePropertySymbols(obj) {
 /* 144 */,
 /* 145 */,
 /* 146 */,
-/* 147 */
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(61);
-module.exports = __webpack_require__(170);
+__webpack_require__(60);
+module.exports = __webpack_require__(177);
 
 
 /***/ }),
-/* 148 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -2249,36 +2280,36 @@ module.exports = __webpack_require__(170);
  * Dependencies that are used for multiple exports are required here only once
  */
 
-var pathval = __webpack_require__(149);
+var pathval = __webpack_require__(156);
 
 /*!
  * test utility
  */
 
-exports.test = __webpack_require__(150);
+exports.test = __webpack_require__(157);
 
 /*!
  * type utility
  */
 
-exports.type = __webpack_require__(30);
+exports.type = __webpack_require__(29);
 
 /*!
  * expectTypes utility
  */
-exports.expectTypes = __webpack_require__(151);
+exports.expectTypes = __webpack_require__(158);
 
 /*!
  * message utility
  */
 
-exports.getMessage = __webpack_require__(152);
+exports.getMessage = __webpack_require__(159);
 
 /*!
  * actual utility
  */
 
-exports.getActual = __webpack_require__(63);
+exports.getActual = __webpack_require__(62);
 
 /*!
  * Inspect util
@@ -2290,7 +2321,7 @@ exports.inspect = __webpack_require__(21);
  * Object Display util
  */
 
-exports.objDisplay = __webpack_require__(66);
+exports.objDisplay = __webpack_require__(65);
 
 /*!
  * Flag utility
@@ -2302,13 +2333,13 @@ exports.flag = __webpack_require__(1);
  * Flag transferring utility
  */
 
-exports.transferFlags = __webpack_require__(4);
+exports.transferFlags = __webpack_require__(9);
 
 /*!
  * Deep equal utility
  */
 
-exports.eql = __webpack_require__(154);
+exports.eql = __webpack_require__(161);
 
 /*!
  * Deep path info
@@ -2326,67 +2357,67 @@ exports.hasProperty = pathval.hasProperty;
  * Function name
  */
 
-exports.getName = __webpack_require__(64);
+exports.getName = __webpack_require__(63);
 
 /*!
  * add Property
  */
 
-exports.addProperty = __webpack_require__(155);
+exports.addProperty = __webpack_require__(162);
 
 /*!
  * add Method
  */
 
-exports.addMethod = __webpack_require__(156);
+exports.addMethod = __webpack_require__(163);
 
 /*!
  * overwrite Property
  */
 
-exports.overwriteProperty = __webpack_require__(157);
+exports.overwriteProperty = __webpack_require__(164);
 
 /*!
  * overwrite Method
  */
 
-exports.overwriteMethod = __webpack_require__(158);
+exports.overwriteMethod = __webpack_require__(165);
 
 /*!
  * Add a chainable method
  */
 
-exports.addChainableMethod = __webpack_require__(159);
+exports.addChainableMethod = __webpack_require__(166);
 
 /*!
  * Overwrite chainable method
  */
 
-exports.overwriteChainableMethod = __webpack_require__(160);
+exports.overwriteChainableMethod = __webpack_require__(167);
 
 /*!
  * Compare by inspect method
  */
 
-exports.compareByInspect = __webpack_require__(161);
+exports.compareByInspect = __webpack_require__(168);
 
 /*!
  * Get own enumerable property symbols method
  */
 
-exports.getOwnEnumerablePropertySymbols = __webpack_require__(67);
+exports.getOwnEnumerablePropertySymbols = __webpack_require__(66);
 
 /*!
  * Get own enumerable properties method
  */
 
-exports.getOwnEnumerableProperties = __webpack_require__(162);
+exports.getOwnEnumerableProperties = __webpack_require__(169);
 
 /*!
  * Checks error against a given set of criteria
  */
 
-exports.checkError = __webpack_require__(163);
+exports.checkError = __webpack_require__(170);
 
 /*!
  * Proxify util
@@ -2410,11 +2441,11 @@ exports.isProxyEnabled = __webpack_require__(22);
  * isNaN method
  */
 
-exports.isNaN = __webpack_require__(164);
+exports.isNaN = __webpack_require__(171);
 
 
 /***/ }),
-/* 149 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2712,7 +2743,7 @@ module.exports = {
 
 
 /***/ }),
-/* 150 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -2746,7 +2777,7 @@ module.exports = function test(obj, args) {
 
 
 /***/ }),
-/* 151 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -2769,9 +2800,9 @@ module.exports = function test(obj, args) {
  * @api public
  */
 
-var AssertionError = __webpack_require__(62);
+var AssertionError = __webpack_require__(61);
 var flag = __webpack_require__(1);
-var type = __webpack_require__(30);
+var type = __webpack_require__(29);
 
 module.exports = function expectTypes(obj, types) {
   var flagMsg = flag(obj, 'message');
@@ -2803,7 +2834,7 @@ module.exports = function expectTypes(obj, types) {
 
 
 /***/ }),
-/* 152 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -2817,9 +2848,9 @@ module.exports = function expectTypes(obj, types) {
  */
 
 var flag = __webpack_require__(1)
-  , getActual = __webpack_require__(63)
+  , getActual = __webpack_require__(62)
   , inspect = __webpack_require__(21)
-  , objDisplay = __webpack_require__(66);
+  , objDisplay = __webpack_require__(65);
 
 /**
  * ### .getMessage(object, message, negateMessage)
@@ -2860,7 +2891,7 @@ module.exports = function getMessage(obj, args) {
 
 
 /***/ }),
-/* 153 */
+/* 160 */
 /***/ (function(module, exports) {
 
 /*!
@@ -2892,7 +2923,7 @@ module.exports = function getEnumerableProperties(object) {
 
 
 /***/ }),
-/* 154 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2904,7 +2935,7 @@ module.exports = function getEnumerableProperties(object) {
  * MIT Licensed
  */
 
-var type = __webpack_require__(30);
+var type = __webpack_require__(29);
 function FakeMap() {
   this._key = 'chai/deep-eql__' + Math.random() + Date.now();
 }
@@ -3354,7 +3385,7 @@ function isPrimitive(value) {
 
 
 /***/ }),
-/* 155 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -3363,10 +3394,10 @@ function isPrimitive(value) {
  * MIT Licensed
  */
 
-var chai = __webpack_require__(2);
+var chai = __webpack_require__(7);
 var flag = __webpack_require__(1);
 var isProxyEnabled = __webpack_require__(22);
-var transferFlags = __webpack_require__(4);
+var transferFlags = __webpack_require__(9);
 
 /**
  * ### .addProperty(ctx, name, getter)
@@ -3432,7 +3463,7 @@ module.exports = function addProperty(ctx, name, getter) {
 
 
 /***/ }),
-/* 156 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -3442,10 +3473,10 @@ module.exports = function addProperty(ctx, name, getter) {
  */
 
 var addLengthGuard = __webpack_require__(23);
-var chai = __webpack_require__(2);
+var chai = __webpack_require__(7);
 var flag = __webpack_require__(1);
 var proxify = __webpack_require__(24);
-var transferFlags = __webpack_require__(4);
+var transferFlags = __webpack_require__(9);
 
 /**
  * ### .addMethod(ctx, name, method)
@@ -3506,7 +3537,7 @@ module.exports = function addMethod(ctx, name, method) {
 
 
 /***/ }),
-/* 157 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -3515,10 +3546,10 @@ module.exports = function addMethod(ctx, name, method) {
  * MIT Licensed
  */
 
-var chai = __webpack_require__(2);
+var chai = __webpack_require__(7);
 var flag = __webpack_require__(1);
 var isProxyEnabled = __webpack_require__(22);
-var transferFlags = __webpack_require__(4);
+var transferFlags = __webpack_require__(9);
 
 /**
  * ### .overwriteProperty(ctx, name, fn)
@@ -3604,7 +3635,7 @@ module.exports = function overwriteProperty(ctx, name, getter) {
 
 
 /***/ }),
-/* 158 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -3614,10 +3645,10 @@ module.exports = function overwriteProperty(ctx, name, getter) {
  */
 
 var addLengthGuard = __webpack_require__(23);
-var chai = __webpack_require__(2);
+var chai = __webpack_require__(7);
 var flag = __webpack_require__(1);
 var proxify = __webpack_require__(24);
-var transferFlags = __webpack_require__(4);
+var transferFlags = __webpack_require__(9);
 
 /**
  * ### .overwriteMethod(ctx, name, fn)
@@ -3702,7 +3733,7 @@ module.exports = function overwriteMethod(ctx, name, method) {
 
 
 /***/ }),
-/* 159 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -3716,10 +3747,10 @@ module.exports = function overwriteMethod(ctx, name, method) {
  */
 
 var addLengthGuard = __webpack_require__(23);
-var chai = __webpack_require__(2);
+var chai = __webpack_require__(7);
 var flag = __webpack_require__(1);
 var proxify = __webpack_require__(24);
-var transferFlags = __webpack_require__(4);
+var transferFlags = __webpack_require__(9);
 
 /*!
  * Module variables
@@ -3860,7 +3891,7 @@ module.exports = function addChainableMethod(ctx, name, method, chainingBehavior
 
 
 /***/ }),
-/* 160 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -3869,8 +3900,8 @@ module.exports = function addChainableMethod(ctx, name, method, chainingBehavior
  * MIT Licensed
  */
 
-var chai = __webpack_require__(2);
-var transferFlags = __webpack_require__(4);
+var chai = __webpack_require__(7);
+var transferFlags = __webpack_require__(9);
 
 /**
  * ### .overwriteChainableMethod(ctx, name, method, chainingBehavior)
@@ -3935,7 +3966,7 @@ module.exports = function overwriteChainableMethod(ctx, name, method, chainingBe
 
 
 /***/ }),
-/* 161 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -3972,7 +4003,7 @@ module.exports = function compareByInspect(a, b) {
 
 
 /***/ }),
-/* 162 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -3985,7 +4016,7 @@ module.exports = function compareByInspect(a, b) {
  * Module dependancies
  */
 
-var getOwnEnumerablePropertySymbols = __webpack_require__(67);
+var getOwnEnumerablePropertySymbols = __webpack_require__(66);
 
 /**
  * ### .getOwnEnumerableProperties(object)
@@ -4007,7 +4038,7 @@ module.exports = function getOwnEnumerableProperties(obj) {
 
 
 /***/ }),
-/* 163 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4186,7 +4217,7 @@ module.exports = {
 
 
 /***/ }),
-/* 164 */
+/* 171 */
 /***/ (function(module, exports) {
 
 /*!
@@ -4218,7 +4249,7 @@ module.exports = Number.isNaN || isNaN;
 
 
 /***/ }),
-/* 165 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -4228,7 +4259,7 @@ module.exports = Number.isNaN || isNaN;
  * MIT Licensed
  */
 
-var config = __webpack_require__(3);
+var config = __webpack_require__(8);
 
 module.exports = function (_chai, util) {
   /*!
@@ -4389,7 +4420,7 @@ module.exports = function (_chai, util) {
 
 
 /***/ }),
-/* 166 */
+/* 173 */
 /***/ (function(module, exports) {
 
 /*!
@@ -8124,7 +8155,7 @@ module.exports = function (chai, _) {
 
 
 /***/ }),
-/* 167 */
+/* 174 */
 /***/ (function(module, exports) {
 
 /*!
@@ -8164,7 +8195,7 @@ module.exports = function (chai, util) {
 
 
 /***/ }),
-/* 168 */
+/* 175 */
 /***/ (function(module, exports) {
 
 /*!
@@ -8374,7 +8405,7 @@ module.exports = function (chai, util) {
 
 
 /***/ }),
-/* 169 */
+/* 176 */
 /***/ (function(module, exports) {
 
 /*!
@@ -11478,17 +11509,17 @@ module.exports = function (chai, util) {
 
 
 /***/ }),
-/* 170 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _chai = __webpack_require__(61);
+var _chai = __webpack_require__(60);
 
 var _chai2 = _interopRequireDefault(_chai);
 
-var _UserService = __webpack_require__(12);
+var _UserService = __webpack_require__(14);
 
 var _UserService2 = _interopRequireDefault(_UserService);
 

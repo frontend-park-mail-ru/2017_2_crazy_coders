@@ -32,7 +32,7 @@ export default class Client {
                 console.log("completed");
 
             } catch (ex) {
-                debugger;
+                // debugger;
                 console.log("[CLient] OnOpenFunction catch(error)");
                 this.socket.close(1001, "error: exeception occured during the initialization stage: " + ex);
             }

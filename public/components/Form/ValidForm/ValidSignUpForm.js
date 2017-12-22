@@ -58,10 +58,10 @@ export default class ValidSignUpForm {
 	validForm() {
 		let flag = true;
 
-		const minLenUsername = 4,
-			maxLenUsername = 15,
-			minLenPassword = 6,
-			maxLenPassword = 18;
+		const minLenUsername = 1,
+			maxLenUsername = 24,
+			minLenPassword = 1,
+			maxLenPassword = 24;
 
 		if (!isCorrectTextField(this.username, minLenUsername, maxLenUsername)) {
 			flag = false;

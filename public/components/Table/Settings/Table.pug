@@ -1,0 +1,17 @@
+div.table
+    div.table__title=data.title
+
+    div.table__content
+        table.table__tag(class=data.classTable)
+            tr.table__tr
+                td.table__td='MOUSE CONTROL'
+                    label.table__switch
+                        input.table__checkbox(type='checkbox')
+                        span.table__slider
+            tr.table__tr
+                td.table__td
+                    img.table__img_keyboard(src='/img/keyboard.png')
+                    img.table__img_keyboard_with_mouse(src='/img/keyboard_with_mouse.png')
+
+    div.table__back
+        button.table__button(id=data.idButton)='BACK'

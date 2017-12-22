@@ -1,4 +1,4 @@
-import Phaser from '../../phaser'
+// import Phaser from '../../phaser.min'
 import Constants from '../Constants/Constant';
 
 class GameOverMenu extends Phaser.State {
