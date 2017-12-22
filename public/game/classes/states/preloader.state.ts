@@ -11,6 +11,7 @@ const kaboom      = require('../../../static/staticsGame/images/explosion.png');
 const titlepage   = require('../../../static/staticsGame/images/titlepage.jpg');
 const logo        = require('../../../static/staticsGame/images/logo.png');
 // const startAudio      = require('../../../static/staticsGame/music/boom.mp3');
+const shot      = require('../../../static/staticsGame/music/shot.mp3');
 const earth       = require('../../../static/staticsGame/images/ground.jpg');
 const pause       = require('../../../static/img/home.png');
 const box_tree    = require('../../../static/staticsGame/images/box_tree.png');
@@ -37,7 +38,7 @@ export default class PreloaderState extends State {
 
         this.game.load.image('titlepage', titlepage);
         this.game.load.image('logo', logo);
-        // this.game.load.audio('startAudio', startAudio, true);
+        this.game.load.audio('shot', shot, true);
         this.game.load.image('earth', earth);
         this.game.load.image('pause', pause);
         this.game.load.image('box_tree', box_tree);
