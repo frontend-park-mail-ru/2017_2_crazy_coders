@@ -36,10 +36,16 @@ export default class WorldState extends State {
     tankLandings: TankLandings;
     statistics: StaticList;
     _controlSettings: ControllSettings;
+    _shotSound: Phaser.Sound;
+    _enemyShotSound: Phaser.Sound;
 
     create(): void {
 
         this.game.world.setBounds(0, 0, 1920, 1080);
+
+        this._shotSound = this.add.audio('shot', 1, false);
+        this._enemyShotSound = this.add.audio('shot', 0.2, false);
+        this._enemyShotSound.volume = 0.01;
 
         this.isSendSpawnRequest = false;
         this.load.image('bullet', 'static/staticsGame/images/bullet.png');
@@ -182,12 +188,14 @@ export default class WorldState extends State {
 
             if (this._controlSettings.mouseControll) {
                 bullet.rotation = this.physics.arcade.moveToPointer(bullet, 3500, this.game.input.activePointer);
+                this._shotSound.play();
             } else {
                 let degToRad = function(deg) { return deg / 180 * Math.PI; };
                 let directX = this.tank._tank.currentPosition.xCoordinate - 1000*Math.cos(degToRad(180 - this.tank._turret._turret.angle));
                 let directY = this.tank._tank.currentPosition.yCoordinate + 1000*Math.sin(degToRad(this.tank._turret._turret.angle));
 
                 bullet.rotation = this.physics.arcade.moveToXY(bullet, directX, directY,3500);
+                this._shotSound.play();
             }
 
             this.tank.isShoot = true;
@@ -312,6 +320,7 @@ export default class WorldState extends State {
                         let bullet = this.enemyBullets.enemyBullets.getFirstExists(false);
                         bullet.reset(tankSnapshot.platform.valX, tankSnapshot.platform.valY);
                         bullet.rotation = this.physics.arcade.moveToXY(bullet, directX, directY,3500);
+                        this._enemyShotSound.play();
                     }
 
                     enemyOnClient.tankBody.currentPosition = {
