@@ -4,9 +4,12 @@ const cacheUrls = [
 
 	'./static/img/info.png',
 	'./img/logo.png',
+	'./img/keyboard.png',
+	'./img/keyboard_with_mouse.png',
 	'./static/img/score.png',
-	'./static/img/sound.png',
-
+	'./static/img/settings.png',
+	'./static/img/home.png',
+	'./img/1ec878abc02f59ab966e9d4f4bbbff65.png',
 	'./js/phaser.min.js',
 
 	'../../img/5ddcf208bfb5ee103c39ea71c64a107f.png',
@@ -22,8 +25,6 @@ const cacheUrls = [
 	'./static/staticsGame/images/ground.jpg',
 	'./static/staticsGame/images/loader.png',
 	'./static/staticsGame/images/logo.png',
-	'./static/staticsGame/images/pause_button.png',
-	'./static/staticsGame/images/pause_logo.png',
 	'./static/staticsGame/images/shadow.png',
 	'./static/staticsGame/images/tank.png',
 	'./static/staticsGame/images/tank1.png',
@@ -33,7 +34,6 @@ const cacheUrls = [
 	'./static/staticsGame/images/try_again_button.png',
 	'./static/staticsGame/images/turret.png',
 	'./static/staticsGame/images/white_background.jpg',
-    './static/staticsGame/images/HelicopterLandingArea.png',
 
 	'./static/staticsGame/music/boom.mp3',
 

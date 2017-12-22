@@ -13172,6 +13172,11 @@ var ScoreListController = function (_Controller) {
                         _this3.page_parts.get("Scoreboard").data.users = topList;
                         _this3.page_parts.get("Scoreboard").getClassElement().hidden = false;
                         _this3.addListener();
+                    }).catch(function (err) {
+                        console.log('need try one multiplayer game');
+                        _this3.page_parts.get("Scoreboard").data.users = topList;
+                        _this3.page_parts.get("Scoreboard").getClassElement().hidden = false;
+                        _this3.addListener();
                     });
                 } else {
 
@@ -13435,6 +13440,7 @@ function RegisterSW() {
 		navigator.serviceWorker.register('./sw.js', { scope: '/' }).then(function (registration) {
 			console.log('good registration worker: ' + registration);
 		}).catch(function (error) {
+			console.log(error);
 			console.log('bad registration worker: ' + error);
 		});
 	}
